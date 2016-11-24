@@ -1,3 +1,4 @@
+---
 title: Updating the Omega
 layout: guide.hbs
 columns: two
