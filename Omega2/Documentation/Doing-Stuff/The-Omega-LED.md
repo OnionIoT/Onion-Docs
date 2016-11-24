@@ -8,4 +8,5 @@ order: 2
 
 # The Omega's LED
 
-sdfadsfdsf
+// how to control the Omega's LED
+// note: this isn't available yet in the firmware... 

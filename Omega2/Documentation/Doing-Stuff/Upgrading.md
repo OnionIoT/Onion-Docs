@@ -7,4 +7,8 @@ order: 8
 
 # Updating the Omega
 
-sdfdsf
+// small explanation saying why the Omega should be kept up to datasheet
+
+## Using the Command line
+
+// guide on how to use oupgrade
