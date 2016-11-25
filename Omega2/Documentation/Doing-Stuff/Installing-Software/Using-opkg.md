@@ -33,11 +33,18 @@ To install a package simply use the opkg command:
 opkg install package_name
 ```
 
-## Removing packages
+## Removing Packages
 
 To remove a package:
 
 ```
 opkg remove package_name
 ```
-// steps on how to remove a package
+
+## Help With Opkg
+
+To see the opkg usage, run:
+
+```
+opkg -h
+```
