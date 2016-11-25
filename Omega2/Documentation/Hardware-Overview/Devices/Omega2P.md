@@ -22,7 +22,9 @@ order: 2
 
 // image of omega2 pinout
 
-// LATER: include info on the 50pin connector
+
+[//]: # (LATER: include section on the 50pin connector)
+
 
 ## The Omega LED
 
