@@ -21,15 +21,11 @@ Time Required:
 **5 mins**
 
 Required Materials:
-* Omega
+* Omega2 or Omega2+
 * Expansion Dock
 * Ethernet Dock
 * (Optional) Lan Switch
 
-Useful Experience:
-* Using Omega
-* Familiar with Openwrt firewall and network configuration
-* Familiar with networking
 
 [//]: # (The Actual Process)
 
