@@ -2,7 +2,6 @@
 title: Get Started
 layout: guide.hbs
 columns: two
-devices: [ Omega2 ]
 order: 1
 ---
 
@@ -21,17 +20,17 @@ Follow along with this guide to get your Omega2 to first learn how to properly c
 
 Unpack the Omega and a Dock from their boxes
 
-![Omega + Dock](http://i.imgur.com/fKZfABhl.jpg "Omega + Dock")
+![Omega + Dock](./img/unbox-1-omega-with-dock.jpg "Omega + Dock")
 
 **Connect**
 
 Plug the Omega into the socket on the Dock
 
-![Omega plugged into Dock](http://i.imgur.com/1HNTUgKl.jpg "Omega Plugged into Dock")
+![Omega plugged into Dock](./img/unbox-2-omega-on-dock.jpg "Omega Plugged into Dock")
 
 Make sure your Omega's pins are fully plugged into the socket
 
-![Omega plugged into Dock Side View](http://i.imgur.com/0f1Prmul.jpg)
+![Omega plugged into Dock Side View](./img/unbox-3-omega-on-dock-side.jpg)
 
 **Provide Power**
 
@@ -42,7 +41,7 @@ The Omega itself is powered by a 3.3V source. But, all Omega Docks have voltage 
 
 You can power it with your computer
 
-![Omega plugged into USB](http://i.imgur.com/OgKnUXdl.jpg "Omega plugged into USB")
+![Omega plugged into USB](./img/unbox-4-omega-provide-power.jpg "Omega plugged into USB")
 
 Or you can power it with any wall adapter
 
@@ -52,13 +51,13 @@ Or you can power it with any wall adapter
 
 Turn on the Omega using the switch.
 
-![Turn on the Omega](http://i.imgur.com/sAyIEANl.jpg "Turn on the Omega")
+![Turn on the Omega](./img/unbox-5-omega-switched-on.jpg "Turn on the Omega")
 
 **Wait till it boots**
 
 When the amber LED has been on for about a minute, your Omega will have booted.
 
-![Omega is on](http://i.imgur.com/kpT4L2bl.jpg "Omega is on")
+![Omega is on](./img/unbox-6-omega-led-detail.jpg "Omega is on")
 
 *We're working on making this step more intuitive, stay tuned!*
 
@@ -95,7 +94,7 @@ So the Omega from the picture above is named `Omega-296A`
 
 The Omega hosts it's own WiFi network access point. Lets connect your computer to it. The WiFi network is named the same as your Omega and the default password is `12345678`
 
-![Connect to AP](http://i.imgur.com/KumCH9Al.png "Connect to AP")
+![Connect to AP](./img/setup-1-connect-to-wifi.png "Connect to AP")
 
 
 **The Setup Wizard**
@@ -104,7 +103,7 @@ Open your favourite browser and navigate to `http://omega-ABCD.local/` where `AB
 
 You have now arrived at the Setup Wizard:
 
-![Browse to Setup Wizard](http://i.imgur.com/DaHshUL.png "Browse to Setup Wizard")
+![Browse to Setup Wizard](./img/setup-2-wizard-start.png "Browse to Setup Wizard")
 
 Login with the following information:
 ```
@@ -112,13 +111,15 @@ username: root
 password: onioneer
 ```
 
-![Setup Wizard Login](http://i.imgur.com/y5aX5oG.png "Browse to Setup Wizard")
+![Setup Wizard Login](./img/setup-3-wizard-login.png "Browse to Setup Wizard")
 
 Follow the wizard to complete the setup of the Omega, by the end of it, your Omega will be updated with the latest firmware and connected to a WiFi network of your choosing.
 
 **All Done!**
 
 Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next!
+
+[//]: # (TODO: fix the links above when the content is available)
 
 
 ## Troubleshooting
