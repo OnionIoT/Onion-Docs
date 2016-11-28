@@ -10,8 +10,6 @@ order: 2
 
 // brief intro to Git and version control
 
-<!-- Git is an open-source version control system that is used by developers in order to manage their code. At Onion, we are constantly developing and changing our code and Git allows us to keep track of our revisions. In this tutorial, we'll show you how you can use Git directly from your Omega2/Omega2+. -->
-
 Git is a popular [version control](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control) system that allows coders to track changes to their codebase, easily collaborate with others, and manage their project.
 
 Git is the version control system used by [GitHub](https://github.com/), the super popular online web-based repository hosting service. The team at Onion uses GitHub exclusively for all of our version control needs. 
