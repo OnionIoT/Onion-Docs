@@ -32,7 +32,7 @@ Once downloaded, install the application and then run it.
 
 Connecting to the Omega is super simple. Connect to your Omega's access point and create a New Site as shown in the image below:
 
-![WinSCP Image 1](https://dl.dropboxusercontent.com/u/12816733/onion-omega-winscp-1.png)
+![WinSCP Image 1](./img/onion-omega-winscp-1.png)
 
 In the right hand pane, you'll need to set the details for your Onion Omega. Typically these are:
 
@@ -46,7 +46,7 @@ In the right hand pane, you'll need to set the details for your Onion Omega. Typ
 
 **Password:** onioneer
 
-![WinSCP Image 2](https://dl.dropboxusercontent.com/u/12816733/onion-omega-winscp-2.png)
+![WinSCP Image 2](./img/onion-omega-winscp-2.png)
 
 Once finished, press the "Save" button.
 
@@ -54,21 +54,21 @@ On the next window there is a tickbox option to save the password, thats up to y
 
 You can name the connection and you can also you can save a desktop shortcut if desired.
 
-![WinSCP Image 3](https://dl.dropboxusercontent.com/u/12816733/onion-omega-winscp-3.png)
+![WinSCP Image 3](./img/onion-omega-winscp-3.png)
 
 Now from the left menu you'll see the name you saved the new site as a few moments ago, eg "root@192.168.3.1", click on this, then "Login".
 
-![WinSCP Image 4](https://dl.dropboxusercontent.com/u/12816733/onion-omega-winscp-4.png)
+![WinSCP Image 4](./img/onion-omega-winscp-4.png)
 
 As this is your first time connecting via WinSCP you'll receive a warning similar to the one below. That's to be expected, click on "Yes"
 
-![WinSCP Image 5](https://dl.dropboxusercontent.com/u/12816733/onion-omega-winscp-5.png)
+![WinSCP Image 5](./img/onion-omega-winscp-5.png)
 
 Congraulations, you now have remote, easy access to your Onion Omega system files!
 
 Happy Hacking!
 
-![WinSCP Image 6](https://dl.dropboxusercontent.com/u/12816733/onion-omega-winscp-6.png)
+![WinSCP Image 6](./img/onion-omega-winscp-6.png)
 
 
 

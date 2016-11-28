@@ -18,7 +18,7 @@ Those of you familiar with OpenWRT will probably know that it was originally des
 
 First, connect the Omega to the Expansion Dock, and plug the Ethernet Expansion into the Expansion Dock. Then, connect the ethernet cable coming from your modem to the Ethernet Expansion, and connect the power to the Omega, as shown below:
 
-![Omega Router](//i.imgur.com/RNlB8Rg.jpg)
+![Omega Router](../img/omega-router-pic-1.jpg)
 
 After you have connected everything, power on the Omega.
 
@@ -47,11 +47,12 @@ config wifi-iface
 
 and replace with `option ApCliEnable '1'` with `option ApCliEnable '0'`
 
-Within this block, you can change the SSID if your Omega, the router password, as well as the type of encryption you want to use for the router
+Within this block, you can change the SSID if your Omega, the router password, as well as the type of encryption you want to use for the router and the password.
 
 ```
 option ssid 'OmegaRouter'
 option key 'RouterPassword'
+option encription 'YourEncryptionType'
 ```
 
 Once you have finished customizing the WiFi network, simply save and close the file, and run the following command to restart the WiFi network:

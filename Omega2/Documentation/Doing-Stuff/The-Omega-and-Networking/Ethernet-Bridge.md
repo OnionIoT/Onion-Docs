@@ -10,8 +10,6 @@ order: 3
 
 In this tutorial, we are going to go through how we can enable other devices to use the Omega's Ethernet Expansion to connect to an existing WiFi network.
 
-![Lan switch diagram](https://community.onion.io/uploads/files/1460835842818-asus_omega_sw_wireless.png)
-
 # Overview 
 
 Tutorial Difficulty:
