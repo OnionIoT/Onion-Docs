@@ -8,9 +8,11 @@ order: 8
 
 # Updating the Omega
 
-In order to keep improving user experience for Omega, we will be releasing updated firmwares on a rolling basis. To capitalize on these improvements users should update their Omegas to the latest firmware release. To handle firmware transitions we have created a command-line utility 'oupgrade'.
+In order to keep improving user experience for the Omega, we will be releasing updated firmwares on a rolling basis. To capitalize on these improvements users should update their Omegas to the latest firmware release. To handle firmware transitions we have created a command-line utility 'oupgrade'.
 
 ## Using the Command line
+
+[//]: # (add more meat)
 
 To get the current firwmare installed on the device:
 ```
@@ -34,4 +36,4 @@ oupgrade -c
 
 ## Notes On Upgrades
 
-When an upgrade is performed, only the root and etc folders are preserved. So it is important to backup your work on the Omega prior to upgrading. 
+When an upgrade is performed, only the `root` and `etc` folders are preserved. So it is important to backup your work on the Omega prior to upgrading.
