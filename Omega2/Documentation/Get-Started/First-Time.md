@@ -8,9 +8,11 @@ order: 1
 
 # Getting Started with your Omega2
 
-Follow along with this guide to get your Omega2 to first learn how to properly connect your Omega to a Dock and power it up. Then we'll connect to it to use the Setup Wizard to have it connect to your WiFi network and then do some updates.
+Follow along with this guide to set up your Omega2 for the first time. We'll first learn how to properly connect your Omega to a Dock and power it up. Then we'll connect to it to use the Setup Wizard to have it connect to your WiFi network and then do some updates.
 
 [//]: # (Second sentence above is awkward)
+[//]: # (LAZAR: include case where there is no dock)
+
 
 [//]: # (Prepare the Hardware)
 
@@ -18,7 +20,7 @@ Follow along with this guide to get your Omega2 to first learn how to properly c
 
 **Unpack**
 
-Unpack the Omega and a Dock from their boxes
+Unpack the Omega and Dock from their boxes
 
 ![Omega + Dock](./img/unbox-1-omega-with-dock.jpg "Omega + Dock")
 
@@ -34,7 +36,7 @@ Make sure your Omega's pins are fully plugged into the socket
 
 **Provide Power**
 
-The Omega itself is powered by a 3.3V source. But, all Omega Docks have voltage regulators so you can use any microUSB to power the Dock and Omega.
+The Omega itself is powered by a 3.3V source. But all Omega Docks have voltage regulators so you can use any microUSB to power the Dock and Omega.
 
 [//]: # (ADD THIS: Plug a microUSB into your Omega)
 [//]: # (ADD PHOTO)
