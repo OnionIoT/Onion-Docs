@@ -11,9 +11,10 @@ order: 2
 // brief intro to Python (scripting language, easy to write)
 
 
-## Installing Python
-// Mention various available versions of python (mini vs full, py27 vs py3)
-// How to install python
+# Installing Python
+
+The Omega supports Python, we recommend installing the light version to save on space.
+
 
 
 ## Using Python
