@@ -1,12 +1,12 @@
 ---
-title: Using Git
+title: Using Python
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
 order: 2
 ---
 
-# Installing and Using Git
+# Installing and Using Python
 
 // brief intro to Python (scripting language, easy to write)
 
