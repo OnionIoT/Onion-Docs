@@ -10,6 +10,10 @@ order: 1
 
 [//]: # (explanation of what a wifi range extender does/is)
 
+A Wi-Fi range extender is a device that can increase the effective range of a router by amplifying the signal or by being placed closer to the end user and emitting it's own access point.
+The Omega's powerful Wi-Fi capabilities and incredibly small footprint allow it to be effective as a Wi-Fi range extender.
+
+
 [//]: # (illustration)
 
 Even though the Omega has only one physical Wi-Fi interface, you can create two virtual interfaces and have the Omega relay the packets back and forth between the two interfaces. This allows you to set up the Omega as a Wi-Fi range extender that relays the packets between your computer/smartphone and your router. This can be very helpful if your router has a short range and you are having a problem connecting to your router directly from certain rooms in the house. Let's get started!

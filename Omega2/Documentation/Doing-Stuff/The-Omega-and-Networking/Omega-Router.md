@@ -9,7 +9,7 @@ order: 1
 # The Omega as a Router
 
 [//]: # (make this make sense)
- This tutorial will show you how to set up the Omega as a WiFi router. Those of you familiar with OpenWRT will probably know that it was originally designed for use with routers, and only recently did it become a popular operating system for embedded devices in general.
+The Ethernet Expansion gives your Omega access to an Ethernet port, and giving it the option of a stable and fast connection. By using the Ethernet Expansion, we can turn our Omega into a low-cost yet effective router. This tutorial will show you how you can set up the Omega as a Wi-Fi router.
 
 [//]: # (illustration showing the whole system)
 
@@ -23,7 +23,7 @@ order: 1
 
 ## Step 1: Setup the Hardware
 
-First, connect the Omega to the Expansion Dock, and plug the Ethernet Expansion into the Expansion Dock. Then, connect the ethernet cable coming from your modem to the Ethernet Expansion, and connect the power to the Omega, as shown below:
+First, connect the Omega to the Expansion Dock, and plug the Ethernet Expansion into the Expansion Dock. Then, connect the Ethernet cable coming from your modem to the Ethernet Expansion, and connect the power to the Omega, as shown below:
 
 ![Omega Router](../img/omega-router-pic-1.jpg)
 

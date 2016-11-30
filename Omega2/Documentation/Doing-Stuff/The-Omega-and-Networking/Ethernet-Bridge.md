@@ -10,7 +10,7 @@ order: 3
 
 In this tutorial, we are going to go through how we can enable other devices to use the Omega's Ethernet Expansion to connect to an existing Wi-Fi network.
 
-// add an illustration
+![illustration](../img/ethernet-bridge-illustration.png)
 
 # Overview
 
@@ -25,26 +25,24 @@ In this tutorial, we are going to go through how we can enable other devices to 
 
 # The Actual Process
 
-What we are going to do is to first enable the Omega's ethernet connection, and then try to bridge the wireless internet connection with ethernet connection. There are several ways to do so, one of the ways is to modify the firewall configuration.
+What we are going to do is to first enable the Omega's Ethernet connection, and then try to bridge the wireless internet connection with an Ethernet connection.
 
 
 [//]: # (The Steps)
 
 ## Step 1: Connect Omega with WiFi
 
-This step is fairly easy, and there are a lot of tutorials tell us how to do so in different ways. Click [here](../Get-Started) to view how to make it work.
+This step is fairly easy, and there are a lot of tutorials tell us how to do so in different ways. Follow this [guide](../Get-Started) to learn more on how to set up your Omega.
 
-// get rid of the 'click here ' links, make it a real sentence
 
 [//]: # (Step 2)
 
 ## Step 2: Enable the Ethernet Connection in Omega
 
-There is an existing tutorial for this as well, click [here](./Expansions/Using-the-Ethernet-Expansion) to learn more.
+For instructions on how to use the Ethernet Expansion you can check out this [guide](./Expansions/Using-the-Ethernet-Expansion).
 
-// get rid of the 'click here ' links, make it a real sentence
 
-Basically what we need to do is to change the following code block located at `/etc/config/network`:
+What we need to do is to change the following code block located in `/etc/config/network`:
 
 ```
 config interface 'wlan'
@@ -67,7 +65,6 @@ Restart the network service by running the follow command, or simply rebooting t
 ```
 Wait for the command prompt to show up and your Omega should be configured.
 
-If you want to learn more, go to [Openwrt network configuration page](https://wiki.openwrt.org/doc/uci/network).
 
 [//]: # (Step 3)
 ## Step 3: Configure Device to use Ethernet
@@ -93,4 +90,4 @@ To do this on Mac OSX, follow this [guide](https://www.cs.cmu.edu/~help/networki
 
 # Using This Setup
 
-If you have a device that only can be connected via Ethernet and you only have WiFi available, you could apply this tutorial to make it work!
+If you have a device that only can be connected via Ethernet and you only have Wi-Fi available, you could apply this tutorial to make it work!
