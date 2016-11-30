@@ -10,7 +10,15 @@ order: 8
 
 In order to keep improving user experience for the Omega, we will be releasing updated firmwares on a rolling basis. To capitalize on these improvements users should update their Omegas to the latest firmware release. To handle firmware transitions we have created a command-line utility `oupgrade` (Onion Upgrade).
 
+## Important Note on Updates
+
+When an upgrade is performed, only the `root` and `etc` folders are preserved. It is important to backup your work on the Omega prior to upgrading if you don't want to lose any of your work.
+
+
+
 ## Using the Command line
+
+// add little intro to oupgrade: that Onion provides a software package called oupgrade to automate firmware updates and ensure everything runs smoothly
 
 `oupgrade` has a lot of functionality on the command line. Type
 ```
@@ -80,7 +88,14 @@ oupgrade -f
 ```
 
 
+### Using the Command Line to Manually Perform an Update
 
-## Notes On Upgrades
+// steps on how to manually perform all of the actions oupgrade carries out
+// example of why you would want to do this (?)
 
-When an upgrade is performed, only the `root` and `etc` folders are preserved. It is important to backup your work on the Omega prior to upgrading if you don't want to lose any of your work.
+// steps
+// - find the firmware you would like to install on repo.onion.io/omega2/images
+// - wget it to /tmp
+//   - explain why it needs to be put into /tmp (/tmp is directly connected to the flash memory, so there's more space than on the flash, and the update source will not be overwritten while the update is being performed)
+// - use sysupgrade to perform the installation
+//  - Note on sysupgrade -n erasing all of the user-customized data - ie getting it to a "factory" state
