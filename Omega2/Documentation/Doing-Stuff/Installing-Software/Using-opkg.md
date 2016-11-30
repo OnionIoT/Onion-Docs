@@ -34,7 +34,7 @@ To see the OPKG usage, run:
 opkg -h
 ```
 
-`opkg` has a lot of functionality, and this tutorial will show you the most important commands to know with `opkg`
+`opkg` has a lot of functionality, and this tutorial will show you the most important commands to know.
 
 ## Finding packages to install
 
@@ -46,7 +46,7 @@ opkg list
 
 This huge list can be very overwhelming and most of the time you want to find a package with a specific keyword. This can be easily done with `grep`.
 
-`grep` allows you to filter your searches by keyword. For more information on `grep` type it into your console and press enter:
+`grep` allows you to filter your searches by keyword. For more information on `grep`, type it into your console and press enter:
 
 ```
 root@Omega-2757:/# grep
@@ -81,7 +81,7 @@ Search for PATTERN in FILEs (or stdin)
 
 ```
 
-To find all the packages that are Onion related, we'll use `grep` with the `-i` option to iGnOrE cAsE, type:
+To find all the packages that are Onion related, we'll use `grep` with the `-i` option to iGnOrE cAsE. Enter the following into your command line:
 
 ```
 opkg list | grep -i onion
@@ -158,9 +158,9 @@ To install a package simply use the `opkg` command:
 opkg install <PACKAGE NAME>
 ```
 
-**Note: To find the package name you can use the `list` option from above.**
+*Note: To find the package name you can use the `list` option from above.*
 
-To install `curl` using OPKG run `opkg update`:
+To install `curl` using OPKG, first run `opkg update` to retrieve all the latest packages:
 
 ```
 root@Omega-2757:/# opkg update
@@ -182,7 +182,7 @@ Downloading http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/pac
 Signature check passed.
 ```
 
-and then run `opkg install curl`:
+and then run `opkg install curl` to install the package:
 
 ```
 root@Omega-2757:/# opkg install curl
@@ -195,13 +195,13 @@ Configuring curl.
 
 ## Removing Packages
 
-To remove a package:
+To remove a package from your Omega, use the `remove` option:
 
 ```
 opkg remove <PACKAGE NAME>
 ```
 
-**Note: To find the package name you can use the `list-installed` option from above.**
+*Note: To find the package name you can use the `list-installed` option from above.*
 
 To remove `curl` with opkg:
 

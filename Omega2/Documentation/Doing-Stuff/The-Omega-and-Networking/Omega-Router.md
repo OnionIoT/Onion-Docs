@@ -13,11 +13,13 @@ order: 1
 
 [//]: # (illustration showing the whole system)
 
- To do this, you will need:
+# Overview
 
-* 1x Omega
-* 1x Expansion Dock
-* 1x Ethernet Expansion
+| Overview |
+| :---: | :---: |
+| Tutorial Difficulty | **Intermediate** |
+| Time Required | **10 mins** |
+| Required Materials: | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li><li>Ethernet Expansion</li></ul> |
 
 ## Step 1: Setup the Hardware
 
@@ -28,13 +30,15 @@ First, connect the Omega to the Expansion Dock, and plug the Ethernet Expansion 
 After you have connected everything, power on the Omega.
 
 
-## Step 2: Disable wifi on the Omega
+## Step 2: Setup the Omega
 
 [//]: # (explanation of which wifi you're disabling)
 
+The next step is to disable the Wi-Fi connection on the Omega. We want our Omega to connect to the internet via the ethernet connection and so we're going to turn off the Wi-Fi on our Omega
+
 To do this, you will be editing `/etc/config/wireless` file and changing the access point settings of your Omega:
 
-Find the following block
+Enter `vi /etc/config/wireless` and find the following block
 
 ```
 config wifi-iface
@@ -62,24 +66,43 @@ option ApCliEnable '0'
 ```
 
 [//]: # (mention why we do this)
+This will disable the ApCli device which is used to wirelessly connect to the internet. Press `ESC` and type `:wq` to save and exit.
 
 
-[//]: # (create a new step regarding the ssid name)
-Within this block, you can change the SSID if your Omega, the router password, as well as the type of encryption you want to use for the router and the password.
-
-```
-option ssid 'OmegaRouter'
-option key 'RouterPassword'
-option encription 'YourEncryptionType'
-```
-
-Once you have finished customizing the WiFi network, simply save and close the file, and run the following command to restart the WiFi network:
+Restart the Wi-Fi network to apply your saved changes:
 
 ```
 wifi
 ```
 
-## Step 3: Enable `eth0`
+[//]: # (create a new step regarding the ssid name)
+## Step 3: Changing your Omega Router's Settings
+
+It is recommended that you change your Omega Router's settings from the default, especially the password. To do so, enter the following command:
+
+```
+vi /etc/config/wireless
+```
+
+And look for:
+
+```
+option ssid 'OmegaRouter'
+option key 'RouterPassword'
+option encryption 'YourEncryptionType'
+```
+
+Here, you can change the SSID of your Omega, the router password, as well as the type of encryption you want to use for the router and the password.
+
+Once you have finished customizing the WiFi network, simply save and close the file by pressing `ESC` and then typing `:wq`
+
+Run the following command to restart the Wi-Fi network and apply your settings:
+
+```
+wifi
+```
+
+## Step 4: Enable `eth0`
 
 The Omega is primarily designed as a development board to prototype WiFi-enabled devices, so by default, we have turned off the ethernet interface `eth0` in the firmware. In order to use the Omega as a router, you will need to re-enable this. To do this, you will need to open up the `/etc/config/network` file, find the the block that looks something like the following:
 
@@ -109,11 +132,11 @@ Once you have saved and closed the file, run the following command to restart th
 /etc/init.d/network restart
 ```
 
-## Step 4: Enabling Packet Routing
+## Step 5: Enabling Packet Routing
 
 Next, you will need to configure the Omega to route packets from the ethernet interface (`eth0`) to your WiFi interface (`wlan0`). To do this, you will be editing the `/etc/config/firewall` file:
 
-Find the the block that looks something like the following:
+Find the block that looks something like the following:
 
 ```
 config zone

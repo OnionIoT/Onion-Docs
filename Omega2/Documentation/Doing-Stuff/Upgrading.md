@@ -13,6 +13,7 @@ In order to keep improving user experience for the Omega, we will be releasing u
 ## Using the Command line
 
 `oupgrade` has a lot of functionality on the command line. Type
+
 ```
 oupgrade -h
 ```
