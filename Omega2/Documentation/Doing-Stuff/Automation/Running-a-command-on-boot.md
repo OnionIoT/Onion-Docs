@@ -1,26 +1,21 @@
 ---
-title: Running a Command on a Schedule
+title: Running a Command on Boot
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
-order: 2
+order: 1
 ---
 
-# Running a Command on a Schedule
+# Running a Command on Boot
 
-// explain this article will show how to run a command on a defined schedule
+// explain this article will show how to run a command on Boot
 
-// give an example for when this would be useful: for example, writing different things to the OLED at different times of day, or updating it with new information, think of something
+// give an example for when this would be useful: for example, writing something to the OLED expansion as soon as the Omega boots
 
-// mention that we will be using the `cron` daemon to perform this task
+## Implementation
 
-## Explanation of cron
-// make this title better
-
-// small explanation of what a daemon is (running a program continuously in the background)
-
-// explanation of how cron works - specifying a time interval and a command
-// explanation of all of the cron rules - how to set differet time intervals in the cron file
+// explain that it's all based on the `/etc/rc.local` file
+// run through a non-trivial example with the OLED
 
 ### Text Output
 // TODO: change the header title
@@ -30,3 +25,4 @@ order: 2
 ## Troubleshooting
 
 // note the things that may stop the script from executing, if any
+// steps on how to debug their issue: try running the commands one-by-one, try just manually running the `/etc/rc.local` file
