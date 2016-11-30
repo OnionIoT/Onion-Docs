@@ -8,24 +8,37 @@ order: 2
 
 # Onion Omega2+
 
-// intro of the Omega2+ IoT computer
-// brief summary of differences from the Omega2
-The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in wifi, a microSD slot, and a powerful processor among other things.
+The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in Wi-Fi, a MicroSD slot, and a powerful processor among other things.
 
 ## The Omega2 at a Glance
 
-// labelled Image
 ![omega2Plus](../img/omega-2p-pic.png)
-// table of Specs, highlight differences from Omega2
-![omega2Pspecs](../img/omega-2p-specs.png)
 
+| Omega2+ Specs  |
+| :-------------: |
+| 580MHz CPU |
+| 128MB Memory |
+|  32MB Storage |
+| USB 2.0 |
+| MicroSD Slot |
+| b/g/n Wi-Fi |
+| 15 GPIO |
+| 2 PWM |
+| 2 UART |
+| 1 I2C |
+| 1 SPI |
+| 1 I2S |
 ## The Pins
 
-// image of omega2 pinout
 ![pinout](../img/omega-2-pinout-diagram.png)
 
 [//]: # (LATER: include section on the 50pin connector)
 
+
+## The Operating system
+
+[//]: # (Linux operating system: LEDE blah blah)
+The Omega2+ runs the Linux Embedded Development Environment (LEDE) operating system, a distribution based on OpenWRT. This distribution gives the Omega2+ access to the OPKG functionality, allowing you to download packages to enhance your experience.
 
 ## The Omega LED
 

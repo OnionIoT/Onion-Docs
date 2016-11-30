@@ -9,14 +9,26 @@ order: 1
 # Onion Omega2
 
 [//]: # (intro of the Omega2 IoT computer)
-The Omega2 is the latest in development boards from Onion. It comes packed with built-in wifi
+The Omega2 is the latest in development boards from Onion. It comes packed with built-in Wi-Fi
 
 ## The Omega2 at a Glance
 
 [//]: # (TODO: have an illustration with labels)
 ![omega2](../img/omega-2-pic.png)
-[//]: # (TODO: make a legit table)
-![omega2Specs](../img/omega-2-specs.png)
+
+| Omega2 Specs  |
+| :-------------: |
+| 580MHz CPU |
+| 64MB Memory |
+|  16MB Storage |
+| USB 2.0 |
+| b/g/n Wi-Fi |
+| 15 GPIO |
+| 2 PWM |
+| 2 UART |
+| 1 I2C |
+| 1 SPI |
+| 1 I2S |
 
 ## The Pins
 
@@ -29,6 +41,7 @@ The Omega2 is the latest in development boards from Onion. It comes packed with 
 ## The Operating system
 
 [//]: # (Linux operating system: LEDE blah blah)
+The Omega2 runs the Linux Embedded Development Environment (LEDE) operating system, a distribution based on OpenWRT. This distribution gives the Omega2 access to the OPKG functionality, allowing you to download packages to enhance your experience.
 
 ## The Omega LED
 
