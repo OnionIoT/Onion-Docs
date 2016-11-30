@@ -73,7 +73,7 @@ As this is your first time connecting via WinSCP you'll receive a warning simila
 
 ![WinSCP Image 6](./img/onion-omega-winscp-5.png)
 
-Congratulations, you now have remote, easy access to your Onion Omega system files!
+You can now drag and drop between folders on your computer and folders on your Omega. Congratulations, you now have remote, easy access to your Onion Omega system files!
 
 ![WinSCP Image 7](./img/onion-omega-winscp-7.png)
 
