@@ -20,3 +20,8 @@ Click on the Wi-Fi settings tab to edit your network connections.
 Here, you can enable a network, remove a network, and even add new networks.
 
 ![wifi-settings-page](../img/connecting-to-wifi-2.png)
+
+// add sections with walkthrough images for:
+//  - adding a new network to the list
+//  - removing a network
+//  - changing network priority

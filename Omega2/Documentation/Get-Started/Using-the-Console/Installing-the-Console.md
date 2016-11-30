@@ -38,8 +38,10 @@ password: onioneer
 
 The console can also be installed using the command line using the `console install tool`.
 For information on how to access the Omega's command line, follow this [guide](../Using-the-Command-Line/connecting.md)
+// note this won't be available till 3rd batch...
 
-You'll need to be connected to the internet in order to install the Console.
+// added note
+You'll need to be connected to the internet in order to install the Console. If you've followed the Setup Wizard, you will be all good to go.
 With your terminal open, run the following commands:
 
 ```
