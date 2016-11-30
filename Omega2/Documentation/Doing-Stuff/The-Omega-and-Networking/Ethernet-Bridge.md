@@ -10,7 +10,11 @@ order: 3
 
 In this tutorial, we are going to go through how we can enable other devices to use the Omega's Ethernet Expansion to connect to an existing WiFi network.
 
-# Overview 
+// add an illustration
+
+# Overview
+
+// bring this overview into all networking articles
 
 Tutorial Difficulty:
 
@@ -40,11 +44,15 @@ What we are going to do is to first enable the Omega's ethernet connection, and 
 
 This step is fairly easy, and there are a lot of tutorials tell us how to do so in different ways. Click [here](../Get-Started) to view how to make it work.
 
+// get rid of the 'click here ' links, make it a real sentence
+
 [//]: # (Step 2)
 
 ## Step 2: Enable the Ethernet Connection in Omega
 
 There is an existing tutorial for this as well, click [here](./Expansions/Using-the-Ethernet-Expansion) to learn more.
+
+// get rid of the 'click here ' links, make it a real sentence
 
 Basically what we need to do is to change the following code block located at `/etc/config/network`:
 
@@ -73,10 +81,13 @@ If you want to learn more, go to [Openwrt network configuration page](https://wi
 
 [//]: # (Step 3)
 ## Step 3: Connect to Lan Switch via Ethernet
+// rename this step
 
 Now that the Omega is configured, we should be able to connect with other devices via Ethernet.
 
-Make sure that your conection is set to `Obtain IP address and DNS anddress Automatically`. It should be set so by default.
+Make sure that your connection is set to `Obtain IP address and DNS address Automatically`. It should be set so by default.
+
+// find outside links on how to setup ethernet to use DHCP on windows, mac, linux
 
 ![pic](../img/wifi-bridge-pic-1.png)
 ![pic](../img/wifi-bridge-pic-2.png)
@@ -87,7 +98,7 @@ Make sure that your conection is set to `Obtain IP address and DNS anddress Auto
 
 # Using This Setup
 
-If you have a device that only can be connected via Ethernet and you only have WiFi avaliable, you could apply this tutorial to make it work!
+If you have a device that only can be connected via Ethernet and you only have WiFi available, you could apply this tutorial to make it work!
 
 Or, you can extend Ethernet access to multiple cables using an Ethernet switch.
 
@@ -95,19 +106,4 @@ Or, you can extend Ethernet access to multiple cables using an Ethernet switch.
 
 * This will disable the Omega's WiFi AP.
 
-## Related Tutorials
-
-* [Get started](../Get-Started)
-* [Using Ethernet Expansion](./Expansions/Using-the-Ethernet-Expansion)
-* [Using Omega as a Router](./Using-Omega-As-A-Router)
-
-
-[//]: # (Acknowledgements)
-
-# Acknowledgements
-
-Some more information can be found in our Onion Community thread [here](https://community.onion.io/topic/694/wireless-setup).
-
-Or you can visit the following websites to learn more:
-* [Openwrt network configuration page](https://wiki.openwrt.org/doc/uci/network)
-* [Openwrt Firewall configuration page](https://wiki.openwrt.org/doc/uci/firewall)
+// double check this and then get rid of the comment

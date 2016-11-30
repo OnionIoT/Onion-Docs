@@ -14,6 +14,7 @@ The Omega 2 has 5 dedicated and 12 multiplexed GPIO pins, which can be controlle
 ## From the Command Line
 
 We have provided some examples on how to control gpios.
+[//]: # (explanation of how gpioctl works in the linux filesystem)
 
 ### gpioctl
 
@@ -41,18 +42,22 @@ fast-gpio set gpio_number 0
 
 ## Muxing the GPIOs
 
+[//]: # (brief explanation of multiplexing)
+
 For robustness, gpios are multiplexed with other hardware pins. For example, when pins 4 & 5 are set to I2C mode they correspond to the Omega's SCL & SDA, and behave as GPIO when set to GPIO mode. To swap modes we have provided `omega2-ctrl` tool.
 
 To get the current mode of the Omega's two pins, use the command:
 
 ```
 omega2-ctrl gpiomux get
-``` 
+```
+
+[//]: # (usually useful to display example output, breifly explain it)
 
 To set a particular package of hardware pins to a specified mode, use the following command:
 
 ```
-omega2-ctrl gpiomux set hardware_pins mode
+omega2-ctrl gpiomux set <HARDWARE PIN GROUP> <MODE>
 ```
 
 To illustrate this the following command will set I2C pins to Gpio mode:

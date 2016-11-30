@@ -8,7 +8,12 @@ order: 1
 
 # The Omega as a Router
 
-Those of you familiar with OpenWRT will probably know that it was originally designed for use with routers, and only recently did it become a popular operating system for embedded devices in general. This tutorial will show you how to set up the Omega as a WiFi router. To do this, you will need:
+[//]: # (make this make sense)
+ This tutorial will show you how to set up the Omega as a WiFi router. Those of you familiar with OpenWRT will probably know that it was originally designed for use with routers, and only recently did it become a popular operating system for embedded devices in general.
+
+[//]: # (illustration showing the whole system)
+
+ To do this, you will need:
 
 * 1x Omega
 * 1x Expansion Dock
@@ -24,6 +29,8 @@ After you have connected everything, power on the Omega.
 
 
 ## Step 2: Disable wifi on the Omega
+
+[//]: # (explanation of which wifi you're disabling)
 
 To do this, you will be editing `/etc/config/wireless` file and changing the access point settings of your Omega:
 
@@ -45,8 +52,19 @@ config wifi-iface
 
 ```
 
-and replace with `option ApCliEnable '1'` with `option ApCliEnable '0'`
+and replace
+```
+option ApCliEnable '1'
+```
+with
+```
+option ApCliEnable '0'
+```
 
+[//]: # (mention why we do this)
+
+
+[//]: # (create a new step regarding the ssid name)
 Within this block, you can change the SSID if your Omega, the router password, as well as the type of encryption you want to use for the router and the password.
 
 ```
@@ -66,8 +84,8 @@ wifi
 The Omega is primarily designed as a development board to prototype WiFi-enabled devices, so by default, we have turned off the ethernet interface `eth0` in the firmware. In order to use the Omega as a router, you will need to re-enable this. To do this, you will need to open up the `/etc/config/network` file, find the the block that looks something like the following:
 
 ```
-config interface 'wan' 
-   option ifname 'eth0' 
+config interface 'wan'
+   option ifname 'eth0'
    option proto 'dhcp'   
 ```
 and add the following line:
@@ -77,8 +95,8 @@ option hostname 'OnionOmega'
 ```
 
 ```
-config interface 'wan' 
-   option ifname 'eth0' 
+config interface 'wan'
+   option ifname 'eth0'
    option proto 'dhcp'
    option hostname 'OnionOmega'
 ```
@@ -95,7 +113,7 @@ Once you have saved and closed the file, run the following command to restart th
 
 Next, you will need to configure the Omega to route packets from the ethernet interface (`eth0`) to your WiFi interface (`wlan0`). To do this, you will be editing the `/etc/config/firewall` file:
 
-find the the block that looks something like the following:
+Find the the block that looks something like the following:
 
 ```
 config zone
@@ -128,7 +146,7 @@ config zone
     option mtu_fix      1
 ```
 
-What this tells the Omega to do is to add the `wan` network (which we defined in `/etc/config/network` file) to a firewall zone called `wan`. This zone has already been setup to route packets to another firewall zone called `lan`, which contains the `wlan0` interface. 
+What this tells the Omega to do is to add the `wan` network (which we defined in `/etc/config/network` file) to a firewall zone called `wan`. This zone has already been setup to route packets to another firewall zone called `lan`, which contains the `wlan0` interface.
 
 Once you have saved and closed the file, run the following command to restart the firewall with the updated configuration:
 
