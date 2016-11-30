@@ -9,8 +9,8 @@ order: 2
 
 # The Power Dock
 
-// Brief overview on the Power Dock. Highlight the features such as battery management, battery recharge, mobility (completely wireless).
-// Briefly mention that the power dock is similar to but not the same as the expansion dock.
+[//]: # (Brief overview on the Power Dock. Highlight the features such as battery management, battery recharge, mobility (completely wireless).)
+[//]: # (Briefly mention that the power dock is similar to but not the same as the expansion dock.)
 
 Bring your next project on the go with the Power Dock! Equipped with on-board battery management, the Power Dock allows you to recharge and monitor battery levels, while providing a header to connect Onion Expansions.
 
@@ -22,9 +22,35 @@ Your Power Dock has a 30 pin Expansion Header, allowing you to use all of your e
 
 The Power Dock is flexible: it can run off just a battery or just by drawing power from the Micro USB port. Charging the battery requires having both the battery and the Micro USB plugged in. Don't worry, the Omega will still work with no interruptions while charging.
 
+## Connecting an Omega
+
+[//]: # (picture guide on how to properly plug in an Omega)
+
 ## The Power Dock at a Glance
 
 ![Power Dock Labeled](../img/power-dock-drawing.png)
+
+## The Expansion Header
+
+[//]: # (breakout of the Omega's GPIOs, can be connected to other circuits directly, or can use Omega expansions)
+
+### Detailed Pinout
+
+[//]: # (A detailed pinout diagram of the Expansion Header, showing which pins are multiplexed - see Lazar for an example)
+
+
+## Micro-USB Port
+
+The Micro-USB Port is used to supply the Power Dock with ... power! Connect it to a computer or a USB wall adapter.
+
+[//]: # (fix up this text...)
+
+
+### No USB to Serial Chip
+
+There is no USB-to-Serial Chip on the Power Dock. This means that you will **not** be able to connect to the Omega serially over the Micro-USB port.
+
+[//]: # (add a link to connecting to your Omega with ssh aricle)
 
 ## The Power Switch
 
@@ -32,8 +58,10 @@ The power switch controls power to the Omega, regardless of whether it is powere
 
 The blue Power LED indicates if there is power flowing to the Omega.
 
+[//]: # (add illustrations indicating the ON and OFF positions of the switch)
 
-## Indicator LEDs
+
+## Battery Level Indicator LEDs
 
 The power dock contains 4 LEDs that indicate the current battery level and charging status. The LED closest to the Micro-USB port indicates the lowest battery level and the LED furthest away from the Micro-USB port indicates the highest battery level.
 
@@ -45,7 +73,7 @@ Highest Battery Level:
 
 ![Highest Indicator Level](http://i.imgur.com/m9CPAfel.jpg)
 
-## The Battery
+## The Battery Connector
 
 The Power Dock is designed for use with a **3.7V LiPo Battery** with a standard 2-pin JST-PH connector (2mm spacing between pins).
 
@@ -74,25 +102,16 @@ Pressing and holding the reset button for 10 seconds and releasing will trigger 
 **Warning:** This will reset your Omega to the default filesystem of the last firmware update, this **will delete ALL of your data!**
 
 
+## Omega USB Port
 
-## Micro-USB Port
-
-The Micro-USB Port is used to supply the Power Dock with ... power! Connect it to a computer or a USB wall adapter.
-
-
-### No USB to Serial Chip
-
-There is no USB-to-Serial Chip on the Power Dock. This means that you will **not** be able to connect to the Omega serially over the Micro-USB port.
-
-Instead, connect to your [Omega wirelessly via SSH](../Documentation/Get-Started/Using-the-Command-Line/Connecting).
-
-
-## USB Host Port
+[//]: # (USB port connected to the Omega - interface USB devices with the Omega, mention that it's a type A connector)
 
 The USB Host Port is connected to the Omega and can be used to interface USB peripherals with the Omega. A large variety of devices are supported out of the box, including webcams, keyboards, flash drives, hard drives, etc.
 
 
+
 ## Differences from the Expansion Dock
+[//]: # (thinking about removing this e)
 
 Note some of the differences between the Expansion Dock and the Power Dock:
 
@@ -108,17 +127,19 @@ The main differences are:
 
 
 
-<!-- SECTION -->
-<!-- Usage Modes -->
+# Using the Power Dock
 
-# Usage Modes
+[//]: # (overview of what this section covers)
+
+
+## Three Different Operating Modes
 
 The Power Dock operates in three different modes.
 
 
 <!-- Usage Modes: Battery Mode -->
 
-## Battery Mode
+### Battery Mode
 
 This is the most important mode; when the Omega and Power Dock are running completely off the battery. The LED Indicators will be turned off by default to conserve battery life, however they can be turned on for five seconds via a command from the Omega.
 
@@ -131,7 +152,7 @@ When the battery is approaching depletion the Indicator LEDs will begin flashing
 
 <!-- Usage Modes: Charging Mode -->
 
-## Charging Mode
+### Charging Mode
 
 When both the battery and Micro-USB cable are connected to the Power Dock, the battery will be charging. The Omega can still be powered on while the battery is charging, but it doesn't have to be; the battery will charge in this mode regardless of what the Omega is doing. You can even disconnect your Omega and the battery will still charge!
 
@@ -159,7 +180,7 @@ Battery is **75%** charged, charging up to **100%**:
 
 <!-- Usage Modes: Stationary Mode -->
 
-## Stationary Mode
+### Stationary Mode
 
 The Power Dock will still work when the battery is disconnected and the Power Dock is receiving power just from the Micro USB cable. The Battery Level Indicator LEDs will be flashing erratically, this is expected:
 
@@ -172,7 +193,9 @@ The Power Dock essentially acts like the Expansion Dock in this mode.
 <!-- SECTION -->
 <!-- power-dock application -->
 
-# Application to Check Battery Level
+## Checking the Battery Level
+
+[//]: # (explanation that you can visually see the battery level on the indicator LEDs AND in the operating system)
 
 The `power-dock` application allows you to turn on the indicator LEDs on the Power Dock. It will only take effect when the Omega and Power Dock are being powered just by the battery.
 
@@ -194,3 +217,10 @@ power-dock
 ```
 
 ![Toggle Indicator LEDs on](http://i.imgur.com/DDKiAsP.gif)
+
+[//]: # (Add section describing the text output of the battery level)
+
+
+## Controlling the GPIOs
+
+[//]: # (mention how the GPIOs can be controlled and provide link to the gpio article)
