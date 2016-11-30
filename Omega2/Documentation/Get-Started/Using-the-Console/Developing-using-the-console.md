@@ -30,3 +30,4 @@ order: 5
 //    - have links to getting started with linux - check existing linux basics articles for these links
 //  - using the echo command to read the available triggers in `/sys/class/leds/onion:amber:system/trigger`
 //  - running the script we wrote using the editor app
+// make sure to point out that the terminal app now supports copy and paste (but with weird shortcuts)
