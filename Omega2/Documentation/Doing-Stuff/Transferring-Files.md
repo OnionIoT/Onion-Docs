@@ -16,7 +16,7 @@ order: 4
 [//]: # (step by step instructions on using WinSCP)
 The Omega can use the SCP file protocol to transfer files wirelessly. In this tutorial we're going to use WinSCP to transfer our files.
 
-// reminder about apple's bonjour
+[//]: # (reminder about apple's bonjour)
 
 ### What is WinSCP?
 
@@ -32,8 +32,8 @@ Once downloaded, install the application and then run it.
 
 ### Configure the Connection
 
-// change it so the tutorial is about having the omega connected to a real wifi network
-// have a note about how it would be different if connecting to the omega's ap
+[//]: # (change it so the tutorial is about having the omega connected to a real wifi network)
+[//]: # (have a note about how it would be different if connecting to the omega's ap)
 
 Connecting to the Omega is super simple. Connect to your Omega's access point and create a New Site as shown in the image below:
 
@@ -41,7 +41,7 @@ Connecting to the Omega is super simple. Connect to your Omega's access point an
 
 In the right hand pane, you'll need to set the details for your Onion Omega. Typically these are:
 
-// change this into a table
+[//]: # (change this into a table)
 
 **File Protocol:** SCP
 
@@ -77,7 +77,7 @@ Happy Hacking!
 
 ![WinSCP Image 6](./img/onion-omega-winscp-6.png)
 
-// explanation of transferring files back and forth
+[//]: # (explanation of transferring files back and forth)
 
 ## Using Linux or Mac OS X
 
@@ -95,54 +95,85 @@ sudo apt-get install rsync
 
 #### Push Directories and Files to the Omega
 
-To quickly copy an entire directory to your Omega, fill in this template with the paths of your folders, where `ABCD` is your Omega's factory name:
+First make sure you're connected to the same WiFi network/LAN as your Omega. Then to quickly copy an entire directory to your Omega, fill in this template with the paths of your folders, where `ABCD` is your Omega's factory name:
 
-// add <> to signify variables
-
-```
-rsync -a <local_directory> root@Omega-ABCD.local:~/directory_to_push_to
-```
-
-To copy only the *files* inside a directory, add a `/` to the end of `local_directory` like so:
+[//]: # (add <> to signify variables)
 
 ```
-rsync -a local_directory/ root@Omega-ABCD.local:~/directory_to_push_to
+rsync -a <LOCAL DIRECTORY> root@Omega-<ABCD>.local:~/<DIRECTORY TO PUSH TO>
 ```
 
-// add a thing for pushing just one file
+Example and result:
+
+```
+rsync -a ~/my-cool-project root@Omega-ABCD.local:~/remote-directory
+
+On Omega:
+ls ~/remote-directory
+my-cool-project
+```
+
+To copy only the *files* inside a directory, add a `/` to the end of `<LOCAL DIRECTORY>` like so:
+
+```
+rsync -a <LOCAL DIRECTORY>/ root@Omega-<ABCD>.local:~/<DIRECTORY TO PUSH TO>
+```
+
+Example and result:
+
+```
+# my-cool-project contains files called file1, file2, and file3
+rsync -a ~/my-cool-project/ root@Omega-ABCD.local:~/remote-directory
+
+On Omega:
+ls ~/remote-directory
+file1 file2 file3
+```
+
+To push a single file to the Omega:
+
+```
+rsync -a <LOCAL FILE> root@Omega-<ABCD>.local:~/<DIRECTORY TO PUSH TO>
+```
+
+Example and result:
+
+```
+rsync -a ~/my-awesome-file root@Omega-ABCD.local:~/remote-directory
+
+On Omega:
+ls ~/remote-directory
+my-awesome-file
+```
 
 If you get a warning about connecting to an unknown host, type 'yes' (as this is your Omega).
 
-
 #### Pull from Omega
 
-Entire folder:
+Entire directory:
 
-// add <> to signify variables
 ```
-rsync -a root@Omega-ABCD.local:~/directory_to_pull_from local_directory
+rsync -a root@Omega-<ABCD>.local:~/<DIRECTORY TO PULL FROM> <LOCAL DIRECTORY>
 ```
 
 Files only:
 
 ```
-rsync -a root@Omega-ABCD.local:~/directory_to_pull_from/ local_directory
+rsync -a root@Omega-<ABCD>.local:~/<DIRECTORY TO PULL FROM>/ <LOCAL DIRECTORY>
 ```
 
 #### Adding Your SSH Key
 
-To skip the password prompt, you can add your SSH key to the Omega. Follow the guide here: [Add Your SSH Key To The Omega](./Add-Your-SSH-Key-to-The-Omega)
-
-// THIS IS A PLACEHOLDER!
+To skip the password prompt, you can add your SSH key to the Omega.
 
 #### Going Further
 
 This part will show you all of the in and outs of `rsync`.
-Using a push command, the syntax for the command is explained below
 
-// add <CAPS> to signify variables
+Using a push command, the syntax for the command is explained below:
+
 ```
-rsync -a local_directory username@remote_host:destination_directory
+rsync -a <LOCAL DIRECTORY> <USERNAME>@<REMOTE HOST>:<DESTINATION DIRECTORY>
 ```
 
 We'll go over each part of the command below.
@@ -163,6 +194,6 @@ We'll go over each part of the command below.
 
 * **destination_directory** - the directory where your local files will be sent to, eg. `~/source/my_cool_project`
 
-// add --progress flag description
+[//]: # (add --progress flag description)
 
 [//]: # (LATER: add console)
