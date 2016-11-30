@@ -84,12 +84,14 @@ Happy Hacking!
 ### `rsync`
 [//]: # (step by step instructions on using rsync)
 
-On Mac or Linux, we can use the command-line utility `rsync` (remote sync) to transfer files to and from the Omega. It's included with Mac OS and most Linux distributions by default, but in case you don't have it simply run the below commands to install it:
+On Mac or Linux, we can use the command-line utility `rsync` (remote sync) to transfer files to and from the Omega. It's included with Mac OS and most Linux distributions by default (including the Omega's). In case you don't have it, simply run the below commands to install it on your local machine:
 
 ```
 sudo apt-get update
 sudo apt-get install rsync
 ```
+
+`rsync` can simply send files as-is over to the remote server, but if the files already exist then it takes a smarter approach to sending new data. It will look at the *differences* between the two sets of files, then applies the differences to the files to bring them up-to-date.
 
 `rsync` uses the `ssh` protocol when connecting to remote servers. When working with an Omega, specify the username as `root` and provide the password when prompted (`onioneer` by default).
 
@@ -116,7 +118,7 @@ my-cool-project
 To copy only the *files* inside a directory, add a `/` to the end of `<LOCAL DIRECTORY>` like so:
 
 ```
-rsync -a <LOCAL DIRECTORY>/ root@Omega-<ABCD>.local:~/<DIRECTORY TO PUSH TO>
+rsync -a -v <LOCAL DIRECTORY>/ root@Omega-<ABCD>.local:~/<DIRECTORY TO PUSH TO>
 ```
 
 Example and result:
@@ -164,6 +166,8 @@ rsync -a root@Omega-<ABCD>.local:~/<DIRECTORY TO PULL FROM>/ <LOCAL DIRECTORY>
 
 #### Adding Your SSH Key
 
+[//]: # (Add a link to the article on adding your SSH key to the Omega later)
+
 To skip the password prompt, you can add your SSH key to the Omega.
 
 #### Going Further
@@ -173,27 +177,43 @@ This part will show you all of the in and outs of `rsync`.
 Using a push command, the syntax for the command is explained below:
 
 ```
-rsync -a <LOCAL DIRECTORY> <USERNAME>@<REMOTE HOST>:<DESTINATION DIRECTORY>
+rsync -a [<OPTIONS>] <LOCAL DIRECTORY> <USERNAME>@<REMOTE HOST>:<DESTINATION DIRECTORY>
 ```
 
 We'll go over each part of the command below.
 
-* **-a** - The `-a` flag means 'archive' and syncs recursively, including files attributes such as permissions, group, and owners. You'll typically want to add this flag in your `rsync` commands.
+* **`-a`** - archive mode. Equivalent to a combination of several operations, including but not limited to: 
+    * `-r` - recursively sync into directories
+    * `-l` - preserve symlinks
+    * `-t` - preserve modification times
+    * and a few more useful flags (`-pgoD`). See the full reference for details: [`rsync` Reference][rsync reference]
+    * The `-a` flag is a very convenient flag that you'll want to include in most of your typical calls.
+    
+* **`<OPTIONS>`** - some optional flags you can include are:
+    * `--progress` - show progress during transfer
+    * `-v` - verbose output: the terminal will report events and status
+    * `-n` - dry run: see how exactly the files will be synced without actually transferring or overwriting anything.
 
-* **local_directory** - The directory containing the files you want to push. There are two ways this can be done, shown below:
+* **`<LOCAL DIRECTORY>`** - The directory containing the files you want to push. There are two ways this can be done, shown below:
 
-  * `~/my_directory` - copies the folder itself over to the destination, eg. `destination_directory/my_directory`
-  * `~/my_directory/` - by adding a `/` at the end, this means the *contents* of `my_directory`, so if it had files `file1`, `file2`, `file3`, then the remote server would have the files:
-    * `destination_directory/file1`
-    * `destination_directory/file2`
-    * `destination_directory/file3`
+    * `~/my_directory` - copies the folder itself over to the destination, eg. `destination_directory/my_directory`
+    * `~/my_directory/` - by adding a `/` at the end, this means the *contents* of `my_directory`. If `my_directory` had files `file1`, `file2`, `file3`, then the remote server would receive the files like so
+        * `destination_directory/file1`
+        * `destination_directory/file2`
+        * `destination_directory/file3`
 
-* **username** - the user on the remote system. For the Omega, this will always be `root`.
+* **`<USERNAME>`** - the user on the remote system. For the Omega, this will always be `root`.
 
-* **remote_host** - the URL or IP of the remote server. For an Omega connected to your WiFi/LAN, this can be typically `Omega-ABCD.local` (`ABCD` being your Omega's factory name), or the IP address, eg. `192.168.12.34`
+* **`<REMOTE HOST>`** - the URL or IP of the remote server. 
+    * This can be typically `Omega-ABCD.local` (`ABCD` being your Omega's factory name)
+    * Or it can be the Omega's IP address, eg. `192.168.12.34`
 
-* **destination_directory** - the directory where your local files will be sent to, eg. `~/source/my_cool_project`
+* **`<DESTINATION DIRECTORY>`** - the directory on the remote server where your local files will be sent to, eg. `~/source/my_cool_project`
 
-[//]: # (add --progress flag description)
+To see the full list of options and behaviours, see the [`rsync` Reference][rsync reference].
 
 [//]: # (LATER: add console)
+
+[//]: # (link defintions)
+
+[rsync reference]: http://linuxcommand.org/man_pages/rsync1.html
