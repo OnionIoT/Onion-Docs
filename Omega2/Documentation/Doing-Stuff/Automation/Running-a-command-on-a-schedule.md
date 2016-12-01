@@ -8,22 +8,20 @@ order: 2
 
 # Running a Command on a Schedule
 
-// explain this article will show how to run a command on a defined schedule
 The Omega's firmware has a powerful built in feature, `cron`, that allows you to schedule commands to run at specified intervals. This tutorial will show you how to take advantage of `cron` to automate commands on your Omega.
-// give an example for when this would be useful: for example, writing different things to the OLED at different times of day, or updating it with new information, think of something
 
 This can be especially useful when you want to automate a project (e.g. a weather monitoring device that updates the OLED Expansion every hour with new information), and is incredibly easy to do.
 
-// mention that we will be using the `cron` daemon to perform this task
 
 ## What is `cron`?
-// make this title better
 
-// small explanation of what a daemon is (running a program continuously in the background)
 In computing terms, a daemon is a program that runs continuously in the background and answers requests from services. On the Omega, `cron` runs as a daemon and monitors the `crontab`, a file that lists commands that need to run at specified intervals. These commands can be programs, scripts, or anything that you can type in the command line.
-// explanation of how cron works - specifying a time interval and a command
+
 To get started with `cron`, enter the following command on the command line from any directory:
-`crontab -e`
+
+```
+crontab -e
+```
 
 If you've never before worked with `cron`, an empty file will show up. The first thing we need to do is figure out a command to run at an interval. Let's change the color of the LED on the Expansion Dock using `expled`. In the empty file enter the following:
 
@@ -61,8 +59,6 @@ For more information on `cron` including more rules and references you can check
 
 ### Saving Output of a `cron` Job to a File
 // TODO: change the header title
-// note that text output from the commands will not be saved anywhere by default
-// introduce the concept of piping to a file
 
 When `cron` runs, you won't be able to see any output from your file. You can modify your script or program to save all output to a file rather than print it in the command line, or you can pipe the output of your command to a specific destination with a simple addition to your `crontab` file.
 
