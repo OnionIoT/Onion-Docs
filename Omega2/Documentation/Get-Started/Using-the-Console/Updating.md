@@ -9,10 +9,56 @@ order: 4
 # Updating the Omega using the Console
 
 // show how to use the Settings App - Firmware Upgrade tab to update the Omega's Firmware
+You can update your Omega's firmware in the Console with the Settings app. Open the Settings app, and click on the `Firmware Upgrade` tab.
 
-// section: explanation of the three different cases:
-//  - on latest firmware, no upgrade needed
-//  - on older version, upgrade required
-//  - on current version but on an older build, can upgrade to get all of the latest and greatest features in development
+This page will display your Omega's firmware information and will notify you of available upgrades.
 
-// section: have a walkthrough guide with images showing everything step by step
+
+# Firmware states
+
+
+## Up To Date!
+
+If your Omega is up to date with the latest firmware, you will see a page similar to the following:
+
+![update-not-required](../img/updating-none-required.png)
+
+You'll see that the firmware versions match up exactly in terms of major version, minor version, and build number.
+
+In this state, your Upgrade Button will not be active.
+
+## Minor Version Available!
+
+If your Omega is behind a minor version or build, you will see a page similar to the following:
+
+![update-minor-version](../img/updating-minor-version.png)
+
+You'll see that the versions match up, but the build does not. This means there is a new firmware available and you can choose to upgrade to get all the latest and greatest features in development.
+
+***Note: Upgrading your firmware will erase all files not located in `/root` or `/etc`.***
+
+Click on the "Upgrade Minor Version" button and your new firmware will begin downloading:
+
+![update-download-in-progress](../img/updating-download-in-progress.png)
+
+Once the download is complete a notification will pop up, and the upgrade will begin:
+![update-download-complete](../img/updating-download-complete.png)
+
+**Do not turn off your Omega during this time.** It will reboot automatically with the latest features.
+
+## Major Version Available!
+
+If a major version is available then an upgrade is required. Your page will look similar to this:
+
+![update-major-version](../img/updating-major-version.png)
+
+Here you see the firmware versions don't match.
+
+***Note: Upgrading your firmware will erase all files not located in `/root` or `/etc`.***
+
+Click on the "Upgrade Major Version" button and your new firmware will begin downloading:
+
+![update-download-in-progress](../img/updating-download-in-progress.png)
+
+Once the download is complete a notification will pop up, and the upgrade will begin:
+![update-download-complete](../img/updating-download-complete.png)

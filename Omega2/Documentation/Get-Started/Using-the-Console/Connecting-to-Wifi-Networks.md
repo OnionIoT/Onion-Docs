@@ -9,9 +9,9 @@ order: 2
 
 # The Settings App
 
-Upon logging into the Console, the first app you'll see is the Settings App. Through this app you can monitor your Omega's status, change the Omega's hostname and password, and even Wifi settings.  
+Upon logging into the Console, the first app you'll see is the Settings App. Through this app you can monitor your Omega's status, change the Omega's hostname and password, and even Wifi settings. This guide will show you how you can manage your WiFi networks through the console.
 
-# Connecting to Wifi Networks
+# Managing your Wifi Networks
 
 // Show how to navigate the wifi settings app interface. Maybe mention what it's doing behind the scenes?
 Click on the Wi-Fi settings tab to edit your network connections.
@@ -21,6 +21,46 @@ Here, you can enable a network, remove a network, and even add new networks.
 
 ![wifi-settings-page](../img/connecting-to-wifi-2.png)
 
+
+
+## Adding a New Network
+
+To add a new wireless network configuration, click on the button labelled `Add Wi-Fi Network`. A new window will open that will scan for Wi-Fi networks in your area.
+
+![wifi-modal](../img/connecting-to-wifi-3.png)
+
+Select a network, or enter the information on your own. Click on `Add Network` to confirm your settings and add the network configuration.
+
+![wifi-modal-with-settings](../img/connecting-to-wifi-4.png)
+
+
+
+## Enabling a Network Configuration
+
+To enable a network, click the checkmark button on a network that is not enabled.
+
+![wifi-enable-button](../img/connecting-to-wifi-5.png)
+
+
+
+## Removing a Network
+
+To remove a network, click the x button. If you delete your enabled network, you will still need to enable another network to connect to it.
+
+![wifi-remove-button](../img/connecting-to-wifi-6.png)
+
+
+## Reordering Network Priorities
+
+To shift the priority of a network up or down, click the arrow buttons. It is important to order your networks by preference so that the network manager on the Omega will connect to your preferred network first.
+
+![wifi-move-up](../img/connecting-to-wifi-7.png)
+
+![wifi-move-down](../img/connecting-to-wifi-8.png)
+
+
+
+Click on the arrow up or arrow down buttons to reorder the priority of your networks.
 // add sections with walkthrough images for:
 //  - adding a new network to the list
 //  - removing a network
