@@ -1,12 +1,12 @@
 ---
-title: Wifi Range Extender
+title: WiFi Range Extender
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
 order: 1
 ---
 
-# Wifi Range Extender
+# WiFi Range Extender
 
 [//]: # (explanation of what a wifi range extender does/is)
 
@@ -16,7 +16,7 @@ The Omega's powerful WiFi capabilities and incredibly small footprint allow it t
 
 [//]: # (illustration)
 
-Even though the Omega has only one physical Wi-Fi interface, you can create two virtual interfaces and have the Omega relay the packets back and forth between the two interfaces. This allows you to set up the Omega as a Wi-Fi range extender that relays the packets between your computer/smartphone and your router. This can be very helpful if your router has a short range and the connection has problems from beyond a certain distance.
+Even though the Omega has only one physical WiFi interface, you can create two virtual interfaces and have the Omega relay the packets back and forth between the two interfaces. This allows you to set up the Omega as a WiFi range extender that relays the packets between your computer/smartphone and your router. This can be very helpful if your router has a short range and the connection has problems from beyond a certain distance.
 Let's get started!
 
 // change subheadings to 'Step X: '
@@ -31,7 +31,7 @@ Let's get started!
 
 // add a few sentences describing at a high level what the steps will accomplish
 
-## 1. Connect the Omega to the router
+## Step 1: Connect the Omega to the router
 
 First, you will need to connect the Omega to your router. To do this, you will use the `wifisetup` command:
 
@@ -47,10 +47,10 @@ q) Exit
 Selection:
 ```
 
-Follow the instructions to scan for Wi-Fi and connect to your router's network.
+Follow the instructions to scan for WiFi and connect to your router's network.
 
 [//]: # (section on making sure the firewall forwards STA->AP)
-## 2. Firewall Settings
+## Step 2: Firewall Settings
 
 Next, you will need to configure the Omega to route packets from your device to the Omega to the Router, and back. To do this, you will be editing the `/etc/config/firewall` file:
 
@@ -88,10 +88,10 @@ Once you have saved and closed the file, run the following command to restart th
 ```
 
 
-## 3. Use Your Omega Wi-Fi Range Extender
+## Step 3: Use Your Omega WiFi Range Extender
 
-At this point, your Omega is connected to router as well as serving its own access point, and the Omega is setup to relay information back and forth between these two Wi-Fi interfaces. This means that you can connect your computer/smartphone to the AP of your Omega, and be able to access the data coming from the router.
+At this point, your Omega is connected to router as well as serving its own access point, and the Omega is setup to relay information back and forth between these two WiFi interfaces. This means that you can connect your computer/smartphone to the AP of your Omega, and be able to access the data coming from the router.
 
-To use the Omega as the Wi-Fi range extender, you would typically place the Omega somewhere between your router and your computer/smartphone. Packets will travel from your router to the Omega, and from the Omega to your computer/smartphone instead of directly from the router to your device. Effectively, extending your WiFi network's range!
+To use the Omega as the WiFi range extender, you would typically place the Omega somewhere between your router and your computer/smartphone. Packets will travel from your router to the Omega, and from the Omega to your computer/smartphone instead of directly from the router to your device. Effectively, extending your WiFi network's range!
 
 Happy hacking!

@@ -8,8 +8,6 @@ order: 2
 
 # Installing and Using Git
 
-[//]: # (brief intro to Git and version control)
-
 Git is a popular [version control](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control) system that allows coders to track changes to their codebase, easily collaborate with others, and manage their project.
 
 Git is the version control system used by [GitHub](https://github.com/), the super popular online web-based repository hosting service. The team at Onion uses GitHub exclusively for all of our version control needs.
@@ -52,44 +50,40 @@ With Git installed on your Omega you can now clone repositories directly into yo
 GitHub allows us as developers to collaborate with the community in various ways. If you've worked on something for the Omega that you would like to share with the community, you can submit a pull request. This allows us at Onion to see your work and potentially incorporate it into the official OnionIoT GitHub!
 [Click here to learn more about pull requests](https://help.github.com/articles/about-pull-requests/)
 
-[//]: # (add an example)
-
 Let's try using Git to clone one of the repositories off the Onion GitHub!
 
 First, open your browser and navigate to `https://github.com/OnionIoT/`
 
 ![onion-github](../img/installing-git-pic-1.png)
 
-// TODO: change this example to use a reasonable repo, try https://github.com/OnionIoT/oledQrCodeGenerator
-Next, find the repository you'd like to clone. In this example we'll use the setup-wizard repo. Click on setup-wizard. On the next page you'll want to click on the `Clone or Download` button. Click on the button, and copy the link in the box.
+Next, find the repository you'd like to clone. In this example we'll use the oledQrCodeGenerator repo. Click on oledQrCodeGenerator. On the next page you'll want to click on the `Clone or Download` button. Click on the button, and copy the link in the box.
 
 ![clone-button](../img/installing-git-pic-2.png)
 
 Now, open your terminal and move to the directory in which you want the repository to reside. From there, enter:
 
 ```
-git clone https://github.com/OnionIoT/setup-wizard.git
+git clone https://github.com/OnionIoT/oledQrCodeGenerator.git
 ```
 
 You'll see something similar to this:
 
 ```
-root@Omega-2757:/tmp# git clone https://github.com/OnionIoT/setup-wizard.git
-Cloning into 'setup-wizard'...
-remote: Counting objects: 438, done.
-remote: Compressing objects: 100% (164/164), done.
-remote: Total 438 (delta 90), reused 0 (delta 0), pack-reused 273
-Receiving objects: 100% (438/438), 954.08 KiB | 313.00 KiB/s, done.
-Resolving deltas: 100% (255/255), done.
+root@Omega-2757:/tmp# git clone https://github.com/OnionIoT/oledQrCodeGenerator.git
+Cloning into 'oledQrCodeGenerator'...
+remote: Counting objects: 81, done.
+remote: Total 81 (delta 0), reused 0 (delta 0), pack-reused 81
+Unpacking objects: 100% (81/81), done.
 ```
 
-Now if you type `ls` you should see a directory called `setup-wizard`. Enter
+Now if you type `ls` you should see a directory called `oledQrCodeGenerator`. Enter
 ```
-ls setup-wizard/
+ls oledQrCodeGenerator/
 ```
 and you'll see the contents of the repository on your Omega.
 
 ```
-root@Omega-2757:/tmp# ls setup-wizard/
-LICENSE.md  Makefile    acl.d       upload      www
+root@Omega-2757:/tmp# ls oledQrCodeGenerator/
+LICENSE.md    __init__.py   oledImage.py
+README.md     main.py       qrcode
 ```

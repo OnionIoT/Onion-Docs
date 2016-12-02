@@ -8,14 +8,19 @@ order: 2
 
 # The Omega's LED
 
-// friendly neighbourhood engineer intro to the articles
-// photo of the omega with the LED circled
+
+The Omega comes equipped with an LED that has a number of uses, namely as an indication for when your Omega has finished booting.
+This tutorial will show you other cool things you can do with the LED.
+
+![Omega LED](../Get-Started/img/unbox-6-omega-led-detail.jpg "Omega's LED")
 
 To control the Omega's LED, we are going to be writing to files that are used to specify values for the LED, such as the LED mode. This is made possible with `sysfs`, a pseudo file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
 
 ## LED Trigger Modes
 
-// describe that the trigger modes specify the LED's behavior
+The LED has various mods known as "triggers" that change the behavior of the LED. For example, when your Omega is booting, it's in a flashing mode, and when it has booted, it's in an on mode.
+
+
 The current LED trigger mode can be read by looking at the file that controls the LEDs. Enter:
 
 ```
@@ -67,7 +72,7 @@ For a rapidly blinking LED you can enter these two commands:
 echo 75 > /sys/class/leds/onion\:amber\:system/delay_on
 echo 75 > /sys/class/leds/onion\:amber\:system/delay_off
 ```
-// overall: include notes of where it would be useful to have gifs
+[//]: # (TODO: add gif of the rapid blink on an Omega)
 
 For an LED that stays on for longer than it's off, enter these two commands:
 
@@ -75,7 +80,7 @@ For an LED that stays on for longer than it's off, enter these two commands:
 echo 500 > /sys/class/leds/onion\:amber\:system/delay_on
 echo 120 > /sys/class/leds/onion\:amber\:system/delay_off
 ```
-// overall: include notes of where it would be useful to have gifs
+[//]: # (TODO: add gif of the slow blink on an Omega)
 
 Feel free to experiment with other combinations.
 
@@ -103,7 +108,7 @@ echo sos > /sys/class/leds/onion\:amber\:system/message
 ```
 
 My LED is blinking really quickly, and it's hard to read. Let's change the speed of the message with the following command:
-// overall: include notes of where it would be useful to have gifs
+[//]: # (TODO: add gif of the fast SOS blink on an Omega)
 
 ```
 echo 150 > /sys/class/leds/onion\:amber\:system/delay
@@ -111,4 +116,4 @@ echo 150 > /sys/class/leds/onion\:amber\:system/delay
 
 That slowed it down nicely.
 
-// overall: include notes of where it would be useful to have gifs
+[//]: # (TODO: add gif of the slow SOS blink on an Omega)

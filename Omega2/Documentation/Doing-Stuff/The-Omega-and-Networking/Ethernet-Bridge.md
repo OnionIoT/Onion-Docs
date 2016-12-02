@@ -8,24 +8,25 @@ order: 3
 
 # Ethernet Bridge
 
-// descriptive sentence describing what an ethernet bridge is: omega accepting wifi, relaying the connection to an attached device via ethernet
-In this tutorial, we are going to go through how we can enable other devices to use the Omega's Ethernet Expansion to connect to an existing Wi-Fi network.
+
+In this tutorial, we are going to create an Ethernet Bridge using the Omega. An Ethernet Bridge is a device that shares it's WiFi internet access through an Ethernet connection, similar to a WiFi dongle.
+
+Our Omega's WiFi and the Ethernet Expansion will allow this to be accomplished.
 
 ![illustration](../img/ethernet-bridge-illustration.png)
 
-// add an example scenario where this would be useful (bringing wifi connectivity to an old desktop computer)
+As an exmaple, this type of setup can be used to bring internet access to a desktop computer that does not have a network adapter.
 
 # Overview
 
-| Overview |
+| <span style="font-weight:normal">Tutorial Difficulty</span> | Intermediate |
 | :---: | :---: |
-| Tutorial Difficulty | **Intermediate** |
-| Time Required | **10 mins** |
-| Required Materials: | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li><li>Ethernet Expansion</li></ul> |
+| Time Required| **10 mins** |
+| Required Materials | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li><li>Ethernet Expansion</li></ul> |
 
-// add a note saying that the Power Dock or Arduino Dock 2 can be used
+>The Expansion dock can be substituted with a Power Dock, Mini Dock, or Arduino Dock 2.
 
-What we are going to do is to first enable the Omega's Ethernet connection, and then try to bridge the wireless internet connection with an Ethernet connection.
+What we are going to do is to first enable the Omega's Ethernet connection, and then to bridge the wireless internet connection with an Ethernet connection.
 
 
 [//]: # (The Steps)
@@ -84,6 +85,3 @@ To do this on Mac OSX, follow this [guide](https://www.cs.cmu.edu/~help/networki
 ### Linux
 
 [//]: # (Not sure how to do or how to test that this actually does the thing?)
-
-
-[//]: # (Using the Project)

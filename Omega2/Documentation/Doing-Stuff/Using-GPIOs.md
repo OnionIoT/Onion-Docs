@@ -43,18 +43,19 @@ Here are some examples on how you can use `gpioctl` to interact with the Omega's
 
 #### Reading an Input
 
-To read an input of a GPIO we'll need to first set the direction to input, connect an external circuit, and then read the value. // give example: reading the value of a switch
+If you want your Omega to interface with a switch or button then you'll need to use a GPIO to read the input of the switch.
+
+To read an input of a GPIO we'll need to first set the direction to input, connect an external circuit, and then read the value.
+
 
 To set the direction of GPIO1 to `in`, enter the follow command:
-
 
 ```
 root@Omega-2757:/# gpioctl dirin 1
 Using gpio pin 1.
 ```
 
-You need to make sure that the GPIO that will be reading an input has it's direction set properly, to avoid damaging the Omega. //expand on this 'You will damage your omega if...'
-
+You **will** damage your Omega if your pin is set to out and try to drive power to the pin.
 
 Now you're ready to connect an external circuit.
 
@@ -71,7 +72,8 @@ Here we see that the GPIO pin is set to `LOW` or `0`.
 
 #### Setting a Value
 
-// give example: driving an led
+You can configure your GPIO pin to supply power to a load with your Omega (e.g. powering an LED)
+
 We first set a GPIO pin's direction via the `dirout` command:
 
 ```
@@ -79,32 +81,8 @@ root@Omega-2757:/# gpioctl dirout 1
 Using gpio pin 1.
 ```
 
-//get rid of set and clear, just use dirout-high and dirout-low
 
-We then use the `set` option, which sets the GPIO to `HIGH` or `1`:
-
-```
-root@Omega-2757:/# gpioctl set 1
-Using gpio pin 1.
-root@Omega-2757:/# gpioctl get 1
-Using gpio pin 1.
-Pin 1 is HIGH
-```
-
-
-Or we use the `clear` option, which sets the value of the GPIO to `LOW` or `0`:
-
-```
-root@Omega-2757:/# gpioctl clear 1
-Using gpio pin 1.
-root@Omega-2757:/# gpioctl get 1
-Using gpio pin 1.
-Pin 1 is LOW
-```
-
-
-
-We can also use `dirout-low` and `dirout-high` to set the direction and output of the GPIO immediately:
+We then use the `dirout-high` option, which sets the GPIO to `HIGH` or `1`:
 
 ```
 root@Omega-2757:/# gpioctl dirout-high 1
@@ -112,6 +90,12 @@ Using gpio pin 1.
 root@Omega-2757:/# gpioctl get 1
 Using gpio pin 1.
 Pin 1 is HIGH
+```
+
+
+Or we use the `dirout-low` option, which sets the value of the GPIO to `LOW` or `0`:
+
+```
 root@Omega-2757:/# gpioctl dirout-low 1
 Using gpio pin 1.
 root@Omega-2757:/# gpioctl get 1
@@ -119,18 +103,10 @@ Using gpio pin 1.
 Pin 1 is LOW
 ```
 
-This can be useful if you want to make sure that the GPIO pin's output value is defined from the start.
+> You can use the `gpioctl get <PIN>` command to read a pin regardless of its direction.
 
-> //note explaining that the value of a gpio can be read no matter if it's an input or output pin, give example of why this might be useful
 
 ## Multiplexed GPIOs
-
-[//]: # (brief explanation of multiplexing)
-
-// this first sentence is awkward
-// change the whole example to uart1
-// what gabe said - the functionality is choosing which function/context the gpios will carry out
-// add a link to the OMega2 pinout - mention it shows all the multiplexing groups
 
 Multiplexed GPIOs are pins that are given a special function to carry out, as opposed to being unused pins. For example, the UART pins are designated as UART, but are multiplexed so that you can designate and use them as GPIO pins when you want. This is used to incorporate the largest number of peripherals in the smallest possible package.
 

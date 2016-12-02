@@ -48,6 +48,10 @@ The Omega2 runs the Linux Embedded Development Environment (LEDE) operating syst
 
 [//]: # (Info on the Omega LED, state that it uses GPIO44, link to Omega LED article)
 
+The Omega LED is a great tool for communicating information with a user. It notifies you when your Omega is off, booting, and on.
+
+The Omega LED uses GPIO44, and can be modified to do a number of cool applications. You can learn more about the LED in [the article on how to use the Omega's LED](../../Doing-Stuff/The-Omega-LED)
+
 ## Reset GPIO
 
 [//]: # (mention the reset gpio (GPIO38) and the reboot and factory restore functionality when connected to a dock,)

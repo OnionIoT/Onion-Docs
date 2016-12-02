@@ -26,8 +26,8 @@ The Omega2 comes ready with an auto-mounting tool that will take care of that pr
 Steps to access USB storage:
 
 1. Plug in the USB Storage
-// TODO: have photo here
-2. Navigate to the correct directory  // TODO: clear up this whole correct directory thing
+[//]: # (TODO: photo of plugged in usb stick)
+2. Navigate to the directory where your USB device is located.
 	* The default is `/tmp/mounts/`
 		* `cd /tmp/mounts/`
 3. Check the directory for your USB storage device
@@ -58,7 +58,7 @@ cp /root/example.txt /tmp/mounts/USB-A1/example.txt
 ## Unmounting
 
 [//]: # (draw a parallel to safely disconnecting in Windows)
-// TODO: fix this sentence
+
 Once you are done with your USB storage device, make sure you unmount your device before removing it to avoid corrupting your data.
 
 The `umount` command is used to unmount the storage

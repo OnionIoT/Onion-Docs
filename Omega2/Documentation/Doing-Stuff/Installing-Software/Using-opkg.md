@@ -6,7 +6,6 @@ devices: [ Omega2 ]
 order: 1
 ---
 
-// make these first 3 sections less like wikipedia and give it more personality ie make it more onion-y
 # What is OPKG?
 
 Not everything available for the Omega is installed right away. Some people may never need certain utilities and so we configure the Omega with packages you will likely use, and let you further tailor your Omega to suit your needs.
@@ -54,8 +53,7 @@ onion-console-terminal - 0.2-1 - Terminal App for the console
 onion-console-webcam - 0.2-1 - Webcam App for the console
 ```
 
-// add subsection  
-
+### Listing Installed Packages
 You can also check your installed packages with
 
 ```

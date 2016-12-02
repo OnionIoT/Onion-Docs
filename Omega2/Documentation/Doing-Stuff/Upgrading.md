@@ -57,8 +57,29 @@ root@Omega-2757:/# oupgrade -c
 
 As you can see from the output, my firmware is up to date!
 
-If it were not up to date, this command would show:// add that output
-Note that it will not upgrade it since this is just a check
+If it were not up to date, this command would show:
+```
+root@Omega-2757:/sys/devices/platform/gpio-leds/leds/onion:amber:system# oupgrade -c
+> Device Firmware Version: 0.1.5 b131
+> Checking latest version online...
+> Repo Firmware Version: 0.1.5 b132
+> Comparing version numbers
+> New build of current firmware available, upgrade is optional, rerun with '-force' option to upgrade
+```
+
+or if you're on an older version:
+
+```
+root@Omega-2757:/sys/devices/platform/gpio-leds/leds/onion:amber:system# oupgrade -c
+> Device Firmware Version: 0.1.4 b210
+> Checking latest version online...
+> Repo Firmware Version: 0.1.5 b132
+> Comparing version numbers
+> New firmware version available, need to upgrade device firmware
+```
+
+*Note that your firmware will not upgrade since this is just a check*
+
 
 #### Upgrading to a Latest Version
 Here at Onion we are constantly in development, adding new features and fixing bugs. Sometimes the features we make cause the firmware to be unstable. `oupgrade` will only upgrade to the latest stable version as opposed to the latest version available.

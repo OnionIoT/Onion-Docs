@@ -9,26 +9,27 @@ order: 1
 # The Omega as a Router
 
 [//]: # (high level introduction of what we're doing in this tutorial: turning the omega into a router, brief description of a router)
-// explain that with this setup you can plug your omega into your modem and it can provide internet connectivity to a wireless area network
 
-The Ethernet Expansion gives your Omega access to an Ethernet port, and giving it the option of a stable and fast connection. By using the Ethernet Expansion, we can turn our Omega into a low-cost yet effective router. This tutorial will show you how you can set up the Omega as a Wi-Fi router.
+This tutorial will show you how you can use the Omega as a WiFi router. A router is a device uses an Ethernet connection to provide a wireless area network. We are going to plug our Omega into a modem to provide internet to an area.
+
+The Ethernet Expansion is required to give your Omega access to an Ethernet port. By using the Ethernet Expansion, we can turn our Omega into a low-cost yet effective router.
 
 [//]: # (illustration showing the whole system)
 
 # Overview
 
-| Overview |
+| <span style="font-weight:normal">Tutorial Difficulty</span> | Intermediate |
 | :---: | :---: |
-| Tutorial Difficulty | **Intermediate** |
-| Time Required | **10 mins** |
-| Required Materials: | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li><li>Ethernet Expansion</li></ul> |
+| Time Required| **10 mins** |
+| Required Materials | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li><li>Ethernet Expansion</li></ul> |
 
-// add a few sentences describing at a high level what the steps will accomplish
+
+We're going to first setup the hardware, then we'll change some Omega config files that will enable the Omega to forward our connection properly.
 
 ## Step 1: Setup the Hardware
 
-// pls fix this mess of a sentence
-First, connect the Omega to the Expansion Dock, and plug the Ethernet Expansion into the Expansion Dock. Then, connect the Ethernet cable coming from your modem to the Ethernet Expansion, and connect the power to the Omega, as shown below:
+
+Connect your Ethernet Expansion to the Expansion dock, and plug in the Ethernet cable, as shown below:
 
 ![Omega Router](../img/omega-router-pic-1.jpg)
 
@@ -39,41 +40,25 @@ After you have connected everything, power on the Omega.
 
 [//]: # (explanation of which wifi you're disabling)
 
-// we're disabling the wifi interface that is usually used to connect the omega to an existing network
-// connect via serial since the netowrk is being disabled
+The next step is to disable the WiFi connection on the Omega. We want our Omega to connect to the internet via the ethernet connection and so we're going to turn off the WiFi on our Omega
 
-The next step is to disable the Wi-Fi connection on the Omega. We want our Omega to connect to the internet via the ethernet connection and so we're going to turn off the Wi-Fi on our Omega
+>We're going to be disabling the WiFi on the Omega so you'll need to make sure that you've established a serial connection with your Omega. For more information, please refer to this [guide on connecting to your Omega.](../Get-Started/Using-the-Command-Line/connecting)
 
-To do this, you will be editing `/etc/config/wireless` file and changing the access point settings of your Omega:
+To do this, you will use the `uci` command to change the access point settings of your Omega.
 
-Enter `vi /etc/config/wireless` and find the following block
+Enter the following command to set the value of `ApCliEnable` to `0`:
 
 ```
-config wifi-iface
-        option device 'ra0'
-        option network 'wlan'
-        option mode 'ap'
-        option encryption 'psk2'
-        option key '12345678'
-        option ssid 'Omega-ABCD'
-        option ApCliEnable '1'
-        option ApCliAuthMode 'WPA2PSK'
-        option ApCliEncrypType 'AES'
-        option ApCliSsid 'yourwifissid'
-        option ApCliPassWord 'yourwifipassword'
+uci set wireless.@wifi-iface[0].ApCliEnable=0
 ```
 
-and replace
+Then run the following command to save your changes:
+
 ```
-option ApCliEnable '1'
-```
-with
-```
-option ApCliEnable '0'
+uci commit wireless
 ```
 
-[//]: # (mention why we do this)
-This will disable the ApCli device which is used to wirelessly connect to an existing router. Press `ESC` and type `:wq` to save and exit.
+This will disable the ApCli device which is used to wirelessly connect to an existing router.
 
 
 Restart the WiFi network to apply your saved changes:
@@ -86,26 +71,20 @@ wifi
 
 Since you probably don't want uninvited guests on your new router, it is recommended that you change your Omega Router's settings from the default setup, especially the password.
 
-// change this to use uci
-To do so, enter the following command:
+To do so, enter the following commands:
 
 ```
-vi /etc/config/wireless
+uci set wireless.@wifi-iface[0].ssid=OmegaRouter
+uci set wireless.@wifi-iface[0].key=RouterPassword
+uci set wireless.@wifi-iface[0].encryption=YourEncryptionType
 ```
+These commands are used to change the SSID of your Omega, the router password, as well as the type of encryption you want to use for the router and the password.
 
-And look for:
-
-```
-option ssid 'OmegaRouter'
-option key 'RouterPassword'
-option encryption 'YourEncryptionType'
-```
-
-Here, you can change the SSID of your Omega, the router password, as well as the type of encryption you want to use for the router and the password.
+***Note: If you don't know what encryption type to use, use the default.***
 
 Once you have finished customizing the WiFi network, simply save and close the file by pressing `ESC` and then typing `:wq`
 
-Run the following command to restart the Wi-Fi network and apply your settings:
+Run the following command to restart the WiFi network and apply your settings:
 
 ```
 wifi

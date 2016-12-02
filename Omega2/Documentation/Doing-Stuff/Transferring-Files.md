@@ -55,15 +55,13 @@ In the right hand pane, you'll need to set the details for your Onion Omega. Typ
 
 Once finished, press the "Save" button.
 
-On the next window there is a tickbox option to save the password, thats up to you. Saving the password is less secure, but faster to access your Omega.
+On the next window there is a tickbox option to save the password, that's up to you. Saving the password is less secure, but faster to access your Omega.
 
 You can name the connection and you can also you can save a desktop shortcut if desired.
 
 ![WinSCP Image 3](./img/onion-omega-winscp-3.png)
 
-Now from the left menu you'll see the name you saved the new site as a few moments ago, eg "root@192.168.3.1", click on this, then "Login".
-
-// TODO: fix the ip address
+Now from the left menu you'll see the name you saved the new site as a few moments ago, eg "root@omega-2757.local", click on this, then "Login".
 
 ![WinSCP Image 4](./img/onion-omega-winscp-4.png)
 
