@@ -8,13 +8,12 @@ order: 2
 
 # The Omega's LED
 
-// how to control the Omega's LED
-// write me pls!
 
-// explanation of the sysfs interface - using the filesystem to control hardware, clever abstraction
+To control the Omega's LED, we are going to be writing to files that are used to specify values for the LED, such as the LED mode. This is made possible with `sysfs`, a pseudo file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
 
-// seeing the current led trigger - make this into a subheading
-The current led trigger can be read by looking at the file that controls the leds. Enter:
+## LED Trigger Modes
+
+The current LED trigger mode can be read by looking at the file that controls the LEDs. Enter:
 
 ```
 cat /sys/class/leds/onion\:amber\:system/trigger
@@ -28,25 +27,28 @@ none mmc0 timer [default-on] netdev transient gpio heartbeat morse oneshot
 
 The current mode is indicated by the brackets. My Omega's LED is currently set to the `default-on` mode. Let's try changing the trigger by editing the file.
 
-// add subheading here
+
+### The Heartbeat Trigger Mode
+
+
 To do this, we're going to echo a string, in this case the trigger mode, and pipe it into the file using this command:
 
 ```
 echo heartbeat > /sys/class/leds/onion\:amber\:system/trigger
 ```
+// overall: include notes of where it would be useful to have gifs
 
->// subsection on piping
-> mention overwrite > and append >>
+> A Pipe in Linux is used to send some output to a program for further processing
+> In this case, we are using the ">" to overwrite the contents of the file located at /sys/class/leds/onion\:amber\:system/trigger
+> Another example is using ">>" to append an output to a file.
 
 
-When you execute this command, your shell actually writes the word `heartbeat` to the virtual file, and the kernel passes the message to the corresponding handlers. //somehow throw sysfs into the mix here
+When you execute this command, your shell actually writes the word `heartbeat` to the file, and the kernel passes the message to the corresponding handlers.
 
 Your Omega's LED should start blinking like a heartbeat now. Let's experiment with other triggers!
-// setting the led trigger
-//  - explain echo "blah" and piping that (look at the linux and openwrt basics articles)
 
 
-// show example of setting it to timer and changing the delay - add subsection
+### The Timer Trigger Mode
 
 The `timer` trigger blinks the LED on and off for specified amounts of time. You can set the trigger to timer with the following command:
 
@@ -62,6 +64,7 @@ For a rapidly blinking LED you can enter these two commands:
 echo 75 > /sys/class/leds/onion\:amber\:system/delay_on
 echo 75 > /sys/class/leds/onion\:amber\:system/delay_off
 ```
+// overall: include notes of where it would be useful to have gifs
 
 For an LED that stays on for longer than it's off, enter these two commands:
 
@@ -69,10 +72,12 @@ For an LED that stays on for longer than it's off, enter these two commands:
 echo 500 > /sys/class/leds/onion\:amber\:system/delay_on
 echo 120 > /sys/class/leds/onion\:amber\:system/delay_off
 ```
+// overall: include notes of where it would be useful to have gifs
 
 Feel free to experiment with other combinations.
 
-// subesction
+### The Morse Trigger Mode
+
 A really interesting trigger mode is `morse`, which converts a message from text to morse code!
 
 
@@ -95,6 +100,7 @@ echo sos > /sys/class/leds/onion\:amber\:system/message
 ```
 
 My LED is blinking really quickly, and it's hard to read. Let's change the speed of the message with the following command:
+// overall: include notes of where it would be useful to have gifs
 
 ```
 echo 150 > /sys/class/leds/onion\:amber\:system/delay
@@ -102,9 +108,9 @@ echo 150 > /sys/class/leds/onion\:amber\:system/delay
 
 That slowed it down nicely.
 
-// show example of setting it to morse code, setting a message, changing the delay
-
 // overall: include notes of where it would be useful to have gifs
 
 
-// use https://www.lede-project.org/docs/user-guide/led_configuration?s[]=led&s[]=configuration#led_triggers for reference - link to this guy as well
+# Going Further
+
+[LEDE documentation on led_triggers](https://www.lede-project.org/docs/user-guide/led_configuration?s[]=led&s[]=configuration#led_triggers)

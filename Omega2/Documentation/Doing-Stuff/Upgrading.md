@@ -12,8 +12,75 @@ In order to keep improving user experience for the Omega, we will be releasing u
 
 ## Using the Command line
 
-// explain how the average user will use this tool
-// doing more - check, latest, force
+### Using `oupgrade`
+
+To use `oupgrade` run the command in your command-line:
+
+```
+oupgrade
+```
+
+It will take care of checking for firmware updates, and installing them if they are available.
+
+### Doing More with `oupgrade`
+
+#### Getting your firmware version
+To get the current firmware installed on the device type:
+```
+oupgrade -v
+```
+
+And you'll see:
+```
+root@Omega-2757:/# oupgrade -v
+> Device Firmware Version: 0.1.5 b132
+```
+
+Here I'm on version 0.1.5 and build 132 of the device firmware.
+
+
+#### Checking for Latest Firmware Versions
+
+To check your firmware version and compare it with the latest available firmware versions type:
+```
+oupgrade -c
+```
+
+```
+root@Omega-2757:/# oupgrade -c
+> Device Firmware Version: 0.1.5 b132
+> Checking latest version online...
+> Repo Firmware Version: 0.1.5 b132
+> Comparing version numbers
+> Device firmware is up to date!
+```
+
+As you can see from the output, my firmware is up to date!
+
+
+#### Upgrading to an Unstable Version
+Here at Onion we are constantly in development, adding new features and fixing bugs. Sometimes the features we make cause the firmware to be unstable. `oupgrade` will only upgrade to the latest stable version as opposed to the latest version available.
+
+To upgrade to the latest version (instead of stable version) you can type:
+```
+oupgrade -l
+```
+**Note: This is not recommended unless you know what you're doing!**
+
+
+You can also force `oupgrade` to upgrade to the latest version of the firmware with the `-f` flag:
+```
+oupgrade -f
+```
+
+
+## Notes On Upgrades
+
+When an upgrade is performed, only the `root` and `etc` folders are preserved. It is important to backup your work on the Omega prior to upgrading if you don't want to lose any of your work.
+
+## Help with `oupgrade`
+
+
 `oupgrade` has a lot of functionality on the command line. Type
 
 ```
@@ -37,53 +104,3 @@ Arguments:
  -c, --check       Only compare versions, do not actually update
  -u, --ubus        Script outputs only json
 ```
-
-
-To get the current firmware installed on the device type:
-```
-oupgrade -v
-```
-
-And you'll see:
-```
-root@Omega-2757:/# oupgrade -v
-> Device Firmware Version: 0.1.5 b132
-```
-
-Here I'm on version 0.1.5 and build 132 of the device firmware.
-
-To check your firmware version and compare it with the latest available firmware versions type:
-```
-oupgrade -c
-```
-
-```
-root@Omega-2757:/# oupgrade -c
-> Device Firmware Version: 0.1.5 b132
-> Checking latest version online...
-> Repo Firmware Version: 0.1.5 b132
-> Comparing version numbers
-> Device firmware is up to date!
-```
-
-As you can see from the output, my firmware is up to date!
-
-Here at Onion we are constantly in development, adding new features and fixing bugs. Sometimes the features we make cause the firmware to be unstable. `oupgrade` will only upgrade to the latest stable version as opposed to the latest version available.
-
-To upgrade to the latest version (instead of stable version) you can type:
-```
-oupgrade -l
-```
-**Note: This is not recommended unless you know what you're doing!**
-
-
-You can also force `oupgrade` to upgrade to the latest version of the firmware with the `-f` flag:
-```
-oupgrade -f
-```
-
-
-
-## Notes On Upgrades
-
-When an upgrade is performed, only the `root` and `etc` folders are preserved. It is important to backup your work on the Omega prior to upgrading if you don't want to lose any of your work.

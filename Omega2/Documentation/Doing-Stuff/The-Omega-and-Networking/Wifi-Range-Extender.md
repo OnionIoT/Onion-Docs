@@ -20,8 +20,6 @@ Even though the Omega has only one physical Wi-Fi interface, you can create two 
 
 # Overview
 
-// bring this overview into all networking articles
-
 | Overview |
 | :---: | :---: |
 | Tutorial Difficulty | **Beginner** |

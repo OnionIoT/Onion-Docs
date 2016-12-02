@@ -9,16 +9,17 @@ order: 1
 // make these first 3 sections less like wikipedia and give it more personality ie make it more onion-y
 # What is OPKG?
 
+Not everything available for the Omega is installed right away. Some people may never need certain utilities and so we configure the Omega with packages you need, and let you tailor your Omega to suit your needs.
 
-OPKG is the package manager for the Omega Firmware. Installation and removal of packages available to the Omega Firmware is made simple using OPKG.
+OPKG is the package manager for the Omega Firmware. It is used primarily to download and install packages. If you're familiar with Linux or other Linux distributions then a good comparison for OPKG is the apt-get utility.
 
 # How to use the Package Manager
 
-The basic operation of the package manager starts off with updating OPKG. After that, you can add or remove packages, and list available and installed packages.
+The basic overview of managing your packages starts with updating OPKG. After that, you can add or remove packages, or show your available and installed packages.
 
 ## The Importance of `opkg update`
 
-Running `opkg update`, provides the most recent list of packages available from the firmware Repos as well as their respective checksums. The latter is to ensure the integrity and security of the package being downloaded and installed.
+Running `opkg update`, provides the most recent list of packages available from Onion and OpenWRT. It's important to run `opkg update` in order to have the latest and greatest features from Onion ready for you to download.
 
 To update OPKG, run:
 
@@ -40,42 +41,17 @@ The `grep` command allows you to filter your searches by keyword. For more infor
 
 To find all the packages that are Onion related, we'll use `grep` with the `-i` option to iGnOrE cAsE. Enter the following into your command line:
 
-// TODO: change to grepping for just onion-console
 ```
-opkg list | grep -i onion
+opkg list | grep -i onion-console
 ```
-and you'll see all the available packages with Onion in their name or description
+and you'll see all the available packages with onion-console in their name or description
 
 ```
-root@Omega-2757:/# opkg list | grep -i onion
-arduino-dock-2 - 0.1-1 - Tools for using Onion Arduino Dock 2
-base-www - 0.1-1 - Files for website hosting on the Omega to ensure compatibility between Onion utilities
-device-client - 0.6-1 - Client for communication with Onion Cloud Device Server
-liboniondebug - 0.4-1 - Library used to ease debug
-libonioni2c - 0.4-1 - Library of I2C communication functions
-libonionili9341 - 0.1-1 - Library for TFT ILI9341 Driver
-libonionmcp23008 - 0.4-1 - Library of functions for MCP23008 chips
-libonionneopixel - 0.1-1 - Library that provides functions to interact with Neopixels via the Arduino Dock
-libonionoledexp - 0.4-1 - Library of functions to control the Onion OLED Expansion
-libonionpwmexp - 0.4-1 - Library of functions to control the PWM Expansion
-libonionrelayexp - 0.4-1 - Library of functions to control the Onion Relay Expansion
-libonionspi - 0.1-1 - Library of SPI communication functions
+root@Omega-2757:/# opkg list | grep -i onion-console
 onion-console-base - 0.2-1 - Web-based virtual desktop for the Omega. Base package, only includes a few Apps.
 onion-console-editor - 0.2-1 - Editor App for the Console
 onion-console-terminal - 0.2-1 - Terminal App for the console
 onion-console-webcam - 0.2-1 - Webcam App for the console
-onion-helper - 0.1-1 - C-based ubus service to implement various features on OpenWRT
-onion-repo-keys - 0.1-1 - Signature keys required for Onion Package Repo
-onion-sh-lib - 0.2-1 - Library of commonly used code for the Omega
-onion-ubus - 0.1-1 - Collection of Onion ubus tools
-oupgrade - 0.1-1 - Tool to upgrade device firmware with latest from Onion repo
-power-dock - 0.2-1 - Onion Power Dock Drivers
-pyOledExp - 0.4-1 - Python module to control the Onion OLED Expansion
-pyOnionGpio - 0.1-1 - Python module with object that implements programming the GPIOs via the sysfs interface
-pyOnionI2C - 0.4-1 - Python module with object that implements I2C transactions
-pyOnionSpi - 0.1-1 - Python module to implement communication via the SPI protocol
-pyPwmExp - 0.4-1 - Python module to control the Onion PWM Expansion
-pyRelayExp - 0.4-1 - Python module to control the Onion Relay Expansion
 ```
 
 // add subsection  
@@ -175,11 +151,8 @@ Curl is now removed from your Omega!
 
 ## Help With OPKG
 
-To learn even more about using OPKG // TODO: figure this sentence out
-To see the OPKG usage, run:
+To learn more about OPKG and it's functionality enter the command:
 
 ```
 opkg -h
 ```
-
-`opkg` has a lot of functionality, and this tutorial will show you the most important and useful commands.

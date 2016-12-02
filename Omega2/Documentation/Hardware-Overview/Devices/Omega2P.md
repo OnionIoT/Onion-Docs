@@ -14,20 +14,21 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 
 ![omega2Plus](../img/omega-2p-pic.png)
 
-| Omega2+ Specs  |
-| :-------------: |
-| 580MHz CPU |
-| 128MB Memory |
-|  32MB Storage |
-| USB 2.0 |
-| MicroSD Slot |
-| b/g/n Wi-Fi |
-| 15 GPIO |
-| 2 PWM |
-| 2 UART |
-| 1 I2C |
-| 1 SPI |
-| 1 I2S |
+| Omega2+ Specs  | |
+| :-------------: | :-------------:  |
+| Processor | 580MHz MIPS CPU  |
+| 128MB Memory | 128MB Memory  |
+|  32MB Storage | 32MB Storage  |
+| USB 2.0 | USB 2.0  |
+| MicroSD Slot | MicroSD Slot  |
+| WiFi adapter | b/g/n Wi-Fi  |
+| 15 GPIO | 15 GPIO  |
+| 2 PWM | 2 PWM  |
+| 2 UART | 2 UART  |
+| 1 I2C | 1 I2C  |
+| 1 SPI |  1 SPI   |
+| 1 I2S | 1 I2S  |
+
 ## The Pins
 
 ![pinout](../img/omega-2-pinout-diagram.png)
