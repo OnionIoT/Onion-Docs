@@ -19,9 +19,9 @@ The Ethernet Expansion is required to give your Omega access to an Ethernet port
 # Overview
 
 | <span style="font-weight:normal">Tutorial Difficulty</span> | Intermediate |
-| :---: | :---: |
+| :--- | :--- |
 | Time Required| **10 mins** |
-| Required Materials | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li><li>Ethernet Expansion</li></ul> |
+| Required Materials | Omega2 or Omega2+<br>Expansion Dock<br>Ethernet Expansion |
 
 
 We're going to first setup the hardware, then we'll change some Omega config files that will enable the Omega to forward our connection properly.
@@ -38,11 +38,12 @@ After you have connected everything, power on the Omega.
 
 ## Step 2: Setup the Omega
 
-[//]: # (explanation of which wifi you're disabling)
+[//]: # (batch2: explanation of which wifi you're disabling)
 
 The next step is to disable the WiFi connection on the Omega. We want our Omega to connect to the internet via the ethernet connection and so we're going to turn off the WiFi on our Omega
 
 >We're going to be disabling the WiFi on the Omega so you'll need to make sure that you've established a serial connection with your Omega. For more information, please refer to this [guide on connecting to your Omega.](../Get-Started/Using-the-Command-Line/connecting)
+[//]: # (batch2: expand on this comment - explain why serial is beneficial in this scenario)
 
 To do this, you will use the `uci` command to change the access point settings of your Omega.
 
@@ -80,7 +81,7 @@ uci set wireless.@wifi-iface[0].encryption=YourEncryptionType
 ```
 These commands are used to change the SSID of your Omega, the router password, as well as the type of encryption you want to use for the router and the password.
 
-***Note: If you don't know what encryption type to use, use the default.***
+***Note: If you don't know what encryption type to use, just keep the default.***
 
 Once you have finished customizing the WiFi network, simply save and close the file by pressing `ESC` and then typing `:wq`
 

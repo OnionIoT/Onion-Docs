@@ -16,20 +16,20 @@ The Omega2 is the latest in development boards from Onion. It comes packed with 
 [//]: # (TODO: have an illustration with labels)
 ![omega2](../img/omega-2-pic.png)
 
-| Omega2+ Specs  | |
+| Omega2 Specs  | |
 | :-------------: | :-------------:  |
 | Processor | 580MHz MIPS CPU  |
 | Memory | 64MB Memory  |
 | Storage | 16MB Storage  |
-| USB 2.0 | USB 2.0  |
-| MicroSD Slot | MicroSD Slot  |
+| USB | USB 2.0  |
+| MicroSD Slot | No  |
 | WiFi adapter | b/g/n Wi-Fi  |
-| 15 GPIO | 15 GPIO  |
-| 2 PWM | 2 PWM  |
-| 2 UART | 2 UART  |
-| 1 I2C | 1 I2C  |
-| 1 SPI |  1 SPI   |
-| 1 I2S | 1 I2S  |
+| GPIOs | 15  |
+| PWM | 2  |
+| UART | 2  |
+| I2C | 1  |
+| SPI |  1   |
+| I2S | 1  |
 
 ## The Pins
 
@@ -41,23 +41,19 @@ The Omega2 is the latest in development boards from Onion. It comes packed with 
 
 ## The Operating system
 
-[//]: # (Linux operating system: LEDE blah blah)
 The Omega2 runs the Linux Embedded Development Environment (LEDE) operating system, a distribution based on OpenWRT. This distribution gives the Omega2 access to the OPKG functionality, allowing you to download packages to enhance your experience.
 
 ## The Omega LED
 
-[//]: # (Info on the Omega LED, state that it uses GPIO44, link to Omega LED article)
+The Omega LED is a great tool for communicating information with a user. It notifies you when your Omega is on, when it's off, and when it's booting.
 
-The Omega LED is a great tool for communicating information with a user. It notifies you when your Omega is off, booting, and on.
-
-The Omega LED uses GPIO44, and can be modified to do a number of cool applications. You can learn more about the LED in [the article on how to use the Omega's LED](../../Doing-Stuff/The-Omega-LED)
+The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](../../Doing-Stuff/The-Omega-LED)
 
 ## Reset GPIO
 
-[//]: # (mention the reset gpio (GPIO38) and the reboot and factory restore functionality when connected to a dock,)
-GPIO38 is the reset gpio. When plugged into a dock (e.g. expansion dock), this gpio gives various functionality to the reset button found on docks. For example, a quick button press triggers the reboot command, whereas holding the button for longer than 7 seconds will trigger a factory reset command.
+The Omega's can be reset using GPIO38. When plugged into a Dock (e.g. Expansion Dock), this GPIO gives various functionality to the reset button found on docks. For example, a quick button press triggers the reboot command, whereas holding the button for longer than 7 seconds will trigger a factory reset command.
 
-## Antenna and U.FL Connector
+[//]: # (batch2: ## Antenna and U.FL Connector)
 
 [//]: # (Description of SMT antenna used on the Omega, mention that it's directional, have a diagram of the directionality)
 [//]: # (Describe that U.FL connector can be used to connect other, bigger antennas)

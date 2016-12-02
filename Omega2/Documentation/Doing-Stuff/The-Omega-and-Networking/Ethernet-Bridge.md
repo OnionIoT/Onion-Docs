@@ -9,20 +9,20 @@ order: 3
 # Ethernet Bridge
 
 
-In this tutorial, we are going to create an Ethernet Bridge using the Omega. An Ethernet Bridge is a device that shares it's WiFi internet access through an Ethernet connection, similar to a WiFi dongle.
+In this tutorial, we are going to create an Ethernet Bridge using the Omega. An Ethernet Bridge is a device that shares its WiFi internet access through an Ethernet connection, similar to a WiFi dongle.
 
 Our Omega's WiFi and the Ethernet Expansion will allow this to be accomplished.
 
 ![illustration](../img/ethernet-bridge-illustration.png)
 
-As an exmaple, this type of setup can be used to bring internet access to a desktop computer that does not have a network adapter.
+As an example, this type of setup can be used to bring internet access to a desktop computer that does not have a network adapter.
 
 # Overview
 
 | <span style="font-weight:normal">Tutorial Difficulty</span> | Intermediate |
-| :---: | :---: |
+| :--- | :--- |
 | Time Required| **10 mins** |
-| Required Materials | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li><li>Ethernet Expansion</li></ul> |
+| Required Materials | Omega2 or Omega2+<br>Expansion Dock<br>Ethernet Expansion |
 
 >The Expansion dock can be substituted with a Power Dock, Mini Dock, or Arduino Dock 2.
 

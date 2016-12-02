@@ -59,7 +59,7 @@ As you can see from the output, my firmware is up to date!
 
 If it were not up to date, this command would show:
 ```
-root@Omega-2757:/sys/devices/platform/gpio-leds/leds/onion:amber:system# oupgrade -c
+root@Omega-2757:/# oupgrade -c
 > Device Firmware Version: 0.1.5 b131
 > Checking latest version online...
 > Repo Firmware Version: 0.1.5 b132
@@ -70,7 +70,7 @@ root@Omega-2757:/sys/devices/platform/gpio-leds/leds/onion:amber:system# oupgrad
 or if you're on an older version:
 
 ```
-root@Omega-2757:/sys/devices/platform/gpio-leds/leds/onion:amber:system# oupgrade -c
+root@Omega-2757:/# oupgrade -c
 > Device Firmware Version: 0.1.4 b210
 > Checking latest version online...
 > Repo Firmware Version: 0.1.5 b132

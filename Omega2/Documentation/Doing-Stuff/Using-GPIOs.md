@@ -55,9 +55,7 @@ root@Omega-2757:/# gpioctl dirin 1
 Using gpio pin 1.
 ```
 
-You **will** damage your Omega if your pin is set to out and try to drive power to the pin.
-
-Now you're ready to connect an external circuit.
+**Now** you're ready to connect an external circuit. You **will** damage your Omega if your GPIO is set to output and you try to drive current to the pin.
 
 Let's try reading GPIO1 with `get`:
 
@@ -67,12 +65,12 @@ Using gpio pin 1.
 Pin 1 is LOW
 ```
 
-Here we see that the GPIO pin is set to `LOW` or `0`.
+Here we see that the GPIO pin is reading a digital `LOW` or `0`.
 
 
 #### Setting a Value
 
-You can configure your GPIO pin to supply power to a load with your Omega (e.g. powering an LED)
+You can configure your GPIO pin to supply power to a load with your Omega, for example, if you were powering an LED.
 
 We first set a GPIO pin's direction via the `dirout` command:
 
@@ -180,3 +178,9 @@ Group i2s - i2s [gpio] pcm
 Group ephy - [ephy] gpio
 Group wled - wled [gpio]
 ```
+
+We see:
+```
+Group uart1 - uart [gpio]
+```
+indicating that our change has indeed been applied. 

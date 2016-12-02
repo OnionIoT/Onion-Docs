@@ -18,7 +18,7 @@ To control the Omega's LED, we are going to be writing to files that are used to
 
 ## LED Trigger Modes
 
-The LED has various mods known as "triggers" that change the behavior of the LED. For example, when your Omega is booting, it's in a flashing mode, and when it has booted, it's in an on mode.
+The LED has various modes known as "triggers" that change the behavior of the LED. For example, when your Omega is booting, it's in a flashing mode, and when it has booted, it's in an "on" mode.
 
 
 The current LED trigger mode can be read by looking at the file that controls the LEDs. Enter:
@@ -45,7 +45,7 @@ To do this, we're going to echo a string, in this case the trigger mode, and pip
 echo heartbeat > /sys/class/leds/onion\:amber\:system/trigger
 ```
 
-> A Pipe in Linux is used to send some output to a program for further processing
+> A pipe in Linux is used to send some output to a program for further processing
 > In this case, we are using the ">" to overwrite the contents of the file located at /sys/class/leds/onion\:amber\:system/trigger
 > Another example is using ">>" to append an output to a file.
 

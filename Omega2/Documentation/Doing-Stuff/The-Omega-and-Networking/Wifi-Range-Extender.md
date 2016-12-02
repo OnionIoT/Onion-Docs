@@ -8,9 +8,7 @@ order: 1
 
 # WiFi Range Extender
 
-[//]: # (explanation of what a wifi range extender does/is)
-
-A WiFi range extender is a device that can increase the effective range of a router by amplifying the signal or by being placed closer to the end user and emitting it's own access point.
+A WiFi range extender is a device that can increase the effective range of a router by being placed closer to the end user and emitting it's own access point.
 The Omega's powerful WiFi capabilities and incredibly small footprint allow it to be effective as a WiFi range extender.
 
 
@@ -19,17 +17,16 @@ The Omega's powerful WiFi capabilities and incredibly small footprint allow it t
 Even though the Omega has only one physical WiFi interface, you can create two virtual interfaces and have the Omega relay the packets back and forth between the two interfaces. This allows you to set up the Omega as a WiFi range extender that relays the packets between your computer/smartphone and your router. This can be very helpful if your router has a short range and the connection has problems from beyond a certain distance.
 Let's get started!
 
-// change subheadings to 'Step X: '
 
 # Overview
 
-| Overview |
-| :---: | :---: |
+| <span style="font-weight:normal">Tutorial Difficulty</span> | Intermediate |
+| :--- | :--- |
 | Tutorial Difficulty | **Beginner** |
 | Time Required | **5 min** |
-| Required Materials: | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock, Mini Dock, or Power Dock</li></ul> |
+| Required Materials: | Omega2 or Omega2+<br>Expansion Dock, Mini Dock, Arduino Dock or Power Dock |
 
-// add a few sentences describing at a high level what the steps will accomplish
+[//]: # (batch2: add a few sentences describing at a high level what the steps will accomplish)
 
 ## Step 1: Connect the Omega to the router
 
