@@ -52,7 +52,7 @@ The Omega2 runs the Linux Embedded Development Environment (LEDE) operating syst
 [//]: # (mention the reset gpio (GPIO38) and the reboot and factory restore functionality when connected to a dock,)
 GPIO38 is the reset gpio. When plugged into a dock (e.g. expansion dock), this gpio gives various functionality to the reset button found on docks. For example, a quick button press triggers the reboot command, whereas holding the button for longer than 7 seconds will trigger a factory reset command.
 
-## Antenna and U.FL connector
+## Antenna and U.FL Connector
 
 [//]: # (Description of SMT antenna used on the Omega, mention that it's directional, have a diagram of the directionality)
 [//]: # (Describe that U.FL connector can be used to connect other, bigger antennas)

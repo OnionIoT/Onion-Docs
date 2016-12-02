@@ -9,7 +9,7 @@ order: 4
 # Transferring Files to the Omega
 
 
-The Omega is incredibly powerful in that it is a full Linux computer. This means that it has it's only filesystem, allowing you to store files directly on the Omega. It also means that you can take your files from an external device and copy them to your Omega. This tutorial will show you how you can do that.
+The Omega is incredibly powerful in that it is a full Linux computer. This means that it has its own filesystem, allowing you to store files directly on the Omega. It also means that you can take your files from an external device and copy them to your Omega. This tutorial will show you how you to transfer files from Windows, Mac OS X, and Linux.
 
 
 ## Using Windows
@@ -23,6 +23,8 @@ The Omega can use the SCP file protocol to transfer files wirelessly. In this tu
 WinSCP is an open source free SFTP client, FTP client, WebDAV client and SCP client for Windows. Its main function is file transfer between a local and a remote computer. Beyond this, WinSCP offers scripting and basic file manager functionality.
 
 In short, it makes creating & updating files on your Omega a lot easier!
+
+// TODO: mention scp is based on ssh
 
 ### Getting Started
 
@@ -61,6 +63,8 @@ You can name the connection and you can also you can save a desktop shortcut if 
 
 Now from the left menu you'll see the name you saved the new site as a few moments ago, eg "root@192.168.3.1", click on this, then "Login".
 
+// TODO: fix the ip address
+
 ![WinSCP Image 4](./img/onion-omega-winscp-4.png)
 
 You will now try to connect to your Omega. On success you'll see this in the window:
@@ -73,30 +77,37 @@ As this is your first time connecting via WinSCP you'll receive a warning simila
 
 ![WinSCP Image 6](./img/onion-omega-winscp-5.png)
 
-You can now drag and drop between folders on your computer and folders on your Omega. Congratulations, you now have remote, easy access to your Onion Omega system files!
+You can now drag and drop between folders on your computer and folders on your Omega. Congratulations, you now have easy remote access to the files on your Omega!
 
 ![WinSCP Image 7](./img/onion-omega-winscp-7.png)
 
 [//]: # (explanation of transferring files back and forth)
 
+
 ## Using Linux or Mac OS X
 
-### `rsync`
 [//]: # (step by step instructions on using rsync)
 
-On Mac or Linux, we can use the command-line utility `rsync` (remote sync) to transfer files to and from the Omega. It's included with Mac OS and most Linux distributions by default (including the Omega's). In case you don't have it, simply run the below commands to install it on your local machine:
+On Mac OS X or Linux, we can use the command-line utility `rsync` (remote sync) to transfer files to and from the Omega. It's included with Mac OS X and most Linux distributions by default (including the Omega's).
+
+// TODO: remove the installation part, maybe link to a page on rsync iunno
+In case you don't have it, simply run the below commands to install it on your local machine:
 
 ```
 sudo apt-get update
 sudo apt-get install rsync
 ```
 
-`rsync` can simply send files as-is over to the remote server, but if the files already exist then it takes a smarter approach to sending new data. It will look at the *differences* between the two sets of files, then applies the differences to the files to bring them up-to-date.
-
 `rsync` uses the `ssh` protocol when connecting to remote servers. When working with an Omega, specify the username as `root` and provide the password when prompted (`onioneer` by default).
 
-#### Push Directories and Files to the Omega
+`rsync` can simply send files as-is over to the remote server, but if the files already exist then it takes a smarter approach to sending new data. It will look at the *differences* between the two sets of files, then applies the differences to the files to bring them up-to-date.
 
+
+### Push Directories and Files to the Omega
+
+// TODO: small blurb - make sure you're connected to the same wifi etc
+
+#### Copying Whole Directories
 First make sure you're connected to the same WiFi network/LAN as your Omega. Then to quickly copy an entire directory to your Omega, fill in this template with the paths of your folders, where `ABCD` is your Omega's factory name:
 
 [//]: # (add <> to signify variables)
@@ -115,6 +126,7 @@ ls ~/remote-directory
 my-cool-project
 ```
 
+#### Copying the Contents of a directory
 To copy only the *files* inside a directory, add a `/` to the end of `<LOCAL DIRECTORY>` like so:
 
 ```
@@ -132,6 +144,7 @@ ls ~/remote-directory
 file1 file2 file3
 ```
 
+#### Copying a Single File
 To push a single file to the Omega:
 
 ```
@@ -150,7 +163,7 @@ my-awesome-file
 
 If you get a warning about connecting to an unknown host, type 'yes' (as this is your Omega).
 
-#### Pull from Omega
+### Pull from Omega
 
 Entire directory:
 
@@ -164,13 +177,13 @@ Files only:
 rsync -a root@Omega-<ABCD>.local:~/<DIRECTORY TO PULL FROM>/ <LOCAL DIRECTORY>
 ```
 
-#### Adding Your SSH Key
+### Adding Your SSH Key
 
-[//]: # (Add a link to the article on adding your SSH key to the Omega later)
+[//]: # (Add a link to the article on adding your SSH key to the Omega LATER)
 
 To skip the password prompt, you can add your SSH key to the Omega.
 
-#### Going Further
+### Going Further
 
 This part will show you all of the in and outs of `rsync`.
 
@@ -182,13 +195,13 @@ rsync -a [<OPTIONS>] <LOCAL DIRECTORY> <USERNAME>@<REMOTE HOST>:<DESTINATION DIR
 
 We'll go over each part of the command below.
 
-* **`-a`** - archive mode. Equivalent to a combination of several operations, including but not limited to: 
+* **`-a`** - archive mode. Equivalent to a combination of several operations, including but not limited to:
     * `-r` - recursively sync into directories
     * `-l` - preserve symlinks
     * `-t` - preserve modification times
     * and a few more useful flags (`-pgoD`). See the full reference for details: [`rsync` Reference][rsync reference]
     * The `-a` flag is a very convenient flag that you'll want to include in most of your typical calls.
-    
+
 * **`<OPTIONS>`** - some optional flags you can include are:
     * `--progress` - show progress during transfer
     * `-v` - verbose output: the terminal will report events and status
@@ -204,7 +217,7 @@ We'll go over each part of the command below.
 
 * **`<USERNAME>`** - the user on the remote system. For the Omega, this will always be `root`.
 
-* **`<REMOTE HOST>`** - the URL or IP of the remote server. 
+* **`<REMOTE HOST>`** - the URL or IP of the remote server.
     * This can be typically `Omega-ABCD.local` (`ABCD` being your Omega's factory name)
     * Or it can be the Omega's IP address, eg. `192.168.12.34`
 

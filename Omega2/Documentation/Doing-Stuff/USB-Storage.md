@@ -26,8 +26,8 @@ The Omega2 comes ready with an auto-mounting tool that will take care of that pr
 Steps to access USB storage:
 
 1. Plug in the USB Storage
-// have photo here
-2. Navigate to the correct directory  // clear up this whole correct directory thing
+// TODO: have photo here
+2. Navigate to the correct directory  // TODO: clear up this whole correct directory thing
 	* The default is `/tmp/mounts/`
 		* `cd /tmp/mounts/`
 3. Check the directory for your USB storage device
@@ -51,14 +51,15 @@ cp <FILE YOU WANT TO COPY> <DESTINATION>
 Based on the example above, the command would look like the following if I was moving a file from my root directory to the USB device:
 
 ```
-cp /root/example.txt /tmp/mounts/USB-A1
+cp /root/example.txt /tmp/mounts/USB-A1/example.txt
 ```
 
 
 ## Unmounting
 
 [//]: # (draw a parallel to safely disconnecting in Windows)
-Once you are done with your USB storage device, make sure you unmount your device to avoid corrupting your data.
+// TODO: fix this sentence
+Once you are done with your USB storage device, make sure you unmount your device before removing it to avoid corrupting your data.
 
 The `umount` command is used to unmount the storage
 
@@ -111,4 +112,4 @@ config mountd mountd
 /etc/init.d/mountd restart
 ```
 
-Your device should now mount to your newly specified directory.
+Your device should now automatically mount to your newly specified directory upon plugging in.

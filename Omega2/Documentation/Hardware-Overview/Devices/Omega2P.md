@@ -42,24 +42,25 @@ The Omega2+ runs the Linux Embedded Development Environment (LEDE) operating sys
 
 ## The Omega LED
 
-// Info on the Omega LED, state that it uses GPIO44, link to Omega LED article
+[//]: # ( Info on the Omega LED, state that it uses GPIO44, link to Omega LED article)
 
 ## Reset GPIO
 
-// mention the reset gpio (GPIO38) and the reboot and factory restore functionality when connected to a dock,
+[//]: # ( mention the reset gpio (GPIO38) and the reboot and factory restore functionality when connected to a dock,)
 GPIO38 is the reset gpio. When plugged into a dock (e.g. expansion dock), this gpio gives various functionality to the reset button found on docks. For example, a quick button press triggers the reboot command, whereas holding the button for longer than 7 seconds will trigger a factory reset command.
 
+[//]: # ( leave this out for now)
+[//]: # ( ## MicroSD Card Slot)
 
-## MicroSD Card Slot
+[//]: # ( little explanation of the MicroSD Slot)
+[//]: # ( images & explanation of proper sd card insertion and removal)
 
-// little explanation of the MicroSD Slot
-// images & explanation of proper sd card insertion and removal
+## Antenna and U.FL Connector
 
-## Antenna and U.FL connector
+[//]: # ( Description of SMT antenna used on the Omega, mention that it's directional, have a diagram of the directionality)
+[//]: # ( Describe that U.FL connector can be used to connect other, bigger antennas)
 
-// Description of SMT antenna used on the Omega, mention that it's directional, have a diagram of the directionality
-// Describe that U.FL connector can be used to connect other, bigger antennas
+[//]: # ( leave this out for now)
+[//]: # (## Mechanical Drawing)
 
-## Mechanical Drawing
-
-// insert mechanical drawing image, link to repo
+[//]: # ( insert mechanical drawing image, link to repo)

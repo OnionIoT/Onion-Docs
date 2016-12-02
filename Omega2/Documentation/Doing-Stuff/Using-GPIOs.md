@@ -8,17 +8,26 @@ order: 1
 
 # Using the Omega's GPIOs
 
-The Omega 2 has 5 dedicated and 12 multiplexed GPIO pins, which can be controlled via the Linux filesystem. We have provided two command line programs to control GPIOs, `gpioctl` and `fast-gpio`. This tutorial will cover `gpioctl` and its uses.
+The Omega2 has 5 dedicated and 12 multiplexed GPIO pins, which can be controlled via the Linux filesystem.
+
+// explanation of what GPIOs are, how they're useful, and how we can use them (input, output)
+
+We have provided two command line programs to control GPIOs, `gpioctl` and `fast-gpio`. This tutorial will cover `gpioctl` and its uses.
+
+
 
 
 ## From the Command Line
 
-`gpio` is based on setting file values inside the `/sys/class/gpio` directory. The tool abstracts a lot of the more detailed commands from the user and simplifies them into simple commands that can control the GPIOs.
+// insert little warm-up sentence on using gpioctl from the command line
+// the /sys/class/gpio directory is part of the sysfs, allowing us to use the filesystem to make changes to the device hardware
+
+`gpio` is based on setting file values inside the `/sys/class/gpio` directory. The tool abstracts a lot of the more detailed commands from the user and simplifies them into easy-to-run commands that can control the GPIOs.
 
 Here are some examples on how you can use `gpioctl` to control the Omega's GPIOs.
 [//]: # (explanation of how gpioctl works in the linux filesystem)
 
-
+// lets get rid of the usage thing, too intimidating to beginners
 To get the usage of `gpioctl`, enter it into your command line:
 
 ```
@@ -32,7 +41,13 @@ Here we see that we have 7 commands that are associate with `gpioctl`, and that 
 gpioctl <COMMAND> <GPIO NUMBER>
 ```
 
-Let's try reading GPIO 1 with `get`:
+// separate into reading an value and writing a values
+
+// reading an input
+//  - set to dirin
+//  - connect the external circuit - avoid damaging the omega by first setting dirin
+//  - use get to read the value
+Let's try reading GPIO1 with `get`:
 
 ```
 root@Omega-2757:/# gpioctl get 1
@@ -41,6 +56,10 @@ Pin 1 is LOW
 ```
 
 Here we see that the GPIO pin is set to `LOW` or `0`.
+
+// writing a value
+//  - set to dirout
+//  - use set or clear to write it
 
 We can set a GPIO pin's direction via the `dirout` or `dirin` commands:
 
@@ -92,9 +111,17 @@ Using gpio pin 1.
 Pin 1 is LOW
 ```
 
-## Multiplexing (Muxing) the GPIOs
+// reading the current state of the gpio
+// doesn't matter if it's input or output
+
+## Multiplexed GPIOs
 
 [//]: # (brief explanation of multiplexing)
+
+// this first sentence is awkward
+// change the whole example to uart1
+// what gabe said - the functionality is choosing which function/context the gpios will carry out
+// add a link to the OMega2 pinout - mention it shows all the multiplexing groups
 
 Pin Multiplexing is the process of having a set of pins able to switch between functions. This is used to incorporate the largest number of peripherals in the smallest possible package. On the Omega for example, when pins 4 & 5 are set to I2C mode they correspond to the Omega's SCL & SDA. They can also behave as GPIO pins when set to GPIO mode. To swap modes we have provided `omega2-ctrl` tool.
 
@@ -119,18 +146,21 @@ Group spi_s - spi_s [gpio]
 Group spi_cs1 - [spi_cs1] gpio refclk
 Group i2s - i2s [gpio] pcm
 Group ephy - [ephy] gpio
-Group wled - [wled] gpio
+Group wled - wled [gpio]
 ```
 
-This list gives you the groups of multiplexed pins available, and their modes. The current mode is in the `[]`.
+This list gives you the groups of multiplexed pins available, and their modes. The current mode for each group is indicated with the `[]`.
 
 Let's examine the first line:
+//change this to uart1
 ```
 Group i2c - [i2c] gpio
 ```
 
 Here we see the group is `i2c`, and the available modes are `[i2c] gpio`, with the current mode being `[i2c]`.
 
+### Changing the GPIO Function
+//change this to uart1
 To set a particular package of hardware pins to a specified mode, use the following command:
 
 ```
