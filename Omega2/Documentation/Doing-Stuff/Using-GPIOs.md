@@ -8,11 +8,11 @@ order: 1
 
 # Using the Omega's GPIOs
 
+General-Purpose Input/Output (GPIO) is a generic pin whose behaviors are controlled by the user. These pins have no predefined purpose and go unused by default.
+
 The Omega2 has 5 dedicated and 12 multiplexed GPIO pins, which can be controlled via the Linux filesystem.
 
-// explanation of what GPIOs are, how they're useful, and how we can use them (input, output)
-
-We have provided two command line programs to control GPIOs, `gpioctl` and `fast-gpio`. This tutorial will cover `gpioctl` and its uses.
+We can control these GPIO pins with a command-line tool known as `gpioctl`. This article will go through how `gpioctl` works, and how you can use it to control the GPIOs.
 
 
 
@@ -22,23 +22,16 @@ We have provided two command line programs to control GPIOs, `gpioctl` and `fast
 // insert little warm-up sentence on using gpioctl from the command line
 // the /sys/class/gpio directory is part of the sysfs, allowing us to use the filesystem to make changes to the device hardware
 
-`gpio` is based on setting file values inside the `/sys/class/gpio` directory. The tool abstracts a lot of the more detailed commands from the user and simplifies them into easy-to-run commands that can control the GPIOs.
+`gpioctl` is based on setting file values inside the `/sys/class/gpio` directory. The tool abstracts a lot of the more detailed commands from the user and simplifies them into easy-to-run commands that can control the GPIOs.
 
 Here are some examples on how you can use `gpioctl` to control the Omega's GPIOs.
 [//]: # (explanation of how gpioctl works in the linux filesystem)
 
-// lets get rid of the usage thing, too intimidating to beginners
-To get the usage of `gpioctl`, enter it into your command line:
+
+There are 7 options associated with `gpioctl`. The syntax of the command is as follows:
 
 ```
-root@Omega-2757:/# gpioctl
-gpioctl dirin|dirout|dirout-low|dirout-high|get|set|clear gpio
-```
-
-Here we see that we have 7 commands that are associate with `gpioctl`, and that the basic format is
-
-```
-gpioctl <COMMAND> <GPIO NUMBER>
+gpioctl <OPTION> <GPIO NUMBER>
 ```
 
 // separate into reading an value and writing a values
