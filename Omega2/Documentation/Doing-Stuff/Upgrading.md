@@ -20,7 +20,7 @@ To use `oupgrade` run the command in your command-line:
 oupgrade
 ```
 
-It will take care of checking for firmware updates, and installing them if they are available.
+It will take care of checking for firmware updates, and automatically installing them if they are available.
 
 ### Doing More with `oupgrade`
 
@@ -39,7 +39,7 @@ root@Omega-2757:/# oupgrade -v
 Here I'm on version 0.1.5 and build 132 of the device firmware.
 
 
-#### Checking for Latest Firmware Versions
+#### Checking for New Firmware Versions
 
 To check your firmware version and compare it with the latest available firmware versions type:
 ```
@@ -57,11 +57,13 @@ root@Omega-2757:/# oupgrade -c
 
 As you can see from the output, my firmware is up to date!
 
+If it were not up to date, this command would show:// add that output
+Note that it will not upgrade it since this is just a check
 
-#### Upgrading to an Unstable Version
+#### Upgrading to a Latest Version
 Here at Onion we are constantly in development, adding new features and fixing bugs. Sometimes the features we make cause the firmware to be unstable. `oupgrade` will only upgrade to the latest stable version as opposed to the latest version available.
 
-To upgrade to the latest version (instead of stable version) you can type:
+To upgrade to the latest version you can type:
 ```
 oupgrade -l
 ```

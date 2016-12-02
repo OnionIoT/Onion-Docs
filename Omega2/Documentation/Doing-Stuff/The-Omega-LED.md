@@ -8,11 +8,14 @@ order: 2
 
 # The Omega's LED
 
+// friendly neighbourhood engineer intro to the articles
+// photo of the omega with the LED circled
 
 To control the Omega's LED, we are going to be writing to files that are used to specify values for the LED, such as the LED mode. This is made possible with `sysfs`, a pseudo file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
 
 ## LED Trigger Modes
 
+// describe that the trigger modes specify the LED's behavior
 The current LED trigger mode can be read by looking at the file that controls the LEDs. Enter:
 
 ```
@@ -36,7 +39,6 @@ To do this, we're going to echo a string, in this case the trigger mode, and pip
 ```
 echo heartbeat > /sys/class/leds/onion\:amber\:system/trigger
 ```
-// overall: include notes of where it would be useful to have gifs
 
 > A Pipe in Linux is used to send some output to a program for further processing
 > In this case, we are using the ">" to overwrite the contents of the file located at /sys/class/leds/onion\:amber\:system/trigger
@@ -45,8 +47,9 @@ echo heartbeat > /sys/class/leds/onion\:amber\:system/trigger
 
 When you execute this command, your shell actually writes the word `heartbeat` to the file, and the kernel passes the message to the corresponding handlers.
 
-Your Omega's LED should start blinking like a heartbeat now. Let's experiment with other triggers!
-
+Your Omega's LED should start blinking like a heartbeat now.
+[//]: # (TODO: add gif of the heartbeat trigger on an Omega)
+Let's experiment with other triggers!
 
 ### The Timer Trigger Mode
 
@@ -109,8 +112,3 @@ echo 150 > /sys/class/leds/onion\:amber\:system/delay
 That slowed it down nicely.
 
 // overall: include notes of where it would be useful to have gifs
-
-
-# Going Further
-
-[LEDE documentation on led_triggers](https://www.lede-project.org/docs/user-guide/led_configuration?s[]=led&s[]=configuration#led_triggers)

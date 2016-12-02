@@ -9,9 +9,9 @@ order: 1
 // make these first 3 sections less like wikipedia and give it more personality ie make it more onion-y
 # What is OPKG?
 
-Not everything available for the Omega is installed right away. Some people may never need certain utilities and so we configure the Omega with packages you need, and let you tailor your Omega to suit your needs.
+Not everything available for the Omega is installed right away. Some people may never need certain utilities and so we configure the Omega with packages you will likely use, and let you further tailor your Omega to suit your needs.
 
-OPKG is the package manager for the Omega Firmware. It is used primarily to download and install packages. If you're familiar with Linux or other Linux distributions then a good comparison for OPKG is the apt-get utility.
+This is accomplished with OPKG, the package manager for the Omega's Operating System. It is used primarily to download and install packages. If you're familiar with Linux or other Linux distributions then a good comparison for OPKG is the `apt-get` utility.
 
 # How to use the Package Manager
 

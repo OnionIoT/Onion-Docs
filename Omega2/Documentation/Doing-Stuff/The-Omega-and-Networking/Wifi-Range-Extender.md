@@ -10,13 +10,16 @@ order: 1
 
 [//]: # (explanation of what a wifi range extender does/is)
 
-A Wi-Fi range extender is a device that can increase the effective range of a router by amplifying the signal or by being placed closer to the end user and emitting it's own access point.
-The Omega's powerful Wi-Fi capabilities and incredibly small footprint allow it to be effective as a Wi-Fi range extender.
+A WiFi range extender is a device that can increase the effective range of a router by amplifying the signal or by being placed closer to the end user and emitting it's own access point.
+The Omega's powerful WiFi capabilities and incredibly small footprint allow it to be effective as a WiFi range extender.
 
 
 [//]: # (illustration)
 
-Even though the Omega has only one physical Wi-Fi interface, you can create two virtual interfaces and have the Omega relay the packets back and forth between the two interfaces. This allows you to set up the Omega as a Wi-Fi range extender that relays the packets between your computer/smartphone and your router. This can be very helpful if your router has a short range and you are having a problem connecting to your router directly from certain rooms in the house. Let's get started!
+Even though the Omega has only one physical Wi-Fi interface, you can create two virtual interfaces and have the Omega relay the packets back and forth between the two interfaces. This allows you to set up the Omega as a Wi-Fi range extender that relays the packets between your computer/smartphone and your router. This can be very helpful if your router has a short range and the connection has problems from beyond a certain distance.
+Let's get started!
+
+// change subheadings to 'Step X: '
 
 # Overview
 
@@ -25,6 +28,8 @@ Even though the Omega has only one physical Wi-Fi interface, you can create two 
 | Tutorial Difficulty | **Beginner** |
 | Time Required | **5 min** |
 | Required Materials: | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock, Mini Dock, or Power Dock</li></ul> |
+
+// add a few sentences describing at a high level what the steps will accomplish
 
 ## 1. Connect the Omega to the router
 
@@ -67,7 +72,7 @@ config zone
     option mtu_fix      1
 ```
 
-and make sure that the input, output, and forwarding settings are set too `ACCEPT`
+and make sure that the input, output, and forwarding settings are set to `ACCEPT`
 
 ```
     option input        ACCEPT
@@ -87,6 +92,6 @@ Once you have saved and closed the file, run the following command to restart th
 
 At this point, your Omega is connected to router as well as serving its own access point, and the Omega is setup to relay information back and forth between these two Wi-Fi interfaces. This means that you can connect your computer/smartphone to the AP of your Omega, and be able to access the data coming from the router.
 
-To use the Omega as the Wi-Fi range extender, you would typically place the Omega somewhere between your router and your computer/smartphone. Packets will travel from your router to the Omega, and from the Omega to your computer/smartphone instead of directly from the router to the Omega.
+To use the Omega as the Wi-Fi range extender, you would typically place the Omega somewhere between your router and your computer/smartphone. Packets will travel from your router to the Omega, and from the Omega to your computer/smartphone instead of directly from the router to your device. Effectively, extending your WiFi network's range!
 
 Happy hacking!
