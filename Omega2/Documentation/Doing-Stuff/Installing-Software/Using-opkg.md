@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 1
 ---
 
-
+// make these first 3 sections less like wikipedia and give it more personality ie make it more onion-y
 # What is OPKG?
 
 
@@ -26,16 +26,6 @@ To update OPKG, run:
 opkg update
 ```
 
-## Help With OPKG
-
-To see the OPKG usage, run:
-
-```
-opkg -h
-```
-
-`opkg` has a lot of functionality, and this tutorial will show you the most important commands to know.
-
 ## Finding packages to install
 
 To show all available packages in OPKG, run:
@@ -46,43 +36,11 @@ opkg list
 
 This huge list can be very overwhelming and most of the time you want to find a package with a specific keyword. This can be easily done with `grep`.
 
-`grep` allows you to filter your searches by keyword. For more information on `grep`, type it into your console and press enter:
-
-```
-root@Omega-2757:/# grep
-BusyBox v1.25.1 () multi-call binary.
-
-Usage: grep [-HhnlLoqvsriwFE] [-m N] [-A/B/C N] PATTERN/-e PATTERN.../-f FILE [FILE]...
-
-Search for PATTERN in FILEs (or stdin)
-
-        -H      Add 'filename:' prefix
-        -h      Do not add 'filename:' prefix
-        -n      Add 'line_no:' prefix
-        -l      Show only names of files that match
-        -L      Show only names of files that don't match
-        -c      Show only count of matching lines
-        -o      Show only the matching part of line
-        -q      Quiet. Return 0 if PATTERN is found, 1 otherwise
-        -v      Select non-matching lines
-        -s      Suppress open and read errors
-        -r      Recurse
-        -i      Ignore case
-        -w      Match whole words only
-        -x      Match whole lines only
-        -F      PATTERN is a literal (not regexp)
-        -E      PATTERN is an extended regexp
-        -m N    Match up to N times per file
-        -A N    Print N lines of trailing context
-        -B N    Print N lines of leading context
-        -C N    Same as '-A N -B N'
-        -e PTRN Pattern to match
-        -f FILE Read pattern from file
-
-```
+The `grep` command allows you to filter your searches by keyword. For more information on the command, type `grep` into your console and press enter to get a full listing of the usage and available options.
 
 To find all the packages that are Onion related, we'll use `grep` with the `-i` option to iGnOrE cAsE. Enter the following into your command line:
 
+// TODO: change to grepping for just onion-console
 ```
 opkg list | grep -i onion
 ```
@@ -119,6 +77,8 @@ pyOnionSpi - 0.1-1 - Python module to implement communication via the SPI protoc
 pyPwmExp - 0.4-1 - Python module to control the Onion PWM Expansion
 pyRelayExp - 0.4-1 - Python module to control the Onion Relay Expansion
 ```
+
+// add subsection  
 
 You can also check your installed packages with
 
@@ -193,6 +153,7 @@ Configuring curl.
 
 `curl` is now installed on your Omega!
 
+
 ## Removing Packages
 
 To remove a package from your Omega, use the `remove` option:
@@ -210,3 +171,15 @@ root@Omega-2757:/# opkg remove curl
 Removing package curl from root...
 ```
 Curl is now removed from your Omega!
+
+
+## Help With OPKG
+
+To learn even more about using OPKG // TODO: figure this sentence out
+To see the OPKG usage, run:
+
+```
+opkg -h
+```
+
+`opkg` has a lot of functionality, and this tutorial will show you the most important and useful commands.

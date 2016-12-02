@@ -12,6 +12,8 @@ In order to keep improving user experience for the Omega, we will be releasing u
 
 ## Using the Command line
 
+// explain how the average user will use this tool
+// doing more - check, latest, force
 `oupgrade` has a lot of functionality on the command line. Type
 
 ```
@@ -37,7 +39,7 @@ Arguments:
 ```
 
 
-To get the current firmware installed on the device type
+To get the current firmware installed on the device type:
 ```
 oupgrade -v
 ```
@@ -72,7 +74,7 @@ To upgrade to the latest version (instead of stable version) you can type:
 ```
 oupgrade -l
 ```
-**Note: This is not recommended.**
+**Note: This is not recommended unless you know what you're doing!**
 
 
 You can also force `oupgrade` to upgrade to the latest version of the firmware with the `-f` flag:

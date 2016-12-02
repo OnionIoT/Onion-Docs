@@ -31,7 +31,7 @@ Configuring git-http.
 ```
 
 If your installation fails, make sure you're connected to the internet and that you've updated opkg.
-	* To check if you've got an internet connection run `ping www.google.com`
+> To check if you've got an internet connection run `ping www.google.com`
 
 4. To check if you have Git already installed type `opkg list-installed | grep git`
 	* The desired output is
@@ -60,6 +60,7 @@ First, open your browser and navigate to `https://github.com/OnionIoT/`
 
 ![onion-github](../img/installing-git-pic-1.png)
 
+// TODO: change this example to use a reasonable repo, try https://github.com/OnionIoT/oledQrCodeGenerator
 Next, find the repository you'd like to clone. In this example we'll use the setup-wizard repo. Click on setup-wizard. On the next page you'll want to click on the `Clone or Download` button. Click on the button, and copy the link in the box.
 
 ![clone-button](../img/installing-git-pic-2.png)

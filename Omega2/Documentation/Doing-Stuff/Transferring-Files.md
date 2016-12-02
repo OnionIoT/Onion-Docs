@@ -16,7 +16,7 @@ The Omega is incredibly powerful in that it is a full Linux computer. This means
 
 The Omega can use the SCP file protocol to transfer files wirelessly. In this tutorial we're going to use WinSCP to transfer our files.
 
-[//]: # (reminder about apple's bonjour)
+[//]: # (reminder about apple's bonjour maybe a link to a install/download page)
 
 ### What is WinSCP?
 
