@@ -31,10 +31,9 @@ What we are going to do is to first enable the Omega's Ethernet connection, and 
 
 [//]: # (The Steps)
 
-## Step 1: Connect Omega with WiFi
+## Step 1: Connect Omega WiFi to the Internet
 
-// change this sentence
-This step is fairly easy, and there are a lot of tutorials tell us how to do so in different ways. Follow this [guide](../Get-Started) to learn more on how to set up your Omega.
+To begin, you'll need to establish a wireless connection to the Internet on your Omega. Follow this [guide](../Get-Started) to learn more on how to set up your Omega.
 
 
 [//]: # (Step 2)
@@ -43,8 +42,9 @@ This step is fairly easy, and there are a lot of tutorials tell us how to do so 
 
 // Connect the Ethernet Expansion to the Omega
 
+Connect your Ethernet Expansion to your Expansion Dock, and then plug in an Ethernet cord to set up the hardware.
 
-What we need to do is to change the following code block located in `/etc/config/network`:
+What we need to do next is change the following code block located in `/etc/config/network`:
 
 ```
 config interface 'wlan'
@@ -82,6 +82,6 @@ To do this on Windows, follow this [guide](http://www.computerhope.com/issues/ch
 ### Mac OSX
 To do this on Mac OSX, follow this [guide](https://www.cs.cmu.edu/~help/networking/dhcp_info/dhcp_mac.html)
 
-### Linux
+[//]: # (### Linux)
 
 [//]: # (Not sure how to do or how to test that this actually does the thing?)

@@ -14,17 +14,18 @@ The Omega is incredibly powerful in that it is a full Linux computer. This means
 
 ## Using Windows
 
-The Omega can use the SCP file protocol to transfer files wirelessly. In this tutorial we're going to use WinSCP to transfer our files.
+The Omega can use the SCP file protocol to transfer files wirelessly. SCP stands for Secure Copy, and is based SSH (Secure Shell).
 
-[//]: # (reminder about apple's bonjour maybe a link to a install/download page)
+In this tutorial we're going to use WinSCP to transfer our files.
+
+
+> You'll need to have Apple's Bonjour Service in order to connect to the Omega's hostname. You can download Apple's Bonjour on [their website](https://support.apple.com/kb/DL999?viewlocal=en_US&local=en_US)
 
 ### What is WinSCP?
 
 WinSCP is an open source free SFTP client, FTP client, WebDAV client and SCP client for Windows. Its main function is file transfer between a local and a remote computer. Beyond this, WinSCP offers scripting and basic file manager functionality.
 
 In short, it makes creating & updating files on your Omega a lot easier!
-
-// TODO: mention scp is based on ssh
 
 ### Getting Started
 
@@ -88,7 +89,7 @@ You can now drag and drop between folders on your computer and folders on your O
 
 On Mac OS X or Linux, we can use the command-line utility `rsync` (remote sync) to transfer files to and from the Omega. It's included with Mac OS X and most Linux distributions by default (including the Omega's).
 
-// TODO: remove the installation part, maybe link to a page on rsync iunno
+[//]: # (TODO: remove the installation part, maybe link to a page on rsync iunno)
 In case you don't have it, simply run the below commands to install it on your local machine:
 
 ```
@@ -103,7 +104,7 @@ sudo apt-get install rsync
 
 ### Push Directories and Files to the Omega
 
-// TODO: small blurb - make sure you're connected to the same wifi etc
+[//]: # (TODO: small blurb - make sure you're connected to the same wifi etc)
 
 #### Copying Whole Directories
 First make sure you're connected to the same WiFi network/LAN as your Omega. Then to quickly copy an entire directory to your Omega, fill in this template with the paths of your folders, where `ABCD` is your Omega's factory name:
