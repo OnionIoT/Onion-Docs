@@ -4,7 +4,7 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 
 ### The Omega2 at a Glance
 
-![omega2Plus](../img/omega-2p-pic.png)
+![omega2Plus](https://github.com/OnionIoT/Onion-Docs/tree/master/Omega2/Documentation/Hardware-Overview/img/omega-2p-pic.png?raw=true)
 
 | Omega2+ Specs  | |
 | :-------------: | :-------------:  |
@@ -23,7 +23,7 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 
 ### The Pins
 
-![pinout](../img/omega-2-pinout-diagram.png)
+![pinout](https://github.com/OnionIoT/Onion-Docs/tree/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-pinout-diagram.png?raw=true)
 
 <!-- LATER: include section on the 50pin connector -->
 
@@ -36,7 +36,7 @@ The Omega2+ runs the Linux Embedded Development Environment (LEDE) operating sys
 
 The Omega LED is a great tool for communicating information with a user. It notifies you when your Omega is off, booting, and on.
 
-The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](../../Doing-Stuff/The-Omega-LED)
+The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](#the-omega-led)
 
 ### Reset GPIO
 

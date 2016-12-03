@@ -13,7 +13,7 @@ In this tutorial, we are going to create an Ethernet Bridge using the Omega. An 
 
 Our Omega's WiFi and the Ethernet Expansion will allow this to be accomplished.
 
-![illustration](../img/ethernet-bridge-illustration.png)
+<!-- ![illustration](../img/ethernet-bridge-illustration.png) -->
 
 As an example, this type of setup can be used to bring internet access to a desktop computer that does not have a network adapter.
 
