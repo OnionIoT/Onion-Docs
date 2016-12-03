@@ -38,7 +38,7 @@ Once downloaded, install the application and then run it.
 <!-- change it so the tutorial is about having the omega connected to a real wifi network -->
 <!-- have a note about how it would be different if connecting to the omega's ap -->
 
-Connecting to the Omega is super simple. First, make sure your Omega has internet connection. If this is not the case, follow the [Getting Started guide](../Get-Started/First-Time.md).
+Connecting to the Omega is super simple. First, make sure your Omega has internet connection. If this is not the case, follow the [Getting Started guide](#first-time-setup).
 
 ![WinSCP Image 1](./img/onion-omega-winscp-1.png)
 
