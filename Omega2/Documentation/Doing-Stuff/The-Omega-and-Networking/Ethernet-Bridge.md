@@ -17,7 +17,7 @@ Our Omega's WiFi and the Ethernet Expansion will allow this to be accomplished.
 
 As an example, this type of setup can be used to bring internet access to a desktop computer that does not have a network adapter.
 
-## Overview
+### Overview
 
 | <span style="font-weight:normal">Tutorial Difficulty</span> | Intermediate |
 | :--- | :--- |

@@ -16,7 +16,7 @@ The Ethernet Expansion is required to give your Omega access to an Ethernet port
 
 <!-- illustration showing the whole system -->
 
-## Overview
+### Overview
 
 | <span style="font-weight:normal">Tutorial Difficulty</span> | Intermediate |
 | :--- | :--- |

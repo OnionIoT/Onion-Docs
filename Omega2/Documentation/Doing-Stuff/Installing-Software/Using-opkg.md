@@ -12,11 +12,11 @@ Not everything available for the Omega is installed right away. Some people may 
 
 This is accomplished with OPKG, the package manager for the Omega's Operating System. It is used primarily to download and install packages. If you're familiar with Linux or other Linux distributions then a good comparison for OPKG is the `apt-get` utility.
 
-## How to use the Package Manager
+### How to use the Package Manager
 
 The basic overview of managing your packages starts with updating OPKG. After that, you can add or remove packages, or show your available and installed packages.
 
-### The Importance of `opkg update`
+#### The Importance of `opkg update`
 
 Running `opkg update`, provides the most recent list of packages available from Onion and OpenWRT. It's important to run `opkg update` in order to have the latest and greatest features from Onion ready for you to download.
 
@@ -26,7 +26,7 @@ To update OPKG, run:
 opkg update
 ```
 
-### Finding packages to install
+#### Finding packages to install
 
 To show all available packages in OPKG, run:
 
@@ -53,7 +53,7 @@ onion-console-terminal - 0.2-1 - Terminal App for the console
 onion-console-webcam - 0.2-1 - Webcam App for the console
 ```
 
-#### Listing Installed Packages
+##### Listing Installed Packages
 You can also check your installed packages with
 
 ```
@@ -84,7 +84,7 @@ onion-sh-lib - 0.2-1
 onion-ubus - 0.1-1
 ```
 
-### Installing Packages
+#### Installing Packages
 
 To install a package simply use the `opkg` command:
 
@@ -128,7 +128,7 @@ Configuring curl.
 `curl` is now installed on your Omega!
 
 
-### Removing Packages
+#### Removing Packages
 
 To remove a package from your Omega, use the `remove` option:
 
@@ -147,7 +147,7 @@ Removing package curl from root...
 Curl is now removed from your Omega!
 
 
-### Help With OPKG
+#### Help With OPKG
 
 To learn more about OPKG and it's functionality enter the command:
 
