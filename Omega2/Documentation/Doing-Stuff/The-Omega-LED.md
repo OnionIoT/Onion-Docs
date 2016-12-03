@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 2
 ---
 
-## The Omega's LED
+## The Omega's LED {#the-omega-led}
 
 
 The Omega comes equipped with an LED that has a number of uses, namely as an indication for when your Omega has finished booting.

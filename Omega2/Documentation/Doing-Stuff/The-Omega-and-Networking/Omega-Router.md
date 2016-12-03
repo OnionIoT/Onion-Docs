@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 1
 ---
 
-## The Omega as a Router
+## The Omega as a Router {#omega-router}
 
 <!-- high level introduction of what we're doing in this tutorial: turning the omega into a router, brief description of a router -->
 

@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-## Using USB Storage
+## Using USB Storage {#usb-storage}
 
 <!-- Explanation of how to use USB storage: -->
 

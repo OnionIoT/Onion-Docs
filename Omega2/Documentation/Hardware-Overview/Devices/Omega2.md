@@ -1,4 +1,4 @@
-## Onion Omega2
+## Onion Omega2 {#onion-omega2}
 
 <!-- intro of the Omega2 IoT computer -->
 The Omega2 is the latest in development boards from Onion. It comes packed with built-in Wi-Fi

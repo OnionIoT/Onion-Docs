@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 1
 ---
 
-## Using the Omega's GPIOs
+## Using the Omega's GPIOs {#using-gpios}
 
 <!-- Lazar: copy kit guide text on gpios, put it here -->
 General-Purpose Input/Output (GPIO) is a generic pin whose behaviors are controlled by the user. These pins have no predefined purpose and go unused by default.
@@ -183,4 +183,4 @@ We see:
 ```
 Group uart1 - uart [gpio]
 ```
-indicating that our change has indeed been applied. 
+indicating that our change has indeed been applied.

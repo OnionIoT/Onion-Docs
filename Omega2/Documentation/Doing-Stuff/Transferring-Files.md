@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 4
 ---
 
-## Transferring Files to the Omega
+## Transferring Files to the Omega {#transferring-files}
 
 
 The Omega is incredibly powerful in that it is a full Linux computer. This means that it has its own filesystem, allowing you to store files directly on the Omega. It also means that you can take your files from an external device and copy them to your Omega. This tutorial will show you how you to transfer files from Windows, Mac OS X, and Linux.

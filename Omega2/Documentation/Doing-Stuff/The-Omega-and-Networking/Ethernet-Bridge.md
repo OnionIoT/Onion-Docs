@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-## Ethernet Bridge
+## Ethernet Bridge {#ethernet-bridge}
 
 
 In this tutorial, we are going to create an Ethernet Bridge using the Omega. An Ethernet Bridge is a device that shares its WiFi internet access through an Ethernet connection, similar to a WiFi dongle.
@@ -33,14 +33,14 @@ What we are going to do is to first enable the Omega's Ethernet connection, and 
 
 ### Step 1: Connect Omega WiFi to the Internet
 
-To begin, you'll need to establish a wireless connection to the Internet on your Omega. Follow this [guide](../Get-Started) to learn more on how to set up your Omega.
+To begin, you'll need to establish a wireless connection to the Internet on your Omega. Follow this [guide](#first-time-setup) to learn more on how to set up your Omega.
 
 
 <!-- Step 2 -->
 
 ### Step 2: Enable the Omega's Ethernet Connection
 
-// Connect the Ethernet Expansion to the Omega
+<!-- // Connect the Ethernet Expansion to the Omega -->
 
 Connect your Ethernet Expansion to your Expansion Dock, and then plug in an Ethernet cord to set up the hardware.
 

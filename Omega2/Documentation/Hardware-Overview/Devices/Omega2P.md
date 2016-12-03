@@ -1,4 +1,4 @@
-## Onion Omega2+
+## Onion Omega2+ {#onion-omega2+}
 
 The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in Wi-Fi, a MicroSD slot, and a powerful processor among other things.
 
