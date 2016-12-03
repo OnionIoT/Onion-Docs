@@ -53,7 +53,9 @@ Save and exit your file, and reboot your Omega to see the effects!
 
 // give reason as to why you would want to see the output
 
-When `/etc/rc.local` runs on boot, you won't be able to see any output from your file. You can modify your script or program to save all output to a file rather than print it in the command line, or you can pipe the output of your command to a specific destination with a simple addition to your `/etc/rc.local` file.
+When `/etc/rc.local` runs on boot, you won't be able to see any output from your file. You may need to see output for debugging purposes to see where your code is failing.
+
+You can pipe the output of your command to a specific destination with a simple addition to your `/etc/rc.local` file.
 
 The syntax for piping your command to a file is as follows:
 
