@@ -1,12 +1,4 @@
----
-title: Get Started
-layout: guide.hbs
-columns: two
-order: 1
----
-
-
-# Getting Started with your Omega2
+## Getting Started with your Omega2
 
 Follow along with this guide to set up your Omega2 for the first time. We'll first learn how to properly connect your Omega to a Dock and power it up. Then we'll connect to it to use the Setup Wizard to have it connect to your WiFi network and then do some updates.
 
@@ -16,7 +8,7 @@ Follow along with this guide to set up your Omega2 for the first time. We'll fir
 
 [//]: # (Prepare the Hardware)
 
-## Unboxing and Getting the Hardware Ready
+### Unboxing and Getting the Hardware Ready
 
 **Unpack**
 
@@ -68,7 +60,7 @@ When the amber LED has been on for about a minute, your Omega will have booted.
 
 [//]: # (GUI SETUP)
 
-## Using the Setup Wizard
+### Using the Setup Wizard
 
 **Some Computer Configuration**
 
@@ -124,9 +116,9 @@ Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Cont
 [//]: # (TODO: fix the links above when the content is available)
 
 
-## Troubleshooting
+### Troubleshooting
 
-### My Omega won't fit into the Dock!
+#### My Omega won't fit into the Dock!
 
 Sometimes the Omega's pins aren't at a perfect 90˚ angle. Don't be afraid to press on them a little to get them to the correct angle, they're tougher than you think!
 
@@ -138,10 +130,10 @@ If the pins need to be bent outward, put the pins up against a flat surface near
 
 [//]: # (IMAGE OF THIS ACTION)
 
-### My Omega won't connect to my WiFi Network
+#### My Omega won't connect to my WiFi Network
 
 Make sure your password has been typed in correctly, remember, WiFi passwords are case sensitive.
 
-### I've made sure my password is correct and my Omega still won't connect to my WiFi Network
+#### I've made sure my password is correct and my Omega still won't connect to my WiFi Network
 
 [//]: # (explanation regarding Omega's IP address)

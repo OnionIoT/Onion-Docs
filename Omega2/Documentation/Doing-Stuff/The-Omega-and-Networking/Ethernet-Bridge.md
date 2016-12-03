@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-# Ethernet Bridge
+## Ethernet Bridge
 
 
 In this tutorial, we are going to create an Ethernet Bridge using the Omega. An Ethernet Bridge is a device that shares its WiFi internet access through an Ethernet connection, similar to a WiFi dongle.
@@ -17,7 +17,7 @@ Our Omega's WiFi and the Ethernet Expansion will allow this to be accomplished.
 
 As an example, this type of setup can be used to bring internet access to a desktop computer that does not have a network adapter.
 
-# Overview
+## Overview
 
 | <span style="font-weight:normal">Tutorial Difficulty</span> | Intermediate |
 | :--- | :--- |
@@ -31,14 +31,14 @@ What we are going to do is to first enable the Omega's Ethernet connection, and 
 
 [//]: # (The Steps)
 
-## Step 1: Connect Omega WiFi to the Internet
+### Step 1: Connect Omega WiFi to the Internet
 
 To begin, you'll need to establish a wireless connection to the Internet on your Omega. Follow this [guide](../Get-Started) to learn more on how to set up your Omega.
 
 
 [//]: # (Step 2)
 
-## Step 2: Enable the Omega's Ethernet Connection
+### Step 2: Enable the Omega's Ethernet Connection
 
 // Connect the Ethernet Expansion to the Omega
 
@@ -68,18 +68,18 @@ Restart the network service by running the follow command:
 
 
 [//]: # (Step 3)
-## Step 3: Configure your Device to use Ethernet
+### Step 3: Configure your Device to use Ethernet
 
 Now that the Omega is configured, we should be able to connect with other devices via Ethernet.
 
 Make sure that your connection is set to `Obtain IP address and DNS address Automatically`. It should be set so by default.
 
 
-### Windows
+#### Windows
 To do this on Windows, follow this [guide](http://www.computerhope.com/issues/ch001048.htm)
 
 
-### Mac OSX
+#### Mac OSX
 To do this on Mac OSX, follow this [guide](https://www.cs.cmu.edu/~help/networking/dhcp_info/dhcp_mac.html)
 
 [//]: # (### Linux)

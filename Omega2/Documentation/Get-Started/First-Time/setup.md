@@ -11,7 +11,7 @@ order: 2
 
 {{#if Browser}}
 [//]: # (BROWSER SETUP)
-## Setting up using a Browser
+### Setting up using a Browser
 
 **Step 1**:
 
@@ -46,7 +46,7 @@ Following the wizard will connect your Omega to a wifi network of your choice, a
 {{#if OSX}}
 [//]: # (OSX SETUP)
 
-## Setting up using the Command Line on Mac OSX
+### Setting up using the Command Line on Mac OSX
 
 **Step 1**: Download and install the [Silicon Labs CP2102 driver for OS X](https://www.silabs.com/Support%20Documents/Software/Mac_OSX_VCP_Driver.zip).
 
@@ -73,7 +73,7 @@ The firmware update will take a few minutes, the process will be complete when t
 {{#if Windows}}
 [//]: # (WINDOWS SETUP)
 
-## Setting up using Command Line on Windows
+### Setting up using Command Line on Windows
 
 **Step 1**: Download and install the [Silicon Labs CP2102 driver for Windows](https://www.silabs.com/Support%20Documents/Software/CP210x_VCP_Windows.zip).
 
@@ -106,7 +106,7 @@ The firmware update will take a few minutes, the process will be complete when t
 {{#if Linux}}
 [//]: # (LINUX SETUP)
 
-## Setting up using Command Line on Linux
+### Setting up using Command Line on Linux
 
 **Step 1**: Check if the serial drivers are already installed.
 

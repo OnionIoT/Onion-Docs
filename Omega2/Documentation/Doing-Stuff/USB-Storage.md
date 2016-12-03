@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-# Using USB Storage
+## Using USB Storage
 
 [//]: # (Explanation of how to use USB storage:)
 
@@ -14,7 +14,7 @@ The Omega2 can read and write to USB storage devices, such as USB keys, and USB 
 
 [//]: # (add an image of a usb key plugged into an omega)
 
-## USB Storage and Linux
+### USB Storage and Linux
 
 [//]: # (Explanation of how a device needs to be mounted - make sure to highlight the Omega2 auto-mounts USB storage, point out the location)
 On a Linux device, a USB storage device needs to be mounted in order to be used. Mounting a device maps it's storage space to a directory on your device so that you may access it.
@@ -22,7 +22,7 @@ On a Linux device, a USB storage device needs to be mounted in order to be used.
 The Omega2 comes ready with an auto-mounting tool that will take care of that process for you! The default mount location is `/tmp/mounts/`.
 
 
-## Using USB storage
+### Using USB storage
 
 [//]: # (explanation of how to access files)
 Steps to access USB storage:
@@ -57,7 +57,7 @@ cp /root/example.txt /tmp/mounts/USB-A1/example.txt
 ```
 
 
-## Unmounting
+### Unmounting
 
 [//]: # (draw a parallel to safely disconnecting in Windows)
 
@@ -78,7 +78,7 @@ umount /tmp/mounts/USB-A1
 The USB device can now be safely unplugged.
 
 
-## Changing the default mount point
+### Changing the default mount point
 
 In order to change the default mount point of your USB storage devices you'll need to change a configuration file.
 

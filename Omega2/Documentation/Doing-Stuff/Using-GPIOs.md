@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 1
 ---
 
-# Using the Omega's GPIOs
+## Using the Omega's GPIOs
 
 [//]: # (Lazar: copy kit guide text on gpios, put it here)
 General-Purpose Input/Output (GPIO) is a generic pin whose behaviors are controlled by the user. These pins have no predefined purpose and go unused by default.
@@ -18,7 +18,7 @@ We can control these GPIO pins with a command-line tool known as `gpioctl`. This
 
 
 
-## From the Command Line
+### From the Command Line
 
 The command-line tool `gpioctl` comes pre-installed on your Omega. `gpioctl` is based on setting file values inside the `/sys/class/gpio` directory. This is made possible with `sysfs`, a pseudo file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
 
@@ -27,7 +27,7 @@ The tool abstracts a lot of the more detailed commands from the user and simplif
 
 
 
-### Using `gpioctl`
+#### Using `gpioctl`
 
 There are 7 options associated with `gpioctl`. The syntax of the command is as follows:
 
@@ -41,7 +41,7 @@ Here are some examples on how you can use `gpioctl` to interact with the Omega's
 
 
 
-#### Reading an Input
+##### Reading an Input
 
 If you want your Omega to interface with a switch or button then you'll need to use a GPIO to read the input of the switch.
 
@@ -68,7 +68,7 @@ Pin 1 is LOW
 Here we see that the GPIO pin is reading a digital `LOW` or `0`.
 
 
-#### Setting a Value
+##### Setting a Value
 
 You can configure your GPIO pin to supply power to a load with your Omega, for example, if you were powering an LED.
 
@@ -104,7 +104,7 @@ Pin 1 is LOW
 > You can use the `gpioctl get <PIN>` command to read a pin regardless of its direction.
 
 
-## Multiplexed GPIOs
+### Multiplexed GPIOs
 
 Multiplexed GPIOs are pins that are given a special function to carry out, as opposed to being unused pins. For example, the UART pins are designated as UART, but are multiplexed so that you can designate and use them as GPIO pins when you want. This is used to incorporate the largest number of peripherals in the smallest possible package.
 
@@ -147,7 +147,7 @@ Group uart1 - [uart] gpio
 
 Here we see the group is `uart1`, and the available modes are `[uart] gpio`, with the current mode being `[uart]`.
 
-### Changing the GPIO Function
+#### Changing the GPIO Function
 
 To set a particular group of hardware pins to a specified mode, use the following command:
 

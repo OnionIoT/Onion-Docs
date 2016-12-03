@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 2
 ---
 
-# The Omega's LED
+## The Omega's LED
 
 
 The Omega comes equipped with an LED that has a number of uses, namely as an indication for when your Omega has finished booting.
@@ -16,7 +16,7 @@ This tutorial will show you other cool things you can do with the LED.
 
 To control the Omega's LED, we are going to be writing to files that are used to specify values for the LED, such as the LED mode. This is made possible with `sysfs`, a pseudo file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
 
-## LED Trigger Modes
+### LED Trigger Modes
 
 The LED has various modes known as "triggers" that change the behavior of the LED. For example, when your Omega is booting, it's in a flashing mode, and when it has booted, it's in an "on" mode.
 
@@ -36,7 +36,7 @@ none mmc0 timer [default-on] netdev transient gpio heartbeat morse oneshot
 The current mode is indicated by the brackets. My Omega's LED is currently set to the `default-on` mode. Let's try changing the trigger by editing the file.
 
 
-### The Heartbeat Trigger Mode
+#### The Heartbeat Trigger Mode
 
 
 To do this, we're going to echo a string, in this case the trigger mode, and pipe it into the file using this command:
@@ -56,7 +56,7 @@ Your Omega's LED should start blinking like a heartbeat now.
 [//]: # (TODO: add gif of the heartbeat trigger on an Omega)
 Let's experiment with other triggers!
 
-### The Timer Trigger Mode
+#### The Timer Trigger Mode
 
 The `timer` trigger blinks the LED on and off for specified amounts of time. You can set the trigger to timer with the following command:
 
@@ -84,7 +84,7 @@ echo 120 > /sys/class/leds/onion\:amber\:system/delay_off
 
 Feel free to experiment with other combinations.
 
-### The Morse Trigger Mode
+#### The Morse Trigger Mode
 
 A really interesting trigger mode is `morse`, which converts a message from text to morse code!
 

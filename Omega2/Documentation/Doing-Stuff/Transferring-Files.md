@@ -6,13 +6,13 @@ devices: [ Omega2 ]
 order: 4
 ---
 
-# Transferring Files to the Omega
+## Transferring Files to the Omega
 
 
 The Omega is incredibly powerful in that it is a full Linux computer. This means that it has its own filesystem, allowing you to store files directly on the Omega. It also means that you can take your files from an external device and copy them to your Omega. This tutorial will show you how you to transfer files from Windows, Mac OS X, and Linux.
 
 
-## Using Windows
+### Using Windows
 
 The Omega can use the SCP file protocol to transfer files wirelessly. SCP stands for Secure Copy, and is based SSH (Secure Shell).
 
@@ -21,19 +21,19 @@ In this tutorial we're going to use WinSCP to transfer our files.
 
 > You'll need to have Apple's Bonjour Service in order to connect to the Omega's hostname. You can download Apple's Bonjour on [their website](https://support.apple.com/kb/DL999?viewlocal=en_US&local=en_US)
 
-### What is WinSCP?
+#### What is WinSCP?
 
 WinSCP is an open source free SFTP client, FTP client, WebDAV client and SCP client for Windows. Its main function is file transfer between a local and a remote computer. Beyond this, WinSCP offers scripting and basic file manager functionality.
 
 In short, it makes creating & updating files on your Omega a lot easier!
 
-### Getting Started
+#### Getting Started
 
 First, download [WinSCP from their site](https://winscp.net/eng/download.php).  
 
 Once downloaded, install the application and then run it.
 
-### Configure the Connection
+#### Configure the Connection
 
 [//]: # (change it so the tutorial is about having the omega connected to a real wifi network)
 [//]: # (have a note about how it would be different if connecting to the omega's ap)
@@ -83,7 +83,7 @@ You can now drag and drop between folders on your computer and folders on your O
 [//]: # (explanation of transferring files back and forth)
 
 
-## Using Linux or Mac OS X
+### Using Linux or Mac OS X
 
 [//]: # (step by step instructions on using rsync)
 
@@ -102,11 +102,11 @@ sudo apt-get install rsync
 `rsync` can simply send files as-is over to the remote server, but if the files already exist then it takes a smarter approach to sending new data. It will look at the *differences* between the two sets of files, then applies the differences to the files to bring them up-to-date.
 
 
-### Push Directories and Files to the Omega
+#### Push Directories and Files to the Omega
 
 [//]: # (TODO: small blurb - make sure you're connected to the same wifi etc)
 
-#### Copying Whole Directories
+##### Copying Whole Directories
 First make sure you're connected to the same WiFi network/LAN as your Omega. Then to quickly copy an entire directory to your Omega, fill in this template with the paths of your folders, where `ABCD` is your Omega's factory name:
 
 [//]: # (add <> to signify variables)
@@ -125,7 +125,7 @@ ls ~/remote-directory
 my-cool-project
 ```
 
-#### Copying the Contents of a directory
+##### Copying the Contents of a directory
 To copy only the *files* inside a directory, add a `/` to the end of `<LOCAL DIRECTORY>` like so:
 
 ```
@@ -135,7 +135,7 @@ rsync -a -v <LOCAL DIRECTORY>/ root@Omega-<ABCD>.local:~/<DIRECTORY TO PUSH TO>
 Example and result:
 
 ```
-# my-cool-project contains files called file1, file2, and file3
+## my-cool-project contains files called file1, file2, and file3
 rsync -a ~/my-cool-project/ root@Omega-ABCD.local:~/remote-directory
 
 On Omega:
@@ -143,7 +143,7 @@ ls ~/remote-directory
 file1 file2 file3
 ```
 
-#### Copying a Single File
+##### Copying a Single File
 To push a single file to the Omega:
 
 ```
@@ -162,7 +162,7 @@ my-awesome-file
 
 If you get a warning about connecting to an unknown host, type 'yes' (as this is your Omega).
 
-### Pull from Omega
+#### Pull from Omega
 
 Entire directory:
 
@@ -176,13 +176,13 @@ Files only:
 rsync -a root@Omega-<ABCD>.local:~/<DIRECTORY TO PULL FROM>/ <LOCAL DIRECTORY>
 ```
 
-### Adding Your SSH Key
+#### Adding Your SSH Key
 
 [//]: # (Add a link to the article on adding your SSH key to the Omega LATER)
 
 To skip the password prompt, you can add your SSH key to the Omega.
 
-### Going Further
+#### Going Further
 
 This part will show you all of the in and outs of `rsync`.
 
