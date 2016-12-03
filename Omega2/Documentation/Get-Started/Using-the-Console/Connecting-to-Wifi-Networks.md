@@ -7,14 +7,14 @@ order: 2
 ---
 
 
-# The Settings App
+# Connecting to WiFi
 
 Upon logging into the Console, the first app you'll see is the Settings App. Through this app you can monitor your Omega's status, change the Omega's hostname and password, and even Wifi settings. This guide will show you how you can manage your WiFi networks through the console.
 
 # Managing your Wifi Networks
 
-// Show how to navigate the wifi settings app interface. Maybe mention what it's doing behind the scenes?
-Click on the Wi-Fi settings tab to edit your network connections.
+// explanation of how wifimanager works (can have many configured networks, and it will connect to the available )
+Click on the WiFi settings tab to edit your network connections.
 ![settings-page](../img/connecting-to-wifi-1.png)
 
 Here, you can enable a network, remove a network, and even add new networks.
@@ -56,11 +56,16 @@ To shift the priority of a network up or down, click the arrow buttons. It is im
 
 ![wifi-move-up](../img/connecting-to-wifi-7.png)
 
+// add some text here to break up the images
+
 ![wifi-move-down](../img/connecting-to-wifi-8.png)
 
+// mention why this is important in the context of wifimanager
 
 
 Click on the arrow up or arrow down buttons to reorder the priority of your networks.
+
+
 // add sections with walkthrough images for:
 //  - adding a new network to the list
 //  - removing a network

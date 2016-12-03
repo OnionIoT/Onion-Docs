@@ -10,7 +10,8 @@ order: 2
 
 The Omega's firmware has a powerful built in feature, `cron`, that allows you to schedule commands to run at specified intervals. This tutorial will show you how to take advantage of `cron` to automate commands on your Omega.
 
-This can be especially useful when you want to automate a project (e.g. a weather monitoring device that updates the OLED Expansion every hour with new information), and is incredibly easy to do.
+// fix this sentence
+This can be especially useful when you want to automate a project, for example, a weather monitoring device that updates the OLED Expansion every hour with new information, and is incredibly easy to do.
 
 
 ## What is `cron`?
@@ -25,13 +26,17 @@ crontab -e
 
 If you've never before worked with `cron`, an empty file will show up. The first thing we need to do is figure out a command to run at an interval. Let's change the color of the LED on the Expansion Dock using `expled`. In the empty file enter the following:
 
+
+// put the expled commands into a script, and then run the script
+// easier for beginners to understand
+
 ```
 #
 */1 * * * * expled 0xff0000 && expled 0x00ff00 && expled 0x0000ff && sleep 5 && expled 0xff0000 && expled 0x00ff00 && expled 0x0000ff && expled 0x000000
 #
 ```
 
-Save your and exit your file. The restart the `cron` daemon with the following command to apply the changes:
+Save your and exit your file. Then restart the `cron` daemon with the following command to apply the changes:
 
 ```
 /etc/init.d/cron restart
@@ -44,6 +49,7 @@ This code will flash your Expansion Dock's LED red, then green, then blue, and j
 ### `crontab` Syntax
 So let's break down how `cron` will read the `crontab` file!
 
+// fix the table
 |min| hour | date |month |day of the week | When will my command run? |
 |*/1 | * | * | * | * | Once every minute |
 |12 | */3 | * | * | * | Every 3 hours at 12 minutes (8:12, 9:12, 10:12, etc) |
@@ -53,12 +59,13 @@ So let's break down how `cron` will read the `crontab` file!
 *NOTE: For days of the week, `cron` treats `0` as `Sunday` and setting days of the week to `7` will make you command run every day.*
 
 
-**Your `crontab` file must end with the last line as a comment for it to run**
+// fix this sentence pls
+**Your `crontab` file must end with the last line being a comment for it to run**
 
 For more information on `cron` including more rules and references you can check out [OpenWRT's guide to Cron](https://wiki.openwrt.org/doc/howto/cron).
 
 ### Saving Output of a `cron` Job to a File
-// TODO: change the header title
+// apply the same update as above (put thing into a script)
 
 When `cron` runs, you won't be able to see any output from your file. You can modify your script or program to save all output to a file rather than print it in the command line, or you can pipe the output of your command to a specific destination with a simple addition to your `crontab` file.
 

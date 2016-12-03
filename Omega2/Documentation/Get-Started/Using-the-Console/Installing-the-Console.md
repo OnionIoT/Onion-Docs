@@ -10,7 +10,8 @@ order: 1
 # The Onion Console
 
 // Brief overview on what the console is and what it's used for. Highlight apps that can be made and that we are making etc.
-The Onion Console is a web interface that gives you access to a number of apps that enhance your Omega's capabilities. These apps can be used to control your Omega and various expansions through your browser.
+The Onion Console is a web interface that gives you access to a number of apps that enhance your Omega's capabilities. These apps can be used to configure and control your Omega and various Expansions through your browser.
+// mention that it's hosted on the omega
 
 # Installing the Console
 
@@ -47,6 +48,8 @@ With your terminal open, run the following commands:
 opkg update
 opkg install onion-console-base
 ```
+
+// link to opkg article
 
 After installation is completed, you'll need to restart the rpcd service to load the console configurations with the following command:
 

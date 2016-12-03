@@ -8,12 +8,12 @@ order: 1
 
 # Running a Command on Boot
 
-This article will demonstrate how you can have your Omega run commands on boot. This can be used in a number of applications, such as showing a welcome message on the OLED Expansion when the Omega has booted. The Omega can get commands to run on boot quite easily, so let's get started!
+This article will demonstrate how you can have your Omega run commands on boot. This can be used in a number of applications, such as showing a welcome message on the OLED Expansion when the Omega has booted or connecting to a server of your choosing, etc. The Omega can get commands to run on boot quite easily, so let's get started!
 
 
 ## Implementation
 
-The Omega gets the commands to run on boot from the `/etc/rc.local` file. Type `vi /etc/rc.local` and you'll see the contents of the file:
+The Omega reads the commands to run on boot from the `/etc/rc.local` file. Type `vi /etc/rc.local` and you'll see the contents of the file:
 
 ```
 # Put your custom commands here that should be executed once
@@ -22,7 +22,7 @@ The Omega gets the commands to run on boot from the `/etc/rc.local` file. Type `
 exit 0
 ```
 
-Here we can see that the commands in this file will be executed after the system initialization, and that he only command being run is `exit 0`. Let's change that and get the LEDs on the Expansion Dock to change colors on boot.
+Here we can see that the commands in this file will be executed after the system initialization, and that he only command being run is `exit 0`. Let's change that and get the RGB LED on the Expansion Dock to change colors on boot.
 
 To do this, edit your `/etc/rc.local` file to look like this:
 
@@ -51,6 +51,8 @@ Save and exit your file, and reboot your Omega to see the effects!
 
 ### Text Output
 
+// give reason as to why you would want to see the output
+
 When `/etc/rc.local` runs on boot, you won't be able to see any output from your file. You can modify your script or program to save all output to a file rather than print it in the command line, or you can pipe the output of your command to a specific destination with a simple addition to your `/etc/rc.local` file.
 
 The syntax for piping your command to a file is as follows:
@@ -58,6 +60,8 @@ The syntax for piping your command to a file is as follows:
 ```
 <COMMAND> >> <<OUTPUT FILE>> 2>&1
 ```
+
+// explain what 2>&1 means
 
 To apply this to your command on boot, simply edit the `/etc/rc.local` file as such:
 

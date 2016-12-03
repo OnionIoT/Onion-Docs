@@ -17,7 +17,7 @@ On this page you can change your Omega's SSID, password, encryption type, and ev
 For more information on the Omega's WiFi and AP settings, check out this [guide to the Omega and Wireless](../../Doing-Stuff/Connectivity/The-Omega-and-Wireless)
 
 
-
+// LAZAR: think about this!
 
 
 

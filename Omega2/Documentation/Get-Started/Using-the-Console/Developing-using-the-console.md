@@ -3,7 +3,7 @@ title: Developing using the Console
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
-order: 5
+order: 4
 ---
 
 

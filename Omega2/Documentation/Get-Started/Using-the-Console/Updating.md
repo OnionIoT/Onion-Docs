@@ -15,7 +15,9 @@ This page will display your Omega's firmware information and will notify you of 
 
 
 # Firmware states
+// change this title
 
+// add descriptions of the difference between minor and major version updates
 
 ## Up To Date!
 
@@ -25,7 +27,7 @@ If your Omega is up to date with the latest firmware, you will see a page simila
 
 You'll see that the firmware versions match up exactly in terms of major version, minor version, and build number.
 
-In this state, your Upgrade Button will not be active.
+In this state, your Upgrade Button will not be active and no further action is required
 
 ## Minor Version Available!
 
