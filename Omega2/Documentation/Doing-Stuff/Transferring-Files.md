@@ -35,8 +35,8 @@ Once downloaded, install the application and then run it.
 
 #### Configure the Connection
 
-[//]: # (change it so the tutorial is about having the omega connected to a real wifi network)
-[//]: # (have a note about how it would be different if connecting to the omega's ap)
+<!-- change it so the tutorial is about having the omega connected to a real wifi network -->
+<!-- have a note about how it would be different if connecting to the omega's ap -->
 
 Connecting to the Omega is super simple. First, make sure your Omega has internet connection. If this is not the case, follow the [Getting Started guide](../Get-Started/First-Time.md).
 
@@ -80,16 +80,16 @@ You can now drag and drop between folders on your computer and folders on your O
 
 ![WinSCP Image 7](./img/onion-omega-winscp-7.png)
 
-[//]: # (explanation of transferring files back and forth)
+<!-- explanation of transferring files back and forth -->
 
 
 ### Using Linux or Mac OS X
 
-[//]: # (step by step instructions on using rsync)
+<!-- step by step instructions on using rsync -->
 
 On Mac OS X or Linux, we can use the command-line utility `rsync` (remote sync) to transfer files to and from the Omega. It's included with Mac OS X and most Linux distributions by default (including the Omega's).
 
-[//]: # (TODO: remove the installation part, maybe link to a page on rsync iunno)
+<!-- TODO: remove the installation part, maybe link to a page on rsync iunno -->
 In case you don't have it, simply run the below commands to install it on your local machine:
 
 ```
@@ -104,12 +104,12 @@ sudo apt-get install rsync
 
 #### Push Directories and Files to the Omega
 
-[//]: # (TODO: small blurb - make sure you're connected to the same wifi etc)
+<!-- TODO: small blurb - make sure you're connected to the same wifi etc -->
 
 ##### Copying Whole Directories
 First make sure you're connected to the same WiFi network/LAN as your Omega. Then to quickly copy an entire directory to your Omega, fill in this template with the paths of your folders, where `ABCD` is your Omega's factory name:
 
-[//]: # (add <> to signify variables)
+<!-- add <> to signify variables -->
 
 ```
 rsync -a <LOCAL DIRECTORY> root@Omega-<ABCD>.local:~/<DIRECTORY TO PUSH TO>
@@ -178,7 +178,7 @@ rsync -a root@Omega-<ABCD>.local:~/<DIRECTORY TO PULL FROM>/ <LOCAL DIRECTORY>
 
 #### Adding Your SSH Key
 
-[//]: # (Add a link to the article on adding your SSH key to the Omega LATER)
+<!-- Add a link to the article on adding your SSH key to the Omega LATER -->
 
 To skip the password prompt, you can add your SSH key to the Omega.
 
@@ -224,8 +224,8 @@ We'll go over each part of the command below.
 
 To see the full list of options and behaviours, see the [`rsync` Reference][rsync reference].
 
-[//]: # (LATER: add console)
+<!-- LATER: add console -->
 
-[//]: # (link defintions)
+<!-- link defintions -->
 
 [rsync reference]: http://linuxcommand.org/man_pages/rsync1.html

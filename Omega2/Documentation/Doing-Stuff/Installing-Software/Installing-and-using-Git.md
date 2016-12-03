@@ -14,7 +14,7 @@ Git is the version control system used by [GitHub](https://github.com/), the sup
 
 ### Installing Git
 
-[//]: # (steps on using opkg to install Git)
+<!-- steps on using opkg to install Git -->
 It's really easy to install Git on your Omega2/Omega2+ using OPKG. For a tutorial on how OPKG works, click [here](./Using-opkg.md)
 1. First, make sure you have an internet connection
 
@@ -43,10 +43,10 @@ Congratulations you've successfully installed Git on your Omega.
 
 ### Using Git
 
-[//]: # (brief steps using git on the omega to download projects from github)
+<!-- brief steps using git on the omega to download projects from github -->
 With Git installed on your Omega you can now clone repositories directly into your Omega just like you would on your computer. This is especially useful to try out some of the cool projects we have on our [GitHub](https://github.com/OnionIoT/)
 
-[//]: # (exalt the virtues of github and collaborative projects and how much onion loves this stuff)
+<!-- exalt the virtues of github and collaborative projects and how much onion loves this stuff -->
 GitHub allows us as developers to collaborate with the community in various ways. If you've worked on something for the Omega that you would like to share with the community, you can submit a pull request. This allows us at Onion to see your work and potentially incorporate it into the official OnionIoT GitHub!
 [Click here to learn more about pull requests](https://help.github.com/articles/about-pull-requests/)
 

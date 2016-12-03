@@ -8,13 +8,13 @@ order: 1
 
 ## The Omega as a Router
 
-[//]: # (high level introduction of what we're doing in this tutorial: turning the omega into a router, brief description of a router)
+<!-- high level introduction of what we're doing in this tutorial: turning the omega into a router, brief description of a router -->
 
 This tutorial will show you how you can use the Omega as a WiFi router. A router is a device uses an Ethernet connection to provide a wireless area network. We are going to plug our Omega into a modem to provide internet to an area.
 
 The Ethernet Expansion is required to give your Omega access to an Ethernet port. By using the Ethernet Expansion, we can turn our Omega into a low-cost yet effective router.
 
-[//]: # (illustration showing the whole system)
+<!-- illustration showing the whole system -->
 
 ## Overview
 
@@ -38,12 +38,12 @@ After you have connected everything, power on the Omega.
 
 ### Step 2: Setup the Omega
 
-[//]: # (batch2: explanation of which wifi you're disabling)
+<!-- batch2: explanation of which wifi you're disabling -->
 
 The next step is to disable the WiFi connection on the Omega. We want our Omega to connect to the internet via the ethernet connection and so we're going to turn off the WiFi on our Omega
 
 >We're going to be disabling the WiFi on the Omega so you'll need to make sure that you've established a serial connection with your Omega. For more information, please refer to this [guide on connecting to your Omega.](../Get-Started/Using-the-Command-Line/connecting)
-[//]: # (batch2: expand on this comment - explain why serial is beneficial in this scenario)
+<!-- batch2: expand on this comment - explain why serial is beneficial in this scenario -->
 
 To do this, you will use the `uci` command to change the access point settings of your Omega.
 
@@ -67,7 +67,7 @@ Restart the WiFi network to apply your saved changes:
 wifi
 ```
 
-[//]: # (create a new step regarding the ssid name)
+<!-- create a new step regarding the ssid name -->
 ### Step 3: Changing your Omega Router's Settings
 
 Since you probably don't want uninvited guests on your new router, it is recommended that you change your Omega Router's settings from the default setup, especially the password.

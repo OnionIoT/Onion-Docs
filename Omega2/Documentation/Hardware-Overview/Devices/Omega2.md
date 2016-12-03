@@ -1,11 +1,11 @@
 ## Onion Omega2
 
-[//]: # (intro of the Omega2 IoT computer)
+<!-- intro of the Omega2 IoT computer -->
 The Omega2 is the latest in development boards from Onion. It comes packed with built-in Wi-Fi
 
 ### The Omega2 at a Glance
 
-[//]: # (TODO: have an illustration with labels)
+<!-- TODO: have an illustration with labels -->
 ![omega2](../img/omega-2-pic.png)
 
 | Omega2 Specs  | |
@@ -25,10 +25,10 @@ The Omega2 is the latest in development boards from Onion. It comes packed with 
 
 ### The Pins
 
-[//]: # (image of omega2 pinout)
+<!-- image of omega2 pinout -->
 ![pinout](../img/omega-2-pinout-diagram.png)
 
-[//]: # (LATER: include section on the 50pin connector)
+<!-- LATER: include section on the 50pin connector -->
 
 
 ### The Operating system
@@ -45,11 +45,11 @@ The Omega LED uses GPIO44, and can be programmed to do a number of cool things. 
 
 The Omega's can be reset using GPIO38. When plugged into a Dock (e.g. Expansion Dock), this GPIO gives various functionality to the reset button found on docks. For example, a quick button press triggers the reboot command, whereas holding the button for longer than 7 seconds will trigger a factory reset command.
 
-[//]: # (batch2: ## Antenna and U.FL Connector)
+<!-- batch2: ## Antenna and U.FL Connector -->
 
-[//]: # (Description of SMT antenna used on the Omega, mention that it's directional, have a diagram of the directionality)
-[//]: # (Describe that U.FL connector can be used to connect other, bigger antennas)
+<!-- Description of SMT antenna used on the Omega, mention that it's directional, have a diagram of the directionality -->
+<!-- Describe that U.FL connector can be used to connect other, bigger antennas -->
 
-[//]: # (TO DO: ## Mechanical Drawing)
+<!-- TO DO: ## Mechanical Drawing -->
 
-[//]: # (insert mechanical drawing image, link to repo)
+<!-- insert mechanical drawing image, link to repo -->

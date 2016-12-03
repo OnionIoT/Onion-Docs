@@ -25,7 +25,7 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 
 ![pinout](../img/omega-2-pinout-diagram.png)
 
-[//]: # (LATER: include section on the 50pin connector)
+<!-- LATER: include section on the 50pin connector -->
 
 
 ### The Operating system
@@ -42,18 +42,18 @@ The Omega LED uses GPIO44, and can be programmed to do a number of cool things. 
 
 The Omega's can be reset using GPIO38. When plugged into a Dock (e.g. Expansion Dock), this GPIO gives various functionality to the reset button found on docks. For example, a quick button press triggers the reboot command, whereas holding the button for longer than 7 seconds will trigger a factory reset command.
 
-[//]: # ( leave this out for now)
-[//]: # ( ## MicroSD Card Slot)
+<!--  leave this out for now -->
+<!--  ## MicroSD Card Slot -->
 
-[//]: # ( little explanation of the MicroSD Slot)
-[//]: # ( images & explanation of proper sd card insertion and removal)
+<!--  little explanation of the MicroSD Slot -->
+<!--  images & explanation of proper sd card insertion and removal -->
 
-[//]: # (batch2: ## Antenna and U.FL Connector)
+<!-- batch2: ## Antenna and U.FL Connector -->
 
-[//]: # ( Description of SMT antenna used on the Omega, mention that it's directional, have a diagram of the directionality)
-[//]: # ( Describe that U.FL connector can be used to connect other, bigger antennas)
+<!--  Description of SMT antenna used on the Omega, mention that it's directional, have a diagram of the directionality -->
+<!--  Describe that U.FL connector can be used to connect other, bigger antennas -->
 
-[//]: # ( leave this out for now)
-[//]: # (## Mechanical Drawing)
+<!--  leave this out for now -->
+<!-- ## Mechanical Drawing -->
 
-[//]: # ( insert mechanical drawing image, link to repo)
+<!--  insert mechanical drawing image, link to repo -->

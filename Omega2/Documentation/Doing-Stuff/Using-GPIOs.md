@@ -8,7 +8,7 @@ order: 1
 
 ## Using the Omega's GPIOs
 
-[//]: # (Lazar: copy kit guide text on gpios, put it here)
+<!-- Lazar: copy kit guide text on gpios, put it here -->
 General-Purpose Input/Output (GPIO) is a generic pin whose behaviors are controlled by the user. These pins have no predefined purpose and go unused by default.
 
 The Omega2 has 5 dedicated and 12 multiplexed GPIO pins, which can be controlled via the Linux filesystem.

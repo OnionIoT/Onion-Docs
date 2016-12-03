@@ -10,7 +10,7 @@ order: 2
 
 ## Unboxing your Omega
 
-[//]: # (Prepare the Hardware)
+<!-- Prepare the Hardware -->
 
 ### Preparing the Hardware
 

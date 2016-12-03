@@ -12,7 +12,7 @@ A WiFi range extender is a device that can increase the effective range of a rou
 The Omega's powerful WiFi capabilities and incredibly small footprint allow it to be effective as a WiFi range extender.
 
 
-[//]: # (illustration)
+<!-- illustration -->
 
 Even though the Omega has only one physical WiFi interface, you can create two virtual interfaces and have the Omega relay the packets back and forth between the two interfaces. This allows you to set up the Omega as a WiFi range extender that relays the packets between your computer/smartphone and your router. This can be very helpful if your router has a short range and the connection has problems from beyond a certain distance.
 Let's get started!
@@ -26,7 +26,7 @@ Let's get started!
 | Time Required | **5 min** |
 | Required Materials: | Omega2 or Omega2+<br>Expansion Dock, Mini Dock, Arduino Dock or Power Dock |
 
-[//]: # (batch2: add a few sentences describing at a high level what the steps will accomplish)
+<!-- batch2: add a few sentences describing at a high level what the steps will accomplish -->
 
 ### Step 1: Connect the Omega to the router
 
@@ -46,7 +46,7 @@ Selection:
 
 Follow the instructions to scan for WiFi and connect to your router's network.
 
-[//]: # (section on making sure the firewall forwards STA->AP)
+<!-- section on making sure the firewall forwards STA->AP -->
 ### Step 2: Firewall Settings
 
 Next, you will need to configure the Omega to route packets from your device to the Omega to the Router, and back. To do this, you will be editing the `/etc/config/firewall` file:

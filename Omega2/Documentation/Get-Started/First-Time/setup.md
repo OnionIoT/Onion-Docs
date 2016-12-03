@@ -10,7 +10,7 @@ order: 2
 // LAZAR TO REWORK
 
 {{#if Browser}}
-[//]: # (BROWSER SETUP)
+<!-- BROWSER SETUP -->
 ### Setting up using a Browser
 
 **Step 1**:
@@ -44,7 +44,7 @@ Following the wizard will connect your Omega to a wifi network of your choice, a
 {{/if}}
 
 {{#if OSX}}
-[//]: # (OSX SETUP)
+<!-- OSX SETUP -->
 
 ### Setting up using the Command Line on Mac OSX
 
@@ -71,7 +71,7 @@ The firmware update will take a few minutes, the process will be complete when t
 {{/if}}
 
 {{#if Windows}}
-[//]: # (WINDOWS SETUP)
+<!-- WINDOWS SETUP -->
 
 ### Setting up using Command Line on Windows
 
@@ -104,7 +104,7 @@ The firmware update will take a few minutes, the process will be complete when t
 {{/if}}
 
 {{#if Linux}}
-[//]: # (LINUX SETUP)
+<!-- LINUX SETUP -->
 
 ### Setting up using Command Line on Linux
 

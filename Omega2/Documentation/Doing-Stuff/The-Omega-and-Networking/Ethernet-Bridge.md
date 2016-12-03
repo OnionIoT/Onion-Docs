@@ -29,14 +29,14 @@ As an example, this type of setup can be used to bring internet access to a desk
 What we are going to do is to first enable the Omega's Ethernet connection, and then to bridge the wireless internet connection with an Ethernet connection.
 
 
-[//]: # (The Steps)
+<!-- The Steps -->
 
 ### Step 1: Connect Omega WiFi to the Internet
 
 To begin, you'll need to establish a wireless connection to the Internet on your Omega. Follow this [guide](../Get-Started) to learn more on how to set up your Omega.
 
 
-[//]: # (Step 2)
+<!-- Step 2 -->
 
 ### Step 2: Enable the Omega's Ethernet Connection
 
@@ -67,7 +67,7 @@ Restart the network service by running the follow command:
 
 
 
-[//]: # (Step 3)
+<!-- Step 3 -->
 ### Step 3: Configure your Device to use Ethernet
 
 Now that the Omega is configured, we should be able to connect with other devices via Ethernet.
@@ -82,6 +82,6 @@ To do this on Windows, follow this [guide](http://www.computerhope.com/issues/ch
 #### Mac OSX
 To do this on Mac OSX, follow this [guide](https://www.cs.cmu.edu/~help/networking/dhcp_info/dhcp_mac.html)
 
-[//]: # (### Linux)
+<!-- ### Linux -->
 
-[//]: # (Not sure how to do or how to test that this actually does the thing?)
+<!-- Not sure how to do or how to test that this actually does the thing? -->

@@ -8,15 +8,15 @@ order: 3
 
 ## Using USB Storage
 
-[//]: # (Explanation of how to use USB storage:)
+<!-- Explanation of how to use USB storage: -->
 
 The Omega2 can read and write to USB storage devices, such as USB keys, and USB external hard-drives. This tutorial will show you how to expand the storage on your Omega2 using an external USB storage device, and how to change some of the default configurations.
 
-[//]: # (add an image of a usb key plugged into an omega)
+<!-- add an image of a usb key plugged into an omega -->
 
 ### USB Storage and Linux
 
-[//]: # (Explanation of how a device needs to be mounted - make sure to highlight the Omega2 auto-mounts USB storage, point out the location)
+<!-- Explanation of how a device needs to be mounted - make sure to highlight the Omega2 auto-mounts USB storage, point out the location -->
 On a Linux device, a USB storage device needs to be mounted in order to be used. Mounting a device maps it's storage space to a directory on your device so that you may access it.
 
 The Omega2 comes ready with an auto-mounting tool that will take care of that process for you! The default mount location is `/tmp/mounts/`.
@@ -24,10 +24,10 @@ The Omega2 comes ready with an auto-mounting tool that will take care of that pr
 
 ### Using USB storage
 
-[//]: # (explanation of how to access files)
+<!-- explanation of how to access files -->
 Steps to access USB storage:
 
-[//]: # (TODO: photo of plugged in usb stick)
+<!-- TODO: photo of plugged in usb stick -->
 1. Plug in the USB Storage
 2. Navigate to the directory where your USB device is located.
 	* The default is `/tmp/mounts/`
@@ -59,7 +59,7 @@ cp /root/example.txt /tmp/mounts/USB-A1/example.txt
 
 ### Unmounting
 
-[//]: # (draw a parallel to safely disconnecting in Windows)
+<!-- draw a parallel to safely disconnecting in Windows -->
 
 Once you are done with your USB storage device, make sure you unmount your device before removing it to avoid corrupting your data.
 
