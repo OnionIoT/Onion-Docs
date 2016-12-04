@@ -61,7 +61,7 @@ Next, find the repository you'd like to clone. In this example we'll use the ole
 ![clone-button](https://raw.githubusercontent.com/OnionIoT/blob/master/Omega2/Documentation/Doing-Stuff/installing-git-pic-2.png)
 
 Now, open your terminal and move to the directory in which you want the repository to reside. From there, enter:
-https://github.com/OnionIoT/Onion-Docs/blob/master/Omega2/Documentation/Doing-Stuff/img/installing-git-pic-1.png?raw=true
+https://raw.githubusercontent.com/OnionIoT/blob/master/Omega2/Documentation/Doing-Stuff/img/installing-git-pic-1.png
 ```
 git clone https://github.com/OnionIoT/oledQrCodeGenerator.git
 ```
