@@ -7,19 +7,21 @@ order: 1
 ---
 
 
-# The Onion Console
+## The Onion Console {#installing-the-console}
 
-// Brief overview on what the console is and what it's used for. Highlight apps that can be made and that we are making etc.
-The Onion Console is a web interface that gives you access to a number of apps that enhance your Omega's capabilities. These apps can be used to configure and control your Omega and various Expansions through your browser.
-// mention that it's hosted on the omega
+<!-- // Brief overview on what the console is and what it's used for. Highlight apps that can be made and that we are making etc. -->
+The Onion Console is a web interface that gives you access to a number of apps that enhance your Omega's capabilities. These apps can be used to configure and control your Omega and various Expansions through your browser. All of this is conveniently hosted on your Omega and can be accessed by visiting your Omega's webpage located at `http://www.omega-ABCD.local/`.
 
-# Installing the Console
 
-// Show how to install the console through the setup-wizard, or through the command line
+<!-- // mention that it's hosted on the omega -->
+
+### Installing the Console
+
+<!-- // Show how to install the console through the setup-wizard, or through the command line -->
 The Console can be installed through the Setup Wizard, or through the command line.
-Follow this [guide](../First-Time) if you haven't yet set up your Omega.
+Follow this [guide](#first-time-setup) if you haven't yet set up your Omega.
 
-## Installing through the Setup Wizard
+#### Installing through the Setup Wizard
 
 If you have set up the Omega and didn't install the console, skip to the Software page and make sure the checkbox is checked.
 ![checkbox](../img/installing-console-setup-wizard.png)
@@ -35,11 +37,12 @@ username: root
 password: onioneer
 ```
 
-## Installing through the command line
+#### Installing through the command line
 
 The console can also be installed using the command line using the `console install tool`.
-For information on how to access the Omega's command line, follow this [guide](../Using-the-Command-Line/connecting.md)
-// note this won't be available till 3rd batch...
+<!-- For information on how to access the Omega's command line, follow this [guide](../Using-the-Command-Line/connecting.md) -->
+
+<!-- // note this won't be available till 3rd batch... -->
 
 You'll need to be connected to the internet in order to install the Console. If you've followed the Setup Wizard, you will be all good to go.
 With your terminal open, run the following commands:
@@ -49,7 +52,8 @@ opkg update
 opkg install onion-console-base
 ```
 
-// link to opkg article
+
+You can learn more about `opkg` in our [guide to opkg](#using-opkg)
 
 After installation is completed, you'll need to restart the rpcd service to load the console configurations with the following command:
 
@@ -69,7 +73,7 @@ username: root
 password: onioneer
 ```
 
-# Installing additional apps
+### Installing additional apps
 
 // Mention the pre-installed apps. Show how to install additional apps through the console or through the command line
 

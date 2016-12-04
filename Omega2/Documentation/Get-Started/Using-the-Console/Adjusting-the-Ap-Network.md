@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-# Adjusting the Omega's WiFi AP Network
+## Adjusting the Omega's WiFi AP Network
 
 The `Wi-Fi AP Settings` tab in the Settings app is used to configure your Omega's access point.
 

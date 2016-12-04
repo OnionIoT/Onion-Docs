@@ -7,14 +7,14 @@ order: 4
 ---
 
 
-# Developing using the Console
+## Developing using the Console
 
-The Console is a powerful tool. You can use various apps to write code and execute it, all from your browser!
+The Console is a powerful tool that is easily accessible through your browser. The Console gives you access to a terminal connected to your Omega, and an editor that allows you to directly access the Omega's filesystem!
 
 In this tutorial we're going to write a script that will blink the Omega's LED in morse code based on the user's input using the Editor App, and the Terminal App.
 
 
-# Overview
+### Overview
 
 | Overview |
 | :---: | :---: |
@@ -23,7 +23,7 @@ In this tutorial we're going to write a script that will blink the Omega's LED i
 | Required Materials: | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li></ul> |
 
 
-# Installing the Editor and Terminal Apps
+### Installing the Editor and Terminal Apps
 
 To install the Editor App, click on the Editor icon in the taskbar. You'll see a page that looks like this:
 
@@ -54,7 +54,7 @@ Refresh your browser and you can now use the Terminal App.
 You are now ready to develop code for your Omega from your browser!
 
 
-# Controlling the LED from the Terminal App
+### Controlling the LED from the Terminal App
 
 Open the Terminal App and log in using your username and password. The defaults are:
 
@@ -118,7 +118,7 @@ or change the LED trigger to something else:
 echo default-on > /sys/class/leds/onion\:amber\:system/trigger
 ```
 
-# Writing a Shell Script in the Editor App
+### Writing a Shell Script in the Editor App
 
 ```
 #!/bin/sh
@@ -151,7 +151,7 @@ _UserInputMain () {
 
 
 
-// this article will show how you can use the console to develop code for the Omega using the Omega (pls reword so this makes sense)
+<!-- // this article will show how you can use the console to develop code for the Omega using the Omega (pls reword so this makes sense)
 // as an example project, we're going to write a script that will blink the Omega's LED in morse code based on user input
 
 // section on using the editor to create a bash script
@@ -172,4 +172,4 @@ _UserInputMain () {
 //    - have links to getting started with linux - check existing linux basics articles for these links
 //  - using the echo command to read the available triggers in `/sys/class/leds/onion:amber:system/trigger`
 //  - running the script we wrote using the editor app
-// make sure to point out that the terminal app now supports copy and paste (but with weird shortcuts)
+// make sure to point out that the terminal app now supports copy and paste (but with weird shortcuts) -->

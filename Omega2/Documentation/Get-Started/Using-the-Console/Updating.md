@@ -6,20 +6,35 @@ devices: [ Omega2 ]
 order: 4
 ---
 
-# Updating the Omega using the Console
+## Updating the Omega using the Console
 
-// show how to use the Settings App - Firmware Upgrade tab to update the Omega's Firmware
 You can update your Omega's firmware in the Console with the Settings app. Open the Settings app, and click on the `Firmware Upgrade` tab.
 
 This page will display your Omega's firmware information and will notify you of available upgrades.
 
 
-# Firmware states
+### The Omega Firmware
 // change this title
 
 // add descriptions of the difference between minor and major version updates
 
-## Up To Date!
+The Omega firmware can be in three different states:
+
+Up to date:
+
+Your Omega is on the latest *stable* firmware version and requires no further action.
+
+Minor Version Available:
+
+Your Omega is on a previous build of the firmware and might be missing some minor features or bug fixes. You can choose to upgrade your firmware to acquire these changes.
+
+Major Version Available:
+
+Your Omega is on a previous version and is potentially missing core features. It is highly recommended to upgrade your firmware to acquire these features.
+
+Let's go through what each state will look like in the Console.
+
+#### Up To Date!
 
 If your Omega is up to date with the latest firmware, you will see a page similar to the following:
 
@@ -29,7 +44,7 @@ You'll see that the firmware versions match up exactly in terms of major version
 
 In this state, your Upgrade Button will not be active and no further action is required
 
-## Minor Version Available!
+#### Minor Version Available!
 
 If your Omega is behind a minor version or build, you will see a page similar to the following:
 
@@ -48,7 +63,7 @@ Once the download is complete a notification will pop up, and the upgrade will b
 
 **Do not turn off your Omega during this time.** It will reboot automatically with the latest features.
 
-## Major Version Available!
+#### Major Version Available!
 
 If a major version is available then an upgrade is required. Your page will look similar to this:
 

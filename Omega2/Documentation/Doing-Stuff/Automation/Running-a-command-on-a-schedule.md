@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 2
 ---
 
-# Running a Command on a Schedule
+## Running a Command on a Schedule {#running-a-command-on-a-schedule}
 
 The Omega's firmware has a powerful built in feature, `cron`, that allows you to schedule commands to run at specified intervals. This tutorial will show you how to take advantage of `cron` to automate commands on your Omega.
 
@@ -15,15 +15,15 @@ This can be especially useful for automating projects. For example, you can buil
 
 
 
-## What is `cron`?
+### What is `cron`?
 
 In computing terms, a daemon is a program that runs continuously in the background and answers requests from services. On the Omega, `cron` runs as a daemon and monitors the `crontab`, a file that lists commands that need to run at specified intervals. These commands can be programs, scripts, or anything that you can type in the command line.
 
 
-## Using `cron`
+### Using `cron`
 
 
-### Writing a Script for `cron`
+#### Writing a Script for `cron`
 
 We're going to need write a script so that we have something that we want to run on an interval. Let's write a small shell script that will flash your Expansion Dock's RGB LED red, then green, then blue, and just in case you miss it the first time, it'll do it once more after waiting for 5 seconds, and then shut off the RBG LED.
 
@@ -50,7 +50,7 @@ chmod +x rgb-led
 
 This command will allow your script to be run as a program.
 
-### Writing the `crontab`
+#### Writing the `crontab`
 
 To get started with `cron`, enter the following command on the command line from any directory:
 
@@ -77,7 +77,7 @@ Save your and exit your file. Then restart the `cron` daemon with the following 
 Your code can take up to 59 seconds to run because `cron` will wait for the next minute to run (e.g. 6:05:59, 6:06:00)
 
 
-### `crontab` Syntax
+#### `crontab` Syntax
 So let's break down how `cron` will read the `crontab` file!
 
 |min| hour | date |month |day of the week | When will my command run? |
@@ -94,7 +94,7 @@ So let's break down how `cron` will read the `crontab` file!
 
 For more information on `cron` including more rules and references you can check out [OpenWRT's guide to Cron](https://wiki.openwrt.org/doc/howto/cron).
 
-### Saving Output of a `cron` Job to a File
+#### Saving Output of a `cron` Job to a File
 // apply the same update as above (put thing into a script)
 
 When `cron` runs, you won't be able to see any output from your file. You can modify your script or program to save all output to a file rather than print it in the command line, or you can pipe the output of your command to a specific destination with a simple addition to your `crontab` file.
@@ -145,7 +145,7 @@ Duty: 100 100 100
 ```
 
 
-## Troubleshooting
+### Troubleshooting
 
 * Remember to end your `crontab` file with a comment, or it won't run.
 * If your command involves rebooting your Omega please check out this [solution for rebooting with cron](https://wiki.openwrt.org/doc/howto/cron#periodic_reboot_of_a_router) provided by the OpenWRT wiki.
