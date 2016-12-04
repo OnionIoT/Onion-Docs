@@ -31,7 +31,7 @@ We're going to first setup the hardware, then we'll change some Omega config fil
 
 Connect your Ethernet Expansion to the Expansion dock, and plug in the Ethernet cable, as shown below:
 
-![Omega Router](https://raw.githubusercontent.com/OnionIoT/blob/master/Omega2/Documentation/Doing-Stuff/img/omega-router-pic-1.jpg)
+![Omega Router](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/omega-router-pic-1.jpg)
 
 After you have connected everything, power on the Omega.
 

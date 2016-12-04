@@ -14,17 +14,17 @@ Follow along with this guide to set up your Omega2 for the first time. We'll fir
 
 Unpack the Omega and Dock from their boxes
 
-![Omega + Dock](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Get-Started/img/unbox-1-omega-with-dock.jpg "Omega + Dock")
+![Omega + Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-1-omega-with-dock.jpg "Omega + Dock")
 
 **Connect**
 
 Plug the Omega into the socket on the Dock
 
-![Omega plugged into Dock](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Get-Started/img/unbox-2-omega-on-dock.jpg "Omega Plugged into Dock")
+![Omega plugged into Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-2-omega-on-dock.jpg "Omega Plugged into Dock")
 
 Make sure your Omega's pins are fully plugged into the socket
 
-![Omega plugged into Dock Side View](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Get-Started/img/unbox-3-omega-on-dock-side.jpg)
+![Omega plugged into Dock Side View](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-3-omega-on-dock-side.jpg)
 
 **Provide Power**
 
@@ -35,7 +35,7 @@ The Omega itself is powered by a 3.3V source. But all Omega Docks have voltage r
 
 You can power it with your computer
 
-![Omega plugged into USB](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Get-Started/img/unbox-4-omega-provide-power.jpg "Omega plugged into USB")
+![Omega plugged into USB](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-4-omega-provide-power.jpg "Omega plugged into USB")
 
 Or you can power it with any wall adapter
 
@@ -45,13 +45,13 @@ Or you can power it with any wall adapter
 
 Turn on the Omega using the switch.
 
-![Turn on the Omega](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Get-Started/img/unbox-5-omega-switched-on.jpg "Turn on the Omega")
+![Turn on the Omega](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-5-omega-switched-on.jpg "Turn on the Omega")
 
 **Wait till it boots**
 
 When the amber LED has been on for about a minute, your Omega will have booted.
 
-![Omega is on](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Get-Started/img/unbox-6-omega-led-detail.jpg "Omega is on")
+![Omega is on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-6-omega-led-detail.jpg "Omega is on")
 
 *We're working on making this step more intuitive, stay tuned!*
 
@@ -88,7 +88,7 @@ So the Omega from the picture above is named `Omega-296A`
 
 The Omega hosts it's own WiFi network access point. Lets connect your computer to it. The WiFi network is named the same as your Omega and the default password is `12345678`
 
-![Connect to AP](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Get-Started/img/setup-1-connect-to-wifi.png "Connect to AP")
+![Connect to AP](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-1-connect-to-wifi.png "Connect to AP")
 
 
 **The Setup Wizard**
@@ -97,7 +97,7 @@ Open your favourite browser and navigate to `http://omega-ABCD.local/` where `AB
 
 You have now arrived at the Setup Wizard:
 
-![Browse to Setup Wizard](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Get-Started/img/setup-2-wizard-start.png "Browse to Setup Wizard")
+![Browse to Setup Wizard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-2-wizard-start.png "Browse to Setup Wizard")
 
 Login with the following information:
 ```
@@ -105,7 +105,7 @@ username: root
 password: onioneer
 ```
 
-![Setup Wizard Login](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Get-Started/img/setup-3-wizard-login.png "Browse to Setup Wizard")
+![Setup Wizard Login](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-3-wizard-login.png "Browse to Setup Wizard")
 
 Follow the wizard to complete the setup of the Omega, by the end of it, your Omega will be updated with the latest firmware and connected to a WiFi network of your choosing.
 
