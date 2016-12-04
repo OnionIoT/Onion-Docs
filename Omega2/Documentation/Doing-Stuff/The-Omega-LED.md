@@ -12,7 +12,7 @@ order: 2
 The Omega comes equipped with an LED that has a number of uses, namely as an indication for when your Omega has finished booting.
 This tutorial will show you other cool things you can do with the LED.
 
-![Omega LED](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/imgunbox-6-omega-led-detail.jpg "Omega's LED")
+![Omega LED](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-6-omega-led-detail.jpg "Omega's LED")
 
 To control the Omega's LED, we are going to be writing to files that are used to specify values for the LED, such as the LED mode. This is made possible with `sysfs`, a pseudo file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
 

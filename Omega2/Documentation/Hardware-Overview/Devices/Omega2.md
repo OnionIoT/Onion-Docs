@@ -26,7 +26,7 @@ The Omega2 is the latest in development boards from Onion. It comes packed with 
 ### The Pins
 
 <!-- image of omega2 pinout -->
-![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-pinout-diagram.png)
+![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
 
 <!-- LATER: include section on the 50pin connector -->
 
@@ -40,6 +40,8 @@ The Omega2 runs the Linux Embedded Development Environment (LEDE) operating syst
 The Omega LED is a great tool for communicating information with a user. It notifies you when your Omega is on, when it's off, and when it's booting.
 
 The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](#the-omega-led)
+
+<!-- TODO: fix this link -->
 
 ### Reset GPIO
 

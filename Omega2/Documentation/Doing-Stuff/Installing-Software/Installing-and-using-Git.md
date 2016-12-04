@@ -54,14 +54,13 @@ Let's try using Git to clone one of the repositories off the Onion GitHub!
 
 First, open your browser and navigate to `https://github.com/OnionIoT/`
 
-![onion-github](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/installing-git-pic-1.png)
+![onion-github](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/installing-git-pic-1.png)
 
 Next, find the repository you'd like to clone. In this example we'll use the oledQrCodeGenerator repo. Click on oledQrCodeGenerator. On the next page you'll want to click on the `Clone or Download` button. Click on the button, and copy the link in the box.
 
-![clone-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/installing-git-pic-2.png)
+![clone-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/installing-git-pic-2.png)
 
 Now, open your terminal and move to the directory in which you want the repository to reside. From there, enter:
-https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/installing-git-pic-1.png
 ```
 git clone https://github.com/OnionIoT/oledQrCodeGenerator.git
 ```
