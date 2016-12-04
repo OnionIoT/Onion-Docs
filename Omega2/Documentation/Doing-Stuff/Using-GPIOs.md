@@ -8,14 +8,14 @@ order: 1
 
 ## Using the Omega's GPIOs {#using-gpios}
 
-<!-- Lazar: copy kit guide text on gpios, put it here -->
-General-Purpose Input/Output (GPIO) is a generic pin whose behaviors are controlled by the user. These pins have no predefined purpose and go unused by default.
+The Omega2 has twelve General-Purpose Input/Output pins (commonly referred to as GPIOs) that can be fully controlled by you, the user. GPIO pins on most chips generally go unused, but on the Omega, we can use these GPIOs to connect to, communicate with, and control external circuits. 
 
-The Omega2 has 5 dedicated and 12 multiplexed GPIO pins, which can be controlled via the Linux filesystem.
-
-We can control these GPIO pins with a command-line tool known as `gpioctl`. This article will go through how `gpioctl` works, and how you can use it to control the GPIOs.
+On the Omega, We can control GPIO pins with a command-line tool known as `gpioctl`. This article will go through how `gpioctl` works, and the ways in which you can use it
 
 
+<!-- TODO: add section describing GPIO in output direction with an example -->
+
+<!-- TODO: add section describing gpio in input direction with an example -->
 
 
 ### From the Command Line
