@@ -24,7 +24,7 @@ Plug the Omega into the socket on the Dock
 
 Make sure your Omega's pins are fully plugged into the socket
 
-![Omega plugged into Dock Side View](https://github.com/OnionIoT/Onion-Docs/tree/master/Omega2/Documentation/Get-Started/img/unbox-3-omega-on-dock-side.jpg?raw=true)
+![Omega plugged into Dock Side View](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Get-Started/img/unbox-3-omega-on-dock-side.jpg)
 
 **Provide Power**
 

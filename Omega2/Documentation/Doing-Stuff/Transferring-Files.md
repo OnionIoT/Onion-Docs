@@ -40,7 +40,7 @@ Once downloaded, install the application and then run it.
 
 Connecting to the Omega is super simple. First, make sure your Omega has internet connection. If this is not the case, follow the [Getting Started guide](#first-time-setup).
 
-![WinSCP Image 1](https://github.com/OnionIoT/Onion-Docs/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-1.png?raw=true)
+![WinSCP Image 1](https://raw.githubusercontent.com/OnionIoT/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-1.png)
 
 In the right hand pane, you'll need to set the details for your Onion Omega. Typically these are:
 
@@ -52,7 +52,7 @@ In the right hand pane, you'll need to set the details for your Onion Omega. Typ
 | Username | root |
 | Password | onioneer |
 
-![WinSCP Image 2](https://github.com/OnionIoT/Onion-Docs/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-2.png?raw=true)
+![WinSCP Image 2](https://raw.githubusercontent.com/OnionIoT/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-2.png)
 
 Once finished, press the "Save" button.
 
@@ -60,25 +60,25 @@ On the next window there is a tickbox option to save the password, that's up to 
 
 You can name the connection and you can also you can save a desktop shortcut if desired.
 
-![WinSCP Image 3](https://github.com/OnionIoT/Onion-Docs/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-3.png?raw=true)
+![WinSCP Image 3](https://raw.githubusercontent.com/OnionIoT/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-3.png)
 
 Now from the left menu you'll see the name you saved the new site as a few moments ago, eg "root@omega-2757.local", click on this, then "Login".
 
-![WinSCP Image 4](https://github.com/OnionIoT/Onion-Docs/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-4.png?raw=true)
+![WinSCP Image 4](https://raw.githubusercontent.com/OnionIoT/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-4.png)
 
 You will now try to connect to your Omega. On success you'll see this in the window:
 
-![WinSCP Image 5](https://github.com/OnionIoT/Onion-Docs/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-6.png?raw=true)
+![WinSCP Image 5](https://raw.githubusercontent.com/OnionIoT/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-6.png)
 
 If you connection fails, WinSCP will let you know that the host was not found. If this is the case, make sure that both you and your Omega have an internet connection, and that you have Apple's Bonjour Service installed. If you don't have Apple's Bonjour Service, you can connect to your Omega's access point, and connect to its IP `192.168.3.1` .
 
 As this is your first time connecting via WinSCP you'll receive a warning similar to the one below. That's to be expected, click on "Yes"
 
-![WinSCP Image 6](https://github.com/OnionIoT/Onion-Docs/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-5.png?raw=true)
+![WinSCP Image 6](https://raw.githubusercontent.com/OnionIoT/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-5.png)
 
 You can now drag and drop between folders on your computer and folders on your Omega. Congratulations, you now have easy remote access to the files on your Omega!
 
-![WinSCP Image 7](https://github.com/OnionIoT/Onion-Docs/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-7.png?raw=true)
+![WinSCP Image 7](https://raw.githubusercontent.com/OnionIoT/blob/master/Omega2/Documentation/Doing-Stuff/img/onion-omega-winscp-7.png)
 
 <!-- explanation of transferring files back and forth -->
 

@@ -4,7 +4,7 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 
 ### The Omega2 at a Glance
 
-![omega2Plus](https://github.com/OnionIoT/Onion-Docs/tree/master/Omega2/Documentation/Hardware-Overview/img/omega-2p-pic.png?raw=true)
+![omega2Plus](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Hardware-Overview/img/omega-2p-pic.png)
 
 | Omega2+ Specs  | |
 | :-------------: | :-------------:  |
@@ -23,7 +23,7 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 
 ### The Pins
 
-![pinout](https://github.com/OnionIoT/Onion-Docs/tree/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-pinout-diagram.png?raw=true)
+![pinout](https://raw.githubusercontent.com/OnionIoT/tree/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-pinout-diagram.png)
 
 <!-- LATER: include section on the 50pin connector -->
 
