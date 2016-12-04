@@ -32,7 +32,7 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 
 The Omega2+ runs the Linux Embedded Development Environment (LEDE) operating system, a distribution based on OpenWRT. This distribution gives the Omega2+ access to the OPKG functionality, allowing you to download packages to enhance your experience.
 
-### The Omega LED
+### The Omega LED {#omega-hw-omega-led}
 
 The Omega LED is a great tool for communicating information with a user. It notifies you when your Omega is off, booting, and on.
 

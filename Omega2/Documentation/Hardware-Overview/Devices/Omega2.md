@@ -35,7 +35,7 @@ The Omega2 is the latest in development boards from Onion. It comes packed with 
 
 The Omega2 runs the Linux Embedded Development Environment (LEDE) operating system, a distribution based on OpenWRT. This distribution gives the Omega2 access to the OPKG functionality, allowing you to download packages to enhance your experience.
 
-### The Omega LED
+### The Omega LED {#omega-hw-omega-led}
 
 The Omega LED is a great tool for communicating information with a user. It notifies you when your Omega is on, when it's off, and when it's booting.
 
@@ -49,8 +49,18 @@ The Omega's can be reset using GPIO38. When plugged into a Dock (e.g. Expansion 
 
 <!-- batch2: ## Antenna and U.FL Connector -->
 
-<!-- Description of SMT antenna used on the Omega, mention that it's directional, have a diagram of the directionality -->
-<!-- Describe that U.FL connector can be used to connect other, bigger antennas -->
+<!-- info on antenna
+mention that it's a smt antenna
+LAZAR: add bit about it being directional later -->
+
+<!-- Info on ufl connector:
+https://en.wikipedia.org/wiki/Hirose_U.FL
+The Omega has a male surface-mount u.fl connector, other bigger antennas can be connected to it to extend the range of the wifi
+something like this will boost wifi range: https://www.adafruit.com/product/2308
+it's also possible to get a converter and use antennas like this: http://i.ebayimg.com/images/i/251300891906-0-1/s-l1000.jpg
+if a ufl antenna is plugged in, it will be used as the default antenna, no setup required -->
+
+<!-- copy this part to omega2+ article -->
 
 <!-- TO DO: ## Mechanical Drawing -->
 
