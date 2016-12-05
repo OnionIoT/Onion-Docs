@@ -52,6 +52,7 @@ This command will allow your script to be run as a program.
 #### Editing the `/etc/rc.local` File
 
 The Omega reads the commands to run on boot from the `/etc/rc.local` file.
+// TODO: find a way to add emphasis to this line, since it's the focal point of the tutorial
 
  Type `vi /etc/rc.local` and you'll see the contents of the file:
 
@@ -89,6 +90,8 @@ Save and exit your file, and reboot your Omega to see the effects!
 
 #### Text Output
 
+// TODO: mention that this is optional
+
 When `/etc/rc.local` runs on boot, you won't be able to see any output from your file. You may need to see output for debugging purposes to see where your code is failing.
 
 You can pipe the output of your command to a specific destination with a simple addition to your `/etc/rc.local` file.
@@ -99,7 +102,7 @@ The syntax for piping your command to a file is as follows:
 <COMMAND> >> <<OUTPUT FILE>> 2>&1
 ```
 
-// explain what 2>&1 means
+// TODO: explain what 2>&1 means
 
 To apply this to your command on boot, simply edit the `/etc/rc.local` file as such:
 

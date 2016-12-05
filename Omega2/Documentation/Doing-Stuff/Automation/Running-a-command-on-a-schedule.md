@@ -24,6 +24,7 @@ In computing terms, a daemon is a program that runs continuously in the backgrou
 
 
 #### Writing a Script for `cron`
+// TODO: change the heading title
 
 We're going to need write a script so that we have something that we want to run on an interval. Let's write a small shell script that will flash your Expansion Dock's RGB LED red, then green, then blue, and just in case you miss it the first time, it'll do it once more after waiting for 5 seconds, and then shut off the RBG LED.
 
@@ -77,17 +78,20 @@ Save your and exit your file. Then restart the `cron` daemon with the following 
 Your code can take up to 59 seconds to run because `cron` will wait for the next minute to run (e.g. 6:05:59, 6:06:00)
 
 
-#### `crontab` Syntax
+#### Syntax for `crontab`
 So let's break down how `cron` will read the `crontab` file!
 
 |min| hour | date |month |day of the week | When will my command run? |
 |---| --- | --- |--- |--- | --- |
 |*/1 | * | * | * | * | Once every minute |
-|12 | */3 | * | * | * | Every 3 hours at 12 minutes (8:12, 9:12, 10:12, etc) |
+|12 | */3 | * | * | * | Every 3 hours at 12 minutes (8:12, 11:12, 2:12, etc) |
 |24 | 6 | 12 | 2,3,4 | * | At 6:24 on the 12th of February, March, and April |
 |0 | 0 | 3,8,17 | * | * | At midnight on 3rd, 8th and 17th of every month |
 
 *NOTE: For days of the week, `cron` treats `0` as `Sunday` and setting days of the week to `7` will make you command run every day.*
+
+// TODO: Add ranges for each column
+// TODO: mention that it's a 24 hour clock
 
 
 **Your `crontab` file must end with a comment in order for `cron` to run**

@@ -11,14 +11,15 @@ order: 1
 
 <!-- [//]: # (Brief overview on the expansion dock and what it's used for (usb connection, power omega, attach expansions).) -->
 
-The Expansion dock is a powerful piece of hardware that simplifies the usage of your Omega. It allows you to power the Omega and communicate with it via the Micro-USB port, and makes it incredibly easy to use the GPIOs and Onion Expansions.
+The Expansion dock is a powerful piece of hardware that simplifies the usage of your Omega. It allows you to power the Omega and communicate with it via serial through the Micro-USB port, and makes it incredibly easy to use the GPIOs and Onion Expansions.
 
 
 ### The Hardware
 
 <!-- [//]: # (small overview of the things the headings below cover) -->
 
-Your Expansion Dock has a 30 pin Expansion Header, allowing you to use all of your existing Onion Expansions. It provides the Omega with the 3.3V it needs to run, while also providing 5V for the Expansions and USB Host port.
+Your Expansion Dock has a 30 pin Expansion Header, allowing you to use all of your Onion Expansions. It provides the Omega with the 3.3V it needs to run, while also providing 5V for the Expansions and USB Host port.
+// TODO: highlight that the Dock is powered with 5V and that it regulates to 3.3V to power the Omega
 
 The Expansion Dock allows for easy communication via the USB-to-Serial chip located in the center of the board. You've also got a great RGB LED that you can control through the command-line interface.
 
@@ -57,7 +58,7 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 
 <!-- [//]: # (explain that it provides power to the omega, mention that the Omega is powered by 3.3V and that the Dock has a regulator to take the 5V from the microUSB and step it down to 3.3V) -->
 
-The Micro-USB Port is used to supply power to the Expansion Dock, which in turn supplies power to the Omega and the Onion Expansions. It can also be used to communicate with the Omega serially.
+The Micro-USB Port is used to supply power to the Expansion Dock, which in turn supplies power to the Omega and the Onion Expansions. It can also be used to connect to the Omega's serial terminal.
 
 The Micro-USB Port takes in 5V, and the Expansion Dock comes equipped with a voltage regulator to step the voltage down to the required 3.3V for the Omega.
 
@@ -76,7 +77,7 @@ The USB-to-Serial chip allows for a serial connection between the Omega and a co
 <!-- [//]: # (inform them of what the power switch will do: cut power to the Omega but keep the USB to serial chip running) -->
 <!-- [//]: # (have illustrations showing the ON and OFF positions) -->
 
-The Power Switch is located on the far side of the Expansion Dock, away from the Omega. This switch will cut power to the Omega, but not the serial chip. This means that you can still see output on your terminal if you are connected serially to the Omega even if the Omega is turned off.
+The Power Switch is located on the far side of the Expansion Dock, away from the Omega. This switch will cut power to the Omega, but not the serial chip. This means that if the Omega is powered down, your computer will still detect a USB serial device, it will just not be able to communicate with it. // TODO: FIX THIS sentence
 
 #### Reset button
 
@@ -87,7 +88,7 @@ The Reset Button on the Expansion Dock is connected directly to the Omega's Rese
 
 ##### Reboot
 
-Momentarily pressing the reset button and letting go will initiate a reboot of the Omega OS.
+Momentarily pressing the reset button and letting go will initiate a reboot of the Omega's Operating System.
 
 ##### Factory Restore
 
