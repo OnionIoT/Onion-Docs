@@ -44,6 +44,15 @@ This is done by connecting your Omega to an existing router that is supplying in
 
 Once your Omega is connected to the internet, the Omega's AP will be able to supply an internet connection to the devices that are connected. This means that connecting to your device to your Omega's AP will give your device access to the internet.
 
+You can manage the access of the networks connected to your Omega's AP through the firewall configuration file. This file is located at `/etc/config/firewall` and holds the configurations for sharing internet, and forwarding connections.
+
+
+To restart your firewall enter the following command:
+
+```
+/etc/init.d/firewall restart
+```
+
 
 
 
