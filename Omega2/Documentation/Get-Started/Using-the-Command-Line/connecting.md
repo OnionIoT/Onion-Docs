@@ -7,6 +7,8 @@ platforms: [ OSX , Windows , Linux ]
 order: 4
 ---
 
+## Connecting to the Omega {connecting-to-the-omega}
+
 // TO DO: LAZAR FIX THIS ISSUE: neither shows up
 TYPE OF ARTICLE:
 
@@ -30,20 +32,20 @@ Both methods will work fine and each has their advantages. We recommend using SS
  //TO DO: add background on the command prompt
 
 
-## Connecting with SSH
+### Connecting with SSH
 
 SSH actually stands for Secure Shell, it's a network protocol that creates a secure channel for communication between two devices on the same network. It can be used to secure many different types of communication, but we will be using it to login to the Omega's command prompt for now.
 
 //TO DO: add stylized picture of the Omega2 and a laptop connected to a wifi network
 
-### The Good & Bad of SSH
+#### The Good & Bad of SSH
 
 When using SSH, the Omega and your computer communicate over the WiFi network to which they are both connected. This means that as long as the Omega is powered on and within range of your WiFi network, you can connect to it! No need to connect it directly to your computer. The disadvantage of SSH is that if the network connection gets interrupted, the connection will also be severed.
 
 For most use-cases with the Omega, SSH will work really well. This should be your go-to method for accessing the Omega's command-line.
 
 
-### How to Connect
+#### How to Connect
 
 {{#if OSX}}
 **Step 1:**<br>
@@ -122,11 +124,11 @@ Password: `onioneer`
 {{/if}}
 
 
-### Using SSH Key Pairs
+#### Using SSH Key Pairs
 
 Over the course of a few months, the number of times you type in the password to connect will add up to a whole bunch of time that could have been spent having fun. Don&#39;t worry, there&#39;s another way to authenticate your SSH connection: by using SSH Key Pairs, **the Omega and your computer will do a secure handshake so you won&#39;t need to type in that pesky password all the time**. Not only that, but using a key pair will make your Omega even more since passwords can be discovered but secure key pair authentication cannot be broken.
 
-#### What exactly are Key Pairs
+##### What exactly are Key Pairs
 
 Good question! Authentication using a Key Pairs is based on having two randomly generated binary keys, where one is public and one is private. The private key is like a handwritten signature, used to prove your identity, so make sure to keep it secret and keep it safe. The public key is meant to be shared with other devices since it&#39;s only purpose is to verify your identity.
 
@@ -136,7 +138,7 @@ An SSH connection to your Omega that&#39;s secured by with a key pair will look 
 - Your computer will then generate a hash using your private key and send it to the Omega
 - The Omega will use the stored public key to try to decode the identity hash, if the Public Key matches the Private Key, the decode will be successful, and the Omega will allow the connection to proceed.
 
-#### How to Add your Public Key to the Omega
+##### How to Add your Public Key to the Omega
 
 {{#if OSX}}
 
@@ -198,7 +200,7 @@ From now on, you&#39;ll be able to securely connect to your Omega without having
 
 {{/if}}
 
-## Connecting via Serial
+### Connecting via Serial
 
 The Omega&#39;s command prompt can also be accessed with a USB cable, as long as your Omega is docked in either an Expansion Dock or a Mini Dock. What&#39;s happening behind the scenes is that the Omega is using it&#39;s UART pins to run a terminal, the USB-to-Serial chip found on the Dock is translating the Serial Terminal signals into USB signals that your computer can understand and vice versa.
 
@@ -212,7 +214,7 @@ This is an example of a message coming from the kernel. These messages can be li
 
 Note that the Expansion Dock and Mini Dock are the only docks that have USB-to-Serial chips, so the serial terminal will only work when using those docks. The serial terminal is meant for debugging during early development, for stable projects, SSH is the best method for accessing the command line.
 
-### How to Connect
+#### How to Connect
 
 We&#39;ll first identify the specific USB connection that we need to use to talk to the Omega, and then setting up the communication.
 

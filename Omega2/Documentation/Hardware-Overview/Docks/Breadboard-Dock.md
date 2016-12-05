@@ -9,12 +9,12 @@ order: 4
 
 # The Breadboard Dock
 
-// The Breadboard Dock is the most no-frills dock, it provides power to the Omega and allows it to be plugged in to a breadboard. The pins on the breadboard are mapped 1-to-1 as on the Omega.
+<!-- // The Breadboard Dock is the most no-frills dock, it provides power to the Omega and allows it to be plugged in to a breadboard. The pins on the breadboard are mapped 1-to-1 as on the Omega. -->
 
 
 # The Hardware
 
-// overview of the dock
+<!-- // overview of the dock -->
 
 ## Connecting an Omega
 
@@ -22,11 +22,11 @@ order: 4
 
 ## The Breadboard Dock at a Glance
 
-https://wiki.onion.io/Tutorials/Expansions/Using-the-Power-Dock#the-hardware_the-power-dock-at-a-glance for an example)
+<!-- https://wiki.onion.io/Tutorials/Expansions/Using-the-Power-Dock#the-hardware_the-power-dock-at-a-glance for an example) -->
 
 ## The Breadboard Header
 
-// explanation of the breadboard header, have photos of plugging it into a breadboard
+<!-- // explanation of the breadboard header, have photos of plugging it into a breadboard -->
 
 ### Detailed Pinout diagram
 
@@ -36,9 +36,20 @@ https://wiki.onion.io/Tutorials/Expansions/Using-the-Power-Dock#the-hardware_the
 
 <!-- [//]: # (explain that it provides power to the omega, mention that the Omega is powered by 3.3V and that the Dock has a regulator to take the 5V from the microUSB and step it down to 3.3V) -->
 
+The Micro-USB Port is used to supply power to the Breadboard Dock, which in turn supplies power to the Omega.
+
+The Micro-USB Port takes in 5V, and the Breadboard Dock comes equipped with a voltage regulator to step the voltage down to the required 3.3V for the Omega.
+
+
 ### No USB-to-Serial
 
+There is no USB-to-Serial Chip on the Breadboard Dock. This means that you will **not** be able to connect to the Omega serially over the Micro-USB port.
+
+
 <!-- [//]: # (explanation that there is no usb to serial chip on-board) -->
+
+<!-- You can still connect to your Omega's terminal with SSH. You can learn how to do that in this [guide to connecting to the Omega](#connecting-to-the-omega) -->
+
 
 ## Reset button
 
