@@ -18,7 +18,7 @@ order: 4
 
 ## Connecting an Omega
 
-[//]: # (picture guide on how to properly plug in an Omega)
+<!-- [//]: # (picture guide on how to properly plug in an Omega) -->
 
 ## The Breadboard Dock at a Glance
 
@@ -30,19 +30,19 @@ https://wiki.onion.io/Tutorials/Expansions/Using-the-Power-Dock#the-hardware_the
 
 ### Detailed Pinout diagram
 
-[//]: # (A detailed pinout diagram of the Breadboard Header, showing which pins are multiplexed - see Lazar for an example)
+<!-- [//]: # (A detailed pinout diagram of the Breadboard Header, showing which pins are multiplexed - see Lazar for an example) -->
 
 ## The MicroUSB Port
 
-[//]: # (explain that it provides power to the omega, mention that the Omega is powered by 3.3V and that the Dock has a regulator to take the 5V from the microUSB and step it down to 3.3V)
+<!-- [//]: # (explain that it provides power to the omega, mention that the Omega is powered by 3.3V and that the Dock has a regulator to take the 5V from the microUSB and step it down to 3.3V) -->
 
 ### No USB-to-Serial
 
-[//]: # (explanation that there is no usb to serial chip on-board)
+<!-- [//]: # (explanation that there is no usb to serial chip on-board) -->
 
 ## Reset button
 
-[//]: # (reset button is connected directly to the Omega's reset GPIO, can be used to just trigger a reboot or even a full factory restore)
+<!-- [//]: # (reset button is connected directly to the Omega's reset GPIO, can be used to just trigger a reboot or even a full factory restore) -->
 
 ### Reboot
 

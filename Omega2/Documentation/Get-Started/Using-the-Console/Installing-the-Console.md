@@ -75,7 +75,7 @@ password: onioneer
 
 ### Installing additional apps
 
-// Mention the pre-installed apps. Show how to install additional apps through the console or through the command line
+<!-- // Mention the pre-installed apps. Show how to install additional apps through the console or through the command line -->
 
 The base Console comes with pre-installed apps that can be used alongside various expansions, like the OLED Expansion Control app.
 These apps are available immediately and don't require an installation.

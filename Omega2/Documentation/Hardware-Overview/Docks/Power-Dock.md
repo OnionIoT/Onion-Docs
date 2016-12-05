@@ -9,8 +9,8 @@ order: 2
 
 # The Power Dock
 
-[//]: # (Brief overview on the Power Dock. Highlight the features such as battery management, battery recharge, mobility (completely wireless).)
-[//]: # (Briefly mention that the power dock is similar to but not the same as the expansion dock.)
+<!-- [//]: # (Brief overview on the Power Dock. Highlight the features such as battery management, battery recharge, mobility (completely wireless).) -->
+<!-- [//]: # (Briefly mention that the power dock is similar to but not the same as the expansion dock.) -->
 
 Bring your next project on the go with the Power Dock! Equipped with on-board battery management, the Power Dock allows you to recharge and monitor battery levels, while providing a header to connect Onion Expansions.
 
@@ -24,7 +24,7 @@ The Power Dock is flexible: it can run off just a battery or just by drawing pow
 
 ## Connecting an Omega
 
-[//]: # (picture guide on how to properly plug in an Omega)
+<!-- [//]: # (picture guide on how to properly plug in an Omega) -->
 
 ## The Power Dock at a Glance
 
@@ -32,25 +32,25 @@ The Power Dock is flexible: it can run off just a battery or just by drawing pow
 
 ## The Expansion Header
 
-[//]: # (breakout of the Omega's GPIOs, can be connected to other circuits directly, or can use Omega expansions)
+<!-- [//]: # (breakout of the Omega's GPIOs, can be connected to other circuits directly, or can use Omega expansions) -->
 
 ### Detailed Pinout
 
-[//]: # (A detailed pinout diagram of the Expansion Header, showing which pins are multiplexed - see Lazar for an example)
+<!-- [//]: # (A detailed pinout diagram of the Expansion Header, showing which pins are multiplexed - see Lazar for an example) -->
 
 
 ## Micro-USB Port
 
 The Micro-USB Port is used to supply the Power Dock with ... power! Connect it to a computer or a USB wall adapter.
 
-[//]: # (fix up this text...)
+<!-- [//]: # (fix up this text...) -->
 
 
 ### No USB to Serial Chip
 
 There is no USB-to-Serial Chip on the Power Dock. This means that you will **not** be able to connect to the Omega serially over the Micro-USB port.
 
-[//]: # (add a link to connecting to your Omega with ssh aricle)
+<!-- [//]: # (add a link to connecting to your Omega with ssh aricle) -->
 
 ## The Power Switch
 
@@ -58,7 +58,7 @@ The power switch controls power to the Omega, regardless of whether it is powere
 
 The blue Power LED indicates if there is power flowing to the Omega.
 
-[//]: # (add illustrations indicating the ON and OFF positions of the switch)
+<!-- [//]: # (add illustrations indicating the ON and OFF positions of the switch) -->
 
 
 ## Battery Level Indicator LEDs
@@ -104,14 +104,14 @@ Pressing and holding the reset button for 10 seconds and releasing will trigger 
 
 ## Omega USB Port
 
-[//]: # (USB port connected to the Omega - interface USB devices with the Omega, mention that it's a type A connector)
+<!-- [//]: # (USB port connected to the Omega - interface USB devices with the Omega, mention that it's a type A connector) -->
 
 The USB Host Port is connected to the Omega and can be used to interface USB peripherals with the Omega. A large variety of devices are supported out of the box, including webcams, keyboards, flash drives, hard drives, etc.
 
 
 
 ## Differences from the Expansion Dock
-[//]: # (thinking about removing this e)
+<!-- [//]: # (thinking about removing this e) -->
 
 Note some of the differences between the Expansion Dock and the Power Dock:
 
@@ -129,7 +129,7 @@ The main differences are:
 
 # Using the Power Dock
 
-[//]: # (overview of what this section covers)
+<!-- [//]: # (overview of what this section covers) -->
 
 
 ## Three Different Operating Modes
