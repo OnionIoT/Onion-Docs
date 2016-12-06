@@ -7,7 +7,7 @@ order: 2
 ---
 
 
-## The Power Dock {power-dock}
+## The Power Dock {#power-dock}
 
 <!-- [//]: # (Brief overview on the Power Dock. Highlight the features such as battery management, battery recharge, mobility (completely wireless).) -->
 <!-- [//]: # (Briefly mention that the power dock is similar to but not the same as the expansion dock.) -->

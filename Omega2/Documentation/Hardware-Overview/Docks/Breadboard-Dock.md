@@ -7,7 +7,7 @@ order: 4
 ---
 
 
-## The Breadboard Dock
+## The Breadboard Dock {#breadboard-dock}
 
 <!-- // The Breadboard Dock is the most no-frills dock, it provides power to the Omega and allows it to be plugged in to a breadboard. The pins on the breadboard are mapped 1-to-1 as on the Omega. -->
 
