@@ -7,7 +7,7 @@ order: 4
 ---
 
 
-## Developing using the Console
+## Developing using the Console {#developing-using-the-console}
 
 The Console is a powerful tool that is easily accessible through your browser. The Console gives you access to a terminal connected to your Omega, and an editor that allows you to directly access the Omega's filesystem!
 
@@ -69,7 +69,7 @@ Copy the following command and paste it into your Terminal:
 opkg update && opkg install kmod-ledtrig-morse
 ```
 
-To paste into the Terminal app, use `ctrl+shift+v`
+To paste into the Terminal app, use `ctrl+shift+v` or `cmd+shift+v` on a MAC
 
 Once this is done, a kernel module that can translate text to Morse code and blink the LEDs is automatically installed.  But you still need to tell the kernel which LED you want to blink.  The kernel exposes a lot of hardware status and configuration options through a virtual filesystem under `/sys`.  (I.e. the files under `/sys` aren't *actually* files, but they look and act like files to make it very easy to access them from the command line and in scripts or programs.)
 
@@ -120,6 +120,12 @@ echo default-on > /sys/class/leds/onion\:amber\:system/trigger
 
 ### Writing a Shell Script in the Editor App
 
+A Unix Shell is an interpreter that reads commands from the command-line and executes them. A Shell Script is a way of coding using those basic commands, to create a more complex program. Essentially, we are going to use the same basic commands from the last section to create a program that will read a message and then blink that message in morse code.
+
+Create a file called `blink` in the root directory using the Editor App.
+
+Copy the code below, and save the file:
+
 ```
 #!/bin/sh
 
@@ -149,6 +155,34 @@ _UserInputMain () {
 
 ```
 
+You are now ready to send convert text to morse code!
+
+### Running your Script in the Terminal App
+
+To run your Script, open the Terminal App once again, and log in if your session was disconnected.
+
+Then, enter the following command to run your script:
+
+```
+sh /root/morse
+```
+
+Enter a message that you would like to blink in morse code:
+
+```
+root@Omega-2757:~# sh /root/morse
+Onion Omega Morse Code
+
+Enter a message to blink in morse code!
+
+Message: <YOUR MESSAGE HERE>
+```
+
+Once you're done, you can set the blinking back to default-on with the following command:
+
+```
+echo default-on > /sys/class/leds/onion\:amber\:system/trigger
+```
 
 
 <!-- // this article will show how you can use the console to develop code for the Omega using the Omega (pls reword so this makes sense)

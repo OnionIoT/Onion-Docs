@@ -22,11 +22,11 @@ In computing terms, a daemon is a program that runs continuously in the backgrou
 
 ### Using `cron`
 
+To learn how to use `cron`, we're going to first write a script that we'll use to execute on a schedule. If you already have a command you'd like to run you can skip the "Writing a Shell Script" subsection.
 
-#### Writing a Script for `cron`
-// TODO: change the heading title
+#### Writing a Shell Script
 
-We're going to need write a script so that we have something that we want to run on an interval. Let's write a small shell script that will flash your Expansion Dock's RGB LED red, then green, then blue, and just in case you miss it the first time, it'll do it once more after waiting for 5 seconds, and then shut off the RBG LED.
+Let's write a small shell script that will flash your Expansion Dock's RGB LED red, then green, then blue, and just in case you miss it the first time, it'll do it once more after waiting for 5 seconds, and then shut off the RBG LED.
 
 Here's what that looks like:
 
@@ -43,10 +43,10 @@ expled 0x000000 #Off
 ```
 
 
-In the `/root` directory, create a file using `vi rgb-led` and paste the code above into the newly created file. Save and exit the file, and from your command line, enter the following command:
+In the command-line, create a file using `vi /root/rgb-led` and paste the code above into the newly created file. Save and exit the file, and from your command line, enter the following command:
 
 ```
-chmod +x rgb-led
+chmod +x /root/rgb-led
 ```
 
 This command will allow your script to be run as a program.
@@ -90,16 +90,21 @@ So let's break down how `cron` will read the `crontab` file!
 
 *NOTE: For days of the week, `cron` treats `0` as `Sunday` and setting days of the week to `7` will make you command run every day.*
 
-// TODO: Add ranges for each column
-// TODO: mention that it's a 24 hour clock
+
+The ranges of each value (min, hour, etc) are as follows:
+
+|min| hour | date |month |day of the week |
+|---| --- | --- |--- |--- | --- |
+|0-59 | 0-23 | 1-31 | 1-12 | 0-6 |
+
+*NOTE: The time is written as a 24 hour clock, meaning that 14h is 2:00PM.*
 
 
 **Your `crontab` file must end with a comment in order for `cron` to run**
 
-For more information on `cron` including more rules and references you can check out [OpenWRT's guide to Cron](https://wiki.openwrt.org/doc/howto/cron).
+For more information on `cron` including more rules and references, you can check out [OpenWRT's guide to Cron](https://wiki.openwrt.org/doc/howto/cron).
 
-#### Saving Output of a `cron` Job to a File
-// apply the same update as above (put thing into a script)
+#### Saving Output of a `cron` Job to a File (Optional)
 
 When `cron` runs, you won't be able to see any output from your file. You can modify your script or program to save all output to a file rather than print it in the command line, or you can pipe the output of your command to a specific destination with a simple addition to your `crontab` file.
 
@@ -108,6 +113,9 @@ The syntax for piping your command to a file is as follows:
 ```
 <COMMAND> >> <OUTPUT FILE> 2>&1
 ```
+
+> The `>>` appends the output of your command to the output file. You can use `>` to overwrite the output instead. The `2>&1` is an indicator to the shell script that you want to include the error messages into the output of your command. By default, only standard output is piped.
+
 
 You can apply this to a `cron` command quite easily.
 
@@ -130,6 +138,30 @@ From the earlier example, that would look like:
 Looking at `/tmp/output.txt` we see:
 
 ```
+Setting LEDs to: ff0000
+Duty: 0 100 100
+> Set GPIO16: 1
+> Set GPIO15: 1
+Setting LEDs to: 00ff00
+Duty: 100 0 100
+> Set GPIO17: 1
+> Set GPIO15: 1
+Setting LEDs to: 0000ff
+Duty: 100 100 0
+> Set GPIO17: 1
+> Set GPIO16: 1
+Setting LEDs to: ff0000
+Duty: 0 100 100
+> Set GPIO16: 1
+> Set GPIO15: 1
+Setting LEDs to: 00ff00
+Duty: 100 0 100
+> Set GPIO17: 1
+> Set GPIO15: 1
+Setting LEDs to: 0000ff
+Duty: 100 100 0
+> Set GPIO17: 1
+> Set GPIO16: 1
 Setting LEDs to: 000000
 Duty: 100 100 100
 > Set GPIO17: 1
@@ -137,16 +169,42 @@ Duty: 100 100 100
 > Set GPIO15: 1
 ```
 
-and if we run the command `expled 0x000000` in the command line we should see the same output:
+and if we run our script `/root/rgb-led` in the command line we should see the same output:
 
 ```
-root@Omega-2757:/tmp# expled 0x000000
+root@Omega-2757:/# /root/rgb-led
+Setting LEDs to: ff0000
+Duty: 0 100 100
+> Set GPIO16: 1
+> Set GPIO15: 1
+Setting LEDs to: 00ff00
+Duty: 100 0 100
+> Set GPIO17: 1
+> Set GPIO15: 1
+Setting LEDs to: 0000ff
+Duty: 100 100 0
+> Set GPIO17: 1
+> Set GPIO16: 1
+Setting LEDs to: ff0000
+Duty: 0 100 100
+> Set GPIO16: 1
+> Set GPIO15: 1
+Setting LEDs to: 00ff00
+Duty: 100 0 100
+> Set GPIO17: 1
+> Set GPIO15: 1
+Setting LEDs to: 0000ff
+Duty: 100 100 0
+> Set GPIO17: 1
+> Set GPIO16: 1
 Setting LEDs to: 000000
 Duty: 100 100 100
 > Set GPIO17: 1
 > Set GPIO16: 1
 > Set GPIO15: 1
 ```
+
+You can go back into the `crontab` and comment out the line that runs every minute to stop your Expansion Dock RGB LED from blinking.
 
 
 ### Troubleshooting

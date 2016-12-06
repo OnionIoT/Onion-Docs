@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 2
 ---
 
-## The Omega's IP Address {finding-omega-ip-address}
+## The Omega's IP Address {#finding-omega-ip-address}
 
 <!-- // brief overview of what an IP address is -->
 
@@ -25,22 +25,22 @@ More commonly, you'll see the leading 0's being cut off resulting in a shorter I
 You may want to know your Omega's IP address if you don't have Apple's Bonjour Service to find the hostname `omega-ABCD.local`, or if you want to guarantee that there won't be a mix-up between hostnames (IP addresses are unique, hostnames are not).
 
 
-// TODO: mention that there's a difference when looking at the ip addr when connected to a network and when looking at the omega's AP
+> Because IP addresses are specific to the network to which you are connected, the Omega has two main IP addresses: one for the wireless connection, and one for it's own Access Point. To learn more about the Omega's various connections you can read our [article on the Omega and Wireless](#the-omega-and-wireless-connectivity)
 
 <!-- // some examples as to why you might want to know the ip address -->
 
 ### Finding the IP Address when Connected to a WiFi network
 
-// TODO: say there's two methods, briefly outline each
+
+We will outline two methods for you to find the IP Address of your Omega when connected to an existing WiFi network. These use two different commands, but they yield the same results. The first command is `ifconfig`, a common Linux utility for monitoring network interfaces. The second command is `ubus`, a special OpenWRT command that provides communication between various daemons and applications.
 
 
 #### Finding your Omega's IP Address with `ifconfig`
 
-You can use the `ifconfig` command to get information about all the network interfaces on your Omega. We are going to use it to get the IP address of the `apcli0` interface, which is used to connect to the internet. Type `ifconfig` to see the full blah balh blah // TODO: make this a real sentence
+You can use the `ifconfig` command to get information about all the network interfaces on your Omega. We are going to use it to get the IP address of the `apcli0` interface, which is used to connect to the internet. Type `ifconfig` to see the full list of interfaces and the information pertaining to them.
 
 
-// TODO: introduce how grep makes your life better in every way possible
-Type the following command to see the IP address of the `apcli0` interface:
+To narrow down your result to just the IP address we can use `grep`. The `grep` command allows you to isolate your output based on keywords or patterns. We are going to isolate the address line so that we have easy access to the IP address of our Omega with the following command:
 
 ```
 ifconfig | grep apcli0 -A 1 | grep inet
@@ -70,13 +70,13 @@ This will show you all the information about your Omega's `apcli0` device, which
 To narrow down your result to just the IP address we can use `grep`. The `grep` command allows you to isolate your output based on keywords or patterns. We are going to isolate the address line so that we have easy access to the IP address of our Omega with the following command:
 
 ```
-ubus call network.interface.wwan status | grep -w "address" | grep -v "-"
+ubus call network.interface.wwan status | grep -w "address" | grep -v -
 ```
 
 The result should look similar to this:
 
 ```
-root@Omega-2757:/# ubus call network.interface.wwan status | grep -w address | grep -v "-"
+root@Omega-2757:/# ubus call network.interface.wwan status | grep -w address | grep -v -
                         "address": "192.168.1.111",
 ```
 
@@ -89,18 +89,18 @@ My Omega's IP address is `192.168.1.111`. I can connect to my Omega with this IP
 
 ### Finding the IP Address of the Omega on it's own AP
 
-// TODO: say there's two methods, briefly outline each, mention that this is change-able
+We will outline two methods for you to find the IP Address of your Omega on it's own AP. These use two different commands, but they yield the same results. The first command is `ifconfig`, a common Linux utility for monitoring network interfaces. The second command is `ubus`, a special OpenWRT command that provides communication between various daemons and applications.
 
-// TODO: mention the fact that devices connecting to this network will have an address in the range 192.168.3.XYZ
 
-// TRANSPLANTED:
-Your Omega also has a designated IP Address on it's own Access Point network. If you connect to your Omega's WiFi (connecting to the network called `Omega-ABCD`), it will have it's own IP address. The Omega's IP Address on it's own AP is `192.168.3.1` by default.
+If you connect to your Omega's WiFi (connecting to the network called `Omega-ABCD`), it will have it's own IP address. The Omega's IP Address on it's own AP is `192.168.3.1` by default, but we'll go over how you can change this.
 
 #### Finding the Omega's IP address on it's own AP Using `ifconfig`
 
-You can use the `ifconfig` command to get information about all the network interfaces on your Omega. We are going to use it to get the IP address of the `br-wlan` interface, which handles the Omega's AP. Type the following command to see the IP address of the `br-wlan` interface:
+You can use the `ifconfig` command to get information about all the network interfaces on your Omega. We are going to use it to get the IP address of the `br-wlan` interface, which handles the Omega's AP. Type `ifconfig` to see the full list of interfaces and the information pertaining to them.
 
-// TODO: gently introduce grep like above
+
+To narrow down your result to just the IP address we can use `grep`. The `grep` command allows you to isolate your output based on keywords or patterns. We are going to isolate the address line so that we have easy access to the IP address of our Omega with the following command:
+
 
 ```
 ifconfig | grep br-wlan -A 1 | grep inet
@@ -117,15 +117,13 @@ And your IP Address is what follows the `inet addr:`. My Omega's IP address is `
 
 #### Finding the Omega's IP address on it's own AP Using `ubus`
 
-// TODO: intro sentence
+You can use the `ubus` command to find information about your network devices. Type the following to bring up the full status of your wireless wide area network (WWAN):
 
 ```
 ubus call network.interface.wlan status
 ```
 
-This will show you all the information about your Omega's `br-wlan` device, which handles the Omega's AP.
-
-We can narrow this down further using `grep`. `grep` allows you to isolate keywords or patterns in your output. We're going to use it to isolate the IP Address of our Omega.
+We can narrow this down further using `grep`. The `grep` command allows you to isolate keywords or patterns in your output. We're going to use it to isolate the IP Address of our Omega.
 
 ```
 ubus call network.interface.wlan status | grep -A 2 ipv4 | grep -w address | grep -v -
@@ -143,15 +141,35 @@ Here we see that on my Omega's Access Point, the IP address designated to the Om
 
 ### Changing the Omega's IP Address on the AP network
 
-/etc/config/network
 
-config interface 'wlan'
-        option type 'bridge'
-        option ifname 'eth0.1'
-        option proto 'static'
-        option ipaddr '192.168.3.1' // change this dude
-        option netmask '255.255.255.0'
-        option ip6assign '60'
+To change the Omega's IP address we can use `uci`, a command-line tool that allows us to edit configuration files with simple commands. The command to modify the IP address of your Omega is the following:
 
-- use uci to change it
-- gotta restart network for it to take effect
+```
+uci set network.wlan.ipaddr=<IP ADDRESS>
+```
+
+For example, if we wanted to change the Omega's IP Address to 192.168.3.50 we would enter the following:
+
+```
+uci set network.wlan.ipaddr=192.168.3.50
+```
+
+Now once we have set our IP address, we'll want to save this. The command to save a setting is the following:
+
+```
+uci commit <CONFIG>
+```
+
+The config we're changing is `network`, so we'll enter the following to save our changes:
+
+```
+uci commit network
+```
+
+Now once you've saved your settings, you'll need to restart the network to apply the changes with this command:
+
+```
+/etc/init.d/network restart
+```
+
+And that's all there is to it. Your Omega's new IP address on its Access Point is now `192.168.3.50`. You can change this back to the default in the same way that you modified it.

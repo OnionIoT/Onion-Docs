@@ -13,13 +13,18 @@ This article will demonstrate how you can have your Omega run commands on boot. 
 
 ### Implementation
 
-#### Writing a Script to Run on Boot
+We're going to start by writing a script that we'll use in our tutorial. If you already have a script or a command you'd like to run on boot you can skip the "Writing a Shell Script" step.
 
-We'll first need to write a script that will run on boot. Let's create a file in the `/root` directory and call it `rgb-led`:
+#### Writing a Shell Script
+
+Let's create our script in the `/root` directory and call it `rgb-led`:
 
 ```
 vi /root/rgb-led
 ```
+
+> The /root directory is the best place to put your projects to ensure they don't get deleted when you update the firmware.
+<!-- For more on updating the Omega you can read our [Guide to Updating the Omega](#updating-the-omega) -->
 
 Now let's write a small shell script that will flash your Expansion Dock's RGB LED red, then green, then blue, and just in case you miss it the first time, it'll do it once more after waiting for 5 seconds, and then shut off the RBG LED.
 
@@ -45,14 +50,14 @@ Next, from your command-line, enter the following:
 chmod +x /root/rgb-led
 ```
 
-This command will allow your script to be run as a program.
-
+The command above will allow your script to be executed by entering `/root/rgb-led`.
 
 
 #### Editing the `/etc/rc.local` File
 
-The Omega reads the commands to run on boot from the `/etc/rc.local` file.
-// TODO: find a way to add emphasis to this line, since it's the focal point of the tutorial
+The `/etc/rc.local` file is a process that runs on startup.
+
+**When your Omega boots, it will read commands from the `/etc/rc.local` file, and execute them.**
 
  Type `vi /etc/rc.local` and you'll see the contents of the file:
 
@@ -88,9 +93,7 @@ The next thing we add is the command we want to run:
 Save and exit your file, and reboot your Omega to see the effects!
 
 
-#### Text Output
-
-// TODO: mention that this is optional
+#### Saving the Output of your `rc.local` Commands (Optional)
 
 When `/etc/rc.local` runs on boot, you won't be able to see any output from your file. You may need to see output for debugging purposes to see where your code is failing.
 
@@ -99,10 +102,11 @@ You can pipe the output of your command to a specific destination with a simple 
 The syntax for piping your command to a file is as follows:
 
 ```
-<COMMAND> >> <<OUTPUT FILE>> 2>&1
+<COMMAND> >> <OUTPUT FILE> 2>&1
 ```
 
-// TODO: explain what 2>&1 means
+> The `>>` appends the output of your command to the output file. You can use `>` to overwrite the output instead. The `2>&1` is an indicator to the shell script that you want to include the error messages into the output of your command. By default, only standard output is piped.
+
 
 To apply this to your command on boot, simply edit the `/etc/rc.local` file as such:
 
@@ -119,23 +123,82 @@ exit 0
 Looking at `/tmp/output.txt` we see:
 
 ```
+Setting LEDs to: ff0000
+Duty: 0 100 100
+> Set GPIO16: 1
+> Set GPIO15: 1
+Setting LEDs to: 00ff00
+Duty: 100 0 100
+> Set GPIO17: 1
+> Set GPIO15: 1
+Setting LEDs to: 0000ff
+Duty: 100 100 0
+> Set GPIO17: 1
+> Set GPIO16: 1
+Setting LEDs to: ff0000
+Duty: 0 100 100
+> Set GPIO16: 1
+> Set GPIO15: 1
+Setting LEDs to: 00ff00
+Duty: 100 0 100
+> Set GPIO17: 1
+> Set GPIO15: 1
+Setting LEDs to: 0000ff
+Duty: 100 100 0
+> Set GPIO17: 1
+> Set GPIO16: 1
 Setting LEDs to: 000000
 Duty: 100 100 100
 > Set GPIO17: 1
 > Set GPIO16: 1
 > Set GPIO15: 1
 ```
-and if we run the command `/root/rgb-led` in the command line we should see the same output:
+
+and if we run our script `/root/rgb-led` in the command line we should see the same output:
 
 ```
-root@Omega-2757:/tmp# expled 0x000000
+root@Omega-2757:/# /root/rgb-led
+Setting LEDs to: ff0000
+Duty: 0 100 100
+> Set GPIO16: 1
+> Set GPIO15: 1
+Setting LEDs to: 00ff00
+Duty: 100 0 100
+> Set GPIO17: 1
+> Set GPIO15: 1
+Setting LEDs to: 0000ff
+Duty: 100 100 0
+> Set GPIO17: 1
+> Set GPIO16: 1
+Setting LEDs to: ff0000
+Duty: 0 100 100
+> Set GPIO16: 1
+> Set GPIO15: 1
+Setting LEDs to: 00ff00
+Duty: 100 0 100
+> Set GPIO17: 1
+> Set GPIO15: 1
+Setting LEDs to: 0000ff
+Duty: 100 100 0
+> Set GPIO17: 1
+> Set GPIO16: 1
 Setting LEDs to: 000000
 Duty: 100 100 100
 > Set GPIO17: 1
 > Set GPIO16: 1
 > Set GPIO15: 1
 ```
+
+You can go back into the `/etc/rc.local` file and comment out the line that runs the script to stop the Expansion Dock RGB LED from blinking.
 
 ### Troubleshooting
 
 If your commands don't seem to be working on boot, try copying them directly from your `/etc/rc.local` file and running them manually.
+
+#### Infinite Loop Code
+
+If your command runs continuously and never reaches the `exit 0` line in the `/etc/rc.local` file, then your Omega will not boot. To avoid this happening, make sure you fork the process by adding an ampersand to the end of the command:
+
+```
+<YOUR COMMAND TO RUN> &
+```

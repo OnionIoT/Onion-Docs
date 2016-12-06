@@ -26,7 +26,9 @@ The Mini Dock is approximately the exact same size as the Omega. It does not hav
 
 <!-- //NOTE: CAN LARGELY COPY FROM THE EXPANSION DOCK ARTICLE! -->
 
-The Mini Dock is tiny. It is approximately 2in (5cm) long, and 1in (2.5cm) wide. // TODO: put in accurate dimensions
+The Mini Dock is tiny. It is approximately 4.3cm (1.7in) long, and 2.7cm (1.07in) wide.
+
+The Mini Dock is powered by the Micro-USB port that supplies 5V to the Dock. This voltage is stepped down to the required 3.3V required to power the Omega, and also provides 5V to the USB Host port
 
 The Mini Dock allows for easy communication via the USB-to-Serial chip located in the center of the board.
 
@@ -77,7 +79,7 @@ The USB-to-Serial chip allows for a serial connection between the Omega and a co
 <!-- [//]: # (inform them of what the power switch will do: cut power to the Omega but keep the USB to serial chip running) -->
 <!-- [//]: # (have illustrations showing the ON and OFF positions) -->
 
-The Power Switch is located next to the Micro-USB port on the Mini Dock. This switch will cut power to the Omega, but not the serial chip. This means that you can still see output on your terminal if you are connected serially to the Omega even if the Omega is turned off.
+The Power Switch is located next to the Micro-USB port on the Mini Dock. This switch will cut power to the Omega, but not the serial chip. This means your computer will still detect a USB serial device, but will not be able to communicate with the Omega.
 
 
 #### Reset button

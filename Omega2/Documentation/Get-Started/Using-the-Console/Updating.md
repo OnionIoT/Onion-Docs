@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 4
 ---
 
-## Updating the Omega using the Console
+## Updating the Omega using the Console {#updating-the-omega-using-console}
 
 You can update your Omega's firmware in the Console with the Settings app. Open the Settings app, and click on the `Firmware Upgrade` tab.
 

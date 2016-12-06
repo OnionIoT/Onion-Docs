@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-## Connecting to a WiFi Network with a Captive Login Portal {omega-captive-login}
+## Connecting to a WiFi Network with a Captive Login Portal {#omega-captive-login}
 
 <!-- // can base this heavily on the existing article -->
 
