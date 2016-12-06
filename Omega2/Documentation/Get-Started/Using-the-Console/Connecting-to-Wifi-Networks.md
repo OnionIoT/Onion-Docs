@@ -9,13 +9,14 @@ order: 2
 
 ## Connecting to WiFi {#connecting-to-wifi-using-console}
 
+<!-- // TODO: update this after batch 3 or 4 -->
 Upon logging into the Console, the first app you'll see is the Settings App. Through this app you can monitor your Omega's status, change the Omega's hostname and password, and even WiFi settings. This guide will show you how you can manage your WiFi networks through the console.
 
 ### Managing your Wifi Networks
 
 <!-- // explanation of how wifimanager works (can have many configured networks, and it will connect to the available ) -->
 
-The Omega's network manager, `wifimanager`, works by checking all configured networks, and connecting to the available network with the highest priority. The WiFi tab in the Settings App gives you a nice visual representation of what that looks like.
+The Omega's network manager works by checking all configured networks, and connecting to the available network with the highest priority. The WiFi tab in the Settings App gives you a nice visual representation of what that looks like.
 
 
 Click on the WiFi settings tab to edit your network connections.
@@ -56,7 +57,9 @@ To remove a network, click the x button. If you delete your enabled network, you
 
 #### Reordering Network Priorities
 
-To shift the priority of a network up or down, click the arrow buttons. It is important to order your networks by preference so that `wifimanager` will connect to your preferred network quickly.
+// TODO: add a blurb about what network priority actually means
+
+To shift the priority of a network up or down, click the arrow buttons. It is important to order your networks by preference so that the network manager will connect to your preferred network quickly.
 
 The move-up priority button will increase the priority of a network, making it a more preferred network.
 

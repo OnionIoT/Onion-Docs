@@ -63,13 +63,9 @@ username: root
 password: onioneer
 ```
 
-Copy the following command and paste it into your Terminal:
+<!-- To paste into the Terminal app, use `ctrl+shift+v` or `cmd+shift+v` on a MAC -->
 
-```
-opkg update && opkg install kmod-ledtrig-morse
-```
-
-To paste into the Terminal app, use `ctrl+shift+v` or `cmd+shift+v` on a MAC
+// TODO: now that we're not installing the kernel module, this paragraph needs to be updated
 
 Once this is done, a kernel module that can translate text to Morse code and blink the LEDs is automatically installed.  But you still need to tell the kernel which LED you want to blink.  The kernel exposes a lot of hardware status and configuration options through a virtual filesystem under `/sys`.  (I.e. the files under `/sys` aren't *actually* files, but they look and act like files to make it very easy to access them from the command line and in scripts or programs.)
 
@@ -120,9 +116,12 @@ echo default-on > /sys/class/leds/onion\:amber\:system/trigger
 
 ### Writing a Shell Script in the Editor App
 
+// TODO: add a block diagram of how the script works, add brief explanation of the script to go along with the diagram
+// TODO: change the script to take in a command line argument
+
 A Unix Shell is an interpreter that reads commands from the command-line and executes them. A Shell Script is a way of coding using those basic commands, to create a more complex program. Essentially, we are going to use the same basic commands from the last section to create a program that will read a message and then blink that message in morse code.
 
-Create a file called `blink` in the root directory using the Editor App.
+Create a file called `morse` in the root directory using the Editor App.
 
 Copy the code below, and save the file:
 
@@ -183,6 +182,8 @@ Once you're done, you can set the blinking back to default-on with the following
 ```
 echo default-on > /sys/class/leds/onion\:amber\:system/trigger
 ```
+
+// TODO: add a gif of morse blinking
 
 
 <!-- // this article will show how you can use the console to develop code for the Omega using the Omega (pls reword so this makes sense)

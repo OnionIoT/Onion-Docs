@@ -8,27 +8,26 @@ order: 4
 
 ## Updating the Omega using the Console {#updating-the-omega-using-console}
 
-You can update your Omega's firmware in the Console with the Settings app. Open the Settings app, and click on the `Firmware Upgrade` tab.
+You can update your Omega's firmware through the Settings app. Open the Settings app, and click on the `Firmware Upgrade` tab.
 
 This page will display your Omega's firmware information and will notify you of available upgrades.
 
 
 ### The Omega Firmware
-// change this title
 
 // add descriptions of the difference between minor and major version updates
 
 The Omega firmware can be in three different states:
 
-Up to date:
+**Up to date:**
 
 Your Omega is on the latest *stable* firmware version and requires no further action.
 
-Minor Version Available:
+**Minor Version Available:**
 
 Your Omega is on a previous build of the firmware and might be missing some minor features or bug fixes. You can choose to upgrade your firmware to acquire these changes.
 
-Major Version Available:
+**Major Version Available:**
 
 Your Omega is on a previous version and is potentially missing core features. It is highly recommended to upgrade your firmware to acquire these features.
 
@@ -42,7 +41,7 @@ If your Omega is up to date with the latest firmware, you will see a page simila
 
 You'll see that the firmware versions match up exactly in terms of major version, minor version, and build number.
 
-In this state, your Upgrade Button will not be active and no further action is required
+In this state, your Upgrade Button will not be active and no further action is required!
 
 #### Minor Version Available!
 
@@ -63,6 +62,8 @@ Once the download is complete a notification will pop up, and the upgrade will b
 
 **Do not turn off your Omega during this time.** It will reboot automatically with the latest features.
 
+<!-- // TODO: later: add info about flashing led -->
+
 #### Major Version Available!
 
 If a major version is available then an upgrade is required. Your page will look similar to this:
@@ -79,3 +80,7 @@ Click on the "Upgrade Major Version" button and your new firmware will begin dow
 
 Once the download is complete a notification will pop up, and the upgrade will begin:
 ![update-download-complete](../img/updating-download-complete.png)
+
+**Do not turn off your Omega during this time.** It will reboot automatically with the latest features.
+
+<!-- // TODO: later: add info about flashing led -->
