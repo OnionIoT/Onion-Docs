@@ -14,7 +14,12 @@ The `Wi-Fi AP Settings` tab in the Settings app is used to configure your Omega'
 
 On this page you can change your Omega's SSID, password, encryption type, and even the IP Address. You can also enable or disable the access point with the checkbox located at the top.
 
+|Setting | Meaning |
+| --- | --- |
+| Enable AP Mode | Enables the Omega's Access Point when checked|
+| AP Network (SSID) | The Omega's Access Point SSID |
+| Security | The encryption type for the Omega's Access Point |
+| AP Password | The password for accessing the Omega's Access Point |
+| IP Address | The Omega's IP Address on the Access Point |
+
 For more information on the Omega's WiFi and AP settings, check out this [guide to the Omega and Wireless](../../Doing-Stuff/Connectivity/The-Omega-and-Wireless)
-
-
-// TODO: list out what you can change and what each one means

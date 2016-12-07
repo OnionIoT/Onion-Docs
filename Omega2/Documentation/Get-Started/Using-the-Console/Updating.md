@@ -15,19 +15,17 @@ This page will display your Omega's firmware information and will notify you of 
 
 ### The Omega Firmware
 
-// add descriptions of the difference between minor and major version updates
-
 The Omega firmware can be in three different states:
 
-**Up to date:**
+***Up to date:***
 
 Your Omega is on the latest *stable* firmware version and requires no further action.
 
-**Minor Version Available:**
+***Minor Version Available:***
 
 Your Omega is on a previous build of the firmware and might be missing some minor features or bug fixes. You can choose to upgrade your firmware to acquire these changes.
 
-**Major Version Available:**
+***Major Version Available:***
 
 Your Omega is on a previous version and is potentially missing core features. It is highly recommended to upgrade your firmware to acquire these features.
 

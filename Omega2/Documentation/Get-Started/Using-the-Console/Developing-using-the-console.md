@@ -23,7 +23,32 @@ In this tutorial we're going to write a script that will blink the Omega's LED i
 | Required Materials: | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li></ul> |
 
 
-### Installing the Editor and Terminal Apps
+### Installing additional apps
+
+<!-- // Mention the pre-installed apps. Show how to install additional apps through the console or through the command line -->
+
+The Console comes with pre-installed apps that can be used alongside various expansions, like the OLED Expansion Control app.
+These apps are available immediately and don't require an installation.
+
+In an effort to minimize the amount of space taken up by the Console, the Editor, Terminal, and Webcam apps are **not** installed by default and require installation by the user.
+
+Click the icon of the app and you'll be greeted with an install page:
+![install-page](../img/installing-the-console-install-page.png)
+
+Click the install button and wait for the installation to complete.
+
+![installing-app](../img/installing-the-console-installing.png)
+
+Once the app is installed, you'll be notified.
+
+![installed-app](../img/installing-the-console-installed.png)
+
+Refresh the page and your app will be available for use.
+
+![app-ready](../img/installing-the-console-app-ready.png)
+
+
+#### Installing the Editor and Terminal Apps
 
 To install the Editor App, click on the Editor icon in the taskbar. You'll see a page that looks like this:
 
@@ -65,9 +90,10 @@ password: onioneer
 
 <!-- To paste into the Terminal app, use `ctrl+shift+v` or `cmd+shift+v` on a MAC -->
 
-// TODO: now that we're not installing the kernel module, this paragraph needs to be updated
 
-Once this is done, a kernel module that can translate text to Morse code and blink the LEDs is automatically installed.  But you still need to tell the kernel which LED you want to blink.  The kernel exposes a lot of hardware status and configuration options through a virtual filesystem under `/sys`.  (I.e. the files under `/sys` aren't *actually* files, but they look and act like files to make it very easy to access them from the command line and in scripts or programs.)
+
+
+The Omega comes ready with a kernel module that can translate text to Morse code and blink the LEDs, but you'll need to tell the kernel which LED you want to blink.  The kernel exposes a lot of hardware status and configuration options through a virtual filesystem under `/sys`.  (I.e. the files under `/sys` aren't *actually* files, but they look and act like files to make it very easy to access them from the command line and in scripts or programs.)
 
 To tell the kernel that we are going to use the new Morse code module, set the LED trigger condition for the Onion system LED to `morse` by using the `echo` command to write the setting into the virtual file:
 
@@ -117,9 +143,8 @@ echo default-on > /sys/class/leds/onion\:amber\:system/trigger
 ### Writing a Shell Script in the Editor App
 
 // TODO: add a block diagram of how the script works, add brief explanation of the script to go along with the diagram
-// TODO: change the script to take in a command line argument
 
-A Unix Shell is an interpreter that reads commands from the command-line and executes them. A Shell Script is a way of coding using those basic commands, to create a more complex program. Essentially, we are going to use the same basic commands from the last section to create a program that will read a message and then blink that message in morse code.
+A Unix Shell is an interpreter that reads commands from the command-line and executes them. A Shell Script is a way of coding using those basic commands to create a more complex program. Essentially, we are going to use the same basic commands from the last section to create a program that will read a message and then blink that message in morse code.
 
 Create a file called `morse` in the root directory using the Editor App.
 
@@ -128,19 +153,11 @@ Copy the code below, and save the file:
 ```
 #!/bin/sh
 
-# main function to read user input
-_UserInputMain () {
-	echo "Onion Omega Morse Code"
-	echo ""
-	echo "Enter a message to blink in morse code!"
-	echo ""
-	echo -n "Message: "
-	read input
-
+_MorseMain () {
 
 	echo morse > /sys/class/leds/onion\:amber\:system/trigger
 	echo 100 > /sys/class/leds/onion\:amber\:system/delay
-	echo $input > /sys/class/leds/onion\:amber\:system/message
+	echo $* > /sys/class/leds/onion\:amber\:system/message
 }
 
 
@@ -148,13 +165,18 @@ _UserInputMain () {
 ########################
 ##### Main Program #####
 
-	_UserInputMain
+	_MorseMain $*
+
 
 	exit
 
 ```
 
-You are now ready to send convert text to morse code!
+Your Console should look something like this now:
+
+![developing-code-pic](../img/developing-pic-7.png)
+
+You are now ready to convert text to morse code!
 
 ### Running your Script in the Terminal App
 
@@ -163,27 +185,22 @@ To run your Script, open the Terminal App once again, and log in if your session
 Then, enter the following command to run your script:
 
 ```
-sh /root/morse
+sh /root/morse <YOUR MESSAGE HERE>
 ```
 
 Enter a message that you would like to blink in morse code:
 
 ```
-root@Omega-2757:~# sh /root/morse
-Onion Omega Morse Code
-
-Enter a message to blink in morse code!
-
-Message: <YOUR MESSAGE HERE>
+root@Omega-2757:~# sh /root/morse Hello, Onion
 ```
+
+<!-- TODO add a gif here -->
 
 Once you're done, you can set the blinking back to default-on with the following command:
 
 ```
 echo default-on > /sys/class/leds/onion\:amber\:system/trigger
 ```
-
-// TODO: add a gif of morse blinking
 
 
 <!-- // this article will show how you can use the console to develop code for the Omega using the Omega (pls reword so this makes sense)

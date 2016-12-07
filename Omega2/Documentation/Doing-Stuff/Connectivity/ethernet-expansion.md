@@ -95,7 +95,7 @@ Once you have saved and closed the file, run the following command to restart th
 Your Ethernet Expansion is now ready to supply an internet connection to your Omega. Simply plug an Ethernet cord into an Ethernet port on a modem or a router, and connect it to your Ethernet Expansion.
 
 
-### OTHER NETWORK STUFF
+### Going Further with the Ethernet Expansion
 
 If you don't have a router and need to supply internet to devices, the Ethernet Expansion can transform the Omega into a very effective router. For more on that you can read our [tutorial on transforming your Omega into a router](#omega-router)
 

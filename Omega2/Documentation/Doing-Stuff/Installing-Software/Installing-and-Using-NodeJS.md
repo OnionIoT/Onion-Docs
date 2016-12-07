@@ -54,10 +54,16 @@ This section will give you more information on how you can use NodeJS on the Ome
 // brief description of Blynk and how they're awesome
 // link to the main blynk article
 
+<!-- Not available on current firmware -->
+
+
 #### Using npm - Node Package manager
 
 // info on why npm is useful, note that packages that require compilation will not be installed
 // note how much space installing npm will take up
+
+<!-- Not available on current firmware -->
+
 
 ##### Installing npm
 

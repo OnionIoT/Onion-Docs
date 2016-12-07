@@ -16,7 +16,7 @@ Upon logging into the Console, the first app you'll see is the Settings App. Thr
 
 <!-- // explanation of how wifimanager works (can have many configured networks, and it will connect to the available ) -->
 
-The Omega's network manager works by checking all configured networks, and connecting to the available network with the highest priority. The WiFi tab in the Settings App gives you a nice visual representation of what that looks like.
+The Omega's network manager works by checking all configured networks, and connecting to the available network with the highest priority. The WiFi tab in the Settings App gives you a nice visual representation of what your network configurations look like.
 
 
 Click on the WiFi settings tab to edit your network connections.
@@ -57,7 +57,7 @@ To remove a network, click the x button. If you delete your enabled network, you
 
 #### Reordering Network Priorities
 
-// TODO: add a blurb about what network priority actually means
+The priority of a network decides the order in which the Omega's network manager will attempt to connect to the network. A network of higher priority will have a lower number. For example, your highest priority network has priority 1, and your Omega will attempt to connect to that network if it is available.
 
 To shift the priority of a network up or down, click the arrow buttons. It is important to order your networks by preference so that the network manager will connect to your preferred network quickly.
 
