@@ -6,19 +6,22 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-// refer to the existing article for guidance
+<!-- // refer to the existing article for guidance -->
 
 ## Installing and Using NodeJS {#using-nodejs}
 
-// brief intro to NodeJS (scripting language, easy to write)
+<!-- // brief intro to NodeJS (scripting language, easy to write) -->
 <!-- // make sure to mention that its v4.3.1 -->
 <!-- // make sure to note how much space installing node will take up -->
 
-The Omega supports NodeJS 4.3.1!
-Installing NodeJS will take about 8MB of space on the Omega.
+NodeJS is a scripting language that uses a JavaScript runtime for easy to write network applications. NodeJS takes advantage of a large amount of open-source modules developed by the community in order to further simplify your work.
+
+
+The Omega supports NodeJS 4.3.1 which can be installed on your Omega using `opkg`.
 
 ### Installing NodeJS
-// How to install NodeJS
+
+>*Installing NodeJS will take about 8.5MB of space on the Omega, so make sure you've got enough space before continuing.*
 
 Connect to the Omega's terminal using either SSH or Serial.
 
@@ -30,10 +33,16 @@ opkg install nodejs
 ```
 
 ### Using NodeJS
-// How to use NodeJS on the Omega.
+<!-- // How to use NodeJS on the Omega.
 
 // example of writing a basic python script that changes the trigger of the Omega LED
-// example of how to run it from the command line
+// example of how to run it from the command line -->
+
+You can use NodeJS the same way you would on a computer. Just write a script and execute it with the following command:
+
+```
+node /path/to/script.js
+```
 
 ### Going further
 
@@ -41,34 +50,36 @@ This section will give you more information on how you can use NodeJS on the Ome
 
 #### Learning NodeJS
 
-// link to nodejs documentation and guides for more info on getting started and learning NodeJS
+<!-- // link to nodejs documentation and guides for more info on getting started and learning NodeJS -->
 
-#### Omega NodeJS packages
+[NodeJS Documentation](https://nodejs.org/api/)
 
-// several nodejs packages created by onion to control omega Expansions
-// have a list of articles with links
-// note: we will create a fourth documentation section, reference, to house all of th e existing documentation
+<!-- #### Omega NodeJS packages -->
 
-#### Using Blynk with the Omega
+<!-- // several nodejs packages created by onion to control omega Expansions -->
+<!-- // have a list of articles with links -->
+<!-- // note: we will create a fourth documentation section, reference, to house all of th e existing documentation -->
 
-// brief description of Blynk and how they're awesome
-// link to the main blynk article
+<!-- #### Using Blynk with the Omega -->
 
-<!-- Not available on current firmware -->
-
-
-#### Using npm - Node Package manager
-
-// info on why npm is useful, note that packages that require compilation will not be installed
-// note how much space installing npm will take up
+<!-- // brief description of Blynk and how they're awesome -->
+<!-- // link to the main blynk article -->
 
 <!-- Not available on current firmware -->
 
 
-##### Installing npm
+<!-- #### Using npm - Node Package manager -->
 
-// steps to install npm
+<!-- // info on why npm is useful, note that packages that require compilation will not be installed -->
+<!-- // note how much space installing npm will take up -->
 
-##### Using npm
+<!-- Not available on current firmware -->
 
-// give an example of installing a package with npm
+
+<!-- ##### Installing npm -->
+
+<!-- // steps to install npm -->
+
+<!-- ##### Using npm -->
+
+<!-- // give an example of installing a package with npm -->

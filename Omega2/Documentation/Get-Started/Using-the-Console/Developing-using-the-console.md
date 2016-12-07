@@ -95,7 +95,7 @@ password: onioneer
 
 The Omega comes ready with a kernel module that can translate text to Morse code and blink the LEDs, but you'll need to tell the kernel which LED you want to blink.  The kernel exposes a lot of hardware status and configuration options through a virtual filesystem under `/sys`.  (I.e. the files under `/sys` aren't *actually* files, but they look and act like files to make it very easy to access them from the command line and in scripts or programs.)
 
-To tell the kernel that we are going to use the new Morse code module, set the LED trigger condition for the Onion system LED to `morse` by using the `echo` command to write the setting into the virtual file:
+To tell the kernel that we are going to use the Morse code module, set the LED trigger condition for the Onion system LED to `morse` by using the `echo` command to write the setting into the virtual file:
 
 ```
 echo morse > /sys/class/leds/onion\:amber\:system/trigger
@@ -150,13 +150,13 @@ Create a file called `morse` in the root directory using the Editor App.
 
 Copy the code below, and save the file:
 
-```
+```bash
 #!/bin/sh
 
 _MorseMain () {
 
 	echo morse > /sys/class/leds/onion\:amber\:system/trigger
-	echo 100 > /sys/class/leds/onion\:amber\:system/delay
+	echo 120 > /sys/class/leds/onion\:amber\:system/delay
 	echo $* > /sys/class/leds/onion\:amber\:system/message
 }
 

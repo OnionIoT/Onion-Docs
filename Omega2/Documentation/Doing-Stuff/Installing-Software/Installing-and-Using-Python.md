@@ -6,11 +6,11 @@ devices: [ Omega2 ]
 order: 2
 ---
 
-// refer to the existing article for guidance
+<!-- // refer to the existing article for guidance -->
 
 ## Installing and Using Python {#using-python}
 
-// brief intro to Python (scripting language, easy to write)
+<!-- // brief intro to Python (scripting language, easy to write) -->
 
 Python is a widely used scripting language that emphasizes code readability, and simplicity. It's an excellent language for developing programs on the Omega, and it's incredibly easy to get started.
 
@@ -20,7 +20,6 @@ Python is a widely used scripting language that emphasizes code readability, and
 The Omega supports Python, we recommend installing the light version to save on space.
 
 The light version takes about 2.5MB of space on the Omega, whereas the full version is approximately 6.3MB.
-<!-- needs verification -->
 
 >You can increase the storage space on your Omega using an external USB Storage device. For a guide on how to do that you can read our tutorial on [how to use a USB storage device on the Omega](#usb-article)
 
@@ -95,9 +94,15 @@ The Omega is just a Linux computer, so it's really easy to get started with Pyth
 
 #### Writing a Python Script on the Omega
 
-// example of writing a basic python script that changes the trigger of the Omega LED
-// example of how to run it from the command line
+<!-- // example of writing a basic python script that changes the trigger of the Omega LED -->
+<!-- // example of how to run it from the command line -->
 
+You can also write a Python Script on the Omega, and execute it using the following command:
+
+```
+python /path/to/your/script.py
+```
+>Note: If you installed python3, you would enter `python3` instead of `python`.
 
 ### Going Further
 
@@ -109,15 +114,15 @@ This section will give you more information on how you can use Python on the Ome
 [Python 2.7 documentation](https://docs.python.org/2/)
 [Python 3 documentation](https://docs.python.org/3/)
 
-#### Omega Python Modules
+<!-- #### Omega Python Modules -->
 
-// there are a bunch of python packages created by onion to control anything from omega gpios to Expansions
-// have a list of articles with links
-// note: we will create a fourth documentation section, reference, to house all of the existing documentation
+<!-- // there are a bunch of python packages created by onion to control anything from omega gpios to Expansions -->
+<!-- // have a list of articles with links -->
+<!-- // note: we will create a fourth documentation section, reference, to house all of the existing documentation -->
 
 
 
-### Using Pip - Python's package manager
+<!-- ### Using Pip - Python's package manager -->
 
-// it's possible to use pip to get additional python packages, just not for packages that need to be compiled
-// ask michael for implementation details
+<!-- // it's possible to use pip to get additional python packages, just not for packages that need to be compiled -->
+<!-- // ask michael for implementation details -->
