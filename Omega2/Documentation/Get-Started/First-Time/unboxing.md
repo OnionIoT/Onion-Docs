@@ -8,11 +8,11 @@ order: 2
 
 // LAZAR TO REWORK
 
-# Unboxing your Omega
+## Unboxing your Omega
 
-[//]: # (Prepare the Hardware)
+<!-- Prepare the Hardware -->
 
-## Preparing the Hardware
+### Preparing the Hardware
 
 **Step 1**: Unpack the Omega and Dock from the boxes.
 

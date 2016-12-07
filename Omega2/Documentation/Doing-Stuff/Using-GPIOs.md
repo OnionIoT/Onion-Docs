@@ -6,45 +6,112 @@ devices: [ Omega2 ]
 order: 1
 ---
 
-# Using the Omega's GPIOs
+## Using the Omega's GPIOs {#using-gpios}
 
-The Omega 2 has 5 dedicated and 12 multiplexed GPIO pins, which can be controlled via the linux files system. We have provided two command line programs to control Gpios, gpioctl and fast-gpio. The former is based on setting file values inside the `/sys/class/gpio` directory, the latter is based on setting gpio registers and is inherently a faster process.
+The Omega2 has twelve General-Purpose Input/Output pins (commonly referred to as GPIOs) that can be fully controlled by you, the user. GPIO pins on most chips generally go unused, but on the Omega, we can use these GPIOs to connect to, communicate with, and control external circuits. 
+
+On the Omega, We can control GPIO pins with a command-line tool known as `gpioctl`. This article will go through how `gpioctl` works, and the ways in which you can use it
 
 
-## From the Command Line
+<!-- TODO: add section describing GPIO in output direction with an example -->
 
-We have provided some examples on how to control gpios.
-[//]: # (explanation of how gpioctl works in the linux filesystem)
+<!-- TODO: add section describing gpio in input direction with an example -->
 
-### gpioctl
 
-To set a gpio high:
+### From the Command Line
+
+The command-line tool `gpioctl` comes pre-installed on your Omega. `gpioctl` is based on setting file values inside the `/sys/class/gpio` directory. This is made possible with `sysfs`, a pseudo file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
+
+
+The tool abstracts a lot of the more detailed commands from the user and simplifies them into easy-to-run commands that can control the GPIOs.
+
+
+
+#### Using `gpioctl`
+
+There are 7 options associated with `gpioctl`. The syntax of the command is as follows:
+
 ```
-gpioctl dirout-high gpio_number
-```
-
-To set a gpio low:
-```
-gpioctl dirout-low gpio_number
-```
-### fast-gpio
-
-To set a gpio high:
-```
-fast-gpio set gpio_number 1
-```
-
-To set a gpio low:
-```
-fast-gpio set gpio_number 0
+gpioctl <OPTION> <GPIO NUMBER>
 ```
 
 
-## Muxing the GPIOs
+Here are some examples on how you can use `gpioctl` to interact with the Omega's GPIOs.
 
-[//]: # (brief explanation of multiplexing)
 
-For robustness, gpios are multiplexed with other hardware pins. For example, when pins 4 & 5 are set to I2C mode they correspond to the Omega's SCL & SDA, and behave as GPIO when set to GPIO mode. To swap modes we have provided `omega2-ctrl` tool.
+
+
+##### Reading an Input
+
+If you want your Omega to interface with a switch or button then you'll need to use a GPIO to read the input of the switch.
+
+To read an input of a GPIO we'll need to first set the direction to input, connect an external circuit, and then read the value.
+
+
+To set the direction of GPIO1 to `in`, enter the follow command:
+
+```
+root@Omega-2757:/# gpioctl dirin 1
+Using gpio pin 1.
+```
+
+**Now** you're ready to connect an external circuit. You **will** damage your Omega if your GPIO is set to output and you try to drive current to the pin.
+
+Let's try reading GPIO1 with `get`:
+
+```
+root@Omega-2757:/# gpioctl get 1
+Using gpio pin 1.
+Pin 1 is LOW
+```
+
+Here we see that the GPIO pin is reading a digital `LOW` or `0`.
+
+
+##### Setting a Value
+
+You can configure your GPIO pin to supply power to a load with your Omega, for example, if you were powering an LED.
+
+We first set a GPIO pin's direction via the `dirout` command:
+
+```
+root@Omega-2757:/# gpioctl dirout 1
+Using gpio pin 1.
+```
+
+
+We then use the `dirout-high` option, which sets the GPIO to `HIGH` or `1`:
+
+```
+root@Omega-2757:/# gpioctl dirout-high 1
+Using gpio pin 1.
+root@Omega-2757:/# gpioctl get 1
+Using gpio pin 1.
+Pin 1 is HIGH
+```
+
+
+Or we use the `dirout-low` option, which sets the value of the GPIO to `LOW` or `0`:
+
+```
+root@Omega-2757:/# gpioctl dirout-low 1
+Using gpio pin 1.
+root@Omega-2757:/# gpioctl get 1
+Using gpio pin 1.
+Pin 1 is LOW
+```
+
+> You can use the `gpioctl get <PIN>` command to read a pin regardless of its direction.
+
+
+### Multiplexed GPIOs
+
+Multiplexed GPIOs are pins that are given a special function to carry out, as opposed to being unused pins. For example, the UART pins are designated as UART, but are multiplexed so that you can designate and use them as GPIO pins when you want. This is used to incorporate the largest number of peripherals in the smallest possible package.
+
+![omega2-pinout-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
+
+You can use the `omega2-ctrl` tool to change the function of your GPIOs
+
 
 To get the current mode of the Omega's two pins, use the command:
 
@@ -52,16 +119,68 @@ To get the current mode of the Omega's two pins, use the command:
 omega2-ctrl gpiomux get
 ```
 
-[//]: # (usually useful to display example output, breifly explain it)
+and you'll be given a list as a result:
 
-To set a particular package of hardware pins to a specified mode, use the following command:
+```
+root@Omega-2757:/# omega2-ctrl gpiomux get
+Group i2c - [i2c] gpio
+Group uart0 - [uart] gpio
+Group uart1 - [uart] gpio
+Group uart2 - [uart] gpio pwm
+Group pwm0 - [pwm] gpio
+Group pwm1 - [pwm] gpio
+Group refclk - refclk [gpio]
+Group spi_s - spi_s [gpio]
+Group spi_cs1 - [spi_cs1] gpio refclk
+Group i2s - i2s [gpio] pcm
+Group ephy - [ephy] gpio
+Group wled - wled [gpio]
+```
+
+This list gives you the groups of multiplexed pins available, and their modes. The current mode for each group is indicated with the `[]`.
+
+Let's examine the UART1 line:
+
+```
+Group uart1 - [uart] gpio
+```
+
+Here we see the group is `uart1`, and the available modes are `[uart] gpio`, with the current mode being `[uart]`.
+
+#### Changing the GPIO Function
+
+To set a particular group of hardware pins to a specified mode, use the following command:
 
 ```
 omega2-ctrl gpiomux set <HARDWARE PIN GROUP> <MODE>
 ```
 
-To illustrate this the following command will set I2C pins to Gpio mode:
+To illustrate the above, the following command will set I2C pins to GPIO mode:
 
 ```
-omega2-ctrl gpiomux set i2c gpio
+omega2-ctrl gpiomux set uart1 gpio
 ```
+
+and running the `get` command from above to confirm our changes:
+
+```
+root@Omega-2757:/# omega2-ctrl gpiomux get
+Group i2c - [i2c] gpio
+Group uart0 - [uart] gpio
+Group uart1 - uart [gpio]
+Group uart2 - [uart] gpio pwm
+Group pwm0 - [pwm] gpio
+Group pwm1 - [pwm] gpio
+Group refclk - refclk [gpio]
+Group spi_s - spi_s [gpio]
+Group spi_cs1 - [spi_cs1] gpio refclk
+Group i2s - i2s [gpio] pcm
+Group ephy - [ephy] gpio
+Group wled - wled [gpio]
+```
+
+We see:
+```
+Group uart1 - uart [gpio]
+```
+indicating that our change has indeed been applied.

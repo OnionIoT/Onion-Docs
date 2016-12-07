@@ -6,55 +6,45 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-# Ethernet Bridge
-
-In this tutorial, we are going to go through how we can enable other devices to use the Omega's Ethernet Expansion to connect to an existing WiFi network.
-
-// add an illustration
-
-# Overview
-
-// bring this overview into all networking articles
-
-Tutorial Difficulty:
-
-**Intermediate**
-
-Time Required:
-
-**5 mins**
-
-Required Materials:
-* Omega2 or Omega2+
-* Expansion Dock
-* Ethernet Dock
-* (Optional) Lan Switch
+## Ethernet Bridge {#ethernet-bridge}
 
 
-[//]: # (The Actual Process)
+In this tutorial, we are going to create an Ethernet Bridge using the Omega. An Ethernet Bridge is a device that shares its WiFi internet access through an Ethernet connection, similar to a WiFi dongle.
 
-# The Actual Process
+Our Omega's WiFi and the Ethernet Expansion will allow this to be accomplished.
 
-What we are going to do is to first enable the Omega's ethernet connection, and then try to bridge the wireless internet connection with ethernet connection. There are several ways to do so, one of the ways is to modify the firewall configuration.
+<!-- ![illustration](../img/ethernet-bridge-illustration.png) -->
+
+As an example, this type of setup can be used to bring internet access to a desktop computer that does not have a network adapter.
+
+### Overview
+
+| <span style="font-weight:normal">Tutorial Difficulty</span> | Intermediate |
+| :--- | :--- |
+| Time Required| **10 mins** |
+| Required Materials | Omega2 or Omega2+<br>Expansion Dock<br>Ethernet Expansion |
+
+>The Expansion dock can be substituted with a Power Dock, Mini Dock, or Arduino Dock 2.
+
+What we are going to do is to first enable the Omega's Ethernet connection, and then to bridge the wireless internet connection with an Ethernet connection.
 
 
-[//]: # (The Steps)
+<!-- The Steps -->
 
-## Step 1: Connect Omega with WiFi
+### Step 1: Connect Omega WiFi to the Internet
 
-This step is fairly easy, and there are a lot of tutorials tell us how to do so in different ways. Click [here](../Get-Started) to view how to make it work.
+To begin, you'll need to establish a wireless connection to the Internet on your Omega. Follow this [guide](#first-time-setup) to learn more on how to set up your Omega.
 
-// get rid of the 'click here ' links, make it a real sentence
 
-[//]: # (Step 2)
+<!-- Step 2 -->
 
-## Step 2: Enable the Ethernet Connection in Omega
+### Step 2: Enable the Omega's Ethernet Connection
 
-There is an existing tutorial for this as well, click [here](./Expansions/Using-the-Ethernet-Expansion) to learn more.
+<!-- // Connect the Ethernet Expansion to the Omega -->
 
-// get rid of the 'click here ' links, make it a real sentence
+Connect your Ethernet Expansion to your Expansion Dock, and then plug in an Ethernet cord to set up the hardware.
 
-Basically what we need to do is to change the following code block located at `/etc/config/network`:
+What we need to do next is change the following code block located in `/etc/config/network`:
 
 ```
 config interface 'wlan'
@@ -67,43 +57,31 @@ config interface 'wlan'
 
 ```
 
-Change `option ifname 'eth0.1' to `option ifname 'eth0'`
+Change `option ifname 'eth0.1'` to `option ifname 'eth0'`
 
 
-Restart the network service by running the follow command, or simply rebooting the Omega:
-
+Restart the network service by running the follow command:
 ```
 /etc/init.d/network restart
 ```
-Wait for the command prompt to show up and your Omega should be configured.
 
-If you want to learn more, go to [Openwrt network configuration page](https://wiki.openwrt.org/doc/uci/network).
 
-[//]: # (Step 3)
-## Step 3: Connect to Lan Switch via Ethernet
-// rename this step
+
+<!-- Step 3 -->
+### Step 3: Configure your Device to use Ethernet
 
 Now that the Omega is configured, we should be able to connect with other devices via Ethernet.
 
 Make sure that your connection is set to `Obtain IP address and DNS address Automatically`. It should be set so by default.
 
-// find outside links on how to setup ethernet to use DHCP on windows, mac, linux
 
-![pic](../img/wifi-bridge-pic-1.png)
-![pic](../img/wifi-bridge-pic-2.png)
-![pic](../img/wifi-bridge-pic-3.png)
-![pic](../img/wifi-bridge-pic-4.png)
+#### Windows
+To do this on Windows, follow this [guide](http://www.computerhope.com/issues/ch001048.htm)
 
-[//]: # (Using the Project)
 
-# Using This Setup
+#### Mac OSX
+To do this on Mac OSX, follow this [guide](https://www.cs.cmu.edu/~help/networking/dhcp_info/dhcp_mac.html)
 
-If you have a device that only can be connected via Ethernet and you only have WiFi available, you could apply this tutorial to make it work!
+<!-- ### Linux -->
 
-Or, you can extend Ethernet access to multiple cables using an Ethernet switch.
-
-# Notes
-
-* This will disable the Omega's WiFi AP.
-
-// double check this and then get rid of the comment
+<!-- Not sure how to do or how to test that this actually does the thing? -->

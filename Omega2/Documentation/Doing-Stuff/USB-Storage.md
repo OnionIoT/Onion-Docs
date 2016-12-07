@@ -6,28 +6,30 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-# Using USB Storage
+## Using USB Storage {#usb-storage}
 
-[//]: # (Explanation of how to use USB storage:)
+<!-- Explanation of how to use USB storage: -->
 
 The Omega2 can read and write to USB storage devices, such as USB keys, and USB external hard-drives. This tutorial will show you how to expand the storage on your Omega2 using an external USB storage device, and how to change some of the default configurations.
 
-## USB Storage and Linux
+<!-- add an image of a usb key plugged into an omega -->
 
-[//]: # (Explanation of how a device needs to be mounted - make sure to highlight the Omega2 auto-mounts USB storage, point out the location)
+### USB Storage and Linux
+
+<!-- Explanation of how a device needs to be mounted - make sure to highlight the Omega2 auto-mounts USB storage, point out the location -->
 On a Linux device, a USB storage device needs to be mounted in order to be used. Mounting a device maps it's storage space to a directory on your device so that you may access it.
 
 The Omega2 comes ready with an auto-mounting tool that will take care of that process for you! The default mount location is `/tmp/mounts/`.
 
 
-## Using USB storage
+### Using USB storage
 
-[//]: # (explanation of how to access files)
+<!-- explanation of how to access files -->
 Steps to access USB storage:
 
+<!-- TODO: photo of plugged in usb stick -->
 1. Plug in the USB Storage
-// have photo here
-2. Navigate to the correct directory  // clear up this whole correct directory thing
+2. Navigate to the directory where your USB device is located.
 	* The default is `/tmp/mounts/`
 		* `cd /tmp/mounts/`
 3. Check the directory for your USB storage device
@@ -51,14 +53,15 @@ cp <FILE YOU WANT TO COPY> <DESTINATION>
 Based on the example above, the command would look like the following if I was moving a file from my root directory to the USB device:
 
 ```
-cp /root/example.txt /tmp/mounts/USB-A1
+cp /root/example.txt /tmp/mounts/USB-A1/example.txt
 ```
 
 
-## Unmounting
+### Unmounting
 
-[//]: # (draw a parallel to safely disconnecting in Windows)
-Once you are done with your USB storage device, make sure you unmount your device to avoid corrupting your data.
+<!-- draw a parallel to safely disconnecting in Windows -->
+
+Once you are done with your USB storage device, make sure you unmount your device before removing it to avoid corrupting your data.
 
 The `umount` command is used to unmount the storage
 
@@ -75,7 +78,7 @@ umount /tmp/mounts/USB-A1
 The USB device can now be safely unplugged.
 
 
-## Changing the default mount point
+### Changing the default mount point
 
 In order to change the default mount point of your USB storage devices you'll need to change a configuration file.
 
@@ -111,4 +114,4 @@ config mountd mountd
 /etc/init.d/mountd restart
 ```
 
-Your device should now mount to your newly specified directory.
+Your device should now automatically mount to your newly specified directory upon plugging in.
