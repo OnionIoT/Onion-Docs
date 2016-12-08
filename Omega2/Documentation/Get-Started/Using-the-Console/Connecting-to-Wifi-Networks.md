@@ -47,7 +47,7 @@ To change which network is currently enabled, click the `Enable` button on a net
 
 ![wifi-enable-button](../img/connecting-to-wifi-5.png)
 
-Your Omega will then restart the wireless adapter in order to apply the changes.
+Your Omega will then restart the wireless adapter in order to apply the changes and attempt to connect to the selected network.
 
 
 #### Removing a Network

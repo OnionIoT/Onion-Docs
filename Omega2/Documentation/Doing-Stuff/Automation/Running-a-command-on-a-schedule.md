@@ -8,7 +8,7 @@ order: 2
 
 ## Running a Command on a Schedule {#running-a-command-on-a-schedule}
 
-The Omega's firmware has a powerful built in feature, `cron`, that allows you to schedule commands to run at specified intervals. This tutorial will show you how to take advantage of `cron` to automate commands on your Omega.
+The Omega's firmware has a powerful built in feature called `cron`, that allows you to schedule commands to run at specified intervals. This tutorial will show you how to take advantage of `cron` to automate commands and actions on your Omega.
 
 This can be especially useful for automating projects. For example, you can build a weather monitoring device that displays information on the OLED Expansion and have it update every hour with a few easy steps.
 
@@ -43,10 +43,10 @@ expled 0x000000 #Off
 ```
 
 
-In the command-line, create a file using `vi /root/rgb-led` and paste the code above into the newly created file. Save and exit the file, and from your command line, enter the following command:
+In the command-line, create a file using `vi /root/rgb-led.sh` and paste the code above into the newly created file. Save and exit the file, and from your command line, enter the following command:
 
 ```
-chmod +x /root/rgb-led
+chmod +x /root/rgb-led.sh
 ```
 
 This command will allow your script to be run as a program.
@@ -64,7 +64,7 @@ If you've never before worked with `cron`, an empty file will show up. The first
 
 ```
 #
-*/1 * * * * /root/rgb-led
+*/1 * * * * /root/rgb-led.sh
 # Make sure you have this comment at the end of your crontab
 ```
 
@@ -131,7 +131,7 @@ From the earlier example, that would look like:
 
 ```
 #
-*/1 * * * * /root/rgb-led >> /tmp/output.txt 2>&1
+*/1 * * * * /root/rgb-led.sh >> /tmp/output.txt 2>&1
 #
 ```
 
@@ -169,10 +169,10 @@ Duty: 100 100 100
 > Set GPIO15: 1
 ```
 
-and if we run our script `/root/rgb-led` in the command line we should see the same output:
+and if we run our script `/root/rgb-led.sh` in the command line we should see the same output:
 
 ```
-root@Omega-2757:/# /root/rgb-led
+root@Omega-2757:/# /root/rgb-led.sh
 Setting LEDs to: ff0000
 Duty: 0 100 100
 > Set GPIO16: 1

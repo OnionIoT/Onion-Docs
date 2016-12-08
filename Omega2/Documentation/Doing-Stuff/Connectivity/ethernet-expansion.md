@@ -11,11 +11,12 @@ order: 2
 
 The Ethernet Expansion is a piece of hardware that gives your Omega the ability to establish an Ethernet connection with other devices. With this Expansion, you can use your Omega as a router, an Ethernet bridge, and more.
 
-<!-- // a photo on the Expansion -->
+<!-- // TODO: photo: a photo on the Expansion -->
 
 ### Connecting to a Network through Ethernet
 
-The Ethernet Expansion can be used to establish a wired internet connection to the Omega. We're going to go through how to properly set up your Omega.
+// TODO: change this sentence to make it really clear that the Omega can use the ethernet expansion to join a network (and get internet) through an ethernet connection. Draw a parallel to a desktop computer
+The Ethernet Expansion can be used to establish a wired internet connection to the Omega, meaning that the Omega can connect to . We're going to go through how to properly set up your Omega.
 
 ### Step 1: Enable `eth0`
 
@@ -97,7 +98,7 @@ Your Ethernet Expansion is now ready to supply an internet connection to your Om
 
 ### Going Further with the Ethernet Expansion
 
-If you don't have a router and need to supply internet to devices, the Ethernet Expansion can transform the Omega into a very effective router. For more on that you can read our [tutorial on transforming your Omega into a router](#omega-router)
+If you don't have a router and need to supply a wireless network and internet connectivity to devices, the Ethernet Expansion can transform the Omega into a very effective router. For more on that you can read our [tutorial on transforming your Omega into a router](#omega-router)
 
 
 You can use the Ethernet Expansion and the Omega to provide a wired connection to a laptop or a computer. This is known as an Ethernet Bridge, and you can learn more about it in our [tutorial on creating an Ethernet Bridge using the Omega](#ethernet-bridge)

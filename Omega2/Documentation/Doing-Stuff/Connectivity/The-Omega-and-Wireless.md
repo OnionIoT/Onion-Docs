@@ -28,15 +28,13 @@ In the documentation, this network is what we refer to as the Omega's Access Poi
 The Omega's AP is a network to which your devices can connect in order to communicate with the Omega. By connecting to this network, you can access the Omega's filesystem through a terminal, or even the Onion Console through the browser; all of this without having an active internet connection.
 
 
->For example, if you're on a bus with a laptop and your Omega, you could connect to the Omega's AP with your laptop if you really wanted to, and SSH into the terminal.
+>For example, if you're on a bus with a laptop and your Omega, you could connect to the Omega's AP with your laptop, and SSH into the terminal or use the Console through your browser.
 
 
 
 ### Connected to a WiFi network
 
 <!-- // highlight that this is how we get internet on the omega; connecting to your own existing wifi network -->
-
-<!-- // TODO: don't like the unlock - Connecting the Omega to the internet, greatly expands the capabilities of the Omega, etc -->
 
 Connecting the Omega to the internet greatly expands its capabilities. It allows you to send and receive data over the internet and gives you the ability to download and install packages with `opkg`, the package manger used by the Omega.
 
@@ -58,6 +56,7 @@ All of this is can be done by connecting your Omega to an existing WiFi network 
 
 Your Omega can **simultaneously** connect to an existing WiFi network, and host its own Access Point, yielding some interesting results. This is the typical use case because you can avoid having to switch networks in order to connect to your Omega.
 
+// TODO: expand on how it's nice to have your omega on the same wifi network as your other devices - namely your laptop
 You can connect your other devices to the Omega's AP and access the internet, essentially turning your Omega into a network switch.
 > For more on making your Omega into a network switch, check out our tutorial on [Turning your Omega into a Router](#omega-router), or our tutorial on [using the Omega as a WiFi range extender](#wifi-range-extender)]
 
@@ -74,7 +73,7 @@ You can configure the firewall settings on your Omega to manage sharing your int
 *Note: Your Omega is already configured to handle the most practical applications. You need not edit this file unless you know what you're doing.*
 
 
-To apply your firewall changes you'll need to restart your firewall with the following command:
+To apply any firewall changes you'll need to restart your firewall with the following command:
 
 ```
 /etc/init.d/firewall restart

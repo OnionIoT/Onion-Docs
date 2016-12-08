@@ -96,10 +96,9 @@ echo default-on > /sys/class/leds/onion\:amber\:system/trigger
 
 ### Writing a Shell Script in the Editor App
 
-// TODO: add a block diagram of how the script works, add brief explanation of the script to go along with the diagram
-
 A Unix Shell is an interpreter that reads commands from the command-line and executes them. A Shell Script is a way of coding using those basic commands to create a more complex program. Essentially, we are going to use the same basic commands from the last section to create a program that will read a message and then blink that message in morse code.
 
+// TODO: change script to be called morse.sh
 Create a file called `morse` in the root directory using the Editor App.
 
 Copy the code below, and save the file:
@@ -124,13 +123,17 @@ exit
 
 ```
 
-Here is a visual representation of what the code will do:
+This block diagram shows the steps the `_MorseMain` function will perform:
 
 ![code block diagram](../img/developing-pic-8.png)
+
+The main part of the program will just call the function and pass in all of the command line arguments.
 
 Your Console should look something like this now:
 
 ![developing-code-pic](../img/developing-pic-7.png)
+
+// TODO: update this photo ^ with the new text
 
 You are now ready to convert text to morse code!
 
@@ -152,7 +155,7 @@ root@Omega-2757:~# sh /root/morse Hello, Onion
 
 <!-- TODO add a gif here -->
 
-Once you're done, you can set the blinking back to default-on with the following command:
+Once you're done, you can set the blinking back to `default-on` with the following command:
 
 ```
 echo default-on > /sys/class/leds/onion\:amber\:system/trigger

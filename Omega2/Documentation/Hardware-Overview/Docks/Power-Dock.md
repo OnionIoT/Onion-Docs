@@ -20,14 +20,11 @@ Bring your next project on the go with the Power Dock! Equipped with on-board ba
 
 Your Power Dock has a 30 pin Expansion Header, allowing you to use all of your Onion Expansions. It provides the Omega with the 3.3V it needs to run, while also providing 5V for the Expansions and USB Host port.
 
-Your Expansion Dock has a 30 pin Expansion Header, allowing you to use all of your Onion Expansions. The Expansion Dock is powered by the Micro-USB port that supplies 5V to the Dock. This voltage is stepped down to the required 3.3V required to power the Omega, and also provides 5V to the Expansions and USB Host port.
-
-
-The Power Dock is flexible: it can run off just a battery or just by drawing power from the Micro USB port.
+The Power Dock is flexible: it can run off just a battery or just by drawing power from the Micro USB port. Charging the battery requires having both the battery and the Micro USB plugged in. Don't worry, the Omega will still work with no interruptions while charging.
 
 The Micro-USB port supplies 5V to the Dock. This voltage is stepped down to the required 3.3V required to power the Omega, and also provides 5V to the Expansions and USB Host port.
 
-Charging the battery requires having both the battery and the Micro USB plugged in. Don't worry, the Omega will still work with no interruptions while charging.
+
 
 #### Connecting an Omega
 
@@ -57,7 +54,7 @@ The Micro-USB Port is used to supply power to the Power Dock. Connect the Dock t
 <!-- [//]: # (fix up this text...) -->
 
 
-#### No USB to Serial Chip
+***No USB to Serial Chip***
 
 There is no USB-to-Serial Chip on the Power Dock. This means that you will **not** be able to connect to the Omega serially over the Micro-USB port.
 

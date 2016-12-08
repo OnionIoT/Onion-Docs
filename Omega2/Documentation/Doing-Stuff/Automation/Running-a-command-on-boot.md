@@ -8,19 +8,19 @@ order: 1
 
 ## Running a Command on Boot {#running-a-command-on-boot}
 
-This article will demonstrate how you can have your Omega run commands on boot. This can be used in a number of applications, such as showing a welcome message on the OLED Expansion when the Omega has booted or connecting to a server of your choosing, etc. The Omega can get commands to run on boot quite easily, so let's get started!
+This article will demonstrate how you can have your Omega run commands right when it finishes booting. This can be used in a number of applications, such as showing a welcome message on the OLED Expansion when the Omega has booted or connecting to a server of your choosing, etc. The Omega can be set up to run commands on boot quite easily, so let's get started!
 
 
 ### Implementation
 
-We're going to start by writing a script that we'll use in our tutorial. If you already have a script or a command you'd like to run on boot you can skip the "Writing a Shell Script" step.
+We're going to start by writing a script that will perform the actions we would like to have happen on every boot. If you already have a script or a command you'd like to run on boot you can skip the "Writing a Shell Script" step.
 
 #### Writing a Shell Script
 
-Let's create our script in the `/root` directory and call it `rgb-led`:
+Let's create our script in the `/root` directory and call it `rgb-led.sh`:
 
 ```
-vi /root/rgb-led
+vi /root/rgb-led.sh
 ```
 
 > The /root directory is the best place to put your projects to ensure they don't get deleted when you update the firmware.
@@ -47,15 +47,17 @@ Copy the above code into your file, then save and exit the file:
 Next, from your command-line, enter the following:
 
 ```
-chmod +x /root/rgb-led
+chmod +x /root/rgb-led.sh
 ```
 
-The command above will allow your script to be executed by entering `/root/rgb-led`.
+The command above will change the execution permissions of the file and allow your script to be executed by entering `/root/rgb-led.sh`.
+
+> Alternatively, the script can be run by entering `sh /root/rgb-led.sh`, note that this will work without changing the file's execution permissions. However, it's sometimes handy to be able to run a script by just typing the filename.
 
 
 #### Editing the `/etc/rc.local` File
 
-The `/etc/rc.local` file is a process that runs on startup.
+The `/etc/rc.local` file is a script that will be executed automatically by the system once the boot sequence is complete.
 
 **When your Omega boots, it will read commands from the `/etc/rc.local` file, and execute them.**
 
@@ -73,21 +75,18 @@ Here we can see that the commands in this file will be executed after the system
 To do this, edit your `/etc/rc.local` file to look like this:
 
 ```
-#!/bin/sh -e
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 
-/root/rgb-led
+sh /root/rgb-led.sh
 
 exit 0
 ```
 
-We started by adding `#!bin/sh -e`, known as a "Shebang". This instructs the program loader to run the script as a shell script.
-
-The next thing we add is the command we want to run:
+We've added the command we want to run:
 
 ```
-/root/rgb-led
+sh /root/rgb-led.sh
 ```
 
 Save and exit your file, and reboot your Omega to see the effects!
@@ -111,11 +110,10 @@ The syntax for piping your command to a file is as follows:
 To apply this to your command on boot, simply edit the `/etc/rc.local` file as such:
 
 ```
-#!/bin/sh -e
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 
-/root/rgb-led >> /tmp/output.txt 2>&1
+sh /root/rgb-led.sh >> /tmp/output.txt 2>&1
 
 exit 0
 ```
@@ -154,10 +152,10 @@ Duty: 100 100 100
 > Set GPIO15: 1
 ```
 
-and if we run our script `/root/rgb-led` in the command line we should see the same output:
+and if we run our script `/root/rgb-led.sh` in the command line we should see the same output:
 
 ```
-root@Omega-2757:/# /root/rgb-led
+root@Omega-2757:/# sh /root/rgb-led.sh
 Setting LEDs to: ff0000
 Duty: 0 100 100
 > Set GPIO16: 1
@@ -197,7 +195,7 @@ If your commands don't seem to be working on boot, try copying them directly fro
 
 #### Infinite Loop Code
 
-If your command runs continuously and never reaches the `exit 0` line in the `/etc/rc.local` file, then your Omega will not boot. To avoid this happening, make sure you fork the process by adding an ampersand to the end of the command:
+If your command runs continuously and never reaches the `exit 0` line in the `/etc/rc.local` file, then your Omega will not successfully finish it's boot sequence. To avoid this scenario, make sure you fork the process by adding an ampersand to the end of the command:
 
 ```
 <YOUR COMMAND TO RUN> &
