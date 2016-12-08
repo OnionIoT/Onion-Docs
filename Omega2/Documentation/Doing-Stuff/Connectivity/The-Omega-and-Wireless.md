@@ -20,7 +20,7 @@ When you power on your Omega, other devices like your computer and smartphone wi
 > Your Omega's AP name will be different, check our brief [guide to finding your Omega's Name](#omega-name)
 
 <!-- // include an illustration -->
-![omega-access-point](../../Get-Started/img/setup-1-connect-to-wifi.png)
+![omega-access-point](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-1-connect-to-wifi.png)
 
 
 In the documentation, this network is what we refer to as the Omega's Access Point (AP), or the Omega's WiFi.

@@ -14,7 +14,7 @@ order: 2
 
 Bring your next project on the go with the Power Dock! Equipped with on-board battery management, the Power Dock allows you to recharge and monitor battery levels, while providing a header to connect Onion Expansions.
 
-![Power Dock](../img/power-dock-image.jpg)
+![Power Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-image.jpg)
 
 ### The Hardware
 
@@ -32,7 +32,7 @@ The Micro-USB port supplies 5V to the Dock. This voltage is stepped down to the 
 
 #### The Power Dock at a Glance
 
-![Power Dock Labeled](../img/power-dock-drawing.png)
+![Power Dock Labeled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-drawing.png)
 
 #### The Expansion Header
 
@@ -125,7 +125,7 @@ The USB Host Port is connected to the Omega and can be used to interface USB per
 
 Note some of the differences between the Expansion Dock and the Power Dock:
 
-![Hardware Differences](../img/power-dock-differences.jpg)
+![Hardware Differences](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-differences.jpg)
 
 The main differences are:
   * Addition of battery management circuits and battery level indicator LEDs

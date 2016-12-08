@@ -16,7 +16,7 @@ These apps can be used to configure and control your Omega and use various Expan
 
 > You'll need to be on the same network as your Omega in order to access the console.
 
-![login-page](../img/installing-console-login.png)
+![login-page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-login.png)
 
 <!-- // mention that it's hosted on the omega -->
 
@@ -29,14 +29,14 @@ Follow this [guide](#first-time-setup) on setting up your Omega, if you have not
 #### Installing through the Setup Wizard
 
 If you have set up the Omega and didn't install the console, skip to the Software page and make sure the checkbox is checked.
-![checkbox](../img/installing-console-setup-wizard.png)
+![checkbox](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-setup-wizard.png)
 
 Click the Install Console button and your Omega will begin installing the Console. This process takes about 5 minutes.
 
 > This process can take longer than 5 minutes depending on your download speeds.
 
 Refresh the page and you should see the Console login page.
-![login-page](../img/installing-console-login.png)
+![login-page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-login.png)
 
 The default login info is:
 
@@ -75,7 +75,7 @@ Now, you can access the console by going to `http://omega-ABCD.local/` where `AB
 > If you don't know how to find your Omega's unique identifier you can take a look at our brief [guide to finding your Omega's name](#omega-name)
 
 Upon loading, you should see the console login page.
-![login-page](../img/installing-console-login.png)
+![login-page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-login.png)
 
 The default login info is:
 

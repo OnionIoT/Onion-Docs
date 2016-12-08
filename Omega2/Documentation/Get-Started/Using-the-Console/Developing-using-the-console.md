@@ -125,13 +125,13 @@ exit
 
 This block diagram shows the steps the `_MorseMain` function will perform:
 
-![code block diagram](../img/developing-pic-1-block-diagram.png)
+![code block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-pic-1-block-diagram.png)
 
 The main part of the program will just call the function and pass in all of the command line arguments.
 
 Your Console should look something like this now:
 
-![developing-code-pic](../img/developing-pic-2-editor-code.png)
+![developing-code-pic](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-pic-2-editor-code.png)
 
 <!-- // DONE: update this photo ^ with the new text -->
 

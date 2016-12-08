@@ -37,7 +37,7 @@ Let's go through what each state will look like in the Console.
 
 If your Omega is up to date with the latest firmware, you will see a page similar to the following:
 
-![update-not-required](../img/updating-none-required.png)
+![update-not-required](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/updating-none-required.png)
 
 You'll see that the firmware versions match up exactly in terms of major version, minor version, and build number.
 
@@ -47,7 +47,7 @@ In this state, your Upgrade Button will not be active and no further action is r
 
 If your Omega is behind a minor version or build, you will see a page similar to the following:
 
-![update-minor-version](../img/updating-minor-version.png)
+![update-minor-version](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/updating-minor-version.png)
 
 You'll see that the versions match up, but the build does not. This means there is a new firmware available and you can choose to upgrade to get all the latest and greatest features in development.
 
@@ -55,11 +55,11 @@ You'll see that the versions match up, but the build does not. This means there 
 
 Click on the `Upgrade Minor Version` button and your new firmware will begin downloading:
 
-![update-download-in-progress](../img/updating-download-in-progress.png)
+![update-download-in-progress](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/updating-download-in-progress.png)
 
 Once the download is complete a notification will pop up, and the upgrade will begin:
 
-![update-download-complete](../img/updating-download-complete.png)
+![update-download-complete](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/updating-download-complete.png)
 
 **Do not turn off your Omega during this time.** It will reboot automatically with the latest features.
 
@@ -69,7 +69,7 @@ Once the download is complete a notification will pop up, and the upgrade will b
 
 If a major version is available then an upgrade is required. Your page will look similar to this:
 
-![update-major-version](../img/updating-major-version.png)
+![update-major-version](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/updating-major-version.png)
 
 Here you see the firmware versions don't match.
 
@@ -78,11 +78,11 @@ Here you see the firmware versions don't match.
 Click on the `Upgrade Major Version` button and your new firmware will begin downloading:
 
 
-![update-download-in-progress](../img/updating-download-in-progress-major.png)
+![update-download-in-progress](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/updating-download-in-progress-major.png)
 
 Once the download is complete a notification will pop up, and the upgrade will begin:
 
-![update-download-complete](../img/updating-download-complete-major.png)
+![update-download-complete](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/updating-download-complete-major.png)
 
 **Do not turn off your Omega during this time.** It will reboot automatically with the latest features.
 
