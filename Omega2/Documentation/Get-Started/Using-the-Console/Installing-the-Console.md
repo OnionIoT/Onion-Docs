@@ -29,7 +29,7 @@ Follow this [guide](#first-time-setup) on setting up your Omega, if you have not
 #### Installing through the Setup Wizard
 
 If you have set up the Omega and didn't install the console, skip to the Software page and make sure the checkbox is checked.
-![checkbox](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-setup-wizard.png)
+![checkbox](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-checkmark.png)
 
 Click the Install Console button and your Omega will begin installing the Console. This process takes about 5 minutes.
 
