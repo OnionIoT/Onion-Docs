@@ -12,11 +12,11 @@ order: 2
 <!-- // TODO: update this after batch 3 or 4 -->
 Upon logging into the Console, the first app you'll see is the Settings App. Through this app you can monitor your Omega's status, change the Omega's hostname and password, and even WiFi settings. This guide will show you how you can manage your WiFi networks through the console.
 
-### Managing your Wifi Networks
+### Managing your WiFi Networks
 
 <!-- // explanation of how wifimanager works (can have many configured networks, and it will connect to the available ) -->
 
-The Omega's network manager works by checking all configured networks, and connecting to the available network with the highest priority. The WiFi tab in the Settings App gives you a nice visual representation of what your network configurations look like.
+The Omega's network manager works by checking all configured networks, and connecting to the available network with the highest priority. The WiFi tab in the Settings App gives you a nice visual representation of what your configured networks.
 
 
 Click on the WiFi settings tab to edit your network connections.
@@ -30,7 +30,7 @@ Here, you can enable a network, remove a network, and even add new networks.
 
 #### Adding a New Network
 
-To add a new wireless network configuration, click on the button labelled `Add Wi-Fi Network`. A new window will open that will scan for Wi-Fi networks in your area.
+To add a new wireless network configuration, click on the button labelled `Add Wi-Fi Network`. A new window will open that will scan for WiFi networks in your area.
 
 ![wifi-modal](../img/connecting-to-wifi-3.png)
 
@@ -42,22 +42,26 @@ Select a network, or enter the information on your own. Click on `Add Network` t
 
 #### Enabling a Network Configuration
 
+// TODO: this whole section should be CHANGING the selected network since youwill automatically be connected
+
 To enable a network, click the checkmark button on a network that is not enabled.
 
 ![wifi-enable-button](../img/connecting-to-wifi-5.png)
 
 
 
+
 #### Removing a Network
 
-To remove a network, click the x button. If you delete your enabled network, you will still need to enable another network to connect to it.
+To remove a network, click the `Remove` button. If you delete your enabled network, you will still need to enable another network to connect to it.
 
 ![wifi-remove-button](../img/connecting-to-wifi-6.png)
 
+Your Omega will no longer automatically connect to the network that was removed.
 
 #### Reordering Network Priorities
 
-The priority of a network decides the order in which the Omega's network manager will attempt to connect to the network. A network of higher priority will have a lower number. For example, your highest priority network has priority 1, and your Omega will attempt to connect to that network if it is available.
+The network priority determines the order in which the Omega's network manager will attempt to connect, assuming that the network is within range. A network of higher priority will have a lower number. For example, your highest priority network has priority 1, and your Omega will attempt to connect to that network first if it is available.
 
 To shift the priority of a network up or down, click the arrow buttons. It is important to order your networks by preference so that the network manager will connect to your preferred network quickly.
 
@@ -70,4 +74,4 @@ The move-down priority button will decrease the priority of a network, making it
 ![wifi-move-down](../img/connecting-to-wifi-8.png)
 
 
-Click on the arrow up or arrow down buttons to reorder the priority of your networks. to suit your needs.
+Click on the arrow up or arrow down buttons to reorder the priority of your networks to suit your needs.

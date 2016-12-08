@@ -12,7 +12,7 @@ order: 2
 
 <!-- // brief intro to Python (scripting language, easy to write) -->
 
-Python is a widely used scripting language that emphasizes code readability, and simplicity. It's an excellent language for developing programs on the Omega, and it's incredibly easy to get started.
+Python is a widely used scripting language that emphasizes code readability and simplicity. It's an excellent language for developing programs on the Omega, and it's incredibly easy to get started.
 
 
 ### Installing Python
@@ -84,18 +84,25 @@ To install the desired package.
 
 >For more on `opkg` you can check out our [guide to using opkg](#using-opkg)
 
-### Using Python
-// How to use Python on the Omega. Mention that Omega is just a linux computer so Python is super easy to use.
+// TODO: add note about installing python3 packages
 
-The Omega is just a Linux computer, so it's really easy to get started with Python on the Omega. You can enter `python` in your command-line to get started with Python.
+<!-- TODO: LATER: talk about pip -->
+
+### Using Python
+
+Since the Omega is a Linux computer, it's really easy to get started with Python on the Omega. You can enter `python` in your command-line to start the interpreter.
 
 >If you've installed python3, you'll need to enter `python3` in your command-line to get started.
+
+Note that the interpreter is a good tool for quickly testing some code, but the real power of Python comes from writing reusable scripts.
 
 
 #### Writing a Python Script on the Omega
 
 <!-- // example of writing a basic python script that changes the trigger of the Omega LED -->
 <!-- // example of how to run it from the command line -->
+
+// TODO: add example of writing a basic script and running it - script should say good morning, good afternoon, good evening based on the system time, also have the Omega LED start blinking at the beginning of the script, when the print is done, sleep for 10 seconds, and then set it back to default-on
 
 You can also write a Python Script on the Omega, and execute it using the following command:
 

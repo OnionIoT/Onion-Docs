@@ -8,6 +8,8 @@ order: 4
 
 ## Updating the Omega using the Console {#updating-the-omega-using-console}
 
+In order to keep improving the user experience for the Omega, we will be releasing firmware updates on a rolling basis. To capitalize on these improvements, users should update their Omegas to the latest firmware release.
+
 You can update your Omega's firmware through the Settings app. Open the Settings app, and click on the `Firmware Upgrade` tab.
 
 This page will display your Omega's firmware information and will notify you of available upgrades.
@@ -51,7 +53,7 @@ You'll see that the versions match up, but the build does not. This means there 
 
 ***Note: Upgrading your firmware will erase all files not located in `/root` or `/etc`.***
 
-Click on the "Upgrade Minor Version" button and your new firmware will begin downloading:
+Click on the `Upgrade Minor Version` button and your new firmware will begin downloading:
 
 ![update-download-in-progress](../img/updating-download-in-progress.png)
 
@@ -72,11 +74,13 @@ Here you see the firmware versions don't match.
 
 ***Note: Upgrading your firmware will erase all files not located in `/root` or `/etc`.***
 
-Click on the "Upgrade Major Version" button and your new firmware will begin downloading:
+Click on the `Upgrade Major Version` button and your new firmware will begin downloading:
 
+// TODO: fix this screenshot
 ![update-download-in-progress](../img/updating-download-in-progress.png)
 
 Once the download is complete a notification will pop up, and the upgrade will begin:
+// TODO: fix this screenshot
 ![update-download-complete](../img/updating-download-complete.png)
 
 **Do not turn off your Omega during this time.** It will reboot automatically with the latest features.

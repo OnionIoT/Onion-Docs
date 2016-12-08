@@ -14,7 +14,9 @@ order: 3
 <!-- // make sure to mention that its v4.3.1 -->
 <!-- // make sure to note how much space installing node will take up -->
 
-NodeJS is a scripting language that uses a JavaScript runtime for easy to write network applications. NodeJS takes advantage of a large amount of open-source modules developed by the community in order to further simplify your work.
+
+
+NodeJS is a scripting language that uses a JavaScript runtime, essentially, it writes like JavaScript but gives you a lot of flexibility and power. It's incredibly easy to make powerful and complex applications. NodeJS takes advantage of a large amount of open-source modules developed by the community in order to further simplify your work.
 
 
 The Omega supports NodeJS 4.3.1 which can be installed on your Omega using `opkg`.
@@ -37,6 +39,8 @@ opkg install nodejs
 
 // example of writing a basic python script that changes the trigger of the Omega LED
 // example of how to run it from the command line -->
+
+// TODO: add example of writing a basic script and running it - script should say good morning, good afternoon, good evening based on the system time, also have the Omega LED start blinking at the beginning of the script, when the print is done, sleep for 10 seconds, and then set it back to default-on
 
 You can use NodeJS the same way you would on a computer. Just write a script and execute it with the following command:
 

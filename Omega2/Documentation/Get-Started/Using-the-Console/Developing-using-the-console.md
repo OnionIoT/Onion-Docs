@@ -3,7 +3,7 @@ title: Developing using the Console
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
-order: 4
+order: 5
 ---
 
 
@@ -23,33 +23,8 @@ In this tutorial we're going to write a script that will blink the Omega's LED i
 | Required Materials: | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li></ul> |
 
 
-### Installing additional apps
-
-<!-- // Mention the pre-installed apps. Show how to install additional apps through the console or through the command line -->
-
-The Console comes with pre-installed apps that can be used alongside various expansions, like the OLED Expansion Control app.
-These apps are available immediately and don't require an installation.
-
-In an effort to minimize the amount of space taken up by the Console, the Editor, Terminal, and Webcam apps are **not** installed by default and require installation by the user.
-
-Click the icon of the app and you'll be greeted with an install page:
-![install-page](../img/installing-the-console-install-page.png)
-
-Click the install button and wait for the installation to complete.
-
-![installing-app](../img/installing-the-console-installing.png)
-
-Once the app is installed, you'll be notified.
-
-![installed-app](../img/installing-the-console-installed.png)
-
-Refresh the page and your app will be available for use.
-
-![app-ready](../img/installing-the-console-app-ready.png)
-
-
-#### Installing the Editor and Terminal Apps
-
+### Installing the Editor and Terminal Apps
+// TODO: change this to a prerequisite section, reference the previous article
 To install the Editor App, click on the Editor icon in the taskbar. You'll see a page that looks like this:
 
 ![editor-app-installation-page](../img/developing-pic-1.png)
@@ -93,7 +68,8 @@ password: onioneer
 
 
 
-The Omega comes ready with a kernel module that can translate text to Morse code and blink the LEDs, but you'll need to tell the kernel which LED you want to blink.  The kernel exposes a lot of hardware status and configuration options through a virtual filesystem under `/sys`.  (I.e. the files under `/sys` aren't *actually* files, but they look and act like files to make it very easy to access them from the command line and in scripts or programs.)
+The Omega comes ready with a kernel module that can translate text to Morse code and blink the LEDs, but you'll need to tell the kernel which LED you want to blink.  The kernel exposes a lot of hardware status and configuration options through a virtual filesystem under `/sys`.  
+> The files under `/sys` aren't *actually* files, but they look and act like files to make it very easy to access them from the command line and in scripts or programs.
 
 To tell the kernel that we are going to use the Morse code module, set the LED trigger condition for the Onion system LED to `morse` by using the `echo` command to write the setting into the virtual file:
 
@@ -108,7 +84,7 @@ root@Omega-2757:~# cat /sys/class/leds/onion\:amber\:system/trigger
 none mmc0 timer default-on netdev transient gpio heartbeat [morse] oneshot
 ```
 
-You can see that `morse` is selected because it's in brackets.  The text in that file shows the other available options that this particular bit of the kernel can be set to.
+The square brackets indicate that the `morse` trigger is currently selected. The text in that file shows the other available options that this particular bit of the kernel can be set to.
 
 Anyway, now we have everything set up!  We just need to tell the kernel what message to blink on the LED.  Conveniently, once the morse option is selected, the kernel creates a new virtual file for that called (unsurprisingly enough) `message`.  We can use `echo` again to put text there:
 
@@ -161,14 +137,12 @@ _MorseMain () {
 }
 
 
-########################
-########################
 ##### Main Program #####
 
-	_MorseMain $*
+_MorseMain $*
 
 
-	exit
+exit
 
 ```
 

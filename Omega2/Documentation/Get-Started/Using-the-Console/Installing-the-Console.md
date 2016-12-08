@@ -45,7 +45,7 @@ username: root
 password: onioneer
 ```
 
-#### Installing through the command line
+#### Installing through the Command Line
 
 The console can also be installed using the command line using the Omega's package manager, `opkg`.
 <!-- For information on how to access the Omega's command line, follow this [guide](../Using-the-Command-Line/connecting.md) -->
@@ -62,7 +62,7 @@ opkg install onion-console-base
 ```
 
 
-You can learn more about `opkg` in our [guide to opkg](#using-opkg)
+You can learn more about `opkg` in our [guide to opkg](#using-opkg).
 
 After installation is complete, you'll need to restart the rpcd service to load the console configuration with the following command:
 
