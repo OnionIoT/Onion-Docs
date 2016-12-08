@@ -16,12 +16,10 @@ In this tutorial we're going to write a script that will blink the Omega's LED i
 
 ### Overview
 
-| Overview |
-| :---: | :---: |
-| Tutorial Difficulty | **Intermediate** |
+| <span style="font-weight:normal">Tutorial Difficulty</span> | Intermediate |
+| :--- | :--- |
 | Time Required | **15 mins** |
-| Required Materials: | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li></ul> |
-
+| Required Materials: | Omega2 or Omega2+<br>Expansion Dock, Mini Dock, Arduino Dock or Power Dock |
 
 ### Prerequisites
 
@@ -125,6 +123,10 @@ _MorseMain $*
 exit
 
 ```
+
+Here is a visual representation of what the code will do:
+
+![code block diagram](../img/developing-pic-8.png)
 
 Your Console should look something like this now:
 
