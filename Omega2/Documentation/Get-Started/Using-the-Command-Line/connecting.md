@@ -7,6 +7,8 @@ platforms: [ OSX , Windows , Linux ]
 order: 4
 ---
 
+## Connecting to the Omega {connecting-to-the-omega}
+
 // TO DO: LAZAR FIX THIS ISSUE: neither shows up
 TYPE OF ARTICLE:
 
@@ -18,9 +20,9 @@ OMEGA ARTICLE!!
 NEW NEW OMEGA2
 {{/if}}
 
-Now that your Omega is setup, connected to a WiFi network, and updated, you'll want to connect to it to start building and inventing. 
+Now that your Omega is setup, connected to a WiFi network, and updated, you'll want to connect to it to start building and inventing.
 
-There are two ways to connect to the Omega's command prompt: 
+There are two ways to connect to the Omega's command prompt:
 * Using the local network to connect through SSH
 * Using a USB connection to connect to the serial terminal
 
@@ -38,7 +40,7 @@ SSH actually stands for Secure Shell, it's a network protocol that creates a sec
 
 #### The Good & Bad of SSH
 
-When using SSH, the Omega and your computer communicate over the WiFi network to which they are both connected. This means that as long as the Omega is powered on and within range of your WiFi network, you can connect to it! No need to connect it directly to your computer. The disadvantage of SSH is that if the network connection gets interrupted, the connection will also be severed. 
+When using SSH, the Omega and your computer communicate over the WiFi network to which they are both connected. This means that as long as the Omega is powered on and within range of your WiFi network, you can connect to it! No need to connect it directly to your computer. The disadvantage of SSH is that if the network connection gets interrupted, the connection will also be severed.
 
 For most use-cases with the Omega, SSH will work really well. This should be your go-to method for accessing the Omega's command-line.
 
