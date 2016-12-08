@@ -6,7 +6,6 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-// TODO: bring over changes from exp dock article
 
 
 ## The Mini Dock {#mini-dock}
@@ -16,7 +15,7 @@ order: 3
 
 The Mini Dock functions very similarly to the Expansion Dock. It supplies your Omega with power and allows you to communicate serially via a Micro-USB port. It also has a USB type A connector for you to use. All of this with a fraction of the size of an Expansion Dock.
 
-The Mini Dock is approximately the exact same size as the Omega. It does not have the Expansion Header of some of the other Docks, but this makes it perfect for Omega-only or USB-based projects.
+The Mini Dock is same size as the Omega. It does not have the Expansion Header of some of the other Docks, but this makes it perfect for Omega-only or USB-based projects.
 
 ### The Hardware
 
@@ -58,8 +57,7 @@ You may need to line up the pins with the holes before pressing the Omega into t
 
 <!-- [//]: # (explain that it provides power to the omega, mention that the Omega is powered by 3.3V and that the Dock has a regulator to take the 5V from the microUSB and step it down to 3.3V) -->
 
-The Micro-USB Port is used to supply power to the Mini Dock, which in turn supplies power to the Omega. It can also be used to communicate with the Omega serially.
-// TODO:bring in changes from expansion dock article
+The Micro-USB Port is used to supply power to the Mini Dock, which in turn supplies power to the Omega. It can also be used to connect to the Omega's serial terminal.
 
 The Micro-USB Port takes in 5V, and the Mini Dock comes equipped with a voltage regulator to step the voltage down to the required 3.3V for the Omega.
 

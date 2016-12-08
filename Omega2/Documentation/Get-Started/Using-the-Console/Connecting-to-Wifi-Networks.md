@@ -40,15 +40,14 @@ Select a network, or enter the information on your own. Click on `Add Network` t
 
 
 
-#### Enabling a Network Configuration
+#### Changing your Enabled Network Configuration
 
-// TODO: this whole section should be CHANGING the selected network since youwill automatically be connected
 
-To enable a network, click the checkmark button on a network that is not enabled.
+To change which network is currently enabled, click the `Enable` button on a network that is not enabled.
 
 ![wifi-enable-button](../img/connecting-to-wifi-5.png)
 
-
+Your Omega will then restart the wireless adapter in order to apply the changes.
 
 
 #### Removing a Network

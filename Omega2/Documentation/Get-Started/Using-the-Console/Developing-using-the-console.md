@@ -23,35 +23,14 @@ In this tutorial we're going to write a script that will blink the Omega's LED i
 | Required Materials: | <ul><li>Omega2 or Omega2+</li><li>Expansion Dock</li></ul> |
 
 
-### Installing the Editor and Terminal Apps
-// TODO: change this to a prerequisite section, reference the previous article
-To install the Editor App, click on the Editor icon in the taskbar. You'll see a page that looks like this:
+### Prerequisites
 
-![editor-app-installation-page](../img/developing-pic-1.png)
+In order to develop programs on the console you'll need the Terminal and Editor apps installed.
 
-Click the `Install` button and wait while the Editor App is installed. The installation takes 2-3 minutes. When the app has been installed you'll see this:
-
-![editor-app-installed](../img/developing-pic-2.png)
-
-Refresh your browser and you can now open the Editor App.
-
-![editor-app-page](../img/developing-pic-3.png)
+>To learn more on how to install apps you can read our brief [guide to installing apps](#installing-apps)
 
 
-Now, repeat this process for the Terminal App. Click on the Terminal icon in the taskbar and you'll see a similar page to the Editor's:
-
-![terminal-app-installation-page](../img/developing-pic-4.png)
-
-Click the `Install` button and wait while the Terminal App is installed. The installation takes under a minute. When the app has been installed you'll see this:
-
-![terminal-app-installed](../img/developing-pic-5.png)
-
-Refresh your browser and you can now use the Terminal App.
-
-![terminal-app-page](../img/developing-pic-6.png)
-
-
-You are now ready to develop code for your Omega from your browser!
+At this point you are now ready to develop code for your Omega from your browser!
 
 
 ### Controlling the LED from the Terminal App
@@ -63,9 +42,6 @@ username: root
 password: onioneer
 ```
 
-<!-- To paste into the Terminal app, use `ctrl+shift+v` or `cmd+shift+v` on a MAC -->
-
-
 
 
 The Omega comes ready with a kernel module that can translate text to Morse code and blink the LEDs, but you'll need to tell the kernel which LED you want to blink.  The kernel exposes a lot of hardware status and configuration options through a virtual filesystem under `/sys`.  
@@ -76,6 +52,9 @@ To tell the kernel that we are going to use the Morse code module, set the LED t
 ```
 echo morse > /sys/class/leds/onion\:amber\:system/trigger
 ```
+
+> To paste into the Terminal app, use `ctrl+shift+v` or `cmd+shift+v` on a MAC
+
 
 You can verify that it worked by using `cat` to look at the virtual file:
 
@@ -92,10 +71,11 @@ Anyway, now we have everything set up!  We just need to tell the kernel what mes
 echo Hello, Onion > /sys/class/leds/onion\:amber\:system/message
 ```
 
-Now watch your LED!  If it's too fast or too slow, you can change the speed with the `delay` file that also gets created.  E.g.
+Now watch your LED!  If it's too fast or too slow, you can change the speed with the `delay` file that also gets created:
 
 ```
-root@Omega-12D9:~# cat /sys/class/leds/onion\:amber\:system/delay 50
+root@Omega-12D9:~# cat /sys/class/leds/onion\:amber\:system/delay
+50
 ```
 
 That's pretty fast!  Let's slow it down a bit so that people like me who aren't experts can read it:

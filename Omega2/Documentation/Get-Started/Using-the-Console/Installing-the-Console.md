@@ -33,7 +33,7 @@ If you have set up the Omega and didn't install the console, skip to the Softwar
 
 Click the Install Console button and your Omega will begin installing the Console. This process takes about 5 minutes.
 
-> This process can take longer than 5 minutes depending on the strength of your internet connection.
+> This process can take longer than 5 minutes depending on your download speeds.
 
 Refresh the page and you should see the Console login page.
 ![login-page](../img/installing-console-login.png)

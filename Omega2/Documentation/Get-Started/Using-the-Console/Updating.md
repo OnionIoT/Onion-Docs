@@ -58,6 +58,7 @@ Click on the `Upgrade Minor Version` button and your new firmware will begin dow
 ![update-download-in-progress](../img/updating-download-in-progress.png)
 
 Once the download is complete a notification will pop up, and the upgrade will begin:
+
 ![update-download-complete](../img/updating-download-complete.png)
 
 **Do not turn off your Omega during this time.** It will reboot automatically with the latest features.
@@ -76,12 +77,12 @@ Here you see the firmware versions don't match.
 
 Click on the `Upgrade Major Version` button and your new firmware will begin downloading:
 
-// TODO: fix this screenshot
-![update-download-in-progress](../img/updating-download-in-progress.png)
+
+![update-download-in-progress](../img/updating-download-in-progress-major.png)
 
 Once the download is complete a notification will pop up, and the upgrade will begin:
-// TODO: fix this screenshot
-![update-download-complete](../img/updating-download-complete.png)
+
+![update-download-complete](../img/updating-download-complete-major.png)
 
 **Do not turn off your Omega during this time.** It will reboot automatically with the latest features.
 

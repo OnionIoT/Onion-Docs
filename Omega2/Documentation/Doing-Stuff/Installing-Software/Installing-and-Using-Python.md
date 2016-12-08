@@ -104,12 +104,45 @@ Note that the interpreter is a good tool for quickly testing some code, but the 
 
 // TODO: add example of writing a basic script and running it - script should say good morning, good afternoon, good evening based on the system time, also have the Omega LED start blinking at the beginning of the script, when the print is done, sleep for 10 seconds, and then set it back to default-on
 
-You can also write a Python Script on the Omega, and execute it using the following command:
+Our script example will make your Omega's LED blink, and then greet you based on the time of day. Here's what the code looks like:
+
+```Python
+import os, datetime, time # Importing
+
+currentTime = datetime.datetime.now() # Get's the current time
+
+os.system("echo timer > /sys/class/leds/onion\:amber\:system/trigger") #Sets the Omega LED trigger to "timer"
+
+if currentTime.hour < 12: # If the current time is the morning, print good morning
+    print 'Good morning.'
+elif 12 <= currentTime.hour < 18: # If the current time is the afternoon, print good afternoon
+    print 'Good afternoon.'
+else: # If the current time is the evening, print good evening
+    print 'Good evening.'
+
+time.sleep(5) # Waits for 5 seconds
+
+os.system("echo default-on > /sys/class/leds/onion\:amber\:system/trigger") #Sets the Omega LED trigger to "default-on"
+```
+
+Let's begin writing our Python script by creating the file:
 
 ```
-python /path/to/your/script.py
+vi /root/greeting.py
 ```
+
+Now we'll copy the above code into the file.
+
+>To save and exit your file, hit `ESC` and then enter `:wq`.
+
+You can and execute the script using the following command:
+
+```
+python /root/greeting.py
+```
+
 >Note: If you installed python3, you would enter `python3` instead of `python`.
+
 
 ### Going Further
 
