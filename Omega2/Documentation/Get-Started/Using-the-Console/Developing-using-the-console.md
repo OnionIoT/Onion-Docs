@@ -98,8 +98,8 @@ echo default-on > /sys/class/leds/onion\:amber\:system/trigger
 
 A Unix Shell is an interpreter that reads commands from the command-line and executes them. A Shell Script is a way of coding using those basic commands to create a more complex program. Essentially, we are going to use the same basic commands from the last section to create a program that will read a message and then blink that message in morse code.
 
-// TODO: change script to be called morse.sh
-Create a file called `morse` in the root directory using the Editor App.
+<!-- // DONE: change script to be called morse.sh -->
+Create a file called `morse.sh` in the root directory using the Editor App.
 
 Copy the code below, and save the file:
 
@@ -125,15 +125,15 @@ exit
 
 This block diagram shows the steps the `_MorseMain` function will perform:
 
-![code block diagram](../img/developing-pic-8.png)
+![code block diagram](../img/developing-pic-1-block-diagram.png)
 
 The main part of the program will just call the function and pass in all of the command line arguments.
 
 Your Console should look something like this now:
 
-![developing-code-pic](../img/developing-pic-7.png)
+![developing-code-pic](../img/developing-pic-2-editor-code.png)
 
-// TODO: update this photo ^ with the new text
+<!-- // DONE: update this photo ^ with the new text -->
 
 You are now ready to convert text to morse code!
 
@@ -144,13 +144,13 @@ To run your Script, open the Terminal App once again, and log in if your session
 Then, enter the following command to run your script:
 
 ```
-sh /root/morse <YOUR MESSAGE HERE>
+sh /root/morse.sh <YOUR MESSAGE HERE>
 ```
 
 Enter a message that you would like to blink in morse code:
 
 ```
-root@Omega-2757:~# sh /root/morse Hello, Onion
+root@Omega-2757:~# sh /root/morse.sh Hello Onion
 ```
 
 <!-- TODO add a gif here -->

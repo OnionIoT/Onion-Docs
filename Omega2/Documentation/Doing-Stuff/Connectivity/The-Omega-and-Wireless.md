@@ -52,11 +52,11 @@ All of this is can be done by connecting your Omega to an existing WiFi network 
 
 <!-- // highlight that this is the state the omega is in after completing the setup Wizard -->
 
-<!-- // TODO: mention that the Omega is different from other device (laptop, smartphone) in that it can SIMULTANEOUSLY host an AP and connect to a wifi network - this is cool because you can share internet access and other stuff between the two networks -->
+<!-- // DONE: mention that the Omega is different from other device (laptop, smartphone) in that it can SIMULTANEOUSLY host an AP and connect to a wifi network - this is cool because you can share internet access and other stuff between the two networks -->
 
-Your Omega can **simultaneously** connect to an existing WiFi network, and host its own Access Point, yielding some interesting results. This is the typical use case because you can avoid having to switch networks in order to connect to your Omega.
+Your Omega can **simultaneously** connect to an existing WiFi network, and host its own Access Point, yielding some interesting results. This is a great feature because you can have your Omega connected to your main WiFi network, and all the devices on that network can communicate with the Omega.
 
-// TODO: expand on how it's nice to have your omega on the same wifi network as your other devices - namely your laptop
+<!-- // DONE: expand on how it's nice to have your omega on the same wifi network as your other devices - namely your laptop -->
 You can connect your other devices to the Omega's AP and access the internet, essentially turning your Omega into a network switch.
 > For more on making your Omega into a network switch, check out our tutorial on [Turning your Omega into a Router](#omega-router), or our tutorial on [using the Omega as a WiFi range extender](#wifi-range-extender)]
 

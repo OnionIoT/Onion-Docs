@@ -15,30 +15,20 @@ The Ethernet Expansion is a piece of hardware that gives your Omega the ability 
 
 ### Connecting to a Network through Ethernet
 
-// TODO: change this sentence to make it really clear that the Omega can use the ethernet expansion to join a network (and get internet) through an ethernet connection. Draw a parallel to a desktop computer
-The Ethernet Expansion can be used to establish a wired internet connection to the Omega, meaning that the Omega can connect to . We're going to go through how to properly set up your Omega.
+<!-- // DONE: change this sentence to make it really clear that the Omega can use the ethernet expansion to join a network (and get internet) through an ethernet connection. Draw a parallel to a desktop computer -->
+The Omega can use the Ethernet Expansion to join a network via a wired connection, much like a desktop computer can. This type of connection requires some minor configuration changes, so we're going to go through how to properly set up your Omega to use an Ethernet Expansion.
 
 ### Step 1: Enable `eth0`
 
-The Omega is primarily designed as a development board to prototype WiFi-enabled devices, so by default, we have turned off the ethernet interface `eth0` in the firmware. In order to use the Ethernet Expansion, you will need to make sure this is enabled. To do this, you will need to open up the `/etc/config/network` file, find the block that looks something like the following:
+The Omega's Ethernet interface is named `eth0`. In order to use the Ethernet Expansion, you will need to make sure this is enabled. To do this, you will need to open up the `/etc/config/network` file, find the block that looks something like the following:
 
 ```
 config interface 'wan'
    option ifname 'eth0'
    option proto 'dhcp'   
 ```
-and add the following line:
+If that block does not exist, you'll need to add it in.
 
-```
-option hostname 'OnionOmega'
-```
-
-```
-config interface 'wan'
-   option ifname 'eth0'
-   option proto 'dhcp'
-   option hostname 'OnionOmega'
-```
 
 This will tell the Omega to turn on the `eth0` interface and we will also be referring to this network as `wan`.
 

@@ -73,6 +73,8 @@ To see a list of the python packages available via `opkg`, enter the following c
 opkg update
 opkg list | grep python
 ```
+*Note: enter `opkg list | grep python3` to get the packages specific to python3*
+
 
 This will list all the available packages with python in their name. You can run:
 
@@ -84,7 +86,7 @@ To install the desired package.
 
 >For more on `opkg` you can check out our [guide to using opkg](#using-opkg)
 
-// TODO: add note about installing python3 packages
+<!-- // DONE: add note about installing python3 packages -->
 
 <!-- TODO: LATER: talk about pip -->
 
@@ -102,37 +104,9 @@ Note that the interpreter is a good tool for quickly testing some code, but the 
 <!-- // example of writing a basic python script that changes the trigger of the Omega LED -->
 <!-- // example of how to run it from the command line -->
 
-// TODO: change the os.system calls to actually open the file, write to it, and then close it
+<!-- // DONE: change the os.system calls to actually open the file, write to it, and then close it -->
 
-//TODO: reorder the text so taht it's logical and friendly
-
-Our script example will make your Omega's LED blink, and then greet you based on the time of day. Here's what the code looks like:
-
-```Python
-import os, datetime, time # Importing
-
-## Set the Omega LED trigger to "timer" so that it blinks
-os.system("echo timer > /sys/class/leds/onion\:amber\:system/trigger")
-
-
-## Print a gretting based on the time of day
-# Gets the current time
-currentTime = datetime.datetime.now()
-
-if currentTime.hour < 12: # If the current time is the morning, print good morning
-    print 'Good morning.'
-elif 12 <= currentTime.hour < 18: # If the current time is the afternoon, print good afternoon
-    print 'Good afternoon.'
-else: # If the current time is the evening, print good evening
-    print 'Good evening.'
-
-## Wait 5 seconds and then set the Omega LED back to being always on
-# Waits for 5 seconds
-time.sleep(5)
-
-# Sets the Omega LED trigger to "default-on"
-os.system("echo default-on > /sys/class/leds/onion\:amber\:system/trigger")
-```
+<!-- //DONE: reorder the text so that it's logical and friendly -->
 
 Let's begin writing our Python script by creating the file:
 
@@ -140,11 +114,35 @@ Let's begin writing our Python script by creating the file:
 vi /root/greeting.py
 ```
 
-Now we'll copy the above code into the file.
+Now we'll copy the following code into the file:
+
+
+```Python
+import os, datetime, time
+
+currentTime = datetime.datetime.now()
+
+with open("/sys/class/leds/onion:amber:system/trigger", "w") as trigger:
+        trigger.write("timer")
+
+
+if currentTime.hour < 12:
+        print 'Good morning.'
+elif 12 <= currentTime.hour < 18:
+        print 'Good afternoon.'
+else:
+        print 'Good evening.'
+
+time.sleep(5)
+
+with open("/sys/class/leds/onion:amber:system/trigger", "w") as trigger:
+        trigger.write("default-on")
+
+```
 
 >To save and exit your file, hit `ESC` and then enter `:wq`.
 
-You can and execute the script using the following command:
+You can execute the script using the following command:
 
 ```
 python /root/greeting.py
@@ -152,7 +150,16 @@ python /root/greeting.py
 
 >Note: If you installed python3, you would enter `python3` instead of `python`.
 
-// TODO: add a sentence or two about what should happen
+
+And you'll see the following output:
+
+```
+root@Omega-2757:~# python /root/greeting.py
+Good evening.
+
+```
+
+During this time your Omega's LED will be blinking on and off.
 
 
 ### Going Further
