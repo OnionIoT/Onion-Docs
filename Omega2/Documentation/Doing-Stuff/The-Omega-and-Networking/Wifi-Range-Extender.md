@@ -20,10 +20,9 @@ Let's get started!
 
 ### Overview
 
-| <span style="font-weight:normal">Tutorial Difficulty</span> | Intermediate |
+| <span style="font-weight:normal">Tutorial Difficulty</span> | Beginner |
 | :--- | :--- |
-| Tutorial Difficulty | **Beginner** |
-| Time Required | **5 min** |
+| Time Required | **5 mins** |
 | Required Materials: | Omega2 or Omega2+<br>Expansion Dock, Mini Dock, Arduino Dock or Power Dock |
 
 <!-- batch2: add a few sentences describing at a high level what the steps will accomplish -->
