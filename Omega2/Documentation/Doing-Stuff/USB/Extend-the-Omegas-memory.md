@@ -32,12 +32,13 @@ Let's get to setting up our very own Swap File and extending the available memor
 
 #### Step 1: Install Required Packages
 
-First, we will install the `swap-utils` package that will allow us to create and use Swap Files:
+First, we will install the `swap-utils` and `block-mount` packages that will allow us to create and use Swap Files:
+
 ```
 opkg update
 opkg install swap-utils
+opkg install block-mount
 ```
-
 
 #### Step 2: USB Storage
 
@@ -102,17 +103,72 @@ The units of the numbers displayed by the `free` command are kilobytes. The tota
 
 **Note:** When the Omega is rebooted, the USB Swap Page will no longer be used. Step 5 will have to be repeated after every boot unless some automatic method for activating the Swap Page is created...
 
-
-
 ### Going Further
 
-So it's a little problematic that the Swap File needs to be activated manually after every boot, lets figure out how to automate this tedious little activity.
+It's a little problematic that the Swap File needs to be activated manually after every boot, so let's automate this!
 
+#### Automatically Mount the USB using Block + Fstab
 
+In order to automatically activate the Swap File, we will need to set up automounting on your USB using a different method than the default tool on the Omega2.
 
-#### Automatically Activating the Swap File
+Let's take a look at our `fstab` configuration. This is the configuration file that holds all of the storage device info on the system. It can be found at `/etc/config/fstab`, meaning we can access it using the following command: `uci show fstab`. This will show various configuration info like below:
 
-The `/etc/rc.local` will be run automatically after every boot, so this is perfect for our purposes.
+```
+fstab.@global[0]=global
+fstab.@global[0].anon_swap='0'
+fstab.@global[0].anon_mount='0'
+fstab.@global[0].auto_swap='1'
+fstab.@global[0].auto_mount='1'
+fstab.@global[0].delay_root='5'
+fstab.@global[0].check_fs='0'
+```
+
+Make sure your swap USB drive is plugged into the Omega. We will tell the Omega to detect the information for the drive and save it in our `fstab` configuration like so:
+```
+block detect > /etc/config/fstab
+```
+
+Now the Omega has an fstab [UCI] entry for this specific USB drive. Let's update the UCI entry so that it will automatically be mounted.
+
+First, let's see the current configuration by running `uci show fstab`, it will output something like the following:
+```
+fstab.@global[0]=global
+fstab.@global[0].anon_swap='0'
+fstab.@global[0].anon_mount='0'
+fstab.@global[0].auto_swap='1'
+fstab.@global[0].auto_mount='1'
+fstab.@global[0].delay_root='5'
+fstab.@global[0].check_fs='0'
+fstab.@mount[0]=mount
+fstab.@mount[0].target='/mnt/sda1'
+fstab.@mount[0].uuid='1806-3FEB'	// this is the unique identifier of the USB drive
+fstab.@mount[0].enabled='0'
+```
+
+Now, lets enable the `mount[0]` device:
+```
+uci set fstab.@mount[0].enabled='1'
+uci commit fstab
+```
+
+**Make sure fstab is Enabled**
+
+Just to be safe, let's enable `fstab` to run at boot:
+```
+/etc/init.d/fstab enable
+block mount
+```
+
+**Restarting fstab**
+
+Any time the `fstab` configuration is changed, the following command can be used to restart the process so the changes will take effect:
+```
+block umount;block mount
+```
+
+There's a file called `/etc/rc.local` where you can put terminal commands that will be run automatically after every boot. This is perfect for what we're trying to do.
+
+However, 
 
 Add the following to your `/etc/rc.local` file:
 ```
