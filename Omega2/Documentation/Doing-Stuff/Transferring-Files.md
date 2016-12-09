@@ -11,7 +11,39 @@ order: 4
 
 The Omega is incredibly powerful in that it is a full Linux computer. This means that it has its own filesystem, allowing you to store files directly on the Omega. It also means that you can take your files from an external device and copy them to your Omega. This tutorial will show you how you to transfer files from Windows, Mac OS X, and Linux.
 
-// TODO: add blurb about uploading files using the editor
+<!-- // DONE: add blurb about uploading files using the editor -->
+
+### Using the Editor App in the Onion Console
+
+The Editor App in the Onion Console can be used to upload files directly to the Omega's filesystem.
+
+
+<!-- TODO: add a section getting to the editor app -->
+>The console is installed by default after completing the Setup Wizard, but you can read our brief guide on [installing the Onion Console](#installing-the-console) for more information.
+
+This works on all operating systems and is a great way to wirelessly upload code to your Omega.
+
+>*NOTE: It is not recommended to upload files larger than 2MB using this method.*
+
+Open the Editor App in the console, and click the `Upload File` button in the top bar. Your file will be uploaded to the current directory, so you'll need to first move to the correct directory in the side bar:
+
+![upload-file-button](./img/upload-file-with-editor-upload-button.png)
+
+>The green circle shows that my current directory is `/root`
+
+Now a prompt will open asking you to choose your file:
+
+![choose-file-button](./img/upload-file-with-editor-choose-file.png)
+
+Click that and select the file you would like to upload. Then hit submit button:
+
+![submit-button](./img/upload-file-with-editor-submit.png)
+
+And your file will be uploaded to the current directory:
+
+![uploaded-file](./img/upload-file-with-editor-uploaded.png)
+
+And that's all there is to it! A simple and effective way to upload files from your computer to your Omega.
 
 
 ### Using Windows
