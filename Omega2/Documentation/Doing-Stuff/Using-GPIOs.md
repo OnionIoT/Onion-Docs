@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 1
 ---
 
-## Controlling the GPIOs {#using-gpios}
+## Using the Omega's GPIOs {#using-gpios}
 
 The Omega2 has twelve General-Purpose Input/Output pins (commonly referred to as GPIOs) that can be fully controlled by you, the user. GPIO pins on most chips generally go unused, but on the Omega, we can use these GPIOs to connect to, communicate with, and control external circuits.
 
@@ -184,3 +184,87 @@ We see:
 Group uart1 - uart [gpio]
 ```
 indicating that our change has indeed been applied.
+
+
+### Fast-GPIO
+
+The `fast-gpio` command is similar to `gpioctl` in that it is used to control the Omega's GPIOs. The difference is that while `gpioctl` worked by setting file values inside the `/sys/class/gpio` directory, `fast-gpio` works by setting GPIO registers and is inherently a faster process.
+
+#### Command Usage:
+
+For a print-out of the usage, run `fast-gpio` with on the command line:
+
+```
+root@Omega-2757:/# fast-gpio
+Usage:
+ fast-gpio set-input <gpio>
+ fast-gpio set-output <gpio>
+ fast-gpio get-direction <gpio>
+ fast-gpio read <gpio>
+ fast-gpio set <gpio> <value: 0 or 1>
+ fast-gpio pwm <gpio> <freq in Hz> <duty cycle percentage>
+```
+
+#### Setting a GPIO pin's direction:
+
+```
+fast-gpio set-input <gpio>
+fast-gpio set-output <gpio>
+```
+
+A pin can be configured to either be input or output.
+
+**To avoid damaging your Omega, set a pin to the input direction before driving any voltage to it!!**
+
+
+#### Reading a GPIO pin's direction:
+
+```
+fast-gpio get-direction <gpio>
+```
+
+Might be handy to check a pin's programmed direction
+
+```
+GPIO14 direction is OUTPUT
+GPIO13 direction is INPUT
+```
+
+
+#### Reading a GPIO pin's value:
+
+```
+fast-gpio read <gpio pin>
+```
+
+This will return the pin's value, in both input and output modes
+
+```
+root@Omega-2757:/# fast-gpio read 14
+> Read GPIO14: 0
+```
+
+#### Setting a GPIO pin's value:
+This will drive the selected pin to the value desired.
+
+```
+fast-gpio set <gpio pin number> <value to set; 0 or 1>
+```
+
+This will only work when the pin is in the output direction, but `fast-gpio` will take care of that behind the scenes.
+
+#### Using a pin as a digital input:
+<!-- MOHAMED QUESTION: What does this mean -->
+You can use `fast-gpio` to set a pin to be a digital input.
+The pin needs to first be set to run as input
+
+```
+fast-gpio set-input 13
+```
+
+Then the connected voltage can be read:
+
+```
+root@Omega-2757:/# fast-gpio read 13
+> Read GPIO13: 1
+```
