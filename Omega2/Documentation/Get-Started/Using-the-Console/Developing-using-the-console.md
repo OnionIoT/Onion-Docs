@@ -133,7 +133,8 @@ Your Console should look something like this now:
 
 ![developing-code-pic](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-pic-2-editor-code.png)
 
-<!-- // DONE: update this photo ^ with the new text -->
+// TODO: fix up the below, add link to new transferring files section
+> The Editor can also be used to upload files from your computer directly to the Omega, see blah blah for details.
 
 You are now ready to convert text to morse code!
 
