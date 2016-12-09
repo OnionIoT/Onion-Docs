@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 2
 ---
 
-## Installing the Console
+## Installing the Console {#installing-the-console}
 
 <!-- // Show how to install the console through the setup-wizard, or through the command line -->
 The Console can be installed through the Setup Wizard, or through the command line.
