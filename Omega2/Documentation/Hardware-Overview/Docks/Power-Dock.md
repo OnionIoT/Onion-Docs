@@ -40,8 +40,8 @@ The Micro-USB port supplies 5V to the Dock. This voltage is stepped down to the 
 
 The Expansion Header is a convenient tool that gives you easy access to the Omega's GPIOs, and allows you to connect Onion Expansions directly. The Expansion Header is labelled to show you what GPIO is connected to each section.
 
-
-#### Detailed Pinout
+<!-- TODO: add detailed pinout diagram-->
+<!-- #### Detailed Pinout -->
 
 <!-- [//]: # (A detailed pinout diagram of the Expansion Header, showing which pins are multiplexed - see Lazar for an example) -->
 
