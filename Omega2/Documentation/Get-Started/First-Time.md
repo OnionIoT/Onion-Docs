@@ -1,4 +1,4 @@
-## The Very First Time {#first-time-setup}
+##  First Time Setup {#first-time-setup}
 
 Follow along with this guide to set up your Omega2 for the first time. We'll first learn how to properly connect your Omega to a Dock and power it up. Then we'll connect to it to use the Setup Wizard to have it connect to your WiFi network and then do some updates.
 
@@ -111,8 +111,8 @@ Follow the wizard to complete the setup of the Omega, by the end of it, your Ome
 
 **All Done!**
 
-Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next!
-
+Start using your fresh Omega, check out the [Using the Omega section](#doing stuff) for ideas on what the Omega can do!
+<!-- Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next! -->
 <!-- TODO: fix the links above when the content is available -->
 
 
@@ -134,6 +134,6 @@ If the pins need to be bent outward, put the pins up against a flat surface near
 
 Make sure your password has been typed in correctly, remember, WiFi passwords are case sensitive.
 
-#### I've made sure my password is correct and my Omega still won't connect to my WiFi Network
+<!-- #### I've made sure my password is correct and my Omega still won't connect to my WiFi Network -->
 
 <!-- explanation regarding Omega's IP address -->
