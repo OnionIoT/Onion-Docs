@@ -36,7 +36,7 @@ For more details on SPI, check out the [Wikipedia article](https://en.wikipedia.
 
 
 ### On the Hardware-Overview
-// highlight the SPI pins on both the Omega and the Expansion Dock
+// TODO: highlight the SPI pins on both the Omega and the Expansion Header
 
 ### The Command Line tool
 
