@@ -11,6 +11,8 @@ order: 4
 
 The Omega is incredibly powerful in that it is a full Linux computer. This means that it has its own filesystem, allowing you to store files directly on the Omega. It also means that you can take your files from an external device and copy them to your Omega. This tutorial will show you how you to transfer files from Windows, Mac OS X, and Linux.
 
+// TODO: add blurb about uploading files using the editor
+
 
 ### Using Windows
 
@@ -229,3 +231,15 @@ To see the full list of options and behaviours, see the [`rsync` Reference][rsyn
 <!-- link defintions -->
 
 [rsync reference]: http://linuxcommand.org/man_pages/rsync1.html
+
+
+### Upload Files using the editor
+// try adding a {#title} to this guy so we can link directly to this section
+
+// very small intro on the console, link to the console articles
+// small intro on the editor, mention that it can be used to manage files on the Omega along with uploading single files using your browser
+
+// walkthrough of uploading a file with pictures
+//  1. opening the editor app (install if you haven't already done so - link to installing apps article)
+//  2. hit the upload button
+//  3. choose where you want to put it
