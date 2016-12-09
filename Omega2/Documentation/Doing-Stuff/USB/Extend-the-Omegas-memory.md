@@ -10,10 +10,6 @@ order: 1
 
 While the Omega2 comes with a decent 64MB of RAM, and the Omega2+ with 128MB, you might find yourself in a situation where this is simply not enough! This tutorial will walk you through how you can use USB Storage and a Swap File to extend the amount of memory available to your Omega.
 
-[//]: # (this article will cover how to extend the Omega's available memory by using a swap file on USB storage)
-
-[//]: # (heavily base it on the existing article, should be pretty complete)
-
 ### What is a Swap File?
 
 A Swap File is a special file on a disk drive or flash storage that is used by the operating system to store information not currently being used by the device's RAM. This allows the system and programs to use more memory than just by using the physically available RAM memory.
@@ -32,22 +28,23 @@ First, we will install the `swap-utils` and `block-mount` packages that will all
 
 ```
 opkg update
-opkg install swap-utils
-opkg install block-mount
+opkg install swap-utils block-mount
 ```
 
 #### Step 2: USB Storage
 
-Plug in a USB drive and make sure it's mounted. For best results, you will need to setup automatic mounting. See the [USB Storage tutorial](#usb-storage) for details on the procedures.
+Plug in a USB drive and make sure it's mounted. By default, the Omega will automatically mount any USB storage devices.
+
+> If you're curious about auto-mounting, see the [USB Storage tutorial](#usb-storage) for details.
 
 For the purposes of this tutorial, let's assume the USB device was mounted to `/tmp/mounts/USB-A1`.
 
 
 #### Step 3: Create Swap File on the USB storage
 
-Now we need to create the file on the USB drive that will be used as the Swap file using the `dd` utility. This utility is meant to convert, copy, and write files. It is very powerful and writing to an unintended location can severely damage your system. It can potentially be very destructive if used incorrectly. 
+Now we need to create the file on the USB drive that will be used as the Swap file using the `dd` utility. This utility is meant to convert, copy, and write files. It is very powerful and writing to an unintended location can severely damage your system. It can potentially be very destructive if used incorrectly.
 
->**Be extremely careful when using `dd`!**
+***Be extremely careful when using `dd`!***
 
 We will run the following `dd` command:
 
@@ -104,6 +101,8 @@ The units of the numbers displayed by the `free` command are kilobytes. The tota
 
 **Note:** When the Omega is rebooted, the USB Swap Page will no longer be used. Step 5 will have to be repeated after every boot unless some automatic method for activating the Swap Page is created...
 
+Luckily for you, we've gone ahead and figured out how to do that!
+
 ### Going Further
 
 It's a little problematic that the Swap File needs to be activated manually after every boot, so let's automate this!
@@ -112,13 +111,13 @@ It's a little problematic that the Swap File needs to be activated manually afte
 
 In order to automatically activate the Swap File, we will need to set up automounting for your USB using a different method than the default tool on the Omega2. The file `/etc/fstab` contains information on how to automate mounting partitions (like our USB drive).
 
-Make sure your USB drive is plugged into the Omega. We will tell the Omega to detect the information for the drive and save it in our `fstab` configuration with the foll command:
+Make sure your USB drive is plugged into the Omega. We will tell the Omega to detect the information for the drive and save it in our `fstab` configuration with the following command:
 
 ```
 block detect > /etc/config/fstab
 ```
 
-Now the Omega has an `fstab` `uci` entry for this specific USB drive. Let's update the `uci` entry so that it will automatically be mounted.
+Now the Omega has an `fstab` entry in `uci` for this specific USB drive. Let's update the `uci` entry so that it will mounted automatically.
 
 First, let's see the current configuration by running `uci show fstab`. It will output something like the following:
 
@@ -165,6 +164,8 @@ block umount;block mount
 
 Now that we've told the Omega to automount the USB drive, we need to tell it to activate the Swap File when it starts up. There's a file called `/etc/rc.local` where you can put terminal commands that will be run automatically after every boot. This is perfect for what we're trying to do.
 
+> See the [running commands on boot](#running-a-command-on-boot) article for more info.
+
 We need to add a snippet of code to tell the Omega to look for the `swap.page` file we created earlier and activate it. From our example, the USB drive would be mounted at `/mnt/sda1`. Add the following to your `/etc/rc.local` file, where `SWAP_FILE` is the full path where `swap.page` will be:
 
 ```
@@ -177,12 +178,20 @@ fi
 
 **Make sure this code is placed above the `exit 0` line that already exists in the file!**
 
-After adding this code, reboot your Omega with the USB drive still plugged in. Run `free` to confirm the Swap File is indeed being used.
+After adding this code, reboot your Omega with the USB drive still plugged in. Run `free` to confirm the Swap File is indeed being used:
+
+```
+root@Omega-1302:~# free
+             total         used         free       shared      buffers
+Mem:         61152        42644        18508           96        11648
+-/+ buffers:              30996        30156
+Swap:       262140            0       262140
+```
 
 ### Summary
 
-* Using a Swap File allows us to use other types of storage (USB, flash) to extend the amount of RAM available in our system. 
-* All modern desktop and mobile operating systems implement swap files in one way or another since storage is generally much cheaper than memory. 
+* Using a Swap File allows us to use other types of storage (USB, flash) to extend the amount of RAM available in our system.
+* All modern desktop and mobile operating systems implement swap files in one way or another since storage is generally much cheaper than memory.
 * This isn't exactly equivalent to adding more RAM because memory is much, much faster than storage.
 * For situations where memory usage becomes an issue, this method is incredibly useful.
 
