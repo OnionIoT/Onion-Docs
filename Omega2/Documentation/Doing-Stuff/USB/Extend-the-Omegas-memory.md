@@ -49,9 +49,10 @@ For the purposes of this tutorial, let's assume the USB device was mounted to `/
 
 #### Step 3: Create Swap File on the USB storage
 
-Now we need to create the file on the USB drive that will be used as the Swap file. We will be using the `dd` utility to help us create the file. The `dd` utility is meant to convert and copy files, it is very powerful so it can potentially be very destructive if used incorrectly, **stay on your toes when using `dd`**.
+Now we need to create the file on the USB drive that will be used as the Swap file. We will be using the `dd` utility to help us create the file. The `dd` utility is meant to convert and copy files, it is very powerful so it can potentially be very destructive if used incorrectly. **Stay on your toes when using `dd`!**
 
-The specific `dd` command we will be running will look like:
+We will run the following `dd` command:
+
 ```
 dd if=/dev/zero of=/tmp/mounts/USB-A1/swap.page bs=1M count=256
 ```
@@ -86,11 +87,13 @@ Swap:            0            0            0
 #### Step 5: Activate the Swap File
 
 We're finally ready to activate the Swap File and actually expand our available memory:
+
 ```
 swapon /tmp/mounts/USB-A1/swap.page
 ```
 
-Now, when `free` is run again, we will see that the Swap row is populated:
+Now, when we run `free` again, we will see that the Swap row is populated:
+
 ```
 root@Omega-1302:~# free
              total         used         free       shared      buffers
@@ -109,28 +112,18 @@ It's a little problematic that the Swap File needs to be activated manually afte
 
 #### Automatically Mount the USB using Block + Fstab
 
-In order to automatically activate the Swap File, we will need to set up automounting on your USB using a different method than the default tool on the Omega2.
+In order to automatically activate the Swap File, we will need to set up automounting for your USB using a different method than the default tool on the Omega2. The file `/etc/fstab` contains information on how to automate mounting partitions (like our USB drive).
 
-Let's take a look at our `fstab` configuration. This is the configuration file that holds all of the storage device info on the system. It can be found at `/etc/config/fstab`, meaning we can access it using the following command: `uci show fstab`. This will show various configuration info like below:
+Make sure your USB drive is plugged into the Omega. We will tell the Omega to detect the information for the drive and save it in our `fstab` configuration with the foll command:
 
-```
-fstab.@global[0]=global
-fstab.@global[0].anon_swap='0'
-fstab.@global[0].anon_mount='0'
-fstab.@global[0].auto_swap='1'
-fstab.@global[0].auto_mount='1'
-fstab.@global[0].delay_root='5'
-fstab.@global[0].check_fs='0'
-```
-
-Make sure your swap USB drive is plugged into the Omega. We will tell the Omega to detect the information for the drive and save it in our `fstab` configuration like so:
 ```
 block detect > /etc/config/fstab
 ```
 
-Now the Omega has an fstab [UCI] entry for this specific USB drive. Let's update the UCI entry so that it will automatically be mounted.
+Now the Omega has an `fstab` `uci` entry for this specific USB drive. Let's update the `uci` entry so that it will automatically be mounted.
 
-First, let's see the current configuration by running `uci show fstab`, it will output something like the following:
+First, let's see the current configuration by running `uci show fstab`. It will output something like the following:
+
 ```
 fstab.@global[0]=global
 fstab.@global[0].anon_swap='0'
@@ -140,18 +133,19 @@ fstab.@global[0].auto_mount='1'
 fstab.@global[0].delay_root='5'
 fstab.@global[0].check_fs='0'
 fstab.@mount[0]=mount
-fstab.@mount[0].target='/mnt/sda1'
-fstab.@mount[0].uuid='1806-3FEB'	// this is the unique identifier of the USB drive
+fstab.@mount[0].target='/mnt/sda1'          // we'll use this path for automounting
+fstab.@mount[0].uuid='<UNIQUE IDENTIFIER>'	// eg. '19BF-3A86'
 fstab.@mount[0].enabled='0'
 ```
 
-Now, lets enable the `mount[0]` device:
+Now let's enable the `mount[0]` device:
+
 ```
 uci set fstab.@mount[0].enabled='1'
 uci commit fstab
 ```
 
-**Make sure fstab is Enabled**
+**Making Sure `fstab` is Enabled**
 
 Just to be safe, let's enable `fstab` to run at boot:
 ```
@@ -159,38 +153,39 @@ Just to be safe, let's enable `fstab` to run at boot:
 block mount
 ```
 
-**Restarting fstab**
+The Omega now knows to mount your USB drive at `/mnt/sda1`. Keep this handy for later, or just run `uci show fstab` to see this information again.
 
-Any time the `fstab` configuration is changed, the following command can be used to restart the process so the changes will take effect:
+**Restarting `fstab`**
+
+If you need to change your `fstab` configuration, the following command can be used to restart the process so the changes will take effect:
+
 ```
 block umount;block mount
 ```
 
-There's a file called `/etc/rc.local` where you can put terminal commands that will be run automatically after every boot. This is perfect for what we're trying to do.
+#### Activating the Swap File at Boot
 
-However, 
+Now that we've told the Omega to automount the USB drive, we need to tell it to activate the Swap File when it starts up. There's a file called `/etc/rc.local` where you can put terminal commands that will be run automatically after every boot. This is perfect for what we're trying to do.
 
-Add the following to your `/etc/rc.local` file:
+We need to add a snippet of code to tell the Omega to look for the `swap.page` file we created earlier and activate it. From our example, the USB drive would be mounted at `/mnt/sda1`. Add the following to your `/etc/rc.local` file, where `SWAP_FILE` is the full path where `swap.page` will be:
+
 ```
 ### activate the swap file on an external USB drive
-SWAP_FILE="/tmp/mounts/USB-A1/swap.page"
+SWAP_FILE="/mnt/sda1/swap.page"         // the path from the fstab config
 if [ -e "$SWAP_FILE" ]; then
-        swapon /tmp/mounts/USB-A1/swap.page
+        swapon $SWAP_FILE
 fi
 ```
 
 **Make sure this code is placed above the `exit 0` line that already exists in the file!**
 
-This will first check that the Swap File exists, and will then activate the Swap File. Note that this depends on the USB drive being automatically mounted during boot, see the [USB Storage tutorial](#usb-storage) for details on how to accomplish automatic mounting.
-
-<!-- Above paragraph no longer relevant -->
-
 Try adding this code, reboot your Omega (with the USB drive still plugged in), and running `free` to confirm the Swap File is indeed being used.
-
-
 
 ### Summary
 
-Using a Swap File allows us to use other types of storage (USB, flash) to extend the amount of RAM available in our system. All modern desktop and mobile operating systems implement swap files in one way or another since storage is generally much cheaper than memory. This isn't exactly equivalent to adding more RAM since memory is much, much faster than storage, but for situations where memory usage becomes an issue, this method is incredibly useful.
+* Using a Swap File allows us to use other types of storage (USB, flash) to extend the amount of RAM available in our system. 
+* All modern desktop and mobile operating systems implement swap files in one way or another since storage is generally much cheaper than memory. 
+* This isn't exactly equivalent to adding more RAM because memory is much, much faster than storage.
+* For situations where memory usage becomes an issue, this method is incredibly useful.
 
 Happy hacking!
