@@ -8,7 +8,7 @@ order: 3
 
 
 
-## The Mini Dock {#mini-dock}
+## Mini Dock {#mini-dock}
 
 <!-- [//]: # (Brief overview on the expansion dock and what it's used for (usb connection, power omega). Highlight it's size and how it's useful) -->
 <!-- [//]: # (for Omega-only projects or USB-based projects.) -->

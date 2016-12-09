@@ -7,7 +7,7 @@ order: 1
 ---
 
 
-## The Expansion Dock {#expansion-dock}
+## Expansion Dock {#expansion-dock}
 
 <!-- [//]: # (Brief overview on the expansion dock and what it's used for (usb connection, power omega, attach expansions).) -->
 

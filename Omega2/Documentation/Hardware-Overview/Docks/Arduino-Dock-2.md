@@ -7,7 +7,7 @@ order: 4
 ---
 
 
-## The Arduino Dock 2 {#arduino-dock}
+## Arduino Dock 2 {#arduino-dock}
 
 <!-- [//]: # (The Arduino Dock 2 contains an ATmega328P micro-controller, the same one found on the Arduino Uno R3.) -->
 <!-- [//]: # (The Omega can program the microcontroller and then communicate with it) -->
