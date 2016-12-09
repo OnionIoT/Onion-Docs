@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 5
 ---
 
-### Installing Additional Apps {installing-apps}
+### Installing Additional Apps {#installing-apps}
 
 <!-- // Mention the pre-installed apps. Show how to install additional apps through the console or through the command line -->
 
