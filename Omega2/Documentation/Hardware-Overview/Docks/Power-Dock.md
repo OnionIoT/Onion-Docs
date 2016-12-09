@@ -7,7 +7,7 @@ order: 2
 ---
 
 
-## The Power Dock {#power-dock}
+## Power Dock {#power-dock}
 
 <!-- [//]: # (Brief overview on the Power Dock. Highlight the features such as battery management, battery recharge, mobility (completely wireless).) -->
 <!-- [//]: # (Briefly mention that the power dock is similar to but not the same as the expansion dock.) -->
@@ -40,8 +40,8 @@ The Micro-USB port supplies 5V to the Dock. This voltage is stepped down to the 
 
 The Expansion Header is a convenient tool that gives you easy access to the Omega's GPIOs, and allows you to connect Onion Expansions directly. The Expansion Header is labelled to show you what GPIO is connected to each section.
 
-
-#### Detailed Pinout
+<!-- TODO: add detailed pinout diagram-->
+<!-- #### Detailed Pinout -->
 
 <!-- [//]: # (A detailed pinout diagram of the Expansion Header, showing which pins are multiplexed - see Lazar for an example) -->
 
@@ -137,19 +137,19 @@ The main differences are:
 
 
 
-## Using the Power Dock
+### Using the Power Dock
 
 <!-- [//]: # (overview of what this section covers) -->
 
 
-### Three Different Operating Modes
+#### Three Different Operating Modes
 
 The Power Dock operates in three different modes.
 
 
 <!-- Usage Modes: Battery Mode -->
 
-#### Battery Mode
+##### Battery Mode
 
 This is the most important mode; when the Omega and Power Dock are running completely off the battery. The LED Indicators will be turned off by default to conserve battery life, however they can be turned on for five seconds via a command from the Omega.
 
@@ -162,7 +162,7 @@ When the battery is approaching depletion the Indicator LEDs will begin flashing
 
 <!-- Usage Modes: Charging Mode -->
 
-#### Charging Mode
+##### Charging Mode
 
 When both the battery and Micro-USB cable are connected to the Power Dock, the battery will be charging. The Omega can still be powered on while the battery is charging, but it doesn't have to be; the battery will charge in this mode regardless of what the Omega is doing. You can even disconnect your Omega and the battery will still charge!
 
@@ -190,7 +190,7 @@ Battery is **75%** charged, charging up to **100%**:
 
 <!-- Usage Modes: Stationary Mode -->
 
-#### Stationary Mode
+##### Stationary Mode
 
 The Power Dock will still work when the battery is disconnected and the Power Dock is receiving power just from the Micro USB cable. The Battery Level Indicator LEDs will be flashing erratically, this is expected:
 
@@ -203,13 +203,13 @@ The Power Dock essentially acts like the Expansion Dock in this mode.
 <!-- SECTION -->
 <!-- power-dock application -->
 
-### Checking the Battery Level
+#### Checking the Battery Level
 
 [//]: # (explanation that you can visually see the battery level on the indicator LEDs AND in the operating system)
 
 The `power-dock` application allows you to turn on the indicator LEDs on the Power Dock. It will only take effect when the Omega and Power Dock are being powered just by the battery.
 
-### Install
+#### Install
 
 To install the power-dock application, run the following commands:
 
@@ -218,7 +218,7 @@ opkg update
 opkg install power-dock
 ```
 
-### Usage
+#### Usage
 
 The application will turn on the Battery Level Indicator LEDs, allowing you to visually check the battery charge level. To do this simply enter the following command:
 
@@ -231,6 +231,6 @@ power-dock
 [//]: # (Add section describing the text output of the battery level)
 
 
-### Controlling the GPIOs
+#### Controlling the GPIOs
 
-[//]: # (mention how the GPIOs can be controlled and provide link to the gpio article)
+The GPIOs on the dock can be controlled using a number of tools we've included in the Omega firmware. You find more on how you can control the Omega's GPIOs in the article on [using the Omega's GPIOS](#using-gpios)

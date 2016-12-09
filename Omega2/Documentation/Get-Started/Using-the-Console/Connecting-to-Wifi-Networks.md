@@ -3,7 +3,7 @@ title: Connecting to Wifi Networks
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
-order: 2
+order: 3
 ---
 
 

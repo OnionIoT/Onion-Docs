@@ -3,7 +3,7 @@ title: Adjusting the Omega's WiFi AP Network
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
-order: 3
+order: 4
 ---
 
 ## Adjusting the Omega's WiFi AP Network {#adjusting-omega-ap-network-using-console}

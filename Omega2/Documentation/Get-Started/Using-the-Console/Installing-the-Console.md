@@ -3,24 +3,10 @@ title: Installing the Console
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
-order: 1
+order: 2
 ---
 
-
-## The Onion Console {#installing-the-console}
-
-<!-- // Brief overview on what the console is and what it's used for. Highlight apps that can be made and that we are making etc. -->
-The Onion Console is a web-based, virtual desktop that gives you access to a number of apps that allow you to interact with your Omega in a more visual way than the command-line.
-
-These apps can be used to configure and control your Omega and use various Expansions through your browser. All of this is conveniently hosted on your Omega and can be accessed by visiting your Omega's webpage located at `http://www.omega-ABCD.local/`.
-
-> You'll need to be on the same network as your Omega in order to access the console.
-
-![login-page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-login.png)
-
-<!-- // mention that it's hosted on the omega -->
-
-### Installing the Console
+## Installing the Console
 
 <!-- // Show how to install the console through the setup-wizard, or through the command line -->
 The Console can be installed through the Setup Wizard, or through the command line.

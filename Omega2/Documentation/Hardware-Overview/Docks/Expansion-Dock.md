@@ -7,7 +7,7 @@ order: 1
 ---
 
 
-## The Expansion Dock {#expansion-dock}
+## Expansion Dock {#expansion-dock}
 
 <!-- [//]: # (Brief overview on the expansion dock and what it's used for (usb connection, power omega, attach expansions).) -->
 
@@ -48,8 +48,8 @@ You may need to line up the pins with the holes before pressing the Omega into t
 
 The Expansion Header is a convenient tool that gives you easy access to the Omega's GPIOs, and allows you to connect Onion Expansions directly. The Expansion Header is labelled to show you what GPIO is connected to each section.
 
-
-##### Detailed Pinout
+<!-- TODO: add detailed pinout diagram-->
+<!-- ##### Detailed Pinout -->
 
 <!-- [//]: # (A detailed pinout diagram of the Expansion Header, showing which pins are multiplexed - see Lazar for an example) -->
 

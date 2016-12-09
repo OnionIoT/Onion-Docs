@@ -6,9 +6,9 @@ devices: [ Omega2 ]
 order: 1
 ---
 
-## Using the Omega's GPIOs {#using-gpios}
+## Controlling the GPIOs {#using-gpios}
 
-The Omega2 has twelve General-Purpose Input/Output pins (commonly referred to as GPIOs) that can be fully controlled by you, the user. GPIO pins on most chips generally go unused, but on the Omega, we can use these GPIOs to connect to, communicate with, and control external circuits. 
+The Omega2 has twelve General-Purpose Input/Output pins (commonly referred to as GPIOs) that can be fully controlled by you, the user. GPIO pins on most chips generally go unused, but on the Omega, we can use these GPIOs to connect to, communicate with, and control external circuits.
 
 On the Omega, We can control GPIO pins with a command-line tool known as `gpioctl`. This article will go through how `gpioctl` works, and the ways in which you can use it
 

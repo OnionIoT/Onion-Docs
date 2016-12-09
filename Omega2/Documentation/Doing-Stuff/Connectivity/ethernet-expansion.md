@@ -15,8 +15,7 @@ The Ethernet Expansion is a piece of hardware that gives your Omega the ability 
 
 ### Connecting to a Network through Ethernet
 
-<!-- // DONE: change this sentence to make it really clear that the Omega can use the ethernet expansion to join a network (and get internet) through an ethernet connection. Draw a parallel to a desktop computer -->
-The Omega can use the Ethernet Expansion to join a network via a wired connection, much like a desktop computer can. This type of connection requires some minor configuration changes, so we're going to go through how to properly set up your Omega to use an Ethernet Expansion.
+The Omega can use the Ethernet Expansion to join a network via a wired connection, much like a desktop computer. This type of connection requires some minor configuration changes, so we're going to go through how to properly set up your Omega to use an Ethernet Expansion.
 
 ### Step 1: Enable `eth0`
 

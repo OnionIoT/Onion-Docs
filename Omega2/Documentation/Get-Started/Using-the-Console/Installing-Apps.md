@@ -3,7 +3,7 @@ title: Installing Apps
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
-order: 4
+order: 5
 ---
 
 ### Installing Additional Apps {installing-apps}

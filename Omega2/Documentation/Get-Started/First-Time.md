@@ -1,4 +1,4 @@
-## The Very First Time {#first-time-setup}
+##  First Time Setup {#first-time-setup}
 
 Follow along with this guide to set up your Omega2 for the first time. We'll first learn how to properly connect your Omega to a Dock and power it up. Then we'll connect to it to use the Setup Wizard to have it connect to your WiFi network and then do some updates.
 
@@ -65,6 +65,7 @@ When the amber LED has been on for about a minute, your Omega will have booted.
 **Some Computer Configuration**
 
 Your computer may need some additional programs to access the Omega through a browser:
+
 * If you are using Windows, install Apple's Bonjour Service
 * If you are using OS X, you're all set to go
 * If you are using Linux, the Zeroconf services should already be installed and you will be good to go
@@ -74,8 +75,7 @@ Your computer may need some additional programs to access the Omega through a br
 Let's find your Omega's name before going any further.
 
 There's a sticker on the Omega's shielding:
-
-<!-- Need image of production omega here -->
+![Omega2+](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/omega-name-0-just-omega.jpg)
 
 The text printed here is the Omega's unique MAC address, we're interested in the last four digits that are in bold.
 
@@ -111,8 +111,8 @@ Follow the wizard to complete the setup of the Omega, by the end of it, your Ome
 
 **All Done!**
 
-Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next!
-
+Start using your fresh Omega, check out the [Using the Omega section](#doing stuff) for ideas on what the Omega can do!
+<!-- Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next! -->
 <!-- TODO: fix the links above when the content is available -->
 
 
@@ -134,6 +134,6 @@ If the pins need to be bent outward, put the pins up against a flat surface near
 
 Make sure your password has been typed in correctly, remember, WiFi passwords are case sensitive.
 
-#### I've made sure my password is correct and my Omega still won't connect to my WiFi Network
+<!-- #### I've made sure my password is correct and my Omega still won't connect to my WiFi Network -->
 
 <!-- explanation regarding Omega's IP address -->

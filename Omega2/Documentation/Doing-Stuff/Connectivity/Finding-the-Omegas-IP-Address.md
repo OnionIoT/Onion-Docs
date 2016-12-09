@@ -148,10 +148,10 @@ To change the Omega's IP address we can use `uci`, a command-line tool that allo
 uci set network.wlan.ipaddr=<IP ADDRESS>
 ```
 
-For example, if we wanted to change the Omega's IP Address to 192.168.3.50 we would enter the following:
+For example, if we wanted to change the Omega's IP Address to 192.168.9.1 we would enter the following:
 
 ```
-uci set network.wlan.ipaddr=192.168.9.50
+uci set network.wlan.ipaddr=192.168.9.1
 ```
 
 Now once we have set our IP address, we'll want to save this. The command to save a setting is the following:
@@ -172,6 +172,6 @@ Now once you've saved your settings, you'll need to restart the network to apply
 /etc/init.d/network restart
 ```
 
-And that's all there is to it. Your Omega's new IP address on its Access Point is now `192.168.9.50`. You can change this back to the default in the same way that you modified it.
+And that's all there is to it. Your Omega's new IP address on its Access Point is now `192.168.9.1`. You can change this back to the default in the same way that you modified it.
 
->The devices connected to your Omega's AP are assigned an IP address that has the same subnet as the Omega. If you connect your laptop to the `Omega-ABCD` network, your laptop's IP address will be `192.168.9.X`, where `X` is a number from 0-255.
+>The devices connected to your Omega's AP are assigned an IP address that has the same subnet as the Omega. If you connect your laptop to the `Omega-ABCD` network, your laptop's IP address will be `192.168.9.X`, where `X` is a number from 2-255.
