@@ -9,7 +9,7 @@ order: 1
 ## The Omega & Wireless Connectivity {#the-omega-and-wireless-connectivity}
 
 
-Your Omega has a wireless interfaces that controls two virtual interfaces. These virtual interfaces are used for different purposes. The first interface broadcasts the Omega's Access Point, a wireless network that your other devices can connect to in order to communicate with the Omega. The second interface can connect to an existing network in order to supply the Omega with internet. These two virtual interfaces work together to turn your Omega into a powerful wireless device.
+Your Omega has a wireless interface that controls two virtual interfaces; these virtual interfaces are used for different purposes. The first interface broadcasts the Omega's Access Point, a wireless network that your other devices can connect to in order to communicate with the Omega. The second interface can connect to an existing network in order to supply the Omega with internet. These two virtual interfaces work together to turn your Omega into a powerful wireless device.
 
 ### Hosting a WiFi Access point
 
@@ -52,11 +52,8 @@ All of this is can be done by connecting your Omega to an existing WiFi network 
 
 <!-- // highlight that this is the state the omega is in after completing the setup Wizard -->
 
-<!-- // DONE: mention that the Omega is different from other device (laptop, smartphone) in that it can SIMULTANEOUSLY host an AP and connect to a wifi network - this is cool because you can share internet access and other stuff between the two networks -->
+Your Omega can **simultaneously** connect to an existing WiFi network, and host its own Access Point, yielding some interesting results. This is a great feature because you can have your Omega connected to your main WiFi network, and all the devices on that network can communicate with the Omega - accessing the console or the terminal via SSH.
 
-Your Omega can **simultaneously** connect to an existing WiFi network, and host its own Access Point, yielding some interesting results. This is a great feature because you can have your Omega connected to your main WiFi network, and all the devices on that network can communicate with the Omega.
-
-<!-- // DONE: expand on how it's nice to have your omega on the same wifi network as your other devices - namely your laptop -->
 You can connect your other devices to the Omega's AP and access the internet, essentially turning your Omega into a network switch.
 > For more on making your Omega into a network switch, check out our tutorial on [Turning your Omega into a Router](#omega-router), or our tutorial on [using the Omega as a WiFi range extender](#wifi-range-extender)]
 

@@ -21,7 +21,8 @@ The Omega supports Python, we recommend installing the light version to save on 
 
 The light version takes about 2.5MB of space on the Omega, whereas the full version is approximately 6.3MB.
 
->You can increase the storage space on your Omega using an external USB Storage device. For a guide on how to do that you can read our tutorial on [how to use a USB storage device on the Omega](#usb-article)
+<!-- // LATER: TODO: point to root overlay article -->
+<!-- >You can increase the storage space on your Omega using an external USB Storage device. For a guide on how to do that you can read our tutorial on [how to use a USB storage device on the Omega](#usb-article) -->
 
 #### Python 2.7
 We are going to use `opkg` to install Python 2.7. Enter the following command to update your package manager:
@@ -118,14 +119,20 @@ Now we'll copy the following code into the file:
 
 
 ```Python
+# Importing packages
 import os, datetime, time
 
+
+## Set the Omega LED trigger to "timer" so that it blinks
+with open("/sys/class/leds/onion:amber:system/trigger", "w") as trigger:
+          trigger.write("timer")
+
+
+## Print a gretting based on the time of day
+# Gets the current time
 currentTime = datetime.datetime.now()
 
-with open("/sys/class/leds/onion:amber:system/trigger", "w") as trigger:
-        trigger.write("timer")
-
-
+# Sets the Omega LED trigger to "default-on"
 if currentTime.hour < 12:
         print 'Good morning.'
 elif 12 <= currentTime.hour < 18:
@@ -133,8 +140,12 @@ elif 12 <= currentTime.hour < 18:
 else:
         print 'Good evening.'
 
+
+## Wait 5 seconds and then set the Omega LED back to being always on
+# Waits for 5 seconds
 time.sleep(5)
 
+# Set the Omega LED back to being always on
 with open("/sys/class/leds/onion:amber:system/trigger", "w") as trigger:
         trigger.write("default-on")
 
@@ -169,7 +180,7 @@ This section will give you more information on how you can use Python on the Ome
 #### Learning Python
 
 <!-- // link to some python documentation and guides for more info on getting started with python -->
-[Python 2.7 documentation](https://docs.python.org/2/)
+[Python 2.7 documentation](https://docs.python.org/2/)<br>
 [Python 3 documentation](https://docs.python.org/3/)
 
 <!-- #### Omega Python Modules -->
