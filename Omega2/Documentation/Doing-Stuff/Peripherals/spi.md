@@ -35,6 +35,9 @@ The protocol is based on the Master-Slave architecture, so the Master will gener
 For more details on SPI, check out the [Wikipedia article](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus).
 
 
+### On the Hardware-Overview
+// highlight the SPI pins on both the Omega and the Expansion Dock
+
 ### The Command Line tool
 
 <!-- // jack from the existing article -->
