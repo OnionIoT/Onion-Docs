@@ -45,7 +45,9 @@ For the purposes of this tutorial, let's assume the USB device was mounted to `/
 
 #### Step 3: Create Swap File on the USB storage
 
-Now we need to create the file on the USB drive that will be used as the Swap file. We will be using the `dd` utility to help us create the file. The `dd` utility is meant to convert and copy files, it is very powerful so it can potentially be very destructive if used incorrectly. **Stay on your toes when using `dd`!**
+Now we need to create the file on the USB drive that will be used as the Swap file using the `dd` utility. This utility is meant to convert, copy, and write files. It is very powerful and writing to an unintended location can severely damage your system. It can potentially be very destructive if used incorrectly. 
+
+>**Be extremely careful when using `dd`!**
 
 We will run the following `dd` command:
 
@@ -167,7 +169,7 @@ We need to add a snippet of code to tell the Omega to look for the `swap.page` f
 
 ```
 ### activate the swap file on an external USB drive
-SWAP_FILE="/mnt/sda1/swap.page"         // the path from the fstab config
+SWAP_FILE="/mnt/sda1/swap.page"
 if [ -e "$SWAP_FILE" ]; then
         swapon $SWAP_FILE
 fi
@@ -175,7 +177,7 @@ fi
 
 **Make sure this code is placed above the `exit 0` line that already exists in the file!**
 
-Try adding this code, reboot your Omega (with the USB drive still plugged in), and running `free` to confirm the Swap File is indeed being used.
+After adding this code, reboot your Omega with the USB drive still plugged in. Run `free` to confirm the Swap File is indeed being used.
 
 ### Summary
 
