@@ -3,7 +3,7 @@ title: Updating the Omega
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
-order: 4
+order: 6
 ---
 
 ## Updating the Omega using the Console {#updating-the-omega-using-console}
