@@ -10,11 +10,9 @@ order: 1
 
 While the Omega2 comes with a decent 64MB of RAM, and the Omega2+ with 128MB, you might find yourself in a situation where this is simply not enough! This tutorial will walk you through how you can use USB Storage and a Swap File to extend the amount of memory available to your Omega.
 
-// this article will cover how to extend the Omega's available memory by using a swap file on USB storage
+[//]: # (this article will cover how to extend the Omega's available memory by using a swap file on USB storage)
 
-// heavily base it on the existing article, should be pretty complete
-
-
+[//]: # (heavily base it on the existing article, should be pretty complete)
 
 ### What is a Swap File?
 
@@ -23,8 +21,6 @@ A Swap File is a special file on a disk drive or flash storage that is used by t
 Swap Files, therefore, implement virtual memory. This is also known as paging and is used in every modern desktop and mobile operating system to manage and optimize the use of memory.
 
 For more information, check out the [Wikipedia article on Paging](https://en.wikipedia.org/wiki/Paging).
-
-
 
 ### The Setup Procedure
 
