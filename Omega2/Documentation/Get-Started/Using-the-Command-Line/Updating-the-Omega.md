@@ -2,7 +2,7 @@
 
 Updating your Omega is really easy and can be done in a number of ways. You can use our built in upgrade tool `oupgrade` for a streamlined approach to updating your Omega.
 
->For more on `oupgrade` you can read our article on [upgrading your Omega](#updating-the-omega)
+>For more on `oupgrade` you can read our article on [upgrading your Omega's Firmware](#updating-the-omega)
 
 You can also update your Omega manually with a few simple steps.
 
@@ -10,7 +10,7 @@ You can also update your Omega manually with a few simple steps.
 
 The Omega firmware images are located on [the Onion repo](http://repo.onion.io/omega2/images/).
 
-Let's begin by downloading the latest firmware image from [the Onion repo](http://repo.onion.io/omega2/images/). This repo is where we keep all the builds of the various Onion Firmwares.
+Let's begin by downloading the latest firmware image from [the Onion repo](http://repo.onion.io/omega2/images/). This repo is where we keep all the builds of the various Onion Firmware.
 
 You'll want to start by changing directories to `/tmp`:
 
@@ -20,7 +20,7 @@ cd /tmp
 
 Now we're going to need the link address of the firmware we want to download. Right click on the link, and select the `copy link address` option:
 
-![copy link address](../img/updating-using-console-pic-1.png)
+![copy link address](../img/command-line-updating-omega-pic-download-link.png)
 
 >Note: There are two version of the firmware; one for the Omega2, and one for the Omega2+. You'll need to make sure you're copying the link to the correct firmware.
 
@@ -64,13 +64,13 @@ If your Omega no longer has enough room to download the Firmware, you can downlo
 
 ### Step 2: Upgrading your Omega to the Downloaded Firmware
 
-The command to upgrade your Omega is `sysupgrade`. You can run the following command to upgrade your firmware the same way `oupgrade` would:
+The command to upgrade your Omega's firmware is `sysupgrade`. You can run the following command to upgrade your firmware:
 
 ```
 sysupgrade <FIRMWARE FILE NAME>
 ```
 
-From the above example, that looks like:
+From the above example, the command would look like:
 
 ```
 sysupgrade omega2p-v0.1.5-b135.bin
@@ -106,4 +106,4 @@ The `-n` flag tells `sysupgrade` not to save configuration files after upgrading
 
 The `-F` flag forces `sysupgrade` to upgrade the Firmware, which is useful in the event that `sysupgrade` won't upgrade the Firmware.
 
-**Note: It is not recommended to use the -F flag. The `sysupgrade` command uses several checks to make sure that it will flash the correct Firmware, and the `-F` flag makes it ignore all of them.**
+**Note: It is not recommended to use the -F flag. The `sysupgrade` command uses several checks to make sure that it will flash the correct Firmware, and the `-F` flag makes the command ignore all of them.**

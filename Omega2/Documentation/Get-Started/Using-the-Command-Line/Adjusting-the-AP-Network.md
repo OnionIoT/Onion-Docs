@@ -1,7 +1,7 @@
-## Adjusting the AP Network Through the Command-Line
+## Adjusting the AP Network Through the Command-Line {adjusting-ap-network-through-command-line}
 
 
-The Omega's AP Network settings, such as the SSID, the password and more, can be modified through the command-line by using the `uci` command. To use `uci` begin by entering the following command that will show you the wireless configurations, and each of the option names:
+The Omega's AP Network settings, such as the SSID, the password and more, can be modified through the command-line by using the `uci` command. The following command will show you the wireless configuration settings, and each of the option names:
 
 ```
 uci show wireless
@@ -10,12 +10,20 @@ uci show wireless
 To change the AP Network settings we will change any of these three options:
 
 ```
-wireless.@wifi-iface[0].encryption='psk2'
-wireless.@wifi-iface[0].key='12345678'
 wireless.@wifi-iface[0].ssid='Omega-2757'
+wireless.@wifi-iface[0].key='12345678'
+wireless.@wifi-iface[0].encryption='psk2'
 ```
 
-To edit these values we can enter the following command:
+By editing the values in this section you can modify your Omega's AP network settings.
+
+| Option | What it changes |
+| --- | --- |
+| SSID | The Omega's AP network name |
+| Encryption | The Encryption type of the AP network  |
+| Key | The password of the AP network |
+
+The syntax for editing one of these options is as follows:
 
 ```
 uci set wireless.@wifi-iface[0].<OPTION NAME>=<VALUE>
@@ -91,14 +99,6 @@ config wifi-iface
         option key '12345678'
         option ssid 'Omega-2757'
 ```
-
-By editing the values in this section you can modify your Omega's AP network settings.
-
-| Option | What it changes |
-| --- | --- |
-| SSID | The Omega's AP network name |
-| Encryption | The Encryption type of the AP network  |
-| Key | The password of the AP network |
 
 The file can be edited using the `vi` command:
 
