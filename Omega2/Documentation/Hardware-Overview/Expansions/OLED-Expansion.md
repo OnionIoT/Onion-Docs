@@ -41,8 +41,9 @@ The OLED Expansion headers are blind, meaning you can't stack other Expansions o
 
 #### At a Glance
 
-// illustration
-<!-- TODO: illustration -->
+<!-- // illustration -->
+
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-illustration.jpg)
 
 #### The Screen
 

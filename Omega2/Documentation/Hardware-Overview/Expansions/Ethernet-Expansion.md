@@ -35,7 +35,7 @@ This Expansion features an Expansion Header, so other expansions can be safely s
 
 #### At a Glance
 
-// illustration
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-expansion-illustration.jpg)
 
 #### Connecting an Ethernet Cable
 
