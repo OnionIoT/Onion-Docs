@@ -2,7 +2,7 @@
 
 ## Connecting To WiFi Networks in the Command-Line {#connecting-to-wifi-networks-command-line}
 
-The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to the internet. To being setting up your connection to the internet, enter `wifisetup` in a terminal, and you'll see the following output:
+The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to the internet. To begin setting up your connection to the internet, enter `wifisetup` in a terminal, and you'll see the following output:
 
 ```
 root@Omega-2757:/# wifisetup
@@ -55,7 +55,7 @@ Authentication type: WPA2PSK
 Enter password:
 ```
 
-Enter your password, and hit enter. Your Omega's network adapter will restart, and the network manager will attempt to connect to highest priority network.
+Enter your password, and hit enter. Your Omega's network adapter will restart, and the network manager will attempt to connect to the available network with the highest priority.
 
 
 ### Entering Network Info Manually
@@ -98,4 +98,4 @@ Selection: 1
 Enter password:
 ```
 
-Enter your password, and hit enter. Your Omega's network adapter will restart, and the network manager will attempt to connect to highest priority network
+Enter your password, and hit enter. Your Omega's network adapter will restart, and the network manager will attempt to connect to the available network with the highest priority.
