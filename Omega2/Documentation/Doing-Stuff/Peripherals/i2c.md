@@ -42,7 +42,12 @@ The I2C bus uses a **master-slave** architecture, which means the following:
 If you're interested in the full details, see the [Wikipedia article on I2C](https://en.wikipedia.org/wiki/I%C2%B2C) for more.
     
 ### On the Hardware
-// highlight the Omega pins: SCL and SDA on both the Omega and the Expansion Dock
+
+The I2C pins (SCL and SDA) on the Omega2 are highlighted below.
+
+![i2c-pins](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-pins-omega2.jpg)
+
+
 
 
 ### Controlling I2C Devices from the Command line
@@ -132,11 +137,11 @@ We've developed an I2C Python module that you can import into your apps. For all
 
 ##### Example - Controlling an I2C LCD Display
 
-This tutorial is brought to you by [Matthew Ogborne](https://github.com/moggiex) and [David Stein](https://github.com/Fires04).
+This tutorial is brought to you by [Matthew Ogborne](https://github.com/moggiex) and [David Stein](https://github.com/Fires04). Thanks guys!
 
-First find or buy an I2C LCD display. They can be found on retailers such as Amazon.
+First find or buy an I2C LCD display. They can be found online on Amazon or Ebay.
 
-Install the following packages:
+Install the following packages on your Omega2:
 
 ```
 opkg update
@@ -150,6 +155,8 @@ cd /root
 git clone https://bitbucket.org/fires/fireonion_i2c_lcd
 ```
 
+Wire up your LCD display as shown below:
+
 | Omega Pin | LCD Display Pin |
 |-|-|
 | 5V | 5V |
@@ -157,11 +164,23 @@ git clone https://bitbucket.org/fires/fireonion_i2c_lcd
 | 20 | SCL |
 | 21 | SDA |
 
+Navigate to the `src` directory:
 
+```
+cd fireonion_i2c_lcd/src
+```
 
-// introduce that onion has developed an I2C module for Python
-// Show a small example: can be based on https://wiki.onion.io/Tutorials/Python-I2C-LCD-Display
-// link to reference article on onion i2c python module
+Run the command:
+
+```
+python lcd.py
+```
+
+Now you should see sample text on your LCD. You can edit `lcd.py` to change the displayed text. You can also import the whole library into your own Python project!
+
+![i2c-lcd](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-python-lcd-output.jpg)
+
+For more details, see [David's blog post](http://davidstein.cz/2016/03/13/onion-io-i2c-lcd-16x220x4-backpack-library/).
 
 #### I2C using C & C++
 
