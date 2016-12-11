@@ -43,12 +43,13 @@ If you're interested in the full details, see the [Wikipedia article on I2C](htt
     
 ### On the Hardware
 
-The I2C pins (SCL and SDA) on the Omega2 are highlighted below.
+The I2C pins (SCL and SDA) on the Omega2 and Expansion Dock are highlighted below.
 
-![i2c-pins](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-pins-omega2.jpg)
+![i2c-pins-omega2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-pins-omega2.jpg)
 
+<!-- TODO: add in a picture later using Adobe Illustrator to rasterize the Exp.D. vector on Windows -->
 
-
+![i2c-pins-exp-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-pins-exp-dock.jpg)
 
 ### Controlling I2C Devices from the Command line
 
@@ -59,7 +60,7 @@ The I2C pins (SCL and SDA) on the Omega2 are highlighted below.
 
 `i2cget` is used to read a value of a specific register (a location in memory holding data) on a target I2C device. A typical command will read as follows:
 
-```
+``` shell
 i2cget -y 0 <DEVICE ADDRESS> <REGISTER>
 ```
 
@@ -77,19 +78,21 @@ For example, let's say we have an I2C temperature sensor at address `0x40` actin
 
 Let's say we're interested in reading the temperature in degrees Fahrenheit. We do this using the following command:
 
-```
+``` shell
 i2cget -y 0 0x40 0x00
 ```
 
-And it returns `0x48`, which is 72 in decimal. Nice weather outside!
+And it returns `0x48`, which is 72 in decimal (22 degrees Celsius). That's some nice weather outside!
 
 #### Writing a Byte
 
 `i2cset` is used to set the value of a register on a target I2C device. A typical command looks like this:
 
-```
+``` shell
 i2cset -y 0 <DEVICE ADDRESS> <REGISTER> <VALUE>
 ```
+
+<!-- TODO: what about devices with only one register? -->
 
 The options are explained below:
 
@@ -107,7 +110,7 @@ Let's say we have an I2C room light controller at address `0x27` acting as a sla
 
 For example, to turn the living room lights ON and the dining room lights OFF, we would run these commands:
 
-```
+``` shell
 i2cset -y 0 0x27 0x00 0x01          # living room lights ON
 i2cset -y 0 0x27 0x01 0x00          # dining room lights OFF
 ```
@@ -124,7 +127,7 @@ Some of our Expansions use I2C to communicate with the Omega.
 
 * Relay Expansion
 * PWM Expansion
-* OLED Expansion
+* [OLED Expansion](#using-oled-expansion)
 
 <!-- TODO: add links to the I2C command line tools for each expansion once the new articles are up -->
 
@@ -143,14 +146,14 @@ First find or buy an I2C LCD display. They can be found online on Amazon or Ebay
 
 Install the following packages on your Omega2:
 
-```
+``` shell
 opkg update
 opkg install git git-http python-light pyOnionI2C
 ```
 
 Next, download David's library for the LCD display:
 
-```
+``` shell
 cd /root
 git clone https://bitbucket.org/fires/fireonion_i2c_lcd
 ```
@@ -166,13 +169,13 @@ Wire up your LCD display as shown below:
 
 Navigate to the `src` directory:
 
-```
+``` shell
 cd fireonion_i2c_lcd/src
 ```
 
 Run the command:
 
-```
+``` shell
 python lcd.py
 ```
 
@@ -184,7 +187,10 @@ For more details, see [David's blog post](http://davidstein.cz/2016/03/13/onion-
 
 #### I2C using C & C++
 
-We have also developed an I2C library for C and C++. For all the details, see the [I2C C Library](https://wiki.onion.io/Documentation/Libraries/I2C-C-Library)
+We have also developed an I2C library for C and C++. For all the details, see the [I2C C Library](#i2c-c-library)
+
+<!-- TODO: add url tag to I2C C lib article and reference it here -->
+
 <!-- // introduce that onion has developed an I2C library for C and C++
 // link to reference article on onion i2c c lib -->
 
