@@ -135,7 +135,7 @@ Some of our Expansions use I2C to communicate with the Omega.
 
 #### I2C using Python
 
-We've developed an I2C Python module that you can import into your apps. For all the details, see the [I2C Python Module](https://wiki.onion.io/Documentation/Libraries/I2C-Python-Module).
+We've developed an I2C Python module that you can import into your apps. For all the details, see the [I2C Python Module](#i2c-python-module).
 <!-- TODO: Change the link later -->
 
 ##### Example - Controlling an I2C LCD Display
@@ -188,8 +188,6 @@ For more details, see [David's blog post](http://davidstein.cz/2016/03/13/onion-
 #### I2C using C & C++
 
 We have also developed an I2C library for C and C++. For all the details, see the [I2C C Library](#i2c-c-library)
-
-<!-- TODO: add url tag to I2C C lib article and reference it here -->
 
 <!-- // introduce that onion has developed an I2C library for C and C++
 // link to reference article on onion i2c c lib -->
