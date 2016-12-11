@@ -58,7 +58,7 @@ The I2C pins (SCL and SDA) on the Omega2 and Expansion Dock are highlighted belo
 
 #### Reading a Byte
 
-`i2cget` is used to read a value of a specific register (a location in memory holding data) on a target I2C device. A typical command will read as follows:
+`i2cget` is used to read a value of a specific register on a target I2C device. A register is a location in memory holding data. A typical command will read as follows:
 
 ``` shell
 i2cget -y 0 <DEVICE ADDRESS> <REGISTER>
@@ -116,7 +116,6 @@ i2cset -y 0 0x27 0x01 0x00          # dining room lights OFF
 ```
 
 <!-- #### Going further
-
 // look into the command line options for writing two bytes at a time -->
 
 <!-- TODO: I can't figure this out in time to release with batch 3. - Gabe -->
@@ -129,7 +128,7 @@ Some of our Expansions use I2C to communicate with the Omega.
 * PWM Expansion
 * [OLED Expansion](#using-oled-expansion)
 
-<!-- TODO: add links to the I2C command line tools for each expansion once the new articles are up -->
+<!-- TODO: add links to the 'using' series for the command line tools -->
 
 ### Moving Beyond the Command line
 
