@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 1
 ---
 
-## Communicating with I2C Devices
+## Communicating with I2C Devices {#communicating-with-i2c-devices}
 
 <!-- // brief description of I2C (sometimes called TWI - two wire interface):
 //  - has a master-slave architecture (many slaves, one master)
