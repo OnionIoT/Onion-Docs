@@ -296,5 +296,3 @@ int		val  	= 0x27f8e460;
 // write 0x60, then 0xe4, then 0xf8, and then 0x27 to the 0x00 address
 status 		= i2c_writeBytes(0, 0x30, 0x00, val, 4);
 ```
-
-
