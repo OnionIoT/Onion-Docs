@@ -2,6 +2,20 @@
 
 ## Connecting To WiFi Networks in the Command-Line {#connecting-to-wifi-networks-command-line}
 
+// TODO:
+//  idea: separate the what from the how in this article
+//  lets have a section outlining WHAT is going to happen here:
+//    - enter network info
+//    - connection attempt based on available networks and configured network priority
+//      - super describe what priority means in this case - assume that readers of this article haven't read any of the console articles
+//      - mention that the AP will go down for about a maximum of 30 seconds while the connection is attempted
+//    - talk about the case where connecting to the STA fails - how the AP should come back up afterwards, give a few reasons as to why the connection may have failed (wrong authentication type selected, wrong password entered)
+//
+//  And then we can go over the 3 HOWs:
+//    1) scanning for available networks
+//    2) typing the network info
+//    new section - using command line arguments
+
 The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to the internet. To begin setting up your connection to the internet, enter `wifisetup` in a terminal, and you'll see the following output:
 
 ```
@@ -47,6 +61,7 @@ Selection:
 
 
 Enter your selection and you will be prompted for a password if required:
+// TODO: add a note saying that the network authentication type will be detected automatically when using this method
 
 ```
 Selection: 11
@@ -60,7 +75,7 @@ Enter your password, and hit enter. Your Omega's network adapter will restart, a
 
 ### Entering Network Info Manually
 
-You can choose to type in the network info yourself by entering `2` as your selection.
+Alternatively, you can choose to type in the network info yourself by entering `2` as your selection.
 
 ```
 Selection: 2
@@ -99,3 +114,11 @@ Enter password:
 ```
 
 Enter your password, and hit enter. Your Omega's network adapter will restart, and the network manager will attempt to connect to the available network with the highest priority.
+
+
+### Entering Network Information
+
+// TODO: section on using wifisetup non-iteractively, ie just using command line arguments
+//  - do an example of adding a new network
+//  - give an overview of what else you can use wifisetup for (editing configured networks, removing them, changing the priority, etc)
+//  - show how they can print the wifisetup full usage

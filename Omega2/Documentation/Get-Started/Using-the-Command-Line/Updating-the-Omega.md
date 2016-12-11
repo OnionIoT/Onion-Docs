@@ -1,5 +1,10 @@
 ## Updating the Omega Through the Command-Line
 
+
+// TODO: this article should be the ouprade article and this content should be moved to the existing article - we'll make it into an advanced topic
+
+
+
 Updating your Omega is really easy and can be done in a number of ways. You can use our built in upgrade tool `oupgrade` for a streamlined approach to updating your Omega.
 
 >For more on `oupgrade` you can read our article on [upgrading your Omega's Firmware](#updating-the-omega)
@@ -23,6 +28,8 @@ Now we're going to need the link address of the firmware we want to download. Ri
 ![copy link address](../img/command-line-updating-omega-pic-download-link.png)
 
 >Note: There are two version of the firmware; one for the Omega2, and one for the Omega2+. You'll need to make sure you're copying the link to the correct firmware.
+
+// TODO: add a huge warning that Omega2 and Omega2+ firmwares are different and that you should only install the one that matches your device
 
 
 Next, enter the following into your terminal:

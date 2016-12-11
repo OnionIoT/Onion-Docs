@@ -1,6 +1,6 @@
 ## Developing Using the Command Line {#developing-using-the-command-line}
 
-Developing programs for the Omega using the command-line is a very practical option because of the powerful tools included on the Omega, but it can be intimidating to some to use the command-line. This tutorial will help you get started developing code on the Omega's code.
+Developing programs for the Omega using the command-line is a very practical option because of the powerful tools included on the Omega, but at first it can be a little intimidating to use the command line. This tutorial will help you get started developing code on the Omega's command line and will show you that it's not so scary after all!
 
 In this tutorial we're going to write a script that will blink the Omega's LED in morse code based on the user's input using the Omega's command-line interface.
 
@@ -14,7 +14,7 @@ In this tutorial we're going to write a script that will blink the Omega's LED i
 
 ### Prerequisites
 
-In order to develop programs on the command-line, you'll need access to a terminal to either SSH into the Omega's command-line, or connect serially.
+In order to develop programs on the command-line, you'll need access to a terminal so either SSH into the Omega's command-line, or connect serially.
 
 >To learn more on how to connect to the Omega's command-line you can read our comprehensive [guide to connecting to the Omega](#connecting-to-the-omega-terminal).
 

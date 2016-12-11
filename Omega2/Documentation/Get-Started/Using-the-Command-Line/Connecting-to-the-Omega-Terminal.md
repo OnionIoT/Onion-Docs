@@ -8,6 +8,8 @@ order: 1
 
 ## Connecting to the Omega's Terminal {#connecting-to-the-omega-terminal}
 
+// TODO: let's change the STEP X boldings to a few words of what the step is accomplishing (like the first  time setup article)
+
 Now that your Omega is setup, connected to a WiFi network, and updated, you'll want to connect to it to start building and inventing.
 
 There are two ways to connect to the Omega's command prompt:
@@ -142,7 +144,7 @@ Let's first check to see if your computer already has a key pair. Open the Termi
 
 ```
 
-ls ~/.ssh/id\_rsa.pub
+ls ~/.ssh/id_rsa.pub
 
 ```
 
@@ -160,7 +162,7 @@ Copy the contents of the public key file to the clipboard:
 
 ```
 
-cat ~/.ssh/id\_rsa.pub
+cat ~/.ssh/id_rsa.pub
 
 ```
 
@@ -170,7 +172,7 @@ Connect to your Omega's command prompt and create a new file:
 
 ```
 
-vi /etc/dropbear/authorized\_keys
+vi /etc/dropbear/authorized_keys
 
 ```
 
@@ -190,7 +192,7 @@ Let's first check to see if your computer already has a key pair. Open the Termi
 
 ```
 
-ls ~/.ssh/id\_rsa.pub
+ls ~/.ssh/id_rsa.pub
 
 ```
 
@@ -208,7 +210,7 @@ Copy the contents of the public key file to the clipboard:
 
 ```
 
-cat ~/.ssh/id\_rsa.pub
+cat ~/.ssh/id_rsa.pub
 
 ```
 
@@ -218,7 +220,7 @@ Connect to your Omega's command prompt and create a new file:
 
 ```
 
-vi /etc/dropbear/authorized\_keys
+vi /etc/dropbear/authorized_keys
 
 ```
 
@@ -257,7 +259,7 @@ Connect to your Omega's command prompt and create a new file:
 
 ```
 
-vi /etc/dropbear/authorized\_keys
+vi /etc/dropbear/authorized_keys
 
 ```
 
