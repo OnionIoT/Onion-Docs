@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-## Communicating with Serial Devices
+## Communicating with Serial Devices {#uart1}
 
 // Introduce the uart as a serial communication protocol, talk about that the Omega now has two UARTs, UART0 is largely for outputting the Omega's command line, and UART1 can be used to communicate with other devices
 
