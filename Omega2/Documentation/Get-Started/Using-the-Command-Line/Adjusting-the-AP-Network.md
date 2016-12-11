@@ -51,7 +51,7 @@ We'll need to restart the wireless adapter in order to apply the saved changes:
 ```
 
 <!-- Which method should be alternative, if any -->
-### Alternative Method: Editing the Configuration File to Adjust the AP Network
+### Alternative Method 1: Editing the Configuration File to Adjust the AP Network
 You can also adjust the AP network through the command-line by directly editing the wireless configuration file located in `/etc/config/`. To view the contents of this file enter the following command:
 
 ```
@@ -114,3 +114,18 @@ Once you're happy with your changes, save and exit the file, and run the followi
 ```
 /etc/init.d/wireless restart
 ```
+
+
+<!-- ### Alternative Method 2: Using `wifisetup`
+
+You can use `wifisetup` to edit the AP network by running the command with the `-ap` flag, and the `edit` option. Here is the syntax for that:
+
+```
+wifisetup -ap edit -ssid <ssid> -encr <encryption type> -password <password>
+```
+
+If I wanted to change my AP network SSID to `MyOmega` and the password to `superimpossibleparkranger` then the following command would do that:
+
+```
+wifisetup -ap edit -ssid MyOmega -password superimpossibleparkranger
+``` -->

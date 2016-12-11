@@ -1,116 +1,129 @@
-## Updating the Omega Through the Command-Line
+---
+title: Updating the Omega
+layout: guide.hbs
+columns: two
+devices: [ Omega2 ]
+order: 8
+---
 
+## Updating the Omega Through the Command-Line {#updating-the-omega}
 
-// TODO: this article should be the ouprade article and this content should be moved to the existing article - we'll make it into an advanced topic
+In order to keep improving user experience for the Omega, we will be releasing updated firmwares on a rolling basis. To capitalize on these improvements users should update their Omegas to the latest firmware release. To handle firmware transitions we have created a command-line utility `oupgrade` (Onion Upgrade).
 
+### Using the Command line
 
+#### Using `oupgrade`
 
-Updating your Omega is really easy and can be done in a number of ways. You can use our built in upgrade tool `oupgrade` for a streamlined approach to updating your Omega.
-
->For more on `oupgrade` you can read our article on [upgrading your Omega's Firmware](#updating-the-omega)
-
-You can also update your Omega manually with a few simple steps.
-
-### Step 1: Downloading the Firmware Image
-
-The Omega firmware images are located on [the Onion repo](http://repo.onion.io/omega2/images/).
-
-Let's begin by downloading the latest firmware image from [the Onion repo](http://repo.onion.io/omega2/images/). This repo is where we keep all the builds of the various Onion Firmware.
-
-You'll want to start by changing directories to `/tmp`:
+To use `oupgrade` run the command in your command-line:
 
 ```
-cd /tmp
+oupgrade
 ```
 
-Now we're going to need the link address of the firmware we want to download. Right click on the link, and select the `copy link address` option:
+It will take care of checking for firmware updates, and automatically installing them if they are available.
 
-![copy link address](../img/command-line-updating-omega-pic-download-link.png)
+#### Doing More with `oupgrade`
 
->Note: There are two version of the firmware; one for the Omega2, and one for the Omega2+. You'll need to make sure you're copying the link to the correct firmware.
-
-// TODO: add a huge warning that Omega2 and Omega2+ firmwares are different and that you should only install the one that matches your device
-
-
-Next, enter the following into your terminal:
-
+##### Getting your firmware version
+To get the current firmware installed on the device type:
 ```
-wget <LINK ADDRESS>
+oupgrade -v
 ```
 
-where `<LINK ADDRESS>` is the link you copied from the repo. Your command-line should look something like this:
-
+And you'll see:
 ```
-root@Omega-2757:/tmp# wget http://repo.onion.io/omega2/images/omega2p-v0.1.5-b135.bin
-```
-
-Once you've verified that link is to the correct binary, hit enter and your firmware will begin downloading.
-
-```
-root@Omega-2757:/tmp# wget http://repo.onion.io/omega2/images/omega2p-v0.1.5-b135.bin
---2016-12-07 21:10:02--  http://repo.onion.io/omega2/images/omega2p-v0.1.5-b135.bin
-Resolving repo.onion.io... 52.89.44.24, 54.149.140.66
-Connecting to repo.onion.io|52.89.44.24|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 6815910 (6.5M) [application/octet-stream]
-Saving to: 'omega2p-v0.1.5-b135.bin'
-
-omega2p-v0.1.5-b135 100%[===================>]   6.50M  1.57MB/s    in 4.8s
-
-2016-12-07 21:10:07 (1.34 MB/s) - 'omega2p-v0.1.5-b135.bin' saved [6815910/6815910]
+root@Omega-2757:/# oupgrade -v
+> Device Firmware Version: 0.1.5 b132
 ```
 
-You'll want to take note of the name of the firmware you just downloaded for the next step. In this case, the name is `omega2p-v0.1.5-b135.bin`.
-
-#### Alternative Step 1: Downloading Firmware onto a USB Storage Device
-
-If your Omega no longer has enough room to download the Firmware, you can download the firmware onto a USB Storage Device, and then work from your USB's directory on your Omega.
-
->For more on using a USB storage device on your Omega, check out our [guide to using a USB storage device on your Omega](#usb-storage)
+Here I'm on version 0.1.5 and build 132 of the device firmware.
 
 
-### Step 2: Upgrading your Omega to the Downloaded Firmware
+##### Checking for New Firmware Versions
 
-The command to upgrade your Omega's firmware is `sysupgrade`. You can run the following command to upgrade your firmware:
-
+To check your firmware version and compare it with the latest available firmware versions type:
 ```
-sysupgrade <FIRMWARE FILE NAME>
+oupgrade -c
 ```
 
-From the above example, the command would look like:
+```
+root@Omega-2757:/# oupgrade -c
+> Device Firmware Version: 0.1.5 b132
+> Checking latest version online...
+> Repo Firmware Version: 0.1.5 b132
+> Comparing version numbers
+> Device firmware is up to date!
+```
+
+As you can see from the output, my firmware is up to date!
+
+If it were not up to date, this command would show:
+```
+root@Omega-2757:/# oupgrade -c
+> Device Firmware Version: 0.1.5 b131
+> Checking latest version online...
+> Repo Firmware Version: 0.1.5 b132
+> Comparing version numbers
+> New build of current firmware available, upgrade is optional, rerun with '-force' option to upgrade
+```
+
+or if you're on an older version:
 
 ```
-sysupgrade omega2p-v0.1.5-b135.bin
+root@Omega-2757:/# oupgrade -c
+> Device Firmware Version: 0.1.4 b210
+> Checking latest version online...
+> Repo Firmware Version: 0.1.5 b132
+> Comparing version numbers
+> New firmware version available, need to upgrade device firmware
 ```
 
-and you'll see output similar to the following upon entering the command:
+*Note that your firmware will not upgrade since this is just a check*
 
+
+##### Upgrading to a Latest Version
+Here at Onion we are constantly in development, adding new features and fixing bugs. Sometimes the features we make cause the firmware to be unstable. `oupgrade` will only upgrade to the latest stable version as opposed to the latest version available.
+
+To upgrade to the latest version you can type:
 ```
-root@Omega-2757:/tmp# sysupgrade omega2p-v0.1.5-b135.bin
-Saving config files...
-killall: watchdog: no process killed
-Sending TERM to remaining processes ... uhttpd device-client avahi-daemon onion-helper udhcpc mountd ntpd shellinaboxd udhcpc dnsmasq ubusd logd rpcd netifd odhcpd crond
-Sending KILL to remaining processes ...
-Switching to ramdisk...
-Performing system upgrade...
-Unlocking firmware ...
+oupgrade -l
+```
+**Note: This is not recommended unless you know what you're doing!**
 
-Writing from <stdin> to firmware ...  [e]
+
+You can also force `oupgrade` to upgrade to the latest version of the firmware with the `-f` flag:
+```
+oupgrade -f
 ```
 
 
-### Additional `sysupgrade` Options
+### Notes On Upgrades
 
-The `sysupgrade` command comes with a number of additional options that you can explore by entering:
+When an upgrade is performed, only the `root` and `etc` folders are preserved. It is important to backup your work on the Omega prior to upgrading if you don't want to lose any of your work.
+
+### Help with `oupgrade`
+
+
+`oupgrade` has a lot of functionality on the command line. Type
 
 ```
-sysupgrade -h
+oupgrade -h
 ```
 
-The options that might prove most useful to you are `-n` or `-F`.
+to get the usage output.
 
-The `-n` flag tells `sysupgrade` not to save configuration files after upgrading. This can be useful if you would like to reset the Omega to the default settings.
+```
+root@Omega-2757:/# oupgrade -h
+Functionality:
+  Check if new Onion firmware is available and perform upgrade
 
-The `-F` flag forces `sysupgrade` to upgrade the Firmware, which is useful in the event that `sysupgrade` won't upgrade the Firmware.
+Usage: /usr/bin/oupgrade
 
-**Note: It is not recommended to use the -F flag. The `sysupgrade` command uses several checks to make sure that it will flash the correct Firmware, and the `-F` flag makes the command ignore all of them.**
+Arguments:
+ -h, --help        Print this usage prompt
+ -v, --version     Just print the current firmware version
+ -l, --latest      Use latest repo version (instead of stable version)
+ -f, --force       Force the upgrade, regardless of versions
+ -c, --check       Only compare versions, do not actually update
+ -u, --ubus        Script outputs only json
+```
