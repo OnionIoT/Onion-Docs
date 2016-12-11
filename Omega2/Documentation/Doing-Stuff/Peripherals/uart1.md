@@ -30,7 +30,7 @@ The UART uses TX to transmit data, and RX to receive data. When communicating wi
 
 ![cross tx rx](../img/uart-tx-rx-cross.png)
 
-When setting up a circuit you'll need to make sure that you connect things properly as per the picture above.
+When setting up a serial connection always make sure to cross the RX and TX lines.
 
 // describe what a UART is and how devices can use it to communicate, no master-slave architecture, make sure to cross Tx->Rx and Rx->Tx
 // introduce the following:
