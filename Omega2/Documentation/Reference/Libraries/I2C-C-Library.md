@@ -1,4 +1,4 @@
-# I2C C Library
+# I2C C Library {#i2c-c-library}
 
 The Onion I2C Library, `libonioni2c` is a dynamic C library that provides functions to easily read from and write to devices communicating with the Omega via I2C. The library can be used in C and C++ programs.
 
@@ -7,41 +7,23 @@ Also available is a Python module that implements an I2C object using functions 
 
 [[_TOC_]]
 
-
-[//]: # (Linux and I2C)
-
 # Linux and I2C
 
 I2C devices are usually controlled by a kernel driver, however, it is also possible to access devices through an adapter in the Linux filesystem. The adapter can be found at `/dev/i2c-X`, where `X` is the adapter number which can range from 0 to 255. On the Omega, `/dev/i2c-0` is available by default. This allows users to interact with I2C slaves from the Linux environment.
 
 The Onion I2C library uses the `/dev/i2c-0` adapter, and implements read and write functions I2C devices.
 
-
-
-[//]: # (MAJOR HEADING)
-[//]: # (The C Library)
-
 # The C Library
 
 The `libonioni2c` C library is a series of functions that implement I2C communication through the Linux device interface. 
-
-
-[//]: # (Source Code)
 
 ## Source Code
 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
-
-[//]: # (Programming Flow)
-
 ## Programming Flow
 
 Each of the read and write functions have been written to be self-contained, so one function call will complete the desired action.
-
-
-
-[//]: # (Using the Library)
 
 ## Using the Library
 
@@ -61,26 +43,15 @@ In your project's makefile, you will need to add the following dynamic libraries
 
 The dynamic libraries are stored in `/usr/lib` on the Omega.
 
-
-
-[//]: # (Example Code)
-
 ## Example
 
 An example of how the `libonioni2c` library is used can be found in the GitHub Repo for the drivers for the [PWM, Relay, and OLED Expansions](https://github.com/OnionIoT/i2c-exp-driver).
 
 Specifically, a variety of functions are used in the [PWM Expansion source code](https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/pwm-exp.c).
 
-
-[//]: # (Functions)
-
 ## Functions
 
 Each of the main functions implemented in this library are described below.
-
-
-
-[//]: # (Function Flow)
 
 ### Function Flow
 
@@ -90,10 +61,6 @@ All of the functions follow the same general pattern:
 * Perform the function's main operation (read, write to the I2C adapter)
 * Release the I2C adapter device handle
 * Return the function status
-
-
-
-[//]: # (Return Values)
 
 ### Return Values
 
@@ -109,16 +76,9 @@ A few reasons why the function might not be successful:
 
 An error message will be printed that will give more information on the reason behind the failure.
 
-
-
-[//]: # (Read Functions)
-
 ### Read Functions
 
 Functions that perform reads from devices on the I2C bus
-
-
-[//]: # (i2c_readByte)
 
 #### Function: `i2c_readByte`
 
@@ -151,9 +111,6 @@ int 	status, rdByte;
 status 	= i2c_write(0, 0x5a, 0x01, &rdByte);
 ```
 
-
-[//]: # (i2c_read)
-
 #### Function: `i2c_read`
 
 The `i2c_read` function will read a specified number of bytes from a register address on a device on the I2C bus.
@@ -178,7 +135,7 @@ The adapter number on the Omega should always be 0 since it will use `/dev/i2c-0
 The `numBytes` argument specifies how many bytes to read from a specific address on the I2C device. 
 The `*buffer` argument is a unsigned 8-bit integer pointer that will contain all of the bytes read from the device once the function returns
 
-Note that when using a pointer for the `buffer` argument, it must be allocated before being passed into the function, and it must be allocated with at least the number specified by `numBytes`. When using an array for the buffer, it must be declared with at least the number of elements specified by the numBytes argument.
+Note that when using a pointer for the `*buffer` argument, it must be allocated before being passed into the function, and it must be allocated with at least the number specified by `numBytes`. When using an array for the buffer, it must be declared with at least the number of elements specified by the numBytes argument.
 
 
 **C Examples**
@@ -206,15 +163,9 @@ uint8_t	*buffer = new uint8_t[16];
 status 			= i2c_read(0, 0x48, 0x00, buffer, 2);
 ```
 
-
-[//]: # (Write Functions)
-
 ### Write Functions
 
 Functions that perform writes to devices on the I2C bus.
-
-
-[//]: # (i2c_writeBuffer)
 
 #### Function: `i2c_writeBuffer`
 
@@ -239,12 +190,12 @@ The adapter number on the Omega should always be 0 since it will use `/dev/i2c-0
 
 The `size` argument is the number of bytes to write from the buffer pointer. The `*buffer` argument is a unsigned 8-bit integer pointer that contains all of the bytes to be written to the specified address on the I2C device. Note that `buffer[0]` will be written first, and then `buffer[1]`, and so on.
 
-When using a pointer for the `buffer` argument, it must be allocated and populated before being passed into the function, and it must be allocated with at least the number specified by `size`. When using an array for the buffer, it must be declared with at least the number of elements specified by the numBytes argument.
+When using a pointer for the `*buffer` argument, it must be allocated and populated before being passed into the function, and it must be allocated with at least the number specified by `size`. When using an array for the buffer, it must be declared with at least the number of elements specified by the numBytes argument.
 
 
 **Examples**
 
-Write 2 bytes to the 0x02 register address on an I2C device with an address of 0x08, *using an array for the `buffer` argument*:
+Write 2 bytes to the 0x02 register address on an I2C device with an address of 0x08, using an array for the `*buffer` argument:
 ``` c
 int 	status;
 uint8_t	buffer[32];
@@ -256,7 +207,7 @@ buffer[1] 	= 0xad;
 status 		= i2c_writeBuffer(0, 0x08, 0x01, buffer, 2);
 ```
 
-Write 3 bytes to the 0x05 register address on the same device as above using an array for the `buffer` argument:
+Write 3 bytes to the 0x05 register address on the same device as above using an array for the `*buffer` argument:
 ``` c
 int 	status;
 uint8_t	buffer[3] = {0xbe, 0xef, 0x80};
@@ -264,7 +215,7 @@ uint8_t	buffer[3] = {0xbe, 0xef, 0x80};
 status 		= i2c_writeBuffer(0, 0x08, 0x05, buffer, 3);
 ```
 
-Write 4 bytes to the 0x54 register address on an I2C device with an address of 0x30, *using a pointer for the `buffer` argument:
+Write 4 bytes to the 0x54 register address on an I2C device with an address of 0x30, using a pointer for the `*buffer` argument:
 ``` c
 int 	status;
 uint8_t *buffer = malloc(4 * sizeof *buffer);
@@ -277,10 +228,6 @@ buffer[3] 	= 0xff;
 
 status 		= i2c_writeBuffer(0, 0x30, 0x54, buffer, 4);
 ```
-
-
-
-[//]: # (i2c_writeBytes)
 
 #### Function: `i2c_writeBytes`
 
@@ -349,5 +296,3 @@ int		val  	= 0x27f8e460;
 // write 0x60, then 0xe4, then 0xf8, and then 0x27 to the 0x00 address
 status 		= i2c_writeBytes(0, 0x30, 0x00, val, 4);
 ```
-
-
