@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 2
 ---
 
-## OLED Expansion
+## OLED Expansion {#oled-expansion}
 
 // intro to the oled expansion - power efficient, tiny screen, mention the resolution and that it's monochrome
 // can write text, draw images, adjust settings, do some little animations (scrolling)
