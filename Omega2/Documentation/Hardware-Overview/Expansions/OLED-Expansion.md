@@ -27,6 +27,8 @@ This Expansion is controlled by your Omega using the I2C protocol.
 
 The main purpose of the OLED expansion is to display things on a screen. That's why the only significant hardware on the Expansion is an OLED screen.
 
+<!-- TODO: Add photo of the screen plugged in and that -->
+
 
 #### Connecting to a Dock
 

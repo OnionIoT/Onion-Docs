@@ -20,12 +20,12 @@ There are two ways to connect to the Omega's command prompt:
 Both methods will work fine and each has their advantages. We recommend using SSH since it allows you to wirelessly control any Omega that's connected to your WiFi network.
 
 
-### The Command-Line Interface
+>**The Command-Line Interface**
 
-The command-line is a way of interacting with a computer by sending commands in the form of single lines of text, as opposed to a graphical user interface (GUI).
+>The command-line is a way of interacting with a computer by sending commands in the form of single lines of text, as opposed to a graphical user interface (GUI).
 Command-line interfaces provide a more concise and powerful means to control a program or operating system, especially with regards to scripting (Shell Scripting, Python, etc).
 
- <!-- //TODO: add background on the command prompt -->
+>This interface may seem overwhelming at first but if you take the time to learn the basic commands, you'll find that it's an incredibly powerful and useful tool to have in your toolbox.
 
 
 ### Connecting with SSH

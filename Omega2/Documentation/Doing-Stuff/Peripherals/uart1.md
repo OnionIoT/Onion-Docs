@@ -8,13 +8,13 @@ order: 3
 
 ## Communicating with Serial Devices {#uart1}
 
-// Introduce the uart as a serial communication protocol, talk about that the Omega now has two UARTs, UART0 is largely for outputting the Omega's command line, and UART1 can be used to communicate with other devices
+<!-- // Introduce the uart as a serial communication protocol, talk about that the Omega now has two UARTs, UART0 is largely for outputting the Omega's command line, and UART1 can be used to communicate with other devices -->
 
 A universal asynchronous receiver/transmitter (UART) is a device used for serial communication. The Omega comes with two UART devices: UART0, and UART1. UART0 is largely used for outputting the Omega's command line, and UART1 is free to communicate with other devices.
 
 This article will cover what the UART does, where it is on the hardware, and using the UART on the Omega.
 
-// mention that this article will be explaining the uart a little bit, showing you where it is on the hardware, how to use the uart from the command line, how to use the screen command with the uart, how to use the uart thru Python
+<!-- // mention that this article will be explaining the uart a little bit, showing you where it is on the hardware, how to use the uart from the command line, how to use the screen command with the uart, how to use the uart thru Python -->
 
 ### What is a UART?
 
@@ -32,13 +32,13 @@ The UART uses TX to transmit data, and RX to receive data. When communicating wi
 
 When setting up a serial connection always make sure to cross the RX and TX lines.
 
-// describe what a UART is and how devices can use it to communicate, no master-slave architecture, make sure to cross Tx->Rx and Rx->Tx
+<!-- // describe what a UART is and how devices can use it to communicate, no master-slave architecture, make sure to cross Tx->Rx and Rx->Tx
 // introduce the following:
 //  - baud rates
 //  - what 8n1 means
 //    - 8: number of data bits
 //    - n: no stop bit (NO PARITY)
-//    - 1: 1 parity (look this up --  it's actually 1 stop bit)
+//    - 1: 1 parity (look this up --  it's actually 1 stop bit) -->
 
 ### On the Hardware-Overview
 <!-- highlight the UART1 pins on both the Omega and the Expansion Header -->
@@ -72,7 +72,7 @@ The above method is a great way to introduce using UART, but it's not all that p
 
 #### Installing Screen
 
-// will most likely need to install screen, give em the usual
+<!-- // will most likely need to install screen, give em the usual -->
 
 You'll need to start by installing `screen` using the Omega's package manager `opkg`. We'll start by updating our list of packages:
 
@@ -115,7 +115,7 @@ You can use Python in order to communicate serially via the UART. The module to 
 
 #### Installing the module
 
-// should be `opkg install pyton-pyserial`
+<!-- // should be `opkg install pyton-pyserial` -->
 
 You'll need to have Python or Python-light installed in order to continue. If you've installed the full version of Python you will already have PySerial.
 
