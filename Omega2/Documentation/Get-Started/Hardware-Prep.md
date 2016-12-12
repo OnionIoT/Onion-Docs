@@ -24,8 +24,7 @@ Make sure your Omega's pins are fully plugged into the socket
 
 The Omega itself is powered by a 3.3V source. But all Omega Docks have voltage regulators so you can use any microUSB to power the Dock and Omega.
 
-<!-- ADD THIS: Plug a microUSB into your Omega -->
-<!-- ADD PHOTO -->
+<!-- TODO: ADD PHOTO: Plug a microUSB into your Omega -->
 
 You can power it with your computer
 
@@ -33,7 +32,7 @@ You can power it with your computer
 
 Or you can power it with any wall adapter
 
-<!-- include image of wall adapter -->
+<!-- TODO: include image of wall adapter -->
 
 **Power On!**
 
