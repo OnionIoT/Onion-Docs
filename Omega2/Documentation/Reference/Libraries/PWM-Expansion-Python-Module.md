@@ -1,4 +1,4 @@
-## PWM Expansion Python Module {#pwm-expansion-pytho-module}
+## PWM Expansion Python Module {#pwm-expansion-python-module}
 
 The Onion PWM Expansion Python module, `pwmExp` is based on the [C PWM Expansion Library](./PWM-Expansion-C-Library). Using this module, you will be able to control the PWM Expansion from within your Python program.
 

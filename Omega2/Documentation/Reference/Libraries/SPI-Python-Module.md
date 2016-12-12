@@ -1,4 +1,4 @@
-## SPI Library for Python {#spi-python-module}
+## SPI Python Module {#spi-python-module}
 
 The Onion SPI Library, `libonionspi` is a dynamic C library that provides functions to easily read from and write to devices communicating with the Omega over the GPIOs via the SPI protocol. The library can be used in C and C++ programs.
 

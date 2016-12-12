@@ -1,4 +1,4 @@
-# Onion GPIO Python Module
+# Onion GPIO Python Module {#gpio-python-module}
 
 The `onionGpio` Python module provides a Python object, `OnionGpio` that allows programs to control the Omega's GPIOs. The module uses the sysfs GPIO interface that is part of the Linux operating system.
 
@@ -127,7 +127,7 @@ The function will return the following:
 
 **Arguments**
 
-The `setOutputDirection()` function has an **optional** integer argument that, when defined, will set the initial value of the GPIO to ensure glitch-free operation. 
+The `setOutputDirection()` function has an **optional** integer argument that, when defined, will set the initial value of the GPIO to ensure glitch-free operation.
 
 If the optional argument is not set, the GPIO will just be set to output and the initial value will most likely be LOW. However, glitch-free operation cannot be guaranteed.
 
@@ -171,7 +171,7 @@ Reading the current value of the GPIO:
 value 	= gpioObject.getValue()
 ```
 
-Note that the value of the GPIO can be read in both **Input** and **Output** mode. 
+Note that the value of the GPIO can be read in both **Input** and **Output** mode.
 
 The difference is that in input mode, the GPIO can be driven high or low based on external signals, and that is the value that will be read. In output mode, the value that will be read is what the GPIO is currently outputting.
 
@@ -191,7 +191,7 @@ import onionGpio
 gpioNum = 7
 gpioObj	= onionGpio.OnionGpio(gpioNum)
 
-# set to input 
+# set to input
 status 	= gpioObj.setInputDirection()
 
 # read and print the value once a second
@@ -199,9 +199,9 @@ loop = 1
 while loop == 1:
 	value = gpioObj.getValue()
 	print 'GPIO%d input value: %d'%(gpioNum, int(value))
-	
+
 	time.sleep(1)
-```	
+```
 
 *This code can be found in the [`onion-gpio-sysfs` repo example directory](https://github.com/OnionIoT/onion-gpio-sysfs/tree/master/python/examples), it's named [`read-input-loop.py`](https://github.com/OnionIoT/onion-gpio-sysfs/blob/master/python/examples/read-input-loop.py)*
 
@@ -213,7 +213,7 @@ import onionGpio
 gpioNum = 6
 gpioObj	= onionGpio.OnionGpio(gpioNum)
 
-# set to input 
+# set to input
 status 	= gpioObj.setOutputDirection()
 print 'GPIO%d set to output,'%(gpioNum),
 
@@ -259,7 +259,7 @@ import onionGpio
 gpioNum = 1
 gpioObj	= onionGpio.OnionGpio(gpioNum)
 
-# set to output 
+# set to output
 status 	= gpioObj.setOutputDirection(0)
 
 # alternate the value
@@ -271,17 +271,12 @@ while loop == 1:
 		value = 1
 	else:
 		value = 0
-	
+
 	# set the new value
 	status 	= gpioObj.setValue(value)
 	print 'GPIO%d set to: %d'%(gpioNum, value)
-	
+
 	time.sleep(5)
-```	
+```
 
 *This code can be found in the [`onion-gpio-sysfs` repo example directory](https://github.com/OnionIoT/onion-gpio-sysfs/tree/master/python/examples), it's called [`set-high-low-loop.py`](https://github.com/OnionIoT/onion-gpio-sysfs/blob/master/python/examples/set-high-low-loop.py)*
-
-
-
-
-

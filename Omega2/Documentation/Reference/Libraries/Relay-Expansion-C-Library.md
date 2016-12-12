@@ -1,4 +1,4 @@
-## Relay Expansion Library {#relay-expansion-c-library}
+## Relay Expansion C Library {#relay-expansion-c-library}
 
 The Onion Relay Expansion library, `libonionrelayexp` is a dynamic C library that provides functions to setup, read, and change the state of the relays on the Relay Expansion.
 
