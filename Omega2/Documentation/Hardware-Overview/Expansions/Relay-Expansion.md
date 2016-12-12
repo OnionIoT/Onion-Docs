@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 1
 ---
 
-## Relay Expansion
+## Relay Expansion {#relay-expansion}
 
 The Relay Expansion allows you to control two other independent, external circuits using the Omega. These circuits are safely isolated from the Omega and so it does not matter whether they are lower or higher voltage.
 
@@ -22,6 +22,10 @@ The Relay Expansion is designed so you can stack multiple Relay Expansions onto 
 // have photos of it plugged into the Exp dock, power dock, and arduino dock 2
 
 // mention that other expansions can be safely stacked on top of it -->
+
+You can use the Relay Expansion with the Expansion Dock, Power Dock, or Arduino Dock R2. The example below shows it plugged into the Expansion Dock. Plug it in as shown (wires not needed)
+
+![plugged-in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-plugged-in.jpg)
 
 <!-- TODO: requires photos -->
 
@@ -56,10 +60,9 @@ The relays channels are labelled below:
 
 #### The Screw Terminals
 
-<!-- // instructions on how to connect wires to the screw Terminals
-// include photos -->
+The green block on the board is called the *terminal block*. It houses 4 terminals, 2 for each relay, into which you plug your circuit wires. To secure the wires inside the terminal block, screw them down with a small flathead screwdriver.
 
-<!-- TODO: take photos -->
+<!-- TODO: add photos -->
 
 #### The Address Switch
 
@@ -91,15 +94,26 @@ The I2C addresses corresponding to the different switch positions are shown belo
 
 ## Using the Relay Expansion
 
+Consider this LED circuit:
 
+![LED Circuit Diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-example-circuit.png)
 
-<!-- // give an example of how this can be used and when it would be useful (turning on a lamp or something, some cool IoT example)
-// reiterate that relays allow you to use the Omega to switch external circuits
+We can build this circuit without the switch:
 
-// point them to the article on using the relay Expansion
-//  this article should include:
-    * An Example circuit
-    * Controlling the Relays from the command line
-    * Info on how the address switch configuration affects the command line call
-    * Link to article on controlling relays from C/C++, python
-// refer to existing doc for reference - should follow it closely -->
+![LED Circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-1.jpg)
+
+Next, we will add the Omega and Relay Expansion to act as the switch:
+
+![Omega + Relay Exp + LED circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-2.jpg)
+
+The positive lead of the battery pack is connected to the port labelled `IN` on the Expansion. A jumper wire is connected from the `OUT` port back to the circuit. Since the Relay is `OFF`, the switch is off and no current is passing through the LED:
+
+![Relay Exp connection close-up](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-3.jpg)
+
+When we turn the relay on, it acts as a closed switch, allowing current to flow through the LED:
+
+![Omega + Relay Exp + LED circuit on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-4.jpg)
+
+The Relay Expansion can be used to control almost any type of external circuit, such as a lamp, coffee maker, or even your garage door!
+
+Read our [guide to using the Relay Expansion](#using-relay-expansion) to learn how to control it using software.

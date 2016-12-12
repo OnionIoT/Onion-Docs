@@ -17,6 +17,8 @@ order: 2
 
 The Relay Expansion allows you to control two relay modules. Relays are basically electronically operated switches, enabling the Omega's low power circuits to control other, potentially high power circuits.
 
+For detailed specifications of the product itself, see our [article on the Relay Expansion](#relay-expansion).
+
 [[_TOC_]]
 
 ### Example Circuit
@@ -31,15 +33,15 @@ We can build this circuit without the switch:
 
 Next, we will add the Omega and Relay Expansion to act as the switch:
 
-![Omega + Relay Exp + LED circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-1.jpg)
+![Omega + Relay Exp + LED circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-2.jpg)
 
 The positive lead of the battery pack is connected to the port labelled `IN` on the Expansion. A jumper wire is connected from the `OUT` port back to the circuit. Since the Relay is `OFF`, the switch is off and no current is passing through the LED:
 
-![Relay Exp connection close-up](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-1.jpg)
+![Relay Exp connection close-up](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-3.jpg)
 
 When we turn the relay on, it acts as a closed switch, allowing current to flow through the LED:
 
-![Omega + Relay Exp + LED circuit on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-1.jpg)
+![Omega + Relay Exp + LED circuit on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-4.jpg)
 
 The Relay Expansion has two modules, so it is possible to control two different circuits with a single Relay Expansion.
 
@@ -83,11 +85,11 @@ The Expansion has two modules. This guide will refer to them as `RELAY0` and `RE
 
 You can use this tool to program the relay's states like so:
 
-```
+``` shell
 relay-exp <CHANNEL> <STATE>
 ```
 
-Let's go over the two arguments below:
+Let's go over the arguments below:
 
 * `<CHANNEL>` - `0` or `1` for `RELAY0` or `RELAY1` respectively.
 * `<STATE>` - `0` or `off` to turn the relay `OFF`; `1` or `on` to turn the relay `ON`
@@ -166,7 +168,7 @@ root@Omega-1302:~# relay-exp read 1
 
 ### Using Multiple Relay Expansions by Changing the Dip-Switch Settings
 
-The onboard dip-switch specifies the I2C address the chip on the Relax Expansion declares as its device address. A single Omega and Expansion Dock can control up to eight Relay Expansions if they all have different dip-switch configurations.
+The onboard dip-switch specifies the I2C address that the chip on the Relax Expansion declares to the I2C bus. A single Omega and Expansion Dock can control up to eight Relay Expansions if they all have different dip-switch configurations!
 
 The relay-exp tool will need to know if the switch configuration has changed when programming the expansion:
 
@@ -176,7 +178,7 @@ relay-exp -s <BBB> <CHANNEL> <STATE>
 
 The new arguments are explained below:
 
-* `-s` - tells the program that you are providing the dip-switch value of the target Relay Expansion
+* `-s` - tells the program that you are providing the dip-switch value of the target Relay Expansion.
 * `<BBB>` - a binary number representing the position of each switch.
     * If the switch is 'OFF', it is represented with a `0`.
     * if the switch is 'ON', it is represented with a `1`.
@@ -245,13 +247,16 @@ If you're curious about how the dip-switch settings affect the I2C device addres
 
 #### Using the I2C Address Directly
 
-If you don't like dealing with the switch positions and would rather use the I2C device address directly, this option is for you:
+If you don't like dealing with the switch positions, you can use the I2C device address directly. Here's how to do it:
 
 ``` shell
 relay-exp -a <ADDRESS> <CHANNEL> <STATE>
 ```
 
-Where `<ADDRESS>` is the I2C device address. It can be entered with or without the leading `0x`, so `0x27` or `27` will both work.
+The flags are explained below:
+
+* `-a` - tells the program to use the Expansion's I2C address.
+* `<ADDRESS>` - the I2C device address. It can be entered with or without the leading `0x`, so `0x27` or `27` will both work.
 
 **Some Examples:**
 
