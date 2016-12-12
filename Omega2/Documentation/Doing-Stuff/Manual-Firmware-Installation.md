@@ -1,11 +1,12 @@
-## Command Line Firmware Upgrade {#command-line-fw-upgrade}
+## Manual Firmware Installation {#manual-firmware-installation}
 
 
 Updating your Omega is really easy and can be done in a number of ways. You can use our built in upgrade tool `oupgrade` for a streamlined approach to updating your Omega.
 
 >For more on `oupgrade` you can read our article on [upgrading your Omega's Firmware](#updating-the-omega)
 
-You can also update your Omega manually with a few simple steps.
+This guide will show you how to manually install a firmware of your choosing. This firmware can be one of the builds published by Onion or a custom firmware image.
+
 
 ### Step 1: Downloading the Firmware Image
 
@@ -103,7 +104,7 @@ sysupgrade -h
 
 The options that might prove most useful to you are `-n` or `-F`.
 
-The `-n` flag tells `sysupgrade` not to save configuration files after upgrading. This can be useful if you would like to reset the Omega to the default settings.
+The `-n` flag tells `sysupgrade` not to save configuration files after upgrading. This can be useful if you would like to reset the Omega to the default settings included in the firmware image. This will *erase everything on the Omega* so make sure to back up your custom data and settings.
 
 The `-F` flag forces `sysupgrade` to upgrade the Firmware, which is useful in the event that `sysupgrade` won't upgrade the Firmware.
 
