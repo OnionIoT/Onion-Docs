@@ -4,7 +4,12 @@
 //  let's keep the ones outlined below as well as a nice little intro to uci - can later link to uci articles -->
 
 
-The Omega's AP Network settings, such as the SSID, the password and more, can be modified through the command-line by using the `uci` command. The following command will show you the wireless configuration settings, and each of the option names:
+The Omega's AP Network settings, such as the SSID, the password and more, can be modified through the command-line by using the `uci` command.
+
+The abbreiviation `uci` stands for Unified Configuration Interface. This utility has been developed by OpenWRT in order to centralize and allow easy command-line access to the configuration files on your device.
+
+
+The following command will show you the wireless configuration settings, and each of the option names:
 
 ```
 uci show wireless

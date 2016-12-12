@@ -20,6 +20,11 @@ There are two ways to connect to the Omega's command prompt:
 Both methods will work fine and each has their advantages. We recommend using SSH since it allows you to wirelessly control any Omega that's connected to your WiFi network.
 
 
+### The Command-Line Interface
+
+The command-line is a way of interacting with a computer by sending commands in the form of single lines of text, as opposed to a graphical user interface (GUI).
+Command-line interfaces provide a more concise and powerful means to control a program or operating system, especially with regards to scripting (Shell Scripting, Python, etc).
+
  <!-- //TODO: add background on the command prompt -->
 
 
@@ -289,37 +294,55 @@ We'll first identify the specific USB connection that we need to use to talk to 
 
 ### Setting up using Command Line – OSX
 
-**Step 1**: Download and install the [Silicon Labs CP2102 driver for OS X](https://www.silabs.com/Support%20Documents/Software/Mac_OSX_VCP_Driver.zip).
+**Step 1: Download Drivers**
 
-**Step 2**: Run `ls /dev/tty.*` to see if the USB-to-Serial device can be detected. If the driver is successfully installed, you should be able to see a device with a name similar to `/dev/tty.SLAB_USBtoUART`.
+Download and install the [Silicon Labs CP2102 driver for OS X](https://www.silabs.com/Support%20Documents/Software/Mac_OSX_VCP_Driver.zip).
+
+**Step 2: Check if Serial Device Exists**
+
+Run `ls /dev/tty.*` to see if the USB-to-Serial device can be detected. If the driver is successfully installed, you should be able to see a device with a name similar to `/dev/tty.SLAB_USBtoUART`.
 
 ![Check if serial device exists](../img/connecting-serial-osx-check.jpg "Check if serial device exists")
 
-**Step 3**: Run `screen /dev/tty.SLAB_USBtoUART 115200` to connect to the Omega’s serial terminal using the `screen` utility.
+**Step 3: Log in**
+
+Run `screen /dev/tty.SLAB_USBtoUART 115200` to connect to the Omega’s serial terminal using the `screen` utility.
 
 ![Log in through serial terminal](../img/connecting-serial-osx-login.jpg "Log in through serial terminal")
 
 > We recommend taking a peek at [this tutorial](https://www.linode.com/docs/networking/ssh/using-gnu-screen-to-manage-persistent-terminal-sessions) to get an idea of how the `screen` utility works
 
-**Step 4**: Enjoy! You're now connected to your Omega!
+**Step 4**
+
+ Enjoy! You're now connected to your Omega!
 
 
 
 ### Setting up using Command Line – Windows
 
-**Step 1**: Download and install the [Silicon Labs CP2102 driver for Windows](https://www.silabs.com/Support%20Documents/Software/CP210x_VCP_Windows.zip).
+**Step 1: Download Drivers**
 
-**Step 2**: Run Device Manager (Start > Enter "Device Manager" and press `ENTER`), look for Silicon Labs CP210x USB to UART Bridge under Ports (COM & LPT), and take note of the COM number in bracket.
+Download and install the [Silicon Labs CP2102 driver for Windows](https://www.silabs.com/Support%20Documents/Software/CP210x_VCP_Windows.zip).
+
+**Step 2: Find Serial Device**
+
+Run Device Manager (Start > Enter "Device Manager" and press `ENTER`), look for Silicon Labs CP210x USB to UART Bridge under Ports (COM & LPT), and take note of the COM number in bracket.
 
 ![Computer Management](../img/connecting-serial-windows-device-manager.jpg "Computer Management")
 
-**Step 3**: Download and install [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
+**Step 3: Download a Terminal Program**
 
-**Step 4**: Open up PuTTY, select Serial for Connection type, enter the COM number noted down in Step 2 as Serial line, and enter `115200` for the speed.
+We'll be using PuTTy, but if you have a preferred terminal program you can use that one. You can find download [Putty from this link](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
+
+**Step 4: Configure PuTTy**
+
+Open up PuTTy, select Serial for Connection type, enter the COM number noted down in Step 2 as Serial line, and enter `115200` for the speed.
 
 ![Configure PuTTY](../img/connecting-serial-windows-putty-settings.jpg "Configure PuTTY")
 
-**Step 5**: Click on the Open button to connect to the Omega via the serial terminal.
+**Step 5: Connect**
+
+Click on the Open button to connect to the Omega via the serial terminal.
 
 ![Log in through serial terminal](../img/connecting-serial-windows-login.jpg "Log in through serial terminal")
 

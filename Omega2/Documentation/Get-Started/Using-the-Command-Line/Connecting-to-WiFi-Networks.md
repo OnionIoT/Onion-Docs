@@ -141,17 +141,17 @@ Enter your password, and hit enter. Your Omega's network adapter will restart, c
 
 
 
-### Entering Network Information
+### Using the `wifisetup` Command-Line Arguments
 
 
-You can also use `wifisetup` in the command line to directly add configurations without having to go through the entire process. To begin lets show the available usage for `wifisetup` with the following command:
+You can also use `wifisetup` in the command line to directly add configurations without having to go through the user input method. To begin lets show the available usage for `wifisetup` with the following command:
 
 ```
 wifisetup -h
 ```
 
 
-Going through the available commands we can add new networks, edit current networks, remove current networks, change the priority of networks, list the networks, and list the info about a specific network.
+Going through the available commands we see that we can add new networks, edit current networks, remove current networks, change the priority of networks, list the networks, and list the info about a specific network.
 
 
 #### Adding or Editing a Network
@@ -189,7 +189,7 @@ From the above example, if I were to remove `myNetwork` from my list of configur
 wifisetup remove -ssid myNetwork
 ```
 
->Note if you have multiple networks with the same SSID, this command would remove the oldest one from your list of configured networks.
+>Note if you have multiple networks with the same SSID, this command would remove the highest priority network from your list of configured networks.
 
 
 #### Changing a Network's Priority
