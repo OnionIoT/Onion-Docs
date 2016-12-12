@@ -10,11 +10,17 @@ order: 1
 
 The Relay Expansion allows you to control two other independent, external circuits using the Omega. These circuits are safely isolated from the Omega and so it does not matter whether they are lower or higher voltage.
 
+<!-- TODO: Not a big fan of the last line. Specifically the "does not matter whether they are lower or higher voltage". Lots of people don't know what relays are, they may come to this article to find out more on why they should by the relay expansion. Gotta let them know that a high voltage circuit is potentially dangerous or whatever. -->
+
 This Expansion communicates with the Omega using the I2C protocol. If you're curious, check out the [article on I2C](#communicating-with-i2c-devices).
 
 The Relay Expansion is designed so you can stack multiple Relay Expansions onto the same Omega. Each board comes with a small switch used to give it a unique address, and up to 8 Relay Expansions can be controlled by a single Omega. This means you can control up to 16 external circuits and devices!
 
+<!-- TODO: The above sentence needs to also mention that you can stack any expansion on top. Or that needs to be specified in the connecting to a dock section. -->
+
 ### The Hardware
+
+<!-- TODO: Add a spiel about the fact that there are two relays or whatever. -->
 
 #### Connecting to a Dock
 

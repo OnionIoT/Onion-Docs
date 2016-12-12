@@ -19,8 +19,6 @@ The Relay Expansion allows you to control two relay modules. Relays are basicall
 
 For detailed specifications of the product itself, see our [article on the Relay Expansion](#relay-expansion).
 
-[[_TOC_]]
-
 ### Example Circuit
 
 Since relays are essentially switches, they can be used as switches in other circuits. Consider this LED circuit:
@@ -46,6 +44,8 @@ When we turn the relay on, it acts as a closed switch, allowing current to flow 
 The Relay Expansion has two modules, so it is possible to control two different circuits with a single Relay Expansion.
 
 ### Using the Command Line
+
+<!-- TODO: Do we need this little note? All Omega2 firmware has this right? -->
 
 >*Make sure that your Omega has the latest firmware!*
 
@@ -151,7 +151,7 @@ relay-exp read <CHANNEL>
 The channel argument should be either 0 or 1 for `RELAY0` and `RELAY1` respectively.
 
 The output of the program will indicate if the relay is `ON` or `OFF`.
-	
+
 **A few examples...**
 
 To read the state of relay0:

@@ -18,7 +18,7 @@ The Ethernet Expansion adds an Ethernet port to the Omega. With this expansion y
 
 // overview of the hardware - can be light-hearted and joke about how the main thing is, not surprisingly, the ethernet jack
 
-The main feature of the Ethernet Expansion is the Ethernet port. That's why you bought it. It's there. Get over yourself.
+Unsurprisingly enough the main feature of the Ethernet Expansion is the Ethernet port.
 
 #### Connecting to a Dock
 
@@ -67,8 +67,8 @@ In order to disconnect the Ethernet cable you'll need to press down on the cord 
 The Ethernet Expansion is a great tool to extend the networking capabilities of your Omega by providing another method of connecting to the internet.
 
 To learn more about using the Ethernet Expansion check out our guide to [using the Ethernet Expansion](#using-ethernet-expansion)
-
+<!--
 // introdocue and link to articles on
 //  - connecting to a wired networking
 //  - using the omega as a router
-//  - using the omega as an ethernet bridge
+//  - using the omega as an ethernet bridge -->

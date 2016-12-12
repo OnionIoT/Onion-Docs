@@ -15,6 +15,8 @@ Also available are a C library and Python module that will allow you to create y
 
 <!-- // TODO: photo: a photo on the Expansion -->
 
+For detailed specifications of the product itself, see our [article on the OLED Expansion](#oled-expansion).
+
 ### Command Usage
 
 

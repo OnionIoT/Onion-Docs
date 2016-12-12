@@ -29,18 +29,18 @@ Communication is performed over 2 data lanes, each given their own pin on the Om
 
 The I2C bus uses a **master-slave** architecture, which means the following:
 
-* Bus **masters** are devices that are in control of when and to whom they send and receive data. 
+* Bus **masters** are devices that are in control of when and to whom they send and receive data.
     * Masters send commands which include the address of the slave who should receive it.
     * When using I2C with the Omega2, the Omega2 is configured to be the only bus master.
 * Bus **slaves** are devices that respond to masters when they receive a command addressed to them.
-    * Each slave is identified with a hexadecimal address (eg. `0x27`). 
+    * Each slave is identified with a hexadecimal address (eg. `0x27`).
     * Slaves will safely ignore commands not addressed to them.
-* Masters and slaves operate in either of two modes: 
+* Masters and slaves operate in either of two modes:
     * **transmit** - sending data
     * **receive** - receiving data
-    
+
 If you're interested in the full details, see the [Wikipedia article on I2C](https://en.wikipedia.org/wiki/I%C2%B2C) for more.
-    
+
 ### On the Hardware
 
 The I2C pins (SCL and SDA) on the Omega2 and Expansion Dock are highlighted below.
@@ -122,7 +122,7 @@ i2cset -y 0 0x27 0x01 0x00          # dining room lights OFF
 
 #### The Omega Expansions
 
-Some of our Expansions use I2C to communicate with the Omega. 
+Some of our Expansions use I2C to communicate with the Omega.
 
 * Relay Expansion
 * PWM Expansion
@@ -190,4 +190,3 @@ We have also developed an I2C library for C and C++. For all the details, see th
 
 <!-- // introduce that onion has developed an I2C library for C and C++
 // link to reference article on onion i2c c lib -->
-
