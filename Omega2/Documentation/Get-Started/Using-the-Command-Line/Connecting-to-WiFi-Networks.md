@@ -2,7 +2,7 @@
 
 ## Connecting To WiFi Networks in the Command-Line {#connecting-to-wifi-networks-command-line}
 
-// TODO:
+<!-- // TODO:
 //  idea: separate the what from the how in this article
 //  lets have a section outlining WHAT is going to happen here:
 //    - enter network info
@@ -14,9 +14,22 @@
 //  And then we can go over the 3 HOWs:
 //    1) scanning for available networks
 //    2) typing the network info
-//    new section - using command line arguments
+//    new section - using command line arguments -->
 
-The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to the internet. To begin setting up your connection to the internet, enter `wifisetup` in a terminal, and you'll see the following output:
+The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to the internet. This article will cover what `wifisetup` is, as well as how you can use it to connect your Omega to the internet.
+
+
+<!-- ### What is `wifisetup`
+
+When you use `wifisetup`, you'll enter your network info, and then the Omega's network manager will attempt to the networks in range that are configured on your Omega. For example, if you have three configured networks (school, home, friend's house) and you're currently at your friend's house, the network manager will immediately attempt to connect to that network.
+
+On the other hand, if you have multiple configured networks in range the Omega will attempt to connect to the network with the highest priority. Priority is defined as most recently configured networks having the lowest priority. This means that adding a network configuration immediately assigns it as the lowest priority.
+
+Once you configure your new network, the Omega's AP will go down for about 30 seconds and attempt to connect to the network on restart. If it fails to connect you may have entered incorrect information (wrong authentication type selected, wrong password entered). -->
+
+### Using `wifisetup`
+
+To begin setting up your connection to the internet, enter `wifisetup` in a terminal, and you'll see the following output:
 
 ```
 root@Omega-2757:/# wifisetup
@@ -30,8 +43,6 @@ q) Exit
 Selection:
 
 ```
-
-### Scanning for Available Networks
 
 You can enter `1`, and your Omega will scan for available networks:
 
@@ -60,8 +71,8 @@ Selection:
 ```
 
 
-Enter your selection and you will be prompted for a password if required:
-// TODO: add a note saying that the network authentication type will be detected automatically when using this method
+Enter your selection and you will be prompted for a password if required. Your network authentication type will be automatically detected in the scan:
+
 
 ```
 Selection: 11
@@ -70,7 +81,14 @@ Authentication type: WPA2PSK
 Enter password:
 ```
 
-Enter your password, and hit enter. Your Omega's network adapter will restart, and the network manager will attempt to connect to the available network with the highest priority.
+Enter your password, and hit enter. Your Omega's network adapter will restart, causing the AP to go down for roughly 30 seconds. Once your network adapter is back up, it will attempt to connect to the network.
+
+
+>**The Omega's Network Manager**
+
+>The Omega's network manager will attempt to the networks in range that are configured on your Omega. For example, if you have three configured networks (school, home, friend's house) and you're currently at your friend's house, the network manager will immediately attempt to connect to that network.
+
+>On the other hand, if you have multiple configured networks in range the Omega will attempt to connect to the network with the highest priority. Priority is defined as most recently configured networks having the lowest priority. This means that adding a network configuration immediately assigns it as the lowest priority.
 
 
 ### Entering Network Info Manually
@@ -113,12 +131,81 @@ Selection: 1
 Enter password:
 ```
 
-Enter your password, and hit enter. Your Omega's network adapter will restart, and the network manager will attempt to connect to the available network with the highest priority.
+Enter your password, and hit enter. Your Omega's network adapter will restart, causing the AP to go down for roughly 30 seconds. Once your network adapter is back up, it will attempt to connect to the network.
+
+>**The Omega's Network Manager**
+
+>The Omega's network manager will attempt to the networks in range that are configured on your Omega. For example, if you have three configured networks (school, home, friend's house) and you're currently at your friend's house, the network manager will immediately attempt to connect to that network.
+
+>On the other hand, if you have multiple configured networks in range the Omega will attempt to connect to the network with the highest priority. Priority is defined as most recently configured networks having the lowest priority. This means that adding a network configuration immediately assigns it as the lowest priority.
+
 
 
 ### Entering Network Information
 
-// TODO: section on using wifisetup non-iteractively, ie just using command line arguments
-//  - do an example of adding a new network
-//  - give an overview of what else you can use wifisetup for (editing configured networks, removing them, changing the priority, etc)
-//  - show how they can print the wifisetup full usage
+
+You can also use `wifisetup` in the command line to directly add configurations without having to go through the entire process. To begin lets show the available usage for `wifisetup` with the following command:
+
+```
+wifisetup -h
+```
+
+
+Going through the available commands we can add new networks, edit current networks, remove current networks, change the priority of networks, list the networks, and list the info about a specific network.
+
+
+#### Adding or Editing a Network
+
+To add or edit a network use the following:
+
+```
+wifisetup add -ssid <ssid> -encr <encryption type> -password <password>
+wifisetup edit -ssid <ssid> -encr <encryption type> -password <password>
+```
+
+For example to add a network named `myNetwork` enter the following:
+
+```
+wifisetup add -ssid myNetwork -encr psk2 -password mynetworkpassword
+```
+
+And if I wanted to edit the network after adding it I would enter:
+
+```
+wifisetup edit -ssid myNetwork -encr psk2 -password myNewNetworkPasswordWithCaps
+```
+
+#### Removing a Network
+
+The command for removing a network takes in the ssid as the only parameter:
+
+```
+wifisetup remove -ssid <ssid>
+```
+
+From the above example, if I were to remove `myNetwork` from my list of configured networks I would enter the following
+
+```
+wifisetup remove -ssid myNetwork
+```
+
+>Note if you have multiple networks with the same SSID, this command would remove the oldest one from your list of configured networks.
+
+
+#### Changing a Network's Priority
+
+The network priority determines the order in which the Omega's network manager will attempt to connect, assuming that the network is within range. A network of higher priority will have a lower number. For example, your highest priority network has priority 1, and your Omega will attempt to connect to that network first if it is available.
+
+You can use `wifisetup priority -ssid <ssid> -move <up|down>` to change the priority of a specified network.
+
+For example, to move the priority of `myNetwork` up you would enter:
+
+```
+wifisetup priority -ssid myNetwork -move up
+```
+
+and to move it down you would enter:
+
+```
+wifisetup priority -ssid myNetwork -move down
+```

@@ -25,6 +25,7 @@ It will take care of checking for firmware updates, and automatically installing
 #### Doing More with `oupgrade`
 
 ##### Getting your firmware version
+
 To get the current firmware installed on the device type:
 ```
 oupgrade -v

@@ -1,7 +1,7 @@
 ## Adjusting the AP Network Through the Command-Line {adjusting-ap-network-through-command-line}
 
-// TODO: add a section explaining how you can use `wifisetup -ap` and command line arguments to change the AP setup
-//  let's keep the ones outlined below as well as a nice little intro to uci - can later link to uci articles
+<!-- // DONE: add a section explaining how you can use `wifisetup -ap` and command line arguments to change the AP setup
+//  let's keep the ones outlined below as well as a nice little intro to uci - can later link to uci articles -->
 
 
 The Omega's AP Network settings, such as the SSID, the password and more, can be modified through the command-line by using the `uci` command. The following command will show you the wireless configuration settings, and each of the option names:
