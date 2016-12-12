@@ -8,63 +8,98 @@ order: 3
 
 ## PWM Expansion
 
-// intro to the pwm exp - allows you to generate 16 distinct PWM signals
+<!-- // intro to the pwm exp - allows you to generate 16 distinct PWM signals
 // can be used to control anything that can be controlled by pwm: leds, servos, motors, etc
 
-// mention this expansion is controlled with i2c
+// mention this expansion is controlled with i2c -->
+
+The PWM Expansion allows you to generate up to 16 different Pulse Width Modulated (PWM) signals to control anything from Servo Motors (servos), DC Motor speed, LED brightness, etc.
+
+This Expansion communicates with the Omega using the I2C protocol. If you're curious, check out the [article on I2C](#communicating-with-i2c-devices).
 
 ### The Hardware
 
-// Overview of the Hardware
+<!-- // Overview of the Hardware
 //  - the 16 channels
-//  - the dc barrel jack
+//  - the dc barrel jack -->
 
 #### Connecting to a Dock
 
-// plugged into the expansion Header
+<!-- // plugged into the expansion Header
 // have photos of it plugged into the Exp dock, power dock, and arduino dock 2
 
 // mention that other expansions can be safely stacked on top of it - just be mindful of wires connected to the headers
 
-// maybe a good place to mention that only 1 pwm expansion per omega will work
+// maybe a good place to mention that only 1 pwm expansion per omega will work -->
+
+To use the PWM Expansion, plug it into a Dock that has Expansion header pins (Expansion Dock, Power Dock, Arduino Dock R2).
+
+You can stack other Expansions on top of it, however be mindful of wires that are connected to the header pins underneath.
+
+You may only have one PWM Expansion stacked onto an Omega at a time.
 
 #### At a Glance
 
-// illustration
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-expansion-illustration.jpg)
 
-#### The 16 Channels (maybe change this title?)
+#### The PWM Channels
 
-// explanation of channel ordering - which channel is 0, which is 1
+<!-- // explanation of channel ordering - which channel is 0, which is 1
 
-// Explanation that each channel has male headers for Vcc, ground, and the pwm signal; the important part here is the signal header - thats the pwm signal
+// Explanation that each channel has male headers for Vcc, ground, and the pwm signal; the important part here is the signal header - thats the pwm signal -->
+
+The PWM Expansion has 16 channels (outputs) that can be controlled simultaneously. Each channel has the following male header pins from top to bottom:
+
+* **GND** - ground
+* **Vcc** - 5V output
+* **SIGNAL** - the wire that carries the PWM signal
+    * This channel is marked with a white header pin.
 
 ##### Connecting Servos
 
-// mention that we made the headers this way so that servo connectors can be plugged right in - add photo of a servo expansion on a dock with a servo plugged in, maybe also a photo of the pwm expansion on the spider robot
+<!-- // mention that we made the headers this way so that servo connectors can be plugged right in - add photo of a servo expansion on a dock with a servo plugged in, maybe also a photo of the pwm expansion on the spider robot -->
+<!-- TODO: add photos -->
+
+We've placed the PWM pins in the same order that most* servo motors have them, so you can plug them right in!
+
+\*One exception we've found is Airtronics servos, which may have the Vcc and SIGNAL pins on the outside.
 
 #### The Barrel Jack adapter
 
-// highlight that the omega can only provide enough power to move one or two servos under light load, in order to power projects with a bunch of servos, we've included a barrel jack adapter
+<!-- // highlight that the omega can only provide enough power to move one or two servos under light load, in order to power projects with a bunch of servos, we've included a barrel jack adapter
 // the DC voltage that comes in will be provided on the Vcc and GND pins on the channels, the PWM signal will also be stepped up to this voltage
 
 // mention that they shouldn't go too nuts, say that we've tested up to 12V
 // also mention that this does not provide power to the Omega, it will still need to be powered a different way
 
-// see existing doc for reference
+// see existing doc for reference -->
+
+The Omega supplies enough power to move only one or two servos under light load. In order to power projects with a bunch of servos, we've included an onboard DC barrel jack connector that can be used to supply power to any connected servos.
+
+>It is not recommended to attempt to power more than 2 servos without an external power supply.
+
+The DC voltage supplied through the barrel jack will be provided on the Vcc (and GND) pins. The PWM voltage will also be stepped up to this voltage. We've safely tested up to 12V, so try not to go beyond that or you risk damaging your Expansion. To get more power at this stage, look for power supplies with higher current ratings rather than higher voltages.
+
+
+Note that the Omega cannot be powered through this connector and still requires its own power supply.
 
 #### The Oscillator
 
-// the chip that generates the pwm signals has an internal oscillator that controls the frequency of the generated pwm signals
+<!-- // the chip that generates the pwm signals has an internal oscillator that controls the frequency of the generated pwm signals
 // since there is one oscillator, all of the pwm signals will run on the same frequency. make sure to make the distinction that they just operate on the same frequency but their pwm duty cycles can be different
-// mention the frequency range - see existing doc
+// mention the frequency range - see existing doc -->
+
+The onboard chip has an oscillator that can generate PWM signals with a frequency in the range of 24 Hz to 1526 Hz. The default frequency is 50 Hz which is set to match most servomotors.
+
+All signals generated by the PWM Expansion run at the same frequency set by the one oscillator, so you will not be able to control servos using different frequencies.
 
 ### Using the PWM Expansion
 
-// examples of use: robotics, making led light shows, anything involving pwm signals
+<!-- // examples of use: robotics, making led light shows, anything involving pwm signals -->
 
-// point them to the article on using the pwm Expansion
-//  this article should include:
-      * explanation of pwm signals
-      * controlling the servos from the command line
-      * link to articles on controlling relays from C/C++, python
-// refer to existing doc for reference
+Some of the things you can do with the PWM Expansion are as follows:
+
+* Robotics
+* LED light shows
+
+Read our [guide to using the PWM Expansion](#using-pwm-expansion) to learn how to control it using software.
