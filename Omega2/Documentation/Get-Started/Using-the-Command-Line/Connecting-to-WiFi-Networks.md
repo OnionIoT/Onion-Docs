@@ -16,9 +16,9 @@
 //    2) typing the network info
 //    new section - using command line arguments -->
 
-The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to the internet. This article will cover what `wifisetup` is, as well as how you can use it to connect your Omega to the internet.
+The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to the Internet. This article will cover what `wifisetup` is, as well as how you can use it to connect your Omega to the Internet.
 
-
+<!-- TODO: delete this if not needed -->
 <!-- ### What is `wifisetup`
 
 When you use `wifisetup`, you'll enter your network info, and then the Omega's network manager will attempt to the networks in range that are configured on your Omega. For example, if you have three configured networks (school, home, friend's house) and you're currently at your friend's house, the network manager will immediately attempt to connect to that network.
@@ -29,7 +29,7 @@ Once you configure your new network, the Omega's AP will go down for about 30 se
 
 ### Using `wifisetup`
 
-To begin setting up your connection to the internet, enter `wifisetup` in a terminal, and you'll see the following output:
+To begin setting up your connection to the Internet, enter `wifisetup` in a terminal, and you'll see the following output:
 
 ```
 root@Omega-2757:/# wifisetup
@@ -41,7 +41,6 @@ Select from the following:
 q) Exit
 
 Selection:
-
 ```
 
 You can enter `1`, and your Omega will scan for available networks:
@@ -99,7 +98,7 @@ Alternatively, you can choose to type in the network info yourself by entering `
 Selection: 2
 Enter network name:
 ```
-Enter your Network's name (SSID) and hit enter
+Enter your network's name (SSID) and hit enter
 
 
 ```
@@ -135,7 +134,7 @@ Enter your password, and hit enter. Your Omega's network adapter will restart, c
 
 >**The Omega's Network Manager**
 
->The Omega's network manager will attempt to the networks in range that are configured on your Omega. For example, if you have three configured networks (school, home, friend's house) and you're currently at your friend's house, the network manager will immediately attempt to connect to that network.
+>The Omega's network manager will attempt to the networks in range that are configured on your Omega. For example, if you have three configured networks (school, home, friend's house) and you're currently at your friend's house, the network manager will immediately attempt to connect to your friend's house's network.
 
 >On the other hand, if you have multiple configured networks in range the Omega will attempt to connect to the network with the highest priority. Priority is defined as most recently configured networks having the lowest priority. This means that adding a network configuration immediately assigns it as the lowest priority.
 
@@ -158,9 +157,9 @@ Going through the available commands we see that we can add new networks, edit c
 
 To add or edit a network use the following:
 
-```
-wifisetup add -ssid <ssid> -encr <encryption type> -password <password>
-wifisetup edit -ssid <ssid> -encr <encryption type> -password <password>
+```bash
+wifisetup add -ssid <SSID> -encr <ENCRYPTION TYPE> -password <PASSWORD>
+wifisetup edit -ssid <SSID> -encr <ENCRYPTION TYPE> -password <PASSWORD>
 ```
 
 For example to add a network named `myNetwork` enter the following:
@@ -169,7 +168,7 @@ For example to add a network named `myNetwork` enter the following:
 wifisetup add -ssid myNetwork -encr psk2 -password mynetworkpassword
 ```
 
-And if I wanted to edit the network after adding it I would enter:
+And if you wanted to edit the network after adding it, you would enter:
 
 ```
 wifisetup edit -ssid myNetwork -encr psk2 -password myNewNetworkPasswordWithCaps
@@ -180,10 +179,10 @@ wifisetup edit -ssid myNetwork -encr psk2 -password myNewNetworkPasswordWithCaps
 The command for removing a network takes in the ssid as the only parameter:
 
 ```
-wifisetup remove -ssid <ssid>
+wifisetup remove -ssid <SSID>
 ```
 
-From the above example, if I were to remove `myNetwork` from my list of configured networks I would enter the following
+From the above example, if you were to remove `myNetwork` from my list of configured networks you would enter the following
 
 ```
 wifisetup remove -ssid myNetwork
@@ -196,7 +195,7 @@ wifisetup remove -ssid myNetwork
 
 The network priority determines the order in which the Omega's network manager will attempt to connect, assuming that the network is within range. A network of higher priority will have a lower number. For example, your highest priority network has priority 1, and your Omega will attempt to connect to that network first if it is available.
 
-You can use `wifisetup priority -ssid <ssid> -move <up|down>` to change the priority of a specified network.
+You can use `wifisetup priority -ssid <SSID> -move <up|down>` to change the priority of a specified network.
 
 For example, to move the priority of `myNetwork` up you would enter:
 
