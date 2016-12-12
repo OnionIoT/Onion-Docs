@@ -121,7 +121,7 @@ Once you're happy with your changes, save and exit the file, and run the followi
 ```
 
 
-<!-- ### Alternative Method 2: Using `wifisetup`
+### Alternative Method 2: Using `wifisetup`
 
 You can use `wifisetup` to edit the AP network by running the command with the `-ap` flag, and the `edit` option. Here is the syntax for that:
 
@@ -129,8 +129,8 @@ You can use `wifisetup` to edit the AP network by running the command with the `
 wifisetup -ap edit -ssid <ssid> -encr <encryption type> -password <password>
 ```
 
-If I wanted to change my AP network SSID to `MyOmega` and the password to `superimpossibleparkranger` then the following command would do that:
+If I wanted to change my AP network SSID to `MyOmega` and the password to `superimpossibleparkranger` then the following command would do just that:
 
 ```
 wifisetup -ap edit -ssid MyOmega -password superimpossibleparkranger
-``` -->
+```
