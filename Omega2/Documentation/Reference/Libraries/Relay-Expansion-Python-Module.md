@@ -9,7 +9,7 @@ The Onion PWM Expansion Python module, `relayExp` is based on the [C Relay Expan
 
 
 
-[//]: # (Programming Flow)
+<!-- Programming Flow -->
 
 ### Programming Flow
 
@@ -17,7 +17,7 @@ After each power-cycle, the chip that controls the Relay Expansion must be progr
 
 
 
-[//]: # (I2C Device Address)
+<!-- I2C Device Address -->
 
 ### I2C Device Address
 
@@ -43,15 +43,15 @@ The table below defines the relationship:
 
 **All of the functions in this library will require an address argument that specifies the offset to add to the base address of `0x20`**
 
-[//]: # (MAJOR HEADING)
-[//]: # (The Python Module)
+<!-- MAJOR HEADING -->
+<!-- The Python Module -->
 
 ### The Python Module
 
 The `relayExp` Python Module in the `OmegaExpansion` package provides a wrapper around the C library functions. The functions are largely the same as their C counterparts, including the arguments and return values. Any differences from the C library will be explicitly mentioned below.
 
 
-[//]: # (Source Code)
+<!-- Source Code -->
 
 #### Source Code
 
@@ -59,7 +59,7 @@ The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https:/
 
 
 
-[//]: # (Using the Python Module)
+<!-- Using the Python Module -->
 
 #### Using the Python Module
 
@@ -86,14 +86,14 @@ from OmegaExpansion import relayExp
 The functions are largely the same as their C counterparts, including the arguments and return values. Any differences from the C library will be explicitly mentioned below.
 
 
-[//]: # (Python: Example Code)
+<!-- Python: Example Code -->
 
 #### Example Code
 
 Example code that uses the `relayExp` module can be [found here](https://github.com/OnionIoT/i2c-exp-driver/blob/master/examples/relay-exp.py), in the `i2c-exp-driver` Onion GitHub Repo.
 
 
-[//]: # (Python: The Channels)
+<!-- Python: The Channels -->
 
 #### The Channels
 
@@ -102,7 +102,7 @@ The Relay Expansion has two channels, the image below describes how they are enu
 ![Relay Channel Identification](https://i.imgur.com/Wk6Z9lW.png)
 
 
-[//]: # (Python: Return Values)
+<!-- Python: Return Values -->
 
 #### Return Values
 
@@ -113,14 +113,14 @@ If the function operation is successful, the return value will be `0`.
 If the function operation is not successful, the function will return `1`.
 
 
-[//]: # (Functions)
+<!-- Functions -->
 
 #### Functions
 
 Each of the main functions implemented in this module are described below.
 
 
-[//]: # (Python: Init Function)
+<!-- Python: Init Function -->
 
 ##### Initialization Function
 
@@ -148,7 +148,7 @@ status 	= relayExp.driverInit(4)
 ```
 
 
-[//]: # (Python: Check Init Function)
+<!-- Python: Check Init Function -->
 
 ##### Check for Initialization
 
@@ -183,7 +183,7 @@ else:
 ```
 
 
-[//]: # (Python: Set Relay State)
+<!-- Python: Set Relay State -->
 
 ##### Set Relay State
 
@@ -210,7 +210,7 @@ status 	= relayExp.setChannel(0, 0, 1)
 ```
 
 
-[//]: # (Python: Set Relay State for Both Relays)
+<!-- Python: Set Relay State for Both Relays -->
 
 ##### Set State for both Relays
 
@@ -245,7 +245,7 @@ status 	= relayExp.setAllChannels(0, 1)
 
 
 
-[//]: # (Python: Read Relay State)
+<!-- Python: Read Relay State -->
 
 ##### Read Relay State
 

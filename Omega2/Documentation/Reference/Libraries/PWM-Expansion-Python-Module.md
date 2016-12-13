@@ -9,7 +9,7 @@ The Onion PWM Expansion Python module, `pwmExp` is based on the [C PWM Expansion
 
 
 
-[//]: # (Programming Flow)
+<!-- Programming Flow -->
 
 ### Programming Flow
 
@@ -26,7 +26,7 @@ The PWM Expansion has 16 channels that can generate distinct PWM signals. Note t
 
 
 
-[//]: # (PWM Signal Refresher)
+<!-- PWM Signal Refresher -->
 
 ### PWM Signal Refresher
 
@@ -39,22 +39,22 @@ The **duty cycle** indicates what percentage of time a signal is on or high volt
 The **frequency** determines the overall period of the pulse.
 
 For a more detailed explanation, see the guide on [using the Servo Expansion.](../../Tutorials/Expansions/Using-the-Servo-Expansion#pwm-signals)
-[//]: # (MAJOR HEADING)
-[//]: # (The Python Module)
+<!-- MAJOR HEADING -->
+<!-- The Python Module -->
 
 ### The Python Module
 
 The `pwmExp` Python module in the `OmegaExpansion` package provides a wrapper around the C library functions. The functions are largely the same as their C counterparts, including the arguments and return values. Any differences from the C library will be explicitly mentioned below.
 
 
-[//]: # (Source Code)
+<!-- Source Code -->
 
 #### Source Code
 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-[//]: # (Using the Python Module)
+<!-- Using the Python Module -->
 
 #### Using the Python Module
 
@@ -79,7 +79,7 @@ from OmegaExpansion import pwmExp
 ```
 
 
-[//]: # (Python: Example Code)
+<!-- Python: Example Code -->
 
 #### Example Code
 
@@ -87,7 +87,7 @@ Example code that uses the `pwmExp` module can be [found here](https://github.co
 
 
 
-[//]: # (Python: Return Values)
+<!-- Python: Return Values -->
 
 #### Return Values
 
@@ -98,13 +98,13 @@ If the function operation is successful, the return value will be `0`.
 If the function operation is not successful, the function will return `1`.
 
 
-[//]: # (Python Functions)
+<!-- Python Functions -->
 
 #### Functions
 
 Each of the main functions implemented in this module are described below.
 
-[//]: # (Python: Init Function)
+<!-- Python: Init Function -->
 
 ##### Initialization Function
 
@@ -121,7 +121,7 @@ status 	= pwmExp.driverInit();
 ```
 
 
-[//]: # (Python: Check Init Function)
+<!-- Python: Check Init Function -->
 
 ##### Check for Initialization
 
@@ -152,7 +152,7 @@ else:
 ```
 
 
-[//]: # (Python: Generate PWM Signal Function)
+<!-- Python: Generate PWM Signal Function -->
 
 ##### Generate a PWM Signal
 
@@ -191,7 +191,7 @@ status = pwmExp.setupDriver(-1, 66.66, 9)
 ```
 
 
-[//]: # (Python: Set Signal Frequency)
+<!-- Python: Set Signal Frequency -->
 
 ##### Set PWM Signal Frequency
 
@@ -222,7 +222,7 @@ status = pwmExp.setFrequency(92.23)
 ```
 
 
-[//]: # (Python: Disable Oscillator)
+<!-- Python: Disable Oscillator -->
 
 ##### Disabling the Oscillator
 

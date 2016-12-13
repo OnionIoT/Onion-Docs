@@ -13,7 +13,7 @@ This library is also available as a [module for use in Python](./OLED-Expansion-
 
 
 
-[//]: # (Programming Flow)
+<!-- Programming Flow -->
 
 ### Programming Flow
 
@@ -34,28 +34,28 @@ Each page consists of 8 horizontal pixel rows. When a byte is written to the dis
 
 So writing `0x0f` would produce the top 4 pixels being coloured in, and the bottom 4 being left blank.
 
-[//]: # (LAZAR: add more examples and an image showing the examples)
+<!-- LAZAR: add more examples and an image showing the examples -->
 
 The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed below.
 
 
 
-[//]: # (MAJOR HEADING)
-[//]: # (The C Library)
+<!-- MAJOR HEADING -->
+<!-- The C Library -->
 
 ### The C Library
 
 The `libonionoledexp` C library is a series of functions that perform all of the actions specified in the [Programming Flow section](#Programming-Flow).
 
 
-[//]: # (Source Code)
+<!-- Source Code -->
 
 #### Source Code
 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-[//]: # (Using the C Library)
+<!-- Using the C Library -->
 
 #### Using the C Library
 
@@ -77,7 +77,7 @@ The dynamic libraries are stored in `/usr/lib` on the Omega.
 
 
 
-[//]: # (Using the C Library: Example Code)
+<!-- Using the C Library: Example Code -->
 
 #### Example Code
 
@@ -87,7 +87,7 @@ The source code can be found [here](https://github.com/OnionIoT/i2c-exp-driver/b
 
 
 
-[//]: # (Return Values)
+<!-- Return Values -->
 
 #### Return Values
 
@@ -105,7 +105,7 @@ An error message will be printed that will give more information on the reason b
 
 
 
-[//]: # (Init Function)
+<!-- Init Function -->
 
 #### Initialization Function
 
@@ -124,8 +124,8 @@ int status 	= oledDriverInit();
 
 
 
-[//]: # (SUB-HEADING)
-[//]: # (Settings Functions)
+<!-- SUB-HEADING -->
+<!-- Settings Functions -->
 
 #### Functions to Adjust Settings
 
@@ -138,7 +138,7 @@ There is a series of functions that adjust various settings on the OLED Display.
 * Setting the cursor position
 
 
-[//]: # (Screen on/off)
+<!-- Screen on/off -->
 
 ##### Turn the Screen On and Off
 
@@ -174,7 +174,7 @@ status = oledSetDisplayPower(1);
 ```
 
 
-[//]: # (Invert Display Colours)
+<!-- Invert Display Colours -->
 
 ##### Invert Display Colours
 
@@ -207,7 +207,7 @@ status = oledSetDisplayMode(0);
 ```
 
 
-[//]: # (Set Brightness)
+<!-- Set Brightness -->
 
 ##### Set the Display Brightness
 
@@ -243,7 +243,7 @@ status = oledSetBrightness(127);
 ```
 
 
-[//]: # (Dim the display)
+<!-- Dim the display -->
 
 ##### Dim the display
 
@@ -279,7 +279,7 @@ status = oledSetDim(0);
 ```
 
 
-[//]: # (Set the memory mode)
+<!-- Set the memory mode -->
 
 ##### Set Memory Mode
 
@@ -334,7 +334,7 @@ status = oledSetMemoryMode(OLED_EXP_MEM_PAGE_ADDR_MODE);
 ```
 
 
-[//]: # (Set Column Addressing)
+<!-- Set Column Addressing -->
 
 ##### Set Column Addressing
 
@@ -378,7 +378,7 @@ status = oledSetColumnAddressing(63, 95);
 ```
 
 
-[//]: # (Set Column Addressing: Text Columns)
+<!-- Set Column Addressing: Text Columns -->
 
 ###### Set Columns for Text
 
@@ -391,7 +391,7 @@ int oledSetTextColumns ();
 It sets the start pixel to 0 and the end pixel to 125. This allows for 21 text characters per line. This function should be run before setting the cursor for writing text.
 
 
-[//]: # (Set Column Addressing: Image Columns)
+<!-- Set Column Addressing: Image Columns -->
 
 ###### Set Columns for Images
 
@@ -407,7 +407,7 @@ It sets the start pixel to 0 and the end pixel to 127. This enables the use of t
 
 
 
-[//]: # (Set Cursor Position)
+<!-- Set Cursor Position -->
 
 ##### Set Cursor Position
 
@@ -418,7 +418,7 @@ Two methods exist:
 * Specifying the page row and pixel column
 
 
-[//]: # (Set Cursor Position: By Character Column)
+<!-- Set Cursor Position: By Character Column -->
 
 ###### Set Cursor Position by Character Column
 
@@ -464,7 +464,7 @@ status 	|= oledSetCursor(6, 10);
 status	|= oledWrite("hi there");
 ```
 
-[//]: # (Set Cursor Position: By Pixel)
+<!-- Set Cursor Position: By Pixel -->
 
 ###### Set Cursor Position by Pixel
 
@@ -513,7 +513,7 @@ status	|= oledWrite("hi there");
 ```
 
 
-[//]: # (Clearing Function)
+<!-- Clearing Function -->
 
 #### Clear the Screen
 
@@ -524,15 +524,15 @@ int oledClear ();
 ```
 
 
-[//]: # (SUB-HEADING)
-[//]: # (Writing Text)
+<!-- SUB-HEADING -->
+<!-- Writing Text -->
 
 #### Writing Text to the Display
 
 Listed below are the functions that write bytes, characters, strings, or images to the display.
 
 
-[//]: # (Write Byte)
+<!-- Write Byte -->
 
 ##### Write a Single Byte
 
@@ -567,7 +567,7 @@ status |= oledWriteByte(0x3f);		// 0x3f = 0b 0011 1111
 
 ```
 
-[//]: # (Write Character)
+<!-- Write Character -->
 
 ##### Write a Single Character
 
@@ -600,7 +600,7 @@ status |= oledWriteChar(')');
 ```
 
 
-[//]: # (Write String)
+<!-- Write String -->
 
 ##### Write a String
 
@@ -637,15 +637,15 @@ status =  oledWrite("Onion Omega\nInventing the Future\n\nToday");
 
 
 
-[//]: # (SUB-HEADING)
-[//]: # (Displaying Images)
+<!-- SUB-HEADING -->
+<!-- Displaying Images -->
 
 #### Drawing Images on the Display
 
 The OLED Screen can also be used to display images. The Console can be used to convert existing images into a format that is compatible with the OLED Expansion and save the output to an Omega. Functions in the C library can read the image data and display it on the OLED Expansion. Alternatively, a buffer can be created programatically and displayed on the OLED.
 
 
-[//]: # (Displaying Images: Creating Image Files)
+<!-- Displaying Images: Creating Image Files -->
 
 ##### Creating Image Files
 
@@ -660,7 +660,7 @@ Once an image has been selected, a button and form will appear that allow you to
 After the image name and location are selected, click the Save to Omega button.
 
 
-[//]: # (Displaying Images: OLED Image File Details)
+<!-- Displaying Images: OLED Image File Details -->
 
 ##### OLED Image File Details
 
@@ -669,7 +669,7 @@ The OLED image files store the image data as 1024 bytes represented in hexadecim
 If this is unclear, see the [Understanding the Display Section](#programming-flow_understanding-the-display) for details on how the display is addressed.
 
 
-[//]: # (Displaying Images: Displaying Images from a File)
+<!-- Displaying Images: Displaying Images from a File -->
 
 ##### Displaying Images from a File
 
@@ -744,8 +744,8 @@ status	= oledDraw(buffer, OLED_EXP_WIDTH*OLED_EXP_HEIGHT/8);
 
 
 
-[//]: # (SUB-HEADING)
-[//]: # (Scrolling the Display)
+<!-- SUB-HEADING -->
+<!-- Scrolling the Display -->
 
 #### Scrolling the Display Contents
 
@@ -753,7 +753,7 @@ The OLED can scroll the contents of the screen horizontally or upwards at a 45 d
 
 
 
-[//]: # (Horizontal scrolling)
+<!-- Horizontal scrolling -->
 
 ##### Horizontal Scrolling
 
@@ -787,7 +787,7 @@ The `startPage` argument defines at which page to start scrolling, and `stopPage
 
 **Examples**
 
-[//]: # (LAZAR: Add gifs to all examples)
+<!-- LAZAR: Add gifs to all examples -->
 
 Scroll the entire screen to the left:
 ``` c
@@ -811,7 +811,7 @@ status = oledScroll (1, OLED_EXP_SCROLL_SPEED_25_FRAMES, 1, 5);
 ```
 
 
-[//]: # (Diagonal scrolling)
+<!-- Diagonal scrolling -->
 
 ##### Diagonal Scrolling
 
@@ -851,7 +851,7 @@ The `startPage` argument defines at which page to start scrolling, and `stopPage
 
 **Examples**
 
-[//]: # (LAZAR: Add gifs to all examples)
+<!-- LAZAR: Add gifs to all examples -->
 
 Scroll the entire screen upwards to the left:
 ``` c
@@ -909,7 +909,7 @@ status = oledScrollDiagonal (	1,
 ```
 
 
-[//]: # (Stop scrolling)
+<!-- Stop scrolling -->
 
 ##### Stop Scrolling
 

@@ -10,7 +10,7 @@ The Onion OLED Expansion Python module, `oledExp` is based on the [C OLED Expans
 
 
 
-[//]: # (Programming Flow)
+<!-- Programming Flow -->
 
 ### Programming Flow
 
@@ -31,26 +31,26 @@ Each page consists of 8 horizontal pixel rows. When a byte is written to the dis
 
 So writing `0x0f` would produce the top 4 pixels being coloured in, and the bottom 4 being left blank.
 
-[//]: # (LAZAR: add more examples and an image showing the examples)
+<!-- LAZAR: add more examples and an image showing the examples -->
 
 The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed below.
 
-[//]: # (MAJOR HEADING)
-[//]: # (The Python Module)
+<!-- MAJOR HEADING -->
+<!-- The Python Module -->
 
 ### The Python Module
 
 The `oledExp` Python module in the `OmegaExpansion` package provides a wrapper around the C library functions. The functions are largely the same as their C counterparts, including the arguments and return values. Any differences from the C library will be explicitly mentioned below.
 
 
-[//]: # (Source Code)
+<!-- Source Code -->
 
 #### Source Code
 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-[//]: # (Using the Python Module)
+<!-- Using the Python Module -->
 
 #### Using the Python Module
 
@@ -79,7 +79,7 @@ The functions are largely the same as their C counterparts, including the argume
 One major drawback is that none of the defines found in C are currently implemented in the Python module.
 
 
-[//]: # (Python: Example Code)
+<!-- Python: Example Code -->
 
 #### Example Code
 
@@ -87,7 +87,7 @@ Example code that uses the `oledExp` module can be [found here](https://github.c
 
 
 
-[//]: # (Python: Return Values)
+<!-- Python: Return Values -->
 
 #### Return Values
 
@@ -99,7 +99,7 @@ If the function operation is not successful, the function will return `1`.
 
 
 
-[//]: # (Python: Init Function)
+<!-- Python: Init Function -->
 
 #### Initialization Function
 
@@ -117,8 +117,8 @@ status 	= oledExp.driverInit();
 
 
 
-[//]: # (SUB-HEADING)
-[//]: # (Settings Functions)
+<!-- SUB-HEADING -->
+<!-- Settings Functions -->
 
 #### Functions to Adjust Settings
 
@@ -131,7 +131,7 @@ There is a series of functions that adjust various settings on the OLED Display.
 * Setting the cursor position
 
 
-[//]: # (Python: Screen on/off)
+<!-- Python: Screen on/off -->
 
 ##### Turn the Screen On and Off
 
@@ -165,7 +165,7 @@ status = oledExp.setDisplayPower(1)
 ```
 
 
-[//]: # (Python: Invert Display Colours)
+<!-- Python: Invert Display Colours -->
 
 ##### Invert Display Colours
 
@@ -196,7 +196,7 @@ status = oledExp.setDisplayMode(0)
 ```
 
 
-[//]: # (Python: Set Brightness)
+<!-- Python: Set Brightness -->
 
 ##### Set the Display Brightness
 
@@ -230,7 +230,7 @@ status = oledExp.setBrightness(127)
 ```
 
 
-[//]: # (Python: Dim the display)
+<!-- Python: Dim the display -->
 
 ##### Dim the display
 
@@ -264,7 +264,7 @@ status = oledExp.setDim(0)
 ```
 
 
-[//]: # (Python: Set the memory mode)
+<!-- Python: Set the memory mode -->
 
 ##### Set Memory Mode
 
@@ -322,7 +322,7 @@ status = oledExp.setMemoryMode(0)
 ```
 
 
-[//]: # (Python: Set Column Addressing)
+<!-- Python: Set Column Addressing -->
 
 ##### Set Column Addressing
 
@@ -365,7 +365,7 @@ status = oledExp.setColumnAddressing(63, 95)
 ```
 
 
-[//]: # (Python: Set Column Addressing: Text Columns)
+<!-- Python: Set Column Addressing: Text Columns -->
 
 ###### Set Columns for Text
 
@@ -377,7 +377,7 @@ oledExp.setTextColumns()
 It sets the start pixel to 0 and the end pixel to 125. This allows for 21 text characters per line. This function should be run before setting the cursor for writing text.
 
 
-[//]: # (Python: Set Column Addressing: Image Columns)
+<!-- Python: Set Column Addressing: Image Columns -->
 
 ###### Set Columns for Images
 
@@ -393,7 +393,7 @@ It sets the start pixel to 0 and the end pixel to 127. This enables the use of t
 
 
 
-[//]: # (Python: Set Cursor Position)
+<!-- Python: Set Cursor Position -->
 
 ##### Set Cursor Position
 
@@ -404,7 +404,7 @@ Two methods exist:
 * Specifying the page row and pixel column
 
 
-[//]: # (Python: Set Cursor Position: By Character Column)
+<!-- Python: Set Cursor Position: By Character Column -->
 
 ###### Set Cursor Position by Character Column
 
@@ -449,7 +449,7 @@ status	|= oledExp.write("hi there")
 ```
 
 
-[//]: # (Python: Set Cursor Position by Pixel)
+<!-- Python: Set Cursor Position by Pixel -->
 
 ###### Set Cursor Position by Pixel
 
@@ -497,7 +497,7 @@ oledExp.write("hi there")
 
 
 
-[//]: # (Clearing Function)
+<!-- Clearing Function -->
 
 #### Clear the Screen
 
@@ -508,15 +508,15 @@ oledExp.clear()
 
 
 
-[//]: # (SUB-HEADING)
-[//]: # (Writing Text)
+<!-- SUB-HEADING -->
+<!-- Writing Text -->
 
 #### Writing Text to the Display
 
 Listed below are the functions that write bytes, characters, strings, or images to the display.
 
 
-[//]: # (Python: Write Byte)
+<!-- Python: Write Byte -->
 
 ##### Write a Single Byte
 
@@ -550,7 +550,7 @@ status |= oledExp.writeByte(0x3f)			# 0x3f = 0b 0011 1111
 ```
 
 
-[//]: # (Python: Write Character)
+<!-- Python: Write Character -->
 
 ##### Write a Single Character
 
@@ -582,7 +582,7 @@ status |= oledExp.writeChar(')')
 
 
 
-[//]: # (Python: Write String)
+<!-- Python: Write String -->
 
 ##### Write a String
 
@@ -619,15 +619,15 @@ status = oledExp.write("Python rules!\nEspecially on\n\nthe Omega")
 
 
 
-[//]: # (SUB-HEADING)
-[//]: # (Displaying Images)
+<!-- SUB-HEADING -->
+<!-- Displaying Images -->
 
 #### Drawing Images on the Display
 
 The OLED Screen can also be used to display images. The Console can be used to convert existing images into a format that is compatible with the OLED Expansion and save the output to an Omega. Functions in the Python module can read the image data and display it on the OLED Expansion.
 
 
-[//]: # (Displaying Images: Creating Image Files)
+<!-- Displaying Images: Creating Image Files -->
 
 ##### Creating Image Files
 
@@ -642,7 +642,7 @@ Once an image has been selected, a button and form will appear that allow you to
 After the image name and location are selected, click the Save to Omega button.
 
 
-[//]: # (Displaying Images: OLED Image File Details)
+<!-- Displaying Images: OLED Image File Details -->
 
 ##### OLED Image File Details
 
@@ -651,7 +651,7 @@ The OLED image files store the image data as 1024 bytes represented in hexadecim
 If this is unclear, see the [Understanding the Display Section](#programming-flow_understanding-the-display) for details on how the display is addressed.
 
 
-[//]: # (Displaying Images: Displaying Images from a File)
+<!-- Displaying Images: Displaying Images from a File -->
 
 ##### Displaying Images from a File
 
@@ -676,8 +676,8 @@ status = oledExp.drawFromFile("/root/image.lcd")
 
 
 
-[//]: # (SUB-HEADING)
-[//]: # (Scrolling the Display)
+<!-- SUB-HEADING -->
+<!-- Scrolling the Display -->
 
 #### Scrolling the Display Contents
 
@@ -685,7 +685,7 @@ The OLED can scroll the contents of the screen horizontally or upwards at a 45 d
 
 
 
-[//]: # (Horizontal scrolling)
+<!-- Horizontal scrolling -->
 
 ##### Horizontal Scrolling
 
@@ -722,7 +722,7 @@ The `startPage` argument defines at which page to start scrolling, and `stopPage
 
 **Examples**
 
-[//]: # (LAZAR: Add gifs to all examples)
+<!-- LAZAR: Add gifs to all examples -->
 
 Scroll the entire screen to the left:
 ``` python
@@ -742,7 +742,7 @@ status = oledExp.scroll (1, 6, 1, 5)
 ```
 
 
-[//]: # (Diagonal scrolling)
+<!-- Diagonal scrolling -->
 
 ##### Diagonal Scrolling
 
@@ -813,7 +813,7 @@ status = oledExp.scrollDiagonal (	1,
 
 
 
-[//]: # (Stop scrolling)
+<!-- Stop scrolling -->
 
 ##### Stop Scrolling
 

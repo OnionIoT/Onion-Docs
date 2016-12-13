@@ -13,7 +13,7 @@ This library is also available as a [module for use in Python](./Relay-Expansion
 
 
 
-[//]: # (Programming Flow)
+<!-- Programming Flow -->
 
 ### Programming Flow
 
@@ -21,7 +21,7 @@ After each power-cycle, the chip that controls the Relay Expansion must be progr
 
 
 
-[//]: # (I2C Device Address)
+<!-- I2C Device Address -->
 
 ### I2C Device Address
 
@@ -49,22 +49,22 @@ The table below defines the relationship:
 
 
 
-[//]: # (MAJOR HEADING)
-[//]: # (The C Library)
+<!-- MAJOR HEADING -->
+<!-- The C Library -->
 
 ### The C Library
 
 The `libonionrelayexp` C library is a series of functions that perform all of the actions specified in the [Programming Flow section](#Programming-Flow).
 
 
-[//]: # (Source Code)
+<!-- Source Code -->
 
 #### Source Code
 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-[//]: # (Using the C Library)
+<!-- Using the C Library -->
 
 #### Using the C Library
 
@@ -85,7 +85,7 @@ In your project's makefile, you will need to add the following dynamic libraries
 The dynamic libraries are stored in `/usr/lib` on the Omega.
 
 
-[//]: # (Using the C Library: Example Code)
+<!-- Using the C Library: Example Code -->
 
 #### Example Code
 
@@ -94,7 +94,7 @@ The Onion Relay Expansion C library is used in the implementation of [the `relay
 The source code can be found [here](https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/main-relay-exp.c), on the `i2c-exp-driver` Onion GitHub Repo.
 
 
-[//]: # (Return Values)
+<!-- Return Values -->
 
 #### Return Values
 
@@ -111,7 +111,7 @@ A few reasons why the function might not be successful:
 An error message will be printed that will give more information on the reason behind the failure.
 
 
-[//]: # (Types)
+<!-- Types -->
 
 #### Types
 
@@ -130,14 +130,14 @@ typedef enum e_RelayDriverChannels {
 
 
 
-[//]: # (Functions)
+<!-- Functions -->
 
 #### Functions
 
 Each of the main functions implemented in this library are described below.
 
 
-[//]: # (Init Function)
+<!-- Init Function -->
 
 ##### Initialization Function
 
@@ -171,7 +171,7 @@ int status 	= relayDriverInit(4);
 
 
 
-[//]: # (Check Init Function)
+<!-- Check Init Function -->
 
 ##### Check for Initialization
 
@@ -210,7 +210,7 @@ else {
 ```
 
 
-[//]: # (Set Relay State Function)
+<!-- Set Relay State Function -->
 
 ##### Set Relay State
 
@@ -239,7 +239,7 @@ status 	|= relaySetChannel (7, 1, 0);
 ```
 
 
-[//]: # (Set State for Both Relays Function)
+<!-- Set State for Both Relays Function -->
 
 ##### Set State for both Relays
 
@@ -269,7 +269,7 @@ status 	|= relaySetChannel (7, 0, 0);
 status 	|= relaySetAllChannels (7, 0);
 ```
 
-[//]: # (Read Relay State)
+<!-- Read Relay State -->
 
 ##### Read Relay State
 

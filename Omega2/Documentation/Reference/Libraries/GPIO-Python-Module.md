@@ -1,4 +1,4 @@
-# Onion GPIO Python Module {#gpio-python-module}
+## Onion GPIO Python Module {#gpio-python-module}
 
 The `onionGpio` Python module provides a Python object, `OnionGpio` that allows programs to control the Omega's GPIOs. The module uses the sysfs GPIO interface that is part of the Linux operating system.
 
@@ -6,9 +6,9 @@ The `onionGpio` Python module provides a Python object, `OnionGpio` that allows 
 [[_TOC_]]
 
 
-[//]: # (Python: Programming Flow)
+<!-- Python: Programming Flow -->
 
-# Programming Flow
+### Programming Flow
 
 Once the `OnionGpio` object is initialized, the class methods can be used to:
 * Set the GPIO to the input or output direction
@@ -17,9 +17,9 @@ Once the `OnionGpio` object is initialized, the class methods can be used to:
 
 
 
-[//]: # (Using the Python Module)
+<!-- Using the Python Module -->
 
-# Using the Python Module
+### Using the Python Module
 
 **Installing the Module**
 
@@ -42,25 +42,25 @@ import onionGpio
 ```
 
 
-[//]: # (Example Code)
+<!-- Example Code -->
 
-# Example Code
+### Example Code
 
 Several examples of how the `OnionGpio` object is used can be found in the [examples in the `onion-gpio-sysfs` repo.](https://github.com/OnionIoT/onion-gpio-sysfs/tree/master/python/examples) This directory contains all of the code seen below as well as some additional examples.
 
 The main example is the [`gpio-test.py` script](https://github.com/OnionIoT/onion-gpio-sysfs/blob/master/python/examples/gpio-test.py), it sets GPIO14 to be an input and reads the value, it then changes the GPIO direction to output, reads the current value, sets the value to 1, and reads the value again.
 
 
-[//]: # (Functions)
+<!-- Functions -->
 
-# Functions
+### Functions
 
 Each of the main functions implemented in this module are described below.
 
 
-[//]: # (Functions: Constructor)
+<!-- Functions: Constructor -->
 
-## Constructor
+### Constructor
 
 The object needs to be initialized before it can be used, hence, the constructor:
 ``` python
@@ -82,15 +82,15 @@ gpio14 		= onionGpio.OnionGpio(14)
 ```
 
 
-[//]: # (Functions: GPIO Direction)
+<!-- Functions: GPIO Direction -->
 
-## GPIO Direction
+### GPIO Direction
 
 The GPIOs on the Omega can be set to the input or output direction. When in the input direction, external signals can be connected to the GPIO and the digital value can be read. When in the output direction, the digital value the GPIO is driving can be programmed.
 
-[//]: # (Functions: GPIO Direction: Read the Direction)
+<!-- Functions: GPIO Direction: Read the Direction -->
 
-### Reading the Current Direction
+#### Reading the Current Direction
 
 In some instances, it will be useful to find out the current direction of the GPIO:
 ``` python
@@ -104,9 +104,9 @@ The function will return the following:
 * `out` if the Output direction is selected
 
 
-[//]: # (Functions: GPIO Direction: Set the Direction)
+<!-- Functions: GPIO Direction: Set the Direction -->
 
-### Setting the Direction
+#### Setting the Direction
 
 The direction of the GPIO can be set to **input**:
 ``` python
@@ -156,15 +156,15 @@ status = gpio14.setOutputDirection(1)
 
 
 
-[//]: # (Functions: GPIO Value)
+<!-- Functions: GPIO Value -->
 
-## GPIO Value
+### GPIO Value
 
 The good part, finally! Now we will be reading and setting a GPIO's value.
 
-[//]: # (Functions: GPIO Value: Reading)
+<!-- Functions: GPIO Value: Reading -->
 
-### Reading the Value
+#### Reading the Value
 
 Reading the current value of the GPIO:
 ``` python
@@ -191,10 +191,10 @@ import onionGpio
 gpioNum = 7
 gpioObj	= onionGpio.OnionGpio(gpioNum)
 
-# set to input
+## set to input
 status 	= gpioObj.setInputDirection()
 
-# read and print the value once a second
+## read and print the value once a second
 loop = 1
 while loop == 1:
 	value = gpioObj.getValue()
@@ -213,11 +213,11 @@ import onionGpio
 gpioNum = 6
 gpioObj	= onionGpio.OnionGpio(gpioNum)
 
-# set to input
+## set to input
 status 	= gpioObj.setOutputDirection()
 print 'GPIO%d set to output,'%(gpioNum),
 
-# read the value
+## read the value
 value 	= gpioObj.getValue()
 print ' initial value: %d'%(int(value))
 ```
@@ -225,9 +225,9 @@ print ' initial value: %d'%(int(value))
 *This code can be found in the [`onion-gpio-sysfs` repo example directory](https://github.com/OnionIoT/onion-gpio-sysfs/tree/master/python/examples), it's called [`read-output.py`](https://github.com/OnionIoT/onion-gpio-sysfs/blob/master/python/examples/read-output.py)*
 
 
-[//]: # (Functions: GPIO Value: Setting)
+<!-- Functions: GPIO Value: Setting -->
 
-### Setting the Value
+#### Setting the Value
 
 And what we've all been waiting for, setting the value of a GPIO:
 ``` python
@@ -259,10 +259,10 @@ import onionGpio
 gpioNum = 1
 gpioObj	= onionGpio.OnionGpio(gpioNum)
 
-# set to output
+## set to output
 status 	= gpioObj.setOutputDirection(0)
 
-# alternate the value
+## alternate the value
 loop 	= 1
 value 	= 0
 while loop == 1:

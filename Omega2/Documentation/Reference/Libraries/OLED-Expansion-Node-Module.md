@@ -1,7 +1,7 @@
-#**OLED Expansion for Node.js**
+##OLED Expansion for Node.js
 
 
-As a part of our efforts to add expansion support to node.js, we have added control of the OLED expansion by way of node.js addon. To use the display within your node.js programs, all you have to do is import the OLED addon in the same way as a module and call methods to control the display. 
+As a part of our efforts to add expansion support to node.js, we have added control of the OLED expansion by way of node.js addon. To use the display within your node.js programs, all you have to do is import the OLED addon in the same way as a module and call methods to control the display.
 
 ![Omega+OLED Expansion](http://i.imgur.com/tqcRlgG.jpg)
 
@@ -10,15 +10,15 @@ The addon is a wrapper around the OLED C library. The library's documentation ca
 [[_TOC_]]
 
 
-[//]: # (Programming Flow)
+<!-- Programming Flow -->
 
-# Programming Flow
+### Programming Flow
 
 After each power-cycle, the chip that controls the OLED Expansion must be programmed with an initialization sequence to setup the display and enable it to receive additional commands.
 
-After the initialization, the other functions can be used to adjust vaious screen settings or display text or images. 
+After the initialization, the other functions can be used to adjust vaious screen settings or display text or images.
 
-## **Understanding the Display**
+#### Understanding the Display
 
 The screen has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages:
 
@@ -32,16 +32,16 @@ So writing 0x0f would produce the top 4 pixels being coloured in, and the bottom
 
 The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed below.
 
-[//]: # (MAJOR HEADING)
-[//]: # (The Node Addon)
+<!-- MAJOR HEADING -->
+<!-- The Node Addon -->
 
-#**The Node Addon**
+### The Node Addon
 
 The OLED Expansion addon exposes a series of methods that perform all of the actions specified in the Programming Flow section.
 
-[//]: # (Install the Addon)
+<!-- Install the Addon -->
 
-## **Install the Addon**
+### **Install the Addon**
 
 Install the addon on your Omega:
 ```
@@ -54,10 +54,10 @@ NodeJS will need to be installed for Node programs to actually run:
 opkg install nodejs
 ```
 
-[//]: # (Importing the Addon)
-## **Importing the addon into your Node Script**
+<!-- Importing the Addon -->
+### **Importing the addon into your Node Script**
 
-To use the addon within your script you have to import it into your node program as you would a module. Use the following command in your node script. 
+To use the addon within your script you have to import it into your node program as you would a module. Use the following command in your node script.
 
 ```
 var oledAddon = require("/usr/bin/oled-exp-addon");
@@ -66,34 +66,34 @@ var oledAddon = require("/usr/bin/oled-exp-addon");
 
 
 
-[//]: # (Example Code)
-## **Example Code**
+<!-- Example Code -->
+### **Example Code**
 
 Example code that uses the `oled-exp-node` addon can be [found here](https://github.com/OnionIoT/i2c-exp-node-addons/blob/master/Examples/oled_node_example.js) in the `i2c-exp-node-addons` Onion GitHub Repo.
 
 
 
 
-[//]: # (Return Values)
-## **Return Values**
+<!-- Return Values -->
+### **Return Values**
 
 All of the functions will either return a 0 indicating success or 1 indicating failure.
 
 
-[//]: # (Calling Methods)
-## **Calling Methods**
+<!-- Calling Methods -->
+### **Calling Methods**
 
-Methods are called in the following format. 
+Methods are called in the following format.
 
 ```
 oledAddon.method();
 ```
-Replace method with your funcion of interest. 
+Replace method with your funcion of interest.
 
-[//]: # (Available Methods)
-## **Available Methods**
+<!-- Available Methods -->
+### **Available Methods**
 
-Refer to the table below for a list and brief description of available OLED methods. 
+Refer to the table below for a list and brief description of available OLED methods.
 
 |  Method |   Inputs|  Description |
 |---|---|---|
@@ -117,22 +117,22 @@ Refer to the table below for a list and brief description of available OLED meth
 |scrollStop()|none|Disables all active scrolling|
 |readLcdFile("path")| "Path to LCD File"|Displays lcd image file on the screen|
 
-[//]: # (MAJOR HEADING)
-[//]: # (Usage)
+<!-- MAJOR HEADING -->
+<!-- Usage -->
 
-## **Usage**
+### **Usage**
 
 
-[//]: # (Init Function)
-###**Initialization**
+<!-- Init Function -->
+####**Initialization**
 This function programs the initilization sequence on the OLED Expansion, after this step is completed, the various OLED functions can be used with success:
 ```
 oledAddon.init();
 ```
-[//]: # (SUB-HEADING)
-[//]: # (Settings Functions)
+<!-- SUB-HEADING -->
+<!-- Settings Functions -->
 
-###**Functions to Adjust Settings**
+####**Functions to Adjust Settings**
 
 There is a series of functions that adjust various settings on the OLED Display. The adjustable settings are:
 
@@ -143,10 +143,10 @@ There is a series of functions that adjust various settings on the OLED Display.
  * Defining the width of each page
  * Setting the cursor position
 
-[//]: # (Screen on/off)
+<!-- Screen on/off -->
 
-####**Turn Display Off/On**
-The screen cab be turned on and off while still preserving the displayed contents.Note: turning on a screen that is already on, or turning off a screen that is already off will have no effect. 
+#####**Turn Display Off/On**
+The screen cab be turned on and off while still preserving the displayed contents.Note: turning on a screen that is already on, or turning off a screen that is already off will have no effect.
 ```
 oledAddon.setDisplayPower(int bPowerON);
 ```
@@ -174,9 +174,9 @@ oledAddon.setDisplayPower(1);
 ```
 
 
-[//]: # (Invert Display Colours)
+<!-- Invert Display Colours -->
 
-####**Invert Display Color**
+#####**Invert Display Color**
 The screen driver has the ability to invert the display colors, meaning that black becomes white and vice versa. To invert the colors:
 ```
 oledAddon.setDisplayMode(int bInvert);
@@ -204,9 +204,9 @@ To revert back to the normal colors:
 oledAddon.setDisplayMode(0);
 ```
 
-[//]: # (Set Brightness)
+<!-- Set Brightness -->
 
-####**Set the Display Brightness**
+#####**Set the Display Brightness**
 
 The brightness of the display can be adjusted in a granularity of 256 steps. The default brightness after initialization is 207.
 ```
@@ -234,8 +234,8 @@ And to set the middle brightness:
 oledAddon.setBrightness(127);
 ```
 
-[//]: # (Dim the display)
-#### **Dim the Display**
+<!-- Dim the display -->
+##### **Dim the Display**
 
 This function implements a 'dim' and a 'normal' setting for the display:
 
@@ -243,7 +243,7 @@ This function implements a 'dim' and a 'normal' setting for the display:
 oledAddon.setDim(int dim);
 ```
 
-While the brightness adjustment function described just above impleents the same feature, this function 
+While the brightness adjustment function described just above impleents the same feature, this function
 simplifies the procedure with two distinct settings.
 
 **Arguments**
@@ -268,8 +268,8 @@ Set the Display to normal brightness:
 oledAddon.setDim(0);
 ```
 
-[//]: # (Set the memory mode)
-#### **Set Memory Mode**
+<!-- Set the memory mode -->
+##### **Set Memory Mode**
 
 Implements the ability to select the display's memory mode:
 ```
@@ -287,19 +287,19 @@ After each write, the column cursor advances horizontally to the right along the
 
 ![imgur](http://i.imgur.com/Dv1smND.png)
 
-After each write, the page cursor advances vertically downward through the pages, once the last page is reached, the column cursor is advanced to the next pixel column. 
+After each write, the page cursor advances vertically downward through the pages, once the last page is reached, the column cursor is advanced to the next pixel column.
 
 **Page Addressing Mode**
 
 ![imgur](http://i.imgur.com/oW4giq6.png)
 
-The column cursor advances horizontally to the right along each page, once the end of the page is reached, the column cursor wraps around to column 0 and the page cursor remains the same. 
+The column cursor advances horizontally to the right along each page, once the end of the page is reached, the column cursor wraps around to column 0 and the page cursor remains the same.
 
 By default, **Horizontal Addressing** is used.
 
 **Arguments**
 
-The `mode` argument determines which memory mode is active. 
+The `mode` argument determines which memory mode is active.
 
 |Memory Mode                |Input |
 |---------------------------|------|
@@ -315,8 +315,8 @@ oledAddon.setMemoryMode(2);
 ```
 
 
-[//]: # (Set Column Addressing)
-#### **Set Column Addressing**
+<!-- Set Column Addressing -->
+##### **Set Column Addressing**
 
 This function is used to define where each page starts and ends horizontally:
 ```
@@ -354,18 +354,18 @@ Set each column to start halfway across an to enf three quartes of the way accro
 oledAddon.setColumnAddressing(63,95);
 ```
 
-[//]: # (Set Column Addressing: Text Columns)
-#### **Set Columns for Text**
+<!-- Set Column Addressing: Text Columns -->
+##### **Set Columns for Text**
 
 A function exists to define the column addressing specifically for text:
 ```
 oledAddon.setTextColumns();
 ```
 
-It sets the start pixel to 0 and the end pixel to 125. This allows for the 21 text characters per line This function should be run, before setting the cursor for writing text. 
+It sets the start pixel to 0 and the end pixel to 125. This allows for the 21 text characters per line This function should be run, before setting the cursor for writing text.
 
-[//]: # (Set Column Addressing: Image Columns)
-#### **Set Columns for Images**
+<!-- Set Column Addressing: Image Columns -->
+##### **Set Columns for Images**
 
 Also, a function exists to define the column addressing to cover the entire screen:
 ```
@@ -374,18 +374,18 @@ oledAddon.setImageColumns();
 
 It sets the start pixel to 0 and te end pixel to 127. This enables the use of the entire screen.
 
-[//]: # (Set Cursor Position)
-### **Set Cursor Position**
+<!-- Set Cursor Position -->
+#### **Set Cursor Position**
 
-Any data written to the screen gets writting to the current position of the cursor. This position can be adjusted. 
+Any data written to the screen gets writting to the current position of the cursor. This position can be adjusted.
 
 Two methods exist:
 
  * Specifying the page row and character column
  * Specifying the page row and pixel column
 
-[//]: # (Set Cursor Position: By Character Column)
-#### **Set Cursor Position by Character Column**
+<!-- Set Cursor Position: By Character Column -->
+##### **Set Cursor Position by Character Column**
 
 This function is used to position the cursor on a specific page and character column. After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
 ```
@@ -419,8 +419,8 @@ oledAddon.setCursor(0,0);
 
 
 
-[//]: # (Set Cursor Position: By Pixel)
-#### **Set Cursor Position by Pixel**
+<!-- Set Cursor Position: By Pixel -->
+##### **Set Cursor Position by Pixel**
 This function is used to position the cursor on a specific page and pixel row. This gives more fine grain control than setting by character column.
 
 After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
@@ -454,23 +454,23 @@ oledAddon.setCursorByPixel(7,0);
 ```
 
 
-[//]: # (Clearing Function)
+<!-- Clearing Function -->
 
-####**Clearing the Display**
+#####**Clearing the Display**
 To clear the screen and move the cursor to the starting position at the top-left of the screen:
 ```
 oledAddon.clear();
 ```
 
 
-[//]: # (SUB-HEADING)
-[//]: # (Writing Text)
+<!-- SUB-HEADING -->
+<!-- Writing Text -->
 
-###**Writing Text to The Display**
+####**Writing Text to The Display**
 Listed below are the functions that write bytes, characters, strings, or images to the display.
 
-[//]: # (Write Byte)
-####**Write a Single Byte**
+<!-- Write Byte -->
+#####**Write a Single Byte**
 Write a single byte, eight vertical pixels, to the current position of the cursor:
 ```
 oledAddon.oledWriteByte(int byte);
@@ -494,8 +494,8 @@ Draw the following pattern:
 oledAddon.writeByte(0x3f);
 ```
 
-[//]: # (Write Character)
-#### **Write a Single Character**
+<!-- Write Character -->
+##### **Write a Single Character**
 
 Write a single character to the current position of the cursor:
 ```
@@ -515,8 +515,8 @@ Write an 'O'
 oledAddon.writeChar('O');
 ```
 
-[//]: # (Write String)
-#### **Write a String**
+<!-- Write String -->
+##### **Write a String**
 
 Write an entire string of characters, starting at the current position of the cursor:
 ```
@@ -546,19 +546,19 @@ Write 'Onion Omega', then 'Inventing the Future' on the next line, and then 'Tod
 oledAddon.write("Onion Omega\nInventing the Future\n\nToday");
 ```
 
-[//]: # (SUB-HEADING)
-[//]: # (Scrolling the Display)
-### **Scrolling the Display Contents**
+<!-- SUB-HEADING -->
+<!-- Scrolling the Display -->
+#### **Scrolling the Display Contents**
 The OLED can scroll the contents of the screen horizontally or upwards at a 45 degree angle. The displayed content will wrap around when it reaches the edge of the display.
 
-[//]: # (Horizontal scrolling)
-#### **Horizontal Scrolling**
+<!-- Horizontal scrolling -->
+##### **Horizontal Scrolling**
 Scroll the contents of the screen horizontally or upwards at a 45 degree angle. Contents will wrap around after reaching edge of display
 ```
 oledAddon.scroll(int direction, int scrollSpeed, int startPage, int stopPage);
 ```
 
-##### **Arguments**
+###### **Arguments**
 
 **Direction**
 
@@ -596,14 +596,14 @@ Let's scroll the entire screen to the left
 oledAddon.scroll(0,0,0,7);
 ```
 
-[//]: # (Diagonal scrolling)
-#### **Diagonal Scrolling**
+<!-- Diagonal scrolling -->
+##### **Diagonal Scrolling**
 Scroll all or part of the screen diagonally upwards:
 
 ```
 scrollDiagonal(int direction, int scrollSpeed, int fixedRows, int scrollRows, int verticalOffset, int startPage, int stopPage);
 ```
-##### **Arguments**
+###### **Arguments**
 
 **Direction**
 
@@ -653,16 +653,16 @@ Let's scroll the entire screen upwards to the left.
 oledAddon.scrollDiagonal(0,5,0,127,1,0,7);
 ```
 
-[//]: # (Stop scrolling)
-#### **Stop Scrolling**
+<!-- Stop scrolling -->
+##### **Stop Scrolling**
 
 Disables all active scrolling
 ```
 oledAddon.scrollStop();
 ```
 
-## **Further Reading**
+### **Further Reading**
 
-If you are unsure of how the display works. We recommend you take a look at the documentation for the Dynamic C library for the OLED Expansion, which can be found [here](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-Library). 
+If you are unsure of how the display works. We recommend you take a look at the documentation for the Dynamic C library for the OLED Expansion, which can be found [here](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-Library).
 
-The node functions are a direct mapping to the functions available from the C library. 
+The node functions are a direct mapping to the functions available from the C library.

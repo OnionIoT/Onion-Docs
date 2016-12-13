@@ -8,7 +8,7 @@ Also available is a Python module, called `onionSpi`, that implements an SPI obj
 [[_TOC_]]
 
 
-[//]: # (The SPI Protocol)
+<!-- The SPI Protocol -->
 
 ### The SPI Protocol
 
@@ -30,7 +30,7 @@ The protocol is based on the Master-Slave architecture, so the Master will gener
 For more details on SPI, check out the [Wikipedia article](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus).
 
 
-[//]: # (The SPI Protocol: Linux and SPI)
+<!-- The SPI Protocol: Linux and SPI -->
 
 #### Linux and SPI
 
@@ -40,22 +40,22 @@ The Omega does not have an SPI bit-banging adapter setup by default, but this ca
 
 
 
-[//]: # (MAJOR HEADING)
-[//]: # (The C Library)
+<!-- MAJOR HEADING -->
+<!-- The C Library -->
 
 ### The C Library
 
 The `libonionspi` C library is a series of functions that implement SPI communication through the Linux device interface.
 
 
-[//]: # (Source Code)
+<!-- Source Code -->
 
 #### Source Code
 
 The source code can be found in the [Onion `spi-gpio-driver` GitHub Repo](https://github.com/OnionIoT/spi-gpio-driver).
 
 
-[//]: # (Programming Flow)
+<!-- Programming Flow -->
 
 #### Programming Flow
 
@@ -68,7 +68,7 @@ After the above is complete, the functions to transfer data using the SPI protoc
 
 
 
-[//]: # (Using the Library)
+<!-- Using the Library -->
 
 #### Using the Library
 
@@ -90,7 +90,7 @@ The dynamic libraries are stored in `/usr/lib` on the Omega.
 
 
 
-[//]: # (Example Code)
+<!-- Example Code -->
 
 #### Example
 
@@ -100,7 +100,7 @@ Additional example code can be found in the sections below.
 
 
 
-[//]: # (Return Values)
+<!-- Return Values -->
 
 #### Return Values
 
@@ -114,7 +114,7 @@ Any deviations from this rule will be specified below.
 
 
 
-[//]: # (Parameter Structure)
+<!-- Parameter Structure -->
 
 #### Parameter Structure
 
@@ -166,14 +166,14 @@ Then run the `spiSetupDevice()` function to set the options in the adapter devic
 
 
 
-[//]: # (SUB-HEADING)
-[//]: # (Setup Functions)
+<!-- SUB-HEADING -->
+<!-- Setup Functions -->
 
 #### Setup Functions
 
 The following functions serve to initialize the `spiParams` structure and do any SPI adapter setup required to actually perform transfers.
 
-[//]: # (Initialize the Parameter Structure)
+<!-- Initialize the Parameter Structure -->
 
 ##### Initialize the Parameter Structure: `spiParamInit()`
 
@@ -207,7 +207,7 @@ Sets the SPI lines to the following GPIOs:
 The `params` argument should be the structure you want to initialize passed by reference.
 
 
-[//]: # (Check if SPI Device is Mapped)
+<!-- Check if SPI Device is Mapped -->
 
 ##### Check if SPI Device is Mapped: `spiCheckDevice()`
 
@@ -247,7 +247,7 @@ else {
 ```
 
 
-[//]: # (Register SPI Device)
+<!-- Register SPI Device -->
 
 ##### Register SPI Device: `spiRegisterDevice()`
 
@@ -296,7 +296,7 @@ status 	= spiRegisterDevice(&params);
 ```
 
 
-[//]: # (Setup SPI Device)
+<!-- Setup SPI Device -->
 
 ##### Setup SPI Device: `spiSetupDevice()`
 
@@ -312,15 +312,15 @@ It will setup the following SPI parameters:
 
 
 
-[//]: # (SUB-HEADING)
-[//]: # (Communication Functions)
+<!-- SUB-HEADING -->
+<!-- Communication Functions -->
 
 #### Communication Functions
 
 Once a device adapter is registered, the functions below can be used to read from and write data to the device via SPI.
 
 
-[//]: # (Transfer Data Function)
+<!-- Transfer Data Function -->
 
 ##### Transferring Data: `spiTransfer()`
 
@@ -340,7 +340,7 @@ The `rxBuffer` argument will be populated by data received during the SPI transf
 And finally, the `bytes` argument indicates the number of bytes being transferred. Note that the txBuffer and rxBuffer need to be allocated to at least this size.
 
 
-[//]: # (Transfer Data Function: Example Code: Reading)
+<!-- Transfer Data Function: Example Code: Reading -->
 
 ###### Example Code: Reading a Byte
 
@@ -393,7 +393,7 @@ Some devices require specific bit-wise operations on the address to indicate a r
 Refer to the datasheet of your device for specifics.
 
 
-[//]: # (Transfer Data Function: Example Code: Writing)
+<!-- Transfer Data Function: Example Code: Writing -->
 
 ###### Example Code: Writing a Value
 
@@ -437,7 +437,7 @@ void SpiWriteValue(int addr, int value)
 
 In this case, the SPI Master will first send the register address where the write is to be performed, and then the value to be written. Usually the SPI Slave will not send a response, however, the `spiTransfer()` function still requires a buffer to be passed in order to work properly.
 
-[//]: # (Transfer Data Function: Example Code: Writing Stream of Data)
+<!-- Transfer Data Function: Example Code: Writing Stream of Data -->
 
 ###### Example Code: Writing Several Values
 
@@ -480,14 +480,14 @@ void SpiWriteValues(int addr, int* data, int size)
 ```
 
 
-[//]: # (Additional Functions)
+<!-- Additional Functions -->
 
 ##### Additional Functions
 
 The `spiTransfer()` is all that's required to perform reads and writes using SPI. However, two additional functions are provided to perform reads and writes. Internally, they both use the `spiTransfer()` function, but they provide a slightly simpler interface.
 
 
-[//]: # (Additional Functions: spiRead)
+<!-- Additional Functions: spiRead -->
 
 ###### Reading Data: `spiRead()`
 
@@ -546,7 +546,7 @@ In essence, this simplifies the use of the `spiTransfer()` for read scenarios.
 
 
 
-[//]: # (Additional Functions: spiWrite)
+<!-- Additional Functions: spiWrite -->
 
 ###### Reading Data: `spiWrite()`
 

@@ -13,7 +13,7 @@ This library is also available as a [module for use in Python](./PWM-Expansion-P
 
 
 
-[//]: # (Programming Flow)
+<!-- Programming Flow -->
 
 ### Programming Flow
 
@@ -30,7 +30,7 @@ The PWM Expansion has 16 channels that can generate distinct PWM signals. Note t
 
 
 
-[//]: # (PWM Signal Refresher)
+<!-- PWM Signal Refresher -->
 
 ### PWM Signal Refresher
 
@@ -45,22 +45,22 @@ The **frequency** determines the overall period of the pulse.
 For a more detailed explanation, see the guide on [using the Servo Expansion.](../../Tutorials/Expansions/Using-the-Servo-Expansion#pwm-signals)
 
 
-[//]: # (MAJOR HEADING)
-[//]: # (The C Library)
+<!-- MAJOR HEADING -->
+<!-- The C Library -->
 
 ### The C Library
 
 The `libonionpwmexp` C library is a series of functions that perform all of the actions specified in the [Programming Flow section](#Programming-Flow).
 
 
-[//]: # (Source Code)
+<!-- Source Code -->
 
 #### Source Code
 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-[//]: # (Using the C Library)
+<!-- Using the C Library -->
 
 #### Using the C Library
 
@@ -81,7 +81,7 @@ In your project's makefile, you will need to add the following dynamic libraries
 The dynamic libraries are stored in `/usr/lib` on the Omega.
 
 
-[//]: # (The C Library: Example Code)
+<!-- The C Library: Example Code -->
 
 #### Example Code
 
@@ -91,7 +91,7 @@ The source code can be found [here](https://github.com/OnionIoT/i2c-exp-driver/b
 
 
 
-[//]: # (Return Values)
+<!-- Return Values -->
 
 #### Return Values
 
@@ -108,13 +108,13 @@ A few reasons why the function might not be successful:
 An error message will be printed that will give more information on the reason behind the failure.
 
 
-[//]: # (C Functions)
+<!-- C Functions -->
 
 #### Functions
 
 Each of the main functions implemented in this module are described below.
 
-[//]: # (Init Function)
+<!-- Init Function -->
 
 ##### Initialization Function
 
@@ -135,7 +135,7 @@ int status 	= pwmDriverInit();
 
 
 
-[//]: # (Check Init Function)
+<!-- Check Init Function -->
 
 ##### Check for Initialization
 
@@ -175,7 +175,7 @@ else {
 
 
 
-[//]: # (Generate PWM Signal Function)
+<!-- Generate PWM Signal Function -->
 
 ##### Generate a PWM Signal
 
@@ -235,7 +235,7 @@ status = pwmSetupDriver(-1, 15.65f, 0.0f);
 
 
 
-[//]: # (Set Signal Frequency)
+<!-- Set Signal Frequency -->
 
 ##### Set PWM Signal Frequency
 
@@ -271,7 +271,7 @@ status 		= pwmSetupDriver	(13, 82, 0);
 
 
 
-[//]: # (Disable Oscillator)
+<!-- Disable Oscillator -->
 
 ##### Disabling the Oscillator
 

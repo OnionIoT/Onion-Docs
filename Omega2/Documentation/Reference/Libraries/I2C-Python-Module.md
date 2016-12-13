@@ -1,4 +1,4 @@
-# I2C Python Library {#i2c-python-module}
+## I2C Python Library {#i2c-python-module}
 
 The Onion I2C Library, `libonioni2c` is a dynamic C library that provides functions to easily read from and write to devices communicating with the Omega via I2C. The library can be used in C and C++ programs.
 
@@ -7,25 +7,25 @@ Also available is a Python module that implements an I2C object using functions 
 
 [[_TOC_]]
 
-# Linux and I2C
+### Linux and I2C
 
 I2C devices are usually controlled by a kernel driver, however, it is also possible to access devices through an adapter in the Linux filesystem. The adapter can be found at `/dev/i2c-X`, where `X` is the adapter number which can range from 0 to 255. On the Omega, `/dev/i2c-0` is available by default. This allows users to interact with I2C slaves from the Linux environment.
 
 The Onion I2C library uses the `/dev/i2c-0` adapter, and implements read and write functions I2C devices.
 
-# The Python Module
+### The Python Module
 
 The `onionI2C` Python module in the `OmegaExpansion` package provides a Python object that serves as a wrapper around the C library functions. The usage is slightly different since the Python module is object oriented and the C library is just a set of functions.
 
-## Source Code
+### Source Code
 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
-## Programming Flow
+### Programming Flow
 
-Once the I2C object is initialized, the read and write functions can be called freely using the object. 
+Once the I2C object is initialized, the read and write functions can be called freely using the object.
 
-## Using the Python Module
+### Using the Python Module
 
 **Installing the Module**
 
@@ -47,17 +47,17 @@ To add the Onion I2C Module to your Python program, include the following in you
 from OmegaExpansion import onionI2C
 ```
 
-## Example
+### Example
 
 An example of how the `onionI2C` library is used can be found in the [`i2c-exp-driver` repo.](https://github.com/OnionIoT/i2c-exp-driver/blob/master/examples/onion-i2c.py)
 
 The example code programs the Relay Expansion directly.
 
-## Functions
+### Functions
 
 Each of the main functions implemented in this module are described below.
 
-### Initialization
+#### Initialization
 
 The object needs to be initialized before it can be used for reading and writing:
 ``` python
@@ -74,9 +74,9 @@ If no argument is supplied, the adapter will be set to `/dev/i2c-0`. This is the
 
 If your use case requires a different adapter, add an integer argument to the constructor call.
 
-### Reading from an I2C Slave
+#### Reading from an I2C Slave
 
-#### Reading Bytes
+##### Reading Bytes
 
 This function reads a specified number of bytes from a specific device on the I2C bus, and returns them in a list:
 ``` python
@@ -85,7 +85,7 @@ valList = i2c.readBytes(devAddr, addr, size)
 
 **Arguments**
 
-The `devAddr` argument defines the I2C slave device address. 
+The `devAddr` argument defines the I2C slave device address.
 
 The `addr` argument defines the address on the device from which to read.
 
@@ -105,13 +105,13 @@ byteList  = i2c.readBytes(0x27, 0x24, 1)
 ```
 Note that even though only a single byte is being read, the variable `byteList` will be in the form of a list.
 
-### Writing to an I2C Slave
+#### Writing to an I2C Slave
 
 All writing functions share the same schema for return values:
 * For a successful write, `0` will be returned
 * An unsuccessful write will return `1`
 
-#### Write a Single Byte
+##### Write a Single Byte
 
 This function will write a single byte to a specific device on the I2C bus:
 ``` python
@@ -120,7 +120,7 @@ status 	= i2c.writeByte(devAddr, addr, value)
 
 **Arguments**
 
-The `devAddr` argument defines the I2C slave device address. 
+The `devAddr` argument defines the I2C slave device address.
 
 The `addr` argument defines the address on the device that will be written to.
 
@@ -139,7 +139,7 @@ Write `0xbe` to address `0xaa` on a device with an address of` 0x33`:
 status  = i2c.writeByte(0x33, 0xaa, 0xbe)
 ```
 
-#### Write a List of Bytes
+##### Write a List of Bytes
 
 This function will write a list of bytes to an address on a specific device on the I2C bus:
 ``` python
@@ -148,7 +148,7 @@ status  = i2c.writeBytes(devAddr, addr, values)
 
 **Arguments**
 
-The `devAddr` argument defines the I2C slave device address. 
+The `devAddr` argument defines the I2C slave device address.
 
 The `addr` argument defines the address on the device that will be written to.
 
@@ -173,7 +173,7 @@ Write `0x01, 0x03, 0x05` to address `0x55` on a device with an address of `0x24`
 status  = i2c.writeBytes(0x24, 0x55, [0x01, 0x03, 0x05])
 ```
 
-#### Write a List of Bytes without Specifying an Address
+##### Write a List of Bytes without Specifying an Address
 
 This function will write a list of bytes to a specific device on the I2C bus:
 ``` python
@@ -184,7 +184,7 @@ It can be used when no specific on address on the device needs to be specified.
 
 **Arguments**
 
-The `devAddr` argument defines the I2C slave device address. 
+The `devAddr` argument defines the I2C slave device address.
 
 The `values` argument is the list of bytes to be written.
 
@@ -207,4 +207,3 @@ Write `0x01, 0x03, 0x05, 0x02, 0x04, 0x06, 0xaa` to a device with an address of 
 bytes   = [0x01, 0x03, 0x05, 0x02, 0x04, 0x06, 0xaa]
 status  = i2c.write(0x13, bytes)
 ```
-
