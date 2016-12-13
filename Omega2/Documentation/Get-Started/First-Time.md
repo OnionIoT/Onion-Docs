@@ -33,7 +33,7 @@ The text printed here is the Omega's unique MAC address, we're interested in the
 
 Your Omega's name is `Omega-ABCD` where `ABCD` are the last four digits from the sticker.
 
-So the Omega from the picture above is named `Omega-296A`
+So the Omega from the picture above is named `Omega-5931`
 
 
 **Connect to the Omega's WiFi Network**

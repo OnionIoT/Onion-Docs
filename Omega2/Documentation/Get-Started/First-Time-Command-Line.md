@@ -8,7 +8,7 @@ Follow along with this guide to set up your Omega2 for the first time. We'll fir
 
 
 <!-- Prepare the Hardware -->
-```{r child = './Unbox.md'}
+```{r child = './Hardware-Prep.md'}
 ```
 
 
@@ -36,7 +36,7 @@ The text printed here is the Omega's unique MAC address, we're interested in the
 
 Your Omega's name is `Omega-ABCD` where `ABCD` are the last four digits from the sticker.
 
-So the Omega from the picture above is named `Omega-296A`
+So the Omega from the picture above is named `Omega-5931`
 
 
 **Connect to the Omega's WiFi Network**

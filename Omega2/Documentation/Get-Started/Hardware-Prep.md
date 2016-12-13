@@ -42,10 +42,8 @@ Turn on the Omega using the switch.
 
 **Wait till it boots**
 
-When the amber LED has been on for about a minute, your Omega will have booted.
+The amber LED on your Omega should turn on and then start blinking after about 10 seconds. In about a minute, when the Omega has completed its boot sequence, the LED will stop blinking and remain solid.
+
+*It's possible that your Omega will behave a little differently: if the amber LED on your Omega turns on and remains on, wait for about a minute, and your Omega will have booted.*
 
 ![Omega is on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-6-omega-led-detail.jpg "Omega is on")
-
-*We're working on making this step more intuitive, stay tuned!*
-
-<!-- LAZAR: need to fix Omega LED in the firmware, when fixed, make sure to give time estimate for how long boot takes -->
