@@ -9,7 +9,7 @@ order: 2
 ## Using the OLED Expansion {#using-oled-expansion}
 
 
-On the command line, a tool called `oled-exp` will be your helper in all things related to the OLED Expansion.
+We've developed a command line tool called `oled-exp` that will be your helper in all things related to the OLED Expansion.
 
 Also available are a C library and a Python module that allow you to develop your own programs to control the OLED Expansion. See the guides at the bottom of this article for more details.
 
