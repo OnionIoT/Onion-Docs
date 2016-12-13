@@ -1,18 +1,17 @@
 ---
-title: Connecting to the Omega's Terminal
+title: Connecting to the Omega's Command Line
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
 order: 1
 ---
 
-## Connecting to the Omega's Terminal {#connecting-to-the-omega-terminal}
+## Connecting to the Omega's Command Line {#connecting-to-the-omega-terminal}
 
-<!-- // TODO: let's change the STEP X boldings to a few words of what the step is accomplishing (like the first  time setup article) -->
 
 Now that your Omega is setup, connected to a WiFi network, and updated, you'll want to connect to it to start building and inventing.
 
-There are two ways to connect to the Omega's command prompt:
+There are two ways to connect to the Omega's command line:
 
 * Using the local network to connect through SSH
 * Using a USB connection to connect to the serial terminal
@@ -40,8 +39,16 @@ The disadvantage of SSH is that if the network connection gets interrupted, the 
 
 For most use-cases with the Omega, SSH will work really well. This should be your go-to method for accessing the Omega's command-line.
 
+#### The Connection method
 
-### Connecting on a Mac device
+The connection method will be different depending on what Operating System you're using on the computer used to connect. We've included guides for the following:
+
+* [Mac OS X](#connecting-to-ssh-mac)
+* [Linux](#connecting-to-ssh-linux)
+* [Windows](#connecting-to-ssh-windows)
+
+
+### Connecting on a Mac device {#connecting-to-ssh-mac}
 
 <!-- {{#if OSX}} -->
 **Step 1: Open a Terminal**<br>
@@ -70,7 +77,7 @@ By default, the password is: `onioneer`
 
 <!-- {{/if}} -->
 
-### Connecting on a Linux device
+### Connecting on a Linux device {#connecting-to-ssh-mac}
 
 <!-- {{#if Linux}} -->
 **Step 1: Open a Terminal**<br>
@@ -100,7 +107,7 @@ By default, the password is: `onioneer`
 <!-- {{/if}} -->
 
 
-### Connecting on a Windows Device
+### Connecting on a Windows Device {#connecting-to-ssh-windows}
 
 **Step 1: Download PuTTy**<br>
 
@@ -144,7 +151,15 @@ An SSH connection to your Omega that's secured by with a key pair will look some
 - Your computer will then generate a hash using your private key and send it to the Omega
 - The Omega will use the stored public key to try to decode the identity hash, if the Public Key matches the Private Key, the decode will be successful, and the Omega will allow the connection to proceed.
 
-#### How to Add your Public Key to the Omega on a MAC
+#### Adding your Public Key
+
+The method will be different depending on what Operating System you're using on the computer used to connect. We've included guides for the following:
+
+* [Mac OS X](#ssh-add-public-key-mac)
+* [Linux](#ssh-add-public-key-linux)
+* [Windows](#ssh-add-public-key-windows)
+
+#### How to Add your Public Key to the Omega on a MAC {#ssh-add-public-key-mac}
 
 <!-- {{#if OSX}} -->
 
@@ -191,7 +206,7 @@ From now on, you'll be able to securely connect to your Omega without having to 
 
 <!-- {{/if}} -->
 
-#### How to Add your Public Key to the Omega on a Linux machine
+#### How to Add your Public Key to the Omega on a Linux machine {#ssh-add-public-key-linux}
 
 **Step 1: Locating Existing Key Pair**
 
@@ -231,7 +246,7 @@ And paste your public key into it.
 
 From now on, you'll be able to securely connect to your Omega without having to type out a password every time!
 
-#### How to Add your Public Key to the Omega on a Windows machine
+#### How to Add your Public Key to the Omega on a Windows machine {#ssh-add-public-key-windows}
 
 **Step 1: Locating Existing Key Pair**
 
@@ -283,7 +298,15 @@ Note that the Expansion Dock and Mini Dock are the only docks that have USB-to-S
 
 We'll first identify the specific USB connection that we need to use to talk to the Omega, and then setting up the communication.
 
-### Connecting on a Mac Device
+#### The Connection method
+
+The connection method will be different depending on what Operating System you're using on the computer used to connect. We've included guides for the following:
+
+* [Mac OS X](#connecting-via-serial-mac)
+* [Linux](#connecting-via-serial-linux)
+* [Windows](#connecting-via-serial-windows)
+
+### Connecting on a Mac Device {#connecting-via-serial-mac}
 
 **Download Drivers**
 
@@ -309,7 +332,7 @@ Run `screen /dev/tty.SLAB_USBtoUART 115200` to connect to the Omega’s serial t
 
 
 
-### Connecting with a Windows Device
+### Connecting with a Windows Device {#connecting-via-serial-windows}
 
 **Download Drivers**
 
@@ -344,7 +367,7 @@ Enjoy! You're now connected to your Omega!
 
 
 
-### Connecting on a Linux Device
+### Connecting on a Linux Device {#connecting-via-serial-linux}
 
 **Step 1: Check if the serial drivers are already installed**
 
