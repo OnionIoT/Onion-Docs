@@ -12,8 +12,6 @@ order: 2
 
 The Omega supports running the SPI protocol through the GPIOs, making it handy to communicate with an SPI-enabled peripherals. To implement SPI communication, the Omega has a C library, a Python module, and a command-line tool. This article will focus on the command line program, `spi-tool`.
 
-<!-- // can largely copy the existing wiki article: https://wiki.onion.io/Tutorials/Using-SPI -->
-
 ### What is SPI?
 
 <!-- // jack from the existing article -->

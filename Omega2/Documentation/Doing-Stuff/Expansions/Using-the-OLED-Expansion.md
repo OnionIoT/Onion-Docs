@@ -256,7 +256,6 @@ After the image name and location are selected, click the **Save to Omega** butt
 The OLED image files store the image data as 1024 bytes represented in hexadecimal. Each byte represents eight vertical pixels, with the first 128 bytes representing the columns in Page 0, the following 128 bytes representing the columns in Page 1, and so on.
 
 If this is unclear, see the [Understanding the Display Section in the OLED Expansion Library documentation article](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-C-Library#programming-flow_understanding-the-display) for details on how the display is addressed.
-
 <!-- TODO: change this link to the OLED Hardware article -->
 
 #### Displaying Images from a File

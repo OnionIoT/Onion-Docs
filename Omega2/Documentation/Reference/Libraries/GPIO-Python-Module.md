@@ -3,7 +3,7 @@
 The `onionGpio` Python module provides a Python object, `OnionGpio` that allows programs to control the Omega's GPIOs. The module uses the sysfs GPIO interface that is part of the Linux operating system.
 
 
-[[_TOC_]]
+
 
 
 <!-- Python: Programming Flow -->

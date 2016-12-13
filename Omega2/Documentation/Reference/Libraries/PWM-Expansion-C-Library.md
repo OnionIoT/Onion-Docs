@@ -9,7 +9,7 @@ The library can be used in C and C++ programs.
 This library is also available as a [module for use in Python](./PWM-Expansion-Python-Module). The module is called `pwmExp` and is part of the `OmegaExpansion` package.
 
 
-[[_TOC_]]
+
 
 
 

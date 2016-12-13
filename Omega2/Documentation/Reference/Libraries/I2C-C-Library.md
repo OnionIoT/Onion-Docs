@@ -5,7 +5,7 @@ The Onion I2C Library, `libonioni2c` is a dynamic C library that provides functi
 Also available is a Python module that implements an I2C object using functions from the C library. The module is called `onionI2C` and is part of the `OmegaExpansion` package.
 
 
-[[_TOC_]]
+
 
 ### Linux and I2C
 

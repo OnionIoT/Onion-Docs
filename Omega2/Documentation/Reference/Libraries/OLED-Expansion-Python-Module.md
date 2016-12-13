@@ -5,7 +5,7 @@ The Onion OLED Expansion Python module, `oledExp` is based on the [C OLED Expans
 ![Omega+OLED Expansion](http://i.imgur.com/tqcRlgG.jpg)
 
 
-[[_TOC_]]
+
 
 
 

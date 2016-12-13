@@ -5,7 +5,7 @@ The Onion PWM Expansion Python module, `relayExp` is based on the [C Relay Expan
 ![Relay Expansion](http://i.imgur.com/iPswHOC.jpg)
 
 
-[[_TOC_]]
+
 
 
 

@@ -20,12 +20,9 @@ There are two ways to connect to the Omega's command prompt:
 Both methods have their advantages and disadvantages. We recommend using SSH since it allows you to control wirelessly any Omega that's connected to your WiFi network.
 
 
->**The Command-Line Interface**
-
->The command-line is a way of interacting with a computer by sending commands in the form of single lines of text. This is different from "point and click" graphical user interfaces (GUI) found on most PC operating systems.
-
->Command-line interfaces provide a more concise and powerful means to control a program or operating system, especially with regards to scripting (Shell Scripting, Python, etc).
-
+>**The Command-Line Interface** <br>
+>The command-line is a way of interacting with a computer by sending commands in the form of single lines of text. This is different from "point and click" graphical user interfaces (GUI) found on most PC operating systems. <br>
+>Command-line interfaces provide a more concise and powerful means to control a program or operating system, especially with regards to scripting (Shell Scripting, Python, etc). <br>
 >This interface may seem overwhelming at first, but if you take the time to learn the basic commands you'll find that it's an incredibly powerful and useful tool to have in your toolbox.
 
 
@@ -270,7 +267,7 @@ And paste your public key into it.
 From now on, you'll be able to securely connect to your Omega without having to type out a password every time.
 
 ### Connecting via Serial
-<!-- TODO: figure out how to arrange these things -->
+<!-- TODO: figure out how to arrange the headers in this article -->
 
 The Omega's command prompt can also be accessed with a USB cable, as long as your Omega is docked in either an Expansion Dock or a Mini Dock. What's happening is that the Omega is using its UART pins to run a terminal, the USB-to-Serial chip found on the Dock is translating the Serial Terminal signals into USB signals that your computer can understand and vice versa.
 

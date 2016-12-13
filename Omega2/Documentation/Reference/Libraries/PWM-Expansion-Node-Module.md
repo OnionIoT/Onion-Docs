@@ -4,7 +4,7 @@ The Onion Servo (PWM) Node Addon, pwm-node-addon is a wrapper around the `liboni
 
 ![imgur](http://i.imgur.com/aNoYCZc.png)
 
-[[_TOC_]]
+
 
 <!-- Programming Flow -->
 

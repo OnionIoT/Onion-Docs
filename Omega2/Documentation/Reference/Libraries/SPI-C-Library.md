@@ -5,7 +5,7 @@ The Onion SPI Library, `libonionspi` is a dynamic C library that provides functi
 Also available is a Python module, called `onionSpi`, that implements an SPI object using functions from the C Library.
 
 
-[[_TOC_]]
+
 
 
 <!-- The SPI Protocol -->

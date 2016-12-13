@@ -6,7 +6,7 @@ The Onion Relay Node Addon, relay-node-addon is a wrapper around the `libonionre
 
 The same library is available for use in C and Python programs.
 
-[[_TOC_]]
+
 
 <!-- Programming Flow -->
 ### **Programming Flow**

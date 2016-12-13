@@ -7,7 +7,7 @@ As a part of our efforts to add expansion support to node.js, we have added cont
 
 The addon is a wrapper around the OLED C library. The library's documentation can be found [here](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-Library), many of the node functions follow the same input-output structure as the C library.
 
-[[_TOC_]]
+
 
 
 <!-- Programming Flow -->

@@ -5,7 +5,7 @@ The Onion PWM Expansion Python module, `pwmExp` is based on the [C PWM Expansion
 ![PWM Expansion Photo](http://i.imgur.com/aNoYCZc.png)
 
 
-[[_TOC_]]
+
 
 
 
