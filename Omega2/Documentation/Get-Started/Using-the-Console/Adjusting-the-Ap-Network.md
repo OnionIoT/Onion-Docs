@@ -12,7 +12,14 @@ The `Wi-Fi AP Settings` tab in the Settings app is used to configure your Omega'
 
 ![Ap-Network-Page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/ap-network-page-1.png)
 
-On this page you can change your Omega's SSID, password, encryption type, and even the IP Address. You can also enable or disable the access point with the checkbox located at the top.
+On this page you can change your Omega's:
+
+* SSID
+* password
+* encryption type
+* IP address. 
+
+You can also enable or disable the access point with the checkbox located at the top.
 
 |Setting | What it Affects |
 | --- | --- |

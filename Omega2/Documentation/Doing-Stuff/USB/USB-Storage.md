@@ -12,7 +12,7 @@ order: 3
 
 The Omega2 can read and write to USB storage devices, such as USB keys, and USB external hard-drives. This tutorial will show you how to expand the storage on your Omega2 using an external USB storage device, and how to change some of the default configurations.
 
-<!-- add an image of a usb key plugged into an omega -->
+![usb plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/usb-plugged-in.JPG)
 
 ### USB Storage and Linux
 
@@ -27,7 +27,8 @@ The Omega2 comes ready with an auto-mounting tool that will take care of that pr
 <!-- explanation of how to access files -->
 Steps to access USB storage:
 
-<!-- TODO: photo of plugged in usb stick -->
+![usb plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/usb-plugged-in.JPG)
+
 1. Plug in the USB Storage
 2. Navigate to the directory where your USB device is located.
 	* The default is `/tmp/mounts/`

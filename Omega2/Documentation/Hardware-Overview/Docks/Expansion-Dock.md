@@ -29,12 +29,11 @@ The reset button, located between the power switch and the Micro USB port, can b
 <!-- [//]: # (picture guide on how to properly plug in an Omega) -->
 To connect an Omega to the Expansion Dock, line up the Omega's edges with that of the Expansion Dock's as demonstrated below:
 
-<!-- Insert "expansion-dock-line-up" here -->
+![Omega plugged into Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-2-omega-on-dock.jpg "Omega Plugged into Dock")
 
 Make sure your Omega is pushed all the way down as demonstrated in the picture below:
 
-<!-- Insert "expansion-dock-plugged-in" here -->
-
+![Omega plugged into Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-3-omega-on-dock-side.jpg "Omega Plugged into Dock")
 
 You may need to line up the pins with the holes before pressing the Omega into the Dock.
 
@@ -152,4 +151,4 @@ expled 0xf21133
 
 This will set the Red to `0xf2`, the Green to `0x11`, and the Blue to `0x33`.
 
-The LED should now be pink-ish.
+The LED should now be pink-ish. Try experimenting with other colors!

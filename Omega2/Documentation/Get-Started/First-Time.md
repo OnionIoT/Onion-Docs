@@ -3,59 +3,11 @@
 Follow along with this guide to set up your Omega2 for the first time. We'll first learn how to properly connect your Omega to a Dock and power it up. Then we'll connect to it to use the Setup Wizard to have it connect to your WiFi network and then do some updates.
 
 <!-- Second sentence above is awkward -->
-<!-- LAZAR: include case where there is no dock -->
-
 
 <!-- Prepare the Hardware -->
+```{r child = './Hardware-Prep.md'}
+```
 
-### Unboxing and Getting the Hardware Ready
-
-**Unpack**
-
-Unpack the Omega and Dock from their boxes
-
-![Omega + Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-1-omega-with-dock.jpg "Omega + Dock")
-
-**Connect**
-
-Plug the Omega into the socket on the Dock
-
-![Omega plugged into Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-2-omega-on-dock.jpg "Omega Plugged into Dock")
-
-Make sure your Omega's pins are fully plugged into the socket
-
-![Omega plugged into Dock Side View](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-3-omega-on-dock-side.jpg)
-
-**Provide Power**
-
-The Omega itself is powered by a 3.3V source. But all Omega Docks have voltage regulators so you can use any microUSB to power the Dock and Omega.
-
-<!-- ADD THIS: Plug a microUSB into your Omega -->
-<!-- ADD PHOTO -->
-
-You can power it with your computer
-
-![Omega plugged into USB](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-4-omega-provide-power.jpg "Omega plugged into USB")
-
-Or you can power it with any wall adapter
-
-<!-- include image of wall adapter -->
-
-**Power On!**
-
-Turn on the Omega using the switch.
-
-![Turn on the Omega](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-5-omega-switched-on.jpg "Turn on the Omega")
-
-**Wait till it boots**
-
-When the amber LED has been on for about a minute, your Omega will have booted.
-
-![Omega is on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-6-omega-led-detail.jpg "Omega is on")
-
-*We're working on making this step more intuitive, stay tuned!*
-
-<!-- LAZAR: need to fix Omega LED in the firmware, when fixed, make sure to give time estimate for how long boot takes -->
 
 
 <!-- GUI SETUP -->
@@ -140,26 +92,3 @@ When the firmware installation is complete you'll also see the page below, notif
 Start using your fresh Omega, check out the [Using the Omega section](#doing stuff) for ideas on what the Omega can do!
 <!-- Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next! -->
 <!-- TODO: fix the links above when the content is available -->
-
-
-### Troubleshooting
-
-#### My Omega won't fit into the Dock!
-
-Sometimes the Omega's pins aren't at a perfect 90˚ angle. Don't be afraid to press on them a little to get them to the correct angle, they're tougher than you think!
-
-If they need to be bent inwards a little, try putting the pins up against a flat surface at 45˚ and pushing a little.
-
-<!-- IMAGE OF THIS ACTION -->
-
-If the pins need to be bent outward, put the pins up against a flat surface near the edge at 45˚ the other way and pushing a little.
-
-<!-- IMAGE OF THIS ACTION -->
-
-#### My Omega won't connect to my WiFi Network
-
-Make sure your password has been typed in correctly, remember, WiFi passwords are case sensitive.
-
-<!-- #### I've made sure my password is correct and my Omega still won't connect to my WiFi Network -->
-
-<!-- explanation regarding Omega's IP address -->
