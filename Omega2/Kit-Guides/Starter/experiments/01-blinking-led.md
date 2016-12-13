@@ -6,49 +6,28 @@ devices: [ Omega , Omega2 ]
 order: 1
 ---
 
-# Blinking an LED
+## Blinking an LED
 
-In our very first experiment, we're going to blink an LED on and off. This is the hardware development equivalent of the 'Hello World' program. This first experiment will start small but it will be a solid foundation for the rest of the experiments. 
+In our very first experiment, we're going to blink an LED on and off. This is the hardware development equivalent of the 'Hello World' program. This first experiment will start small but it will be a solid foundation for the rest of the experiments.
 
 Remember, when inventing and building new things, try to break the work down into bite sized chunks, that way you'll see progress much sooner and it will motivate you to keep going!
 
 
-<!-- {{!insert 'gpio-output'}} -->
-## GPIO Pins as Outputs
+<!-- ### GPIO Pins as Outputs -->
+```{r child = '../../shared/gpio-output.md'}
+```
 
-The {{#if Omega}}Omega has fifteen{{/if}}{{#if Omega2}}Omega2 has twelve{{/if}} General Purpose Input/Output pins (commonly referred to as GPIOs) that can be fully controlled by you, the user. For now, let's focus on using GPIOs in the output direction.
+<!-- LEDs -->
+```{r child = '../../shared/led.md'}
+```
 
-Once a GPIO is set to the output direction, you can have it output either a logical low or a logical high. The exact voltage of each will depend on the system that's being used; on the Omega{{#if Omega2}}2{{/if}}, logical low is 0V and logical high is about 3.3V.
-
-// TO DO: IMAGE: descriptive image showing 0V and 3.3V outputs
-
-// TO DO: a sentence or two about how this can be used to control circuits
-
-
-
-<!-- {{!insert 'led'}} -->
-## LEDs
-
-Now let's talk about Light Emitting Diodes, or as they're more commonly known, LEDs. A regular diode is an electronic component that allows current to flow in only one direction. Think of it as a very strict policeman watching a one-way street. An LED is a type of diode that lights up when there is current flowing through it (but only when it's flowing in the right direction)!
-
-// TO DO: IMAGE: good image of an LED
-
-If you look closely, you'll see that every LED has a longer leg and a shorter leg. Don't worry, they didn't make a mistake at the factory, remember, LEDs are diodes so we need to know how the direction to apply current. The longer leg is the positive side, it's called the `anode` and it should always be connected to the current source. The shorter leg is the negative side, called the `cathode`, where the current exits the LED. Always connect this side to ground.
-
-// TO DO: IMAGE: labelled drawing of an LED (include the flat side thing as well)
-
-Just like a regular light bulb, an LED can burn out if it's supplied with too much current. LEDs in electronics are almost used in series with a current limiting resistor that, you guessed it, will put a limit on how much current can pass through the LED.
-
-> For more information on how a resistor can limit current, we recommend checking out this [Sparkfun tutorial on Ohm's law](https://learn.sparkfun.com/tutorials/voltage-current-resistance-and-ohms-law)
-
-
-## Building the Circuit 
+## Building the Circuit
 
 Before we start building our experiment, let's first go over some of the building blocks when it comes to experimenting with electronics.
 
 ### Jumper Wires
 
-We'll be using jumper wires in all of our experiments and projects. They all work the same; connecting two points in a circuit together. 
+We'll be using jumper wires in all of our experiments and projects. They all work the same; connecting two points in a circuit together.
 
 // TO DO: IMAGE: showing several different jumper wires
 
@@ -67,13 +46,13 @@ The breadboard's sockets are connected electrically in a pretty logical way. The
 
 ### Hooking up the Components
 
-Ok, here we go, let's put together our circuit. We're going to be connecting an LED's anode to a GPIO on the Omega{{#if Omega2}}2{{/if}}, and cathode to Ground through a current limiting resistor. 
+Ok, here we go, let's put together our circuit. We're going to be connecting an LED's anode to a GPIO on the Omega{{#if Omega2}}2{{/if}}, and cathode to Ground through a current limiting resistor.
 
 // TO DO: FRITZING: fritzing circuit diagram of the experiment
 
 1. Plug in the LED into the breadboard, make sure you plug the anode and cathode into different rows and that you know which is plugged where.
 2. Let's choose GPIO0 on the Omega{{#if Omega2}}2{{/if}} to drive our LED, so let's run a jumper wire to the row of the LED's anode.
-3. Now connect one end of a (// TO DO: figure out resistance)kΩ resistor to the the cathode row, and the other end to an empty row. 
+3. Now connect one end of a (// TO DO: figure out resistance)kΩ resistor to the the cathode row, and the other end to an empty row.
 4. The final step is connecting a jumper wire to a Ground pin on the Omega{{#if Omega2}}2{{/if}}.
 
 > A note on components with and without polarity: <br>
@@ -89,7 +68,7 @@ The circuit diagram for our first experiment looks like this:
 
 Now we get to write the code that will make our circuit actually do something! That something will be blinking our LED!
 
-// TO DO: rework this when 
+// TO DO: rework this when
 Let's make a new file `blink.py` to hold our code:
 ``` python
 import onionGpio
@@ -153,7 +132,3 @@ While we're talking about the loop, let's go over what is going on in the loop b
 So remember, we've changed the `ledValue` variable to be `0` now, so in the next iteration of the loop, the GPIO will be set to a Logical Low, turning the LED off. Since the value of `ledValue` is `0`, the code in the body of the `else` statement will be executed and the variable will be set to `1`. After this the program will sleep for another half second.
 
 If you're wondering why we make the program sleep for half a second during each loop iteration, it's because computers execute program code **really** fast. Try increasing, decreasing, or getting rid of the sleep instruction all-together and rerunning the program. See what happens with our LED.
-
-
-
-
