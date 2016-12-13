@@ -9,9 +9,9 @@ order: 2
 ## Using the OLED Expansion {#using-oled-expansion}
 
 
-On the command line, a tool called `oled-exp` will be your helper in all things related to the OLED Expansion.
+We've developed a command line tool called `oled-exp` that will be your helper in all things related to the OLED Expansion.
 
-Also available are a C library and Python module that will allow you to create your own programs that use the OLED Expansion.
+Also available are a C library and a Python module that allow you to develop your own programs to control the OLED Expansion. See the guides at the bottom of this article for more details.
 
 <!-- // TODO: photo: a photo on the Expansion -->
 
@@ -20,7 +20,7 @@ For detailed specifications of the product itself, see our [article on the OLED 
 ### Command Usage
 
 
-For a print-out of the command's usage, run it with just a -h argument
+For a print-out of the command's usage, run it with only a `-h` argument:
 
 ```
 oled-exp -h
@@ -41,9 +41,9 @@ To reconcile all of the above features to `oled-exp`, refer to the table below:
 |---------------------------|------------------------------|
 | initialization            | `-i`                         |
 | clear the display         | `-c`                         |
-| toggle display on or off  | `power <on|off>`             |
-| invert colours            | `invert <on|off>`            |
-| dim the screen            | `dim <on|off>`               |
+| toggle display on or off  | `power <on/off>`             |
+| invert colours            | `invert <on/off>`            |
+| dim the screen            | `dim <on/off>`               |
 | set the cursor            | `cursor <row>,<column>`      |
 | set the cursor by pixel   | `cursorPixel <row>,<pixel>`  |
 | write text                | `write <string>`             |
@@ -145,7 +145,7 @@ oled-exp writeByte 0x0f
 
 Will fill in the top four pixels and will leave the bottom four pixels in a column blank.
 
-
+>`0x0f` reads as `00001111` in binary.
 
 #### Set the Cursor Position
 
@@ -218,7 +218,7 @@ Supported directions:
 * diagonal-left
 * diagonal-right
 * stop
-  * To disable scrolling
+  * This is to disable scrolling.
 
 
 
@@ -244,7 +244,7 @@ Once an image has been selected, a button and form will appear that allow you to
 
 ![OLED Console App Loaded Image](http://i.imgur.com/xKx5KHa.png)
 
-After the image name and location are selected, click the Save to Omega button.
+After the image name and location are selected, click the **Save to Omega** button.
 
 
 #### OLED Image File Details
