@@ -27,25 +27,23 @@ Since relays are essentially switches, they can be used as switches in other cir
 
 We can build this circuit without the switch:
 
-![LED Circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-1.jpg)
+![LED Circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-1.jpg)
 
 Next, we will add the Omega and Relay Expansion to act as the switch:
 
-![Omega + Relay Exp + LED circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-2.jpg)
+![Omega + Relay Exp + LED circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-2.jpg)
 
 The positive lead of the battery pack is connected to the port labelled `IN` on the Expansion. A jumper wire is connected from the `OUT` port back to the circuit. Since the Relay is `OFF`, the switch is off and no current is passing through the LED:
 
-![Relay Exp connection close-up](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-3.jpg)
+![Relay Exp connection close-up](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-3.jpg)
 
 When we turn the relay on, it acts as a closed switch, allowing current to flow through the LED:
 
-![Omega + Relay Exp + LED circuit on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-photo-4.jpg)
+![Omega + Relay Exp + LED circuit on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-4.jpg)
 
 The Relay Expansion has two modules, so it is possible to control two different circuits with a single Relay Expansion.
 
 ### Using the Command Line
-
-<!-- TODO: Do we need this little note? All Omega2 firmware has this right? -->
 
 >*Make sure that your Omega has the latest firmware!*
 
@@ -128,13 +126,13 @@ As above, the state argument should be `0` or `off` to turn the relay `OFF`, or 
 
 **Some Examples:**
 
-Initializing the chip and turning both relays `ON`:
+Initializing the chip and turning `all` relays `ON`:
 
 ```
 relay-exp -i all 1
 ```
 
-Turning both relays `OFF`:
+Turning `all` relays `OFF`:
 
 ```
 relay-exp all off
@@ -154,13 +152,13 @@ The output of the program will indicate if the relay is `ON` or `OFF`.
 
 **A few examples...**
 
-To read the state of relay0:
+To read the state of `RELAY0`:
 ```
 root@Omega-1302:~# relay-exp read 0
 > Reading RELAY0 state: ON
 ```
 
-To read the state of relay1:
+To read the state of `RELAY1`:
 ```
 root@Omega-1302:~# relay-exp read 1
 > Reading RELAY1 state: OFF
@@ -168,9 +166,11 @@ root@Omega-1302:~# relay-exp read 1
 
 ### Using Multiple Relay Expansions by Changing the Dip-Switch Settings
 
-The onboard dip-switch specifies the I2C address that the chip on the Relax Expansion declares to the I2C bus. A single Omega and Expansion Dock can control up to eight Relay Expansions if they all have different dip-switch configurations!
+The onboard dip-switch specifies the I2C address that the chip on the Relay Expansion declares to the I2C bus. A single Omega and Expansion Dock can control up to eight Relay Expansions if they all have different dip-switch configurations!
 
-The relay-exp tool will need to know if the switch configuration has changed when programming the expansion:
+![address-switch](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-address-switch.jpg)
+
+The `relay-exp` tool will need to know if the switch configuration has changed when programming the expansion:
 
 ``` shell
 relay-exp -s <BBB> <CHANNEL> <STATE>
@@ -260,19 +260,19 @@ The flags are explained below:
 
 **Some Examples:**
 
-For a device address of 0x23, set `RELAY0` to on:
+For a device address of `0x23`, set `RELAY0` to on:
 
 ```
 relay-exp -a 0x23 0 on
 ```
 
-For a device address of 0x26, set `RELAY1` to off:
+For a device address of `0x26`, set `RELAY1` to off:
 
 ```
 relay-exp -a 26 1 0
 ```
 
-For a device address of 0x24, set BOTH relays to on
+For a device address of `0x24`, set `all` relays to on
 
 ```
 relay-exp -a 0x24 all 1
