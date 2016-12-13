@@ -594,7 +594,7 @@ neopixelFree();
 <!-- MAJOR HEADING -->
 <!-- The Python Module -->
 
-## The Python Module
+### The Python Module
 
 The Python module `neopixel` in the `OmegaArduinoDock` package provides a class, `OnionNeopixel` to control Neopixels. It's essentially a wrapper of the C++ library so the functions are very similar.
 
