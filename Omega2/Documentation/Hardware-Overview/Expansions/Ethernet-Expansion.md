@@ -64,7 +64,7 @@ In order to disconnect the Ethernet cable you'll need to press down on the cord 
 ![ethernet arduino dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-cord-plugged-in.JPG)
 
 
-## Using the Ethernet Expansion
+### Using the Ethernet Expansion
 
 <!-- TODO: This article already exists under Documentation/connectivity/ethernet-expansion.md, where is the preferred location for these articles? -->
 
