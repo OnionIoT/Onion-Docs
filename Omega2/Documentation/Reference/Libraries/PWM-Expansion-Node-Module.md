@@ -105,7 +105,7 @@ Refer to the table below for a list and brief description of available pwm metho
 
 <!-- MAJOR HEADING -->
 <!-- Usage -->
-## **Usage**
+### **Usage**
 
 <!-- Init Function -->
 

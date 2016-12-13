@@ -115,7 +115,7 @@ Refer to the table below for a list and brief description of available relay met
 
 <!-- MAJOR HEADING -->
 <!-- Usage -->
-## **Usage**
+### **Usage**
 Each of the main functions implemented inthis library are described below.
 
 <!-- Init Function -->
