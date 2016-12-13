@@ -23,6 +23,13 @@ The Ethernet Expansion adds an Ethernet port to the Omega. With this expansion y
 
 The Ethernet Expansion is to be plugged into an Expansion Header. These headers can be found on the Expansion Dock, Power Dock, and the Arduino Dock 2. In addition to that, the Ethernet Expansion can also be plugged into most other Expansions.
 
+![ethernet expansion dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-top-expansion-dock.JPG)
+
+![ethernet power dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-top-power-dock.JPG)
+
+![ethernet arduino dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-top-arduino-dock.JPG)
+
+
 >*NOTE: The Ethernet Expansion does not plug in ALL THE WAY like the Omega does. The pin will be exposed at the top (refer to image above)*
 
 <!-- // mention that other expansions can be safely stacked on top of it -->
@@ -52,6 +59,9 @@ and when you unlpug the ethernet cord you'll see this:
 To connect an Ethernet cord to your Ethernet Expansion, properly align the Ethernet plug with the jack, and insert. It will click in place.
 
 In order to disconnect the Ethernet cable you'll need to press down on the cord in order to release the lock mechanism (the click sound was this mechanism).
+
+
+![ethernet arduino dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-cord-plugged-in.JPG)
 
 
 ## Using the Ethernet Expansion

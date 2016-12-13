@@ -37,6 +37,13 @@ The OLED Expansion plugs into a Dock with an Expansion Header. You can also stac
 
 <!-- // mention that it's headers are blind - can't stack other expansions on top of it, but you wouldn't want to anyways since it would cover your screen? -->
 
+![oled expansion dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-top-expansion-dock.JPG)
+
+![oled power dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-top-power-dock.JPG)
+
+![oled arduino dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-top-arduino-dock.JPG)
+
+
 The OLED Expansion headers are blind, meaning you can't stack other Expansions on top. Otherwise you wouldn't be able to see the screen!
 
 #### At a Glance

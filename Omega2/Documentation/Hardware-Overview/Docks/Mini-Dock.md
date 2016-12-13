@@ -23,6 +23,8 @@ The Mini Dock is same size as the Omega. It does not have the Expansion Header o
 <!-- [//]: # (Maybe in depth discussion of various pieces, like USB to serial chip. People like that.) -->
 <!-- [//]: # (Refer to current Power Dock Expansion doc for more info) -->
 
+![mini dock alone](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mini-dock-alone.JPG)
+
 <!-- //NOTE: CAN LARGELY COPY FROM THE EXPANSION DOCK ARTICLE! -->
 
 The Mini Dock is tiny. It is approximately 4.3cm (1.7in) long, and 2.7cm (1.07in) wide.
@@ -39,12 +41,12 @@ The reset button, located next to the USB Connector, can be used to quickly rebo
 
 To connect an Omega to the Mini Dock, line up the Omega's edges with that of the Mini Dock's as demonstrated below:
 
-<!-- Insert "mini-dock-line-up" pic here -->
+![mini dock plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mini-dock-top-plugged-in.JPG)
 
 Make sure your Omega is pushed all the way down as demonstrated in the picture below:
 
 
-<!-- Insert "expansion-dock-plugged-in" here -->
+![mini dock side view](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mini-dock-side-view.JPG)
 
 You may need to line up the pins with the holes before pressing the Omega into the Dock.
 
