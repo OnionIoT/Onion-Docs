@@ -67,15 +67,15 @@ The screen is a 0.96″ OLED (organic light-emitting diode) screen and so the di
 
 The OLED display is addressable by 128 columns and 8 rows (referred to as pages), as seen in the picture below:
 
-![the columns and rows](../img/oled-expansion-column-rows.png)
+![the columns and rows](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-column-rows.png)
 
 Each page consists of 8 pixel rows. When a byte is written to the display, the Least Significant Byte (LSB) corresponds to the top-most pixel of the page in the current column. The Most Significant Byte (MSB) corresponds to the bottom-most pixel of the page in the current column.
 
-![not-colored-in-example](../img/oled-expansion-not-colored-in.png)
+![not-colored-in-example](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-not-colored-in.png)
 
 So writing `0x0f` to `SEG0` would produce the top 4 pixels being colored in, and the bottom 4 being left blank in that column:
 
-![colored-in-example](../img/oled-expansion-colored-in.png)
+![colored-in-example](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-colored-in.png)
 
 ### Using the OLED Expansion
 

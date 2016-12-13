@@ -24,11 +24,11 @@ A UART is used for serial communication between devices. UART has no master-slav
 
 The UART on the Omega formats the data using the 8n1 configuration, in which there are 8 data bits, no parity bit, and one stop bit.
 
-![uart data frame](../img/uart-data-frame.png)
+![uart data frame](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-data-frame.png)
 
 The UART uses TX to transmit data, and RX to receive data. When communicating with other devices the TX on device A will send data to the RX on device B, creating a cross effect.
 
-![cross tx rx](../img/uart-tx-rx-cross.png)
+![cross tx rx](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-tx-rx-cross.png)
 
 When setting up a serial connection always make sure to cross the RX and TX lines.
 

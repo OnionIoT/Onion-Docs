@@ -22,7 +22,7 @@ cd /tmp
 
 Now we're going to need the link address of the firmware we want to download. Right click on the link, and select the `copy link address` option:
 
-![copy link address](../img/command-line-updating-omega-pic-download-link.png)
+![copy link address](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/command-line-updating-omega-pic-download-link.png)
 
 >**Note: There are two version of the firmware; one for the Omega2, and one for the Omega2+. You'll need to make sure you're copying the link to the correct firmware.**
 

@@ -22,7 +22,7 @@ Both methods have their advantages and disadvantages. We recommend using SSH sin
 
 >**The Command-Line Interface**
 
->The command-line is a way of interacting with a computer by sending commands in the form of single lines of text. This is different from "point and click" graphical user interfaces (GUI) found on most PC operating systems. 
+>The command-line is a way of interacting with a computer by sending commands in the form of single lines of text. This is different from "point and click" graphical user interfaces (GUI) found on most PC operating systems.
 
 >Command-line interfaces provide a more concise and powerful means to control a program or operating system, especially with regards to scripting (Shell Scripting, Python, etc).
 
@@ -37,7 +37,7 @@ SSH stands for **Secure Shell** . It's a network protocol that creates a secure 
 
 #### The Good & Bad of SSH
 
-When using SSH, the Omega and your computer communicate over the WiFi network to which they are both connected. This means that as long as the Omega is powered on and within range of your WiFi network, you can connect to it! No need to plug it directly into your computer. 
+When using SSH, the Omega and your computer communicate over the WiFi network to which they are both connected. This means that as long as the Omega is powered on and within range of your WiFi network, you can connect to it! No need to plug it directly into your computer.
 
 The disadvantage of SSH is that if the network connection gets interrupted, the connection will also be severed.
 
@@ -57,19 +57,19 @@ ssh root@omega-ABCD.local
 ```
 Where `ABCD` is the unique id of your Omega.
 
-![osx ssh](../img/connecting-osx-ssh-1.png)
+![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-osx-ssh-1.png)
 
 **Step 3: Enter Credentials**<br>
 When prompted, enter the password <br>
 By default, the password is: `onioneer`
 
-![osx ssh](../img/connecting-osx-ssh-2.png)
+![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-osx-ssh-2.png)
 
 >*If you're prompted about adding the address to the list of known hosts, type yes. This is just your computer getting to know the Omega for the first time!*
 
 **And you're in!**
 
-![osx ssh](../img/connecting-osx-ssh-3.png)
+![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-osx-ssh-3.png)
 
 <!-- {{/if}} -->
 
@@ -86,19 +86,19 @@ ssh root@omega-ABCD.local
 ```
 Where `ABCD` is the unique id of your Omega.
 
-![osx ssh](../img/connecting-linux-ssh-1.png)
+![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-linux-ssh-1.png)
 
 **Step 3: Enter Credentials**<br>
 When prompted, enter the password <br>
 By default, the password is: `onioneer`
 
-![osx ssh](../img/connecting-linux-ssh-2.png)
+![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-linux-ssh-2.png)
 
 >*If you're prompted about adding the address to the list of known hosts, type yes. This is just your computer getting to know the Omega for the first time!*
 
 **And you're in!**
 
-![osx ssh](../img/connecting-linux-ssh-3.png)
+![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-linux-ssh-3.png)
 
 <!-- {{/if}} -->
 
@@ -112,7 +112,7 @@ You can find PuTTy [here](http://www.putty.org/). Look for the `putty.exe` insta
 **Step 2: Establish a SSH connection**<br>
 Configure an SSH connection to `omega-ABCD.local` on port `22`:
 
-![putty ssh](../img/connecting-windows-ssh-1.png)
+![putty ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-windows-ssh-1.png)
 
 Where `ABCD` is the unique id of your Omega.
 
@@ -136,7 +136,7 @@ By using SSH Key Pairs, **the Omega and your computer will do a secure handshake
 
 #### What are Key Pairs?
 
-Good question! Authentication using a Key Pairs is based on having two randomly generated binary keys, where one is **public** and one is **private**. 
+Good question! Authentication using a Key Pairs is based on having two randomly generated binary keys, where one is **public** and one is **private**.
 
 * The private key is like a handwritten signature, used to prove your identity, so **make sure to keep it secret and keep it safe!**
 * The public key's only purpose is to verify your identity, and is meant to be shared with other devices.
@@ -277,7 +277,7 @@ The Omega's command prompt can also be accessed with a USB cable, as long as you
 
 Generally, we recommend using SSH to access the Omega's command line, but the serial terminal does have its advantages. For instance, the serial terminal will always be available as long as the Omega is powered on and does not depend on network connectivity. Additionally, when using the serial terminal, you will see messages such as this one:
 
-![kernel message](../img/connecting-serial-kernel-messages.png)
+![kernel message](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-kernel-messages.png)
 
 This is an example of a message coming from the kernel. These messages can be listed out at any time using the `dmesg` command, so they can be seen when using SSH as well.
 
@@ -295,13 +295,13 @@ Download and install the [Silicon Labs CP2102 driver for OS X](https://www.silab
 
 Run `ls /dev/tty.*` to see if the USB-to-Serial device can be detected. If the driver is successfully installed, you should be able to see a device with a name similar to `/dev/tty.SLAB_USBtoUART`.
 
-![Check if serial device exists](../img/connecting-serial-osx-check.jpg "Check if serial device exists")
+![Check if serial device exists](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-osx-check.jpg "Check if serial device exists")
 
 **Step 3: Log in**
 
 Run `screen /dev/tty.SLAB_USBtoUART 115200` to connect to the Omega’s serial terminal using the `screen` utility.
 
-![Log in through serial terminal](../img/connecting-serial-osx-login.jpg "Log in through serial terminal")
+![Log in through serial terminal](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-osx-login.jpg "Log in through serial terminal")
 
 > We recommend taking a peek at [this tutorial](https://www.linode.com/docs/networking/ssh/using-gnu-screen-to-manage-persistent-terminal-sessions) to get an idea of how the `screen` utility works.
 
@@ -321,7 +321,7 @@ Download and install the [Silicon Labs CP2102 driver for Windows](https://www.si
 
 Run Device Manager (Start > Enter "Device Manager" and press `ENTER`), look for Silicon Labs CP210x USB to UART Bridge under Ports (COM & LPT), and take note of the COM number in bracket.
 
-![Computer Management](../img/connecting-serial-windows-device-manager.jpg "Computer Management")
+![Computer Management](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-windows-device-manager.jpg "Computer Management")
 
 **Step 3: Download a Terminal Program**
 
@@ -331,13 +331,13 @@ We'll be using PuTTy, but you can use another terminal program that you like. Yo
 
 Open up PuTTy, select Serial for Connection type, enter the COM number noted down in Step 2 as Serial line, and enter `115200` for the speed.
 
-![Configure PuTTY](../img/connecting-serial-windows-putty-settings.jpg "Configure PuTTY")
+![Configure PuTTY](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-windows-putty-settings.jpg "Configure PuTTY")
 
 **Step 5: Connect**
 
 Click on the Open button to connect to the Omega via the serial terminal.
 
-![Log in through serial terminal](../img/connecting-serial-windows-login.jpg "Log in through serial terminal")
+![Log in through serial terminal](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-windows-login.jpg "Log in through serial terminal")
 
 **Step 6**: Enjoy! You're now connected to your Omega!
 
@@ -432,13 +432,13 @@ sudo yum install screen
 
  Run `ls /dev/ttyUSB*` to see if the USB-to-Serial device can be detected. If the driver is successfully installed, you should be able to see a device with a name similar to `/dev/ttyUSB0`.
 
-![Check if serial device exists](../img/connecting-serial-linux-check.png "Check if serial device exists")
+![Check if serial device exists](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-linux-check.png "Check if serial device exists")
 
 **Step 6: Open Screen**
 
 Run `sudo screen /dev/ttyUSB0 115200` to connect to the Omega’s serial terminal using screen.
 
-![Log in through serial terminal](../img/connecting-serial-linux-login.png "Log in through serial terminal")
+![Log in through serial terminal](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-linux-login.png "Log in through serial terminal")
 
 If the screen remains blank, hit enter again to get to the command prompt.
 

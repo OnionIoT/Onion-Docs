@@ -34,7 +34,7 @@ password: onioneer
 #### Installing through the Command Line
 
 The console can also be installed using the command line using the Omega's package manager, `opkg`.
-<!-- For information on how to access the Omega's command line, follow this [guide](../Using-the-Command-Line/connecting.md) -->
+>For information on how to access the Omega's command line, follow this [guide to connecting to the Omega's Terminal](#connecting-to-the-omega-terminal)
 
 <!-- // note this won't be available till 3rd batch... -->
 

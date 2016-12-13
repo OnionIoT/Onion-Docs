@@ -42,7 +42,7 @@ After you have connected everything, power on the Omega.
 
 The next step is to disable the WiFi connection on the Omega. We want our Omega to connect to the internet via the ethernet connection and so we're going to turn off the WiFi on our Omega
 
->We're going to be disabling the WiFi on the Omega so you'll need to make sure that you've established a serial connection with your Omega. For more information, please refer to this [guide on connecting to your Omega.](../Get-Started/Using-the-Command-Line/connecting)
+>We're going to be disabling the WiFi on the Omega so you'll need to make sure that you've established a serial connection with your Omega. For more information, please refer to this [guide on connecting to your Omega.](#connecting-to-the-omega-terminal)
 <!-- batch2: expand on this comment - explain why serial is beneficial in this scenario -->
 
 To do this, you will use the `uci` command to change the access point settings of your Omega.
