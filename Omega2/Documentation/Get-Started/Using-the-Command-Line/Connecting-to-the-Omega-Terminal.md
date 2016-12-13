@@ -21,8 +21,8 @@ Both methods have their advantages and disadvantages. We recommend using SSH sin
 
 
 >**The Command-Line Interface** <br>
->The command-line is a way of interacting with a computer by sending commands in the form of single lines of text. This is different from "point and click" graphical user interfaces (GUI) found on most PC operating systems. <br>
->Command-line interfaces provide a more concise and powerful means to control a program or operating system, especially with regards to scripting (Shell Scripting, Python, etc). <br>
+>The command-line is a way of interacting with a computer by sending commands in the form of single lines of text. This is different from "point and click" graphical user interfaces (GUI) found on most PC operating systems. <br><br>
+>Command-line interfaces provide a more concise and powerful means to control a program or operating system, especially with regards to scripting (Shell Scripting, Python, etc). <br><br>
 >This interface may seem overwhelming at first, but if you take the time to learn the basic commands you'll find that it's an incredibly powerful and useful tool to have in your toolbox.
 
 
@@ -283,19 +283,19 @@ Note that the Expansion Dock and Mini Dock are the only docks that have USB-to-S
 
 We'll first identify the specific USB connection that we need to use to talk to the Omega, and then setting up the communication.
 
-### Setting up using Command Line – OSX
+### Connecting on a Mac Device
 
-**Step 1: Download Drivers**
+**Download Drivers**
 
 Download and install the [Silicon Labs CP2102 driver for OS X](https://www.silabs.com/Support%20Documents/Software/Mac_OSX_VCP_Driver.zip).
 
-**Step 2: Check if Serial Device Exists**
+**Check if Serial Device Exists**
 
-Run `ls /dev/tty.*` to see if the USB-to-Serial device can be detected. If the driver is successfully installed, you should be able to see a device with a name similar to `/dev/tty.SLAB_USBtoUART`.
+Plug in your Omega & Dock and run `ls /dev/tty.*` to see if the USB-to-Serial device can be detected. If the driver is successfully installed, you should be able to see a device with a name similar to `/dev/tty.SLAB_USBtoUART`.
 
 ![Check if serial device exists](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-osx-check.jpg "Check if serial device exists")
 
-**Step 3: Log in**
+**Log in**
 
 Run `screen /dev/tty.SLAB_USBtoUART 115200` to connect to the Omega’s serial terminal using the `screen` utility.
 
@@ -303,46 +303,48 @@ Run `screen /dev/tty.SLAB_USBtoUART 115200` to connect to the Omega’s serial t
 
 > We recommend taking a peek at [this tutorial](https://www.linode.com/docs/networking/ssh/using-gnu-screen-to-manage-persistent-terminal-sessions) to get an idea of how the `screen` utility works.
 
-**Step 4**
+**All Done**
 
  Enjoy! You're now connected to your Omega!
 
 
 
-### Setting up using Command Line – Windows
+### Connecting with a Windows Device
 
-**Step 1: Download Drivers**
+**Download Drivers**
 
 Download and install the [Silicon Labs CP2102 driver for Windows](https://www.silabs.com/Support%20Documents/Software/CP210x_VCP_Windows.zip).
 
-**Step 2: Find Serial Device**
+**Find Serial Device**
 
-Run Device Manager (Start > Enter "Device Manager" and press `ENTER`), look for Silicon Labs CP210x USB to UART Bridge under Ports (COM & LPT), and take note of the COM number in bracket.
+Plug in your Omega & Dock and run Device Manager (Start > Enter "Device Manager" and press `ENTER`), look for Silicon Labs CP210x USB to UART Bridge under Ports (COM & LPT), and take note of the COM number in bracket.
 
 ![Computer Management](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-windows-device-manager.jpg "Computer Management")
 
-**Step 3: Download a Terminal Program**
+**Download a Terminal Program**
 
 We'll be using PuTTy, but you can use another terminal program that you like. You can download [Putty from this link](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
 
-**Step 4: Configure PuTTy**
+**Configure PuTTy**
 
 Open up PuTTy, select Serial for Connection type, enter the COM number noted down in Step 2 as Serial line, and enter `115200` for the speed.
 
 ![Configure PuTTY](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-windows-putty-settings.jpg "Configure PuTTY")
 
-**Step 5: Connect**
+**Connect**
 
 Click on the Open button to connect to the Omega via the serial terminal.
 
 ![Log in through serial terminal](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-windows-login.jpg "Log in through serial terminal")
 
-**Step 6**: Enjoy! You're now connected to your Omega!
+**All Done**:
+
+Enjoy! You're now connected to your Omega!
 
 
 
 
-### Setting up using Command Line – Linux
+### Connecting on a Linux Device
 
 **Step 1: Check if the serial drivers are already installed**
 
@@ -428,7 +430,7 @@ sudo yum install screen
 
 **Step 5: Look for the USB-to-Serial Device**
 
- Run `ls /dev/ttyUSB*` to see if the USB-to-Serial device can be detected. If the driver is successfully installed, you should be able to see a device with a name similar to `/dev/ttyUSB0`.
+ Plug in your Omega & Dock and run `ls /dev/ttyUSB*` to see if the USB-to-Serial device can be detected. If the driver is successfully installed, you should be able to see a device with a name similar to `/dev/ttyUSB0`.
 
 ![Check if serial device exists](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-linux-check.png "Check if serial device exists")
 
@@ -440,4 +442,6 @@ Run `sudo screen /dev/ttyUSB0 115200` to connect to the Omega’s serial termina
 
 If the screen remains blank, hit enter again to get to the command prompt.
 
-**Step 7**: Enjoy! You are now connected to your Omega!
+**Step 7**:
+
+Enjoy! You are now connected to your Omega!
