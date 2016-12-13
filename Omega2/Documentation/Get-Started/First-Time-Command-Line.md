@@ -2,7 +2,7 @@
 
 // TODO: edit this a intro a little to make it smoother
 
-Follow along with this guide to set up your Omega2 for the first time. We'll first go through how to properly connect your Omega to a Dock and power it up. Then we'll connect to its command line in order to set up a WiFi connection and update the Omega.
+Follow along with this guide to set up your Omega2 for the first time from the command-line. We'll first go through how to properly connect your Omega to a Dock and power it up. Then we'll connect to its command line in order to set up a WiFi connection and update the Omega.
 
 ***If you've already gone through the Setup Wizard, you don't need to follow this guide as well, it does the same thing as the Setup Wizard but using the command line***
 
@@ -115,7 +115,7 @@ Enter your password, and hit enter. Your Omega's network adapter will restart, c
 
 
 // TODO: make these cohesive
-> For more on the Omega's wireless capabilities, see [our guide to the Omega and Wireless](#the-omega-and-wireless-connectivity), and to learn more about configuring the Omega's WiFi, see [our guide to using the command line to connect to the WiFi](#connecting-to-wifi-networks-command-line).
+> For more on the Omega's wireless capabilities, see [our guide to the Omega and Wireless](#the-omega-and-wireless-connectivity), and to learn more about configuring the Omega's WiFi connection, see [our guide to using the command line to connect to the WiFi](#connecting-to-wifi-networks-command-line).
 
 **Update to the Latest Version of the Operating System**
 
