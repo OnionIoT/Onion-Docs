@@ -45,13 +45,13 @@ The Time On, `Ton` in the diagram above is the time the signal is high. This is 
 
 Similarly, Time Off, or `Toff` is the time the signal is low.
 
-The Complete Cycle time corresponds to the overall period of the PWM signal, and is equivalent to **Time On + Time Off**. 
+The Complete Cycle time corresponds to the overall period of the PWM signal, and is equivalent to **Time On + Time Off**.
 
 The **frequency** of the PWM signal is how many cycles the signal goes through per second, and is the reciprocal of period:
 
 $$Frequency = {\frac{1}{Period}}$$
 
-The unit of frequency is the **Herz (Hz)**. We will describe frequency numbers using Hz.
+The unit of frequency is the **Hertz (Hz)**. We will describe frequency numbers using Hz.
 
 ### Using the Command Line
 

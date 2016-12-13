@@ -33,6 +33,10 @@ oled-exp [OPTIONS] <COMMAND> <PARAMETER>
 ```
 
 
+<!-- ### Programming Flow -->
+<!-- TODO: add a section describing that the screen needs to be initialized before anything will work -->
+
+
 ### Command and Option Table
 
 To reconcile all of the above features to `oled-exp`, refer to the table below:
@@ -253,6 +257,7 @@ The OLED image files store the image data as 1024 bytes represented in hexadecim
 
 If this is unclear, see the [Understanding the Display Section in the OLED Expansion Library documentation article](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-C-Library#programming-flow_understanding-the-display) for details on how the display is addressed.
 
+<!-- TODO: change this link to the OLED Hardware article -->
 
 #### Displaying Images from a File
 
@@ -273,7 +278,7 @@ Initialize the display and draw an image saved to `/tmp/onion.lcd`:
 oled-exp -i draw /tmp/onion.lcd
 ```
 
-
+<!-- TODO: let's change this list to a backtick block and have all of the values comma separated -->
 ### Supported Characters
 
 The OLED Display supports the following characters:
