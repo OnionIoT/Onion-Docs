@@ -81,10 +81,3 @@ For more on using the Omega Expansion you can check out our [guide to using the 
 
 <!-- // point them to the article on using the oled expansion -->
 <!-- // this article can be heavily based on the existing doc: https://wiki.onion.io/Tutorials/Expansions/Using-the-OLED-Expansion -->
-<!-- // includes: -->
-<!-- //  - command line Usage -->
-<!-- //    - initialization -->
-<!-- //    - writing text -->
-<!-- //    - displaying images -->
-<!-- //    - changing settings -->
-<!-- //  - link to controlling the screen from  C/C++ and python -->
