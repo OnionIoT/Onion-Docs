@@ -48,7 +48,7 @@ The connection method will be different depending on what Operating System you'r
 * [Windows](#connecting-to-ssh-windows)
 
 
-### Connecting on a Mac device {#connecting-to-ssh-mac}
+### SSH on a Mac device {#connecting-to-ssh-mac}
 
 <!-- {{#if OSX}} -->
 **Step 1: Open a Terminal**<br>
@@ -77,7 +77,7 @@ By default, the password is: `onioneer`
 
 <!-- {{/if}} -->
 
-### Connecting on a Linux device {#connecting-to-ssh-mac}
+### SSH on a Linux device {#connecting-to-ssh-linux}
 
 <!-- {{#if Linux}} -->
 **Step 1: Open a Terminal**<br>
@@ -107,7 +107,7 @@ By default, the password is: `onioneer`
 <!-- {{/if}} -->
 
 
-### Connecting on a Windows Device {#connecting-to-ssh-windows}
+### SSH on a Windows Device {#connecting-to-ssh-windows}
 
 **Step 1: Download PuTTy**<br>
 
@@ -306,7 +306,7 @@ The connection method will be different depending on what Operating System you'r
 * [Linux](#connecting-via-serial-linux)
 * [Windows](#connecting-via-serial-windows)
 
-### Connecting on a Mac Device {#connecting-via-serial-mac}
+### Serial on a Mac Device {#connecting-via-serial-mac}
 
 **Download Drivers**
 
@@ -332,7 +332,7 @@ Run `screen /dev/tty.SLAB_USBtoUART 115200` to connect to the Omega’s serial t
 
 
 
-### Connecting with a Windows Device {#connecting-via-serial-windows}
+### Serial on a Windows Device {#connecting-via-serial-windows}
 
 **Download Drivers**
 
@@ -367,7 +367,7 @@ Enjoy! You're now connected to your Omega!
 
 
 
-### Connecting on a Linux Device {#connecting-via-serial-linux}
+### Serial on a Linux Device {#connecting-via-serial-linux}
 
 **Step 1: Check if the serial drivers are already installed**
 
