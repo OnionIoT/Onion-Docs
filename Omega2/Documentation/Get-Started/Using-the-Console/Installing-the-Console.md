@@ -71,3 +71,5 @@ password: onioneer
 ```
 
 <!-- // TODO batch 3 or 4: add a section on navigating and using the console -->
+
+<!-- // TODO: find an appropriate place to mention that oupgrade shouldn't be run from the Terminal app on the console -->
