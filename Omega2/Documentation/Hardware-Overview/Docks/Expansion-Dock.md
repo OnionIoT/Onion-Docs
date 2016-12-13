@@ -33,7 +33,7 @@ To connect an Omega to the Expansion Dock, line up the Omega's edges with that o
 
 Make sure your Omega is pushed all the way down as demonstrated in the picture below:
 
-![Omega plugged into Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-2-omega-on-dock.jpg "Omega Plugged into Dock")
+![Omega plugged into Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-3-omega-on-dock-side.jpg "Omega Plugged into Dock")
 
 You may need to line up the pins with the holes before pressing the Omega into the Dock.
 
