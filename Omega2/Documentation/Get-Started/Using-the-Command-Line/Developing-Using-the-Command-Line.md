@@ -130,7 +130,7 @@ Now to save the file you'll have to enter the Command Mode by hitting the `ESC` 
 
 Type `:wq` and hit enter to save and exit your file.
 
-<!-- TODO: Add a picture of the Command line with save in here -->
+![save :wq](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/command-line-developing-pic-1.png)
 
 You are now ready to convert text to morse code!
 

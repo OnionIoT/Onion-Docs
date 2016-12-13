@@ -18,15 +18,6 @@
 
 The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to the Internet. This article will cover what `wifisetup` is, as well as how you can use it to connect your Omega to the Internet.
 
-<!-- TODO: delete this if not needed -->
-<!-- ### What is `wifisetup`
-
-When you use `wifisetup`, you'll enter your network info, and then the Omega's network manager will attempt to the networks in range that are configured on your Omega. For example, if you have three configured networks (school, home, friend's house) and you're currently at your friend's house, the network manager will immediately attempt to connect to that network.
-
-On the other hand, if you have multiple configured networks in range the Omega will attempt to connect to the network with the highest priority. Priority is defined as most recently configured networks having the lowest priority. This means that adding a network configuration immediately assigns it as the lowest priority.
-
-Once you configure your new network, the Omega's AP will go down for about 30 seconds and attempt to connect to the network on restart. If it fails to connect you may have entered incorrect information (wrong authentication type selected, wrong password entered). -->
-
 ### Using `wifisetup`
 
 To begin setting up your connection to the Internet, enter `wifisetup` in a terminal, and you'll see the following output:
