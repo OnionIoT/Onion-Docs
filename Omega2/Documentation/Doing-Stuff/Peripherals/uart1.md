@@ -10,7 +10,7 @@ order: 3
 
 <!-- // Introduce the uart as a serial communication protocol, talk about that the Omega now has two UARTs, UART0 is largely for outputting the Omega's command line, and UART1 can be used to communicate with other devices -->
 
-A universal asynchronous receiver/transmitter (UART) is a device used for serial communication. The Omega comes with two UART devices: UART0, and UART1. UART0 is largely used for outputting the Omega's command line, and UART1 is free to communicate with other devices.
+A **universal asynchronous receiver/transmitter (UART)** is a device used for serial communication. The Omega comes with two UART devices: `UART0`, and `UART1`. `UART0` is largely used for outputting the Omega's command line, and `UART1` is free to communicate with other devices.
 
 This article will cover what the UART does, where it is on the hardware, and using the UART on the Omega.
 
@@ -18,19 +18,19 @@ This article will cover what the UART does, where it is on the hardware, and usi
 
 ### What is a UART?
 
-A UART is used for serial communication between devices. UART has no master-slave architecture and allows you to set the transmissions speeds of your data. The transmission speed is known as the baud rate, and it represents the time spent holding each bit high or low. F
+A UART is used for serial communication between devices. UART has no master-slave architecture and allows you to set the transmissions speeds of your data. The transmission speed is known as the **baud rate**, and it represents the time spent holding each bit high or low.
 
 >If you've connected to the Omega via serial before you'll remember that we set the baud rate to 115200 bits-per-second, meaning that the time spent holding each bit high or low is 1/115200bps or 8.6µs per bit.
 
-The UART on the Omega formats the data using the 8n1 configuration, in which there are 8 data bits, no parity bit, and one stop bit.
+The UART on the Omega formats the data using the **8n1 configuration**, in which there are **8** data bits, **no** parity bit, and **one** stop bit.
 
 ![uart data frame](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-data-frame.png)
 
-The UART uses TX to transmit data, and RX to receive data. When communicating with other devices the TX on device A will send data to the RX on device B, creating a cross effect.
+The UART uses the TX line to **transmit** data, and RX to **receive** data. When communicating with other devices, the TX on device A will send data to the RX on device B and vice versa.
 
 ![cross tx rx](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-tx-rx-cross.png)
 
-When setting up a serial connection always make sure to cross the RX and TX lines.
+**When setting up a serial connection, always make sure to cross the RX and TX lines.**
 
 <!-- // describe what a UART is and how devices can use it to communicate, no master-slave architecture, make sure to cross Tx->Rx and Rx->Tx
 // introduce the following:
@@ -45,25 +45,28 @@ When setting up a serial connection always make sure to cross the RX and TX line
 
 ![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
 
-Pins 12 and 13 are used for UART0. These are primarily used for the command line on the Omega. The UART1 uses pins 45 and 46. These are labelled as TX1 and RX1 to signify that they are used for UART1.
+Pins `12` and `13` are used for `UART0`. These are primarily used for the command line on the Omega. The `UART1` uses pins `45` and `46`. These are labelled as `TX1` and `RX1` to signify that they are used for `UART1`.
 
 
 ### Using the Command Line
 <!-- TODO: Couldn't get sending and receiving data to /dev/ttyS1 to work, could i get some help?` -->
-// will be using the `/dev/ttyS1` interface and some command line tools to communicate
 
-// for this section: need to research how echo and cat know the baud rate...
+<!-- TODO: have you tried say using an arduino hooked up to th omega's uart as a test? -->
+
+<!-- // will be using the `/dev/ttyS1` interface and some command line tools to communicate
+
+// for this section: need to research how echo and cat know the baud rate... -->
 
 #### Sending Data
 
-// simple as piping things to `/dev/ttyS1`:
-//  echo "my message" > /dev/ttyS1
+<!-- // simple as piping things to `/dev/ttyS1`:
+//  echo "my message" > /dev/ttyS1 -->
 
 #### Receiving Data
 
-// reading from the uart device
+<!-- // reading from the uart device
 //  cat /dev/ttyS1
-// and it will print the received data
+// and it will print the received data -->
 
 
 ### Using the Screen Command
@@ -99,18 +102,16 @@ screen /dev/ttyS1 <BAUD RATE>
 
 This will show a new screen that will print any incoming data, and you can type and press enter to send commands.
 
-// the command is: `screen /dev/ttyS1 <BAUD RATE>`
-// will show a new screen (ha-ha) that will print any incoming data, you can type and press enter to send commands
+<!-- // the command is: `screen /dev/ttyS1 <BAUD RATE>`
+// will show a new screen (ha-ha) that will print any incoming data, you can type and press enter to send commands -->
 
-// give an example of one Omega's UART1 connected to another Omega's UART0, can login through to the other Omega's serial Terminal
+<!-- // give an example of one Omega's UART1 connected to another Omega's UART0, can login through to the other Omega's serial Terminal -->
 
 ### Using Python
 
-// There's a python module for interacting with serial ports python-pyserial, read up on the Documentation
+<!-- // There's a python module for interacting with serial ports python-pyserial, read up on the Documentation -->
 
 You can use Python in order to communicate serially via the UART. The module to accomplish this is `PySerial` which can be installed using `opkg`.
-
-
 
 
 #### Installing the module
@@ -133,7 +134,7 @@ And then install `python-pyserial`:
 opkg python-pyserial
 ```
 
-You'll now be able to use PySerial
+You'll now be able to use PySerial!
 
 #### Using PySerial
 
