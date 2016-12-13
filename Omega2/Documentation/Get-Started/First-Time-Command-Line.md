@@ -8,7 +8,7 @@ Follow along with this guide to set up your Omega2 for the first time. We'll fir
 
 
 <!-- Prepare the Hardware -->
-```{r child = './Unbox.md'}
+```{r child = './First-Time-Components/Hardware-Prep.md'}
 ```
 
 
@@ -17,33 +17,17 @@ Follow along with this guide to set up your Omega2 for the first time. We'll fir
 
 ### Setting Up Your Omega
 
-**Some Computer Configuration**
+<!-- Computer Config -->
+```{r child = './First-Time-Components/First-Time-Component-01-computer-config.md'}
+```
 
-Your computer may need some additional programs to access the Omega through a browser:
+<!-- The Omega's Name -->
+```{r child = './First-Time-Components/First-Time-Component-02-omega-name.md'}
+```
 
-* If you are using Windows, install Apple's Bonjour Service
-* If you are using OS X, you're all set to go
-* If you are using Linux, the Zeroconf services should already be installed and you will be good to go
-
-**The Omega's Name**
-
-Let's find your Omega's name before going any further.
-
-There's a sticker on the Omega's shielding:
-![Omega2+](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/omega-name-0-just-omega.jpg)
-
-The text printed here is the Omega's unique MAC address, we're interested in the last four digits that are in bold.
-
-Your Omega's name is `Omega-ABCD` where `ABCD` are the last four digits from the sticker.
-
-So the Omega from the picture above is named `Omega-296A`
-
-
-**Connect to the Omega's WiFi Network**
-
-The Omega hosts it's own WiFi network access point. Lets connect your computer to it. The WiFi network is named the same as your Omega and the default password is `12345678`
-
-![Connect to AP](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-1-connect-to-wifi.png "Connect to AP")
+<!-- Connect to Omega's Wifi AP -->
+```{r child = './First-Time-Components/First-Time-Component-03-connect-to-omega-network.md'}
+```
 
 **Connect to the Omega's Command Line**
 
