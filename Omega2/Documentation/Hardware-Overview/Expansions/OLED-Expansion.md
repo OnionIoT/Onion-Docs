@@ -9,7 +9,7 @@ order: 2
 ## OLED Expansion {#oled-expansion}
 
 <!-- // intro to the oled expansion - power efficient, tiny screen, mention the resolution and that it's monochrome
-<!-- // can write text, draw images, adjust settings, do some little animations (scrolling) --> -->
+<!-- // can write text, draw images, adjust settings, do some little animations (scrolling) -->
 
 
 The OLED Expansion is an extremely power efficient 0.96″ monochrome (black and white) OLED display for your Omega. With a resolution of 128×64, it is very handy for displaying text, drawing images, and even animation!

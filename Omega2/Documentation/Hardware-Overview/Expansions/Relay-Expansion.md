@@ -106,7 +106,7 @@ The I2C addresses corresponding to the different switch positions are shown belo
 | 0x21               | 011                   |
 | 0x20               | 111                   |
 
-## Using the Relay Expansion
+### Using the Relay Expansion
 
 Consider this LED circuit:
 
