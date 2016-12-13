@@ -20,7 +20,7 @@ The Omega needs to be powered by 3.3V DC, and without a Dock, we can't use a Mic
 
 We'll need the following
 * A breadboard
-* 2 male-to-male jumper wires 
+* 2 male-to-male jumper wires
 * 2 male-to-female jumper wires
 * LD1117 3.3V Regulator
 * DC Barrel Jack (breadboard friendly)
@@ -43,10 +43,8 @@ Now that the
 
 **Wait till it boots**
 
-When the amber LED has been on for about a minute, your Omega will have booted.
+<!-- LED at Boot text -->
+```{r child = './Hardware-Prep-Component-LED-at-boot.md'}
+```
 
 ![Omega is on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-6-omega-led-detail.jpg "Omega is on")
-
-*We're working on making this step more intuitive, stay tuned!*
-
-<!-- LAZAR: need to fix Omega LED in the firmware, when fixed, make sure to give time estimate for how long boot takes -->
