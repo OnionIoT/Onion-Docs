@@ -20,21 +20,22 @@ Bring your next project on the go with the Power Dock! Equipped with on-board ba
 
 Your Power Dock has a 30 pin Expansion Header, allowing you to use all of your Onion Expansions. It provides the Omega with the 3.3V it needs to run, while also providing 5V for the Expansions and USB Host port.
 
+![Power Dock Labeled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-drawing.png)
+
 The Power Dock is flexible: it can run off just a battery or just by drawing power from the Micro USB port. Charging the battery requires having both the battery and the Micro USB plugged in. Don't worry, the Omega will still work with no interruptions while charging.
 
 The Micro-USB port supplies 5V to the Dock. This voltage is stepped down to the required 3.3V required to power the Omega, and also provides 5V to the Expansions and USB Host port.
 
 
 
-#### Connecting an Omega
+### Connecting an Omega
 
 <!-- [//]: # (picture guide on how to properly plug in an Omega) -->
 
-#### The Power Dock at a Glance
+<!-- ### The Power Dock at a Glance -->
 
-![Power Dock Labeled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-drawing.png)
 
-#### The Expansion Header
+### The Expansion Header
 
 <!-- [//]: # (breakout of the Omega's GPIOs, can be connected to other circuits directly, or can use Omega expansions) -->
 
@@ -62,7 +63,7 @@ There is no USB-to-Serial Chip on the Power Dock. This means that you will **not
 
 <!-- You can still connect to your Omega's terminal with SSH. You can learn how to do that in this [guide to connecting to the Omega](#connecting-to-the-omega) -->
 
-#### The Power Switch
+### The Power Switch
 
 The power switch controls power to the Omega, regardless of whether it is powered from the battery or Micro-USB cable. The power switch has no effect on the battery charging, so **the battery will charge regardless of the switch position**.
 
@@ -71,7 +72,7 @@ The blue Power LED indicates if there is power flowing to the Omega.
 <!-- [//]: # (add illustrations indicating the ON and OFF positions of the switch) -->
 
 
-#### Battery Level Indicator LEDs
+### Battery Level Indicator LEDs
 
 The power dock contains 4 LEDs that indicate the current battery level and charging status. The LED closest to the Micro-USB port indicates the lowest battery level and the LED furthest away from the Micro-USB port indicates the highest battery level.
 
@@ -83,7 +84,7 @@ Highest Battery Level:
 
 ![Highest Indicator Level](http://i.imgur.com/m9CPAfel.jpg)
 
-#### The Battery Connector
+### The Battery Connector
 
 The Power Dock is designed for use with a **3.7V LiPo Battery** with a standard 2-pin JST-PH connector (2mm spacing between pins).
 
@@ -94,25 +95,25 @@ Expect a 1500mAh battery to last about 10 hours, in some cases, up to 12 hours.
 **Warning:** Do not attempt to charge your battery with anything other that the Power Dock or a charger designed specifically for LiPo Batteries!
 
 
-#### Reset Button
+### Reset Button
 
 The Reset Button can be used to reboot the Omega or perform a factor restore of the firmware.
 A Reset Button can be found on the Expansion Dock and Mini Dock:
 
 For reference, the Reset Button is connected to Omega's GPIO11. GPIO11 is the Omega's Active-High Soft Reset input.
 
-##### Reboot
+#### Reboot
 
 Momentarily pressing the reset button and letting go will initiate a reboot of the Omega OS.
 
-##### Factory Restore
+#### Factory Restore
 
 Pressing and holding the reset button for 10 seconds and releasing will trigger a factory restore.
 
 **Warning:** This will reset your Omega to the default filesystem of the last firmware update, this **will delete ALL of your data!**
 
 
-#### Omega USB Port
+### Omega USB Port
 
 <!-- [//]: # (USB port connected to the Omega - interface USB devices with the Omega, mention that it's a type A connector) -->
 
@@ -120,7 +121,7 @@ The USB Host Port is connected to the Omega and can be used to interface USB per
 
 
 
-#### Differences from the Expansion Dock
+### Differences from the Expansion Dock
 <!-- [//]: # (thinking about removing this e) -->
 
 Note some of the differences between the Expansion Dock and the Power Dock:
@@ -141,15 +142,12 @@ The main differences are:
 
 <!-- [//]: # (overview of what this section covers) -->
 
-
-#### Three Different Operating Modes
-
 The Power Dock operates in three different modes.
 
 
 <!-- Usage Modes: Battery Mode -->
 
-##### Battery Mode
+#### Battery Mode
 
 This is the most important mode; when the Omega and Power Dock are running completely off the battery. The LED Indicators will be turned off by default to conserve battery life, however they can be turned on for five seconds via a command from the Omega.
 
@@ -162,7 +160,7 @@ When the battery is approaching depletion the Indicator LEDs will begin flashing
 
 <!-- Usage Modes: Charging Mode -->
 
-##### Charging Mode
+#### Charging Mode
 
 When both the battery and Micro-USB cable are connected to the Power Dock, the battery will be charging. The Omega can still be powered on while the battery is charging, but it doesn't have to be; the battery will charge in this mode regardless of what the Omega is doing. You can even disconnect your Omega and the battery will still charge!
 
@@ -190,7 +188,7 @@ Battery is **75%** charged, charging up to **100%**:
 
 <!-- Usage Modes: Stationary Mode -->
 
-##### Stationary Mode
+#### Stationary Mode
 
 The Power Dock will still work when the battery is disconnected and the Power Dock is receiving power just from the Micro USB cable. The Battery Level Indicator LEDs will be flashing erratically, this is expected:
 
@@ -203,7 +201,7 @@ The Power Dock essentially acts like the Expansion Dock in this mode.
 <!-- SECTION -->
 <!-- power-dock application -->
 
-#### Checking the Battery Level
+### Checking the Battery Level
 
 [//]: # (explanation that you can visually see the battery level on the indicator LEDs AND in the operating system)
 
