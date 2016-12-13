@@ -27,21 +27,21 @@ This works on all operating systems and is a great way to wirelessly upload code
 
 Open the Editor App in the console, and click the `Upload File` button in the top bar. Your file will be uploaded to the current directory, so you'll need to first move to the correct directory in the side bar:
 
-![upload-file-button](./img/upload-file-with-editor-upload-button.png)
+![upload-file-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/upload-file-with-editor-upload-button.png)
 
 >The green circle shows that my current directory is `/root`
 
 Now a prompt will open asking you to choose your file:
 
-![choose-file-button](./img/upload-file-with-editor-choose-file.png)
+![choose-file-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/upload-file-with-editor-choose-file.png)
 
 Click that and select the file you would like to upload. Then hit submit button:
 
-![submit-button](./img/upload-file-with-editor-submit.png)
+![submit-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/upload-file-with-editor-submit.png)
 
 And your file will be uploaded to the current directory:
 
-![uploaded-file](./img/upload-file-with-editor-uploaded.png)
+![uploaded-file](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/upload-file-with-editor-uploaded.png)
 
 And that's all there is to it! A simple and effective way to upload files from your computer to your Omega.
 
