@@ -10,11 +10,25 @@ order: 8
 
 In order to keep improving user experience for the Omega, we will be releasing updated firmwares on a rolling basis. To capitalize on these improvements users should update their Omegas to the latest firmware release. To handle firmware transitions we have created a command-line utility `oupgrade` (Onion Upgrade).
 
-### Using the Command line
+### How do I know if I need to update my Omega?
+
+To check if your Omega needs an upgrade, run `oupgrade -check`. The output will let you know if you need an update:
+```
+root@Omega-2757:/# oupgrade -c
+> Device Firmware Version: 0.1.4 b210
+> Checking latest version online...
+> Repo Firmware Version: 0.1.5 b132
+> Comparing version numbers
+> New firmware version available, need to upgrade device firmware
+```
+
+The easiest thing to do is run just `oupgrade`, this way it will check if your firmware needs updating and will perform the upgrade if necessary.
+
+### Performing the Upgrade
 
 #### Using `oupgrade`
 
-To use `oupgrade` run the command in your command-line:
+To run the `oupgrade` tool, simply enter the following in your command-line:
 
 ```
 oupgrade
@@ -98,9 +112,9 @@ oupgrade -f
 ```
 
 
-### Notes On Upgrades
+### A Warning
 
-When an upgrade is performed, only the `root` and `etc` folders are preserved. It is important to backup your work on the Omega prior to upgrading if you don't want to lose any of your work.
+When an upgrade is performed, only the `root` and `etc` folders are preserved. It is important to backup your files on the Omega prior to upgrading if you don't want to lose any of your work.
 
 ### Help with `oupgrade`
 
