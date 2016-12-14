@@ -30,6 +30,21 @@ You can even change the antenna by disconnected the current antenna, and connect
 <!-- // plugged into the USB Port -->
 <!-- // have photos of it plugged into the Exp dock, power dock, minidock, and arduino dock 2 -->
 
+The GPS Expansion plugs into a Dock with a USB port. You can also connect a USB hub to a Dock's USB port and use it there.
+
+
+![gps expansion dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-top-expansion-dock.JPG)
+
+![gps power dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-top-power-dock.JPG)
+
+![gps arduino dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-top-arduino-dock.JPG)
+
+![gps mini dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-top-mini-dock.JPG)
+
+
+This is one of the few Expansions that doesn't use the Expansion headers, and so you can even use it with the Mini Dock if you'd like!
+
+
 #### At a Glance
 
 ![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-expansion-illustration.jpg)

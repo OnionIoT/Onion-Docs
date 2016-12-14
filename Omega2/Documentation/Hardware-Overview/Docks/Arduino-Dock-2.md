@@ -24,6 +24,8 @@ The Omega can program the microcontroller while connected to the board. This mea
 
 <!-- [//]: # (small overview of the things the headings below cover) -->
 
+![arduino dock alone](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-alone.jpg)
+
 
 The Arduino Dock includes an In-Circuit Serial Programming (ICSP) header to break out the SPI pins which can be used to program the IC. Additionally, there is a USB-host port that is connected to the Omega which can be used for any sort of USB type application.
 
@@ -35,14 +37,14 @@ You can power the dock using a microUSB connection, or using the DC Barrel jack.
 
 <!-- [//]: # (picture guide on how to properly plug in an Omega) -->
 
-To connect an Omega to the Arduino Dock, line up the Omega's edges with that of the Arduino Dock's as demonstrated below:
+To connect an Omega to the Arduino Dock, line up the Omega's edges with the purple lines on the Arduino Dock's as demonstrated below:
 
-![arduino dock plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-top-plugged-in.JPG)
+![arduino dock plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-top-plugged-in.jpg)
 
 Make sure your Omega is pushed all the way down as demonstrated in the picture below:
 
 
-![arduino dock side view](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-side-view.JPG)
+![arduino dock side view](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-side-view.jpg)
 
 You may need to line up the pins with the holes before pressing the Omega into the Dock.
 
