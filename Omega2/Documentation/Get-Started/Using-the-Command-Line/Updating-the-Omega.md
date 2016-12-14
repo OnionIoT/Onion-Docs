@@ -8,7 +8,7 @@ order: 8
 
 ## Updating the Omega Through the Command-Line {#updating-the-omega}
 
-In order to keep improving user experience for the Omega, we will be releasing updated firmwares on a rolling basis. To capitalize on these improvements users should update their Omegas to the latest firmware release. To handle firmware transitions we have created a command-line utility `oupgrade` (Onion Upgrade).
+In order to keep improving user experience for the Omega, we will be releasing updated firmwares on a rolling basis. To get the benefits of these improvements, users should frequently update their Omegas to the latest firmware release. We have created a command-line utility `oupgrade` (Onion Upgrade) to handle firmware transitions.
 
 ### How do I know if I need to update my Omega?
 
@@ -22,7 +22,17 @@ root@Omega-2757:/# oupgrade -c
 > New firmware version available, need to upgrade device firmware
 ```
 
-The easiest thing to do is run just `oupgrade`, this way it will check if your firmware needs updating and will perform the upgrade if necessary.
+The easiest thing to do is to just run `oupgrade`. This way it will check if your firmware needs updating and will perform the upgrade if necessary.
+
+#### Versions vs. Build Numbers
+
+Every firmware has a **version** and **build number**. 
+
+* Minor updates will be released as new build numbers for a given firmware version.
+    * eg. version 0.1.4 build 100, build 103, build 110
+* Major updates will be released as a new firmware version.
+    * eg. version 0.1.3, version 0.1.5, version 0.1.6
+   
 
 ### Performing the Upgrade
 
@@ -36,27 +46,32 @@ oupgrade
 
 It will take care of checking for firmware updates, and automatically installing them if they are available.
 
+By default, `oupgrade` will only install new firmware **versions**.
+
 #### Doing More with `oupgrade`
 
 ##### Getting your firmware version
 
 To get the current firmware installed on the device type:
+
 ```
 oupgrade -v
 ```
 
 And you'll see:
+
 ```
 root@Omega-2757:/# oupgrade -v
 > Device Firmware Version: 0.1.5 b132
 ```
 
-Here I'm on version 0.1.5 and build 132 of the device firmware.
+Here we're on version `0.1.5` and build `132` of the device firmware.
 
 
 ##### Checking for New Firmware Versions
 
 To check your firmware version and compare it with the latest available firmware versions type:
+
 ```
 oupgrade -c
 ```
@@ -70,7 +85,7 @@ root@Omega-2757:/# oupgrade -c
 > Device firmware is up to date!
 ```
 
-As you can see from the output, my firmware is up to date!
+As you can see from the output, our firmware is up to date!
 
 If it were not up to date, this command would show:
 ```
@@ -93,31 +108,38 @@ root@Omega-2757:/# oupgrade -c
 > New firmware version available, need to upgrade device firmware
 ```
 
-*Note that your firmware will not upgrade since this is just a check*
+*This command only checks for the latest firmware version and will not modify your device.*
 
 
-##### Upgrading to a Latest Version
-Here at Onion we are constantly in development, adding new features and fixing bugs. Sometimes the features we make cause the firmware to be unstable. `oupgrade` will only upgrade to the latest stable version as opposed to the latest version available.
+##### Upgrading to the Latest Version
+Here at Onion we're constantly developing, adding new features and fixing bugs. However, sometimes the features we release may cause the firmware to be unstable. Normally `oupgrade` will only upgrade to the latest **stable** version, skipping any unstable versions.
 
-To upgrade to the latest version you can type:
+If you need to upgrade to the latest version anyway, you can type:
 ```
 oupgrade -l
 ```
+
 **Note: This is not recommended unless you know what you're doing!**
 
+This will not reflash the Omega if the latest firmware is already installed.
 
-You can also force `oupgrade` to upgrade to the latest version of the firmware with the `-f` flag:
+##### Force Update/Reflash
+
+You can force `oupgrade` to reflash the Omega with the latest firmware using the `-f` flag. **Note: This will reinstall the firmware even if the Omega already has the latest available!**
+
 ```
 oupgrade -f
 ```
 
+Since this will cause the Omega to reflash itself, this can be used in case you need to safely reset to a working state on the latest firmware.
 
-### A Warning
+**IMPORTANT:** See the warning below about what files will be preserved and erased when upgrading the firmware.
 
-When an upgrade is performed, only the `root` and `etc` folders are preserved. It is important to backup your files on the Omega prior to upgrading if you don't want to lose any of your work.
+### Warning: File Preservation
+
+When an upgrade is performed, only the `/root` and `/etc` folders are preserved. It is important to backup your files on the Omega prior to upgrading if you don't want to lose any of your work.
 
 ### Help with `oupgrade`
-
 
 `oupgrade` has a lot of functionality on the command line. Type
 

@@ -8,24 +8,33 @@ order: 1
 
 ## Using the Omega's GPIOs {#using-gpios}
 
-The Omega2 has twelve General-Purpose Input/Output pins (commonly referred to as GPIOs) that can be fully controlled by you, the user. GPIO pins on most chips generally go unused, but on the Omega, we can use these GPIOs to connect to, communicate with, and control external circuits.
+The Omega2 has twelve General-Purpose Input/Output pins (commonly referred to as GPIOs) that can be fully controlled by you, the user. GPIO pins on most chips generally go unused, but on the Omega we can use these GPIOs to connect to, communicate with, and control external circuits.
 
-On the Omega, We can control GPIO pins with a command-line tool known as `gpioctl`. This article will go through how `gpioctl` works, and the ways in which you can use it
+On the Omega, we can control GPIO pins with a command-line tool known as `gpioctl`. This article will go through how `gpioctl` works, and the ways in which you can use it.
 
 
 <!-- TODO: add section describing GPIO in output direction with an example -->
 
 <!-- TODO: add section describing gpio in input direction with an example -->
 
+### GPIO Electrical Ratings
+
+See the table below for the GPIOs' operating voltages:
+
+| Parameter | Minimum (V) | Maximum (V) |
+|-|-|-|
+| Input `HIGH` | 2.0 | 3.6 |
+| Input `LOW` | -0.3 | 0.8 |
+| Output `HIGH` | 2.4 | --- |
+| Output `LOW` | --- | 0.4 |
+
+**Warning: Connecting a signal to an input pin below the minimum `LOW` or above the maximum `HIGH` voltages may damage your Omega!**
 
 ### From the Command Line
 
-The command-line tool `gpioctl` comes pre-installed on your Omega. `gpioctl` is based on setting file values inside the `/sys/class/gpio` directory. This is made possible with `sysfs`, a pseudo file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
-
+The command-line tool `gpioctl` comes pre-installed on your Omega. `gpioctl` is based on setting file values inside the `/sys/class/gpio` directory. This is made possible with `sysfs`, a pseudo-file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
 
 The tool abstracts a lot of the more detailed commands from the user and simplifies them into easy-to-run commands that can control the GPIOs.
-
-
 
 #### Using `gpioctl`
 
@@ -35,27 +44,24 @@ There are 7 options associated with `gpioctl`. The syntax of the command is as f
 gpioctl <OPTION> <GPIO NUMBER>
 ```
 
-
 Here are some examples on how you can use `gpioctl` to interact with the Omega's GPIOs.
-
-
-
 
 ##### Reading an Input
 
 If you want your Omega to interface with a switch or button then you'll need to use a GPIO to read the input of the switch.
 
-To read an input of a GPIO we'll need to first set the direction to input, connect an external circuit, and then read the value.
+To read an input of a GPIO we'll need to first set the direction to `input`, connect an external circuit, and then read the value.
 
-
-To set the direction of GPIO1 to `in`, enter the follow command:
+To set the direction of GPIO1 to `input`, enter the follow command:
 
 ```
 root@Omega-2757:/# gpioctl dirin 1
 Using gpio pin 1.
 ```
 
-**Now** you're ready to connect an external circuit. You **will** damage your Omega if your GPIO is set to output and you try to drive current to the pin.
+**Now** you're ready to read from an external circuit! 
+
+**Note: You will damage your Omega if your GPIO is set to `output` and you try to drive external current to the pin**.
 
 Let's try reading GPIO1 with `get`:
 
@@ -103,17 +109,16 @@ Pin 1 is LOW
 
 > You can use the `gpioctl get <PIN>` command to read a pin regardless of its direction.
 
-
 ### Multiplexed GPIOs
 
-Multiplexed GPIOs are pins that are given a special function to carry out, as opposed to being unused pins. For example, the UART pins are designated as UART, but are multiplexed so that you can designate and use them as GPIO pins when you want. This is used to incorporate the largest number of peripherals in the smallest possible package.
+Multiplexed GPIOs are pins that can be used for **multiple purposes** other than input/output when needed. For example, the UART pins are designated as UART, but are **multiplexed** so that you can designate and use them as GPIO pins when you want. This is used to incorporate the largest number of peripherals in the smallest possible package.
 
 ![omega2-pinout-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
 
 You can use the `omega2-ctrl` tool to change the function of your GPIOs
 
 
-To get the current mode of the Omega's two pins, use the command:
+To get the current mode of the Omega's multiplexed pins, use the command:
 
 ```
 omega2-ctrl gpiomux get
@@ -137,7 +142,7 @@ Group ephy - [ephy] gpio
 Group wled - wled [gpio]
 ```
 
-This list gives you the groups of multiplexed pins available, and their modes. The current mode for each group is indicated with the `[]`.
+The current mode for each group is indicated with the `[]`.
 
 Let's examine the UART1 line:
 
@@ -151,7 +156,7 @@ Here we see the group is `uart1`, and the available modes are `[uart] gpio`, wit
 
 To set a particular group of hardware pins to a specified mode, use the following command:
 
-```
+```bash
 omega2-ctrl gpiomux set <HARDWARE PIN GROUP> <MODE>
 ```
 
@@ -188,7 +193,7 @@ indicating that our change has indeed been applied.
 
 ### Fast-GPIO
 
-The `fast-gpio` command is similar to `gpioctl` in that it is used to control the Omega's GPIOs. The difference is that while `gpioctl` worked by setting file values inside the `/sys/class/gpio` directory, `fast-gpio` works by setting GPIO registers and is inherently a faster process.
+The `fast-gpio` command is similar to `gpioctl` in that it is used to control the Omega's GPIOs. The difference is that while `gpioctl` worked by setting file values inside the `/sys/class/gpio` directory, `fast-gpio` works by setting GPIO registers directly on the processor and is inherently a faster process.
 
 #### Command Usage:
 
@@ -207,9 +212,9 @@ Usage:
 
 #### Setting a GPIO pin's direction:
 
-```
-fast-gpio set-input <gpio>
-fast-gpio set-output <gpio>
+```bash
+fast-gpio set-input <GPIO>
+fast-gpio set-output <GPIO>
 ```
 
 A pin can be configured to either be input or output.
@@ -219,25 +224,31 @@ A pin can be configured to either be input or output.
 
 #### Reading a GPIO pin's direction:
 
-```
-fast-gpio get-direction <gpio>
+It may be handy to check a pin's programmed direction before doing anything with it. The command to check a GPIO looks like the following:
+
+```bash
+fast-gpio get-direction <GPIO>
 ```
 
-Might be handy to check a pin's programmed direction
+For example, if GPIO `14` is set to `output` and `13` to `input`:
 
 ```
-GPIO14 direction is OUTPUT
-GPIO13 direction is INPUT
+fast-gpio get-direction 14
+> Get direction GPIO14: output
+fast-gpio get-direction 13
+> Get direction GPIO13: input
 ```
 
 
 #### Reading a GPIO pin's value:
 
+You can read a pin's value whether it's in `input` or `output` mode.
+
 ```
 fast-gpio read <gpio pin>
 ```
 
-This will return the pin's value, in both input and output modes
+For example, to read pin `14`:
 
 ```
 root@Omega-2757:/# fast-gpio read 14
@@ -251,20 +262,6 @@ This will drive the selected pin to the value desired.
 fast-gpio set <gpio pin number> <value to set; 0 or 1>
 ```
 
-This will only work when the pin is in the output direction, but `fast-gpio` will take care of that behind the scenes.
+If the pin is not in `output` mode, `fast-gpio` will silently change it to `output` before setting the value.
 
-#### Using a pin as a digital input:
-<!-- MOHAMED QUESTION: What does this mean -->
-You can use `fast-gpio` to set a pin to be a digital input.
-The pin needs to first be set to run as input
-
-```
-fast-gpio set-input 13
-```
-
-Then the connected voltage can be read:
-
-```
-root@Omega-2757:/# fast-gpio read 13
-> Read GPIO13: 1
-```
+<!-- Gabe: removed bit about "digital input"; was the same part of fast-gpio as the input section -->
