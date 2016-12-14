@@ -50,10 +50,9 @@ Here are some examples on how you can use `gpioctl` to interact with the Omega's
 
 If you want your Omega to interface with a switch or button then you'll need to use a GPIO to read the input of the switch.
 
-To read an input of a GPIO we'll need to first set the direction to input, connect an external circuit, and then read the value.
+To read an input of a GPIO we'll need to first set the direction to `input`, connect an external circuit, and then read the value.
 
-
-To set the direction of GPIO1 to `in`, enter the follow command:
+To set the direction of GPIO1 to `input`, enter the follow command:
 
 ```
 root@Omega-2757:/# gpioctl dirin 1
@@ -112,7 +111,7 @@ Pin 1 is LOW
 
 ### Multiplexed GPIOs
 
-Multiplexed GPIOs are pins that can be used for multiple purposes other than input/output when needed. For example, the UART pins are designated as UART, but are multiplexed so that you can designate and use them as GPIO pins when you want. This is used to incorporate the largest number of peripherals in the smallest possible package.
+Multiplexed GPIOs are pins that can be used for **multiple purposes** other than input/output when needed. For example, the UART pins are designated as UART, but are **multiplexed** so that you can designate and use them as GPIO pins when you want. This is used to incorporate the largest number of peripherals in the smallest possible package.
 
 ![omega2-pinout-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
 
