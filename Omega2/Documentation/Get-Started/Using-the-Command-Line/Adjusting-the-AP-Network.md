@@ -1,4 +1,4 @@
-## Adjusting the AP Network Through the Command-Line {#adjusting-ap-network-through-command-line}
+## Adjusting the AP Network {#adjusting-ap-network-through-command-line}
 
 <!-- // DONE: add a section explaining how you can use `wifisetup -ap` and command line arguments to change the AP setup
 //  let's keep the ones outlined below as well as a nice little intro to uci - can later link to uci articles -->

@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 8
 ---
 
-## Updating the Omega Through the Command-Line {#updating-the-omega}
+## Updating the Omega {#updating-the-omega}
 
 In order to keep improving user experience for the Omega, we will be releasing updated firmwares on a rolling basis. To capitalize on these improvements users should update their Omegas to the latest firmware release. To handle firmware transitions we have created a command-line utility `oupgrade` (Onion Upgrade).
 

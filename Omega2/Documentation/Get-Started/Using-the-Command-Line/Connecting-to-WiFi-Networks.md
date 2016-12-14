@@ -1,6 +1,6 @@
 
 
-## Connecting To WiFi Networks in the Command-Line {#connecting-to-wifi-networks-command-line}
+## Connecting To WiFi Networks {#connecting-to-wifi-networks-command-line}
 
 The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to the Internet. This article will cover what `wifisetup` is, as well as how you can use it to connect your Omega to the Internet.
 

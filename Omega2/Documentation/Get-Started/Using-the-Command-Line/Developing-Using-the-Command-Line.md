@@ -1,4 +1,4 @@
-## Developing Using the Command Line {#developing-using-the-command-line}
+## Developing using the Command Line {#developing-using-the-command-line}
 
 Developing programs for the Omega using the command-line is a very practical option because of the powerful tools included on the Omega, but at first it can be a little intimidating to use the command line. This tutorial will help you get started developing code on the Omega's command line and will show you that it's not so scary after all!
 
