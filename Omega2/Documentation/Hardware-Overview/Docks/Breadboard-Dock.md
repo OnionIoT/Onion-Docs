@@ -52,7 +52,7 @@ There is no USB-to-Serial Chip on the Breadboard Dock. This means that you will 
 
 <!-- [//]: # (explanation that there is no usb to serial chip on-board) -->
 
-<!-- You can still connect to your Omega's terminal with SSH. You can learn how to do that in this [guide to connecting to the Omega](#connecting-to-the-omega) -->
+You can still connect to your Omega's terminal with SSH. You can learn how to do that in this [guide to connecting to the Omega](#connecting-to-the-omega).
 
 
 #### Reset button

@@ -18,8 +18,6 @@ The Arduino Dock 2 is our supercharged version of an Arduino Uno R3 board. These
 
 The Omega can program the microcontroller while connected to the board. This means you can wirelessly connect to the Omega, and then program the MCU for a wireless Arduino experience!
 
-
-
 ### The Hardware
 
 <!-- [//]: # (small overview of the things the headings below cover) -->
@@ -27,11 +25,9 @@ The Omega can program the microcontroller while connected to the board. This mea
 ![arduino dock alone](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-alone.jpg)
 
 
-The Arduino Dock includes an In-Circuit Serial Programming (ICSP) header to break out the SPI pins which can be used to program the IC. Additionally, there is a USB-host port that is connected to the Omega which can be used for any sort of USB type application.
+The Arduino Dock includes an In-Circuit Serial Programming (ICSP) header to break out the SPI pins which can be used to program the Arduino's microcontroller. Additionally, there is a USB-host port that is connected to the Omega which can be used for any sort of USB type application.
 
 You can power the dock using a microUSB connection, or using the DC Barrel jack.
-
-
 
 ### Connecting an Omega
 
@@ -61,7 +57,7 @@ You may need to line up the pins with the holes before pressing the Omega into t
 The Expansion Header is a convenient tool that gives you easy access to the Omega's GPIOs, and allows you to connect Onion Expansions directly. The Expansion Header is labelled to show you what GPIO is connected to each section.
 
 
-#### Detailed Pinout
+<!-- #### Detailed Pinout -->
 
 <!-- [//]: # (A detailed pinout diagram of the Expansion Header, showing which pins are multiplexed - see Lazar for an example) -->
 
@@ -114,7 +110,7 @@ Momentarily pressing the reset button and letting go will initiate a reboot of t
 
 Pressing and holding the reset button for 10 seconds and releasing will trigger a factory restore.
 
-**Warning**: This will reset your Omega to the default filesystem of the last firmware update, **this will delete ALL of your data!**
+**Warning**: This will reset your Omega to the default filesystem of the last firmware update. **This will delete ALL of your data!**
 
 ### Micro-Controller Reset Button
 
@@ -168,7 +164,7 @@ The UART connection is used to provide two-way communication between the Omega a
 
 The I2C connection provides I2C connectivity between the Omega and the ATmega. In most cases, the Omega is set up as the master, and the ATmega as the slave.
 
-This is useful when using 5V I2C devices. Plug them into the ATmega's I2C pins and the Omega will be able to read it.
+This is useful when using 5V I2C devices. Plug them into the ATmega's I2C pins and the Omega will be able to read them.
 
 #### SPI and Reset Connection
 
