@@ -89,7 +89,6 @@ You can learn more about this Expansion by reading our article on [how to use th
 
 <!-- // note: no longer need the 'Hardware Fix for Stability Issue' section, that as an Omega1 issue. Let's just mention that the Omega1 had issues with the GPS expansions and that the Omega2 is a-ok -->
 
-
 <!-- // refer to the existing article for details: https://wiki.onion.io/Tutorials/Expansions/Using-the-GPS-Expansion -->
 
 [1]: https://www.u-blox.com/sites/default/files/products/documents/NEO-6_DataSheet_(GPS.G6-HW-09005).pdf
