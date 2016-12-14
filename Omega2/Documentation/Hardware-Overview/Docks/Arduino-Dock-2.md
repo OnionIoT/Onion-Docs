@@ -12,9 +12,11 @@ order: 4
 <!-- [//]: # (The Arduino Dock 2 contains an ATmega328P micro-controller, the same one found on the Arduino Uno R3.) -->
 <!-- [//]: # (The Omega can program the microcontroller and then communicate with it) -->
 
-The Arduino Dock 2 is  our supercharged version of an Arduino Uno R3 board. They share the same microcontroller, the ATmel ATmega328P microcontroller (MCU), and have identical pin layouts. This allows users to use any Arduino shields in conjunction with the Arduino Dock and the Omega.
+<!-- The Arduino Dock 2 is the lovechild of the Arduino Uno R3 and the Omega. Is good? -->
 
-The Omega can program the microcontroller and communicate with it to allow for wireless Arduino programming.
+The Arduino Dock 2 is our supercharged version of an Arduino Uno R3 board. These two boards share the same microcontroller, the ATmel ATmega328P microcontroller (MCU), and have identical pin layouts. This allows you to use any Arduino shields that you've used with the Arduino Uno R3 with the Arduino Dock and the Omega.
+
+The Omega can program the microcontroller while connected to the board. This means you can wirelessly connect to the Omega, and then program the MCU for a wireless Arduino experience!
 
 
 
@@ -23,7 +25,7 @@ The Omega can program the microcontroller and communicate with it to allow for w
 <!-- [//]: # (small overview of the things the headings below cover) -->
 
 
-The Arduino Dock includes an In-Circuit Serial Programming (ICSP) header to break out the SPI pins which can be used to program the IC. Additionally, there is a USB-host port that is connected to the Omega.
+The Arduino Dock includes an In-Circuit Serial Programming (ICSP) header to break out the SPI pins which can be used to program the IC. Additionally, there is a USB-host port that is connected to the Omega which can be used for any sort of USB type application.
 
 You can power the dock using a microUSB connection, or using the DC Barrel jack.
 
@@ -33,7 +35,7 @@ You can power the dock using a microUSB connection, or using the DC Barrel jack.
 
 <!-- [//]: # (picture guide on how to properly plug in an Omega) -->
 
-To connect an Omega to the Arduino Dock, line up the Omega's edges with that of the Mini Dock's as demonstrated below:
+To connect an Omega to the Arduino Dock, line up the Omega's edges with that of the Arduino Dock's as demonstrated below:
 
 ![arduino dock plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-top-plugged-in.JPG)
 
@@ -64,7 +66,10 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 ### The ATmega Headers
 
 <!-- [//]: # (breakout of the ATmega's pins, same as the Arduino Uno R3) -->
-<!-- [//]: # (include an) -->
+<!-- [//]: # (include an image) -->
+
+The ATmega headers are a breakout of the ATmega's pins. They are arranged in the exact same way as an Arduino Uno R3, so all your shields are cross compatible. The pins are also labelled for your convenience.
+
 
 ### The MicroUSB Port
 
@@ -72,7 +77,7 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 
 <!-- [//]: # (mention there's no usb to serial chip) -->
 
-The MicroUSB Port is used to supply power to the Arduino Dock, which in turn supplies power to the Omega and the ATmega328P chip..
+The MicroUSB Port is used to supply power to the Arduino Dock, which in turn supplies power to the Omega and the ATmega328P chip.
 
 The MicroUSB Port takes in 5V, and the Arduino Dock comes equipped with a voltage regulator to step the voltage down to the required 3.3V for the Omega.
 
@@ -96,7 +101,7 @@ The DC barrel jack may also be used to provide power to the Omega using a DC pow
 
 <!-- [//]: # (reset button is connected directly to the Omega's reset GPIO, can be used to just trigger a reboot or even a full factory restore) -->
 
-The Reset Button on the Arduino Dock is connected directly to the Omega's Reset GPIO. Pressing this button do one of two things: reboot, or factory restore.
+The Omega Reset Button on the Arduino Dock is connected directly to the Omega's Reset GPIO. Pressing this button do one of two things: reboot, or factory restore.
 
 
 #### Reboot
@@ -107,7 +112,7 @@ Momentarily pressing the reset button and letting go will initiate a reboot of t
 
 Pressing and holding the reset button for 10 seconds and releasing will trigger a factory restore.
 
-Warning: This will reset your Omega to the default filesystem of the last firmware update, **this will delete ALL of your data!**
+**Warning**: This will reset your Omega to the default filesystem of the last firmware update, **this will delete ALL of your data!**
 
 ### Micro-Controller Reset Button
 
@@ -145,7 +150,7 @@ The Omega and ATmega are connected via the following:
 | GPIO 19 | Reset  |
 
 
-The Arduino Dock is outfitted with a 3.3V to 5V Logic Level shifter in order for the Omega to successfully communicate with the ATmega chip.
+The Arduino Dock is outfitted with a 3.3V to 5V Logic Level converter in order for the Omega to successfully communicate with the ATmega chip.
 
 
 #### UART Connection
@@ -159,7 +164,7 @@ The UART connection is used to provide two-way communication between the Omega a
 <!-- [//]: # (funcionality: provide I2C connectivity between the Omega and ATmega, the Omega is setup to be the master in most cases) -->
 <!-- [//]: # (this is also useful when using 5V I2C devices, plug them into the ATmega I2C pins, and the Omega will be able to read it) -->
 
-This provides I2C connectivity between the Omega and the ATmega. In most cases, the Omega is set up as the master, and the ATmega as the slave.
+The I2C connection provides I2C connectivity between the Omega and the ATmega. In most cases, the Omega is set up as the master, and the ATmega as the slave.
 
 This is useful when using 5V I2C devices. Plug them into the ATmega's I2C pins and the Omega will be able to read it.
 
@@ -167,12 +172,12 @@ This is useful when using 5V I2C devices. Plug them into the ATmega's I2C pins a
 
 <!-- [//]: # (these four pins are used by the Omega to reset and program the ATmega with sketches) -->
 
-The four SPI connections are used to program the ATmega with sketches.
+The four SPI connections are used to program the ATmega with sketches using your Omega.
 
-The reset connection is used to reset the ATmega chip.
+The reset connection is used to reset the ATmega chip. This can be done using the reset button, or using the Omega's GPIO 19.
 
 
-### Mechanical Drawings
+<!-- ### Mechanical Drawings -->
 
 <!-- [//]: # (insert gabe's dope mechanical drawings) -->
 
@@ -183,18 +188,18 @@ The reset connection is used to reset the ATmega chip.
 
 The Arduino Dock 2 is loaded with features that allow you to use your Omega with the ATmega chip with ease. You can program or reset the micro-controller using the Omega's GPIOs, and even connect to the ATmega's serial port using the Omega's UART.
 
-### Programming the Micro-Controller
+<!-- ### Programming the Micro-Controller -->
 
 <!-- [//]: # (create a separate article for this under Doing Stuff - should be included in the RESETTING article mentioned above (part of batch3)) -->
 <!-- [//]: # (two methods:) -->
 <!-- [//]: # (- using the arduino ide) -->
 <!-- [//]: # (- flashing sketches stored on the Omega's memory) -->
 
-### Connecting with UART1
+<!-- ### Connecting with UART1 -->
 
 <!-- [//]: # (create a separate article for Omega <-> ATmega communication via serial, in this article link to the UART1 peripheral article and have an example scenario with an example sketch for the arduino and sample code for the Omega) -->
 
-### Resetting the Micro-Controller
+<!-- ### Resetting the Micro-Controller -->
 
 <!-- [//]: # (create a separate article for this under Doing Stuff (part of batch3)) -->
 <!-- [//]: # (link to Arduino Dock article on resetting the microcontroller) -->
