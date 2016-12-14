@@ -137,8 +137,9 @@ The Omega's USB Port can be used to connect to all sorts of devices, namely a US
 
 <!-- [//]: # (mention that there's a 3.3V to 5V Logic Level shifter for the connections) -->
 
+The Arduino Dock is outfitted with a 3.3V to 5V Logic Level converter in order for the Omega to successfully communicate with the ATmega chip.
 
-The Omega and ATmega are connected via the following:
+The table below shows the connections between the Omega's pins and the ATmega's pins:
 
 | Omega Pin  | ATmega Pin |
 | :-------------: | :-------------:  |
@@ -149,8 +150,7 @@ The Omega and ATmega are connected via the following:
 | GPIO 17 | SPI MISO  |
 | GPIO 19 | Reset  |
 
-
-The Arduino Dock is outfitted with a 3.3V to 5V Logic Level converter in order for the Omega to successfully communicate with the ATmega chip.
+The purposes of these connections are covered in the subsections below.
 
 
 #### UART Connection
@@ -172,12 +172,12 @@ This is useful when using 5V I2C devices. Plug them into the ATmega's I2C pins a
 
 <!-- [//]: # (these four pins are used by the Omega to reset and program the ATmega with sketches) -->
 
-The four SPI connections are used to program the ATmega with sketches using your Omega.
+The four SPI connections are used to upload the ATmega with sketches using your Omega.
 
 The reset connection is used to reset the ATmega chip. This can be done using the reset button, or using the Omega's GPIO 19.
 
 
-<!-- ### Mechanical Drawings -->
+<!-- TODO: ### Mechanical Drawings -->
 
 <!-- [//]: # (insert gabe's dope mechanical drawings) -->
 
@@ -188,6 +188,8 @@ The reset connection is used to reset the ATmega chip. This can be done using th
 
 The Arduino Dock 2 is loaded with features that allow you to use your Omega with the ATmega chip with ease. You can program or reset the micro-controller using the Omega's GPIOs, and even connect to the ATmega's serial port using the Omega's UART.
 
+
+<!-- TODO:  These articles are to be part of the Arduino Kit guides, and we will link to them when the guides are ready. -->
 <!-- ### Programming the Micro-Controller -->
 
 <!-- [//]: # (create a separate article for this under Doing Stuff - should be included in the RESETTING article mentioned above (part of batch3)) -->
