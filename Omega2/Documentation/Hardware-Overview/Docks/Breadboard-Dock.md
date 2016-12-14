@@ -38,9 +38,11 @@ Connect your Omega to the Breadboard Dock by lining up the two rows of header pi
 
 The breadboard header is the part that connects the Dock to your breadboard. Position the Dock in the middle of the breadboard and line up the pins so that they land on each side of the slot in the middle. Fully insert the Dock into the breadboard as shown below.
 
-![connect-to-breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/breadboard-dock-connected-to-breadboard.jpg)
+![connect-to-breadboard-1](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/breadboard-dock-mounted-1.jpg)
 
-**IMPORTANT: Make sure the pins are separated by the slot or they will be short-circuited, likely damaging your Omega and Breadboard Dock!**
+![connect-to-breadboard-2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/breadboard-dock-mounted-2.jpg)
+
+**IMPORTANT: Make sure the pins are separated by the slot before connecting to power, or they will be short-circuited! This will damage your Omega and Breadboard Dock!**
 
 <!-- TODO: ##### Detailed Pinout diagram -->
 

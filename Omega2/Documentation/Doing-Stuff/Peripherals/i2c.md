@@ -47,8 +47,6 @@ The I2C pins (SCL and SDA) on the Omega2 and Expansion Dock are highlighted belo
 
 ![i2c-pins-omega2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-pins-omega2.jpg)
 
-<!-- TODO: add in a picture later using Adobe Illustrator to rasterize the Exp.D. vector on Windows -->
-
 ![i2c-pins-exp-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-pins-exp-dock.jpg)
 
 ### Controlling I2C Devices from the Command line
@@ -116,26 +114,21 @@ i2cset -y 0 0x27 0x01 0x00          # dining room lights OFF
 ```
 
 <!-- #### Going further
-// look into the command line options for writing two bytes at a time -->
-
-<!-- TODO: I can't figure this out in time to release with batch 3. - Gabe -->
+// TODO: look into the command line options for writing two bytes at a time -->
 
 #### The Omega Expansions
 
 Some of our Expansions use I2C to communicate with the Omega.
 
-* Relay Expansion
-* PWM Expansion
+* [Relay Expansion](#using-relay-expansion)
+* [PWM Expansion](#using-pwm-expansion)
 * [OLED Expansion](#using-oled-expansion)
-
-<!-- TODO: add links to the 'using' series for the command line tools -->
 
 ### Moving Beyond the Command line
 
 #### I2C using Python
 
 We've developed an I2C Python module that you can import into your apps. For all the details, see the [I2C Python Module](#i2c-python-module).
-<!-- TODO: Change the link later -->
 
 ##### Example - Controlling an I2C LCD Display
 
