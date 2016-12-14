@@ -60,6 +60,7 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 <!-- #### Detailed Pinout -->
 
 <!-- [//]: # (A detailed pinout diagram of the Expansion Header, showing which pins are multiplexed - see Lazar for an example) -->
+<!-- TODO: add photo -->
 
 ### The ATmega Headers
 
