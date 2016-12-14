@@ -65,13 +65,10 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 ### The ATmega Headers
 
 <!-- [//]: # (breakout of the ATmega's pins, same as the Arduino Uno R3) -->
-<!-- [//]: # (include an image) -->
 
 The ATmega headers are a breakout of the ATmega's pins. They are arranged in the exact same way as an Arduino Uno R3, so all your shields are cross compatible. The pins are also labelled for your convenience.
 
 ![arduino dock atmega headers](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-atmega-header.jpg)
-
-
 
 ### The MicroUSB Port
 
