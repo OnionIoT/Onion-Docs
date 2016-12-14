@@ -11,7 +11,13 @@ order: 5
 <!-- // intro to the gps expansion - has a ublox chip and an antenna that allows you to pickup information from GPS satellites
 // communicates with the Omega serially through USB -->
 
-The GPS Expansion for the is a USB-based expansion that allows your Omega to pinpoint its location using both GPS as well as China’s Beidou satellite positioning systems. It comes with an on-board GPS antenna as well as a built-in u.FL connector to attach your own antenna. It provides up to 1.8m accuracy, 66 search channels, 22 tracking channels, -165 dBM sensitivity and up to 10Hz update rate.
+The GPS Expansion for the is a USB-based expansion that allows your Omega to pinpoint its location using both GPS as well as China’s Beidou satellite positioning systems. It comes with an on-board GPS antenna as well as a built-in u.FL connector to attach your own antenna. It features:
+
+* 1.8m accuracy
+* 66 search channels
+* 22 tracking channels
+* -165 dBM sensitivity
+* up to 10Hz update rate.
 
 ### The Hardware
 
@@ -21,16 +27,16 @@ The GPS Expansion for the is a USB-based expansion that allows your Omega to pin
 //  - usb connection -->
 
 
-The GPS Expansion uses the u-blox GPS receiver which features the high performance u-blox 6 positioning engine. This chip sends the GPS data to the Omega via the USB connection. Simply plug in your GPS expansion into a Dock to get started.
+The GPS Expansion uses a u-blox GPS receiver which features a high performance u-blox 6 positioning engine. This chip sends the GPS data to the Omega via the USB connection. Simply plug in your GPS expansion into a Dock to get started.
 
-You can even change the antenna by disconnected the current antenna, and connecting your antenna to the onboard u.FL connector.
+You can even change the antenna by disconnecting the included antenna and connecting your own to the onboard u.FL connector.
 
 #### Connecting to a Dock
 
 <!-- // plugged into the USB Port -->
 <!-- // have photos of it plugged into the Exp dock, power dock, minidock, and arduino dock 2 -->
 
-The GPS Expansion plugs into a Dock with a USB port. You can also connect a USB hub to a Dock's USB port and use it there.
+The GPS Expansion plugs into a Dock with a USB port. You can also connect a USB hub to a Dock's USB port and connect the GPS Expansion into the hub.
 
 
 ![gps expansion dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-top-expansion-dock.JPG)
@@ -42,7 +48,7 @@ The GPS Expansion plugs into a Dock with a USB port. You can also connect a USB 
 ![gps mini dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-top-mini-dock.JPG)
 
 
-This is one of the few Expansions that doesn't use the Expansion headers, and so you can even use it with the Mini Dock if you'd like!
+This is one of the few Expansions that doesn't require Expansion headers, so you can even use it with the Mini Dock if you'd like!
 
 
 #### At a Glance
@@ -54,11 +60,11 @@ This is one of the few Expansions that doesn't use the Expansion headers, and so
 <!-- // mention the ublox chip model -->
 <!-- // mention that the ublox chip translates the information received from the antenna into NMEA messages the omega can understand - maybe include a link to NMEA documentation -->
 
-The ublox chip used on the GPS expansion is the ublox NEO-6M. This chip translates the information received from the antenna into NMEA messages that the Omega can understand.
+The ublox chip used on the GPS expansion is the **ublox NEO-6M**. This chip translates the information received from the antenna into NMEA messages that the Omega can understand.
 
 >NMEA is the National Marine Electronics Associtation protocol. If you're interested in marine electronics you can read the [wikipedia article on the latest NMEA protocol](https://en.wikipedia.org/wiki/NMEA_2000).
 
-For more on the ublox chip you can read the [ublox chip datasheet][1]
+For more on the ublox chip, see the [ublox chip datasheet][1].
 
 #### USB Connector
 
@@ -70,7 +76,7 @@ The USB connector serves two purposes. By plugging the Expansion into a Dock's U
 
 <!-- // give an example of how this can be used, and when it would be useful (tracking gps location on a roadtrip or something) -->
 
-You can use the GPS Expansion to create cool projects with your Omega! For example you can try your hand at creating a navigation system using the GPS Expansion with the OLED Expansion. Or for a simpler project idea you can create a treasure hunt game that alerts the user when they're in the vicinity of an item for a kids party.
+You can use the GPS Expansion to create cool projects with your Omega! For example, you can try your hand at creating a navigation system using the GPS Expansion with the OLED Expansion. Or for a simpler project, you can create a treasure hunt game that alerts the user when they're in the vicinity of an item for a children's party.
 
 You can learn more about this Expansion by reading our article on [how to use the GPS Expansion](#using-gps-expansion)
 
