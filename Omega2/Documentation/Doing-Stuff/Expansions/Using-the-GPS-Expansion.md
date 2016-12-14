@@ -64,6 +64,8 @@ ubus call gps info
 ```
 If the GPS is not locked, the command will return `signal=false`. In this case you may need to give the GPS more time to lock onto a satellite or you will need to move to a more open area where the gps can see more satellites.
 
+>You may need to go outside in order to lock the GPS signal.
+
 Otherwise you should have an output that looks like this.
 
 ![ubus call success](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/using-gps-expansion-5-ubus-success.png)
