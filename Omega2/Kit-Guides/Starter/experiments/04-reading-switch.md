@@ -6,41 +6,48 @@ devices: [ Omega , Omega2 ]
 order: 4
 ---
 
-# Reading a Switch
+## Reading a Switch
 
 
 <!-- {{!insert 'gpio-input'}} -->
-## GPIO Pins as Input
+```{r child = '../../shared/gpio-input.md'}
+```
+
+### GPIO Pins as Input
 
 
 <!-- {{!insert 'switches'}} -->
-## Switches
+```{r child = '../../shared/switches.md'}
+```
+
+### Switches
 
 
 
 <!-- {{!insert 'switches-slide-switch'}} -->
-## Slide Switches
+```{r child = '../../shared/switches-slide-switch.md'}
+```
+
+### Slide Switches
 
 
 
 
-## Building the Circuit
+### Building the Circuit
 
-// circuit 1: switch controls turning an LED on and off 
+// circuit 1: switch controls turning an LED on and off
 
 // circuit 2: switch connected to GPIO, controls LED with software
 
 
-### Hooking up the Components
+#### Hooking up the Components
 
 
 
-## Writing the Code
+### Writing the Code
 
-### What to Expect
+#### What to Expect
 
-### A Closer Look at the Code
+#### A Closer Look at the Code
 
-#### Polling
-
-
+##### Polling

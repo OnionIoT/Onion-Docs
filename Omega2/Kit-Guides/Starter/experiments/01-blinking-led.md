@@ -40,20 +40,21 @@ The breadboard is the foundation of all of the experiments we're going to do tog
 
 // TO DO: IMAGE: nice photo of a breadboard
 
-The breadboard's sockets are connected electrically in a pretty logical way. The power rails, the vertical columns labelled `+` and `-` that run along the sides of the breadboard are conencted vertically. While the terminal rows, labeled with numbers, are connected horizontally on each side of the middle channel. Meaning that for row 1, columns `a` through `e` are connected together, and columns `f` through `j` are connected together.
+The breadboard's sockets are connected electrically in a pretty logical way. The power rails, the vertical columns labelled `+` and `-` that run along the sides of the breadboard are connected vertically. While the terminal rows, labeled with numbers, are connected horizontally on each side of the middle channel. Meaning that for row 1, columns `a` through `e` are connected together, and columns `f` through `j` are connected together.
 
+// TO DO: IMAGE: image of what sockets are connected in parallel vs in series (basically image of what's being said above)
 
 
 ### Hooking up the Components
 
-Ok, here we go, let's put together our circuit. We're going to be connecting an LED's anode to a GPIO on the Omega{{#if Omega2}}2{{/if}}, and cathode to Ground through a current limiting resistor.
+Ok, here we go, let's put together our circuit. We're going to be connecting an LED's anode to a GPIO on the Omega2, and cathode to Ground through a current limiting resistor.
 
 // TO DO: FRITZING: fritzing circuit diagram of the experiment
 
 1. Plug in the LED into the breadboard, make sure you plug the anode and cathode into different rows and that you know which is plugged where.
-2. Let's choose GPIO0 on the Omega{{#if Omega2}}2{{/if}} to drive our LED, so let's run a jumper wire to the row of the LED's anode.
+2. Let's choose GPIO0 on the Omega2 to drive our LED, so let's run a jumper wire to the row of the LED's anode.
 3. Now connect one end of a (// TO DO: figure out resistance)kΩ resistor to the the cathode row, and the other end to an empty row.
-4. The final step is connecting a jumper wire to a Ground pin on the Omega{{#if Omega2}}2{{/if}}.
+4. The final step is connecting a jumper wire to a Ground pin on the Omega2.
 
 > A note on components with and without polarity: <br>
 > You'll notice  that we were careful to make sure which end of the LED we connected to incoming current and which we connected to ground. This is because LEDs are polarized, so they will only when current is flowing in the correct direction, that is, when they're plugged in the correct way. <br>
@@ -102,7 +103,7 @@ Your LED should be blinking; it should turn on for half a second, and then turn 
 
 // TO DO: GIF: Showing this experiment with the LED blinking
 
-> To exit a program like this one: press Ctrl+c (Cmd+c for Mac users)
+> To exit a program like this one: press `Ctrl+c` (`Cmd+c` for Mac users)
 
 
 ### A Closer Look at the Code

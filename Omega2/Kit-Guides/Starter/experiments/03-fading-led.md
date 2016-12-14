@@ -16,7 +16,7 @@ Pulse Width Modulation (PWM) sounds complicated but in it's essence it's just tu
 
 // TO DO: GRAPHIC: Insert square wave graphic
 
-### Duty Cycle 
+### Duty Cycle
 
 The main method to describing PWM signals is the concept of the Duty Cycle: it tells us the percentage of the time the signal is on - at high voltage.
 
@@ -37,38 +37,44 @@ $$Frequency = {\frac{1}{Period}}%%
 
 We see that the period - the total cycle time - is directly related to the frequency of the PWM signal. A PWM signal with a total cycle time of 20ms has a frequency of 50 Hz. All this means is that the signal will complete 50 full cycles in a second.
 
-### PWM and LEDs 
+### PWM and LEDs
 
 By sending a PWM signal to an LED, we can control how bright that LED appears to shine. What's actually going on is that the LED is turning on and off many, many times in a second. For example, if we send a 50% duty cycle PWM signal at 50 Hz to an LED, it will be on for 10ms, then be off for 10ms, then be on for 10ms and so on. Since the 50 Hz frequency of the PWM signal is faster than 24 Hz, the maximum sensitivity of the average human eye, you won't actually see the LED turning on and off, you'll perceive the LED as being dimmer.
 
- 
+
 
 ## Building the Circuit
 
-We're going to be providing power to the LED just like we did in the two previous experiments. The only difference is the speed at which we turn the LED on and off! 
+We're going to be providing power to the LED just like we did in the two previous experiments. The only difference is the speed at which we turn the LED on and off!
 
 Go ahead and build the same circuit we used in the previous two experiments:
+
 * Plug the LED into the breadboard, with the anode and cathode in different rows
-* Connect the LED's 
-We'll need the same LED circuit we used in the previous two experiments. 
+* Connect the LED's
+
+We'll need the same LED circuit we used in the previous two experiments.
 
 ### Hooking up the Components
 
-
+In this example we'll only be fading a single LED on GPIO 0 so you can following along with either of the circuits from the previous guides.
 
 ## Writing the Code
 
 // need to see if we should use fast-gpio or the PWM pins
 
+<!-- Going to use fast-gpio pwm to avoid any muxing nonsense-->
+
+
+
 
 ### What to Expect
 
+Your LED will start blinking, but each other blink will be a different brightness. The first blink on will be half as bright as the second blink on, and then will alternate.
 
 
 ### A Closer Look at the Code
-
+<!-- TODO: Add stuff about the code here -->
 
 #### Fancy For Loops
 
 // have a for loop that increments the PWM and then halfway through starts decrementing the PWM
-
