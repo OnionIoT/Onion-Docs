@@ -2,20 +2,6 @@
 
 ## Connecting To WiFi Networks in the Command-Line {#connecting-to-wifi-networks-command-line}
 
-<!-- // TODO:
-//  idea: separate the what from the how in this article
-//  lets have a section outlining WHAT is going to happen here:
-//    - enter network info
-//    - connection attempt based on available networks and configured network priority
-//      - super describe what priority means in this case - assume that readers of this article haven't read any of the console articles
-//      - mention that the AP will go down for about a maximum of 30 seconds while the connection is attempted
-//    - talk about the case where connecting to the STA fails - how the AP should come back up afterwards, give a few reasons as to why the connection may have failed (wrong authentication type selected, wrong password entered)
-//
-//  And then we can go over the 3 HOWs:
-//    1) scanning for available networks
-//    2) typing the network info
-//    new section - using command line arguments -->
-
 The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to the Internet. This article will cover what `wifisetup` is, as well as how you can use it to connect your Omega to the Internet.
 
 ### Using `wifisetup`
@@ -41,21 +27,14 @@ Selection: 1
 Scanning for wifi networks...
 
 Select Wifi network:
-1) BYB-Guest
-2) BYB-Corporate
-3) studio six
-4) maya
-5) ITL
-6) maya
-7) EG Energy
-8) maya
-9) Omega_C02759
-10) Authentica
-11) OnionWiFi
-12) Omega-2928
-13) OnionFriends
-14) Orpheus
-15) Omega-18C2
+1) BYB
+2) studio sixteen
+3) EG Energy
+4) mayaaa
+5) Authentic
+6) OnionWiFi
+7) Orpheus
+8) Omega-18C2
 
 Selection:
 ```
@@ -65,7 +44,7 @@ Enter your selection and you will be prompted for a password if required. Your n
 
 
 ```
-Selection: 11
+Selection: 6
 Network: OnionWiFi
 Authentication type: WPA2PSK
 Enter password:
@@ -74,11 +53,9 @@ Enter password:
 Enter your password, and hit enter. Your Omega's network adapter will restart, causing the AP to go down for roughly 30 seconds. Once your network adapter is back up, it will attempt to connect to the network.
 
 
->**The Omega's Network Manager**
-
->The Omega's network manager will attempt to the networks in range that are configured on your Omega. For example, if you have three configured networks (school, home, friend's house) and you're currently at your friend's house, the network manager will immediately attempt to connect to that network.
-
->On the other hand, if you have multiple configured networks in range the Omega will attempt to connect to the network with the highest priority. Priority is defined as most recently configured networks having the lowest priority. This means that adding a network configuration immediately assigns it as the lowest priority.
+<!-- network manager description -->
+```{r child = './Connecting-to-WiFi-Networks-Component-0-network-manager.md'}
+```
 
 
 ### Entering Network Info Manually
@@ -123,11 +100,9 @@ Enter password:
 
 Enter your password, and hit enter. Your Omega's network adapter will restart, causing the AP to go down for roughly 30 seconds. Once your network adapter is back up, it will attempt to connect to the network.
 
->**The Omega's Network Manager**
-
->The Omega's network manager will attempt to the networks in range that are configured on your Omega. For example, if you have three configured networks (school, home, friend's house) and you're currently at your friend's house, the network manager will immediately attempt to connect to your friend's house's network.
-
->On the other hand, if you have multiple configured networks in range the Omega will attempt to connect to the network with the highest priority. Priority is defined as most recently configured networks having the lowest priority. This means that adding a network configuration immediately assigns it as the lowest priority.
+<!-- network manager description -->
+```{r child = './Connecting-to-WiFi-Networks-Component-0-network-manager.md'}
+```
 
 
 
