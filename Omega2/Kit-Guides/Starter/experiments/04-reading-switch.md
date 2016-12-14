@@ -35,16 +35,19 @@ order: 4
 
 ### Building the Circuit
 
-// circuit 1: switch controls turning an LED on and off
+// circuit 1: switch controls turning an LED on and off to illustrate the concept
 
 // circuit 2: switch connected to GPIO, controls LED with software
 
 
 #### Hooking up the Components
 
+// step by step guide of how to hook up the components
 
 
 ### Writing the Code
+
+
 
 #### What to Expect
 

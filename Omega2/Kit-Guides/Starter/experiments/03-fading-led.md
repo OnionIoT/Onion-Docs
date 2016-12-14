@@ -56,25 +56,27 @@ We'll need the same LED circuit we used in the previous two experiments.
 
 ### Hooking up the Components
 
-In this example we'll only be fading a single LED on GPIO 0 so you can following along with either of the circuits from the previous guides.
+In this example we'll only be fading a single LED on GPIO 0 so you can following along with either of the circuits from the previous experiments.
 
 ## Writing the Code
 
-// need to see if we should use fast-gpio or the PWM pins
-
 <!-- Going to use fast-gpio pwm to avoid any muxing nonsense-->
 
+// use fast-pwm to slowly increment the duty cycle on a gpio and then halfway through start decrementing the pwm, so that you get a fading in, and then fading out
+// make it progress slowly so you can tell that its getting brighter and dimmer
 
 
+<!-- TODO: FUTURE: Write using the Omega's PWM pins -->
 
 ### What to Expect
 
-Your LED will start blinking, but each other blink will be a different brightness. The first blink on will be half as bright as the second blink on, and then will alternate.
+// Your LED will fade in and then out, describe this and have a gif
 
 
 ### A Closer Look at the Code
-<!-- TODO: Add stuff about the code here -->
+
+
 
 #### Fancy For Loops
 
-// have a for loop that increments the PWM and then halfway through starts decrementing the PWM
+// have a for loop that increments the PWM and then halfway through starts decrementing the PWM - when you reach halfway, multiply the value by which you increment by -1 :)
