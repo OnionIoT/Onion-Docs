@@ -53,7 +53,10 @@ echo heartbeat > /sys/class/leds/onion\:amber\:system/trigger
 When you execute this command, your shell actually writes the word `heartbeat` to the file, and the kernel passes the message to the corresponding handlers.
 
 Your Omega's LED should start blinking like a heartbeat now.
-<!-- TODO: add gif of the heartbeat trigger on an Omega -->
+
+![upload-file-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/heartbeat.gif)
+
+
 Let's experiment with other triggers!
 
 #### The Timer Trigger Mode
@@ -72,7 +75,7 @@ For a rapidly blinking LED you can enter these two commands:
 echo 75 > /sys/class/leds/onion\:amber\:system/delay_on
 echo 75 > /sys/class/leds/onion\:amber\:system/delay_off
 ```
-<!-- TODO: add gif of the rapid blink on an Omega -->
+![upload-file-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/rapid-blink.gif)
 
 For an LED that stays on for longer than it's off, enter these two commands:
 
@@ -80,7 +83,7 @@ For an LED that stays on for longer than it's off, enter these two commands:
 echo 500 > /sys/class/leds/onion\:amber\:system/delay_on
 echo 120 > /sys/class/leds/onion\:amber\:system/delay_off
 ```
-<!-- TODO: add gif of the slow blink on an Omega -->
+![upload-file-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/slow-fast-blink.gif)
 
 Feel free to experiment with other combinations.
 
@@ -108,7 +111,7 @@ echo sos > /sys/class/leds/onion\:amber\:system/message
 ```
 
 My LED is blinking really quickly, and it's hard to read. Let's change the speed of the message with the following command:
-<!-- TODO: add gif of the fast SOS blink on an Omega -->
+![upload-file-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sos-fast.gif)
 
 ```
 echo 150 > /sys/class/leds/onion\:amber\:system/delay
@@ -116,4 +119,4 @@ echo 150 > /sys/class/leds/onion\:amber\:system/delay
 
 That slowed it down nicely.
 
-<!-- TODO: add gif of the slow SOS blink on an Omega -->
+![upload-file-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sos-slow.gif)

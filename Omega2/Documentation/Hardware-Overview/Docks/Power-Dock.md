@@ -30,7 +30,16 @@ The Micro-USB port supplies 5V to the Dock. This voltage is stepped down to the 
 
 ### Connecting an Omega
 
-<!-- [//]: # (picture guide on how to properly plug in an Omega) -->
+To connect an Omega to the Power Dock, line up the Omega's edges with that of the Power Dock's as demonstrated below:
+
+![power dock plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-top-plugged-in.JPG)
+
+Make sure your Omega is pushed all the way down as demonstrated in the picture below:
+
+
+![power dock side view](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-side-view.JPG)
+
+You may need to line up the pins with the holes before pressing the Omega into the Dock.
 
 <!-- ### The Power Dock at a Glance -->
 
@@ -78,11 +87,12 @@ The power dock contains 4 LEDs that indicate the current battery level and charg
 
 Lowest Battery Level:
 
-![Lowest Indicator Level](http://i.imgur.com/nSp3ylGl.jpg)
+![Lowest Indicator Level](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-lowest-indicator.jpg)
 
 Highest Battery Level:
 
-![Highest Indicator Level](http://i.imgur.com/m9CPAfel.jpg)
+![Highest Indicator Level](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-highest-indicator.jpg)
+
 
 ### The Battery Connector
 
@@ -151,11 +161,11 @@ The Power Dock operates in three different modes.
 
 This is the most important mode; when the Omega and Power Dock are running completely off the battery. The LED Indicators will be turned off by default to conserve battery life, however they can be turned on for five seconds via a command from the Omega.
 
-![Toggle Indicator LEDs on](http://i.imgur.com/DDKiAsP.gif)
+![Toggle Indicator LEDs on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-command-line.jpg)
 
 When the battery is approaching depletion the Indicator LEDs will begin flashing the low battery warning:
 
-![indicator flashing low battery](http://i.imgur.com/W8LPY77.gif)
+![indicator flashing low battery](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-0-25.jpg)
 
 
 <!-- Usage Modes: Charging Mode -->
@@ -174,16 +184,16 @@ Take a look at the animations below for more details on the battery level indica
 
 Battery is **25%** charged, charging up to **50%**:
 
-![charging - 25% full](http://i.imgur.com/MsLDmLB.gif)
+![charging - 25% full](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-25-50.jpg)
 
 
 Battery is **50%** charged, charging up to **75%**:
 
-![charging - 50% full](http://i.imgur.com/UjZR5iz.gif)
+![charging - 50% full](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-50-75.jpg)
 
 Battery is **75%** charged, charging up to **100%**:
 
-![charging - 75% full](http://i.imgur.com/nt65BBB.gif)
+![charging - 75% full](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-75-100.jpg)
 
 
 <!-- Usage Modes: Stationary Mode -->
@@ -192,7 +202,7 @@ Battery is **75%** charged, charging up to **100%**:
 
 The Power Dock will still work when the battery is disconnected and the Power Dock is receiving power just from the Micro USB cable. The Battery Level Indicator LEDs will be flashing erratically, this is expected:
 
-![Flickering indicators](http://i.imgur.com/GQz7dvT.gif)
+![Flickering indicators](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-stationary-mode.jpg)
 
 The Power Dock essentially acts like the Expansion Dock in this mode.
 
@@ -224,9 +234,19 @@ The application will turn on the Battery Level Indicator LEDs, allowing you to v
 power-dock
 ```
 
-![Toggle Indicator LEDs on](http://i.imgur.com/DDKiAsP.gif)
+You'll see the following output in the command line:
 
-[//]: # (Add section describing the text output of the battery level)
+```
+root@Omega-2757:/# power-dock
+> Enabling Battery Level Indicator
+```
+
+And the battery LEDs will turn on for 5 seconds:
+
+![Toggle Indicator LEDs on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-command-line.jpg)
+
+<!-- [//]: # (Add section describing the text output of the battery level) -->
+
 
 
 #### Controlling the GPIOs
