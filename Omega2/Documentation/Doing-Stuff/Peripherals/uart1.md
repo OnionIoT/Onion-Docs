@@ -105,7 +105,7 @@ The above commands don't do anything useful if you don't have any serial devices
 
 Simply connect the Omegas's `RX` and `TX` pins together as shown below; the `GND` connection is shared between the pins already.
 
-![connect-rx-tx](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/)
+![connect-rx-tx](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/uart-omega-jumpered)
 
 Now open two separate command line sessions on your Omega. It's easiest to connect via SSH in **two separate terminals** from your computer.
 
@@ -118,7 +118,7 @@ You will see your message appear in the terminal running `cat`. And that's the b
 
 ### Using the `screen` Command
 
-The above method is a great way to introduce using UART, but it's not all that practical. By using the `screen` command, we can begin to communicate back and forth between our Omega and connected devices.
+The above method is a great way to introduce using UART, but it's not all that practical. By using the `screen` command, we can actually send commands to other Omegas or connected devices.
 
 #### Installing Screen
 
@@ -215,3 +215,4 @@ You can use PySerial by connecting a device to your Omega's USB type-A port. For
 
 <!-- // give a small example example script on how to use the UART
 // potential example: Omega A's UART1 is connected to Omega B's UART0, can send commands from Omega A and find out stuff about Omega B, the hostname, mac addr, that sort of thing, iunno -->
+
