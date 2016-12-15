@@ -27,7 +27,7 @@ Since relays are essentially switches, they can be used as switches in other cir
 
 We can build this circuit without the switch:
 
-![LED Circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-circuit-1.jpg)
+![LED Circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-1.jpg)
 
 Next, we will add the Omega and Relay Expansion to act as the switch:
 
