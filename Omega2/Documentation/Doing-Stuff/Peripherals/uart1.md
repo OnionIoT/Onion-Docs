@@ -8,8 +8,6 @@ order: 3
 
 ## Communicating with Serial Devices {#uart1}
 
-<!-- // TODO: insert in a logical place that uart is one device to one device, cannot connect multiple devices together -->
-
 
 A **universal asynchronous receiver/transmitter (UART)** is a device used for serial communication between two devices. The Omega comes with two UART devices: `UART0`, and `UART1`. `UART0` is largely used for outputting the Omega's command line, and `UART1` is free to communicate with other devices.
 
@@ -33,6 +31,8 @@ A UART is used for serial communication between devices. UART has no master-slav
 The UART on the Omega formats the data using the **8N1 configuration**, in which there are **8** data bits, **No** parity bit, and **one** stop bit.
 
 ![uart data frame](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-data-frame.png)
+
+#### Connecting UART Devices {#connecting-uart-devices}
 
 The UART uses the TX line to **transmit** data, and RX to **receive** data. When communicating with other devices, the TX on device A will send data to the RX on device B and vice versa.
 
@@ -172,25 +172,30 @@ Both terminals will now go blank, waiting for your input.
 
 Now start typing `hello world!` in the first terminal, and the words will start to appear in the second!
 
-To exit the `screen` command, type `Ctrl-a` then `d` (for "detach").
+This can be also done with 2 Omegas by connecting their `TX1`, `RX1`, and `GND` pins as described in [Connecting UART Devices](#connecting-uart-devices).
 
-// TODO: ctrl-a + k will actually kill the session, detach is useful if you want to come back to it
+#### Working With `screen` Sessions
 
-This can be also done with 2 Omegas by connecting their `TX1`, `RX1`, and `GND` pins as described earlier in this article.
+* To detach from the `screen` session and leave it running so you can come back to it later, type `Ctrl-a` then `d`.
+    * For detailed information on how to work with attaching and reattaching, see the [Screen User's Manual](https://www.gnu.org/software/screen/manual/screen.html).
+* To kill (end) a session, type `Ctrl-a` then `k`.
 
-// TODO: do we actually mention this?
+Detaching from a `screen` process does not end it, ie. it is still running. If you start and detach from several `screen` processes, these will begin to tie up your Omega's memory.
 
-#### Removing Old `screen` Processes
-
-Exiting a `screen` process does not end it, ie. it is still running. If you start and exit several `screen` processes, these will begin to tie up your Omega's memory.
-
-To kill (end) all `screen` processes, copy and paste the following command:
+To kill all `screen` processes, copy and paste the following command:
 
 ```bash
 for pid in $(ps  | grep "screen" | awk '{print $1}'); do kill -9 $pid; done
 ```
 
-// TODO: pls include a description of this command, its hella indimidating
+This big command essentially does the following:
+
+1. Get the list of running processes using `ps`
+1. Pipe (send) it to the `grep` command and search for process names containing the word `screen`
+    * `grep` is a powerful utility to analyze text using regular expressions.
+1. Pipe those processes' information to `awk`, which outputs their process IDs
+    * `awk` is another powerful utility that can perform 
+1. `kill` each of the process IDs corresponding to `screen`
 
 <!-- // the command is: `screen /dev/ttyS1 <BAUD RATE>`
 // will show a new screen (ha-ha) that will print any incoming data, you can type and press enter to send commands -->

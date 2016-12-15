@@ -59,8 +59,6 @@ The I2C pins (SCL and SDA) on the Omega2 and Expansion Dock are highlighted belo
 
 ### Controlling I2C Devices from the Command line
 
-<!-- // TODO: add a little intro the the two command line utilities that we'll be using. note that i2c communication with these tools is register based. Have a sentence or two explaining what resisters are and how we use them -->
-
 We'll be using two command line utilities, `i2cget` and `i2cset`, to work with I2C devices. These tools work by accessing data stored in **registers** on the device. A register is a location in a device's memory. When reading from/writing to an I2C device, you need to specify the register on the device that you want to access.
 
 <!-- #### Detecting I2C devices -->
