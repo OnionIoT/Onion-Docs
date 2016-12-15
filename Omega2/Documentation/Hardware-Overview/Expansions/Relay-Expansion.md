@@ -16,11 +16,8 @@ This Expansion communicates with the Omega using the I2C protocol. If you're cur
 
 The Relay Expansion is designed so you can stack multiple Relay Expansions onto the same Omega. Each board comes with a small switch used to give it a unique address, and up to 8 Relay Expansions can be controlled by a single Omega. This means you can control up to 16 external circuits and devices!
 
-<!-- TODO: The above sentence needs to also mention that you can stack any expansion on top. Or that needs to be specified in the connecting to a dock section. -->
 
 ### The Hardware
-
-<!-- TODO: Add a spiel about the fact that there are two relays or whatever. -->
 
 The Relay Expansion comes with 2 electromagnetic relays with screw terminals.
 

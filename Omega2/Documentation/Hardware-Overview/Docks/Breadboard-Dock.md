@@ -13,12 +13,14 @@ order: 5
 
 The Breadboard Dock is the perfect solution for building breadboard circuits with the Omega. This Dock can be plugged into a breadboard, and the pins of the dock are mapped 1-to-1 as on the Omega.
 
-The Breadboard Dock provides power to the Omega via a Micro-USB port that takes in 5V. This voltage is stepped down to the 3.3V required to power the Omega.
-
 
 ### The Hardware
 
 <!-- // overview of the dock -->
+
+The Breadboard Dock provides power to the Omega via a Micro-USB port that takes in 5V. This voltage is stepped down to the 3.3V required to power the Omega.
+
+All of the Omega's pins are broken out via a breadboard header. You can use this Dock with your own circuits, custom embedded applications, or just for hacking!
 
 #### Connecting an Omega
 
@@ -31,6 +33,8 @@ Connect your Omega to the Breadboard Dock by lining up the two rows of header pi
 #### The Breadboard Dock at a Glance
 
 <!-- https://wiki.onion.io/Tutorials/Expansions/Using-the-Power-Dock#the-hardware_the-power-dock-at-a-glance for an example) -->
+
+![breadboard-dock-illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/breadboard-dock-illustration.jpg)
 
 #### The Breadboard Header
 
