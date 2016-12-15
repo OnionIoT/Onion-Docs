@@ -8,50 +8,9 @@ The Omega comes ready with a command-line tool called `wifisetup` that makes it 
 
 To begin setting up your connection to the Internet, enter `wifisetup` in a terminal, and you'll see the following output:
 
+<!-- wifisetup option 1 output -->
+```{r child = './Connecting-to-WiFi-Networks-Component-1-wifisetup-option-1.md'}
 ```
-root@Omega-2757:/# wifisetup
-Onion Omega Wifi Setup
-
-Select from the following:
-1) Scan for Wifi networks
-2) Type network info
-q) Exit
-
-Selection:
-```
-
-You can enter `1`, and your Omega will scan for available networks:
-
-```
-Selection: 1
-Scanning for wifi networks...
-
-Select Wifi network:
-1) BYB
-2) studio sixteen
-3) EG Energy
-4) mayaaa
-5) Authentic
-6) OnionWiFi
-7) Orpheus
-8) Omega-18C2
-
-Selection:
-```
-
-
-Enter your selection and you will be prompted for a password if required. Your network authentication type will be automatically detected in the scan:
-
-
-```
-Selection: 6
-Network: OnionWiFi
-Authentication type: WPA2PSK
-Enter password:
-```
-
-Enter your password, and hit enter. Your Omega's network adapter will restart, causing the AP to go down for roughly 30 seconds. Once your network adapter is back up, it will attempt to connect to the network.
-
 
 <!-- network manager description -->
 ```{r child = './Connecting-to-WiFi-Networks-Component-0-network-manager.md'}

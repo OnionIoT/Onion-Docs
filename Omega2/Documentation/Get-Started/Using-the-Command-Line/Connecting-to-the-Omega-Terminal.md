@@ -25,7 +25,7 @@ Both methods have their advantages and disadvantages. We recommend using SSH sin
 >This interface may seem overwhelming at first, but if you take the time to learn the basic commands you'll find that it's an incredibly powerful and useful tool to have in your toolbox.
 
 
-### Connecting with SSH
+### Connecting with SSH {#connecting-to-the-omega-terminal-ssh}
 
 SSH stands for **Secure Shell** . It's a network protocol that creates a secure channel for communication between two devices on the same network. It can be used to secure many different types of communication, but here we'll be using it to login to the Omega's command prompt.
 

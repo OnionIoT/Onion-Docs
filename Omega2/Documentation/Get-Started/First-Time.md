@@ -2,6 +2,9 @@
 
 Follow along with this guide to set up your Omega2 for the first time. We'll first learn how to properly connect your Omega to a Dock and power it up. Then we'll connect to it to use the Setup Wizard to have it connect to your WiFi network and then do some updates.
 
+> If you experience issues at any point in the process, try checking our [Troublshooting guide](#first-time-troubleshooting).
+
+
 <!-- Second sentence above is awkward -->
 
 <!-- Prepare the Hardware -->
@@ -34,7 +37,7 @@ You have now arrived at the Setup Wizard:
 
 ![Browse to Setup Wizard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-2-wizard-start.png "Browse to Setup Wizard")
 
-Login with the following information:
+Login with the Omega's default credentials:
 ```
 username: root
 password: onioneer
@@ -42,11 +45,15 @@ password: onioneer
 
 ![Setup Wizard Login](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-3-wizard-login.png "Browse to Setup Wizard")
 
-After you've logged in you'll be asked to connect to a Wireless Network. This is **MANDATORY** in order to complete the setup-wizard.
+After you've logged in you'll be asked to connect to a Wireless Network. This is **MANDATORY** in order to complete the Setup Wizard.
 
 ![Setup Wizard wifi configure](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-4-wizard-wifi-configure.png)
 
-Enter your Wireless Network information and click configure. Your Omega will attempt to connect to the network. This can take up to a minute to complete. Once connected, you will be moved to the next step.
+Enter your Wireless Network information and click Configure. Your Omega will attempt to connect to the network. This can take up to a minute to complete.
+
+> The Omega's AP will go down and not be accessible during this process, sit tight, it'll come back up when the configuration is done!
+
+Once connected, you will be moved to the next step.
 
 ![Setup Wizard configuring](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-5-wizard-wifi-configuring.png)
 
@@ -78,4 +85,4 @@ Start using your fresh Omega, check out the [Using the Omega section](#doing stu
 
 ### The Setup Wizard Didn't Work!
 
-If for some reason the Setup Wizard wasn't able to get your Omega up and running, try the steps in the [First Time Using the Command Line guide](#first-time-setup-command-line).
+If for some reason the Setup Wizard wasn't able to get your Omega up and running, try the steps in the [First Time Setup using the Command Line guide](#first-time-setup-command-line) or see the  [Troublshooting guide](#first-time-troubleshooting).

@@ -1,5 +1,5 @@
 
-## Troubleshooting
+## Troubleshooting {#first-time-troubleshooting}
 
 ### My Omega won't fit into the Dock!
 

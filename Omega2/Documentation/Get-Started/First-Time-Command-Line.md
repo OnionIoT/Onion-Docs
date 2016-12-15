@@ -1,4 +1,4 @@
-## First Time Setup Using the Command Line {#first-time-setup-command-line}
+## First Time Setup using the Command Line {#first-time-setup-command-line}
 
 <!--  TODO: edit this a intro a little to make it smoother -->
 
@@ -11,6 +11,8 @@ Follow along with this guide to set up your Omega2 for the first time using the 
 1. Connecting your Omega to a Dock and powering it on.
 1. Connecting to its command line terminal.
 1. Configuring it to join your WiFi network and then do some updates.
+
+> If you experience issues at any point in the process, try checking our [Troublshooting guide](#first-time-troubleshooting).
 
 <!-- Prepare the Hardware -->
 ```{r child = './First-Time-Components/Hardware-Prep.md'}
@@ -37,7 +39,7 @@ Follow along with this guide to set up your Omega2 for the first time using the 
 
 We'll use SSH to connect to the Omega's command line.
 
->To learn how to connect to the Omega's terminal you can read our [guide to connecting to the Omega](#connecting-to-the-omega-terminal). Find the section labelled "Connecting with SSH".
+>To learn how to connect to the Omega's terminal you can read our [guide to connecting to the Omega with SSH](#connecting-to-the-omega-terminal-ssh).
 
 #### Provision the Omega's WiFi
 
@@ -45,60 +47,12 @@ Now let's connect the Omega to your WiFi network to give it Internet access. We'
 
 Enter `wifisetup` in a terminal and you'll see the following output:
 
+<!-- wifisetup option 1 output -->
+```{r child = './Using-the-Command-Line/Connecting-to-WiFi-Networks-Component-1-wifisetup-option-1.md'}
 ```
-root@Omega-2757:/# wifisetup
-Onion Omega Wifi Setup
-
-Select from the following:
-1) Scan for Wifi networks
-2) Type network info
-q) Exit
-
-Selection:
-
-```
-
-You can enter `1`, and your Omega will scan for available networks:
-
-```
-Selection: 1
-Scanning for wifi networks...
-
-Select Wifi network:
-1) BYB-Guest
-2) BYB-Corporate
-3) studio six
-4) maya
-5) ITL
-6) maya
-7) EG Energy
-8) maya
-9) Omega_C02759
-10) Authentica
-11) OnionWiFi
-12) Omega-2928
-13) OnionFriends
-14) Orpheus
-15) Omega-18C2
-
-Selection:
-```
-
-
-Enter your selection number and you will be prompted for a password if required. Your network authentication type will be automatically detected in the scan:
-
-
-```
-Selection: 11
-Network: OnionWiFi
-Authentication type: WPA2PSK
-Enter password:
-```
-
-Enter your network's password. Your Omega's network adapter will now restart, causing the AP to go down for roughly 30 seconds. Once your network adapter is back up, it will attempt to connect to the network.
 
 > For more on the Omega's wireless capabilities, see [our guide to the Omega and Wireless](#the-omega-and-wireless-connectivity).
-
+>
 >To learn more about configuring the Omega's WiFi connection, see [our guide to using the command line to connect to WiFi](#connecting-to-wifi-networks-command-line).
 
 ### Update the Omega's Firmware
@@ -116,3 +70,7 @@ Now you're all done!
 Start using your fresh Omega and check out the [Using the Omega section](#doing stuff) for ideas on what the Omega can do!
 <!-- Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next! -->
 <!-- TODO: fix the links above when the content is available -->
+
+### This Didn't Work!
+
+Try checking our [Troublshooting guide](#first-time-troubleshooting) or posting on the [Onion Community](http://community.onion.io).
