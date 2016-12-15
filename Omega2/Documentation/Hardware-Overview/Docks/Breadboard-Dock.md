@@ -3,7 +3,7 @@ title: Breadboard Dock
 layout: guide.hbs
 columns: two
 devices: [ Omega2 ]
-order: 4
+order: 5
 ---
 
 
