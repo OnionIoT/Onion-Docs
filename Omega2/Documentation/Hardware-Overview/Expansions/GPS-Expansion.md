@@ -62,7 +62,7 @@ This is one of the few Expansions that doesn't require Expansion headers, so you
 
 The ublox chip used on the GPS expansion is the **ublox NEO-6M**. This chip translates the information received from the antenna into NMEA messages that the Omega can understand.
 
->NMEA is the National Marine Electronics Associtation protocol. If you're interested in marine electronics you can read the [wikipedia article on the latest NMEA protocol](https://en.wikipedia.org/wiki/NMEA_2000).
+>NMEA is the National Marine Electronics Association protocol. If you're interested in marine electronics you can read the [Wikipedia article on the latest NMEA protocol](https://en.wikipedia.org/wiki/NMEA_2000).
 
 For more on the ublox chip, see the [ublox chip datasheet][1].
 

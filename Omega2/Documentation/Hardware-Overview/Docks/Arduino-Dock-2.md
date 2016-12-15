@@ -70,9 +70,11 @@ It follows the same layout as the Expansion Header found on the Expansion Dock a
 
 The ATmega headers are a breakout of the ATmega's pins. They are arranged and spaced in the exact same way as an Arduino Uno R3, so all your Arduino Shields are compatible. These pins are also labelled for your convenience.
 
-Note that the ATmega runs on 5V and therefore its pins' logical high voltage levels is 5V.
+>Note: Remember that the ATmega runs on 5V, and therefore it reads 5V as logical high.
 
-<!-- TODO: fix the above sentence -->
+<!-- Note that the ATmega runs on 5V and therefore its pins' logical high voltage levels is 5V. -->
+
+<!-- DONE: fix the above sentence -->
 
 ![arduino dock atmega headers](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-atmega-header.jpg)
 
@@ -83,9 +85,9 @@ The MicroUSB Port is used to supply power to the Arduino Dock, which in turn sup
 The MicroUSB Port receives 5V power and uses it directly to power the ATmega328P chip. The Dock comes equipped with a voltage regulator to step the voltage down to the required 3.3V for the Omega.
 
 
-#### No USB-to-Serial
-
-There is no USB-to-Serial Chip on the Breadboard Dock. This means that you will **not** be able to connect to the Omega serially over the Micro-USB port.
+<!-- No-USB-to-Serial -->
+```{r child = '../shared/Hardware-Overview-Component-3-No-USB-to-Serial.md'}
+```
 
 
 ### DC Barrel Jack
@@ -95,22 +97,9 @@ The DC barrel jack may also be used to provide power to the Omega using a DC pow
 **Note that the Arduino Dock's DC barrel jack should only be used with 5V DC power supplies. If a higher voltage is used, your Omega and Arduino Dock have a high chance of being damaged!**
 
 
-### Reset Button
-
-<!-- [//]: # (reset button is connected directly to the Omega's reset GPIO, can be used to just trigger a reboot or even a full factory restore) -->
-
-The Omega Reset Button on the Arduino Dock is connected directly to the Omega's Reset GPIO. Pressing this button does one of two things: reboot, or factory restore.
-
-
-#### Reboot
-
-Momentarily pressing the reset button and letting go will initiate a reboot of the Omega OS.
-
-#### Factory Restore
-
-Pressing and holding the reset button for 10 seconds and releasing will trigger a factory restore.
-
-**Warning**: This will reset your Omega to the default filesystem of the last firmware update. **This will delete ALL of your data!**
+<!-- Reset Button -->
+```{r child = '../shared/Hardware-Overview-Component-0-Reset-Button.md'}
+```
 
 ### Micro-Controller Reset Button
 
@@ -118,11 +107,9 @@ Pressing and holding the reset button for 10 seconds and releasing will trigger 
 
 In addition to the Omega's reset button, the Arduino Dock 2 comes with a microcontroller reset button. This button can be used to reset the ATmega chip whenever you'd like. This will **NOT** reset the Omega.
 
-### Omega USB Port
-
-<!-- [//]: # (USB port connected to the Omega - interface USB devices with the Omega, mention that it's a type A connector) -->
-
-The Omega's USB Port can be used to connect to all sorts of devices, namely a USB storage device to extend the storage space of your Omega. The USB port supports USB 2.0, and is a type A connector.
+<!-- USB Port -->
+```{r child = '../shared/Hardware-Overview-Component-5-Omega-USB-Port.md'}
+```
 
 
 ### Omega to ATmega MCU Connections

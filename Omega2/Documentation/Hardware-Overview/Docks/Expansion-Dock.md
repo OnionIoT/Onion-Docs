@@ -55,53 +55,25 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 
 <!-- [//]: # (A detailed pinout diagram of the Expansion Header, showing which pins are multiplexed - see Lazar for an example) -->
 
-### The Micro-USB Port
+<!-- Micro USB Port -->
+```{r child = '../shared/Hardware-Overview-Component-1-Micro-USB-Port.md'}
+```
 
-<!-- [//]: # (explain that it provides power to the omega, mention that the Omega is powered by 3.3V and that the Dock has a regulator to take the 5V from the microUSB and step it down to 3.3V) -->
+<!-- USB-to-Serial -->
+```{r child = '../shared/Hardware-Overview-Component-2-USB-to-Serial.md'}
+```
 
-The Micro-USB Port is used to supply power to the Expansion Dock, which in turn supplies power to the Omega and the Onion Expansions. It can also be used to connect to the Omega's serial terminal.
+<!-- USB-to-Serial -->
+```{r child = '../shared/Hardware-Overview-Component-4-Power-Switch.md'}
+```
 
-The Micro-USB Port takes in 5V, and the Expansion Dock comes equipped with a voltage regulator to step the voltage down to the required 3.3V for the Omega.
+<!-- Reset Button -->
+```{r child = '../shared/Hardware-Overview-Component-0-Reset-Button.md'}
+```
 
-
-#### USB-to-Serial
-
-<!-- [//]: # (explanation that there is a usb to serial chip on-board that allows for a serial connection between the Omega and a computer) -->
-<!-- [//]: # (LATER: add link to the connecting to the omega with serial article) -->
-
-The USB-to-Serial chip allows for a serial connection between the Omega and a computer using the Micro-USB port. You can connect a Micro-USB to USB cord from the Omega to your computer, open a terminal, and connect to the Omega via a COM port as opposed to SSH.
-
-<!-- To learn more about the various ways you can connect to the Omega you can read our [guide to connecting to the Omega](#connecting-to-the-omega) -->
-
-### Power Switch
-
-<!-- [//]: # (inform them of what the power switch will do: cut power to the Omega but keep the USB to serial chip running) -->
-<!-- [//]: # (have illustrations showing the ON and OFF positions) -->
-
-The Power Switch is located on the far side of the Expansion Dock, away from the Omega. This switch will cut power to the Omega, but not the serial chip. This means your computer will still detect a USB serial device, but will not be able to communicate with the Omega.
-
-### Reset button
-
-<!-- [//]: # (reset button is connected directly to the Omega's reset GPIO, can be used to just trigger a reboot or even a full factory restore) -->
-
-The Reset Button on the Expansion Dock is connected directly to the Omega's Reset GPIO. Pressing this button do one of two things: reboot, or factory restore.
-
-
-#### Reboot
-
-Momentarily pressing the reset button and letting go will initiate a reboot of the Omega's Operating System.
-
-#### Factory Restore
-
-Pressing and holding the reset button for 10 seconds before releasing will trigger a factory restore.
-
-**Warning:** This will reset your Omega to the default filesystem of the last firmware update, **this will delete ALL of your data!**
-
-### Omega USB Port
-
-<!-- [//]: # (USB port connected to the Omega - interface USB devices with the Omega, mention that it's a type A connector) -->
-
-The Omega's USB Port can be used to connect to all sorts of devices, namely a USB storage device to extend the storage space of your Omega. The USB port supports USB 2.0, and is a type A connector.
+<!-- USB Port -->
+```{r child = '../shared/Hardware-Overview-Component-5-Omega-USB-Port.md'}
+```
 
 ### RGB LED
 

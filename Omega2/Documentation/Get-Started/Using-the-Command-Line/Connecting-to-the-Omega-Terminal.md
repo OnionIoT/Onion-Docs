@@ -282,7 +282,7 @@ And paste your public key into it.
 From now on, you'll be able to securely connect to your Omega without having to type out a password every time.
 
 
-### Connecting via Serial
+### Connecting via Serial {#connecting-to-the-omega-terminal-serial}
 <!-- TODO: figure out how to arrange the headers in this article -->
 
 The Omega's command prompt can also be accessed with a USB cable, as long as your **Omega is docked in either an Expansion Dock or a Mini Dock**. What's happening is that the Omega is using its UART pins to run a terminal, the USB-to-Serial chip found on the Dock is translating the Serial Terminal signals into USB signals that your computer can understand and vice versa.

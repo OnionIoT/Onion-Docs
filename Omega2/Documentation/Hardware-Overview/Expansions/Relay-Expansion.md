@@ -76,7 +76,7 @@ The green block on the board is called the *terminal block*. It houses 4 termina
 
 #### The Address Switch
 
-The address switch allows you to change the I2C address of the board. This is needed to differentiate multiple Relay Expansions from each other when connected to the same Omega. 
+The address switch allows you to change the I2C address of the board. This is needed to differentiate multiple Relay Expansions from each other when connected to the same Omega.
 
 ![address-switch](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-address-switch.jpg)
 

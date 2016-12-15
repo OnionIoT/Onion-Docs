@@ -64,13 +64,10 @@ The Micro-USB Port is used to supply power to the Power Dock. Connect the Dock t
 <!-- [//]: # (fix up this text...) -->
 
 
-***No USB to Serial Chip***
+<!-- No-USB-to-Serial -->
+```{r child = '../shared/Hardware-Overview-Component-3-No-USB-to-Serial.md'}
+```
 
-There is no USB-to-Serial Chip on the Power Dock. This means that you will **not** be able to connect to the Omega serially over the Micro-USB port.
-
-<!-- [//]: # (add a link to connecting to your Omega with ssh aricle) -->
-
-<!-- You can still connect to your Omega's terminal with SSH. You can learn how to do that in this [guide to connecting to the Omega](#connecting-to-the-omega) -->
 
 ### The Power Switch
 
@@ -105,29 +102,14 @@ Expect a 1500mAh battery to last about 10 hours, in some cases, up to 12 hours.
 **Warning:** Do not attempt to charge your battery with anything other that the Power Dock or a charger designed specifically for LiPo Batteries!
 
 
-### Reset Button
-
-The Reset Button can be used to reboot the Omega or perform a factor restore of the firmware.
-A Reset Button can be found on the Expansion Dock and Mini Dock:
-
-For reference, the Reset Button is connected to Omega's GPIO11. GPIO11 is the Omega's Active-High Soft Reset input.
-
-#### Reboot
-
-Momentarily pressing the reset button and letting go will initiate a reboot of the Omega OS.
-
-#### Factory Restore
-
-Pressing and holding the reset button for 10 seconds and releasing will trigger a factory restore.
-
-**Warning:** This will reset your Omega to the default filesystem of the last firmware update, this **will delete ALL of your data!**
+<!-- Reset Button -->
+```{r child = '../shared/Hardware-Overview-Component-0-Reset-Button.md'}
+```
 
 
-### Omega USB Port
-
-<!-- [//]: # (USB port connected to the Omega - interface USB devices with the Omega, mention that it's a type A connector) -->
-
-The USB Host Port is connected to the Omega and can be used to interface USB peripherals with the Omega. A large variety of devices are supported out of the box, including webcams, keyboards, flash drives, hard drives, etc.
+<!-- USB Port -->
+```{r child = '../shared/Hardware-Overview-Component-5-Omega-USB-Port.md'}
+```
 
 
 
