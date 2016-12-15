@@ -75,3 +75,7 @@ When the firmware installation is complete you'll also see the page below, notif
 Start using your fresh Omega, check out the [Using the Omega section](#doing stuff) for ideas on what the Omega can do!
 <!-- Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next! -->
 <!-- TODO: fix the links above when the content is available -->
+
+### The Setup Wizard Didn't Work!
+
+If for some reason the Setup Wizard wasn't able to get your Omega up and running, try the steps in the [First Time Using the Command Line guide](#first-time-setup-command-line)

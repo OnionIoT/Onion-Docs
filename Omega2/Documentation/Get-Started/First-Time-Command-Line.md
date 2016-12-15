@@ -1,15 +1,16 @@
-## Setup Using the Command Line {#first-time-setup-command-line}
+## First Time Setup Using the Command Line {#first-time-setup-command-line}
 
 <!--  TODO: edit this a intro a little to make it smoother -->
 
-Follow along with this guide to set up your Omega2 for the first time. We'll be doing the following:
+Follow along with this guide to set up your Omega2 for the first time using the command line.
+
+***Follow this guide only if the Setup Wizard was not able to get your Omega2 up and running. If the Setup Wizard succeeded, you don't have to go through these steps!***
+
+ We'll be doing the following:
 
 1. Connecting your Omega to a Dock and powering it on.
 1. Connecting to its command line terminal.
 1. Configuring it to join your WiFi network and then do some updates.
-
-***If you've already gone through the Setup Wizard, you don't need to follow this guide. This is how to do the same setup process using the command line.***
-
 
 <!-- Prepare the Hardware -->
 ```{r child = './First-Time-Components/Hardware-Prep.md'}
