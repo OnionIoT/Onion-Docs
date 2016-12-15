@@ -61,7 +61,7 @@ UART interactions on the Omega2 are done using the virtual device files `/dev/tt
 
 The UART pins are highlighted on the Omega2, Expansion Headers, and Breadboard Dock below.
 
-![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/uart-pins-omega2.jpg)
+![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-pins-omega2.jpg)
 
 Pins `12` and `13` are used for `UART0`. These are primarily used for the command line on the Omega.
 
@@ -69,13 +69,13 @@ The `UART1` uses pins `45` and `46`. These are labelled as `TX1` and `RX1` to si
 
 On the Expansion Dock and Power Dock, only `UART1` is broken out, shown below:
 
-![uart-exp-power-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/uart-pins-exp-dock.jpg)
+![uart-exp-power-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-pins-exp-dock.jpg)
 
 Both `UART0` and `UART1` are available on the Arduino Dock R2 and the Breadboard Dock:
 
-![uart-arduino-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/uart-pins-arduino-dock.jpg)
+![uart-arduino-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-pins-arduino-dock.jpg)
 
-![uart-breadboard-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/uart-pins-breadboard-dock.jpg)
+![uart-breadboard-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-pins-breadboard-dock.jpg)
 
 **IMPORTANT: The TX+/- and RX+/- pins are used for the *Ethernet Expansion*. Be careful not to connect your serial lines to these pins!**
 
