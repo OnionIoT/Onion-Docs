@@ -8,6 +8,8 @@ order: 3
 
 ## Communicating with Serial Devices {#uart1}
 
+// TODO: insert in a logical place that uart is one device to one device, cannot connect multiple devices together
+
 <!-- // Introduce the uart as a serial communication protocol, talk about that the Omega now has two UARTs, UART0 is largely for outputting the Omega's command line, and UART1 can be used to communicate with other devices -->
 
 A **universal asynchronous receiver/transmitter (UART)** is a device used for serial communication. The Omega comes with two UART devices: `UART0`, and `UART1`. `UART0` is largely used for outputting the Omega's command line, and `UART1` is free to communicate with other devices.
@@ -29,7 +31,7 @@ A UART is used for serial communication between devices. UART has no master-slav
 
 >If you've connected to the Omega via serial before you'll remember that we set the baud rate to 115200 bits-per-second, meaning that the time spent holding each bit high or low is 1/115200bps or 8.6µs per bit.
 
-The UART on the Omega formats the data using the **8n1 configuration**, in which there are **8** data bits, **no** parity bit, and **one** stop bit.
+The UART on the Omega formats the data using the **8N1 configuration**, in which there are **8** data bits, **No** parity bit, and **one** stop bit.
 
 ![uart data frame](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-data-frame.png)
 
@@ -51,7 +53,11 @@ To set up a serial line connection between two devices:
 //    - n: no stop bit (NO PARITY)
 //    - 1: 1 parity (look this up --  it's actually 1 stop bit) -->
 
-### On the Hardware-Overview
+### The Omega & UART
+
+// TODO: similar to i2c and spi articles, talk about the sysfs interface to UART0 and UART1, /dev/ttyS0 and /dev/ttyS1
+
+#### On the Hardware
 <!-- highlight the UART1 pins on both the Omega and the Expansion Header -->
 
 ![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
@@ -69,12 +75,9 @@ Pins `12` and `13` are used for `UART0`. These are primarily used for the comman
 
 ^ apparently cat (and probably echo too) don't know about the baud rate, there should be some underlying utility (such as stty, but not installed by default) that takes care of those details for it -->
 
-`UART1` is accessible from the command line as the file `/dev/ttyS1`. We'll be using some command line tools to write (send) and read (receive) data to/from it just as if it were any other file.
+The Omega's `UART1` is accessible from the command line as the virtual device file `/dev/ttyS1`. We'll be using some command line tools to write (send) and read (receive) data to/from it just as if it were any other file.
 
 #### Sending Data
-
-<!-- // simple as piping things to `/dev/ttyS1`:
-//  echo "my message" > /dev/ttyS1 -->
 
 To send data to `UART1`, simply `echo` to `/dev/ttyS1` like so:
 
@@ -85,10 +88,6 @@ echo "my message" > /dev/ttyS1
 This command will not display any text on the screen when entered, as you are simply writing to a file.
 
 #### Receiving Data
-
-<!-- // reading from the uart device
-//  cat /dev/ttyS1
-// and it will print the received data -->
 
 To read data from `UART1`, simply run `cat` on it like so:
 
@@ -163,7 +162,11 @@ Now start typing `hello world!` in the first terminal, and the words will start 
 
 To exit the `screen` command, type `Ctrl-a` then `d` (for "detach").
 
+// TODO: ctrl-a + k will actually kill the session, detach is useful if you want to come back to it
+
 This can be also done with 2 Omegas by connecting their `TX1`, `RX1`, and `GND` pins as described earlier in this article.
+
+// TODO: do we actually mention this?
 
 #### Removing Old `screen` Processes
 
@@ -174,6 +177,8 @@ To kill (end) all `screen` processes, copy and paste the following command:
 ```bash
 for pid in $(ps  | grep "screen" | awk '{print $1}'); do kill -9 $pid; done
 ```
+
+// TODO: pls include a description of this command, its hella indimidating
 
 <!-- // the command is: `screen /dev/ttyS1 <BAUD RATE>`
 // will show a new screen (ha-ha) that will print any incoming data, you can type and press enter to send commands -->
@@ -211,8 +216,7 @@ You'll now be able to use PySerial!
 
 #### Using PySerial
 
-You can use PySerial by connecting a device to your Omega's USB type-A port. For more on the usage of PySerial you can read the [PySerial documentation](https://pythonhosted.org/pyserial/shortintro.html).
+You can use PySerial by connecting a device to your Omega's UART1. For more on the usage of PySerial you can read the [PySerial documentation](https://pythonhosted.org/pyserial/shortintro.html).
 
-<!-- // give a small example example script on how to use the UART
+<!-- // TODO: batch5: give a small example example script on how to use the UART
 // potential example: Omega A's UART1 is connected to Omega B's UART0, can send commands from Omega A and find out stuff about Omega B, the hostname, mac addr, that sort of thing, iunno -->
-
