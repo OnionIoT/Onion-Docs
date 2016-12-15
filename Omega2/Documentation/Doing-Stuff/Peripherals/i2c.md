@@ -41,17 +41,23 @@ The I2C bus uses a **master-slave** architecture, which means the following:
 
 If you're interested in the full details, see the [Wikipedia article on I2C](https://en.wikipedia.org/wiki/I%C2%B2C) for more.
 
-### On the Hardware
+### The Omega & I2C
+
+// all i2c interactions on the omega are done using the sysfs /dev/i2c-0 file, everything mentioned in this article uses this sysfs file to communicate with the hardware I2C controller (useful background knowledge)
+
+#### On the Hardware
 
 The I2C pins (SCL and SDA) on the Omega2 and Expansion Dock are highlighted below.
-
-**Note: On some older Expansion Dock units, `SCL` is labelled as pin `20`, and `SDA` is labelled as pin `21`.**
 
 ![i2c-pins-omega2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-pins-omega2.jpg)
 
 ![i2c-pins-exp-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-pins-exp-dock.jpg)
 
+**Note: On some older Expansion Dock units, `SCL` is labelled as pin `20`, and `SDA` is labelled as pin `21`.**
+
 ### Controlling I2C Devices from the Command line
+
+<!-- // TODO: add a little intro the the two command line utilities that we'll be using. note that i2c communication with these tools is register based. Have a sentence or two explaining what resisters are and how we use them -->
 
 <!-- #### Detecting I2C devices -->
 <!-- // leave this out for now, there's a bug that makes this useless -->

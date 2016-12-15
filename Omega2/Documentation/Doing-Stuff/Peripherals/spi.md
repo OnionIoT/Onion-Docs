@@ -10,11 +10,10 @@ order: 2
 
 <!-- // The Omega2 has a built-in hardware SPI controller that can be used to communicate with SPI-enabled peripherals -->
 
-The Omega supports running the SPI protocol through the GPIOs, making it handy to communicate with an SPI-enabled peripherals. To implement SPI communication, the Omega has a C library, a Python module, and a command-line tool. This article will focus on the command line program, `spi-tool`.
+The Omega has a built-in hardware SPI controller allowing it to communicate with an SPI-enabled peripherals. To implement SPI communication, the Omega has a C library, a Python module, and a command-line tool. This article will focus on the command line program, `spi-tool`.
 
 ### What is SPI?
 
-<!-- // jack from the existing article -->
 The Serial Peripheral Interface (SPI) is a four-wire synchronous communication protocol, largely used to connect microprocessors or microcontrollers to sensors, memory, and other peripherals.
 
 The four signals are:
@@ -33,7 +32,15 @@ The protocol is based on the Master-Slave architecture, so the Master will gener
 For more details on SPI, check out the [Wikipedia article](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus).
 
 
-### On the Hardware-Overview
+### The Omega & SPI
+
+// TODO: talk about accessing the spi device through linux:
+//  it's /dev/spidev32766.1
+//  the 32766 is the SPI bus number, and the 1 indicates the device ID, this device id corresponds with CS1 signal
+
+// mention that device 0 is the flash memory used by the omega
+
+#### On the Hardware
 // TODO: highlight the SPI pins on both the Omega and the Expansion Header
 
 ### The Command Line tool
@@ -41,7 +48,7 @@ For more details on SPI, check out the [Wikipedia article](https://en.wikipedia.
 <!-- // jack from the existing article -->
 
 
-The `spi-tool` command line utility allows the user to read and write single bytes from an SPI device. In order for an SPI device to be used, it must first be registered with the system. The utility can perform that action as well; giving the SPI device a bus number and device ID. This bus number and device ID must then be used again when transferring data with the SPI device.
+The `spi-tool` command line utility allows the user to read and write single bytes from an SPI device. Noe that we need to specify the SPI device bus number and device ID when transferring data with the SPI device.
 
 The utility is not included by default in the Omega's firmware, to install it:
 ```
@@ -65,28 +72,28 @@ This command will print the byte read from the specified address on the SPI devi
 
 **Arguments and Options**
 
-The `bus number` and `device ID` need to correspond to the values used to register the device! Additionally, any options used in the registration of the device need to be repeated in this command.
+The `bus number` and `device ID` need to correspond to the values of the Omega's SPI device!
 
 The `address` argument indicates the address from which to read on the SPI device.
 
 
 **Examples**
 
-Read a byte from address 0x11 from device 1 on bus 0 (registered above):
+Read a byte from address 0x11 from device 1 on bus 32766:
 ```
-root@Omega-ABCD:~# spi-tool -b 0 -d 1 read 0x11
+root@Omega-ABCD:~# spi-tool -b 32766 -d 1 read 0x11
 > SPI Read from addr 0x11: 0x81
 ```
 
-Read a byte from address 0x00 from device 2 on bus 1 (registered above):
+Read a byte from address 0x00 from device 2 on bus 32766:
 ```
-root@Omega-ABCD:~# spi-tool -b 1 -d 2 --speed 400000 --sck 13 read 0x00
+root@Omega-ABCD:~# spi-tool -b 32766 -d 1 --speed 400000 read 0x00
 > SPI Read from addr 0x00: 0xf8
 ```
 
-Read a byte from address 0xaf from device 3 on bus 2 (registered above):
+Read a byte from address 0xaf from device 3 on bus 32766:
 ```
-root@Omega-ABCD:~# spi-tool -b 2 -d 3 --speed 320000 --cs-high --3wire read 0xaf
+root@Omega-ABCD:~# spi-tool -b 32766 -d 3 --speed 320000 --cs-high --3wire read 0xaf
 > SPI Read from addr 0xaf: 0xbe
 ```
 
@@ -138,4 +145,4 @@ root@Omega-ABCD:~# spi-tool -b 2 -d 3 --speed 320000 --cs-high --3wire write 0xb
 
 The `spi-tool` utility allows for some basic interaction with SPI devices using the command line. With interesting projects and use-cases, you will require additional interaction with the SPI device that might not be suited to the command line.
 
-<!-- Well, you're in luck! There is an [Onion developed C library and Python module](../../Documentation/Libraries/SPI-Library) that gives you the flexibility to use SPI devices however you want! -->
+ Well, you're in luck! There is an Onion developed [C library](#spi-c-library) and [Python module](#spi-python-module) that gives you the flexibility to use SPI devices however you want!
