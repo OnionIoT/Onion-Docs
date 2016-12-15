@@ -197,7 +197,7 @@ The `fast-gpio` command is similar to `gpioctl` in that it is used to control th
 
 #### Command Usage:
 
-For a print-out of the usage, run `fast-gpio` with on the command line:
+For a print-out of the usage, run `fast-gpio` on the command line:
 
 ```
 root@Omega-2757:/# fast-gpio
