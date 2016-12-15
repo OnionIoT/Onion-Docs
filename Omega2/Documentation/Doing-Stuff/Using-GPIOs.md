@@ -59,7 +59,7 @@ root@Omega-2757:/# gpioctl dirin 1
 Using gpio pin 1.
 ```
 
-**Now** you're ready to read from an external circuit! 
+**Now** you're ready to read from an external circuit!
 
 **Note: You will damage your Omega if your GPIO is set to `output` and you try to drive external current to the pin**.
 
@@ -160,7 +160,7 @@ To set a particular group of hardware pins to a specified mode, use the followin
 omega2-ctrl gpiomux set <HARDWARE PIN GROUP> <MODE>
 ```
 
-To illustrate the above, the following command will set I2C pins to GPIO mode:
+To illustrate the above, the following command will set UART1 pins to operate in GPIO mode:
 
 ```
 omega2-ctrl gpiomux set uart1 gpio
