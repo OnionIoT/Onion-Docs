@@ -25,7 +25,7 @@ The Omega can program the microcontroller while connected to the board. This mea
 ![arduino dock alone](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-alone.jpg)
 
 
-The Arduino Dock includes an In-Circuit Serial Programming (ICSP) header to break out the SPI pins which can be used to program the Arduino's microcontroller. Additionally, there is a USB-host port that is connected to the Omega which can be used for any sort of USB type application.
+The Arduino Dock includes an In-Circuit Serial Programming (ICSP) header to break out the SPI pins which can be used to program the Arduino Dock's microcontroller with an external programmer. Additionally, there is a USB-host port that is connected to the Omega which can be used for any sort of USB type application.
 
 You can power the dock using a microUSB connection, or using the DC Barrel jack.
 
@@ -54,7 +54,9 @@ You may need to line up the pins with the holes before pressing the Omega into t
 ### The Expansion Header
 
 <!-- [//]: # (breakout of the Omega's GPIOs, can be connected to other circuits directly, or can use Omega expansions) -->
-The Expansion Header is a convenient tool that gives you easy access to the Omega's GPIOs, and allows you to connect Onion Expansions directly. The Expansion Header is labelled to show you what GPIO is connected to each section.
+The Expansion Header is a convenient tool that gives you easy access to the Omega's GPIOs, and allows you to connect Onion Expansions directly. The Expansion Header is labelled to show you what GPIO is connected to each header.
+
+It follows the same layout as the Expansion Header found on the Expansion Dock and Power Dock.
 
 
 <!-- #### Detailed Pinout -->
@@ -66,19 +68,19 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 
 <!-- [//]: # (breakout of the ATmega's pins, same as the Arduino Uno R3) -->
 
-The ATmega headers are a breakout of the ATmega's pins. They are arranged in the exact same way as an Arduino Uno R3, so all your shields are cross compatible. The pins are also labelled for your convenience.
+The ATmega headers are a breakout of the ATmega's pins. They are arranged and spaced in the exact same way as an Arduino Uno R3, so all your Arduino Shields are compatible. These pins are also labelled for your convenience.
+
+Note that the ATmega runs on 5V and therefore its pins' logical high voltage levels is 5V.
+
+<!-- TODO: fix the above sentence -->
 
 ![arduino dock atmega headers](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-atmega-header.jpg)
 
 ### The MicroUSB Port
 
-<!-- [//]: # (explain that it provides power to the omega, mention that the Omega is powered by 3.3V and that the Dock has a regulator to take the 5V from the microUSB and step it down to 3.3V) -->
-
-<!-- [//]: # (mention there's no usb to serial chip) -->
-
 The MicroUSB Port is used to supply power to the Arduino Dock, which in turn supplies power to the Omega and the ATmega328P chip.
 
-The MicroUSB Port takes in 5V, and the Arduino Dock comes equipped with a voltage regulator to step the voltage down to the required 3.3V for the Omega.
+The MicroUSB Port receives 5V power and uses it directly to power the ATmega328P chip. The Dock comes equipped with a voltage regulator to step the voltage down to the required 3.3V for the Omega.
 
 
 #### No USB-to-Serial
@@ -87,9 +89,6 @@ There is no USB-to-Serial Chip on the Breadboard Dock. This means that you will 
 
 
 ### DC Barrel Jack
-
-<!-- [//]: # (provide power to the Omega using a DC power adapter) -->
-<!-- [//]: # (REALLY highlight the fact that 5V is the maximum input and that any more than 5V will damage the dock and omega) -->
 
 The DC barrel jack may also be used to provide power to the Omega using a DC power adapter.
 
@@ -100,7 +99,7 @@ The DC barrel jack may also be used to provide power to the Omega using a DC pow
 
 <!-- [//]: # (reset button is connected directly to the Omega's reset GPIO, can be used to just trigger a reboot or even a full factory restore) -->
 
-The Omega Reset Button on the Arduino Dock is connected directly to the Omega's Reset GPIO. Pressing this button do one of two things: reboot, or factory restore.
+The Omega Reset Button on the Arduino Dock is connected directly to the Omega's Reset GPIO. Pressing this button does one of two things: reboot, or factory restore.
 
 
 #### Reboot
@@ -117,7 +116,7 @@ Pressing and holding the reset button for 10 seconds and releasing will trigger 
 
 <!-- [//]: # (issues a reset to the ATmega chip, give background on what that means in the Arduino Context) -->
 
-In addition to the Omega's reset button, the Arduino Dock 2 comes with a microcontroller reset button. This button can be used to reset the ATmega chip whenever you'd like in order to prepare the chip for uploading a new sketch. This will **NOT** reset the Omega.
+In addition to the Omega's reset button, the Arduino Dock 2 comes with a microcontroller reset button. This button can be used to reset the ATmega chip whenever you'd like. This will **NOT** reset the Omega.
 
 ### Omega USB Port
 
@@ -186,6 +185,8 @@ The reset connection is used to reset the ATmega chip. This can be done using th
 <!-- [//]: # (little overview of the special features of this dock) -->
 
 The Arduino Dock 2 is loaded with features that allow you to use your Omega with the ATmega chip with ease. You can program or reset the micro-controller using the Omega's GPIOs, and even connect to the ATmega's serial port using the Omega's UART.
+
+***More articles coming soon!***
 
 
 <!-- TODO:  These articles are to be part of the Arduino Kit guides, and we will link to them when the guides are ready. -->

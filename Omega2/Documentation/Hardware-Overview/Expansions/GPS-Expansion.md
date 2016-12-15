@@ -70,13 +70,13 @@ For more on the ublox chip, see the [ublox chip datasheet][1].
 
 <!-- // means of powering the Expansion and communicating with the Omega -->
 
-The USB connector serves two purposes. By plugging the Expansion into a Dock's USB port we power the GPS Expansion, and we can send data to the Omega.
+The USB connector serves two purposes. By plugging the Expansion into a Dock's USB port we power the GPS Expansion, and we provide a means of communication between the Omega and the Expansion.
 
 ### Using the GPS Expansion
 
 <!-- // give an example of how this can be used, and when it would be useful (tracking gps location on a roadtrip or something) -->
 
-You can use the GPS Expansion to create cool projects with your Omega! For example, you can try your hand at creating a navigation system using the GPS Expansion with the OLED Expansion. Or for a simpler project, you can create a treasure hunt game that alerts the user when they're in the vicinity of an item for a children's party.
+You can use the GPS Expansion to create some cool geo-data projects with your Omega! For example, you can try your hand at creating a navigation system using the GPS Expansion with the OLED Expansion. Or for a simpler project, you can create a treasure hunt game that alerts the user when they're in the vicinity of an item for a children's party.
 
 You can learn more about this Expansion by reading our article on [how to use the GPS Expansion](#using-gps-expansion)
 

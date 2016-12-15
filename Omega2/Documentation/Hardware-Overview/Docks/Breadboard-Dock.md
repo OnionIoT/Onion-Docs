@@ -11,7 +11,7 @@ order: 5
 
 <!-- // The Breadboard Dock is the most no-frills dock, it provides power to the Omega and allows it to be plugged in to a breadboard. The pins on the breadboard are mapped 1-to-1 as on the Omega. -->
 
-The Breadboard Dock is the perfect solution for building circuits with the Omega. This Dock can be plugged into a breadboard, and the pins of the dock are mapped 1-to-1 as on the Omega.
+The Breadboard Dock is the perfect solution for building breadboard circuits with the Omega. This Dock can be plugged into a breadboard, and the pins of the dock are mapped 1-to-1 as on the Omega.
 
 The Breadboard Dock provides power to the Omega via a Micro-USB port that takes in 5V. This voltage is stepped down to the 3.3V required to power the Omega.
 
@@ -24,7 +24,7 @@ The Breadboard Dock provides power to the Omega via a Micro-USB port that takes 
 
 <!-- [//]: # (picture guide on how to properly plug in an Omega) -->
 
-Connect your Omega to the Breadboard Dock by lining up the two rows of header pins so that the sticker with the Omega's MAC address is on the **left** side of the Dock. Basically, make sure that the RESET button is visible and all of the pins are seated.
+Connect your Omega to the Breadboard Dock by lining up the two rows of header pins so that the sticker with the Omega's MAC address is on the **left** side of the Dock. Basically, make sure that the lines of the Omega and Breadboard Dock are aligned, RESET button is visible, and all of the pins are seated.
 
 ![connect-omega](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/breadboard-dock-omega-connected.jpg)
 
@@ -36,7 +36,7 @@ Connect your Omega to the Breadboard Dock by lining up the two rows of header pi
 
 <!-- // explanation of the breadboard header, have photos of plugging it into a breadboard -->
 
-The breadboard header is the part that connects the Dock to your breadboard. 
+The breadboard header is the part that connects the Dock to your breadboard.
 
 Breadboards have a slot in the middle that divides them in left and right halves. Position the Dock's pins along the length of the slot and line up the pins so that they land on each side of the breadboard.
 
@@ -65,7 +65,7 @@ The Micro-USB Port takes in 5V, and the Breadboard Dock comes equipped with a vo
 
 There is no USB-to-Serial Chip on the Breadboard Dock. This means that you will **not** be able to connect to the Omega serially over the Micro-USB port.
 
-You can still connect to your Omega's terminal with SSH. You can learn how to do that in this [guide to connecting to the Omega](#connecting-to-the-omega).
+You can still connect to your Omega's terminal with SSH, you can learn how to do that in this [guide to connecting to the Omega](#connecting-to-the-omega-terminal-ssh).
 
 
 #### Reset button
