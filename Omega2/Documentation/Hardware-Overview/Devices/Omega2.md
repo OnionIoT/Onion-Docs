@@ -23,12 +23,16 @@ The Omega2 is the latest in development boards from Onion. It comes packed with 
 | SPI |  1   |
 | I2S | 1  |
 
+### Processor Datasheet
+
+The datasheet for the Omega2's processor can be found here: [Mediatek MT7688 Datasheet](https://labs.mediatek.com/fileMedia/download/9ef51e98-49b1-489a-b27e-391bac9f7bf3)
+
 ### The Pins
 
 <!-- image of omega2 pinout -->
 ![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
 
-<!-- LATER: include section on the 50pin connector -->
+<!-- TODO: include section on the 50pin connector -->
 
 
 ### The Operating system

@@ -5,7 +5,7 @@ Updating your Omega is really easy and can be done in a number of ways. You can 
 
 >For more on `oupgrade` you can read our article on [upgrading your Omega's Firmware](#updating-the-omega)
 
-This guide will show you how to manually install a firmware of your choosing. This firmware can be one of the builds published by Onion or a custom firmware image.
+This guide will show you how to manually install a firmware of your choice. This firmware can be one of the builds published by Onion or a custom firmware image.
 
 
 ### Step 1: Downloading the Firmware Image
@@ -14,7 +14,7 @@ The Omega firmware images are located on [the Onion repo](http://repo.onion.io/o
 
 Let's begin by downloading the latest firmware image from [the Onion repo](http://repo.onion.io/omega2/images/). This repo is where we keep all the builds of the various Onion Firmware.
 
-You'll want to start by changing directories to `/tmp`:
+On your Omega, start by changing directories to `/tmp`:
 
 ```
 cd /tmp
@@ -24,12 +24,15 @@ Now we're going to need the link address of the firmware we want to download. Ri
 
 ![copy link address](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/command-line-updating-omega-pic-download-link.png)
 
->**Note: There are two version of the firmware; one for the Omega2, and one for the Omega2+. You'll need to make sure you're copying the link to the correct firmware.**
+**Note: There are two versions of the firmware; one for the Omega2, and one for the Omega2+. You'll need to make sure you're copying the link to the correct firmware.**
+
+* Omega2 firmwares start with "omega2-..."
+* Omega2+ firmwares start with "omega2**p**-..."
 
 
 Next, enter the following into your terminal:
 
-```
+```bash
 wget <LINK ADDRESS>
 ```
 
@@ -39,7 +42,7 @@ where `<LINK ADDRESS>` is the link you copied from the repo. Your command-line s
 root@Omega-2757:/tmp# wget http://repo.onion.io/omega2/images/omega2p-v0.1.5-b135.bin
 ```
 
-Once you've verified that link is to the correct binary, hit enter and your firmware will begin downloading.
+Once you've verified that link is to the correct binary, hit Enter and your firmware will begin downloading.
 
 ```
 root@Omega-2757:/tmp# wget http://repo.onion.io/omega2/images/omega2p-v0.1.5-b135.bin
@@ -55,11 +58,11 @@ omega2p-v0.1.5-b135 100%[===================>]   6.50M  1.57MB/s    in 4.8s
 2016-12-07 21:10:07 (1.34 MB/s) - 'omega2p-v0.1.5-b135.bin' saved [6815910/6815910]
 ```
 
-You'll want to take note of the name of the firmware you just downloaded for the next step. In this case, the name is `omega2p-v0.1.5-b135.bin`.
+Take note of the name of the firmware you just downloaded for the next step. In this example, the name is `omega2p-v0.1.5-b135.bin`.
 
 #### Alternative Step 1: Downloading Firmware onto a USB Storage Device
 
-If your Omega no longer has enough room to download the Firmware, you can download the firmware onto a USB Storage Device, and then work from your USB's directory on your Omega.
+If your Omega no longer has enough room to download the Firmware, you can download the firmware onto a USB Storage Device and work from that USB's directory on your Omega.
 
 >For more on using a USB storage device on your Omega, check out our [guide to using a USB storage device on your Omega](#usb-storage)
 
@@ -93,7 +96,6 @@ Unlocking firmware ...
 Writing from <stdin> to firmware ...  [e]
 ```
 
-
 ### Additional `sysupgrade` Options
 
 The `sysupgrade` command comes with a number of additional options that you can explore by entering:
@@ -104,8 +106,10 @@ sysupgrade -h
 
 The options that might prove most useful to you are `-n` or `-F`.
 
-The `-n` flag tells `sysupgrade` not to save configuration files after upgrading. This can be useful if you would like to reset the Omega to the default settings included in the firmware image. This will *erase everything on the Omega* so make sure to back up your custom data and settings.
-
-The `-F` flag forces `sysupgrade` to upgrade the Firmware, which is useful in the event that `sysupgrade` won't upgrade the Firmware.
-
-**Note: It is not recommended to use the -F flag. The `sysupgrade` command uses several checks to make sure that it will flash the correct Firmware, and the `-F` flag makes the command ignore all of them.**
+* The `-n` flag tells `sysupgrade` not to save configuration files after upgrading. 
+    * This can be useful if you would like to reset the Omega to the default settings included in the firmware image. 
+    * This will **erase everything on the Omega** so make sure to back up your custom data and settings.
+* The `-F` flag forces `sysupgrade` to upgrade the firmware.
+    * This is useful in the event that `sysupgrade` refuses to upgrade the firmware. 
+    * This flag tells `sysupgrade` to ignore several critical checks that ensure the correct firmware is flashed.
+    * **This flag is not recommended under normal circumstances. Use with caution!**
