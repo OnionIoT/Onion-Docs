@@ -8,11 +8,10 @@ order: 3
 
 ## Communicating with Serial Devices {#uart1}
 
-// TODO: insert in a logical place that uart is one device to one device, cannot connect multiple devices together
+<!-- // TODO: insert in a logical place that uart is one device to one device, cannot connect multiple devices together -->
 
-<!-- // Introduce the uart as a serial communication protocol, talk about that the Omega now has two UARTs, UART0 is largely for outputting the Omega's command line, and UART1 can be used to communicate with other devices -->
 
-A **universal asynchronous receiver/transmitter (UART)** is a device used for serial communication. The Omega comes with two UART devices: `UART0`, and `UART1`. `UART0` is largely used for outputting the Omega's command line, and `UART1` is free to communicate with other devices.
+A **universal asynchronous receiver/transmitter (UART)** is a device used for serial communication between two devices. The Omega comes with two UART devices: `UART0`, and `UART1`. `UART0` is largely used for outputting the Omega's command line, and `UART1` is free to communicate with other devices.
 
 This article will cover:
 
@@ -23,7 +22,7 @@ This article will cover:
     * via the `screen` command
     * using Python
 
-<!-- // mention that this article will be explaining the uart a little bit, showing you where it is on the hardware, how to use the uart from the command line, how to use the screen command with the uart, how to use the uart thru Python -->
+Only **two devices** can communicate with each other per UART connection. This is different from other communication protocols, such as I2C or SPI, where there may be 3, 10, or many more devices connected to the same data lines.
 
 ### What is a UART?
 
@@ -55,17 +54,30 @@ To set up a serial line connection between two devices:
 
 ### The Omega & UART
 
-// TODO: similar to i2c and spi articles, talk about the sysfs interface to UART0 and UART1, /dev/ttyS0 and /dev/ttyS1
+UART interactions on the Omega2 are done using the virtual device files `/dev/ttyS0` and `/dev/ttyS1`. This is made possible with `sysfs`, a pseudo-file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
 
 #### On the Hardware
 <!-- highlight the UART1 pins on both the Omega and the Expansion Header -->
 
-![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
+The UART pins are highlighted on the Omega2, Expansion Headers, and Breadboard Dock below.
 
-Pins `12` and `13` are used for `UART0`. These are primarily used for the command line on the Omega. The `UART1` uses pins `45` and `46`. These are labelled as `TX1` and `RX1` to signify that they are used for `UART1`.
+![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/uart-pins-omega2.jpg)
+
+Pins `12` and `13` are used for `UART0`. These are primarily used for the command line on the Omega.
+
+The `UART1` uses pins `45` and `46`. These are labelled as `TX1` and `RX1` to signify that they are used for `UART1`.
+
+On the Expansion Dock and Power Dock, only `UART1` is broken out, shown below:
+
+![uart-exp-power-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/uart-pins-exp-dock.jpg)
+
+Both `UART0` and `UART1` are available on the Arduino Dock R2 and the Breadboard Dock:
+
+![uart-arduino-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/uart-pins-arduino-dock.jpg)
+
+![uart-breadboard-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/uart-pins-breadboard-dock.jpg)
 
 **IMPORTANT: The TX+/- and RX+/- pins are used for the *Ethernet Expansion*. Be careful not to connect your serial lines to these pins!**
-
 
 ### Using the Command Line
 
@@ -75,7 +87,7 @@ Pins `12` and `13` are used for `UART0`. These are primarily used for the comman
 
 ^ apparently cat (and probably echo too) don't know about the baud rate, there should be some underlying utility (such as stty, but not installed by default) that takes care of those details for it -->
 
-The Omega's `UART1` is accessible from the command line as the virtual device file `/dev/ttyS1`. We'll be using some command line tools to write (send) and read (receive) data to/from it just as if it were any other file.
+We'll be using some command line tools to write to (send) and read from (receive) data from `/dev/ttyS1` just as if it were any other file.
 
 #### Sending Data
 

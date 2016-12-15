@@ -43,7 +43,9 @@ If you're interested in the full details, see the [Wikipedia article on I2C](htt
 
 ### The Omega & I2C
 
-// all i2c interactions on the omega are done using the sysfs /dev/i2c-0 file, everything mentioned in this article uses this sysfs file to communicate with the hardware I2C controller (useful background knowledge)
+<!-- // all i2c interactions on the omega are done using the sysfs /dev/i2c-0 file, everything mentioned in this article uses this sysfs file to communicate with the hardware I2C controller (useful background knowledge) -->
+
+All I2C interactions on the Omega2 are done using the virtual device file `/dev/i2c-0`. This is made possible with `sysfs`, a pseudo-file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
 
 #### On the Hardware
 
