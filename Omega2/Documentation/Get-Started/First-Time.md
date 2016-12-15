@@ -78,4 +78,4 @@ Start using your fresh Omega, check out the [Using the Omega section](#doing stu
 
 ### The Setup Wizard Didn't Work!
 
-If for some reason the Setup Wizard wasn't able to get your Omega up and running, try the steps in the [First Time Using the Command Line guide](#first-time-setup-command-line)
+If for some reason the Setup Wizard wasn't able to get your Omega up and running, try the steps in the [First Time Using the Command Line guide](#first-time-setup-command-line).
