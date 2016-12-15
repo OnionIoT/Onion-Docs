@@ -9,21 +9,20 @@ order: 4
 ## Transferring Files to the Omega {#transferring-files}
 
 
-The Omega is incredibly powerful in that it is a full Linux computer. This means that it has its own filesystem, allowing you to store files directly on the Omega. It also means that you can take your files from an external device and copy them to your Omega. This tutorial will show you how you to transfer files from Windows, Mac OS X, and Linux.
+The Omega is incredibly powerful in that it is a full Linux computer. This means that it has its own filesystem, allowing you to store files directly on the Omega. It also means that you can take your files from an external device and copy them to your Omega. This tutorial will show you how you to transfer files using the Onion Console and your browser, as well as directly from Windows, Mac OS X, and Linux.
 
-<!-- // DONE: add blurb about uploading files using the editor -->
 
-### Using the Editor App in the Onion Console
+### Using the Editor App in the Onion Console {#upload-files-with-editor-app}
 
 The Editor App in the Onion Console can be used to upload files directly to the Omega's filesystem.
 
 
-<!-- TODO: add a section getting to the editor app -->
->The console is installed by default after completing the Setup Wizard, but you can read our brief guide on [installing the Onion Console](#installing-the-console) for more information.
+>The console is installed by default after completing the Setup Wizard, but you can read our brief guide on [installing the Onion Console](#installing-the-console) for more information.<br>
+> If you haven't installed the Editor app yet, check out our guide on [Installing Console Apps](#installing-apps)
 
 This works on all operating systems and is a great way to wirelessly upload code to your Omega.
 
->*NOTE: It is not recommended to upload files larger than 2MB using this method.*
+*NOTE: It is not recommended to upload files larger than 2MB using this method.*
 
 Open the Editor App in the console, and click the `Upload File` button in the top bar. Your file will be uploaded to the current directory, so you'll need to first move to the correct directory in the side bar:
 
@@ -263,15 +262,3 @@ To see the full list of options and behaviours, see the [`rsync` Reference][rsyn
 <!-- link defintions -->
 
 [rsync reference]: http://linuxcommand.org/man_pages/rsync1.html
-
-
-### Upload Files using the editor
-// try adding a {#title} to this guy so we can link directly to this section
-
-// very small intro on the console, link to the console articles
-// small intro on the editor, mention that it can be used to manage files on the Omega along with uploading single files using your browser
-
-// walkthrough of uploading a file with pictures
-//  1. opening the editor app (install if you haven't already done so - link to installing apps article)
-//  2. hit the upload button
-//  3. choose where you want to put it
