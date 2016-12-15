@@ -45,6 +45,8 @@ If you're interested in the full details, see the [Wikipedia article on I2C](htt
 
 The I2C pins (SCL and SDA) on the Omega2 and Expansion Dock are highlighted below.
 
+**Note: On some older Expansion Dock units, `SCL` is labelled as pin `20`, and `SDA` is labelled as pin `21`.**
+
 ![i2c-pins-omega2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-pins-omega2.jpg)
 
 ![i2c-pins-exp-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-pins-exp-dock.jpg)
