@@ -105,14 +105,14 @@ The above commands don't do anything useful if you don't have any serial devices
 
 Simply connect the Omegas's `RX` and `TX` pins together as shown below; the `GND` connection is shared between the pins already.
 
-![connect-rx-tx](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/uart-omega-jumpered)
+![connect-rx-tx](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-omega-jumpered.jpg)
 
 Now open two separate command line sessions on your Omega. It's easiest to connect via SSH in **two separate terminals** from your computer.
 
 * In one terminal, run `cat /dev/ttyS1` to start reading the serial port.
 * In the other, run `echo "hello world!" > /dev/ttyS1` to write a message to the serial port.
 
-![two-terminals](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/uart-echo-cat.png)
+![two-terminals](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-echo-cat.png)
 
 You will see your message appear in the terminal running `cat`. And that's the basics of serial communication on the Omega!
 
