@@ -9,7 +9,7 @@ order: 2
 ## Using the GPS Expansion {#using-gps-expansion}
 
 
-The GPS expansion from Onion features a ublox neo GPS module, which allows seamless integration into your omega projects. This Expansion outputs GPS data in the form of NMEA messages, which include all relevant information (latitude, longtitude, etc). We have prepared a package called `ogps` to handle the NMEA messages and offer up the relevant information to the user via `ubus` calls in the command-line.
+The GPS expansion from Onion features a ublox neo GPS module, which allows seamless integration into your Omega projects. This Expansion outputs GPS data in the form of NMEA messages, which include all relevant information (latitude, longtitude, etc). We have prepared a package called `ogps` to handle the NMEA messages and offer up the relevant information to the user via `ubus` calls in the command-line.
 
 ### Reading the Raw Output of the GPS Expansion
 
