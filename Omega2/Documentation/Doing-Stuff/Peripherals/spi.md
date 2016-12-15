@@ -34,7 +34,9 @@ For more details on SPI, check out the [Wikipedia article](https://en.wikipedia.
 
 ### The Omega & SPI {#omega-and-spi}
 
-The Omega2's hardware SPI bus has one Slave Select line available (`CS1`). The bus is **registered** to the operating system via the `/dev/spidev32766.1` file. Here's what the numbers mean:
+The Omega2's hardware SPI bus has one Slave Select line available (`CS1`). The bus is registered to the operating system via the virtual device file `/dev/spidev32766.1`. This is made possible with `sysfs`, a pseudo-file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
+
+Here's what the numbers mean:
 
 * `32766` is the Omega2's **bus number**.
 * `1` indicates the **device ID**. This corresponds to the slave connected to the Omega2's `CS1` pin.

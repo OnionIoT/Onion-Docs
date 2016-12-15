@@ -43,7 +43,9 @@ If you're interested in the full details, see the [Wikipedia article on I2C](htt
 
 ### The Omega & I2C
 
-// all i2c interactions on the omega are done using the sysfs /dev/i2c-0 file, everything mentioned in this article uses this sysfs file to communicate with the hardware I2C controller (useful background knowledge)
+<!-- // all i2c interactions on the omega are done using the sysfs /dev/i2c-0 file, everything mentioned in this article uses this sysfs file to communicate with the hardware I2C controller (useful background knowledge) -->
+
+All I2C interactions on the Omega2 are done using the virtual device file `/dev/i2c-0`. This is made possible with `sysfs`, a pseudo-file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
 
 #### On the Hardware
 
@@ -57,25 +59,25 @@ The I2C pins (SCL and SDA) on the Omega2 and Expansion Dock are highlighted belo
 
 ### Controlling I2C Devices from the Command line
 
-<!-- // TODO: add a little intro the the two command line utilities that we'll be using. note that i2c communication with these tools is register based. Have a sentence or two explaining what resisters are and how we use them -->
+We'll be using two command line utilities, `i2cget` and `i2cset`, to work with I2C devices. These tools work by accessing data stored in **registers** on the device. A register is a location in a device's memory. When reading from/writing to an I2C device, you need to specify the register on the device that you want to access.
 
 <!-- #### Detecting I2C devices -->
 <!-- // leave this out for now, there's a bug that makes this useless -->
 
 #### Reading a Byte
 
-`i2cget` is used to read a value of a specific register on a target I2C device. A register is a location in memory holding data. A typical command will read as follows:
+`i2cget` is used to read a value of a specific register on an I2C device. A typical command reads as follows:
 
-``` shell
+```bash
 i2cget -y 0 <DEVICE ADDRESS> <REGISTER>
 ```
 
 The options are explained below:
 
 * `-y` - skip the prompt for confirmation from the `i2cget` command
-* `0` - the I2C bus to use. Specify `0` to use the first (and only) I2C bus that the Omega2 has available.
+* `0` - the I2C bus to use. The Omega2 has one I2C bus, denoted as bus `0`.
 * `<DEVICE ADDRESS>` - the address of the slave device, eg. `0x40`
-* `<REGISTER>` - the register to read from, eg. `0x00`
+* `<REGISTER>` - the register on the slave to read from, eg. `0x00`
 
 For example, let's say we have an I2C temperature sensor at address `0x40` acting as a slave with the following registers:
 
@@ -84,7 +86,7 @@ For example, let's say we have an I2C temperature sensor at address `0x40` actin
 
 Let's say we're interested in reading the temperature in degrees Fahrenheit. We do this using the following command:
 
-``` shell
+```bash
 i2cget -y 0 0x40 0x00
 ```
 
@@ -94,18 +96,16 @@ And it returns `0x48`, which is 72 in decimal (22 degrees Celsius). That's some 
 
 `i2cset` is used to set the value of a register on a target I2C device. A typical command looks like this:
 
-``` shell
+```bash
 i2cset -y 0 <DEVICE ADDRESS> <REGISTER> <VALUE>
 ```
-
-<!-- TODO: what about devices with only one register? -->
 
 The options are explained below:
 
 * `-y` - skip the prompt for confirmation from the `i2cget` command
-* `0` - the I2C bus to use. Specify `0` to use the first (and only) I2C bus that the Omega2 has available.
+* `0` - the I2C bus to use. The Omega2 has one I2C bus, denoted as bus `0`.
 * `<DEVICE ADDRESS>` - the address of the slave device, eg. `0x27`
-* `<REGISTER>` - the register to write to, eg. `0x00`
+* `<REGISTER>` - the register on the slave to write to, eg. `0x00`
 * `<VALUE>` - the value to write, eg. `0x33`
 
 Let's say we have an I2C room light controller at address `0x27` acting as a slave with the following registers:
@@ -116,7 +116,7 @@ Let's say we have an I2C room light controller at address `0x27` acting as a sla
 
 For example, to turn the living room lights ON and the dining room lights OFF, we would run these commands:
 
-``` shell
+```bash
 i2cset -y 0 0x27 0x00 0x01          # living room lights ON
 i2cset -y 0 0x27 0x01 0x00          # dining room lights OFF
 ```
@@ -126,7 +126,7 @@ i2cset -y 0 0x27 0x01 0x00          # dining room lights OFF
 
 #### The Omega Expansions
 
-Some of our Expansions use I2C to communicate with the Omega.
+Some of our Expansions use I2C to communicate with the Omega. To learn more about how to work with them, take a look at the guides below:
 
 * [Relay Expansion](#using-relay-expansion)
 * [PWM Expansion](#using-pwm-expansion)
@@ -146,14 +146,14 @@ First find or buy an I2C LCD display. They can be found online on Amazon or Ebay
 
 Install the following packages on your Omega2:
 
-``` shell
+```bash
 opkg update
 opkg install git git-http python-light pyOnionI2C
 ```
 
 Next, download David's library for the LCD display:
 
-``` shell
+```bash
 cd /root
 git clone https://bitbucket.org/fires/fireonion_i2c_lcd
 ```
@@ -169,13 +169,13 @@ Wire up your LCD display as shown below:
 
 Navigate to the `src` directory:
 
-``` shell
+```bash
 cd fireonion_i2c_lcd/src
 ```
 
 Run the command:
 
-``` shell
+```bash
 python lcd.py
 ```
 
