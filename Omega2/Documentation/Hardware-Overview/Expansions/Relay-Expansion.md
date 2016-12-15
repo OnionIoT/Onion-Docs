@@ -68,7 +68,7 @@ The relays channels are labelled below:
 
 The green block on the board is called the *terminal block*. It houses 4 terminals, 2 for each relay, into which you plug your circuit wires. To secure the wires inside the terminal block, screw them down with a small flathead screwdriver.
 
-![screw-terminals](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-screw-terminals.jpg)
+![screw-terminals](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-screw-terminal.jpg)
 
 #### The Address Switch
 
