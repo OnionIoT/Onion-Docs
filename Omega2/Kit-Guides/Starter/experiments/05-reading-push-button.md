@@ -17,30 +17,21 @@ order: 5
 
 ## Push Buttons
 
-<<<<<<< HEAD
-```{r child = '../../shared/switches-push-button.md'}
-```
-=======
 <!-- {{!insert 'switches-push-button'}} -->
 
 // put in its own markdown file
 
-// explanation of push buttons: how they are momentary switches and only close the circuit while the button is depressed
-// explanation of the pins, and what connection happens when the button is pressed
->>>>>>> 2e01fe146e20a8d0ee035495a357df2b261e3634
-
-
-```{r child = '../../shared/gpio-edge-detection.md'}
+<!-- // explanation of push buttons: how they are momentary switches and only close the circuit while the button is depressed
+// explanation of the pins, and what connection happens when the button is pressed -->
+```{r child = '../../shared/switches-push-button.md'}
 ```
 
 ### Debouncing Switches
 
 <!-- {{!insert 'gpio-edge-detection'}} -->
-
-<<<<<<< HEAD
-```{r child = '../../shared/switches-push-button.md'}
+```{r child = '../../shared/gpio-edge-detection.md'}
 ```
-=======
+
 // it in its own markdown file
 
 // introduce the concept of bouncing switches: in real life with real physics, electrical contacts don't work exactly the way we want them to, they'll connect and conduct, and then disconnect, and stop conducting, over and over again until it finally settles
@@ -50,8 +41,6 @@ order: 5
 //  * when the switch is turned on: it takes a while for it to charge up to a logical one voltage level and it will only charge while the signal coming from the switch is high, by the time the capacitor charges up, the signal bouncing should have ended (include a graphic)
 //  * when the switch is turned off: it will take a while for it to discharge down to a logical zero voltage level, but that time the signal will have stopped bouncing (include a graphic)
 // [go into more detail for these two points: see http://www.ganssle.com/debouncing-pt2.htm for a great reference on the whole process ]
-
->>>>>>> 2e01fe146e20a8d0ee035495a357df2b261e3634
 
 
 
