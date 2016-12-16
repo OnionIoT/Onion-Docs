@@ -9,8 +9,9 @@ order: 10
 # Controlling an LCD Screen
 
 
-<!-- {{!insert 'serial'}} -->
-## Serial UART
+<!-- {{!insert 'i2c'}} -->
+## The I2C Bus
+
 
 
 <!-- {{!insert 'lcd-screen'}} -->
@@ -20,7 +21,7 @@ order: 10
 
 ## Building the Circuit
 
-// simple: UART1 to screen + Vcc + GND
+// simple: I2C SCL+SDA,+ Vcc + GND
 
 ### Hooking up the Components
 
@@ -34,4 +35,3 @@ order: 10
 ### A Closer Look at the Code
 
 #### Writing to the Filesystem
-

@@ -6,22 +6,22 @@ devices: [ Omega , Omega2 ]
 order: 9
 ---
 
-# Reading an I2C Sensor
+# Reading an One-Wire Temperature Sensor
 
 
-<!-- {{!insert 'i2c'}} -->
-## The I2C Bus
 
+## One Wire Protocol
 
+// should be its own markdown file
 
 
 ## Building the Circuit
 
-// super simple: I2C SCL+SDA, Vcc, GND
+
 
 ### Hooking up the Components
 
-
+// super simple: signal wire to a gpio, Vcc (3.3V), GND
 
 
 ## Writing the Code
