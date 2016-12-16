@@ -6,6 +6,8 @@ devices: [ Omega , Omega2 ]
 order: 6
 ---
 
+// !!! not doing this experiment anymore since we're not sourcing RGB LEDs
+
 # Controlling an RGB LED
 
 <!-- {{!insert 'leds-rgb'}} -->
@@ -14,7 +16,7 @@ order: 6
 
 ## Building the Circuit
 
-// 3 gpios connected to the three anodes, button connected to another 
+// 3 gpios connected to the three anodes, button connected to another
 
 ### Hooking up the Components
 

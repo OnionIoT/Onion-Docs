@@ -75,7 +75,17 @@ In this example we'll only be fading a single LED on GPIO 0 so you can following
 
 ### A Closer Look at the Code
 
+// intro to the code that was written
+//  new things introduced:
+//  * function where you pass in gpio # and duty cycle and it calls fast-gpio for you
+//  * fancy for loop
 
+#### functions
+
+// explanation of why it was useful to package the fast-gpio os call into a function:
+//  * useful to have a readable & simple python interface for setting the pwm duty cycle
+//  * will be used a whole bunch
+//  * cleaner looking code and good practise
 
 #### Fancy For Loops
 
