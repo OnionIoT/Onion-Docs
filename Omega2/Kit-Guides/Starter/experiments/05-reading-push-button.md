@@ -12,16 +12,20 @@ order: 5
 <!-- {{!insert 'switches-push-button'}} -->
 ## Push Buttons
 
-
+```{r child = '../../shared/switches-push-button.md'}
+```
 
 <!-- {{!insert 'gpio-edge-detection'}} -->
 ## Edge Detection
 
+```{r child = '../../shared/gpio-edge-detection.md'}
+```
 
 <!-- {{!insert 'gpio-edge-detection'}} -->
 ## Debouncing Switches
 
-
+```{r child = '../../shared/switches-push-button.md'}
+```
 
 ## Building the Circuit
 

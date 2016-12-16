@@ -9,28 +9,27 @@ order: 4
 ## Reading a Switch
 
 
+
+
+### GPIO Pins as Input
+
 <!-- {{!insert 'gpio-input'}} -->
 ```{r child = '../../shared/gpio-input.md'}
 ```
 
-### GPIO Pins as Input
 
+### Switches
 
 <!-- {{!insert 'switches'}} -->
 ```{r child = '../../shared/switches.md'}
 ```
 
-### Switches
 
-
+### Slide Switches
 
 <!-- {{!insert 'switches-slide-switch'}} -->
 ```{r child = '../../shared/switches-slide-switch.md'}
 ```
-
-### Slide Switches
-
-
 
 
 ### Building the Circuit
@@ -43,6 +42,8 @@ order: 4
 #### Hooking up the Components
 
 // step by step guide of how to hook up the components
+
+For the first circuit, 
 
 
 ### Writing the Code
