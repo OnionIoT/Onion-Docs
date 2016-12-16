@@ -33,12 +33,14 @@ order: 4
 ```{r child = '../../shared/switches-slide-switch.md'}
 ```
 
-
-
 ### Building an Example Circuit
 
 // circuit 1: switch controls turning an LED on and off to illustrate how the slide switch works
 // spdt switch (one side is pull-up, other side is pull-down) connected to an led
+
+We'll be building a circuit using the following components:
+
+* 
 
 #### Hooking up the Components
 

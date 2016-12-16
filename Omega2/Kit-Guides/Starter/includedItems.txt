@@ -1,0 +1,15 @@
+Omega2 Plus
+Expansion Dock
+Breadboard
+6" USB Micro-B Cable
+Wall Charger 1A@5V Output
+Plastic Carrying Case
+Solid Core Jumper Wires (x40)
+Multi-color LEDs (x20 assorted)
+Resisters (x40 assorted)
+Tactile Buttons (x12)
+SPDT Switch
+TMP102 Temperature Sensor
+7 Segment Display
+16x2 LCD Screen
+74HC595 Shift Register

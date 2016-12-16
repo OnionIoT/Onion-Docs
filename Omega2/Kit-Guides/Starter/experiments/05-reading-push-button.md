@@ -32,17 +32,6 @@ order: 5
 ```{r child = '../../shared/gpio-edge-detection.md'}
 ```
 
-// it in its own markdown file
-
-// introduce the concept of bouncing switches: in real life with real physics, electrical contacts don't work exactly the way we want them to, they'll connect and conduct, and then disconnect, and stop conducting, over and over again until it finally settles
-// add an illustration or graphic of a bouncing switch signal
-// we want to avoid this since it will wreak havoc on our software that treats the button as a trigger for an action. we press the button once, expecting the action to be triggered a single time, but because the signal is bouncing, the action may be triggered tens or hundreds of times. while this might not be an issue for turning on an led, this can cause huge problems in more complex systems
-// explain how the debouncing capacitor smooths out the signal:
-//  * when the switch is turned on: it takes a while for it to charge up to a logical one voltage level and it will only charge while the signal coming from the switch is high, by the time the capacitor charges up, the signal bouncing should have ended (include a graphic)
-//  * when the switch is turned off: it will take a while for it to discharge down to a logical zero voltage level, but that time the signal will have stopped bouncing (include a graphic)
-// [go into more detail for these two points: see http://www.ganssle.com/debouncing-pt2.htm for a great reference on the whole process ]
-
-
 
 ## Building an Example Circuit
 
