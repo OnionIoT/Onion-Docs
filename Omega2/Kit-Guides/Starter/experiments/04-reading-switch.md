@@ -132,6 +132,34 @@ Let's make a new file called `readSwitch.py` to hold our code:
 //  * if it makes sense, write functions to read the gpio, and then set the other gpio (want to teach them good practices right off the bat)
 //  * make the delay at the end of the loop pretty long 2-5 seconds -->
 
+``` python
+import onionGpio
+import time
+
+# initialize GPIOs for the switch and LED
+switchValue     = onionGpio.OnionGpio(0)
+ledValue        = onionGpio.OnionGpio(1)
+gpio0.setOutputDirection(0)		# set to output direction with zero being the default value
+
+ledValue 	= 1
+
+while 1:
+	gpio0.setValue(ledValue)	# program the GPIO
+
+	# flip the value variable
+	if ledValue == 1:
+		ledValue = 0
+	else:
+		ledValue = 1
+
+	time.sleep(0.5)		# sleep for half a second
+```
+
+Let's run the code:
+```
+python blink.py
+```
+
 #### What to Expect
 
 // the switch controls whether the LED is on or off. yes the same thing was achieved with the far simpler circuit, but is meant to illustrate how a physical input can control something virtual
