@@ -35,11 +35,17 @@ order: 4
 
 ### Building an Example Circuit
 
+// diagram, general description of what the circuit does/the purpose
 // circuit 1: switch controls turning an LED on and off to illustrate how the slide switch works
 // spdt switch (one side is pull-up, other side is pull-down) connected to an led
 
-We'll be building a circuit using the following components:
+#### What You'll Need
 
+We'll be building a circuit on your breadboard using the following components:
+
+* Omega2 plugged into Expansion Dock
+* SPDT switch
+* Resistor <!-- TODO: find out what resistors are available, then pick one -->
 * 
 
 #### Hooking up the Components
