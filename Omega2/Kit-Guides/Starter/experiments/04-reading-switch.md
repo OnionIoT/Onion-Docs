@@ -79,7 +79,7 @@ Before putting the circuit together, make sure the Omega2 is powered OFF for saf
 
 Your circuit should look like this.
 
-<!-- TODO: some pic -->
+// TODO: photo
 
 If your circuit matches, go ahead and turn the Omega2 on!
 
@@ -106,6 +106,8 @@ This is a very simple circuit, but we wanted to illustrate how this switch works
 
 In the next circuit, the Omega2 connects to the slide switch and LED. We'll write a program that turns the LED on or off depending on how you set the switch.
 
+// TODO: photo
+
 #### What You'll Need
 
 * Use the same components as in the first circuit above.
@@ -115,6 +117,8 @@ In the next circuit, the Omega2 connects to the slide switch and LED. We'll writ
 <!-- // step by step guide of how to hook up the components
 //  jack the switch setup from the above section - adjust so taht it leads to a gpio
 //  jack the LED setup from the previous articles -->
+Turn the Omega off before changing 
+
 1. Remove the LED and its resistor from the breadboard.
 1. Connect GPIO 0 on the Expansion Dock to the middle pin on the switch.
 1. Place the LED back on the breadboard.
@@ -136,42 +140,41 @@ Let's make a new file called `readSwitch.py` to hold our code:
 import onionGpio
 import time
 
-# initialize GPIOs for the switch and LED
-switchValue     = onionGpio.OnionGpio(0)
-ledValue        = onionGpio.OnionGpio(1)
-gpio0.setOutputDirection(0)		# set to output direction with zero being the default value
+# initialize GPIOs
+switchPin     = onionGpio.OnionGpio(0)      # use GPIO0
+ledPin        = onionGpio.OnionGpio(1)      # use GPIO1
 
-ledValue 	= 1
+# set the GPIO directions
+switchPin.setInputDirection()               # switch pin is an input
+ledPin.setOutputDirection(0)                # led pin is an output
 
+# periodically check the switch and turn the LED on or off
 while 1:
-	gpio0.setValue(ledValue)	# program the GPIO
+	switchValue = switchPin.getValue()     # read the switch's value
+    ledPin.setValue(switchValue)           # turn the LED on/off depending on the switch
 
-	# flip the value variable
-	if ledValue == 1:
-		ledValue = 0
-	else:
-		ledValue = 1
-
-	time.sleep(0.5)		# sleep for half a second
+	time.sleep(2)                          # sleep for 2 seconds
 ```
 
 Let's run the code:
 ```
-python blink.py
+python readSwitch.py
 ```
+
+Now try flipping the switch on and off. What happens?
 
 #### What to Expect
 
-// the switch controls whether the LED is on or off. yes the same thing was achieved with the far simpler circuit, but is meant to illustrate how a physical input can control something virtual
+<!-- // the switch controls whether the LED is on or off. yes the same thing was achieved with the far simpler circuit, but is meant to illustrate how a physical input can control something virtual -->
 
+This circuit does pretty much the same thing as the first circuit, albeit with a slower reaction to the switch input. This is meant as a simple example of a physical input affecting something virtual (eg. a program), which can in turn affect the physical world or interact with other virtual entities.
 
 #### A Closer Look at the Code
 
-// small overview of anything new we did
-
+<!-- // small overview of anything new we did -->
 ##### Polling
 
-// explain polling is the process of repeatedly checking an input
+<!-- // explain polling is the process of repeatedly checking an input
 //  * a delay was added since we don't want to burn up the cpu constantly checking the same thing - remember the CPU runs incredibly fast
 
 // talk about how sometimes it takes a while for the led to react:
@@ -179,4 +182,17 @@ python blink.py
 //  * introduce some of the issues related to having polling:
 //    * can't do anything else in the program
 //    * can potentially have a long delay between the physical action and the software reacting
-//    * if only there was a better way!
+//    * if only there was a better way! -->
+
+Polling is the process of repeatedly checking an input.
+
+When flipping the switch, you may have noticed a delay of 2 seconds before the LED reacted. This delay was added so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast!
+
+The delay length is set by the `time.sleep(2)` line. Try changing the number to something shorter, like 0.5 or 0.1, and seeing what happens.
+
+Some of the issues during polling are as follows:
+
+* You can't do anything else in the program.
+* You need to find a polling speed that balances the time delay and stress on the CPU.
+
+If only there were a better way of doing this!
