@@ -167,7 +167,9 @@ Wire up your LCD display as shown below:
 | 20 | SCL |
 | 21 | SDA |
 
-> If you're thinking, "hold on, this display is 5V and the Omega is 3.3V, how will this work?", you have a good eye! What's happening here is that we're using the 5V available on the Dock to power the display, and then using the Omega's 3.3V I2C signals to control the display. This is safe from the Omega since there will be no 5V input coming to the GPIOs as long as we don't try to perform an I2C Read operation - which is expected since most screens don't support reading register values. The LCD is able to read the commands from the Omega since the 3.3V logical high is greater than the logical high threshold voltage on most TTL circuits used in displays. 
+> If you're thinking, "hold on, this display is 5V and the Omega is 3.3V, how will this work?", you have a good eye! What's happening here is that we're using the 5V available on the Dock to power the display, and then using the Omega's 3.3V I2C signals to control the display. This is safe for the Omega since there will be no 5V input coming to the GPIOs as long as we don't try to perform an I2C Read operation - which is expected since most screens don't support reading register values. The LCD is able to read the commands from the Omega since the 3.3V logical high is greater than the logical high threshold voltage on most TTL circuits used in displays. 
+
+<!-- TODO: GABE: please double check the above -->
 
 Navigate to the `src` directory:
 
