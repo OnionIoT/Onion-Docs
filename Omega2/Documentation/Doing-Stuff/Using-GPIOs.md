@@ -19,6 +19,8 @@ On the Omega, we can control GPIO pins with a command-line tool known as `gpioct
 
 ### GPIO Electrical Ratings
 
+**The Omega2's GPIOs are not 5V input tolerant!**
+
 See the table below for the GPIOs' operating voltages:
 
 | Parameter | Minimum (V) | Maximum (V) |
