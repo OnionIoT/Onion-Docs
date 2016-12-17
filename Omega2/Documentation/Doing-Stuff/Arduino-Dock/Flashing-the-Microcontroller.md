@@ -10,6 +10,8 @@
 // 1) your computer must be able to connect to the Omega by it's `Omega-ABCD` name
 // can recycle content from: https://wiki.onion.io/Tutorials/Arduino-Dock/Initial-Setup#computer-setup_accessing-the-omega-s-url
 
+// highlight that on windows you need the bonjour printer services
+
 #### Arduino IDE
 
 // arduino ide must be installed on your computer
