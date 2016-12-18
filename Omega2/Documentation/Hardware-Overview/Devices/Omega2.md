@@ -5,8 +5,7 @@ The Omega2 is the latest in development boards from Onion. It comes packed with 
 
 ### The Omega2 at a Glance
 
-<!-- TODO: have an illustration with labels -->
-![omega2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega-2-pic.png)
+![omega2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2-illustration.png)
 
 | Omega2 Specs  | |
 | :-------------: | :-------------:  |

@@ -4,7 +4,7 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 
 ### The Omega2 at a Glance
 
-![omega2Plus](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega-2p-pic.png)
+![omega2Plus](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-illustration.png)
 
 | Omega2+ Specs  | |
 | :-------------: | :-------------:  |
