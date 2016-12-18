@@ -9,8 +9,8 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 | Omega2+ Specs  | |
 | :-------------: | :-------------:  |
 | Processor | 580MHz MIPS CPU  |
-| 128MB Memory | 128MB Memory  |
-|  32MB Storage | 32MB Storage  |
+| Memory | 128MB Memory  |
+| Storage | 32MB Storage  |
 | USB | USB 2.0  |
 | MicroSD Slot | Yes  |
 | WiFi adapter | b/g/n Wi-Fi  |
