@@ -20,7 +20,7 @@ The Expansion dock is a powerful piece of hardware that simplifies the usage of 
 
 Your Expansion Dock has a 30 pin Expansion Header, allowing you to use all of your Onion Expansions. The Expansion Dock is powered by the Micro-USB port that supplies 5V to the Dock. This voltage is stepped down to the required 3.3V required to power the Omega, and also provides 5V to the Expansions and USB Host port.
 
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/expansion-dock-illustration.jpg)
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/expansion-dock-illustration.png)
 
 The Expansion Dock allows for easy communication via the USB-to-Serial chip located in the center of the board. You've also got a great RGB LED that you can control through the command-line interface.
 

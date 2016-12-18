@@ -34,7 +34,7 @@ Connect your Omega to the Breadboard Dock by lining up the two rows of header pi
 
 <!-- https://wiki.onion.io/Tutorials/Expansions/Using-the-Power-Dock#the-hardware_the-power-dock-at-a-glance for an example) -->
 
-![breadboard-dock-illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/breadboard-dock-illustration.jpg)
+![breadboard-dock-illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/breadboard-dock-illustration.png)
 
 #### The Breadboard Header
 

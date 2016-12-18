@@ -39,7 +39,7 @@ To connect the Relay Expansion to the Omega, plug it into the Expansion Header o
 
 #### At a Glance
 
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-expansion-illustration.jpg)
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-expansion-illustration.png)
 
 #### The Relays
 

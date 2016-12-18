@@ -46,7 +46,7 @@ You can safely stack other Expansions on top of it. **However, be mindful of wir
 
 #### At a Glance
 
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-expansion-illustration.jpg)
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-expansion-illustration.png)
 
 #### The PWM Channels
 

@@ -53,7 +53,7 @@ This is one of the few Expansions that doesn't require Expansion headers, so you
 
 #### At a Glance
 
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-expansion-illustration.jpg)
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-expansion-illustration.png)
 
 #### The ublox Chip and Antenna
 
