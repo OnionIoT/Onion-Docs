@@ -15,6 +15,8 @@ order: 2
 
 ## Using the PWM Expansion {#using-pwm-expansion}
 
+// TODO: copy the introduction from the expansion hardware article, also include a link back to the hardware article
+
 
 ### Pulse Width Modulation
 
