@@ -12,7 +12,7 @@ Shift registers are very useful tools; using a few GPIOs connected to a shift re
 
 In this experiment, we'll be using a shift register to control eight LEDs, but we'll only be using four GPIOs on the Omega.
 
-// TODO: update this number if required
+// TODO: update the number of gpios if required
 
 
 ## Shift Register
