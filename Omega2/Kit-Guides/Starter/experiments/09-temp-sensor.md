@@ -35,15 +35,18 @@ The One Wire protocol is a bus-based protocol that uses, as the name implied, on
 
 ## Writing the Code
 
-// take a look at: https://wiki.onion.io/Tutorials/Reading-1Wire-Sensor-Data
-//  the procedure for using 1w on the omega2 is likely similar
+
 // the script: should read and write from files on the filesystem
 //  * check if the device exists/is registered
 //    * if not, register it with the system (have this in its own function)
 //  * perform a a reading (have this in its own function)
 //  * display the reading on the command line
 
-// might be a good idea to create a temperature sensor class that does the above
+// should create a temperature sensor class that does the above
+
+// implementation:
+// take a look at: https://wiki.onion.io/Tutorials/Reading-1Wire-Sensor-Data
+//  the procedure for using 1w on the omega2 is likely similar
 
 
 ### What to Expect

@@ -18,7 +18,7 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 ## Shift Register
 <!-- {{!insert 'shift-register'}} -->
 
-// explanation of a shift register
+// explanation of a shift register, an external integrated circuit (ic) that takes serial input and provide the data in parallel
 // it allows us to essentially expand the number of output pins available to us
 // the omega can provide data serially using one data pin, and then the shift register outputs it on its eight data pins
 
@@ -45,7 +45,12 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 
 ### Hooking up the Components
 
-// explain each of the lines running from the Omega and what they do - according to the names from the controlling a shift register section
+//  * talk about how the IC should be plugged in across the channel of the breadboard (have this note in a markdown file so it can be easily reused)
+
+//  * explain all of the wiring from omega->shift reg
+//    * explain each of the lines running from the Omega and what they do - according to the names from the controlling a shift register section
+
+
 
 
 ## Writing the Code
@@ -74,7 +79,7 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 
 // an overview of the code
 
-#### Importing Modules
+#### Creating and Importing Modules
 
 // describe how the import process works, make sure to note how the directory structure has to fit
 
@@ -86,3 +91,4 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 //  - each class becomes an object when you instantiate it
 //    - can call functions from the object, etc
 //    - if we had two shift registers, we could have two objects to run the two different ones
+//  - talk about how class functions can use other class functions

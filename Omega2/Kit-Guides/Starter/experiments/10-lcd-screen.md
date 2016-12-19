@@ -37,6 +37,7 @@ order: 10
 // make sure to mention that it can be referred to as I2C, IIC, Two-wire interface (TWI)
 
 // can totally rip off large chunks of the i2c article from the documentation
+//  * should isolate that text from the i2c article into  markdown files that can be included here
 
 
 ## Building the Circuit
@@ -66,7 +67,16 @@ order: 10
 
 ### A Closer Look at the Code
 
-// introduced onion i2c module, give a brief overview of the functions and point them to the documentation reference (need to include docs.onion.io link)
+// intro to the onion i2c module
+
+#### The Onion I2C Module
+
+// introduce the onion i2c module, written by Onion to facilitate the easy use of the i2c bus
+// give a brief overview of the functions that we used and point them to the documentation reference (need to include docs.onion.io link, not markdown tag)
+
+#### Multiple Different objects
+
+// small blurb about how the main program uses two objects of different classes to accomplish its purpose - make a note that this is an incredibly common programming method/technique
 
 ### Going Further: Automating the Script
 
