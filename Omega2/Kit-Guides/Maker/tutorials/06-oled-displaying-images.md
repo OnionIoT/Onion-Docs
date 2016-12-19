@@ -8,7 +8,7 @@ order: 6
 
 # Drawing on the OLED Screen
 
-// this tutorial will show how to draw lines on the oled display using user input to
+// this tutorial will show how to draw lines on the oled display using text-based user input
 
 ## The OLED Screen & Images
 

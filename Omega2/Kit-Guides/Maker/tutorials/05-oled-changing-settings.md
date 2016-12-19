@@ -11,6 +11,13 @@ order: 5
 // this tutorial will show how to change how the OLED displays the images on it based on text-based user input
 // we'll be scrolling the display contents as well as dimming and inverting the display, let's jump in.
 
+## The OLED's Settings
+
+// brief intro of each of the available settings we will adjust:
+//  * brightness
+//  * color inversion
+//  * horizontal+diagonal scrolling
+
 ## Building the Circuit
 
 // keep the oled plugged in
