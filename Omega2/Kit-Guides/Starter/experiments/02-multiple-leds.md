@@ -40,8 +40,6 @@ Like I said, it's just six copies of our first experiment together.
 
 ### Writing the Code
 
-// need to run omega2-ctrl gpiomux to put 18 and 19 in gpio mode
-
 Here's where this experiment is different from the previous, the code we write will be significantly different since we now have five more LEDs to control. We'll also be making a little animation instead of just blinking!
 
 Create a new file `lineUp.py` to hold the code:
