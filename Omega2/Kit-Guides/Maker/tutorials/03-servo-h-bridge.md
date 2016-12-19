@@ -10,6 +10,7 @@ order: 4
 
 # Driving a DC Motor using the Servo Expansion and an H-Bridge
 
+// this tutorial will show us how to control a dc motor using an h-bridge. we'll also continue using the class from the first example to create classes to help us accomplish our goals
 
 ## DC Motor
 // should be its own markdown file

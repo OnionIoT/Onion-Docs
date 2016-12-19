@@ -40,7 +40,7 @@ order: 1
 
 // * write the omegaPwm class (from the file above) that programs a single channel
 //  * no need to include the frequency functions
-// * create 16 objects, one for each of the LEDs
+// * an array to hold 16 objects, one for each of the LEDs
 // * make the leds do something interesting, maybe like a wave or something, the key is to show that each object can be controlled completely independently
 //    * perhaps find a way to work a button or switch into the mix
 
@@ -60,6 +60,8 @@ order: 1
 // introduce the pwm module, written by Onion to facilitate easy usage of the pwm expansion
 // give a brief overview of the functions that we used and point them to the documentation reference (need to include docs.onion.io link, not markdown tag)
 
+// description of how we use it here, in an array, talk about arrays a little bit
+
 
 #### Creating a class
 
@@ -67,6 +69,9 @@ order: 1
 //  - emphasis on each object being it's own separate entity
 
 // [note] copy from or link back to the shift register article where we first introduced classes - probably makes more sense to link back since maker kit people will have all starter kit content as well
+
+// explanation of why we chose a class - abstraction of hardware - because this way we can have a bunch of objects, each knowing which channel they control, without having to deal with the details of the hardware, instead we identify them as LED0, LED1, etc
+// * not so handy here but this is good practise for programming when the index of the object meant to be controlled is different from the hardware index -
 
 #### Initializing the PWM Expansion
 
