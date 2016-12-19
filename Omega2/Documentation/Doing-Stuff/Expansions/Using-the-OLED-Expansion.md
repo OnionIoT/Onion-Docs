@@ -8,6 +8,7 @@ order: 2
 
 ## Using the OLED Expansion {#using-oled-expansion}
 
+// TODO: copy the introduction from the expansion hardware article, also include a link back to the hardware article
 
 We've developed a command line tool called `oled-exp` that will be your helper in all things related to the OLED Expansion.
 
