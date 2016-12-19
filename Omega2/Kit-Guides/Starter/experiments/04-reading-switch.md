@@ -51,7 +51,7 @@ We'll be building the following circuit.
 
 Prepare the following components from your kit:
 
-* Omega2 plugged into Expansion Dock
+* Omega plugged into Expansion Dock
 * Breadboard
 * Jumper wires
 * SPDT switch

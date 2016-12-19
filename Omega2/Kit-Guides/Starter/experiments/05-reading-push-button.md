@@ -8,18 +8,18 @@ order: 5
 
 # Reading a Push Button
 
-// intro to push button
+<!-- // intro to push button
 // building on what we did with the slide switch, but let's use the button as a trigger for an action - as opposed to constantly reading the state of the switch
 
-// we will be building an led controlled by a push button, when the button is pressed, the led will turn on, and remain on for 10 seconds, then turn off
+// we will be building an led controlled by a push button, when the button is pressed, the led will turn on, and remain on for 10 seconds, then turn off -->
 
+For this experiment, we'll build on what we did with the slide switch. This time, let's use the button as the trigger instead of constantly polling the switch! 
 
+We'll be making a circuit with an LED controlled by a **push button**. When the button is pressed, the LED will turn on for 10 seconds, then turn off.
 
 ## Push Buttons
 
-<!-- {{!insert 'switches-push-button'}} -->
-
-// put in its own markdown file
+<!-- // put in its own markdown file -->
 
 <!-- // explanation of push buttons: how they are momentary switches and only close the circuit while the button is depressed
 // explanation of the pins, and what connection happens when the button is pressed -->
@@ -28,10 +28,9 @@ order: 5
 
 ### Debouncing Switches
 
-<!-- {{!insert 'gpio-edge-detection'}} -->
-```{r child = '../../shared/gpio-edge-detection.md'}
+<!-- debouncing switches -->
+```{r child = '../../shared/switches-debouncing.md'}
 ```
-
 
 ## Building an Example Circuit
 
@@ -61,7 +60,9 @@ Let's go about writing our code, but first let's cover an important topic first.
 
 ### Edge Detection
 
-<!-- {{!insert 'gpio-edge-detection'}} -->
+<!-- edge detection -->
+```{r child = '../../shared/gpio-edge-detection.md'}
+```
 
 // edge detection is when the system waits for an "edge" in the signal to perform an action. an edge being a place where the signal goes from high to low (falling edge), or low to high (rising edge) (have an illustration)
 
