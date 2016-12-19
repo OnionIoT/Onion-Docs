@@ -59,6 +59,8 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 //    - clearing the values
 //  * use all of these functions in that one function to pass in 8 different outputs
 
+// note that the class should be in its own file and imported in the final program
+
 // for loop using the object to display on all the leds
 //  there should be two leds on at a time, have it run all the way to the left, and then all the way to the right
 
@@ -72,7 +74,11 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 
 // an overview of the code
 
-#### Creating Classes
+#### Importing Modules
+
+// describe how the import process works, make sure to note how the directory structure has to fit
+
+#### Creating and Using Classes
 
 // explanation of Classes
 //  - definition of Classes
