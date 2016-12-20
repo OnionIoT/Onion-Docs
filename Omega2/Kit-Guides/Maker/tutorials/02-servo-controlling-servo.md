@@ -6,27 +6,21 @@ devices: [ Omega , Omega2 ]
 order: 2
 ---
 
-// Note from Lazar: for this and the rest of the pwm expansion articles, see https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py for code example, this (or something similar) is what the final result will be
 
 # Controlling Servos with the Servo Expansion
 
-// this tutorial will show how the PWM expansion can be used to control servos and the programming that comes along with it
+
+In this tutorial we will learn how to control the channels on our servo expansion using python. But first, a bried introduction to servo motors is required
 
 ## Servo-Motors
-// should be in it's own markdown file
 
-// * explanation of servo motors, how you send it a pwm signal and based on the duty cycle of the signal, it goes to a specific relative angle
-//  - include a picture here illustrating what angle we mean (the servo should be standing up on it's short end and 90˚ should show the horn being vertical)
-
-// * standard servos have a range of 180 degrees
-
-// * explanation of how servos interpret duty cycle into degrees
-//  * how there's a minimum duty cycle and a maximum duty cycle, how we can start with those two values and build out a way to convert degrees into the corresponding duty cycle
-
+<!-- servo -->
+```{r child = '../../shared/servos.md'}
+```
 
 ## Building the Circuit
 
-// very easy to build
+Plug power,ground and signal to the respective pins of channel one on the pwm expansion.
 
 ### Hooking up the Components
 
@@ -35,7 +29,7 @@ order: 2
 // can totally rip off large chunks of the pwm expansion hardware article from the documentation
 //  * should isolate that text from the pwm hw article into markdown files that can be included here
 
-
+If your driving a large load on your servo, you should provide an external power supply to the pwm expansion. 
 
 ## Writing the Code
 
@@ -47,15 +41,78 @@ order: 2
 // * the program should be something along the lines of setting the servo to 0˚, 45˚, 90˚, 135˚, 180˚, and then back down by 45˚ steps, have a noticeable but not annoyingly long delay between the steps
 //  * have it run in an infinite loop
 
-### What to Expect
+Prior to running the code you will need to have python and the OmegaExpansion libraries installed. You can install with the following commands
 
-// explain that the servo will go from 0˚ up to 180˚ and then back down to 0˚ in 45˚ increments with a small pause between each step
+```
+opkg update
+opkg install python-light
+opkg install pyPwmExp
+```
+Run the following python code and observe your your motor
+
+```
+from OmegaExpansion import pwmExp
+import math
+import time
+
+PWM_FREQUENCY = 50
+class servoChannel:
+	def __init__(self,channel,minPulse,maxPulse):
+		self.channel = channel
+		self.frequecy = PWM_FREQUENCY
+		self.minPulse = minPulse
+		self.maxPulse = maxPulse
+		bInit = pwmExp.checkInit()
+		if (bInit == 0):
+			ret = pwmExp.driverInit()
+			if (ret != 0):
+				print "Error initializing expansion"
+			else:
+				bSetFrequency = pwmExp.setFrequency(SERVO_FREQUENCY)	
+				if(bSetFrequency != 0):
+					print "Error setting oscillator frequecy"
+
+	def setAngle(self,angle):
+		pulseWidth = ((self.maxPulse - self.minPulse)/180) + self.minPulse
+		dutyCycle = self.calcDutyCycle(pulseWidth);
+		self.setDutyCycle(dutyCycle)
+
+	def calcDutyCycle(self,pulseWidth):
+		return pulseWidth * PWM_FREQUENCY * 100
+
+	def setDutyCycle(self,dutyCycle):
+		ret = pwmExp.setupDriver(self.channel, dutyCycle, 0)
+		if(ret != 0):
+			print "Error setting channel duty cycle"
+
+
+def main():
+	# Construct servoPin object
+	servoControl = servoChannel(0,.001,.002)
+	while(true):
+		# Turn motor to the 0 angle position
+		servoControl.setAngle(0.0)
+		time.sleep(3)
+		# Turn motor to the neutral position
+		servoControl.setAngle(90.0)
+		time.sleep(3)
+		# Turn motor to the 180 angle position
+		servoControl.setAngle(180.0)
+		time.sleep(3)
+if __name__ == '__main__':
+	main()
+```
+
+### What to Expect
 
 // gif of a servo connected to the omega doing this
 //  - make sure in the gif it's oriented in the same way as above in the servo section
 
-// mention ctrl+c to quit the infinite loop
 
+You should see a repeating pattern. First,the motor shaft move to the 0 degree position, stay there for 3 seconds.
+Next it will move to the 90 degree(neutral) positon and stay three seconds. Then it will move to the 180 degree positon and stay there for 3 seconds. Then the pattern will repeat itself.
+
+Since the pattern will repeat infinitely, you will need to break by entering `ctrl`+`c`.
 
 ### A Closer Look at the Code
 
@@ -64,9 +121,28 @@ order: 2
 // * brought back the idea of using a class within a class (link back to the first time this was introduced in the 7seg article)
 // * brought back the infinite loop
 
-#### Math in Pyton
+As in the servo-dimming-tutorial, we have created a class that allows us to instantiate a servo controlling object for each channel. This allows us to create as many channel objects from the same class template and control each channel as a seperate entity. 
 
-// introduce the idea of floating point numbers and how computer variables need to be differentiated between integers and decimal numbers
+We have also employed an infinite loop. These can be easily constructed with the following code block:
 
-// have example code (can be just a few print statements) that shows what happens if you don't divide using float numbers
-// reference https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py#L146 for context
+```
+while(True):
+	#Code To Be Repeated Forever Goes Here
+```
+
+Since each servo motor is slightly different, we instantiate our class with the channel that motor is connected to along with the pulse width for the 0 degree position and the pulse width or the 180 degree position. This not only allows us to control the position on different servo motors on different channels but also allows us to interpolate
+for pulse width between 0 and 180 degrees.
+
+#### Math in Python
+
+In this code example, as well as others, you will notice that integer numbers including a decimal place, regardless if it is necessary. The reason is that python will interpret the number as a floating point number and not an integer type. The former allows for decimal point precision in calculation unlike the latter. 
+
+To see the difference for yourself, run the following code:
+
+```
+print 4/3
+# will print "1"
+print 4.0/3
+# will print "1.33333333"
+```
+
