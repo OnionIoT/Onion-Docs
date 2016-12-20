@@ -13,6 +13,7 @@ order: 10
 //  * writing to an lcd screen
 //    * using the i2c protocol
 
+In this experiment, we will be building on the previous experiment by writing to an LCD screen using the I2C protocol.
 
 ## LCD Screen
 // should be in its own markdown file
