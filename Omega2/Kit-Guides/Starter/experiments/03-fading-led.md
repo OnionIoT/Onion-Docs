@@ -22,7 +22,7 @@ The main method to describing PWM signals is the concept of the Duty Cycle: it t
 
 // TO DO: GRAPHIC: Insert PWM Square wave graphic (http://www.bristolwatch.com/picaxe/images/io43.gif)
 
-Consider a PWM signal with a 25% duty cycle: it will be **on** for 25% of the time and **off for 75% of the time. Figuring out the duty cycle is a piece of cake, let's go over the main components:
+Consider a PWM signal with a 25% duty cycle: it will be **on** for 25% of the time and **off** for 75% of the time. Figuring out the duty cycle is a piece of cake, let's go over the main components:
 * The Time On, T<sub>on</sub>, is the amount of time the signal is **on** (also known as the *pulse width*)
 * The Time Off, T<sub>off</sub>, is the amount of time the signal is **off**
 * The total cycle time, T<sub>cycle</sub>, is the sum of T<sub>on</sub> and T<sub>off</sub>
@@ -120,7 +120,7 @@ When you run this script your LED will fade in and out. This is because we set t
 
 We've used the code from Experiment 1 as a foundation for writing the code in the experiment. We will still instantiate the GPIO and set the direction to output, but afterwards we no longer use onionGpio. Instead we use `fast-gpio` for its software based PWM function. In our infinite loop we increment the duty cycle by the ledValue, and at 100% we reverse the value and decrement to 0.
 
-#### functions
+#### Functions
 
 // explanation of why it was useful to package the fast-gpio os call into a function:
 //  * useful to have a readable & simple python interface for setting the pwm duty cycle
@@ -140,8 +140,6 @@ By doing this we make it really easy to reuse for other pins, frequencies, and d
 
 >It's good practice to break your code into small problems, and writing single functions to solve each problem.
 
-#### Fancy For Loops
+<!-- #### Fancy For Loops
 
-// have a for loop that increments the PWM and then halfway through starts decrementing the PWM - when you reach halfway, multiply the value by which you increment by -1 :)
-
-<!-- TODO: Above code does not use a for loop. Does it need to? -->
+// have a for loop that increments the PWM and then halfway through starts decrementing the PWM - when you reach halfway, multiply the value by which you increment by -1 :) -->
