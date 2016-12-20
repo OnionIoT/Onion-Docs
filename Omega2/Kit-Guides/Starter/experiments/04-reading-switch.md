@@ -51,7 +51,7 @@ We'll be building the following circuit.
 
 Prepare the following components from your kit:
 
-* Omega2 plugged into Expansion Dock
+* Omega plugged into Expansion Dock
 * Breadboard
 * Jumper wires
 * SPDT switch
@@ -111,20 +111,27 @@ In the next circuit, the Omega2 connects to the slide switch and LED. We'll writ
 #### What You'll Need
 
 * Use the same components as in the first circuit above.
+* You may need a few more jumper wires handy.
 
 #### Hooking up the Components
 
 <!-- // step by step guide of how to hook up the components
 //  jack the switch setup from the above section - adjust so taht it leads to a gpio
 //  jack the LED setup from the previous articles -->
-Turn the Omega off before changing 
+Turn the Omega off before changing your circuit. Then, do the following:
 
 1. Remove the LED and its resistor from the breadboard.
-1. Connect GPIO 0 on the Expansion Dock to the middle pin on the switch.
-1. Place the LED back on the breadboard.
-    1. Connect the cathode to GPIO 1 on the Expansion Dock
-    1. Connect the anode to one end of the resistor.    
-1. Connect the other end of the resistor to ground.
+1. Connect GPIO 0 on the Expansion Dock to the button pin using a jumper wire from the Expansion Dock to the breadboard.
+1. Place the LED back on the breadboard by doing the following:
+    1. Connect the cathode to GPIO 1 using a jumper wire from the breadboard to the Expansion Dock.
+    1. Connect the anode to one end of the (// TODO: resistor value) resistor.    
+1. Connect the other end of that resistor to ground.
+
+Your circuit should look like this:
+
+// TODO: photo
+
+If your circuit matches, power your Omega back on!
 
 ### Writing the Code
 
