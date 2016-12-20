@@ -16,8 +16,28 @@ In this experiment, we're going to use what we learned in the first experiment a
 
 Let's dive right into building our circuit. It's going to be essentially the same thing as the first experiment, but repeated six times over!
 
-// list of gpios that are going to be used: 0, 1, 2, 3, 18, 19
+The GPIOs that are going to be used in this experiment are:
 
+* 0
+* 1
+* 2
+* 3
+* 18
+* 19
+
+These have been highlighted in the image below:
+
+<!-- TODO: add image of expansion dock with correct pins highlighted -->
+
+#### What You'll Need
+
+We'll be building a circuit on your breadboard using the following components:
+
+* Omega2 plugged into Expansion Dock
+* 6x LEDs
+* 7x Jumper Wires
+* 6x <!-- TODO: Find resistance value --> Resistors
+* Breadboard
 
 
 #### Hooking up the Components
