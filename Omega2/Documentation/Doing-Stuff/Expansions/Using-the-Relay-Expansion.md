@@ -17,7 +17,7 @@ order: 2
 
 The Relay Expansion allows you to control two relay modules. Relays are basically electronically operated switches, enabling the Omega's low power circuits to control other, potentially high power circuits.
 
-For detailed specifications of the product itself, see our [article on the Relay Expansion](#relay-expansion).
+>You can learn more about the technical specifications of the Relay expansion in our [Relay Expansion hardware overview](#relay-expansion)
 
 ### Example Circuit
 

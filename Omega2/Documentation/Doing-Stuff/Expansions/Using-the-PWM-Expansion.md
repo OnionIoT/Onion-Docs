@@ -15,8 +15,9 @@ order: 2
 
 ## Using the PWM Expansion {#using-pwm-expansion}
 
-// TODO: copy the introduction from the expansion hardware article, also include a link back to the hardware article
+The PWM Expansion allows you to generate up to 16 different Pulse Width Modulated (PWM) signals to control anything from Servo Motors (servos), DC Motor speed, LED brightness, etc.
 
+>You can learn more about the technical specifications of the OLED expansion in our [PWM Expansion hardware overview](#pwm-expansion)
 
 ### Pulse Width Modulation
 

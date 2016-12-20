@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 3
 ---
 
-## PWM Expansion
+## PWM Expansion {#pwm-expansion}
 
 <!-- // intro to the pwm exp - allows you to generate 16 distinct PWM signals
 // can be used to control anything that can be controlled by pwm: leds, servos, motors, etc

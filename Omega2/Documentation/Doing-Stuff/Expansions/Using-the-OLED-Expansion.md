@@ -16,7 +16,7 @@ Also available are a C library and a Python module that allow you to develop you
 
 ![photo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/oled-onion-display.png)
 
-For detailed specifications of the product itself, see our [article on the OLED Expansion](#oled-expansion).
+>You can learn more about the technical specifications of the OLED expansion in our [OLED Expansion hardware overview](#oled-expansion)
 
 ### Command Usage
 
@@ -293,6 +293,7 @@ oled-exp -i draw /tmp/onion.lcd
 ### Supported Characters
 
 The OLED Display supports the following characters:
+
 ```
 SPACE, !, ", #, $, %, &, ', (, )
 , * , + , , , - , . , / , 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , a , b , c , d , e , f , g , h , i , j , k , l , m , n , o , p , q , r , s , t , u , v , w , x , y , z , A , B , C , D , E , F , G , H , I , J , K , L , M , N , O , P , Q , R , S , T , U , V , W , X , Y , Z , : , ; , < , = , > , ? , @ , [ , \ , ] , ^ , _ , ` , { , | , } , ~

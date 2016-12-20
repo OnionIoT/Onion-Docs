@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 5
 ---
 
-## GPS Expansion
+## GPS Expansion {#gps-expansion}
 
 <!-- // intro to the gps expansion - has a ublox chip and an antenna that allows you to pickup information from GPS satellites
 // communicates with the Omega serially through USB -->
