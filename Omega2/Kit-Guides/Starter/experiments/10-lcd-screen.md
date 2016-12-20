@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 10
 ---
 
-# Controlling an LCD Screen
+# Controlling an LCD Screen {#starter-kit-controlling-an-lcd-screen}
 
 // in this experiment, we will:
 //  * be building on the previous experiment
