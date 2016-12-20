@@ -1,9 +1,9 @@
 ### One Wire Protocol
 
-The One Wire protocol is a bus-based protocol that uses, as the name implies, a single wire for data transmission. It's similar to I2C (link to lcd screen article) but it has a longer range and a lower data rate. It follows a master-slave architecture with each bus allowing for one master, the Omega in this case, and many slave devices. Every device type has it's own unique single-byte (eight bit) identifier, and each device has it's own unique 64-bit serial number that includes the device type byte as the Least Significant Byte.
-// throw in an example of a single-byte in hex
-// bonus points: throw in an image showing 64 bits (separated into bytes), and highlighting the lsb (can make this easily in excel)
+The One Wire protocol is a bus-based protocol that uses, as the name implies, a single wire for data transmission. It's similar to [the I2C protocol](#communicating-with-i2c-devices), but it has a longer range and a lower data rate. 
 
-// make sure to mention that it can be referred to as 1W, 1-Wire, etc.
+It follows a master-slave architecture with each bus allowing for one master, in this case the Omega, and many slave devices. Every device type has its own unique single-byte (8 bit) identifier, eg. `0x8f`. Each device in turn has its own unique 8-byte (64-bit) serial number that includes a byte to describe the device type, known as the **family code**, as the Least Significant Byte. An example of a serial number is shown below:
+
+![one-wire-serial-number](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/one-wire-serial-number.jpg)
 
 One Wire can also be referred to as **1W, 1-Wire,** etc.
