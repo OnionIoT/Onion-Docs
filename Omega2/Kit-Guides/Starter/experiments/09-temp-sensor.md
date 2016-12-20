@@ -8,10 +8,12 @@ order: 9
 
 # Reading an One-Wire Temperature Sensor
 
-// in this experiment we will:
+<!-- // in this experiment we will:
 //  * introduce the one-wire bus protocol
 //  * read the ambient temperature using a sensor
-//  * learn how to read and write files
+//  * learn how to read and write files -->
+
+Let's now learn about and use the One Wire bus protocol to read the ambient temperature using a temperature sensor. We'll also learn how to read and write files.
 
 ## One Wire Protocol
 
