@@ -8,17 +8,26 @@ order: 2
 
 ## Using the OLED Expansion {#using-oled-expansion}
 
-// TODO: copy the introduction from the expansion hardware article, also include a link back to the hardware article
+The OLED Expansion is an extremely power efficient 0.96″ monochrome (black and white) OLED display for your Omega. With a resolution of 128×64, it is very handy for displaying text, drawing images, and even animation!
 
 We've developed a command line tool called `oled-exp` that will be your helper in all things related to the OLED Expansion.
 
 Also available are a C library and a Python module that allow you to develop your own programs to control the OLED Expansion. See the guides at the bottom of this article for more details.
 
-<!-- // TODO: photo: a photo on the Expansion -->
+![photo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/oled-onion-display.png)
 
 For detailed specifications of the product itself, see our [article on the OLED Expansion](#oled-expansion).
 
 ### Command Usage
+
+
+To use your OLED display you'll first need to initialize the display:
+
+```
+oled-exp -i 	
+```
+
+If you do not initialize your display then your OLED Expansion will not respond to other commands.
 
 
 For a print-out of the command's usage, run it with only a `-h` argument:
@@ -34,8 +43,10 @@ oled-exp [OPTIONS] <COMMAND> <PARAMETER>
 ```
 
 
+
+
 <!-- ### Programming Flow -->
-<!-- TODO: add a section describing that the screen needs to be initialized before anything will work -->
+<!-- DONE: add a section describing that the screen needs to be initialized before anything will work -->
 
 
 ### Command and Option Table
@@ -128,7 +139,7 @@ If the string contains spaces or any special characters (newlines, !?(){}[] etc)
 oled-exp write "This is so exciting!\nIsn't it?!?!\n\n(I love the Omega)"
 ```
 
-A list outlining the supported characters can be found in a [section below.](#supported-characters)
+A list outlining the supported characters can be found in a section below.
 
 
 
@@ -227,9 +238,9 @@ Supported directions:
 
 
 
-![left scroll](http://i.imgur.com/nytY4Xw.gif)
+![left scroll](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/oled-side-scroll.gif)
 
-![diagonal-right scroll](http://i.imgur.com/9JcoKEj.gif)
+![diagonal-right scroll](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/oled-diag-scroll.gif)
 
 
 
@@ -256,8 +267,8 @@ After the image name and location are selected, click the **Save to Omega** butt
 
 The OLED image files store the image data as 1024 bytes represented in hexadecimal. Each byte represents eight vertical pixels, with the first 128 bytes representing the columns in Page 0, the following 128 bytes representing the columns in Page 1, and so on.
 
-If this is unclear, see the [Understanding the Display Section in the OLED Expansion Library documentation article](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-C-Library#programming-flow_understanding-the-display) for details on how the display is addressed.
-<!-- TODO: change this link to the OLED Hardware article -->
+If this is unclear, see the [Understanding the Display Section in the OLED Expansion Library documentation article](#oled-expansion) for details on how the display is addressed.
+<!-- DONE: change this link to the OLED Hardware article -->
 
 #### Displaying Images from a File
 
@@ -278,106 +289,15 @@ Initialize the display and draw an image saved to `/tmp/onion.lcd`:
 oled-exp -i draw /tmp/onion.lcd
 ```
 
-<!-- TODO: let's change this list to a backtick block and have all of the values comma separated -->
+<!-- DONE: let's change this list to a backtick block and have all of the values comma separated -->
 ### Supported Characters
 
 The OLED Display supports the following characters:
+```
+SPACE, !, ", #, $, %, &, ', (, )
+, * , + , , , - , . , / , 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , a , b , c , d , e , f , g , h , i , j , k , l , m , n , o , p , q , r , s , t , u , v , w , x , y , z , A , B , C , D , E , F , G , H , I , J , K , L , M , N , O , P , Q , R , S , T , U , V , W , X , Y , Z , : , ; , < , = , > , ? , @ , [ , \ , ] , ^ , _ , ` , { , | , } , ~
+```
 
-* SPACE
-* !
-* "
-* #
-* $
-* %
-* &
-* '
-* (
-* )
-* *
-* +
-* ,
-* -
-* .
-* /
-* 0
-* 1
-* 2
-* 3
-* 4
-* 5
-* 6
-* 7
-* 8
-* 9
-* a
-* b
-* c
-* d
-* e
-* f
-* g
-* h
-* i
-* j
-* k
-* l
-* m
-* n
-* o
-* p
-* q
-* r
-* s
-* t
-* u
-* v
-* w
-* x
-* y
-* z
-* A
-* B
-* C
-* D
-* E
-* F
-* G
-* H
-* I
-* J
-* K
-* L
-* M
-* N
-* O
-* P
-* Q
-* R
-* S
-* T
-* U
-* V
-* W
-* X
-* Y
-* Z
-* :
-* ;
-* <
-* =
-* >
-* ?
-* @
-* [
-* \
-* ]
-* ^
-* _
-* `
-* {
-* |
-* }
-* ~
 
 
 
