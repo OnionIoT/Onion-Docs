@@ -6,13 +6,14 @@ devices: [ Omega , Omega2 ]
 order: 10
 ---
 
-# Controlling an LCD Screen
+# Controlling an LCD Screen {#starter-kit-controlling-an-lcd-screen}
 
 // in this experiment, we will:
 //  * be building on the previous experiment
 //  * writing to an lcd screen
 //    * using the i2c protocol
 
+In this experiment, we will be building on the previous experiment by writing to an LCD screen using the I2C protocol.
 
 ## LCD Screen
 // should be in its own markdown file

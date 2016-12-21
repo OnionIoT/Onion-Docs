@@ -6,26 +6,37 @@ devices: [ Omega , Omega2 ]
 order: 9
 ---
 
-# Reading an One-Wire Temperature Sensor
+# Reading a One-Wire Temperature Sensor
 
-// in this experiment we will:
+<!-- // in this experiment we will:
 //  * introduce the one-wire bus protocol
 //  * read the ambient temperature using a sensor
-//  * learn how to read and write files
+//  * learn how to read and write files -->
+
+Let's now learn about and use the One Wire bus protocol to read the ambient temperature using a temperature sensor. We'll also learn how to read and write files.
 
 ## One Wire Protocol
 
-// should be its own markdown file
-
-The One Wire protocol is a bus-based protocol that uses, as the name implied, one wire for data transmission. It's similar to I2C (link to lcd screen article) but it has a longer range and a lower data rate. It follows a master-slave architecture with each bus allowing for one master, the Omega in this case, and many slave devices. Every device type has it's own unique single-byte (eight bit) identifier, and each device has it's own unique 64-bit serial number that includes the device type byte as the Least Significant Byte.
-// throw in an example of a single-byte in hex
-// bonus points: throw in an image showing 64 bits (separated into bytes), and highlighting the lsb (can make this easily in excel)
-
-// make sure to mention that it can be referred to as 1W, 1-Wire, etc.
+<!-- one wire -->
+```{r child = '../../shared/one-wire.md'}
+```
 
 ## Building the Circuit
 
 // very straight-forward circuit: signal wire to a gpio, Vcc (3.3V), GND
+
+### What You'll Need
+
+Prepare the following components from your kit:
+
+* Omega plugged into Expansion Dock
+* Breadboard
+* Jumper wires
+* Resistors
+    * 1x 5kΩ
+* One Wire temperature sensor
+    * Should read "Dallas 18B20" on the part
+    * Don't mix this up with the analog temperature sensor! (says "TMP 36" on it)
 
 ### Hooking up the Components
 
@@ -48,11 +59,67 @@ The One Wire protocol is a bus-based protocol that uses, as the name implied, on
 // take a look at: https://wiki.onion.io/Tutorials/Reading-1Wire-Sensor-Data
 //  the procedure for using 1w on the omega2 is likely similar
 
+<!-- // from gabe: o2 firmware 0.1.6b136 has the following files in /etc/modules.d:
+./55-sound-soc-core ## the existing wiki article says to use 55-w1-gpio-custom
+./w1-master-gpio ## only contains "w1-gpio"
+./w1-slave-therm ## only contains "w1_therm"
+(no files with the word "custom")
+I'm guessing it's one of these, will come back to this later. Not exactly sure how this works yet, I need the sensor to try it out
+-->
+
+// TODO: need a scan program to find the 1W device's address if it's not known!
+
+Let's create a file called `oneWireTempSensor.py` to hold our code:
+
+``` python
+
+import time
+
+# define constants, classes, functions
+
+sensorAddress = 0x12 # replace with sensor address from scan script
+pollingInterval = 1
+
+# One Wire temperature sensor
+class TemperatureSensor:
+    def __init__(self, uniqueId):
+        self.uniqueId = uniqueId
+        self.__prepare()
+    
+    def __prepare(self): # internal use only
+        # check if the system file exists
+            # if so, check if it's registered
+                # if not, call the register function
+                
+    // TODO: the existing wiki article says you need to reboot the Omega to set up a new 1W sensor
+
+    def __register(self):
+        # register the device    
+        
+    def readValue(self): # call this to read data from the sensor
+        # read from the system file
+        return sensorValue
+        
+# main routine
+tempSensor = TemperatureSensor(sensorAddress)
+
+# periodically check and print the temperature
+while 1:
+    value = tempSensor.readValue()
+    print value
+    time.sleep(pollingInterval)
+
+```
+
+Let's run the code:
+```
+python oneWireTempSensor.py
+```
 
 ### What to Expect
 
-// run the program, get a print-out on the command line of the current temperature
-
+<!-- // run the program, get a print-out on the command line of the current temperature -->
+You should see the Omega printing the ambient temperature in degrees Celsius measured by the sensor once every second.
 
 ### A Closer Look at the Code
 
