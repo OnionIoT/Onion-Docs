@@ -9,7 +9,7 @@
 
 ### Building the Circuit
 
-// very straight-forward circuit, look it up online
+// very straight-forward circuit, look it up online, likely one end to Vcc or Gnd and the other to an input pin
 
 #### Hooking up the Components
 
