@@ -8,37 +8,23 @@ order: 10
 
 # Controlling an LCD Screen {#starter-kit-controlling-an-lcd-screen}
 
-// in this experiment, we will:
+<!-- // in this experiment, we will:
 //  * be building on the previous experiment
 //  * writing to an lcd screen
-//    * using the i2c protocol
+//    * using the i2c protocol -->
 
 In this experiment, we will be building on the previous experiment by writing to an LCD screen using the I2C protocol.
 
 ## LCD Screen
-// should be in its own markdown file
-
-// LCD screen:
-//  * 16x2 meaning two rows that can fit 16 characters each
-//  * led backlight to illuminate the display
-//  * usually these LED screens are controlled by parallel (many) data lines - like 11 usually
-//    * this one has additional circuitry that allows devices to use the i2c protocol to control the screen
-
+<!-- // should be in its own markdown file -->
+```{r child = '../../shared/lcd.md'}
+```
 
 ## The I2C Bus
-// should be in its own markdown file
+<!-- // should be in its own markdown file -->
 
-// mention all of the key points:
-//  * two lines: data and clock
-//  * master slave architecture
-//  * each device has it's own unique two byte address
-// on the omega:
-//  * accesses through the virtual device file /dev/i2c-0
-
-// make sure to mention that it can be referred to as I2C, IIC, Two-wire interface (TWI)
-
-// can totally rip off large chunks of the i2c article from the documentation
-//  * should isolate that text from the i2c article into  markdown files that can be included here
+```{r child = '../../shared/i2c.md'}
+```
 
 
 ## Building the Circuit
@@ -53,7 +39,7 @@ In this experiment, we will be building on the previous experiment by writing to
 
 // some i2c devices will require pull-up resistors on one, or both of SCL and SDA
 // [experiment with the i2c screen and see if it needs the resistors]
-
+// Gabe: the community member's tutorial has the screen hooked straight to the GPIOs, no pullups, so I'll try that
 
 ## Writing the Code
 
@@ -61,6 +47,8 @@ In this experiment, we will be building on the previous experiment by writing to
 //  * reads the temperature data
 //  * writes the time and temperature to the display once a minute
 //    * use the onion i2c module to write to the display
+
+Let's create a file called `temperatureLCD.py` in `/root`. Paste the code below in it:
 
 ``` python
 
@@ -80,11 +68,44 @@ In this experiment, we will be building on the previous experiment by writing to
 // introduce the onion i2c module, written by Onion to facilitate the easy use of the i2c bus
 // give a brief overview of the functions that we used and point them to the documentation reference (need to include docs.onion.io link, not markdown tag)
 
-#### Multiple Different objects
+#### Multiple Different Objects
 
 // small blurb about how the main program uses two objects of different classes to accomplish its purpose - make a note that this is an incredibly common programming method/technique
 
 ### Going Further: Automating the Script
 
-// introduce cron
-// show example of how to setup cron to run the script we wrote once every minute
+<!-- // introduce cron
+// show example of how to setup cron to run the script we wrote once every minute -->
+
+We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
+
+<!-- TODO: this is taken from the latest article on docs.onion. fix this entire process for python, it doesn't work on gabe's omega2p -->
+
+First, create a file in `/root` called `runTemperatureSensorScript.sh` and write the following in it:
+
+```
+#!/bin/sh -e
+/usr/bin/python /root/temperatureLCD.py
+```
+
+Then change the file permissions so it becomes executable:
+
+```
+chmod +x runTemperatureSensorScript.sh
+```
+
+Run `crontab -e` to edit the file that contains commands and schedules to run them, and add this segment at the end of the file:
+
+```
+#
+*/1 * * * * /root/runTempSensorScript.sh
+#
+```
+
+Finally, run the following command to restart cron so it can start running your script:
+
+```
+/etc/init.d/cron restart
+```
+
+Your LCD should now update once a minute, and you're free to use your Omega for other things in the meantime!
