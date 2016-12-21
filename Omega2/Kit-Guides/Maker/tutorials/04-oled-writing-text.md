@@ -11,10 +11,6 @@ order: 4
 
 ## The OLED Display
 
-// introduce the oled display, resolution, number of possible characters in a row, max number of rows
-
-// how it's possible to choose where we write text by moving the cursor
-
 
 The oled display has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages.
 ![display](http://i.imgur.com/4JsaahS.png)
@@ -69,7 +65,7 @@ def main():
 	dateTimeStr = hour+":"+minute+" "+day
 	if(dateTimeObj.hour < 12):
 		greeting = "Good Morning"
-	elif(17>dateTimeObj.hour >= 12):
+	elif(17 > dateTimeObj.hour >= 12):
 		greeting = "Good Afternoon"
 	else:
 		greeting = "Good Evening"
@@ -92,7 +88,7 @@ if __name__ == '__main__':
 
 //TODO: ADD GIF
 
-After running the python code, you should see the current current time on the top row, a greeting on the third row.
+After running the python code, you should see the current current time on the right side of the top row, a greeting on the third row and a random fact on the fifth row.
 
 ### A Closer Look at the Code
 
