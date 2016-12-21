@@ -15,6 +15,7 @@
 #### Hooking up the Components
 
 // walkthrough all of the wiring
+// potentially isolate the push button instructions into it's own markdown file
 
 
 ## Writing the Code
