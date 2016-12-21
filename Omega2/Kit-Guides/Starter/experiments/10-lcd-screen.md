@@ -62,6 +62,11 @@ In this experiment, we will be building on the previous experiment by writing to
 //  * writes the time and temperature to the display once a minute
 //    * use the onion i2c module to write to the display
 
+``` python
+
+# default address of i2c backpack with no jumpers is 0x27: http://store.alhekma4u.com/content/Displays/I2C%20LCD%20interface.pdf
+```
+
 ### What to Expect
 
 // calling the script will update the lcd screen, but wouldn't it be nice if something could run the script for us every minute to actually update the lcd?
