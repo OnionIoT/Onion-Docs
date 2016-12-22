@@ -13,12 +13,10 @@ order: 4
 // this tutorial will show us how to control a dc motor using an h-bridge. we'll also continue using the class from the first example to create classes to help us accomplish our goals
 
 ## DC Motor
-// should be its own markdown file
 
-// explanation of how a dc motor works: apply current and it spins, apply current in the opposite direction, the axle will spin in the opposite direction
-
-// photos are nice
-
+<!-- dcmotor -->
+```{r child = '../../shared/dcmotor.md'}
+```
 
 ## H-Bridge
 // should be its own markdown file
