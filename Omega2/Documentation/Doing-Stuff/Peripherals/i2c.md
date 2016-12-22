@@ -121,8 +121,8 @@ i2cset -y 0 0x27 0x00 0x01          # living room lights ON
 i2cset -y 0 0x27 0x01 0x00          # dining room lights OFF
 ```
 
-<!-- #### Going further
-// TODO: look into the command line options for writing two bytes at a time -->
+<!-- #### Going further -->
+<!--// TODO: look into the command line options for writing two bytes at a time -->
 
 #### The Omega Expansions
 
