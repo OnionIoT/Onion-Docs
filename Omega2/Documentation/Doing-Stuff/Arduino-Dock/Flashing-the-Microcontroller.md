@@ -1,4 +1,4 @@
-## Flashing the Microcontroller
+## Flashing the Microcontroller {#flash-arduino-dock-wirelessly}
 
 // intro: whole point of the arduino dock is having the ATmega328P microcontroller and Omega interact, an OS with connectivity and a microcontroller can be very powerful when used together effectively
 

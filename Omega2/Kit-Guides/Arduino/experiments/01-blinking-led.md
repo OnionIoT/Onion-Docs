@@ -26,6 +26,16 @@ Before we start building our experiment, let's first go over some of the buildin
 
 ## Writing the Code
 
+First, prepare your computer by following [our guide to flashing sketches wirelessly to the Arduino Dock](#flash-arduino-dock-wirelessly).
+
+Then fire up the Arduino IDE on your computer and paste the following:
+
+```arduino
+void setup() {
+    
+}
+```
+
 // write an arduino sketch to blink an LED
 
 ### What to Expect
