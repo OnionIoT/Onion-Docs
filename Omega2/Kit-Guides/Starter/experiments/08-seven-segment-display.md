@@ -11,24 +11,14 @@ order: 8
 We've just learned about shift registers, now let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world.
 
 
-<!-- {{!insert 'seven-segment'}} -->
-## 7-Segment Display
-
-// put this into it's own markdown file
-If you're wondering why it's called a 7-segment display, wonder no more!
-// description of how a digit on the 7seg display is broken up into segments, with a separate input controlling each one
-
-// include illustration of 7-seg display here with all of the segments labelled
-
-// description of how the scan pins work on displays with multiple digits: two (to 4) pins control which digit is currently being edited
-
-// [make sure to note that]: usually seven segment displays are used in conjunction with shift registers to minimize the number of pins used on the controller
-
+<!-- seven segment -->
+```{r child = '../../shared/seven-segment.md'}
+```
 
 
 ## Building the Circuit
 
-Using the shift register and an additional GPIO or two form the Omega, we will control what's displayed on all four digits of the 7-segment display.
+Using the shift register and a few additional GPIO from the Omega, we will control what's displayed on all four digits of the 7-segment display.
 
 
 ### Hooking up the Components
@@ -51,7 +41,7 @@ Using the shift register and an additional GPIO or two form the Omega, we will c
 
 We'll be developing a program that takes input from command line arguments when it's launched and displays them on the 7-segment display.
 
-To accomplish this, we will write a new class that uses the shift register class we wrote for the previous experiment and introduces it's own
+To accomplish this, we will write a new class that uses the shift register class we wrote for the previous experiment and introduces it's own variables and functions.
 
 // [notes on the code]
 // create a class that uses the shift reg class but specifically to control the 7seg display
