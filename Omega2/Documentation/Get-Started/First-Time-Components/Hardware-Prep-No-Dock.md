@@ -6,7 +6,7 @@
 
 Unpack the Omega from its box
 
-// TODO: picture of unboxed Omega
+![omega2 alone](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/omega-2-alone.jpg)
 
 
 **Providing Power**
@@ -26,7 +26,19 @@ We'll need the following
 **Building the Circuit**
 
 
-Voltage regulators normally have three legs: Input, Output, and Ground. Take your voltage regulator and plug it into your breadboard so that each leg is in a different row. You'll then want to connect your barrel jack *ground* to the regulator's *ground*, and the barrel jack's *output* to the regulators *input*. Now you're ready to power the Omega.
+Voltage regulators normally have three legs: Input, Output, and Ground. Take your voltage regulator and plug it into your breadboard so that each leg is in a different row.
+
+![voltage regulator](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/no-dock-voltage-regulator.jpg)
+
+
+
+You'll then want to connect your barrel jack *ground* to the regulator's *ground*, and the barrel jack's *output* to the regulators *input*.
+
+
+![omega2 alone](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/no-dock-barrel-jack.jpg)
+
+
+Now you're ready to power the Omega.
 
 
 **Provide Power to the Omega**
@@ -38,6 +50,9 @@ Now take a look at the following pinout and connect the ground cable to the grou
 
 ![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
 
+![plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/no-dock-plugged-in.jpg)
+
+
 
 Connect your *DC* power supply to the barrel jack and your Omega will begin booting.
 
@@ -47,7 +62,7 @@ Connect your *DC* power supply to the barrel jack and your Omega will begin boot
 ```{r child = './Hardware-Prep-Component-LED-at-boot.md'}
 ```
 
-![Omega is on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-6-omega-led-detail.jpg "Omega is on")
+![powered on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/no-dock-powered-on.jpg)
 
 
 Your Omega's AP will become available for you to connect to on other devices.
