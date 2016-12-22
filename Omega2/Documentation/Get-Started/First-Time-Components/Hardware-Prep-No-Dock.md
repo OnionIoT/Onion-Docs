@@ -1,6 +1,3 @@
-// LAZAR to complete article
-
-
 <!-- Prepare the Hardware -->
 
 ### Unboxing and Getting the Hardware Ready
@@ -14,7 +11,7 @@ Unpack the Omega from its box
 
 **Providing Power**
 
-The Omega needs to be powered by 3.3V DC, and without a Dock, we can't use a MicroUSB to provide the power. So we'll need to build a *regulator* circuit that can be supplied with a wide range of ipnut, but still provide the Omega with the precise 3.3V that is needs.
+The Omega needs to be powered by 3.3V DC, and without a Dock, we can't use a MicroUSB to provide the power. So we'll need to build a *regulator* circuit that can be supplied with a wide range of input, but still provide the Omega with the precise 3.3V that is needs.
 
 // TODO: add affiliate amazon links to all of these items
 
@@ -28,18 +25,21 @@ We'll need the following
 
 **Building the Circuit**
 
-// regulator placement and identification of pins
 
-// connecting the barrel jack with the regulator
+Voltage regulators normally have three legs: Input, Output, and Ground. Take your voltage regulator and plug it into your breadboard so that each leg is in a different row. You'll then want to connect your barrel jack *ground* to the regulator's *ground*, and the barrel jack's *output* to the regulators *input*. Now you're ready to power the Omega.
+
 
 **Provide Power to the Omega**
 
-// jumping 3.3V and gnd to the Omega
 
-Now that the
+With your regulator circuit built you can provide a steady 3.3V to the Omega. Take one male-to-female jumper cable and insert the male end into the row with the ground leg of the regulator. Then take another male-to-female jumper cable and connect it to the output leg of the regulator. This leg is outputting 3.3V.
+
+Now take a look at the following pinout and connect the ground cable to the ground pin, and the 3.3V cable to the 3.3V VIN (input) pin. They are right next to each other:
+
+![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
 
 
-
+Connect your *DC* power supply to the barrel jack and your Omega will begin booting.
 
 **Wait till it boots**
 
@@ -48,3 +48,6 @@ Now that the
 ```
 
 ![Omega is on](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-6-omega-led-detail.jpg "Omega is on")
+
+
+Your Omega's AP will become available for you to connect to on other devices.
