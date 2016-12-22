@@ -26,7 +26,6 @@ In this experiment, we will be building on the previous experiment by writing to
 ```{r child = '../../shared/i2c.md'}
 ```
 
-
 ## Building the Circuit
 
 // start from the temperature sensor circuit
@@ -48,11 +47,20 @@ In this experiment, we will be building on the previous experiment by writing to
 //  * writes the time and temperature to the display once a minute
 //    * use the onion i2c module to write to the display
 
+First, let's create 
+
 Let's create a file called `temperatureLCD.py` in `/root`. Paste the code below in it:
 
 ``` python
 
 # default address of i2c backpack with no jumpers is 0x27: http://store.alhekma4u.com/content/Displays/I2C%20LCD%20interface.pdf
+
+# instantiate one wire temperature sensor object
+
+while 1:
+    # read temp data
+    # write to LCD screen
+    time.sleep(pollingInterval)
 ```
 
 ### What to Expect

@@ -69,19 +69,10 @@ I'm guessing it's one of these, will come back to this later. Not exactly sure h
 
 // TODO: need a scan program to find the 1W device's address if it's not known!
 
-Let's create a file called `oneWireTempSensor.py` to hold our code:
+First, we'll create a Python **class** for the temperature sensor. Create a file called `temperatureSensor.py` and paste the following code into it:
 
 ``` python
-
-import time
-
-# define constants, classes, functions
-
-sensorAddress = 0x12 # replace with sensor address from scan script
-pollingInterval = 1
-
-# One Wire temperature sensor
-class TemperatureSensor:
+class OneWire:
     def __init__(self, uniqueId):
         self.uniqueId = uniqueId
         self.__prepare()
@@ -99,9 +90,25 @@ class TemperatureSensor:
     def readValue(self): # call this to read data from the sensor
         # read from the system file
         return sensorValue
-        
+
+# You can extend this file to include other types of sensors, such as an analog-based sensor, I2C-based, etc!
+```
+
+Let's create a file called `oneWireTempSensor.py` to hold our code:
+
+``` python
+
+import time
+
+# define constants, classes, functions
+
+sensorAddress = 0x12 # replace with sensor address from scan script
+pollingInterval = 1
+
+# One Wire temperature sensor
+
 # main routine
-tempSensor = TemperatureSensor(sensorAddress)
+tempSensor = temperatureSensor.OneWire(sensorAddress)
 
 # periodically check and print the temperature
 while 1:
