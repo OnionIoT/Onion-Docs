@@ -11,6 +11,7 @@ The `onionGpio` Python module provides a Python object, `OnionGpio` that allows 
 ### Programming Flow
 
 Once the `OnionGpio` object is initialized, the class methods can be used to:
+
 * Set the GPIO to the input or output direction
 * Read the value of the GPIO (for both the input and output directions)
 * Set the value of the GPIO (only in the output direction)
