@@ -30,7 +30,7 @@ The white plastic casing houses the antenna, circuitry and an LED indicator. The
 
 #### At a Glance
 
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bluetooth-expansion-illustration.jpg)
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bluetooth-expansion-illustration.png)
 
 #### LED
 

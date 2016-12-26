@@ -30,7 +30,7 @@ The Mini Dock is tiny. It is approximately 4.3cm (1.7in) long, and 2.7cm (1.07in
 
 The Mini Dock is powered by the Micro-USB port that supplies 5V to the Dock. This voltage is stepped down to the required 3.3V required to power the Omega, and also provides 5V to the USB Host port
 
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mini-dock-illustration.jpg)
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mini-dock-illustration.png)
 
 
 The Mini Dock allows for easy communication via the USB-to-Serial chip located in the center of the board.
