@@ -27,12 +27,15 @@ We'll need the following
 **Building the Circuit**
 
 
-Voltage regulators normally have at least three legs: Input, Output, and Ground. Take your voltage regulator and plug it into your breadboard so that each leg is in a different row.
+Voltage regulators normally have at least three legs: Input, Output, and Ground. The LD1117 regulator we're using has the legs arranged in the order shown in the image below. Consult your regulator's datasheet for specifics.
+![voltage regulator](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/no-dock-ld1117-regulator-pinout.png)
+
+
+
+Take your voltage regulator and plug it into your breadboard so that each leg is in a different row.
 
 ![voltage regulator](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/no-dock-voltage-regulator.jpg)
 
-Consult the regulator's datasheet to find out which pins correspond to which function. In general, the LD1117 regulator will follow this illustration:
-![voltage regulator](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/no-dock-ld1117-regulator-pinout.png)
 
 You'll then want to connect your barrel jack *ground* to the regulator's *ground*, and the barrel jack's *output* to the regulators *input*.
 
