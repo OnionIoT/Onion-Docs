@@ -2,6 +2,8 @@
 
 ## Powering the Omega with No Dock {#hardware-prep-no-dock}
 
+If you only have an Omega and no Dock, this article will show you how to safely power your Omega using a regulator on a breadboard. *You can safely skip this section if you have a Dock.*
+
 **Unpack**
 
 Unpack the Omega from its box
