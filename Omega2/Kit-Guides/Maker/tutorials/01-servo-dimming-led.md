@@ -14,7 +14,6 @@ In this tutorial, we will be learning how to use the PWM Expansion with python a
 
 ## What is Pulse Width Modulation?
 
-
 <!-- pwm -->
 ```{r child = '../../shared/pwm.md'}
 ```
@@ -58,7 +57,7 @@ class pwmPin:
 			if (ret != 0):
 				print "Error initializing expansion"
 			else:
-				bSetFrequency = pwmExp.setFrequency(SERVO_FREQUENCY)	
+				bSetFrequency = pwmExp.setFrequency(SERVO_FREQUENCY)
 				if(bSetFrequency != 0):
 					print "Error setting oscillator frequecy"
 
@@ -83,7 +82,7 @@ def main():
 		ledObjectArray.append(obj)
 
 	# Construct pwmLED wave array:
-	
+
 	phaseIncrement = (2 * math.pi)/16
 	actualIncrement = (2 * math.pi)/160
 	i = 0
@@ -117,7 +116,7 @@ We are making a generic class for a pwm channel. This generic class has one func
 
 // description of how we use it here, in an array, talk about arrays a little bit
 
-We are using the pwm module written by onion to easily control the pwm expansion. The module comes with a set of functions to control and modify the pwm expansion channels and properties. To read more about the module refer to the link //TODO: ADD LINK TO PWM LIBRARY IN PYTHON DOC. 
+We are using the pwm module written by onion to easily control the pwm expansion. The module comes with a set of functions to control and modify the pwm expansion channels and properties. To read more about the module refer to the link //TODO: ADD LINK TO PWM LIBRARY IN PYTHON DOC.
 
 #### Creating a class
 
@@ -125,7 +124,7 @@ As a refresher, in Object Oriented Programming, classes are essentially template
 
 To see another example of another example of classes in python, check out the shift register article where we first introduced //TODO:HYPERLINK TO SHIFT REGISTER ARTICLE.
 
-In our case, wes are making a generic class for a pwm channel. This generic class has one function, `setDutyCycle` that sets the particular duty cycle on the selected channel that the class has been instantiated with. Once we instantiate each of the objects we store the objects inside of a list, such that their index corresponds to the channel number. This makes our coding a little simpler. 
+In our case, wes are making a generic class for a pwm channel. This generic class has one function, `setDutyCycle` that sets the particular duty cycle on the selected channel that the class has been instantiated with. Once we instantiate each of the objects we store the objects inside of a list, such that their index corresponds to the channel number. This makes our coding a little simpler.
 
 #### Initializing the PWM Expansion
 

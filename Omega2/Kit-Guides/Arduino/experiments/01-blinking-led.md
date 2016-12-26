@@ -39,3 +39,8 @@ Before we start building our experiment, let's first go over some of the buildin
 #### Setting GPIOs to Output
 
 // go through the setup commands we used to use a gpio as an output
+
+#### Variable Scope
+
+// talk about how we defined the LED gpio globally, and can therefore use it everywhere in the program
+// give an example of a local variable
