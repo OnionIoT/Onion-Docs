@@ -1,8 +1,11 @@
-<!-- LAZAR: include case where there is no dock -->
 
 <!-- Prepare the Hardware -->
 
 ### Unboxing and Getting the Hardware Ready
+
+<!-- LED at Boot text -->
+```{r child = './Hardware-Prep-Component-Link-to-No-Dock.md'}
+```
 
 **Unpack**
 

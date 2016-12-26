@@ -29,7 +29,7 @@ Follow along with this guide to set up your Omega2 for the first time. We'll fir
 ```{r child = './First-Time-Components/First-Time-Component-03-connect-to-omega-network.md'}
 ```
 
-**The Setup Wizard**
+**The Setup Wizard** {#first-time-setup-wizard}
 
 Open your favourite browser and navigate to `http://omega-ABCD.local/` where `ABCD` are the same characters from the network name above. If the page doesn't load, you can also browse to `http://192.168.3.1`
 

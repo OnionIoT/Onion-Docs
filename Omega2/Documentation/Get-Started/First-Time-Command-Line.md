@@ -20,8 +20,7 @@ Follow along with this guide to set up your Omega2 for the first time using the 
 
 
 <!-- Command Line Setup -->
-
-### Preparing to Connect
+### Preparing to Connect {#first-time-setup-command-line-steps}
 
 <!-- Computer Config -->
 ```{r child = './First-Time-Components/First-Time-Component-01-computer-config.md'}

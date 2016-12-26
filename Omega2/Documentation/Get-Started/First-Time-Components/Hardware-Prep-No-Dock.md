@@ -1,6 +1,6 @@
 <!-- Prepare the Hardware -->
 
-### Unboxing and Getting the Hardware Ready
+## Powering the Omega with No Dock {#hardware-prep-no-dock}
 
 **Unpack**
 
@@ -47,7 +47,9 @@ Now you're ready to power the Omega.
 
 With your regulator circuit built you can provide a steady 3.3V to the Omega. Take one male-to-female jumper cable and insert the male end into the row with the ground leg of the regulator. Then take another male-to-female jumper cable and connect it to the output leg of the regulator. This leg is outputting 3.3V.
 
-Now take a look at the following pinout and connect the ground cable to the ground pin, and the 3.3V cable to the 3.3V VIN (input) pin. They are right next to each other:
+Now take a look at the Omega's pinout diagram, we'll connect the ground cable to the ground pin, and the 3.3V cable to the 3.3V VIN (input) pin.
+
+They are right next to each other on the right side of the Omega:
 
 ![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
 
@@ -65,4 +67,11 @@ Connect your *DC* power supply to the barrel jack and your Omega will begin boot
 ```
 
 
-Your Omega's AP will then become available for you to connect to on other devices.
+Your Omega's AP will then become available, allowing connections from other devices.
+
+
+**Continue the Setup Process**
+
+If this is your first time powering on the Omega, you can now follow the rest of the setup steps as if you had the Omega connected to a Dock. See our guide on [using the browser-based Setup Wizard](#first-time-setup-wizard) or the [Command Line setup guide](#first-time-setup-command-line-steps) for info on how to complete your Omega's setup.
+
+If you opt for the command line setup, you will only be able to connect to the Omega via SSH. Connecting via serial is possible only if you have a USB-to-UART serial converter.
