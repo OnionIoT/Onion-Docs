@@ -31,10 +31,10 @@ Voltage regulators normally have at least three legs: Input, Output, and Ground.
 
 ![voltage regulator](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/no-dock-voltage-regulator.jpg)
 
-
+Consult the regulator's datasheet to find out which pins correspond to which function. In general, the LD1117 regulator will follow this illustration:
+![voltage regulator](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/no-dock-ld1117-regulator-pinout.png)
 
 You'll then want to connect your barrel jack *ground* to the regulator's *ground*, and the barrel jack's *output* to the regulators *input*.
-
 
 ![omega2 alone](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/no-dock-barrel-jack.jpg)
 
