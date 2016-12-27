@@ -111,7 +111,7 @@ Pin 1 is LOW
 
 > You can use the `gpioctl get <PIN>` command to read a pin regardless of its direction.
 
-### Multiplexed GPIOs
+### Multiplexed GPIOs {#using-gpios-multiplexing}
 
 Multiplexed GPIOs are pins that can be used for **multiple purposes** other than input/output when needed. For example, the UART pins are designated as UART, but are **multiplexed** so that you can designate and use them as GPIO pins when you want. This is used to incorporate the largest number of peripherals in the smallest possible package.
 
