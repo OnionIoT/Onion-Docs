@@ -50,11 +50,16 @@ You may need to line up the pins with the holes before pressing the Omega into t
 
 The Expansion Header is a convenient tool that gives you easy access to the Omega's GPIOs, and allows you to connect Onion Expansions directly. The Expansion Header is labelled to show you what GPIO is connected to each section.
 
-The pinout diagram below shows the Expansion Header's connections and the possible multiplexing options:
+<!-- expansion header pinout intro -->
+```{r child = '../shared/Hardware-Overview-Component-01-expansion-header-pinout-intro.md'}
+```
 
 ![expansion header pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-expansion-header-pinout.png)
 
-By default, the Serial, SPI, and I2C pins implement these communication protocols and cannot be used as GPIOs. Similarly, the I2S pins are set to GPIO mode by default. To learn more on changing the functionality of the Omega's pins, see the [Multiplexing GPIOs section](#using-gpios-multiplexing) of our article on the Omega's GPIOs.
+<!-- expansion header pinout explanation - no pwm pins -->
+```{r child = '../shared/Hardware-Overview-Component-03-expansion-header-pinout-explanation-no-pwm.md'}
+```
+
 
 ### Micro-USB Port
 
