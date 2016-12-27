@@ -39,10 +39,6 @@ Make sure your Omega is pushed all the way down as demonstrated in the picture b
 
 You may need to line up the pins with the holes before pressing the Omega into the Dock.
 
-<!-- #### The Expansion Dock at a Glance -->
-
-<!-- [//]: # (illustration with all of the key parts labelled - see https://wiki.onion.io/Tutorials/Expansions/Using-the-Power-Dock#the-hardware_the-power-dock-at-a-glance for an example) -->
-
 
 ### The Expansion Header
 
@@ -50,10 +46,10 @@ You may need to line up the pins with the holes before pressing the Omega into t
 
 The Expansion Header is a convenient tool that gives you easy access to the Omega's GPIOs, and allows you to connect Onion Expansions directly. The Expansion Header is labelled to show you what GPIO is connected to each section.
 
-<!-- TODO: add detailed pinout diagram-->
-<!-- ##### Detailed Pinout -->
+##### Detailed Pinout
 
-<!-- [//]: # (A detailed pinout diagram of the Expansion Header, showing which pins are multiplexed - see Lazar for an example) -->
+![expansion header pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/expansion-dock-expansion-header-pinout.png)
+
 
 <!-- Micro USB Port -->
 ```{r child = '../shared/Hardware-Overview-Component-1-Micro-USB-Port.md'}

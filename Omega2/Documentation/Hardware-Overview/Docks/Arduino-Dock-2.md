@@ -59,10 +59,10 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 It follows the same layout as the Expansion Header found on the Expansion Dock and Power Dock.
 
 
-<!-- #### Detailed Pinout -->
+#### Detailed Pinout
 
-<!-- [//]: # (A detailed pinout diagram of the Expansion Header, showing which pins are multiplexed - see Lazar for an example) -->
-<!-- TODO: add photo -->
+![expansion header pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-expansion-header-pinout.png)
+
 
 ### The ATmega Headers
 
