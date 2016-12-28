@@ -11,8 +11,9 @@ order: 2
 
 The Ethernet Expansion is a piece of hardware that gives your Omega the ability to establish an Ethernet connection with other devices. With this Expansion, you can use your Omega as a router, an Ethernet bridge, and more.
 
-<!-- // TODO: photo: a photo on the Expansion -->
-<!-- // TODO: link back to the ethernet Expansion article -->
+<!-- // TODO: photo: a photo of the Expansion -->
+
+>You can learn more about the technical specifications of the Ethernet Expansion in our [Ethernet Expansion hardware overview](#ethernet-expansion)
 
 ### Connecting to a Network through Ethernet
 

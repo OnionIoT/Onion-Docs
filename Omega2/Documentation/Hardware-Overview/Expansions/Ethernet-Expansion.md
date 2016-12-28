@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 4
 ---
 
-## Ethernet Expansion
+## Ethernet Expansion {#ethernet-expansion}
 
 <!-- // intro on the ethernet expansion - allows the omega to be wired as well as wireless -->
 
