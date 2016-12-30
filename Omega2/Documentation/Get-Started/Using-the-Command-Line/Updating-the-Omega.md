@@ -113,7 +113,7 @@ root@Omega-2757:/# oupgrade -c
 *This command only checks for the latest firmware version and will not modify your device.*
 
 
-##### Upgrading to the Latest Version
+##### Upgrading to the Latest Version #{updating-the-omega-latest-version}
 Here at Onion we're constantly developing, adding new features and fixing bugs. However, sometimes the features we release may cause the firmware to be unstable. Normally `oupgrade` will only upgrade to the latest **stable** version, skipping any unstable versions.
 
 If you need to upgrade to the latest version anyway, you can type:
