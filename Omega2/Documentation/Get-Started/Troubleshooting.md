@@ -21,3 +21,10 @@ Make sure your password has been typed in correctly, remember, WiFi passwords ar
 
 It's possible that the your WiFi network and the Omega's AP network are *colliding*.
 This happens if your WiFi network uses the same *IP address network prefix* as the Omega's AP, `192.168.3.0/24`. Follow our guide for [fixing IP address collisions](#fix-ip-addr-collisions).
+
+
+### My Omega doesn't reboot after installing the update, it just turns off
+
+Some Omega2+ models may not reboot automatically with the factory firmware. If your Omega's LED turns off and remains off for 15 seconds or more at the end of the firmware update, you will need to manually reboot it.
+
+To manually reboot your Omega, briefly disconnect the power and reconnect it. This can also be accomplished by toggling the power switch on the Expansion, Mini, or Power Dock. Your Omega will then boot and complete the update. It will be ready for use when the LED stops flashing and remains solid.

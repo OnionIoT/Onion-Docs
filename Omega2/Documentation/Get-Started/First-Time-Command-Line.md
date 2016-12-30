@@ -58,15 +58,14 @@ Enter `wifisetup` in a terminal and you'll see the following output:
 
 Now that we've just connected your Omega to the internet, let's update the Omega's firmware to the latest version released by Onion.
 
-Enter the `oupgrade` command in the terminal to download and install the latest version of the Omega's Operating System.
-
-The update will take up to five minutes, sometimes more depending on your Internet connection.
+Enter the `oupgrade` command in the terminal to download and install the latest version of the Omega's Operating System. The update will take up to five minutes, sometimes more depending on your Internet connection.
 
 **Warning: Do not disconnect the Omega from WiFi or power during this process or the firmware may become corrupted!**
 
 At the end of the installation process, the Omega will automatically reboot. It will be ready for use when the Omega's LED stops flashing and remains solid.
 
-> Some Omega2+ models may not reboot automatically. If your Omega2+'s LED turns off and remains off for about 15 seconds, you will need to manually reboot your Omega. Either toggle the power switch on your Dock, or disconnect the power source and reconnect it, and your Omega2+ will start booting!
+> Some Omega2+ models may not reboot automatically. If your Omega2+'s LED turns off and remains off for about 15 seconds, you will need to manually reboot your Omega. <br>
+> Either toggle the power switch on your Dock or disconnect the power briefly and reconnect it, and your Omega2+ will reboot and complete the upgrade. It will be ready for use when the LED stops flashing and remains solid.
 
 
 **Now you're all done!**
@@ -77,4 +76,4 @@ Start using your fresh Omega and check out the [Using the Omega section](#doing 
 
 ### This Didn't Work!
 
-Try checking our [Troublshooting guide](#first-time-troubleshooting) or posting on the [Onion Community](http://community.onion.io).
+Try checking our [Troubleshooting guide](#first-time-troubleshooting) or posting on the [Onion Community](http://community.onion.io).

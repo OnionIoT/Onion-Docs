@@ -61,9 +61,9 @@ On this step you can choose to register your device on the cloud. If you would l
 
 ![Setup Wizard cloud](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-6-wizard-cloud.png)
 
-You've nearly finished now. Click the `Upgrade Firmware and Install Console` button to do just that. This will upgrade your Omega to the latest firmware and install the console for you.
+You've nearly finished now. Click the `Upgrade Firmware and Install Console` button to do just that. This will upgrade your Omega to the latest firmware and install the Console for you.
 
->If you don't want to install the console you can de-select the checkbox above. You can always come back to the setup wizard to install the console afterwards.
+>If you don't want to install the Console you can de-select the checkbox above. You can always come back to the setup wizard to install the console afterwards.
 
 ![Setup Wizard downloading firmware](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-7-wizard-upgrade-button.png)
 
@@ -77,7 +77,8 @@ When the firmware installation is complete you'll see the page below:
 
 At the end of the installation process, the Omega will automatically reboot. It will be ready for use when the Omega's LED stops flashing and remains solid.
 
-> Some Omega2+ models may not reboot automatically. If you reach the page pictured above and your Omega2+'s LED turns off and remains off for about 15 seconds, you will need to manually reboot your Omega. Either toggle the power switch on your Dock, or disconnect the power source and reconnect it, and your Omega2+ will start booting!
+> Some Omega2+ models may not reboot automatically. If you reach the page pictured above and your Omega2+'s LED turns off and remains off for about 15 seconds, you will need to manually reboot your Omega. <br>
+> Either toggle the power switch on your Dock or disconnect the power briefly and reconnect it, and your Omega2+ will reboot and complete the upgrade. It will be ready for use when the LED stops flashing and remains solid.
 
 
 **All Done!**
@@ -88,4 +89,4 @@ Start using your fresh Omega, check out the [Using the Omega section](#doing stu
 
 ### The Setup Wizard Didn't Work!
 
-If for some reason the Setup Wizard wasn't able to get your Omega up and running, try the steps in the [First Time Setup using the Command Line guide](#first-time-setup-command-line) or see the  [Troublshooting guide](#first-time-troubleshooting).
+If for some reason the Setup Wizard wasn't able to get your Omega up and running, try the steps in the [First Time Setup using the Command Line guide](#first-time-setup-command-line) or see the  [Troubleshooting guide](#first-time-troubleshooting).
