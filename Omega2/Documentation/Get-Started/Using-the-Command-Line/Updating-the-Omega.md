@@ -24,15 +24,17 @@ root@Omega-2757:/# oupgrade -c
 
 The easiest thing to do is to just run `oupgrade`. This way it will check if your firmware needs updating and will perform the upgrade if necessary.
 
+***The `oupgrade` command will not work properly if you run it from the Terminal App on the Console.***
+
 #### Versions vs. Build Numbers
 
-Every firmware has a **version** and **build number**. 
+Every firmware has a **version** and **build number**.
 
 * Minor updates will be released as new build numbers for a given firmware version.
     * eg. version 0.1.4 build 100, build 103, build 110
 * Major updates will be released as a new firmware version.
     * eg. version 0.1.3, version 0.1.5, version 0.1.6
-   
+
 
 ### Performing the Upgrade
 
