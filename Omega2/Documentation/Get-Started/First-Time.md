@@ -67,14 +67,17 @@ You've nearly finished now. Click the `Upgrade Firmware and Install Console` but
 
 ![Setup Wizard downloading firmware](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-7-wizard-upgrade-button.png)
 
-Your Omega will download the latest firmware, and then begin installing it. This process takes several minutes and you'll know that it's complete when your Omega's LED finishes flashing.
+Your Omega will download the latest firmware, and then begin installing it. This process takes several minutes, sometimes more depending on your Internet connection.
 
 ![Setup Wizard installing firmware](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-8-wizard-installing-firmware.png)
 
-When the firmware installation is complete you'll also see the page below, notifying you that your Omega is ready to use.
+When the firmware installation is complete you'll see the page below:
 
 ![Setup Wizard finished](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/setup-9-wizard-finished.png)
 
+At the end of the installation process, the Omega will automatically reboot. It will be ready for use when the Omega's LED stops flashing and remains solid.
+
+> Some Omega2+ models may not reboot automatically. If you reach the page pictured above and your Omega2+'s LED turns off and remains off for about 15 seconds, you will need to manually reboot your Omega. Either toggle the power switch on your Dock, or disconnect the power source and reconnect it, and your Omega2+ will start booting!
 
 
 **All Done!**

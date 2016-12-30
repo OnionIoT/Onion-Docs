@@ -56,15 +56,20 @@ Enter `wifisetup` in a terminal and you'll see the following output:
 
 ### Update the Omega's Firmware
 
-Now that we've just connected your Omega to the internet, let's update the Omega's operating system to the latest version released by Onion.
+Now that we've just connected your Omega to the internet, let's update the Omega's firmware to the latest version released by Onion.
 
-Enter the `oupgrade` command in the terminal to download and install the newest updates. **Your Omega will now reboot on its own, no further action needed.**
+Enter the `oupgrade` command in the terminal to download and install the latest version of the Omega's Operating System.
 
-The update will take up to five minutes, sometimes more depending on your Internet connection. You'll see the Omega's LED start to flash and then turn solid when it has finished the boot sequence.
+The update will take up to five minutes, sometimes more depending on your Internet connection.
 
 **Warning: Do not disconnect the Omega from WiFi or power during this process or the firmware may become corrupted!**
 
-Now you're all done!
+At the end of the installation process, the Omega will automatically reboot. It will be ready for use when the Omega's LED stops flashing and remains solid.
+
+> Some Omega2+ models may not reboot automatically. If your Omega2+'s LED turns off and remains off for about 15 seconds, you will need to manually reboot your Omega. Either toggle the power switch on your Dock, or disconnect the power source and reconnect it, and your Omega2+ will start booting!
+
+
+**Now you're all done!**
 
 Start using your fresh Omega and check out the [Using the Omega section](#doing stuff) for ideas on what the Omega can do!
 <!-- Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next! -->
