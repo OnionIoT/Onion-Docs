@@ -194,7 +194,7 @@ This big command essentially does the following:
 1. Pipe (send) it to the `grep` command and search for process names containing the word `screen`
     * `grep` is a powerful utility to analyze text using regular expressions.
 1. Pipe those processes' information to `awk`, which outputs their process IDs
-    * `awk` is another powerful utility that can perform 
+    * `awk` is another powerful utility that can perform
 1. `kill` each of the process IDs corresponding to `screen`
 
 <!-- // the command is: `screen /dev/ttyS1 <BAUD RATE>`
@@ -215,7 +215,7 @@ You can use Python in order to communicate serially via the UART. The module to 
 
 You'll need to have Python or Python-light installed in order to continue. If you've installed the full version of Python you will already have PySerial.
 
->You can read our guide to [installing and using Python on the Omega](#using-python) for more information.
+>You can read our guide to [installing and using Python on the Omega](#software-installing-and-using-python) for more information.
 
 First update `opkg`:
 

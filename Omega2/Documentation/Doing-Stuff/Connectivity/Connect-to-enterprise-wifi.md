@@ -19,7 +19,7 @@ Connecting to these types of networks can be tricky, but in this tutorial we'll 
 
 Your Omega starts off with `wpad-mini`, a stripped down version of `wpad` that handles viewer protocols. We'll need to install `wpad` using `opkg`, the package manager on the Omega. First, you'll need to connect to the internet. This can be done using the Ethernet Expansion, or by finding a non-Enterprise WiFi network.
 
->For more on `opkg`, you can read our [guide to using opkg on the Omega](#using-opkg)
+>For more on `opkg`, you can read our [guide to using opkg on the Omega](#software-using-opkg)
 
 <!-- Really hate this step... Hopefully we can include the full wpad in the firmware to avoid this. -->
 

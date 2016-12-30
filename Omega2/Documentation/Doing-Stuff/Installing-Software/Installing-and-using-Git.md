@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 2
 ---
 
-## Installing and Using Git {#using-git}
+## Installing and Using Git {#software-installing-and-using-git}
 
 Git is a popular [version control](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control) system that allows coders to track changes to their codebase, easily collaborate with others, and manage their project.
 
@@ -15,7 +15,7 @@ Git is the version control system used by [GitHub](https://github.com/), the sup
 ### Installing Git
 
 <!-- steps on using opkg to install Git -->
-It's really easy to install Git on your Omega2/Omega2+ using OPKG. For a tutorial on how OPKG works, check out [this guide to using opkg](#using-opkg)
+It's really easy to install Git on your Omega2/Omega2+ using OPKG. For a tutorial on how OPKG works, check out [this guide to using opkg](#software-using-opkg)
 1. First, make sure you have an internet connection
 
 2. Run the command `opkg update`

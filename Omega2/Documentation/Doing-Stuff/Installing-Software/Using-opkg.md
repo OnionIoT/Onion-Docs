@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 1
 ---
 
-## What is OPKG? {#using-opkg}
+## What is OPKG? {#software-using-opkg}
 
 Not everything available for the Omega is installed right away. Some people may never need certain utilities and so we configure the Omega with packages you will likely use, and let you further tailor your Omega to suit your needs.
 

@@ -8,7 +8,7 @@ order: 2
 
 <!-- // refer to the existing article for guidance -->
 
-## Installing and Using Python {#using-python}
+## Installing and Using Python {#software-installing-and-using-python}
 
 <!-- // brief intro to Python (scripting language, easy to write) -->
 
@@ -85,7 +85,7 @@ opkg install <PACKAGE NAME>
 
 To install the desired package.
 
->For more on `opkg` you can check out our [guide to using opkg](#using-opkg)
+>For more on `opkg` you can check out our [guide to using opkg](#software-using-opkg)
 
 <!-- // DONE: add note about installing python3 packages -->
 

@@ -8,7 +8,7 @@ order: 3
 
 <!-- // refer to the existing article for guidance -->
 
-## Installing and Using NodeJS {#using-nodejs}
+## Installing and Using NodeJS {#software-installing-and-using-nodejs}
 
 <!-- // brief intro to NodeJS (scripting language, easy to write) -->
 <!-- // make sure to mention that its v4.3.1 -->

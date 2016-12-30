@@ -48,7 +48,7 @@ opkg install onion-console-base
 ```
 
 
-You can learn more about `opkg` in our [guide to opkg](#using-opkg).
+You can learn more about `opkg` in our [guide to opkg](#software-using-opkg).
 
 After installation is complete, you'll need to restart the rpcd service to load the console configuration with the following command:
 
