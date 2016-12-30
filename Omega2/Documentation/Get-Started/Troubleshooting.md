@@ -28,3 +28,5 @@ This happens if your WiFi network uses the same *IP address network prefix* as t
 Some Omega2+ models may not reboot automatically with the factory firmware. If your Omega's LED turns off and remains off for 15 seconds or more at the end of the firmware update, you will need to manually reboot it.
 
 To manually reboot your Omega, briefly disconnect the power and reconnect it. This can also be accomplished by toggling the power switch on the Expansion, Mini, or Power Dock. Your Omega will then boot and complete the update. It will be ready for use when the LED stops flashing and remains solid.
+
+**Warning:** Be sure that your Omega is actually off before disconnecting the power; ensure the Omega's LED has been off for some time and that it's WiFi AP is not available. **Disconnecting power while the Omega is installing updates can potentially corrupt the firmware!**
