@@ -12,6 +12,8 @@ Not everything available for the Omega is installed right away. Some people may 
 
 This is accomplished with OPKG, the package manager for the Omega's Operating System. It is used primarily to download and install packages. If you're familiar with Linux or other Linux distributions then a good comparison for OPKG is the `apt-get` utility.
 
+Here you'll learn how to use the OPKG package manager and get some background on the Onion repositories from which the software packages will be installed.
+
 ### How to use the Package Manager
 
 The basic overview of managing your packages starts with updating OPKG. After that, you can add or remove packages, or show your available and installed packages.
@@ -171,7 +173,12 @@ The path to the package repos that `opkg` checks during the `opkg update` comman
 
 #### Installing Kernel Modules
 
-While the Omega comes with many handy kernel modules already installed, your project or idea might require some additional modules. Since all of the packages in the Onion repos are compiled by Onion, your Omega running Onion firmware will have no problems installing kernel modules using `opkg`.
+While the Omega comes with many handy kernel modules already installed, your project or idea might require some additional modules. Since all of the packages in the Onion repos are compiled by Onion, your Omega running Onion firmware will have no problems installing kernel modules using `opkg`:
+
+```
+opkg update
+opkg install kmod-fs-hfs
+```
 
 > Note that your Omega cannot install kernel modules from the default LEDE repos. `opkg` only allows installation of kernel modules compiled by the same machine that compiled the firmware. This is to ensure that all installed kernel modules are the exact same version as the device's kernel. It would be pretty disastrous to install a module that expects a different version of the overall kernel so `opkg` never lets it happen!
 
@@ -189,7 +196,7 @@ Let us know which packages you would like to see added by posting on the [Onion 
 
 If you really dislike using our repos, it's easy to switch back to using the official LEDE repos. You can also experiment with combining the use of Onion and LEDE repos. This can all be accomplished by editing the `/etc/opkg/distfeeds.conf` file that configures which repos are to be used.
 
-By default, it will be configured to use the Onion respos and will look something like this:
+By default, it will be configured to use the Onion repos and will look something like this:
 ```
 #src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt7688/packages
 #src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base
@@ -204,7 +211,7 @@ src/gz omega2_packages http://repo.onion.io/omega2/packages/packages
 src/gz omega2_onion http://repo.onion.io/omega2/packages/onion
 ```
 
-The commented out lines in the file are not active, so to go back to the official LEDE repos, just uncomment those lines, and comment out the Onion lines:
+The commented out lines in the file are not active. To go back to the official LEDE repos, just uncomment those lines, and comment out the Onion lines:
 ```
 src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt7688/packages
 src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base

@@ -10,6 +10,8 @@ order: 8
 
 In order to keep improving user experience for the Omega, we will be releasing updated firmwares on a rolling basis. To get the benefits of these improvements, users should frequently update their Omegas to the latest firmware release. We have created a command-line utility `oupgrade` (Onion Upgrade) to handle firmware transitions.
 
+> The `oupgrade` command will **not** work properly if you run it from the Terminal App on the Console. Use `oupgrade` when connected to the Omega via SSH or Serial. If upgrading using the Console, use the [Settings App](#updating-the-omega-using-console).
+
 ### How do I know if I need to update my Omega?
 
 To check if your Omega needs an upgrade, run `oupgrade -check`. The output will let you know if you need an update:
@@ -23,8 +25,6 @@ root@Omega-2757:/# oupgrade -c
 ```
 
 The easiest thing to do is to just run `oupgrade`. This way it will check if your firmware needs updating and will perform the upgrade if necessary.
-
-***The `oupgrade` command will not work properly if you run it from the Terminal App on the Console.***
 
 #### Versions vs. Build Numbers
 
@@ -113,7 +113,7 @@ root@Omega-2757:/# oupgrade -c
 *This command only checks for the latest firmware version and will not modify your device.*
 
 
-##### Upgrading to the Latest Version #{updating-the-omega-latest-version}
+##### Upgrading to the Latest Version
 Here at Onion we're constantly developing, adding new features and fixing bugs. However, sometimes the features we release may cause the firmware to be unstable. Normally `oupgrade` will only upgrade to the latest **stable** version, skipping any unstable versions.
 
 If you need to upgrade to the latest version anyway, you can type:
