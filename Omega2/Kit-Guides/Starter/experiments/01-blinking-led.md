@@ -25,27 +25,14 @@ Remember, when inventing and building new things, try to break the work down int
 
 Before we start building our experiment, let's first go over some of the building blocks when it comes to experimenting with electronics.
 
-### Jumper Wires
-// TODO: this should be in it's own markdown file
 
-We'll be using jumper wires in all of our experiments and projects. They all work the same; connecting two points in a circuit together.
+<!-- Jumper wires -->
+```{r child = '../../shared/jumper-wires.md'}
+```
 
-// TO DO: IMAGE: showing several different jumper wires
-
-Jumper wires have ends that are either male or female. They both do the same thing, but the different ends make them work better in different situations. More on that later, for now we'll be using jumper wires with male ends.
-
-
-### Breadboard
-// TODO: this should be in it's own markdown file
-
-The breadboard is the foundation of all of the experiments we're going to do together, and the starting-point for prototyping many electronics projects and even products!
-
-// TO DO: IMAGE: nice photo of a breadboard
-
-The breadboard's sockets are connected electrically in a pretty logical way. The power rails, the vertical columns labelled `+` and `-` that run along the sides of the breadboard are connected vertically. While the terminal rows, labeled with numbers, are connected horizontally on each side of the middle channel. Meaning that for row 1, columns `a` through `e` are connected together, and columns `f` through `j` are connected together.
-
-// TO DO: IMAGE: image of what sockets are connected in parallel vs in series (basically image of what's being said above)
-
+<!-- Breadboard -->
+```{r child = '../../shared/breadboard.md'}
+```
 
 ### Hooking up the Components
 

@@ -8,21 +8,29 @@ order: 1
 
 ## Blinking an LED {#blink-led-arduino-kit}
 
-// little intro about our first sketch that we'll run on the arduino dock
+In our very first experiment, we're going to blink an LED on and off. This is the hardware development equivalent of the 'Hello World' program. This first experiment will start small but it will be a solid foundation for the rest of the experiments.
 
+Remember, when inventing and building new things, try to break the work down into bite sized chunks, that way you'll see progress much sooner and it will motivate you to keep going!
 
-// TODO: include shared content on LEDs
+<!-- LEDs -->
+```{r child = '../../shared/led.md'}
+```
 
 ## Building the Circuit
 
 Before we start building our experiment, let's first go over some of the building blocks when it comes to experimenting with electronics.
 
-// TODO: insert jumper wires section
+<!-- Jumper wires -->
+```{r child = '../../shared/jumper-wires.md'}
+```
 
-// TODO: insert breadboard section
+<!-- Breadboard -->
+```{r child = '../../shared/breadboard.md'}
+```
 
 ### Hooking up the Components
-// can copy from the starter kit, but adapt it for the Arduino Dock
+
+Ok, here we go, let's put together our circuit. We're going to be connecting an LED's anode to a GPIO on the Arduino Dock, and cathode to Ground through a current limiting resistor.
 
 ## Writing the Code
 
@@ -31,8 +39,18 @@ First, prepare your computer by following [our guide to flashing sketches wirele
 Then fire up the Arduino IDE on your computer and paste the following:
 
 ```arduino
+int ledPin = 0;             // LED on pin 0
+int blinkTime = 1000;       // duration to keep the LED on/off
+
 void setup() {
-    
+    pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+    digitalWrite(ledPin, HIGH);
+    delay(blinkTime);
+    digitalWrite(ledPin, LOW);
+    delay(blinkTime);
 }
 ```
 
