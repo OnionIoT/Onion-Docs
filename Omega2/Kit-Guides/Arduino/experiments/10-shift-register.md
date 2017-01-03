@@ -1,6 +1,8 @@
 
 # Using a Shift Register to Control a Bunch of LEDs
 
+// intro on using a shift register to increase the number of available digital outputs
+// explanation of controlling a bunch of LEDs using only a few microcontroller pins
 
 
 // TODO: insert shift register shared content
