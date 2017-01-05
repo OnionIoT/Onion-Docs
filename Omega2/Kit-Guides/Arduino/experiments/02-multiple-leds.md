@@ -26,6 +26,35 @@ In this experiment, we're going to use what we learned in the first experiment a
 // write an arduino sketch that makes the LEDs turn on one-by-one going left to right, and then turn off, again going left to right
 // look to the multiple leds article in the starter kit for details
 
+``` arduino
+int timer = 100;           // time delay between each LED in ms
+int ledPins[] = {7, 6, 5, 4, 3, 2};       // an array of GPIO numbers with LED attached
+int pinCount = 6;           // number of GPIOs used
+
+void setup() {
+  // loop for initializing the GPIOs
+  for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    pinMode(ledPins[thisPin], OUTPUT);
+  }
+}
+
+void loop() {
+  // loop for turn on GPIOs one-by-one going left to right
+  for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    // turn the pin on:
+    digitalWrite(ledPins[thisPin], HIGH);
+    delay(timer);
+  }
+
+  // loop for turn off GPIOs one-by-one going left to right 
+  for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    // turn the pin on:
+    digitalWrite(ledPins[thisPin], LOW);
+    delay(timer);
+  }
+}
+```
+
 #### What to Expect
 
 Your line-up of LEDs will be essentially chasing it's tail: the left-most LED will turn on, and then the next one, and the next and so on. When all of them turn on, the left-most one will turn off, and the rest will follow suit.

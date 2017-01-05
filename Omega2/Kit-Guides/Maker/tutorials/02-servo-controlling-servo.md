@@ -10,7 +10,7 @@ order: 2
 # Controlling Servos with the Servo Expansion
 
 
-In this tutorial we will learn how to control the channels on our servo expansion using python. But first, a bried introduction to servo motors is required
+In this tutorial we will learn how to control the channels on our servo expansion using python. But first, a brief introduction to servo motors is required
 
 ## Servo-Motors
 
@@ -20,7 +20,7 @@ In this tutorial we will learn how to control the channels on our servo expansio
 
 ## Building the Circuit
 
-Plug power,ground and signal to the respective pins of channel one on the pwm expansion.
+Plug power, ground and signal to the respective pins of channel one on the pwm expansion.
 
 ### Hooking up the Components
 
