@@ -38,6 +38,43 @@
 //  * write a function to implement the above
 //  * register that function as an interrupt service routine for the push button connected gpio
 
+``` arduino
+int interruptPin = 2;       // the pin number connected to the push button interrupt
+int ledPins[] = {9, 8, 7, 6, 5, 4};       // an array of GPIO numbers with LED attached
+int pinCount = 6;           // number of GPIOs used
+int currentLED = 0;         // the current LED being light up in from 0 to pinCount-1
+
+void setup() {
+  // initialize the interrupt pin and set it to call setLED function only when the button is pressed (FALLING edge trigger)
+  pinMode(interruptPin, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(interruptPin), setLED, FALLING);
+  
+  // loop for initializing the LED GPIOs as output
+  for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    pinMode(ledPins[thisPin], OUTPUT);
+  }
+}
+
+void loop() {
+    // stay idle until the interrupt activates
+}
+
+void setLED() {
+  // if the last LED is already turned on, turn off all the LEDs and exit the function
+  if (currentLED == pinCount){
+      currentLED = 0;
+     // loop for turn off GPIOs one-by-one going left to right 
+     for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+         digitalWrite(ledPins[thisPin], LOW);
+     }
+     return;
+  }
+
+  // turn on the current LED and increment the counter to the next LED
+  digitalWrite(ledPins[currentLED], HIGH);
+  currentLED ++;
+}
+```
 
 #### What to Expect
 

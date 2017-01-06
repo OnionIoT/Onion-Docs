@@ -31,6 +31,40 @@
 // uses that reading to set the output strength (pwm duty cycle) for the led circuit
 // ensure that everything is written cleanly, using functions for each separate action, don't want the setup function to be full of all sorts of different code
 
+``` arduino
+int potPin = A0;    // analog pin for reading the potentiometer value
+int ledPin = 9;     // pwm pin for setting LED brightness
+int potValue = 0;   // potentiometer output as a value between 0 and 1023
+
+void setup() {
+  Serial.begin(9600);     // initializing serial communication for sending potentiometer value to the Omega
+  pinMode(ledPin, OUTPUT);
+}
+
+// read the potentiometer output as a value between 0 and 1023 and print it out to the Omega through serial
+void readPotValue()
+{
+  potValue = analogRead(potPin);
+  Serial.println(potValue);
+  delay(100);     //0.1s delay between reads for stability
+}
+
+//use the potentiometer value to set the LED brightness using pwm duty cycle
+void setLED()
+{
+  analogWrite(ledPin, potValue/4);
+}
+  
+// loop the potentiometer reading and the LED setting  
+void loop() {
+  readPotValue();
+  setLED();
+}
+
+```
+
+// TODO: mention about using the omega as serial monitor using cat or screen ttyS1
+
 #### What to Expect
 
 // instructions to turn the pot and observe how the led changes
