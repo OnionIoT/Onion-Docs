@@ -11,6 +11,8 @@
 ## Building the Circuit
 
 // build a circuit with a push button input and a buzzer
+PIN 9 <-> 100 ohm resistor <-> buzzer <-> GND
+PIN 2 <-> push button debounce circuit
 
 ### Hooking up the Components
 
@@ -39,6 +41,26 @@
 // talk about polling and how we continuously read the input value coming from the push button and then act on it
 // make a note about how this is expensive/wasteful for the microcontroller since you can't do anything else during the polling
 
+``` arduino
+int buzzerPin = 9;      // the pin number connect to the buzzer            
+int pollingPin = 2;     // the pin number connected to the push button
+
+void setup() {
+   // initialize the buzzer pin as output
+   pinMode(buzzerPin, OUTPUT);
+
+   // initialize the polling pin as input
+   pinMode(pollingPin, INPUT);
+}
+
+void loop() {
+   int state = digitalRead(pollingPin);   // read the state of the push button
+   digitalWrite(buzzerPin, !state);    // ring the buzzer (buzzer HIGH) when the button is pressed (button LOW) 
+                                       // not buzz (buzzer LOW) when the button is released (button HIGH)
+                                       // buzzer state is opposite of the button state
+}
+```
+
 #### Interrupt Alternative
 
 // an alternative to polling is interrupt-based inputs
@@ -48,6 +70,39 @@
 // new code:
 // have an interrupt routine programmed to the button input, when an edge is detected, flip the value that controls the buzzer and write it to the output connected to the buzzer
 // have an led blinking in the loop() function
+
+``` arduino
+int buzzerPin = 9;      // the pin number connect to the buzzer            
+int interruptPin = 2;     // the pin number connected to the push button interrupt
+int LEDPin = 13;        // the pin number connected to an LED, 13 is the blue LED on board
+volatile int state = LOW;   // the state of the buzzer - LOW for not buzzing
+
+void setup() {
+  // initialize the buzzer pin as output
+  pinMode(buzzerPin, OUTPUT);
+
+  // initialize the LED pin as output
+  pinMode(LEDPin, OUTPUT);
+  
+  // initialize the interrupt pin, calling the changeState function every time there is button press or release
+  pinMode(interruptPin, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(interruptPin), changeState, CHANGE);
+}
+
+void loop() {
+  // blinking LED regardless of the buzzer
+  digitalWrite(LEDPin, HIGH);   
+  delay(1000);             
+  digitalWrite(LEDPin, LOW);    
+  delay(1000);              
+}
+
+// start at the not buzzing state, change to buzzing everytime the button is pressed and not buzzing when released
+void changeState() {
+  state = !state;
+  digitalWrite(buzzerPin, state);
+}
+```
 
 ##### What to Expect
 // highlight that the loop function is able to do its thing - keep the LED blinking steadily AND take care of the button input
