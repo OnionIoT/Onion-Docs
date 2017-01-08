@@ -83,7 +83,7 @@ At the end of the installation process, the Omega will automatically reboot. It 
 
 **All Done!**
 
-Start using your fresh Omega, check out the [Using the Omega section](#doing stuff) for ideas on what the Omega can do!
+Start using your fresh Omega, check out the [Using the Omega section](#doing-stuff) for ideas on what the Omega can do!
 <!-- Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next! -->
 <!-- TODO: fix the links above when the content is available -->
 
