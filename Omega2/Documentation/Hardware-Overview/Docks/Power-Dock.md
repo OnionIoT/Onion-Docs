@@ -104,7 +104,7 @@ Expect a 1500mAh battery to last about 10 hours, in some cases, up to 12 hours.
 
 <!-- It should take Y hours to fully charge it up again.  -->
 
-**Warning:** Do not attempt to charge your battery with anything other that the Power Dock or a charger designed specifically for LiPo Batteries!
+**Warning:** Do not attempt to charge your battery with anything other than the Power Dock or a charger designed specifically for LiPo Batteries!
 
 
 <!-- Reset Button -->
