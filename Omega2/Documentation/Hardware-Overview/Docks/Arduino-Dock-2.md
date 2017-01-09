@@ -182,7 +182,9 @@ The Arduino Dock 2 is loaded with features that allow you to use your Omega with
 
 
 <!-- TODO:  These articles are to be part of the Arduino Kit guides, and we will link to them when the guides are ready. -->
-<!-- ### Programming the Micro-Controller -->
+### Programming the Arduino Micro-Controller
+
+Follow the steps in our [Flashing the Microcontroller](#flash-arduino-dock-wirelessly) to learn how to upload sketches (programs) to the Arduino micro-controller onboard the Arduino Dock.
 
 <!-- [//]: # (create a separate article for this under Doing Stuff - should be included in the RESETTING article mentioned above (part of batch3)) -->
 <!-- [//]: # (two methods:) -->
