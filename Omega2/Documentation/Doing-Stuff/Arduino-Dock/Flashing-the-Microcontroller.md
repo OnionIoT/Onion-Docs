@@ -1,4 +1,4 @@
-## Flashing the Microcontroller {#flash-arduino-dock-wirelessly}
+## Flashing the Arduino Dock {#flash-arduino-dock-wirelessly}
 
 The Arduino Dock allows the Omega and the ATmega328P microcontroller interact with each other. Having an OS with the connectivity power of the Omega communicate easily with a microcontroller can be very powerful used effectively. We can do amazing things with the Omega communicating with the ATmega328P chip such as flashing the microcontroller wirelessly.
 
