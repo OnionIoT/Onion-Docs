@@ -55,7 +55,7 @@ void setup()
   
   byte numDigits = 4;   
   byte digitPins[] = {5, 4, 3, 2}; //Digits: 1,2,3,4
-  byte segmentPins[] = {13, 11, 7, 9, 10, 12, 6, 8}; //Segments: A,B,C,D,E,F,G,Period 
+  byte segmentPins[] = {13, 11, 9, 7, 6, 12, 10, 8}; //Segments: A,B,C,D,E,F,G,Period
   bool resistorsOnSegments = true; // 1K ohm resistors attached between the 8 segment pins and the arduino dock pins
   
   sevseg.begin(COMMON_CATHODE, numDigits, digitPins, segmentPins, true);
@@ -74,6 +74,7 @@ void loop()
       serialString.toCharArray(charArray,5);      // convert the incoming string to char array
   }
 }
+
 ```
 
 
