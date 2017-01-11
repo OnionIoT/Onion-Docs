@@ -27,6 +27,9 @@
 //  - connecting the led circuit (link back to single led experiment or reuse that text)
 //  - connecting all of the keypad outputs to the microcontroller pins
 
+Connect the keypad pins to the digital pins 8 to 2 on the arduino dock in order from left to right, i.e. the left most keypad pin to arduino header pin 8.
+Using the on board blue LED so don't connect external LED.
+
 ### Writing the Code
 
 // create a function that takes the keypad pins as input, and returns the number(s) that are currently pressed in an array, the array should be empty if no buttons are pressed
@@ -40,6 +43,85 @@
 //  - if the input matches the currently indexed digit in the password array, increment the index variable
 //  - if the input does not match, reset the index variable to 0
 //  - once the index variable reaches sizeof(password array), we consider to password to have been typed in, and we can turn on the LED (using the action function)
+
+``` arduino
+// download the Keypad library: http://playground.arduino.cc/Code/Keypad#Download
+// move the unzipped Keypad file folder to C:/Program Files (x86)/Arduino/libraries 
+// include the Keypad library
+#include <Keypad.h>
+
+const byte ROWS = 4; //four rows
+const byte COLS = 3; //three columns
+char keys[ROWS][COLS] = {
+  {'1','2','3'},
+  {'4','5','6'},
+  {'7','8','9'},
+  {'*','0','#'}
+};        // a 4x3 array of all the keys as chars
+byte rowPins[ROWS] = {8, 7, 6, 5};     //connect to the row pinouts of the keypad
+byte colPins[COLS] = {4, 3, 2};     //connect to the column pinouts of the keypad
+char password[] = {'4', '3', '2', '1'};   // array of chars as password
+int LEDPin = 13;    // LED pin number to be lit when password is correct
+
+// initializing keypad as an object from the Keypad library
+Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
+
+void setup(){
+  Serial.begin(9600);   // initializing serial communication with the Omega
+  pinMode (13, OUTPUT);   // initializing pin for LED
+}
+
+void loop(){
+
+  // set LED off
+  digitalWrite (13, LOW);
+  
+  char key = keypad.getKey();   // read the key entered as a char
+  int keyCheck = 0;   // index for the number of correct keys entered after #
+  int i = 0;      // index for the number of keys entered after #
+  if (key != NO_KEY){   // wait until a key has been pressed
+    // print the key and ask to press #
+    Serial.println(key);    
+    Serial.println("Please press # to enter the password");
+
+    // if # is pressed ask for the password
+    if (key == '#'){
+        Serial.println("Please enter the password");
+
+        // using a loop, let the user enter the same number of keys as the password length, whether correct or not
+        while (i != sizeof (password)){
+          key = keypad.getKey();    // read the key entered as a char
+          if (key != NO_KEY){   // wait until a key has been pressed
+          Serial.println(key);   
+          
+              // if the correct key is entered in the same order as the password, increment keyCheck
+              if (key == password[i]){
+                 keyCheck ++;
+                 i++;
+              }
+              // if any wrong key is entered, reset keyCheck
+              else{
+                 keyCheck = 0;
+                 i++;
+              }
+          }
+        }
+
+        // after the user entered the same number of keys as the password length, check if password is correct
+        if (keyCheck == sizeof (password)){
+          // if the keys are correctly entered, light the LED for 3 seconds
+          Serial.println("Correct password! LED On!");
+          digitalWrite (13, HIGH);    // set the LED on
+          delay(3000);    // let the LED on for 3 seconds
+        }
+        else
+          // if any wrong key is entered, ask to entered the password again
+          Serial.println("Wrong password! Press #");   
+    }
+  }
+}
+``` 
+
 
 #### What to Expect
 
