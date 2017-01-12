@@ -14,13 +14,13 @@ So far we've been turning LEDs fully on and fully off, but it's also possible ha
 
 Pulse Width Modulation (PWM) sounds complicated but in it's essence it's just turning a digital signal on and off at regular intervals. It allows us to easily control how much power is supplied to a component. In our case that component will be an LED and the less power we provide, the dimmer the light the LED will produce.
 
-// TO DO: GRAPHIC: Insert square wave graphic
+// TODO: GRAPHIC: Insert square wave graphic
 
 ### Duty Cycle
 
 The main method to describing PWM signals is the concept of the Duty Cycle: it tells us the percentage of the time the signal is on - at high voltage.
 
-// TO DO: GRAPHIC: Insert PWM Square wave graphic (http://www.bristolwatch.com/picaxe/images/io43.gif)
+// TODO: GRAPHIC: Insert PWM Square wave graphic (http://www.bristolwatch.com/picaxe/images/io43.gif)
 
 Consider a PWM signal with a 25% duty cycle: it will be **on** for 25% of the time and **off** for 75% of the time. Figuring out the duty cycle is a piece of cake, let's go over the main components:
 * The Time On, T<sub>on</sub>, is the amount of time the signal is **on** (also known as the *pulse width*)

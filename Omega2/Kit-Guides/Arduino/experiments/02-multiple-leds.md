@@ -59,7 +59,7 @@ void loop() {
 
 Your line-up of LEDs will be essentially chasing it's tail: the left-most LED will turn on, and then the next one, and the next and so on. When all of them turn on, the left-most one will turn off, and the rest will follow suit.
 
-// TO DO: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another
+// TODO: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another
 
 #### A Closer Look at the Code
 

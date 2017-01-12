@@ -6,4 +6,4 @@ An open circuit means there is a gap in the circuit, so current from the power s
 
 In a closed circuit, the circuit has no gaps and current can flow freely, any connected component will be received current and will be **on**. Going back to our lamp, when you switch it on, you are closing the circuit; allowing current to flow to the lightbulb so it can light up your space.
 
-// TO DO: IMAGE:  showing open circuit with an open switch and no current flowing, second image showing a closed circuit (with a closed switch) with current flowing.
+// TODO: IMAGE:  showing open circuit with an open switch and no current flowing, second image showing a closed circuit (with a closed switch) with current flowing.

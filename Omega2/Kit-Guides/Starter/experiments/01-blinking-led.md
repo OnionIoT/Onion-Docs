@@ -38,11 +38,11 @@ Before we start building our experiment, let's first go over some of the buildin
 
 Ok, here we go, let's put together our circuit. We're going to be connecting an LED's anode to a GPIO on the Omega2, and cathode to Ground through a current limiting resistor.
 
-// TO DO: FRITZING: fritzing circuit diagram of the experiment
+// TODO: FRITZING: fritzing circuit diagram of the experiment
 
 1. Plug in the LED into the breadboard, make sure you plug the anode and cathode into different rows and that you know which is plugged where.
 2. Let's choose GPIO0 on the Omega2 to drive our LED, so let's run a jumper wire to the row of the LED's anode.
-3. Now connect one end of a (// TO DO: figure out resistance)kΩ resistor to the the cathode row, and the other end to an empty row.
+3. Now connect one end of a (// TODO: figure out resistance)kΩ resistor to the the cathode row, and the other end to an empty row.
 4. The final step is connecting a jumper wire to a Ground pin on the Omega2.
 
 > A note on components with and without polarity: <br>
@@ -51,14 +51,14 @@ Ok, here we go, let's put together our circuit. We're going to be connecting an 
 
 
 The circuit diagram for our first experiment looks like this:
-// TO DO: CIRCUIT DIAGRAM: circuit showing this experiment
+// TODO: CIRCUIT DIAGRAM: circuit showing this experiment
 
 
 ## Writing the Code
 
 Now we get to write the code that will make our circuit actually do something! That something will be blinking our LED!
 
-// TO DO: rework this when
+// TODO: rework this when
 Let's make a new file `blink.py` to hold our code:
 ``` python
 import onionGpio
@@ -90,7 +90,7 @@ python blink.py
 
 Your LED should be blinking; it should turn on for half a second, and then turn off for half a second, repeating until you exit the program.
 
-// TO DO: GIF: Showing this experiment with the LED blinking
+// TODO: GIF: Showing this experiment with the LED blinking
 
 > To exit a program like this one: press `Ctrl+c` (`Cmd+c` for Mac users)
 
@@ -103,7 +103,7 @@ While this is a small program, there are quite a few things going on, let's take
 
 The very first line in the code imports a Python source code module. In this case, the module was made by the Onion team for controlling the Omega's GPIOs. The module contains a class that implements functions for everything you can do with a GPIO on an Omega.
 
-// TO DO: add a note about the time module
+// TODO: add a note about the time module
 
 
 #### Object Oriented Programming - Instantiating an Object
