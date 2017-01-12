@@ -29,9 +29,9 @@ For this circuit, we will connect one LED to each of the 16 channels (0-15) on t
 // 16 example of the most basic LED circuit
 Each LED will be connected to the board in the same way.
 
-To connect a single LED, the anode of the LED will need to be wired to the signal pin of any channel, then wire a resistor to the cathode of the LED, and finally the other end of the resistor must be wired to the ground (GND) pin of the *same* channel as the anode of the LED. 
+To connect a single LED, the anode of the LED will need to be wired to the signal pin of any channel, then wire a resistor to the cathode of the LED, and finally the other end of the resistor must be wired to the ground (GND) pin of the *same* channel as the anode of the LED.
 
-// TODO: picture and/or circuit diagram
+// TODO: IMAGE picture and/or circuit diagram
 
 // - use M-F jumper wires to connect from the servo expansion
 The PWM expansion uses male pins for connectivity, while the breadboard uses female sockets. The LED is connected to the resistor through the breadboard already, so we'll need 32 female to male jumpers. The kit has 20, but we can connect a female-female and a male-male jumper together to get a female-male.
@@ -106,14 +106,14 @@ if __name__ == '__main__':
 
 ### What to Expect
 
-// TODO: add gif/video of LEDs working
+// TODO: IMAGE add gif/video of LEDs working
 
 You should see a wave like effect across the LEDs when they are placed beside each other in order from 0 to 15.
 
 
 ### A Closer Look at the Code
 
-This code does two major things, first it it specifies a generic class for a pwm channel. This generic class has one function, `setDutyCycle` that sets the particular duty cycle on the particular channel that the class has been instantiated with. By creating an object for each output channel, we can set the brightness of each LED individually.
+This code does two major things, first it it specifies a generic class for a PWM channel. This generic class has one function, `setDutyCycle` that sets the particular duty cycle on the particular channel that the class has been instantiated with. By creating an object for each output channel, we can set the brightness of each LED individually.
 
 
 #### Creating a class
@@ -122,14 +122,12 @@ As a refresher, in Object Oriented Programming, classes are essentially blueprin
 
 To see another example of another example of classes in python, check out the shift register article where we first introduced //TODO:HYPERLINK TO SHIFT REGISTER ARTICLE.
 
-In our case, wes are making a class for a pwm channel. This class represents a single pwm output channel, and objects of this class will represent and control an actual pwm channel on the board. The function `setDutyCycle` sets the particular duty cycle on whichever channel the object represents. Once we instantiate each channel object we store the objects inside of a list, such that their index corresponds to the channel number. This makes our coding a little simpler.
+In our case, wes are making a class for a PWM channel. This class represents a single PWM output channel, and objects of this class will represent and control an actual PWM channel on the board. The function `setDutyCycle` sets the particular duty cycle on whichever channel the object represents. Once we instantiate each channel object we store the objects inside of a list, such that their index corresponds to the channel number. This makes our coding a little simpler.
 
 
 #### Using the Onion PWM Expansion Python Module
 
-Here we use the pwm module (pyPwmExp) to easily control the PWM expansion. The module comes with a set of functions to control and modify the pwm expansion channels and properties. To find a detailed description of the module, refer to [pyPwmExp library link].
-
-//TODO: ADD LINK TO PWM LIBRARY IN PYTHON DOC.
+Here we use the PWM module (pyPwmExp) to easily control the PWM expansion. The module comes with a set of functions to control and modify the PWM expansion channels and properties. To find a detailed description of the module, refer to [pyPwmExp library](//TODO: LINK TO PWM LIBRARY IN PYTHON DOC) reference in the Onion docs.
 
 Specifically, we use the following functions:
 ```
@@ -138,7 +136,7 @@ driverInit()
 setFreqency()
 setupDriver()
 ```
-The init functions will be discussed later, the last two are more immediately relevant to how this circuit works. In the code, you'll notice the servo frequency set to 2000Hz, this is to ensure the LED doesn't flicker no matter what duty cycle we set the channel to output. To accomplish this, we call setFrequency() and give it SERVO_FREQUENCY as the argument. For each channel, we can change the duty cycle on the fly by calling setupDriver() and sending it the channel and duty cycle number (recall this is between 0% and 100%), by changing the duty cycle, we change the average voltage sent to the LED connected to the channel - this is how the LEDs dim and brighten.
+The init functions will be discussed later, the last two are more immediately relevant to how this circuit works. In the code, you'll notice the servo frequency set to 2000Hz, this is to ensure the LED doesn't flicker no matter what duty cycle we set the channel to output. To accomplish this, we call `setFrequency()` and give it `SERVO_FREQUENCY` as the argument. For each channel, we can change the duty cycle on the fly by calling `setupDriver()` and sending it the channel and duty cycle number (recall this is between 0% and 100%), by changing the duty cycle, we change the average voltage sent to the LED connected to the channel - this is how the LEDs dim and brighten.
 
 
 #### Initializing the PWM Expansion
@@ -147,4 +145,4 @@ If you look at the constructor (the __init__ function), you will notice the line
 ```
 pwmExp.driverInit()
 ```
-This line initializes the pwm expansion for usage. This starts the oscillator on the Pwm expansion which is necessary to produce the pwm signals
+This line initializes the PWM expansion for usage. This starts the oscillator on the PWM expansion which actually produces the signals sent through the pins.

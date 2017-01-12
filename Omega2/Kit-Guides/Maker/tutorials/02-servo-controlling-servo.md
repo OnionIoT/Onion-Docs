@@ -38,14 +38,14 @@ In this tutorial we will learn how to control the channels on our servo expansio
 // * the program should be something along the lines of setting the servo to 0˚, 45˚, 90˚, 135˚, 180˚, and then back down by 45˚ steps, have a noticeable but not annoyingly long delay between the steps
 // * have it run in an infinite loop -->
 
-Prior to running the code you will need to have python and the OmegaExpansion libraries installed. You can install with the following commands
+Prior to running the code you will need to have python and the OmegaExpansion libraries installed. You can install with the following commands:
 
 ```
 opkg update
 opkg install python-light
 opkg install pyPwmExp
 ```
-Run the following python code and observe your your motor
+Run the following python code and observe your your motor.
 
 ```
 from OmegaExpansion import pwmExp
@@ -65,7 +65,7 @@ class servoChannel:
 			if (ret != 0):
 				print "Error initializing expansion"
 			else:
-				bSetFrequency = pwmExp.setFrequency(SERVO_FREQUENCY)	
+				bSetFrequency = pwmExp.setFrequency(SERVO_FREQUENCY)
 				if(bSetFrequency != 0):
 					print "Error setting oscillator frequecy"
 
@@ -102,7 +102,7 @@ if __name__ == '__main__':
 
 ### What to Expect
 
-// gif of a servo connected to the omega doing this
+// TODO: IMAGE gif of a servo connected to the omega doing this
 //  - make sure in the gif it's oriented in the same way as above in the servo section
 
 
@@ -118,7 +118,7 @@ Since the pattern will repeat infinitely, you will need to break by entering `ct
 // * brought back the idea of using a class within a class (link back to the first time this was introduced in the 7seg article)
 // * brought back the infinite loop -->
 
-As in the servo-dimming-tutorial, we have created a class that allows us to instantiate a servo controlling object for each channel. This allows us to create as many channel objects from the same class template and control each channel as a seperate entity. 
+As in the servo-dimming-tutorial, we have created a class that allows us to instantiate a servo controlling object for each channel. This allows us to create as many channel objects from the same class template and control each channel as a seperate entity.
 
 We have also employed an infinite loop. These can be easily constructed with the following code block:
 
@@ -142,4 +142,3 @@ print 4/3
 print 4.0/3
 # will print "1.33333333"
 ```
-
