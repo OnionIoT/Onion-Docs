@@ -41,6 +41,103 @@
 
 // have polling code to increment/decrement the angle of both of the servos while a button is pressed
 
+``` arduino
+// import the Arduino Servo library and define it
+#include <Servo.h>
+  
+int incrementButton = 2;
+int decrementButton = 3;
+int currentAngle = 90;
+
+// class to control servo motors
+class ServoMotor
+{
+  private:      // variables or functions that can only be used within the ServoMotor class
+  Servo servo;    // 
+  float rate;    // rate of pulse width change per degree
+  float minPW, maxPW;   // min and max pulse width in microseconds (uS)
+  int minAngle = 0;
+  int maxAngle = 180;
+  int pin;
+
+  public:     //  variables or functions which can be called outside in the main program
+  // constructor with same name as class, will be automatically called when a class object is declared
+  // pass in the pin number, max and min pulse width and calculate the pulse width change for each degree
+  ServoMotor(int pinNumber, float minPWus, float maxPWus){
+      // calculate the pulse width change for each degree
+      rate = (maxPWus - minPWus)/(maxAngle - minAngle);
+
+      // pass in the pin number, max and min pulse width to private variables
+      minPW = minPWus;
+      maxPW = maxPWus; 
+      pin = pinNumber;
+  }
+
+  // function where you pass in an angle and it sets the servo motor to that angle
+  void setAngle(float angle){
+      
+    // if the angle is greater than max angle or less than min angle, print the correct error message and exit the function
+    if (angle > maxAngle || angle < minAngle){
+       if (angle > maxAngle){
+          Serial.println("Servo angle over maximum. Please press decrease button");
+          return;
+       }
+       else{
+          Serial.println("Servo angle lower than minimum. Please press increase button");
+          return;
+       }
+    }
+
+    // convert the angle to pulse width in microseconds(uS) using the rate previously calculated in the constructor
+    float PWus = minPW + rate * angle;
+    
+    // initialize the servo pin using the Arduino Servo library
+    servo.attach(pin);
+    
+    // set the servo angle by sending the calculated pulse width to the servo motor using the Arduino Servo library
+    servo.writeMicroseconds(PWus);
+  }
+};
+
+// initalize two servo objects, one for each motor attached
+ServoMotor smallServo (9, 500, 2000);     // initialize DXW90 small servo (500us to 2000us) at pin 9
+ServoMotor standardServo (10, 0, 2500);     // initialize S3003 standard servo (0us to 2500us) at pin 10
+      
+void setup() {    // codes to be ran once
+  Serial.begin(9600);  // initializing serial communication with the Omega
+  
+  // initialize the pins connected to the increment and decrement buttons
+  pinMode(incrementButton, INPUT);
+  pinMode(decrementButton, INPUT);
+  
+  // set the initial angle of the two servos to the 90 degrees
+  smallServo.setAngle(currentAngle); 
+  standardServo.setAngle(currentAngle);
+}
+
+void loop() {   // codes to be ran continously
+    // read the state of the two push buttons (1 - not pressed, 0 - pressed) at the pins defined at the start of code
+    int increment = digitalRead(incrementButton);
+    int decrement = digitalRead(decrementButton);
+
+    // if the increment button is pressed, increase the current angle by 5 degree and set both servos at the new angle
+    if (increment == 0){
+        currentAngle=currentAngle+5;
+        Serial.print("Current angle: "); Serial.println (currentAngle);			//print the current angle
+        smallServo.setAngle(currentAngle);
+        standardServo.setAngle(currentAngle);
+    }
+
+     // if the decrement button is pressed, decrease the current angle by 5 degree and set both servos at the new angle
+    if (decrement == 0){
+        currentAngle=currentAngle-5;
+        Serial.print("Current angle: "); Serial.println (currentAngle);			//print the current angle
+        smallServo.setAngle(currentAngle);
+        standardServo.setAngle(currentAngle);
+    }        
+    delay(200);  // if either button is pressed and hold down, either increase or decrease the angle 5 degrees every 0.2 second
+}
+```
 
 ### What to Expect
 

@@ -42,11 +42,11 @@ Then fire up the Arduino IDE on your computer and paste the following:
 int ledPin = 0;             // LED on pin 0
 int blinkTime = 1000;       // duration to keep the LED on/off
 
-void setup() {
+void setup() {			// codes to be ran once
     pinMode(ledPin, OUTPUT);
 }
 
-void loop() {
+void loop() {			// codes to be ran continously
     digitalWrite(ledPin, HIGH);
     delay(blinkTime);
     digitalWrite(ledPin, LOW);
