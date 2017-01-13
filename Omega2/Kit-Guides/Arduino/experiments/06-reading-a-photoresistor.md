@@ -9,7 +9,22 @@
 
 ### Building the Circuit
 
-For this circuit we will need the photoresistor and a 10K resistor on a breadboard. We will be using jumper wires for the connections.
+For this circuit we will need use a photoresistor and a 10K resistor to make a voltage divider on a breadboard. We will be using jumper wires for the connections.
+
+// TODO: diagram and equation for a voltage divider
+
+Using the equation for the voltage divider, we will be able to determine the resistance of the photoresistor and therefore calculate the light intensity.
+
+#### What You'll Need
+
+Prepare the following components from your kit:
+
+* Omega plugged into Arduino Dock
+* USB Micro-B cable for power
+* Breadboard
+* Jumper wires
+* 1x Photoresistor
+* 1x 10kΩ Resistor
 
 #### Hooking up the Components
 
@@ -17,9 +32,11 @@ For this circuit we will need the photoresistor and a 10K resistor on a breadboa
 // 5V <-> photoresistor <-> 10K resistor <-> GND
 // A0 pin connected to between photoresistor and 10k resistor
 
-In this circuit, we will make a voltage divider with the photoresistor and the 10K resistor. First we connect one end of the photoresistor to 5V and the other end to the 10K resistor (the polarity does not matter). Then we connect the other end of the 10K resistor to GND. The middle point between the photoresistor and resistor is connected to a analog pin on the Arduino Dock (A0 is defined in the code).
+1. Connect one end of the photoresistor to 5V and the other end to the 10K resistor (the polarity does not matter). 
+1. Connect the other end of the 10K resistor to GND.
+1. Connect the middle point between the photoresistor and resistor to an analog pin on the Arduino Dock (A0 is defined in the code).
 
-## Writing the Code
+### Writing the Code
 
 // write code that:
 //  * reads the sensor voltage
@@ -59,16 +76,16 @@ void loop()
 }
 ```
 
-### What to Expect
+#### What to Expect
 
 // make the omega connect to the microcontroller using uart1 (link to the article), read the light intensity data
 // have the user cover the photoresistor with their hand and observe the change in value, have them shine a light at it
 
 
-### A Closer Look at the Code
+#### A Closer Look at the Code
 
 // highlight something interesting about this code
 
-#### Output on serial
+##### Output on serial
 
 // explanation of how the omega and atmega chip are linked, go into a little bit of detail

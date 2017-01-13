@@ -2,18 +2,34 @@
 
 // description of what this experiment will accomplish and what we'll learn
 
-## The Buzzer Element
+### The Buzzer Element
 // should be its own markdown file
 
 // description of the buzzer: we apply current, it buzzes, have some photos
 
 
-## Building the Circuit
+### Building the Circuit
 
 // build a circuit with a push button input and a buzzer
-For this circuit we will need a buzzer, an 100 ohm current limiting resistor, and a push button with its debounce circuit setup on a breadboard.
+For this experiment, we will be using a push button again for the input and a buzzer for output. Pressing the button will make the buzzer buzz. For the circuit we will need a buzzer, an 100Ω current limiting resistor, and a push button with its debounce circuit setup on a breadboard.
 
-### Hooking up the Components
+#### What You'll Need
+
+Prepare the following components from your kit:
+
+* Omega plugged into Arduino Dock
+* USB Micro-B cable for power
+* Breadboard
+* Jumper wires
+* Resistors
+    * 1x 100Ω
+    * 1x 5.1kΩ
+    * 1x 51kΩ
+* 1x 100nF Capacitor
+* 1x Tactile button
+* 1x Buzzer
+
+#### Hooking up the Components
 
 // in depth wiring details on building the circuit
 // should be pretty straight-forward for the buzzer, look it up online
@@ -22,25 +38,26 @@ For this circuit we will need a buzzer, an 100 ohm current limiting resistor, an
 // PIN 9 <-> 100 ohm resistor <-> buzzer <-> GND
 // PIN 2 <-> push button debounce circuit
 
-First we connect the negative end of the buzzer (the pin WITHOUT a plus sign) to ground (GND). We connect the positive end (+) of the buzzer to the pin 9 through an 100 ohm current limiting resistor.
+1. Connect the negative end of the buzzer (the pin WITHOUT a plus sign) to ground (GND).
+1. Connect the positive end (+) of the buzzer to the pin 9 through an 100 ohm current limiting resistor.
+1. Connect the push button with debounce ciruit to pin 2: 
+    1. Connect the point in the debounce circuit between the 5kohm resistor and the capacitor to pin 2 of the Arduino Dock.
+    1. Connect the 5V and ground of the debounce circuit. 
 
-Next we connect the push button with debounce ciruit to pin 2: connect the point in the debounce circuit between the 5kohm resistor and the capacitor to pin 2 using a jumper wire. Don't forget to connect the 5V and ground of the debounce circuit. 
-
-## Writing the Code
+### Writing the Code
 
 // in the loop function, read the input value of the push button. if the button is pressed, activate the buzzer, when it is released, stop buzzing
 
 
-
-### What to Expect
+#### What to Expect
 
 // explanation that pressing the button will make the buzzer sound
 
-### A Closer Look at the Code
+#### A Closer Look at the Code
 
 // we'll be looking at the difference between polling and interrupt based input
 
-#### Polling a value
+##### Polling a value
 
 // talk about polling and how we continuously read the input value coming from the push button and then act on it
 // make a note about how this is expensive/wasteful for the microcontroller since you can't do anything else during the polling
@@ -65,7 +82,7 @@ void loop() {
 }
 ```
 
-#### Interrupt Alternative
+##### Interrupt Alternative
 
 // an alternative to polling is interrupt-based inputs
 // to implement the same functionality as we have above, we'll need to set an action - the interrupt - that will trigger a response - the interrupt service routine.

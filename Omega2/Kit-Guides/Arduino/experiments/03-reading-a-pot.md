@@ -21,21 +21,34 @@
 
 // an LED connected to one of the (pwm) outputs
 
-For this experiment, everything is setup on the breadboard using jumper wires. We will try connect a potentiometer to the analog input and an LED to a PWM pin with a current-limiting resistor. 
+For this experiment, we will use the knob of the trimpot (trimmer potentiometer) to control the brightness of the LED. We will connect a potentiometer to the analog input and an LED to a PWM pin with a current-limiting resistor. 
 
 <!-- PWM Signals -->
 ```{r child = '../../shared/pwm.md'}
 ```
 
-Let's take a more detailed look at the ATMega pins on the Arduino dock since we'll be using them mostly throughout these tutorials. Analog pins are from prefixed with capital A (A0 to A5). Pins 0 to 13 are digital pins. If there is a tilde sign (~) in front of the pin number, it means it can be used as a PWM pin. Pin 0 and 1 are serial pins and should not be used if we want to do serial communication between the ATmega and the Omega. 
+Let's take a more detailed look at the ATMega pins on the Arduino dock since we'll be using them mostly throughout these tutorials. Analog pins are from prefixed with capital A (A0 to A5). Pins 0 to 13 are digital pins. If there is a tilde sign (~) in front of the pin number, it means it can be used as a PWM pin. Pin 0 and 1 are serial pins and should not be used if we want to do serial communication between the ATmega and the Omega.
+
+#### What You'll Need
+
+Prepare the following components from your kit:
+
+* Omega plugged into Arduino Dock
+* USB Micro-B cable for power
+* Breadboard
+* Jumper wires
+* 1x 10K Trimpot
+* 1x 200Ω Resistor
+* 1x LED color of your choice! 
 
 #### Hooking up the Components
 
 // details on how to connect everything
 
-First plug the potentiometer on the breadboard. The potentiometer has 3 pins. Connect the middle pin to the analog pin (A0 defined in code) on the Arduino dock using a jumper wire. Next connect one of the remaining pin to GND and the other one to 5V (the polarity does not matter). 
-
-Next we will connect the anode of LED to a PWM pin (~9 defined in code) on the Arduino Dock. Don't forget to connect the cathode to the ground through a current limiting resistor (200 ohms).
+1. First plug the potentiometer on the breadboard with each of the three pins in a different row.
+2. Connect the middle pin of the trimpot to the analog pin (A0 defined in code) on the Arduino dock using a jumper wire.
+3. Connect one of the remaining pin to GND and the other one to 5V (the polarity does not matter). 
+4. Connect the anode of LED to a PWM pin (~9 defined in code) on the Arduino Dock. Connect the cathode to the ground through the 200Ω current limiting resistor.
 
 ### Writing the Code
 

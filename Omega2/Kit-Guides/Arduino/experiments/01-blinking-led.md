@@ -16,7 +16,7 @@ Remember, when inventing and building new things, try to break the work down int
 ```{r child = '../../shared/led.md'}
 ```
 
-## Building the Circuit
+### Building the Circuit
 
 Before we start building our experiment, let's first go over some of the building blocks when it comes to experimenting with electronics.
 
@@ -27,14 +27,26 @@ Before we start building our experiment, let's first go over some of the buildin
 <!-- Breadboard -->
 ```{r child = '../../shared/breadboard.md'}
 ```
+Let's also take a look at the headers on the Arduino Dock. The double-row headers to the left of the Omega and the three male pins near the OMEGA-RESET are pins connected to the Omega. The rest of the headers are in the same layout as that of an Arduino UNO and are connected to the ATmega. We will be using the ATmega pins mostly throughout these tutorials. 
 
-### Hooking up the Components
+#### What You'll Need
 
-Let's first take a look at the headers on the Arduino Dock. The double-row headers to the left of the Omega and the three male pins near the OMEGA-RESET are pins connected to the Omega. The rest of the headers are in the same layout as that of an Arduino UNO and are connected to the ATmega. We will be using the ATmega pins mostly throughout these tutorials. 
+Prepare the following components from your kit:
 
-Ok, here we go, let's put together our circuit. We're going to be connecting an LED's anode to a GPIO (pin 4 is defined in the code) on the Arduino Dock, and cathode to Ground (GND) through a current limiting resistor.
+* Omega plugged into Arduino Dock
+* USB Micro-B cable for power
+* Breadboard
+* Jumper wires
+* 1x 200Ω resistor
+* 1x LED color of your choice!
 
-## Writing the Code
+#### Hooking up the Components
+
+1. Plug in the LED into the breadboard, make sure you plug the anode and cathode into different rows and that you know which is plugged where.
+2. Connect the anode of the LED (the longer leg) to pin 4 on the Arduino Dock.
+3. Connect the cathode of the LED (the shorter leg) to one end of the resistor and the other end of the resistor to ground (GND).
+
+### Writing the Code
 
 First, prepare your computer by following [our guide to flashing sketches wirelessly to the Arduino Dock](#flash-arduino-dock-wirelessly).
 
@@ -58,19 +70,19 @@ void loop() {			// codes to be ran continously
 
 // write an arduino sketch to blink an LED
 
-### What to Expect
+#### What to Expect
 
 // flashing wirelessly using the IDE
 
-### A Closer Look at the Code
+#### A Closer Look at the Code
 
 // highlight something interesting about the code
 
-#### Setting GPIOs to Output
+##### Setting GPIOs to Output
 
 // go through the setup commands we used to use a gpio as an output
 
-#### Variable Scope
+##### Variable Scope
 
 // talk about how we defined the LED gpio globally, and can therefore use it everywhere in the program
 // give an example of a local variable
