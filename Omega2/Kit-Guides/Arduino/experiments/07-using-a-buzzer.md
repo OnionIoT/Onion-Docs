@@ -11,8 +11,7 @@
 ## Building the Circuit
 
 // build a circuit with a push button input and a buzzer
-PIN 9 <-> 100 ohm resistor <-> buzzer <-> GND
-PIN 2 <-> push button debounce circuit
+For this circuit we will need a buzzer, an 100 ohm current limiting resistor, and a push button with its debounce circuit setup on a breadboard.
 
 ### Hooking up the Components
 
@@ -20,7 +19,12 @@ PIN 2 <-> push button debounce circuit
 // should be pretty straight-forward for the buzzer, look it up online
 
 // reuse the push button instructions from the push button article
+// PIN 9 <-> 100 ohm resistor <-> buzzer <-> GND
+// PIN 2 <-> push button debounce circuit
 
+First we connect the negative end of the buzzer (the pin WITHOUT a plus sign) to ground (GND). We connect the positive end (+) of the buzzer to the pin 9 through an 100 ohm current limiting resistor.
+
+Next we connect the push button with debounce ciruit to pin 2: connect the point in the debounce circuit between the 5kohm resistor and the capacitor to pin 2 using a jumper wire. Don't forget to connect the 5V and ground of the debounce circuit. 
 
 ## Writing the Code
 

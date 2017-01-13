@@ -17,12 +17,25 @@
 // push button connected as input
 // 5-8 leds connected
 
+For this experiment we will be using the same components from the multiple LEDs tutorial (6 LEDs, 6 200 ohm resistors, breadboard and jumper wires). In addition, we will require a push button along with it's debounce circuit.
+
+<!-- Push Button -->
+```{r child = '../../shared/switches-push-button.md'}
+```
+
+<!-- Debouncing a Push Button -->
+```{r child = '../../shared/switches-debouncing.md'}
+```
+
 #### Hooking up the Components
 
 //  * reiterate on the LED circuit, say we can repeat it
 //  * wiring of a push-button
 //    * needs to be wired to atmega gpio 2 or 3 so we can use it as an interrupt trigger
 
+We're going to be connect the LEDS and resistors the same way as in the multiple LED tutorial. The six anodes of LEDs to six digital GPIOS (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector), and their cathodes to Ground each through a different 200 ohm current limiting resistor.
+
+In addition, we will connect the push-button along with its debounce ciruit to a ATmega pin which is capable of using external interrupts (only pin 2 or 3 for ATmega328). We use pin 2 since it's defined in the code. This is done simply by connecting the point in the debounce circuit between the 5kohm resistor and the capacitor to pin 2 using a jumper wire. Don't forget to connect the 5V and ground of the debounce circuit.
 
 ### Writing the Code
 

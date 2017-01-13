@@ -9,13 +9,15 @@
 
 ### Building the Circuit
 
-// 5V <-> photoresistor <-> 10K resistor <-> GND
-// A0 pin connected to between photoresistor and 10k resistor
+For this circuit we will need the photoresistor and a 10K resistor on a breadboard. We will be using jumper wires for the connections.
 
 #### Hooking up the Components
 
 // walkthrough all of the wiring
+// 5V <-> photoresistor <-> 10K resistor <-> GND
+// A0 pin connected to between photoresistor and 10k resistor
 
+In this circuit, we will make a voltage divider with the photoresistor and the 10K resistor. First we connect one end of the photoresistor to 5V and the other end to the 10K resistor (the polarity does not matter). Then we connect the other end of the 10K resistor to GND. The middle point between the photoresistor and resistor is connected to a analog pin on the Arduino Dock (A0 is defined in the code).
 
 ## Writing the Code
 

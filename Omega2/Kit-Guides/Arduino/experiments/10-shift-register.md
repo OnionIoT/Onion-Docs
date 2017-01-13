@@ -15,12 +15,16 @@
 // wire up the microcontroller outputs to the shift register
 // have all shift register outputs connected to an LED circuit
 
+For this circuit, we will need the 74HC595 shift register and 8 LEDS with 8 current limiting resistors.
+
 ### Hooking up the Components
 
 //  * talk about how the IC should be plugged in across the channel of the breadboard (have this note in a markdown file so it can be easily reused)
 
 //  * explain all of the wiring from microcontroller->shift reg
 //    * explain each of the lines running from the Omega and what they do - according to the names from the controlling a shift register section
+
+
 
 
 ## Writing the Code

@@ -11,12 +11,13 @@
 ### Building the Circuit
 
 // very straight-forward circuit: provide power and ground to the sensor, connect the signal to an atmega analog pin
+For this experiment we will be using the TMP36 temperature sensor connected to an analog pin of the ATmega.
 
 #### Hooking up the Components
 
 // walkthrough all of the wiring
 // potentially isolate the push button instructions into it's own markdown file
-
+Plug the TMP36 on to the bread board. When facing the flat side of the device, connect the left pin to 5V, the middle pin to an analog pin (A0 defined in the code), and the right pin to ground (GND). The polarity matters!
 
 ## Writing the Code
 
@@ -27,9 +28,10 @@
 //    * maybe make it detect once every 10 seconds
 
 ``` arduino
-int sensorPin = A0; //the analog pin the TMP36's Vout (sense) pin is connected to
-                        //the resolution is 10 mV / degree Celsius with a 500 mV offset to allow for negative temperatures
-                        
+//the resolution of TMP36 (temperature sensor) is 10 mV/degree Celsius with a 500 mV offset to allow for negative temperatures
+
+int sensorPin = A0; // the analog pin number connected to the TMP36
+                                           
 void setup()
 {
   Serial.begin(9600);  //initializing serial communication with the Omega2 for sending sensor data

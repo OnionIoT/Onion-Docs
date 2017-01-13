@@ -30,7 +30,9 @@ Before we start building our experiment, let's first go over some of the buildin
 
 ### Hooking up the Components
 
-Ok, here we go, let's put together our circuit. We're going to be connecting an LED's anode to a GPIO on the Arduino Dock, and cathode to Ground through a current limiting resistor.
+Let's first take a look at the headers on the Arduino Dock. The double-row headers to the left of the Omega and the three male pins near the OMEGA-RESET are pins connected to the Omega. The rest of the headers are in the same layout as that of an Arduino UNO and are connected to the ATmega. We will be using the ATmega pins mostly throughout these tutorials. 
+
+Ok, here we go, let's put together our circuit. We're going to be connecting an LED's anode to a GPIO (pin 4 is defined in the code) on the Arduino Dock, and cathode to Ground (GND) through a current limiting resistor.
 
 ## Writing the Code
 
@@ -39,7 +41,7 @@ First, prepare your computer by following [our guide to flashing sketches wirele
 Then fire up the Arduino IDE on your computer and paste the following:
 
 ```arduino
-int ledPin = 0;             // LED on pin 0
+int ledPin = 4;             // LED on pin 0
 int blinkTime = 1000;       // duration to keep the LED on/off
 
 void setup() {			// codes to be ran once

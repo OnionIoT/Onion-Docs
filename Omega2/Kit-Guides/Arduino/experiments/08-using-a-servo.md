@@ -19,10 +19,20 @@
 
 // simple circuit with both the small and regular servo attached - when one button is pressed, they both turn to one direction, when the other button is pressed, they both turn to the other direction
 
+For the circuit, we will need a small servo motor(MicroServo DXW90) and a standard servo motor(Futaba S3003). In addition, we will need two push buttons, each with their own debounce circuits setup on a breadboard. When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction.
+
+
 ### Hooking Up the Components
 
 // wiring the servos: vcc, gnd, and a separate signal wire for each servo
 // wiring the two push-button switches: can reuse the wiring push button text from previous articles
+
+First we will connect the two push buttons with their seperate debounce circuits same as previous tutorials. We will connect the first debounce ciruit to pin 2 for increasing the servo angle and the other debounce circuit to pin 3 for decreasing the servo angle. Don't forget to connect the 5V and ground of the both debounce circuit.
+
+Next we will connect the servo motors. The small servo has 3 wires: connect the black wire to GND, the red wire to 5V, and the orange (signal) wire to pin 9. Don't worry if the servo rotates a bit when you power it on.
+
+The standard servo also has 3 wires: connect the black wire to GND, the red wire to 5V, and the white (signal) wire to pin 10. The Arduino Sketch will set the servo motors at 90 degree initially. After flashing the arduino sketch and wait until the servos settle on their initial position, attach your favourite servo horn on each servo at 90 degrees.
+
 
 ## Writing the Code
 

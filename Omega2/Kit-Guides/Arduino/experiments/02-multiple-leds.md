@@ -16,10 +16,14 @@ In this experiment, we're going to use what we learned in the first experiment a
 
 // same as the first experiment, just repeated a bunch of times
 
+Similar to the previously experiment, we need our breadboard and jumper wires. However, now we will use 6 LEDS along with 6 current limiting resistors (200 ohm).
+
 #### Hooking up the Components
 
 // look to the multiple leds article in the starter kit for ideas of what needs to be covered
 // make sure the physical order of the LEDs is kept when increasing the gpio number
+
+We're going to be connect the six anodes of LEDs to six digital GPIOS (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector), and their cathodes to Ground each through a different 200 ohm current limiting resistor.
 
 ### Writing the Code
 
@@ -28,17 +32,17 @@ In this experiment, we're going to use what we learned in the first experiment a
 
 ``` arduino
 int timer = 100;           // time delay between each LED in ms
-int ledPins[] = {7, 6, 5, 4, 3, 2};       // an array of GPIO numbers with LED attached
+int ledPins[] = {9, 8, 7, 6, 5, 4};       // an array of GPIO numbers with LED attached
 int pinCount = 6;           // number of GPIOs used
 
-void setup() {
+void setup() {      // codes to be ran once
   // loop for initializing the GPIOs
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
     pinMode(ledPins[thisPin], OUTPUT);
   }
 }
 
-void loop() {
+void loop() {     // codes to be ran continously
   // loop for turn on GPIOs one-by-one going left to right
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
     // turn the pin on:

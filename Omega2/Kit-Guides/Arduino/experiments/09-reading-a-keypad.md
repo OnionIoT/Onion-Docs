@@ -21,14 +21,16 @@
 //  - single LED connected to the microcontroller output
 //  - keypad input connected to the microcontroller
 
+For the circuit, we will be needing only a keypad. The on-board blue LED is used so need to a connect external LED.
+
 #### Hooking Up the Components
 
 // instructions on:
 //  - connecting the led circuit (link back to single led experiment or reuse that text)
 //  - connecting all of the keypad outputs to the microcontroller pins
 
-Connect the keypad pins to the digital pins 8 to 2 on the arduino dock in order from left to right, i.e. the left most keypad pin to arduino header pin 8.
-Using the on board blue LED so don't connect external LED.
+Connect all the seven keypad pins to the digital pins (8, 7, 6, 5, 4, 3, 2) on the arduino dock in order from left to right, i.e. the left most keypad pin to arduino header pin 8.
+
 
 ### Writing the Code
 
