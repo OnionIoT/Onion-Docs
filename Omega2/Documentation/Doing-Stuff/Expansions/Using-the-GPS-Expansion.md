@@ -44,7 +44,7 @@ You can also use `ogps` to access relevant data offered up by the GPS via `ubus`
 
 ```
 opkg update
-opkg install opgs
+opkg install ogps
 ```
 
 ![opkg installation](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/using-gps-expansion-3-opkg-install.png)
