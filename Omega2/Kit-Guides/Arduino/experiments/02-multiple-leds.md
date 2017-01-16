@@ -36,7 +36,8 @@ Prepare the following components from your kit:
 
 1. Plug in six LEDs onto the breadboard in parallel, each across the middle channel of the breadboard.
 2. Connect the six anodes of LEDs (left to right) to six digital pins (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector).
-3. Connect cathodes of the LEDs to ground (GND) each through a different 200Ω current limiting resistor.
+3. Connect cathodes of the LEDs to negative rail marked '-' on the breadboard each through a different 200Ω current limiting resistor.
+4. Connect a jumper wire from the `-` negative rail on the breadboard to a ground (GND) pin on the Arduino Dock. 
 
 ### Writing the Code
 

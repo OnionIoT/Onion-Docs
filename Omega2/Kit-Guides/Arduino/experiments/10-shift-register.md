@@ -4,6 +4,18 @@
 // intro on using a shift register to increase the number of available digital outputs
 // explanation of controlling a bunch of LEDs using only a few microcontroller pins
 
+Shift registers are very useful tools; using a few pins connected to a shift register, we can increase the number of output data pins that are available to us.
+
+In this experiment, we'll be using a shift register to control eight LEDs, but we'll only be using three pins from the ATmega.
+
+<!-- // TODO: update this number if required -->
+
+
+<!-- Shift Register -->
+```{r child = '../../shared/shift-register.md'}
+```
+<!-- Controlling shift register -->
+```{r child = '../../shared/shift-register-control.md'}
 
 // TODO: insert shift register shared content
 
@@ -17,7 +29,7 @@
 
 For this experiment we will use the send a byte (8 bits) signal from the ATmega to the shift register. When the latch pin of the shift register is set LOW, the shift register will use the stored 8 bits to set its 8 output pins accordingly. We will attach one LED to each of the 8 output pin to check if their state (1 or 0).
 
-We will also make the LEDs light up in the knight rider KITT pattern! For this circuit, we will need the 74HC595 shift register and 8 LEDS with 8 current limiting resistors (200 ohms).
+We will also make the eight LEDs light up in the knight rider KITT pattern using only three ATmega pins! For this circuit, we will need the 74HC595 shift register and 8 LEDS with 8 current limiting resistors (200 ohms).
 
 #### What You'll Need
 
@@ -40,14 +52,38 @@ Prepare the following components from your kit:
 
 // TODO: add pinout of 74HC595
 
-Lets first look at how the 16 pins of the 74HC595 shift register chip are defined. When plugged in with the letters being right-side up, the bottow row of pins are pin 1 to 8 going from left to right. The top row of pins are pin 9 to 16 going from right to left. 
+The IC should be plugged in across the channel of your breadboard (the slot running down the middle separating the `abcde` columns from the `fghij` columns). If you don't do this you will short out the pins across your IC. You may need to bend the pins just a bit in order to get it to fit.
 
-1. First plug in the 74HC595 across over the the channel in the middle of the breadboard. 
-1. Connect the anodes of the 8 LED each to one of the 8 output pins of the 74HC595(pin 15 and pin 1 to 7). Place the LEDs left to right in the same order as the pin (15, 1, 2, .. 7).
-1. Attach the eight current limiting resistors from cathodes of LEDs to the ground (GND).
-1. Connect pin 8 and 13 to ground (GND). The output enable pin 13 is active-low: the outputs of the chip will only be enabled only if pin 13 is connected to ground.
-1. Connect pin 10 and 16 to 5V.
-1. Connect pin 11 (clock) , 12 (latch) and 14 (input data) of the the SN74HC595 to digital pins 6, 5, 4 of the Arduino Dock correspondingly. We leave pin 9 unconnected; however, it can be used to connect to the input data pin of a second shift register.
+![shift-register-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shift-register-diagram.jpg)
+
+Lets take a look at how the 16 pins of the 74HC595 shift register chip are defined.  We'll be referring to each pin by the numbers provided in the diagram above. When plugged in with the letters being right-side up, the bottow row of pins are pin 1 to 8 going from left to right. The top row of pins are pin 9 to 16 going from right to left. 
+
+>Note: Your IC will have a semi-circle indentation that indicates "up". Make sure that you plug it in properly.
+
+1. Connecting your shift register to the breadboard
+
+  - Start by plugging in your shift register across the channel so that the each pin has its own row.
+  - Connect pin 16 and pin 10 to the positive rail (Vcc) on the breadboard
+  - Connect pin 8 and pin 13 to the negative rail (Ground) on the breadboard
+
+  <!-- TODO: Insert picture of this stage -->
+
+2. Connecting your LEDs
+
+  - Connect the anodes of the 8 LED each to one of the 8 output pins of the 74HC595 (pin 15 and pin 1 to 7). Place the LEDs left to right in the following pin order: 15, 1, 2, 3, .. 7.
+  - Attach the eight current limiting resistors from cathodes of LEDs to the negative rail (Ground) on the breadboard.
+
+ <!-- TODO: Insert picture of this stage -->
+
+3. Connecting your Arduino Dock 
+
+  - Connect digital pin 4 to pin 14 on the shift register
+  - Connect digital pin 5 to pin 12 on the shift register
+  - Connect digital pin 6 to pin 11 on the shift register
+  - Connect the Ground header to the negative rail on the breadboard
+  - Connect the 5V header to the positive rail on the breadboard
+
+  <!-- TODO: Insert picture of this stage -->
 
 ### Writing the Code
 
@@ -77,7 +113,7 @@ void updateShiftRegister()
 {
   digitalWrite(latchPin, LOW);    // set the latch pin LOW
   // send the storage byte from arduino to the shift register withe LSB first
-  // since the latch is still LOW, set the 8 output pins based on the stored byte and in turn light the correct LED
+  // since the latch is LOW, set the 8 output pins based on the stored 8 bits and in turn light the correct LED
   shiftOut(dataPin, clockPin, LSBFIRST, storageByte);    
   digitalWrite(latchPin, HIGH);   // set the latch pin HIGH again
 }

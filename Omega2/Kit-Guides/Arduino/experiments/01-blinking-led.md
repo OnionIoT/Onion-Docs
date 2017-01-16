@@ -27,7 +27,7 @@ Before we start building our experiment, let's first go over some of the buildin
 <!-- Breadboard -->
 ```{r child = '../../shared/breadboard.md'}
 ```
-Let's also take a look at the headers on the Arduino Dock. The double-row headers to the left of the Omega and the three male pins near the OMEGA-RESET are pins connected to the Omega. The rest of the headers are in the same layout as that of an Arduino UNO and are connected to the ATmega. We will be using the ATmega pins mostly throughout these tutorials. 
+Let's also take a look at the headers on the Arduino Dock. The double-row headers beside the Omega and the three male pins near the OMEGA_RESET are pins connected to the Omega. The rest of the headers are connected to the ATmega and have the same layout as that of an Arduino UNO. We will be using the ATmega pins mostly throughout these tutorials. 
 
 #### What You'll Need
 

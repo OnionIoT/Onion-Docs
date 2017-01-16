@@ -28,7 +28,8 @@ Prepare the following components from your kit:
 #### Hooking up the Components
 
 // copy from the starter kit 7seg article
-// TODO: include schematic of 12 pin common cathod seven seg display 
+
+![Seven-seg-pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/Seven-seg-pinout.jpg)
 
 Lets first look at how the 12 pins at the back of the seven segment display are defined. When facing the front of seven segment display with decimal points at the bottom, the bottom row of pins are numbered 1 to 6 going from left to right and the top row of pins are numbered 7 to 12 going from right to left. We will need to connect all 12 pins of the seven-segment display to 12 digital pins of the Arduino Dock (Pin 2 to 13).
 
