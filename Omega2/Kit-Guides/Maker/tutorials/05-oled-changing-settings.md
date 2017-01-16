@@ -6,11 +6,11 @@ devices: [ Omega , Omega2 ]
 order: 5
 ---
 
-# Changing the Display's Behavior
+## Changing the Display's Behavior
 
 This tutorial will show how to change how the OLED displays based on text-based user input. We'll be scrolling the display contents as well as dimming and inverting the display, let's jump in.
 
-## The OLED's Settings
+### The OLED's Settings
 
  The OLED settings which we will adjust are:
   * brightness
@@ -23,11 +23,11 @@ Color inversion refers to setting all illumating pixel to dark and vice versa.
 
 The scrolling setting allows you to move the content across the screen in a wrapping fashion in either the horizontal or diagonal direction.
 
-## Building the Circuit
+### Building the Circuit
 
 Plug the Oled Expansion into the Expansion Dock.
 
-## Writing the Code
+#### Writing the Code
 
 ```
 opkg update
@@ -92,14 +92,15 @@ def main():
 if __name__ == '__main__':
 	main()
 ```
-### What to Expect
+
+#### What to Expect
 
 
 When you run the program, the different possible commands that can be entered will be printed out on the command line. The commands will interatively change the display settings. For example, to dim the display, enter "dimDisplay".
 
-To stop the program enter "CTRL"+"C"
+To stop the program enter `ctrl`+`c`
 
-//TODO:Add gif
+// TODO: IMAGE Add gif
 
 ### A Closer Look at the Code
 
@@ -107,4 +108,4 @@ In this code we used a dictionary structure to call a particular function based 
 
 #### Reading User Input
 
-Python allows us the ability to receive user input from the command line via the raw_input() function. Adding user input functionality can create an interactive user experience, where the program does different things depending on the input argument.
+Python allows us the ability to receive user input from the command line via the raw_input() function. Adding user input functionality can create an interactive user experience, where the program does different things depending on the input argument. If you want to learn more about user input, the [displaying images on the OLED](#drawing-on-the-oled-screen) tutorial developes this further.

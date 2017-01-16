@@ -6,12 +6,13 @@ devices: [ Omega , Omega2 ]
 order: 4
 ---
 
-# Writing Text to the OLED Display
+## Writing Text to the OLED Display {#writing-text-to-oled-display}
+
+In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's python library.
 
 
-## The OLED Display
-
-
+### The OLED Display
+// TODO: IMAGE upload the imgur pngs to github!
 The oled display has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages.
 ![display](http://i.imgur.com/4JsaahS.png)
 
@@ -21,14 +22,19 @@ Each page consists of 8 horizontal pixel rows. When a byte is written to the dis
 
 The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed later. When writing text to the display, each character is 6 columns wide and 1 page long. This means that 8 lines of text each 21 characters long, can be written to the oled display.
 
-## Building the Circuit
+### Building the Circuit
 
-Plug the Oled Expansion into expansion dock.
-
-## Writing the Code
+This tutorial does not require you to wire anything in as the OLED Expansion is a complete circuit. Plug it into your expansion dock, and you're good to go!
 
 
-Prior to running the code you will need to have python and the oledExp libraries installed. You can install with the following commands
+#### What You'll Need
+
+* 1x OLED Expansion
+
+
+#### Writing the Code
+
+Prior to running the code you will need to have python and the oledExp libraries installed. In case you don't have them, you can get them by running the folllowing commands:
 
 ```
 opkg update
@@ -84,21 +90,20 @@ if __name__ == '__main__':
 
 ```
 
-### What to Expect
+#### What to Expect
 
-//TODO: ADD GIF
+// TODO: IMAGE add gif of the results
 
 After running the python code, you should see the current current time on the right side of the top row, a greeting on the third row and a random fact on the fifth row.
 
 ### A Closer Look at the Code
 
-To get the current time, we use the datetime library that is provided standard with python. We create a datetime object storing the current date and time using the datetime.datetime.now() constructor. We then access the object's hour and min attributes to the retrieve the time values of interest. The we use some logic and mathematical conversion to decide if it is "AM" or "PM" and which greeting to display. 
+To get the current time, we use the datetime library that is provided standard with python. We create a datetime object storing the current date and time using the datetime.datetime.now() constructor. We then access the object's hour and min attributes to the retrieve the time values of interest. The we use some logic and mathematical conversion to decide if it is "AM" or "PM" and which greeting to display.
 
-We also randomly decide to display a random quote. 
+For the fun of it, we decided to display a random quote at the end
 
 #### Generating Random Numbers
 
 To generate a random number, we use the randInt class from the random library. We pass the range of random numbers to choose from, for our purposes the range corresonds to the length of the array. We then use this random integer to decide which quote will be written to the display.
 
 It should be noted that we are using a pseudo-random generator which uses the Mersenne Twister and is completely deterministic. Hence, this method would be unsuitable in an important application where truly random numbers are required, such as cryptography.
-

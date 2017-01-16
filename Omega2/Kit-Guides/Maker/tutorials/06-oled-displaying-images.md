@@ -6,11 +6,11 @@ devices: [ Omega , Omega2 ]
 order: 6
 ---
 
-# Drawing on the OLED Screen
+## Drawing on the OLED Screen {#drawing-on-the-oled-screen}
 
 // this tutorial will show how to draw lines on the oled display using text-based user input
 
-## The OLED Screen & Images
+### The OLED Screen & Images
 
 // describe how the OLED Screen works
 
@@ -22,11 +22,11 @@ One important concept to understand is the cursor. The cursor is essentially the
 
 We'll be creating a line drawing python script using a Frame Buffer to more manage sending drawings to the screen. More specifically, the frame buffer will be implemented with a multi-dimensional array. If this sounds daunting, fear not, it's really a fairly simple concept. As a bonus, some basic input and output will be done as well.
 
-## Building the Circuit
+### Building the Circuit
 
 The OLED Expansion is a complete circuit. So for this tutorial, we just need to plug it into the expansion board and we'll be good to go!
 
-## Writing the Code
+#### Writing the Code
 
 // write a program that draws vertical or horizontal lines with the length and direction being set by interactive user input
 //  * the user must input:
@@ -194,7 +194,7 @@ if __name__ == '__main__':
 ```
 
 
-### What to Expect
+#### What to Expect
 
 // walkthrough of drawing a few lines using the interactive program, complete with pictures
 
