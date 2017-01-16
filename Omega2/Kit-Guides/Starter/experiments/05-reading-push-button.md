@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 5
 ---
 
-# Reading a Push Button
+## Reading a Push Button
 
 <!-- // intro to push button
 // building on what we did with the slide switch, but let's use the button as a trigger for an action - as opposed to constantly reading the state of the switch
@@ -17,7 +17,7 @@ For this experiment, we'll build on what we did with the slide switch. This time
 
 We'll be making a circuit with an LED controlled by a **push button**. When the button is pressed, the LED will turn on for 10 seconds, then turn off.
 
-## Push Buttons
+### Push Buttons
 
 <!-- // put in its own markdown file -->
 
@@ -26,13 +26,13 @@ We'll be making a circuit with an LED controlled by a **push button**. When the 
 ```{r child = '../../shared/switches-push-button.md'}
 ```
 
-### Debouncing Switches
+#### Debouncing Switches
 
 <!-- debouncing switches -->
 ```{r child = '../../shared/switches-debouncing.md'}
 ```
 
-## Building an Example Circuit
+### Building an Example Circuit
 
 <!-- // circuit 1: button with debouncing circuit controls an LED directly -->
 
@@ -42,7 +42,7 @@ First we'll build a circuit with a button and a debouncer to control an LED dire
 
 // TODO: diagram
 
-### What You'll Need
+#### What You'll Need
 
 Prepare the following components from your kit:
 
@@ -57,7 +57,7 @@ Prepare the following components from your kit:
 * 1x 100nF capacitor
 * Any LED color of your choice!
 
-### Hooking up the Components
+#### Hooking up the Components
 
 <!-- // explain how to connect a push-button switch to an led -->
 
@@ -87,7 +87,7 @@ If your circuit matches, go ahead and turn the Omega2 on!
 
 // TODO: if connecting an LED to the output given at the ganssle website with the 50k and 5k resistors, the LED will have 60 microamps of current at 3.3V! maybe we should change the debouncer to non-inverting (swap R1 and switch positions)
 
-### What to Expect
+#### What to Expect
 
 When you push and hold the button, the LED should turn off. When you release the button, the LED should turn on.
 
@@ -99,18 +99,18 @@ When you push and hold the button, the LED should turn off. When you release the
 * // TODO: regardless of whether the debouncer is inverting or not, there is so much resistance on the way to the LED that it will barely light up (microamps)
 
 
-## Building the Real Circuit
+### Building the Real Circuit
 
 <!-- // circuit 2: button with debouncing circuit connected to GPIO,  LED connected to GPIO -->
 
 Now we'll build a circuit with a button and debouncer circuit connected to a GPIO, and an LED connected to another GPIO that is driven by software.
 
-### What You'll Need
+#### What You'll Need
 
 * Use the same components as in the first circuit above.
 * You may need a few more jumper wires handy.
 
-### Hooking Up the Components
+#### Hooking Up the Components
 
 Turn the Omega off before changing your circuit. Then, do the following:
 
@@ -129,11 +129,11 @@ Your circuit should look like this:
 
 If your circuit matches, power your Omega back on!
 
-## Writing the Code
+### Writing the Code
 
 Let's go about writing our code, but first let's cover an important topic first.
 
-### Edge Detection
+#### Edge Detection
 
 <!-- edge detection -->
 ```{r child = '../../shared/gpio-edge-detection.md'}
@@ -145,7 +145,7 @@ Let's go about writing our code, but first let's cover an important topic first.
 // relate this back to interrupts and interrupt service routines
 
 
-### The Code Itself
+#### The Code Itself
 
 // * write a program that uses edge detection to turn an led on, sleep for 10 seconds and then turn it off
 note: the mechanism for edge detection hasn't been ironed out yet
@@ -156,31 +156,31 @@ Let's create a file called `debounceSwitch.py` to hold our code:
 import onionGpio
 import time
 
-# define constants
+## define constants
 ledOnDuration = 10
 pollingInterval = 0.1
 
-# define GPIO functions
-# edge detection
+## define GPIO functions
+## edge detection
 def edgeDetection(gpio):
     // TODO: still being worked on
     return pinValue
 
-# reading a button (using edge detection here)
+## reading a button (using edge detection here)
 def readButton(gpio):
     pinValue = edgeDetection(gpio)          # using edge detection, but can use other methods if desired
     pinValue = not pinValue                 # inverting debouncer, so ON is LOW and OFF is HIGH
     return pinvalue
 
-# initialize GPIOs
+## initialize GPIOs
 switchPin     = onionGpio.OnionGpio(0)      # use GPIO0
 ledPin        = onionGpio.OnionGpio(1)      # use GPIO1
 
-# set the GPIO directions
+## set the GPIO directions
 switchPin.setInputDirection()               # switch pin is an input
 ledPin.setOutputDirection(0)                # led pin is an output
 
-# trigger the switch via edge detection
+## trigger the switch via edge detection
 // TODO: may not be in a while loop
 while 1:
 	if edgeDetection:
@@ -192,7 +192,7 @@ while 1:
 ```
 
 
-### What to Expect
+#### What to Expect
 
 <!-- // hit the button, the light turns on, stays on for 10 seconds, turns off 
 // ^ swapped for inverting debouncer -->
@@ -204,6 +204,6 @@ python debounceSwitch.py
 
 Now try pushing the button on and off. What happens?
 
-### A Closer Look at the Code
+#### A Closer Look at the Code
 
 // explanation of the edge detection code

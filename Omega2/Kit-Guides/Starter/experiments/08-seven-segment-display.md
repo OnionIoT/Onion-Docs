@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 8
 ---
 
-# Controlling a 7-Segment Display
+## Controlling a 7-Segment Display
 
 We've just learned about shift registers, now let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world.
 
@@ -16,12 +16,12 @@ We've just learned about shift registers, now let's apply that knowledge to cont
 ```
 
 
-## Building the Circuit
+### Building the Circuit
 
 Using the shift register and a few additional GPIO from the Omega, we will control what's displayed on all four digits of the 7-segment display.
 
 
-### Hooking up the Components
+#### Hooking up the Components
 
 // TODO: research how many scan pins there are, then decide how many gpios on the omega are required
 
@@ -37,7 +37,7 @@ Using the shift register and a few additional GPIO from the Omega, we will contr
 
 
 
-## Writing the Code
+### Writing the Code
 
 We'll be developing a program that takes input from command line arguments when it's launched and displays them on the 7-segment display.
 
@@ -56,28 +56,28 @@ To accomplish this, we will write a new class that uses the shift register class
 //  * input sanitization to ensure they only enter hex numbers (really good practise)
 //  * write the sanitized input to the 7seg
 
-### What to Expect
+#### What to Expect
 
 // walk them through running a program from the command line with arguments
 
 // description of whatever they put as the argument will be display
 // example: display the numbers from your Omega name
 
-### A Closer Look at the Code
+#### A Closer Look at the Code
 
 // small overview of the new things we introduced
 //  * command line arguments
 //  * a class using another class
 //  * a dictionary variable
 
-#### Command Line Arguments
+##### Command Line Arguments
 
 // explanation of how they work, why we have to use the os module, etc
 
-#### Classes using Classes
+##### Classes using Classes
 
 // description of how the 7seg class has a member variable that is the shift register class, and how we use it to use the shift register functons
 
-#### Dictionary
+##### Dictionary
 
 // explanation of the dictionary variable type: many elements, all have an id and a value

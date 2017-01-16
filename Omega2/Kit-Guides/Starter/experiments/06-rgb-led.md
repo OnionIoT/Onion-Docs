@@ -8,21 +8,23 @@ order: 6
 
 // !!! not doing this experiment anymore since we're not sourcing RGB LEDs
 
-# Controlling an RGB LED
+## Controlling an RGB LED
 
 <!-- {{!insert 'leds-rgb'}} -->
-## RGB LEDs
+### RGB LEDs
 
 
-## Building the Circuit
+### Building the Circuit
 
 // 3 gpios connected to the three anodes, button connected to another
 
-### Hooking up the Components
+#### What You'll Need
+
+#### Hooking up the Components
 
 
-## Writing the Code
+### Writing the Code
 
-### What to Expect
+#### What to Expect
 
-### A Closer Look at the Code
+#### A Closer Look at the Code
