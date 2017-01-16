@@ -58,6 +58,8 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 
 It follows the same layout as the Expansion Header found on the Expansion Dock and Power Dock.
 
+>**Note**:If you own an Omega2 or Omega2+ and intend to use the PWM expansion with a DC power supply, please take note there is likely to be a short circuit between the barrel jack and the metal case of the Omega itself. We recommend inserting a thin plastic sheet between the expansion and the omega to break this short. For more information, see the [PWM Expansion](#pwm-expansion) article.
+
 <!-- expansion header pinout intro -->
 ```{r child = '../shared/Hardware-Overview-Component-01-expansion-header-pinout-intro.md'}
 ```
