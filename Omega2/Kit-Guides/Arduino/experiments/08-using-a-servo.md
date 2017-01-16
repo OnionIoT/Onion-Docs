@@ -15,16 +15,42 @@
 ```{r child = '../../shared/servos.md'}
 ```
 
-## Building the Circuit
+### Building the Circuit
 
 // simple circuit with both the small and regular servo attached - when one button is pressed, they both turn to one direction, when the other button is pressed, they both turn to the other direction
 
-### Hooking Up the Components
+For the circuit, we will need a small (Sub-micro size) servo motor(MicroServo DXW90) and a standard size servo motor(Futaba S3003). In addition, we will need two push buttons, each with their own debounce circuits setup on a breadboard. When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction.
+
+#### What You'll Need
+
+Prepare the following components from your kit:
+
+* Omega plugged into Arduino Dock
+* USB Micro-B cable for power
+* Breadboard
+* Jumper wires
+* Resistors
+    * 2x 5.1kΩ
+    * 2x 51kΩ
+* 2x 100nF Capacitor
+* 2x Tactile button
+* 1x Servo Motor (Sub-micro size)
+* 1x Servo Motor (Standard size)
+
+#### Hooking Up the Components
 
 // wiring the servos: vcc, gnd, and a separate signal wire for each servo
 // wiring the two push-button switches: can reuse the wiring push button text from previous articles
 
-## Writing the Code
+1. Connect the two push buttons with their seperate debounce circuits same as previous tutorials.
+    1. Connect the first debounce ciruit to pin 2 for increasing the servo angle and the other debounce circuit to pin 3 for decreasing the servo angle.
+    1. Connect the 5V and ground of the both debounce circuit.
+1. Connect the two servo motors.
+    1. The small servo has 3 wires: connect the black wire to GND, the red wire to 5V, and the orange (signal) wire to pin 9. Don't worry if the servo rotates a bit when you power it on.
+    1. The standard servo also has 3 wires: connect the black wire to GND, the red wire to 5V, and the white (signal) wire to pin 10.
+    1. The Arduino Sketch will set the servo motors at 90 degree initially. After flashing the arduino sketch and wait until the servos settle on their initial position, attach your favourite servo horn on each servo at 90 degrees.
+
+### Writing the Code
 
 // introduce the use of classes in arduino sketches: create a class to control servos
 //  - need to pass in the signal pin number & minimum and maximum pulse widths in the constructor
@@ -139,15 +165,15 @@ void loop() {   // codes to be ran continously
 }
 ```
 
-### What to Expect
+#### What to Expect
 
 // description of how both servos will turn in a particular direction while a button is depressed, the buttons control the direction of rotation
 
-### A Closer Look at the Code
+#### A Closer Look at the Code
 
 // introduced object oriented programming for the first time in this code
 
-#### Object Oriented Programming
+##### Object Oriented Programming
 
 // talk about how we're using two servos, they operate in the same way but some parameters are slightly different. So we wrote a class that can be used to control both servos independently.
 // this is accomplished by instantiating two objects of the class - talk about the constructors and how we input the pertinent values

@@ -16,10 +16,28 @@ In this experiment, we're going to use what we learned in the first experiment a
 
 // same as the first experiment, just repeated a bunch of times
 
+Similar to the previously experiment, we need our breadboard and jumper wires. However, now we will use 6 LEDS along with 6 current limiting resistors. We will makes the LEDs turn on one-by-one going left to right, and then turn them off one-by-one again going left to right.
+
+#### What You'll Need
+
+Prepare the following components from your kit:
+
+* Omega plugged into Arduino Dock
+* USB Micro-B cable for power
+* Breadboard
+* Jumper wires
+* 6x 200Ω Resistor
+* 6x LED color of your choice!
+
 #### Hooking up the Components
 
 // look to the multiple leds article in the starter kit for ideas of what needs to be covered
 // make sure the physical order of the LEDs is kept when increasing the gpio number
+
+1. Plug in six LEDs onto the breadboard in parallel, each across the middle channel of the breadboard.
+2. Connect the six anodes of LEDs (left to right) to six digital pins (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector).
+3. Connect cathodes of the LEDs to negative rail marked '-' on the breadboard each through a different 200Ω current limiting resistor.
+4. Connect a jumper wire from the `-` negative rail on the breadboard to a ground (GND) pin on the Arduino Dock. 
 
 ### Writing the Code
 
@@ -28,17 +46,17 @@ In this experiment, we're going to use what we learned in the first experiment a
 
 ``` arduino
 int timer = 100;           // time delay between each LED in ms
-int ledPins[] = {7, 6, 5, 4, 3, 2};       // an array of GPIO numbers with LED attached
+int ledPins[] = {9, 8, 7, 6, 5, 4};       // an array of GPIO numbers with LED attached
 int pinCount = 6;           // number of GPIOs used
 
-void setup() {
+void setup() {      // codes to be ran once
   // loop for initializing the GPIOs
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
     pinMode(ledPins[thisPin], OUTPUT);
   }
 }
 
-void loop() {
+void loop() {     // codes to be ran continously
   // loop for turn on GPIOs one-by-one going left to right
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
     // turn the pin on:

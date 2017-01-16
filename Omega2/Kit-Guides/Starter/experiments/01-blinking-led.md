@@ -21,7 +21,7 @@ Remember, when inventing and building new things, try to break the work down int
 ```{r child = '../../shared/led.md'}
 ```
 
-## Building the Circuit
+### Building the Circuit
 
 Before we start building our experiment, let's first go over some of the building blocks when it comes to experimenting with electronics.
 
@@ -34,7 +34,7 @@ Before we start building our experiment, let's first go over some of the buildin
 ```{r child = '../../shared/breadboard.md'}
 ```
 
-### Hooking up the Components
+#### Hooking up the Components
 
 Ok, here we go, let's put together our circuit. We're going to be connecting an LED's anode to a GPIO on the Omega2, and cathode to Ground through a current limiting resistor.
 
@@ -54,7 +54,7 @@ The circuit diagram for our first experiment looks like this:
 // TODO: CIRCUIT DIAGRAM: circuit showing this experiment
 
 
-## Writing the Code
+### Writing the Code
 
 Now we get to write the code that will make our circuit actually do something! That something will be blinking our LED!
 
@@ -86,7 +86,7 @@ Let's run the code:
 python blink.py
 ```
 
-### What to Expect
+#### What to Expect
 
 Your LED should be blinking; it should turn on for half a second, and then turn off for half a second, repeating until you exit the program.
 
@@ -95,25 +95,25 @@ Your LED should be blinking; it should turn on for half a second, and then turn 
 > To exit a program like this one: press `Ctrl+c` (`Cmd+c` for Mac users)
 
 
-### A Closer Look at the Code
+#### A Closer Look at the Code
 
 While this is a small program, there are quite a few things going on, let's take a closer look.
 
-#### Importing a Module
+##### Importing a Module
 
 The very first line in the code imports a Python source code module. In this case, the module was made by the Onion team for controlling the Omega's GPIOs. The module contains a class that implements functions for everything you can do with a GPIO on an Omega.
 
 // TODO: add a note about the time module
 
 
-#### Object Oriented Programming - Instantiating an Object
+##### Object Oriented Programming - Instantiating an Object
 
 Then, the very next thing we do is *instatiate* an object of the `OnionGpio` class from the `onionGpio` module we just included above. Make sure to note that we passed an argument to the *constructor* of the `OnionGpio` class, this argument defines which of the Omega's GPIOs we are going to be using, GPIO0 in this case.
 
 We also take care to assign the instantiated object to a variable so that we can access it to actually interact with the GPIO pin.
 
 
-#### While Loop
+##### While Loop
 
 Loops are incredibly common in literally every type and form of programming. The type of loop we're using here is called a *while* loop, since it will execute the code contained within it's body **while** the loop condition holds true. In this case, the loop condition is `1` which will always evaluate to true, so we have in effect made an **infinite loop**.
 

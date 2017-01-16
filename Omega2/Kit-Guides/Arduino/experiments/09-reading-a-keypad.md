@@ -21,14 +21,25 @@
 //  - single LED connected to the microcontroller output
 //  - keypad input connected to the microcontroller
 
+For this experiment, we will be using the keypad for the user to enter a password. If the password matches with the password set in the Arduino sketch, the blue LED on the Arduino Dock will light up for 3 seconds. For the circuit, we will be only a keypad. The on-board blue LED is used so no need to a connect external LED. The keypad as seven pins: four pins for defining which row and three pins for defining which column.
+
+#### What You'll Need
+
+Prepare the following components from your kit:
+
+* Omega plugged into Arduino Dock
+* USB Micro-B cable for power
+* 7x male-to-male Jumper wires
+* 1x Keypad
+
 #### Hooking Up the Components
 
 // instructions on:
 //  - connecting the led circuit (link back to single led experiment or reuse that text)
 //  - connecting all of the keypad outputs to the microcontroller pins
 
-Connect the keypad pins to the digital pins 8 to 2 on the arduino dock in order from left to right, i.e. the left most keypad pin to arduino header pin 8.
-Using the on board blue LED so don't connect external LED.
+1. Connect all the seven keypad pins to the digital pins (8, 7, 6, 5, 4, 3, 2) on the arduino dock in order from left to right, i.e. the left most keypad pin to arduino header pin 8.
+
 
 ### Writing the Code
 
@@ -46,7 +57,7 @@ Using the on board blue LED so don't connect external LED.
 
 ``` arduino
 // download the Keypad library: http://playground.arduino.cc/Code/Keypad#Download
-// move the unzipped Keypad file folder to C:/Program Files (x86)/Arduino/libraries 
+// move the unzipped Keypad file folder to the Arduino library folder: C:/Program Files (x86)/Arduino/libraries 
 // include the Keypad library
 #include <Keypad.h>
 
