@@ -54,7 +54,7 @@ Then fire up the Arduino IDE on your computer and paste the following:
 
 ```arduino
 int ledPin = 4;             // LED on pin 0
-int blinkTime = 1000;       // duration to keep the LED on/off
+int blinkTime = 1000;       // duration to keep the LED on/off in ms
 
 void setup() {			// codes to be ran once
     pinMode(ledPin, OUTPUT);
@@ -73,6 +73,8 @@ void loop() {			// codes to be ran continously
 #### What to Expect
 
 // flashing wirelessly using the IDE
+
+After your ATmega has been succesfully flashed, your LED should start blinking: it should turn on for a second, and then turn off for a second, repeating until you flash a new sketch on to it. If you press the MCU_RESET, the program should stop and restart from the beginning.
 
 #### A Closer Look at the Code
 

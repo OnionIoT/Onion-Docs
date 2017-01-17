@@ -44,11 +44,15 @@ Prepare the following components from your kit:
 
 1. Connect the two push buttons with their seperate debounce circuits same as previous tutorials.
     1. Connect the first debounce ciruit to pin 2 for increasing the servo angle and the other debounce circuit to pin 3 for decreasing the servo angle.
-    1. Connect the 5V and ground of the both debounce circuit.
+    1. Connect the Vcc of both debounce circuit to the positive (+) power rail.
+    1. Connect the ground of both debounce circuit to the negative (-) power rail.
 1. Connect the two servo motors.
-    1. The small servo has 3 wires: connect the black wire to GND, the red wire to 5V, and the orange (signal) wire to pin 9. Don't worry if the servo rotates a bit when you power it on.
-    1. The standard servo also has 3 wires: connect the black wire to GND, the red wire to 5V, and the white (signal) wire to pin 10.
+    1. The small servo has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the orange (signal) wire to pin 9. 
+    1. The standard servo also has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the white (signal) wire to pin 10.
     1. The Arduino Sketch will set the servo motors at 90 degree initially. After flashing the arduino sketch and wait until the servos settle on their initial position, attach your favourite servo horn on each servo at 90 degrees.
+1. Connect the breadboard power rails to Arduino Dock.
+    1. Connect the negative power rail to ground (GND).
+    2. Connect the positive power rail to 5V. Don't worry if the servo rotates a bit when you power it on.
 
 ### Writing the Code
 
