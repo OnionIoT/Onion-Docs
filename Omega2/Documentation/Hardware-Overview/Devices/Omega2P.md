@@ -48,11 +48,14 @@ The Omega LED uses GPIO44, and can be programmed to do a number of cool things. 
 
 The Omega's can be reset using GPIO38. When plugged into a Dock (e.g. Expansion Dock), this GPIO gives various functionality to the reset button found on docks. For example, a quick button press triggers the reboot command, whereas holding the button for longer than 7 seconds will trigger a factory reset command.
 
-<!--  leave this out for now -->
-<!--  ## MicroSD Card Slot -->
+<!-- TODO: JAMES: complete the microsd card section -->
+<!--  ### MicroSD Card Slot -->
 
 <!--  little explanation of the MicroSD Slot -->
-<!--  images & explanation of proper sd card insertion and removal -->
+<!-- - explanation that the microsd card slot is on the underside of the omega2+ -->
+<!-- - link to 'Using a MicroSD card' article, mention that it provides info on how to correctly use the slot and how to access data from the sd card -->
+
+
 
 <!-- batch2: ## Antenna and U.FL Connector -->
 
