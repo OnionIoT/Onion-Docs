@@ -116,7 +116,8 @@ The RGB LED is active-low, meaning that setting the GPIO to 0 will turn on the d
 
 #### Mechanical Drawings
 
-<!-- [//]: # (insert gabe's dope mechanical drawings) -->
+<!-- [// TODO: IMAGE # (insert gabe's dope mechanical drawings) -->
+
 
 
 ### Using the Dock
