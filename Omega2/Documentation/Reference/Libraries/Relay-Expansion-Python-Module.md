@@ -1,6 +1,6 @@
 ## Relay Expansion Python Module {#relay-expansion-python-module}
 
-The Onion PWM Expansion Python module, `relayExp` is based on the [C Relay Expansion Library](./Relay-Expansion-C-Library). Using this module, you will be able to control the Relay Expansion from within your Python program.
+The Onion PWM Expansion Python module, `relayExp` is based on the [C Relay Expansion Library](#relay-expansion-c-library). Using this module, you will be able to control the Relay Expansion from within your Python program.
 
 ![Relay Expansion](http://i.imgur.com/iPswHOC.jpg)
 
