@@ -102,6 +102,7 @@ Note that the Omega cannot be powered through this connector and still requires 
 >**Note**: the barrel jack's bottom tabs have been found to make contact with the metal case of the Omega2 and Omega2+ creating a **short circuit**. We recommend inserting a thin plastic layer between the top of the Omega and the bottom of the PWM Expansion to break this short. If the DC connector is shorted, it may cause damage to any components connected to the PWM Expansion.
 
 ![barrel-jack-fix](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-barrel-jack-fix.jpg)
+
 #### The Oscillator
 
 <!-- // the chip that generates the pwm signals has an internal oscillator that controls the frequency of the generated pwm signals
