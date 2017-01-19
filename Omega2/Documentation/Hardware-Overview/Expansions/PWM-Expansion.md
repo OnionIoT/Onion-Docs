@@ -124,3 +124,7 @@ Some of the things you can do with the PWM Expansion are as follows:
 * LED light shows
 
 Read our [guide to using the PWM Expansion](#using-pwm-expansion) to learn how to control it using software.
+
+### Technical Drawing
+
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/SERVO_EXPANSION_DRAWING.PDF) here.

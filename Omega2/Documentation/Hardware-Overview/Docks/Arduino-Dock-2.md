@@ -44,6 +44,9 @@ Make sure your Omega is pushed all the way down as demonstrated in the picture b
 
 You may need to line up the pins with the holes before pressing the Omega into the Dock.
 
+### Technical Drawing
+
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/ARDUINO_DOCK_DRAWING.PDF) here.
 
 ### The Arduino Dock at a Glance
 

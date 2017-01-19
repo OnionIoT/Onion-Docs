@@ -92,3 +92,9 @@ You can learn more about this Expansion by reading our article on [how to use th
 <!-- // refer to the existing article for details: https://wiki.onion.io/Tutorials/Expansions/Using-the-GPS-Expansion -->
 
 [1]: https://www.u-blox.com/sites/default/files/products/documents/NEO-6_DataSheet_(GPS.G6-HW-09005).pdf
+
+<!--
+### Technical Drawing
+
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/NAME.PDF) here.
+-->

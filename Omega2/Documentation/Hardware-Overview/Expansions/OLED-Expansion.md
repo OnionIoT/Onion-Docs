@@ -86,5 +86,9 @@ The OLED Expansion is incredibly useful because it gives you the ability to disp
 
 For more on using the Omega Expansion you can check out our [guide to using the OLED Expansion](#using-oled-expansion).
 
+### Technical Drawing
+
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/OLED_EXPANSION_DRAWING.PDF) here.
+
 <!-- // point them to the article on using the oled expansion -->
 <!-- // this article can be heavily based on the existing doc: https://wiki.onion.io/Tutorials/Expansions/Using-the-OLED-Expansion -->

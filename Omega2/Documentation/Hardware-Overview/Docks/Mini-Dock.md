@@ -82,6 +82,7 @@ You may need to line up the pins with the holes before pressing the Omega into t
 
 <!-- [//]: # (insert gabe's dope mechanical drawings) -->
 
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/MINI_DOCK_DRAWING.pdf) here.
 
 
 <!-- [//]: # (LATER: Add using the dock:) -->

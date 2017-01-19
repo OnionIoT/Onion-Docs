@@ -78,3 +78,7 @@ To learn more about using the Ethernet Expansion check out our guide to [using t
 <!-- //  - connecting to a wired networking -->
 <!-- //  - using the omega as a router -->
 <!-- //  - using the omega as an ethernet bridge -->
+
+### Technical Drawing
+
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/ETHERNET_EXPANSION_DRAWING.PDF) here.
