@@ -4,9 +4,9 @@ This page lists all of the currently identified issues in the Omega OS. The issu
 
 ### Issue Listing
 
-~~* The Omega cannot successfully connect to the Onion Cloud~~
+* ~~The Omega cannot successfully connect to the Onion Cloud~~
     * Status: **Fixed** in b149
-~~* The reset button does not work~~
+* ~~The reset button does not work~~
     * Status: **Fixed** in b146
 * ~~Omega2+ cannot reboot~~
     * Status: **Fixed** in b142
