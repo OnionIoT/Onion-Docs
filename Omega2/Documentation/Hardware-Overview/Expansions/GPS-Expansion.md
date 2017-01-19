@@ -96,5 +96,5 @@ You can learn more about this Expansion by reading our article on [how to use th
 <!--
 ### Technical Drawing
 
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/NAME.PDF) here.
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/NAME.PDF) here.
 -->

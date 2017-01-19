@@ -18,7 +18,7 @@ The Relay Expansion is designed so you can stack multiple Relay Expansions onto 
 
 ### The Hardware
 
-The Relay Expansion comes with 2 electromagnetic relays with screw terminals.
+The Relay Expansion comes with two electromagnetic relays with screw terminals.
 
 #### Connecting to a Dock
 
@@ -130,4 +130,4 @@ Read our [guide to using the Relay Expansion](#using-relay-expansion) to learn h
 
 ### Technical Drawing
 
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/RELAY_EXPANSION_DRAWING.PDF) here.
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-RLY.PDF) here.

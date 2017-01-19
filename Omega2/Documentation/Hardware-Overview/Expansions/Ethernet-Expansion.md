@@ -81,4 +81,4 @@ To learn more about using the Ethernet Expansion check out our guide to [using t
 
 ### Technical Drawing
 
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/ETHERNET_EXPANSION_DRAWING.PDF) here.
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-ETH.PDF) here.

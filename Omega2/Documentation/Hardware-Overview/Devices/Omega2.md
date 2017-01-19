@@ -67,4 +67,7 @@ if a ufl antenna is plugged in, it will be used as the default antenna, no setup
 
 <!-- TO DO: ## Mechanical Drawing -->
 
+### Technical Drawing
+
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-O2.PDF) here.
 <!-- insert mechanical drawing image, link to repo -->

@@ -92,7 +92,7 @@ The RGB LED is active-low, meaning that setting the GPIO to 0 will turn on the d
 #### Mechanical Drawings
 
 <!-- [//]: # (insert gabe's dope mechanical drawings) -->
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/EXPANSION_DOCK_DRAWING.pdf) here.
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-D-EXP.PDF) here.
 
 
 ### Using the Dock

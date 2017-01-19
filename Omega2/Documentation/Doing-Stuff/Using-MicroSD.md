@@ -10,11 +10,11 @@ TODO: remove all TODOs when you implement them -->
 //  - interacting with data on the microSD card
 -->
 
-An SD card is a flash memory device that uses quantum tunneling effects to store information. Sort of like locking a piece of iron a secure glass box, and using a magnet to move it around to store information. The smallest version of the SD card available right now is the microSD format.
+An SD card is a flash memory device that uses quantum tunneling effects to store information. Sort of like locking a piece of iron a secure glass box, and using a magnet to move it around to store information. The smallest version of the SD card available right now is the MicroSD format.
 
 ![MicroSD Card](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsdcard.png)
 
-The Omega2+ comes with a microSD card slot, enabling you to greatly expand the storage capacity of the Omega without much added cost. The MicroSD card slot on the Omega2+ can be found at the bottom of the board inbetween the pins.
+The Omega2+ comes with a MicroSD card slot, enabling you to greatly expand the storage capacity of the Omega without much added cost. The MicroSD card slot on the Omega2+ can be found at the bottom of the board inbetween the pins.
 
 ![MicroSD Card Slot Location](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-sd-slot.jpg)
 
@@ -31,7 +31,7 @@ We'll cover how to insert the SD card, how storage devices work in Linux, how to
 
 ![MicroSD card sitting the slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-seated.jpg)
 
-The microSD slot is spring loaded.
+The MicroSD slot is spring loaded.
 
 ![Push it in firmly](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-lockedin.jpg)
 
@@ -65,7 +65,7 @@ The default mount location is `/tmp/mounts/`.
 //  - where the storage device gets mounted
 //  - accessing the files
 -->
-Under normal circumstances, the SD card and any USB device you plugged in should be the only things that exist in the `/tmp/mounts` directory. Thus you can check there with `ls /tmp/mounts/` to determine the name the Omega assigned the card. Running `ls /tmp/mounts` gave us `SD-P1` as the name of our microSD card.
+Under normal circumstances, the SD card and any USB device you plugged in should be the only things that exist in the `/tmp/mounts` directory. Thus you can check there with `ls /tmp/mounts/` to determine the name the Omega assigned the card. Running `ls /tmp/mounts` gave us `SD-P1` as the name of our MicroSD card.
 
 Once mounted, it acts as a regular directory or folder in all ways, and any file that you stored in the card originally should be there! For us, it looked something like this:
 
@@ -75,7 +75,7 @@ root@Omega-1234:/tmp/mounts# ls
 SD-P1
 ```
 
-For more options on changing how your microSD card is mounted, refer to the 'Changing the default mount point' section of the [USB Storage](#changing-the-default-mount-point) Article.
+For more options on changing how your MicroSD card is mounted, refer to the 'Changing the default mount point' section of the [USB Storage](#changing-the-default-mount-point) Article.
 
 
 ### Safely Removing a MicroSD Card
@@ -100,12 +100,12 @@ Now that the card is no longer being used by the Omega, we can physically remove
 
 ![MicroSD properly locked in slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-push.jpg)
 
-The microSD card can now be safely removed.
+The MicroSD card can now be safely removed.
 
 ![Push it in firmly until you hear a click](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-lockedin.jpg)
 
 Just push until it clicks.
 
-![Pull the microSD out](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-pullout.jpg)
+![Pull the MicroSD out](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-pullout.jpg)
 
 Now you can pull it out of the slot - careful not to lose it!

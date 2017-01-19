@@ -127,4 +127,4 @@ Read our [guide to using the PWM Expansion](#using-pwm-expansion) to learn how t
 
 ### Technical Drawing
 
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/SERVO_EXPANSION_DRAWING.PDF) here.
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-SRV.PDF) here.
