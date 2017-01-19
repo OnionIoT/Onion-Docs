@@ -14,7 +14,7 @@ An SD card is a flash memory device that uses quantum tunneling effects to store
 
 We'll quickly go over how storage devices work in Linux, how to insert and remove the microSD card from its slot, and how to work with files on the card.
 
-The MicroSD card slot is available on the Omega2+, and can be found at the bottom of the board inbetween the pins. 
+The MicroSD card slot is available on the Omega2+, and can be found at the bottom of the board inbetween the pins.
 
 ### Inserting a MicroSD Card
 <!-- // this section should include a step by step guide on how to correctly plug in a microSD card into a Omega2+ that's on a Dock
@@ -43,12 +43,11 @@ The Omega2 comes ready with an auto-mounting tool that will take care of that pr
 
 
 ### Safely Removing a MicroSD Card
-
+<!--
 // a mirror of the previous section: step by step guide on how to correctly remove a microSD card
-
 // should include photos of each major step
-
 // one of the steps must be unmounting
+-->
 
 To safely remove your SD card you should always unmount it first. This will eliminiate the possibility of it being accessed while you physically remove it, which can corrupt your data.
 
@@ -73,7 +72,7 @@ The microSD card can now be safely popped out - just push until it clicks and le
 // see the usb storage article for reference:
 // should outline:
 //  - where the storage device gets mounted
-//  - accessing the files 
+//  - accessing the files
 -->
 Under normal circumstances, the SD card and any USB device you plugged in should be the only things that exist in the `/tmp/mounts` directory. Thus you can check there with `ls /tmp/mounts/` to determine the name the Omega assigned the card. Running `ls /tmp/mounts` gave us `SD-P1` as the name of our microSD card.
 

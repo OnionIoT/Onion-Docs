@@ -59,9 +59,7 @@ The MircoSD card slot can be used to expande the Omega2+'s storage capacity to r
 
 The slot can be found at the bottom of the Omega2+. To physically mount a MicroSD card, slide it into the slot, push it down until it clicks. If it pops all the way back up, just do it again, and it should stay.
 
-// TODO: IMAGE of the bottom of the board, sd slot circled/labelled
-
-
+![MicroSD Card Slot Location](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-sd-slot.jpg)
 
 
 
