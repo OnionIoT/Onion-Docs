@@ -88,7 +88,7 @@ For more on using the Omega Expansion you can check out our [guide to using the 
 
 ### Technical Drawing
 
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OLED_EXPANSION_DRAWING.PDF) here.
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-OLE.PDF) here.
 
 <!-- // point them to the article on using the oled expansion -->
 <!-- // this article can be heavily based on the existing doc: https://wiki.onion.io/Tutorials/Expansions/Using-the-OLED-Expansion -->
