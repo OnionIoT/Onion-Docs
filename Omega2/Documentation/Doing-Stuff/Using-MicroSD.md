@@ -18,7 +18,7 @@ An SD card is a flash memory device that uses quantum tunneling effects to store
 
 We'll quickly go over how storage devices work in Linux, how to insert and remove the microSD card from its slot, and how to work with files on the card.
 
-*Note: MicroSD card 
+*Note: The Omega2+ supports MicroSD card on firmware builds b143 and higher*
 
 
 ### Inserting a MicroSD Card
