@@ -60,7 +60,7 @@ void loop()
     Serial.println(reading);   
     
     // convert the reading to voltage level (0 to 5V)
-    float voltage = reading * 5.0 / 1024.0;
+    float voltage = reading * 5.0 / 1023.0;
     Serial.print(voltage); Serial.println(" volts");
 
     // calculate the resistance of the photoresistor based on voltage level and the voltage divider formula:
@@ -81,11 +81,21 @@ void loop()
 // make the omega connect to the microcontroller using uart1 (link to the article), read the light intensity data
 // have the user cover the photoresistor with their hand and observe the change in value, have them shine a light at it
 
+The ATmega will output through serial the output voltage of the voltage divider, the resistance of the photoresitor and the light intensity in Lux. We can use the following command line on our Omega to read the serial output of the ATmega:
+
+```
+cat < /dev/ttyS1
+```
+If we cover the photoresistor with our hand, we should see on our Omega terminal that the light intensity value (in Lux) decrease significantly. The resistance of the photoresistor is inverse proportional to the light intensity (Lux).
 
 #### A Closer Look at the Code
 
 // highlight something interesting about this code
+This code is very similar to the previous tutorial. We use analogRead to obtain a digital value (0 to 1023) of analog voltage level at the output of the voltage divider. We first convert the digital value (0 to 1023) to the the output voltage level (0 to 5V) same as previous tutorial. We can then calculate the resistance of the photoresistor based on voltage level and the voltage divider formula. Lastly we convert the photoresistor resistance to light intensity using the formula for a typical photoresistor: light intentisty (Lux) is equal to 500 divide by the photoresistor resisntance (kΩ). 
+
+We also use Serial.print() to send the values at all the stages of the calcuation to the Omega for better understanding the calculation process.
 
 ##### Output on serial
 
 // explanation of how the omega and atmega chip are linked, go into a little bit of detail
+We can obtain the output of the ATmega on our Omega through serial as explained in the previous tutorial.

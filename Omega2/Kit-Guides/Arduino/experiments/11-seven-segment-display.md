@@ -12,7 +12,6 @@ For this experiment, we will send a string from the Omega to the ATmega through 
 
 For the circuit, we will need the 4-digit seven-segment display and eight 1kΩ current limiting resistors for each of the eight segment pins. The current limit resistor are essential since there is a LED in each segment. The 12 pins of the seven-segment display can be grouped into two types: digit pins and segments pins. There are 4 digits and for each digit, there are 8 segments including the decimal point. Therefore, there are a total of 4 x 8 = 32 LEDs.
 
-The seven segment display from the kit is common cathode, which mean the cathode of LEDs are connected to the digit pins and their anodes are connected to the segment pins.
 
 #### What You'll Need
 
@@ -28,6 +27,8 @@ Prepare the following components from your kit:
 #### Hooking up the Components
 
 // copy from the starter kit 7seg article
+
+The seven segment display from the kit is common cathode, which mean the cathode of LEDs are connected to the digit pins and their anodes are connected to the segment pins.
 
 ![Seven-seg-pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/Seven-seg-pinout.jpg)
 
