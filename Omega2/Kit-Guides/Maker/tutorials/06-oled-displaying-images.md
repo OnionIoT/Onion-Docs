@@ -202,7 +202,7 @@ This program will ask you to submit a bunch of numbers and draw a line based on 
 
 The lines you draw will stay on the screen, and you can draw as many as you like. To exit the script, simply press `ctrl`+`c`.
 
-// TODO: add gif or picture of lines being drawn
+// TODO: IMAGE add gif or picture of lines being drawn
 
 ### A Closer Look at the Code
 
