@@ -52,6 +52,7 @@ Prepare the following components from your kit:
 #### What to Expect
 
 // explanation that pressing the button will make the buzzer sound
+When the button is pressed, the buzzer will buzz until the button is released.
 
 #### A Closer Look at the Code
 
@@ -125,5 +126,9 @@ void changeState() {
 }
 ```
 
-##### What to Expect
+#### What to Expect
 // highlight that the loop function is able to do its thing - keep the LED blinking steadily AND take care of the button input
+When the button is pressed, the buzzer will buzz until the button is released. However, this time the blue LED on the Arduino Dock will be able to blink steadily.
+
+
+#### A Closer Look at the Code
