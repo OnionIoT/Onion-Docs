@@ -56,3 +56,10 @@ You can check out our [guide to using the Bluetooth Expansion](#using-bluetooth-
 
 // refer to the existing article for details:
 https://wiki.onion.io/Tutorials/Bluetooth-Streaming-Audio
+
+<!--
+
+### Technical Drawing
+
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/NAME.PDF) here.
+-->

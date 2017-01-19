@@ -127,3 +127,7 @@ When we turn the relay on, it acts as a closed switch, allowing current to flow 
 The Relay Expansion can be used to control almost any type of external circuit, such as a lamp, coffee maker, or even your garage door!
 
 Read our [guide to using the Relay Expansion](#using-relay-expansion) to learn how to control it using software.
+
+### Technical Drawing
+
+We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/RELAY_EXPANSION_DRAWING.PDF) here.
