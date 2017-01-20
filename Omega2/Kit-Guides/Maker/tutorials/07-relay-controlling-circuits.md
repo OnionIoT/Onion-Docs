@@ -5,7 +5,7 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 7
 ---
-
+// TODO: fix capitalization and emphasis
 ## Isolated Control with the Relay Expansion {#isolated-control-with-the-relay-expansion}
 
 // this tutorial will go over how an omega with a relay expansion can be used to control other, independent circuits
@@ -16,14 +16,14 @@ In this tutorial, we'll use a switch with the Omega Relay expansion to turn a bu
 
 ### Circuit Isolation
 
-// explain that the omega's relays are completely isolated from the circuit that is connected to the terminals, it merely acts as a switch
+<!-- // explain that the omega's relays are completely isolated from the circuit that is connected to the terminals, it merely acts as a switch
 
 // this is useful since it allows the Omega to control other, larger, more powerful circuits
-//  expand along those lines, maybe throw in the max specs of the relays, hint that you can control house-hold appliances
+//  expand along those lines, maybe throw in the max specs of the relays, hint that you can control house-hold appliances -->
 
 Omega boards and components are not designed to handle much more than 5V circuit and 12V supply. Attempting to directly control 120V appliances like lights, heaters, garage doors will almost certainly fry your Omega. So how can you turn on your lights?
 
-Enter the relay switch a relay is essentially a mechanical switch that is triggered electronically. This physically separates the circuit that triggers the switch and the circuit that the switch actually switches. The relay expansion is designed to isolate the Omega and the dock from high power circuits while allowing it to be controlled by the Omega. 
+Enter the **relay**! A relay is essentially a mechanical switch that is triggered electronically. This physically separates the circuit that triggers the switch and the circuit that the switch actually switches. The relay expansion is designed to isolate the Omega and the dock from high power circuits while allowing it to be controlled by the Omega. 
 
 
 ### Building the Circuit
@@ -49,9 +49,9 @@ The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole me
 
 #### Hooking up the Components
 
-// detailed explanation of connecting wires to the screw terminals
+<!-- // detailed explanation of connecting wires to the screw terminals
 
-// wiring up the buzzer so that the connection is interrupted by the relay
+// wiring up the buzzer so that the connection is interrupted by the relay -->
 
 1. First we'll have to find a place on the breadboard to place the buzzer, we chose row 1 and mounted the buzzer across the middle channel
 	* Taking note where the cathode (+) and where the anode (-) is, we'll have to make sure the right wires go in the right terminal later

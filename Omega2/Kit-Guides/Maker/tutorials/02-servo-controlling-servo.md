@@ -5,7 +5,7 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 2
 ---
-// TODO: fix capitalization
+// TODO: fix capitalization and emphasis
 
 ## Controlling Servos with the PWM Expansion {#controlling-servos-with-the-pwm-expansion}
 
