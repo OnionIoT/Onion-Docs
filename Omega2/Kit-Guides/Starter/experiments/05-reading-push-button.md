@@ -51,7 +51,7 @@ Prepare the following components from your kit:
 * Jumper wires
 * Tactile button
 * Resistors
-    * 1x (// TODO: resistor value) <!-- LED resistor -->
+    * 1x (// TODO: LED resistor)Ω <!-- LED resistor -->
     * 1x 50kΩ
     * 1x 5kΩ <!-- debounce resistors -->
 * 1x 100nF capacitor

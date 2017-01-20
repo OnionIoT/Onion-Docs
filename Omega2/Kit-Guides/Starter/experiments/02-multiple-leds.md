@@ -12,6 +12,8 @@ order: 2
 
 In this experiment, we're going to use what we learned in the first experiment and wire up a bunch of LEDs. Then we're gonna make some visual effects.
 
+// TODO: tidy the circuit building sections up according to style guide
+
 ### Building the Circuit
 
 Let's dive right into building our circuit. It's going to be essentially the same thing as the first experiment, but repeated six times over!

@@ -34,9 +34,20 @@ Before we start building our experiment, let's first go over some of the buildin
 ```{r child = '../../shared/breadboard.md'}
 ```
 
+#### What You'll Need
+
+Prepare the following components from your kit:
+
+* Omega plugged into Expansion Dock
+* Breadboard
+* Jumper wires
+* Resistors
+    * 1x (// TODO: LED resistor)Ω <!-- LED resistor -->
+* Any LED color of your choice!
+
 #### Hooking up the Components
 
-Ok, here we go, let's put together our circuit. We're going to be connecting an LED's anode to a GPIO on the Omega2, and cathode to Ground through a current limiting resistor.
+OK here we go, let's put together our circuit! We're going to be connecting an LED's anode to a GPIO on the Omega2, and cathode to Ground through a current limiting resistor.
 
 // TODO: FRITZING: fritzing circuit diagram of the experiment
 
@@ -45,8 +56,10 @@ Ok, here we go, let's put together our circuit. We're going to be connecting an 
 3. Now connect one end of a (// TODO: figure out resistance)kΩ resistor to the the cathode row, and the other end to an empty row.
 4. The final step is connecting a jumper wire to a Ground pin on the Omega2.
 
-> A note on components with and without polarity: <br>
-> You'll notice  that we were careful to make sure which end of the LED we connected to incoming current and which we connected to ground. This is because LEDs are polarized, so they will only when current is flowing in the correct direction, that is, when they're plugged in the correct way. <br>
+> A note on components with and without **polarity**:
+
+> You'll notice that we were careful to make sure which end of the LED we connected to incoming current and which we connected to ground. This is because LEDs are polarized, so they will only when current is flowing in the correct direction, that is, when they're plugged in the correct way.
+
 > With the resistor, either way will work since resistors are symmetric components, meaning they don't care which way current flows through them, they'll work either way.
 
 
@@ -59,6 +72,7 @@ The circuit diagram for our first experiment looks like this:
 Now we get to write the code that will make our circuit actually do something! That something will be blinking our LED!
 
 // TODO: rework this when
+
 Let's make a new file `blink.py` to hold our code:
 ``` python
 import onionGpio
@@ -92,8 +106,7 @@ Your LED should be blinking; it should turn on for half a second, and then turn 
 
 // TODO: GIF: Showing this experiment with the LED blinking
 
-> To exit a program like this one: press `Ctrl+c` (`Cmd+c` for Mac users)
-
+> To exit a program like this one: press `Ctrl+C` (`Cmd+C` for Mac users)
 
 #### A Closer Look at the Code
 
@@ -105,10 +118,9 @@ The very first line in the code imports a Python source code module. In this cas
 
 // TODO: add a note about the time module
 
-
 ##### Object Oriented Programming - Instantiating an Object
 
-Then, the very next thing we do is *instatiate* an object of the `OnionGpio` class from the `onionGpio` module we just included above. Make sure to note that we passed an argument to the *constructor* of the `OnionGpio` class, this argument defines which of the Omega's GPIOs we are going to be using, GPIO0 in this case.
+Then, the very next thing we do is **instatiate** an object of the `OnionGpio` class from the `onionGpio` module we just included above. Make sure to note that we passed an argument to the **constructor** of the `OnionGpio` class, this argument defines which of the Omega's GPIOs we are going to be using, `GPIO0` in this case.
 
 We also take care to assign the instantiated object to a variable so that we can access it to actually interact with the GPIO pin.
 
