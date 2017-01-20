@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 5
 ---
 
-## Changing the Display's Behavior
+## Changing the Display's Behavior {#changing-the-displays-behaviour}
 
 This tutorial will show how to change how the OLED displays based on text-based user input. We'll be scrolling the display contents as well as dimming and inverting the display, let's jump in.
 
@@ -45,7 +45,7 @@ def toggle():
 		bInvert = 1
 	else:
 		bInvert = 0
-	
+
 
 def printCommands():
 	print "Enter any of the following to change diplsay"
@@ -69,7 +69,7 @@ def brightenDisplay():
 	oledExp.setBrightness(highIntensity)
 
 def scrollHorizontal():
-	# Scrolls the entire to the left at a speed of 5 frames 
+	# Scrolls the entire to the left at a speed of 5 frames
 	oledExp.scroll (0, 0, 0, 7)
 
 def scrollDiagonal():
@@ -104,7 +104,7 @@ To stop the program enter `ctrl`+`c`
 
 ### A Closer Look at the Code
 
-In this code we used a dictionary structure to call a particular function based on the input. This is advantageous to us, because we don't need an if statement to decide which function to call based on input. 
+In this code we used a dictionary structure to call a particular function based on the input. This is advantageous to us, because we don't need an if statement to decide which function to call based on input.
 
 #### Reading User Input
 

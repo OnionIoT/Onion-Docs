@@ -7,7 +7,7 @@ order: 1
 ---
 
 
-## Dimming LEDs with the PWM Expansion
+## Dimming LEDs with the PWM Expansion {#dimming-leds-with-pwm-expansion}
 
 In this tutorial, we will be learning how to use the PWM Expansion with python and animating 16 LEDs along the way. We'll be wiring the LEDs to the PWM expansion through the breadboard, then we'll write some code to light up the LEDs for a mini light show.
 
@@ -41,7 +41,7 @@ For this circuit, we will connect one LED to each of the 16 channels (0-15) on t
 // 16 example of the most basic LED circuit
 Each LED will be connected to the board in the same way, so we'll cover wiring a single LED here the n you can repeat this proccess for all 16 and you should be good to go.
 
-1. Find the anode of the LED and the signal pin of any channel, we started at chanel 0 (`S0` on the expansion board) to avoid confusion. 
+1. Find the anode of the LED and the signal pin of any channel, we started at chanel 0 (`S0` on the expansion board) to avoid confusion.
 	* The signal pin is the only pin out of the three with a white base, for channel `S0`, it should be clearly labelled to the left side, we'll call this the **SIG** pin in the future
 1. Stake out three rows in your breadboard - we'll used these to connect the LED and resistor together, and lead them to the PWM Expansion
 1. Stick the LED into two rows out of the three, we started at row 1 and 2 on the A-E side. We chose to stick the anode into the lower numbered row for consistency.
@@ -154,7 +154,7 @@ In our case, wes are making a class for a PWM channel. This class represents a s
 
 #### Using the Onion PWM Expansion Python Module
 
-Python's functionality can be expaned with modules and packages - like extra lego sets allowing you to build more complex things. Here we use the PWM module (pyPwmExp) to control the PWM expansion. The module comes with a set of functions to control and modify the PWM expansion channels and properties. By running a script to control the expansion, you don't need to manually need to enter or trigger any commands through the terminal. You can simply leave it running, and it would automatically do its job! 
+Python's functionality can be expaned with modules and packages - like extra lego sets allowing you to build more complex things. Here we use the PWM module (pyPwmExp) to control the PWM expansion. The module comes with a set of functions to control and modify the PWM expansion channels and properties. By running a script to control the expansion, you don't need to manually need to enter or trigger any commands through the terminal. You can simply leave it running, and it would automatically do its job!
 
 To find a detailed description of the module, refer to [pyPwmExp library](//TODO: LINK TO PWM LIBRARY IN PYTHON DOC) reference in the Onion docs.
 
@@ -176,4 +176,4 @@ If you look at the constructor (the `__init__` function), you will notice the li
 ```
 pwmExp.driverInit()
 ```
-This line initializes the PWM expansion for usage. This starts the oscillator on the PWM expansion which actually produces the signals sent through the pins. 
+This line initializes the PWM expansion for usage. This starts the oscillator on the PWM expansion which actually produces the signals sent through the pins.
