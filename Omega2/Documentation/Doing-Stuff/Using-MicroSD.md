@@ -80,7 +80,7 @@ SD-P1
 
 >The P1 in the name means partition #1 of the MicroSD card, if you have partitioned your MicroSD, they should show up as `SD-P1`, `SD-P2`, and so on.
 
-If you'd like to change where the MicroSD card is mounted, we've written a [guide](#usb-storage-changing-default-mount-point) covering how to do so for both MicroSD cards and USB drives.
+If you'd like to change where the MicroSD card is mounted on the filesystem, we've written a [guide](#usb-storage-changing-default-mount-point) covering how to do so for both MicroSD cards and USB drives.
 
 ### Safely Removing a MicroSD Card
 
