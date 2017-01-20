@@ -1,12 +1,16 @@
-
 ## Reading an Potentiometer
 
-// this experiment will use a potentiometer to control Brightness of an LED
-
+// this experiment will use a potentiometer to control brightness of an LED
+So far, we've been using a program to control output pins. Let's try using physical user input to control our software! This experiment will use a potentiometer (trimpot) to control brightness of an LED. Before we begin, let's take a look at the trimpot and one way to change the brightness of the LED. 
 
 ### Potentiometer
 
 // description that a pot is essentially a variable resistor, we can tell
+The trimpot (trimmer potentiometer) is essentially two variable resistors (R1 and R2) connected in series. The total resistance of the two variable resistors (R1 + R2) will always be the same as the value of the trimpot, in our case 10KΩ. However, we can turn the knob on the trimpot to decrease the resistance of one resistor and at the same time increase the resistance of the other resistor. If we turn the knob to either end, one resistor will be 0Ω will the other one will be 10KΩ.
+
+One variable resistor is between the left and middle pin of the trimpot while the other one is between the middle and right pin of the trimpot. If we connect the trimpot as a voltage divider as shown below, we will be able to vary the output voltage from 0V to the input voltage (5V) by simply turning the knob!
+
+// TODO: add schematic and equation of voltage divider.
 
 ### Dimming an LED
 
@@ -43,7 +47,7 @@ Prepare the following components from your kit:
 * USB Micro-B cable for power
 * Breadboard
 * Jumper wires
-* 1x 10K Trimpot
+* 1x 10KΩ Trimpot
 * 1x 200Ω Resistor
 * 1x LED color of your choice! 
 
@@ -128,7 +132,7 @@ The Arduino build-in function analogWrite takes in two parameters: the pin numbe
 
 Polling is the process of repeatedly checking an input.
 
-YOu may notice in the code there is a 0.1s delay in the readPotValue() function between reading the trimpot and the setting the LED. This delay was added for stability so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast!
+You may notice in the code there is a 0.1s delay in the readPotValue() function between reading the trimpot and the setting the LED. This delay was added for stability so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast!
 
 Some of the issues during polling are as follows:
 

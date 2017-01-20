@@ -141,17 +141,37 @@ void loop(){
 
 // TODO: PHOTO - GIF: include a gif of this
 
+We will be using the keypad for a password-protected system. After the user enter the "#" key, we can enter a password. If the password entered matches with the password set in by char password[], which is by default "4321", the blue LED on the Arduino Dock will light up for 3 seconds. If the wrong password has been entered, it will ask the user to entered the "#" key again for more tries.
+
 
 #### A Closer Look at the Code
 
 // this experiment relied on arrays heavily, we'll go over some of the details now. Arrays are very useful and used all the time in programming.
+For this code we will use the Arduino Keypad library. An Arduino library is very similar to a class which we talked about in the previous tutorial. To use the library, we declare an our own Keypad object (named keypad) of the Keypad class.
+
+Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
+
+Notice we must include addition file Keypad.h which is inside the Arduino library folder. This file is where the Keypad class is defined. However, before to declare our Keypad object, we need declare the variables which needed to be passed into the Keypad object. This includes a two-dimensional array keys[][].
 
 ##### Arrays
 
 // we will probably use arrays in an interesting way with the keypad function & the password array, go into detail about what was special in how we used arrays
 
+In the previous tutorial we have used arrays. However, the arrays we used before are one-dimensional (1d), meaning they are made of one row of variables. However, in this code, we are using a two-dimension (2d) array made up of many rows of variables similar to a table. Using a 2d array for storing the keys of a keypad is much more conveniently and easier to visualize. Since the array is 3x4, we can easily see the position of each key in terms of its row and column:
 
+```
+const byte ROWS = 4; //four rows
+const byte COLS = 3; //three columns
+char keys[ROWS][COLS] = {
+  {'1','2','3'},
+  {'4','5','6'},
+  {'7','8','9'},
+  {'*','0','#'}
+};        // a 4x3 array of all the keys as chars
+```
 
 ### Going Further
 
 // in this experiment we added password protection to an LED so we can show off the concept. This experiment might be useful if the correct password triggered a different action, maybe actuating a lock or moving a servo?
+
+In this experiment we added password protection to an LED so we can show off the concept. This experiment might be useful if the correct password triggered a different action, maybe actuating a lock or moving a servo?

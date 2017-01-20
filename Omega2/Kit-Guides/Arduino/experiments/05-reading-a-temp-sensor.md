@@ -1,12 +1,15 @@
 ## Reading an Analog Temperature Sensor
 
 // description of what this experiment will accomplish and what we'll learn
+In this tutorial, we will learn how to read the ambient temperature using a temperature sensor. In addition, we will learn to how to do mathematical calculations in our code.
 
 ### Analog Temperature Sensor
 // should be its own markdown file
 
 // detects the ambient air temperature
 // outputs different voltage based on the temperature
+
+An analog temperature will detect the ambient air temperature and outputs different voltage based on the temperature. There will typically be a offset the voltage to account for negative temperature. In addition, there will be a limit to the sensor's operating temperature, in our case the TMP36 will withstand a temperature range from 40°C to 125°C. Another important parameter of the temperature sensor is its scale factor, which is 10 mV/°C for the TMP36. The resolution of a sensor is the smallest change that it can detect. The resolution is effected by the ATmega, which performs analogRead at a 10-bit resolution (1024 steps), allowing for the smallest change to be 4.88mV if the input voltage is 5V.
 
 ### Building the Circuit
 
@@ -40,7 +43,7 @@ Prepare the following components from your kit:
 //    * maybe make it detect once every 10 seconds
 
 ``` arduino
-//the resolution of TMP36 (temperature sensor) is 10 mV/degree Celsius with a 500 mV offset to allow for negative temperatures
+//the scale factor of TMP36 (temperature sensor) is 10 mV/°C with a 500 mV offset to allow for negative temperatures
 
 int sensorPin = A0; // the analog pin number connected to the TMP36
                                            
@@ -56,7 +59,7 @@ void loop()
  
  // convert the analog reading (0 to 1023) to voltage (0 - 5V)
  float voltage = reading * 5.0;
- voltage /= 1023.0; 
+ voltage /= 1024.0; 
  
  // print out the voltage to Omega2
  Serial.print(voltage); Serial.println(" volts");
@@ -93,6 +96,6 @@ For reading the analog signal from the temperature sensor, we use analogRead, si
 // give an overview of how we did that convertsion math
 The temperature sensor, when powered by 5V will output a voltage between (0V to 5V) to its middle pin, depending on what the temperature is. Analog read will take that voltage and converted it to a digital value (0 to 1023). So first we need to convert the digital value back to a voltage value between 0V and 5V. We can do that by mulitplying the digital value by 5 and divide by 1023. Notice the variable for the storing the digital value (0 to 1023) is an integer (int); however, however the variable for storing the voltage is a float. This is because float variables will allow us to have decimal places.
 
-From the TMP36 datasheet, temperature sensor has a resolution of 10 mV/°C with a offset of 500mV to account for negative temperatures. This means, for example, the sensor will output 0.5V at 0°C, 0.51V at 1°C and 0.49V at -1°C. Using the the resolution and offset, we can convert the voltage input to temperature in degree celsius. This is done by subtracting the voltage by 0.5 and multiplying by 100.
+From the TMP36 datasheet, temperature sensor has a scale factor of 10 mV/°C with a offset of 500mV to account for negative temperatures. This means, for example, the sensor will output 0.5V at 0°C, 0.51V at 1°C and 0.49V at -1°C. Using the the scale factor and offset, we can convert the voltage input to temperature in degree celsius. This is done by subtracting the voltage by 0.5 and multiplying by 100.
 
 We can convert the degree celsius value to degree fahrenheit by multiplying by (9/5) and adding 32.

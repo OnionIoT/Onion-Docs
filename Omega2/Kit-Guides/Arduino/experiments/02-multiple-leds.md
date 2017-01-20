@@ -1,11 +1,3 @@
----
-title: Controlling Many LEDs
-layout: guide.hbs
-columns: two
-devices: [ Omega , Omega2 ]
-order: 2
----
-
 ## Controlling Many LEDs
 
 "We've blinked one LED sure, but what about a second LED?"

@@ -60,7 +60,7 @@ void loop()
     Serial.println(reading);   
     
     // convert the reading to voltage level (0 to 5V)
-    float voltage = reading * 5.0 / 1023.0;
+    float voltage = reading * 5.0 / 1024.0;
     Serial.print(voltage); Serial.println(" volts");
 
     // calculate the resistance of the photoresistor based on voltage level and the voltage divider formula:

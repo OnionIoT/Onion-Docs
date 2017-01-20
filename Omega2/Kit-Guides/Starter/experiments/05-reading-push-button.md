@@ -69,6 +69,9 @@ Before putting the circuit together, make sure the Omega2 is powered OFF for saf
     * We'll call this column **ground**.
 1. Connect the push button to the breadboard as shown below:
     * ![push-button-breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/push-button-breadboard.jpg)
+    
+// TODO: photo
+
 1. Connect one end of the switch to the 50kΩ resistor, and the other end of that resistor to Vcc.
 1. Connect the switch's bottom pin to ground.
 1. Connect one end of the 5kΩ resistor to the same point where the switch and 50kΩ resistor are connected, and the other end to an empty row on the breadboard.

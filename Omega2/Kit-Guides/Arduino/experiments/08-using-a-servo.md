@@ -43,16 +43,18 @@ Prepare the following components from your kit:
 // wiring the two push-button switches: can reuse the wiring push button text from previous articles
 
 1. Connect the two push buttons with their seperate debounce circuits same as previous tutorials.
-    1. Connect the first debounce ciruit to pin 2 for increasing the servo angle and the other debounce circuit to pin 3 for decreasing the servo angle.
-    1. Connect the Vcc of both debounce circuit to the positive (+) power rail.
-    1. Connect the ground of both debounce circuit to the negative (-) power rail.
+    * Set up two push buttons, each with their own debounce circuit similar to tutorial 4, don't connect to Arduino Dock yet. 
+    * Connect the point in the first debounce circuit between the 5kohm resistor and the capacitor to pin 2 of the Arduino Dock.
+    * Connect the point in the second debounce circuit between the 5kohm resistor and the capacitor to pin 3 of the Arduino Dock.
+    * Connect the Vcc of both debounce circuit to the positive (+) power rail.
+    * Connect the ground of both debounce circuit to the negative (-) power rail.
 1. Connect the two servo motors.
-    1. The small servo has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the orange (signal) wire to pin 9. 
-    1. The standard servo also has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the white (signal) wire to pin 10.
-    1. The Arduino Sketch will set the servo motors at 90 degree initially. After flashing the arduino sketch and wait until the servos settle on their initial position, attach your favourite servo horn on each servo at 90 degrees.
+    * The small servo has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the orange (signal) wire to pin 9. 
+    * The standard servo also has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the white (signal) wire to pin 10.
+    * The Arduino Sketch will set the servo motors at 90 degree initially. After flashing the arduino sketch and wait until the servos settle on their initial position, attach your favourite servo horn on each servo at 90 degrees.
 1. Connect the breadboard power rails to Arduino Dock.
-    1. Connect the negative power rail to ground (GND).
-    2. Connect the positive power rail to 5V. Don't worry if the servo rotates a bit when you power it on.
+    * Connect the negative power rail to ground (GND).
+    * Connect the positive power rail to 5V. Don't worry if the servo rotates a bit when you power it on.
 
 ### Writing the Code
 
@@ -83,7 +85,7 @@ int currentAngle = 90;
 class ServoMotor
 {
   private:      // variables or functions that can only be used within the ServoMotor class
-  Servo servo;    // 
+  Servo servo;    // Servo object from the Arduino Servo library
   float rate;    // rate of pulse width change per degree
   float minPW, maxPW;   // min and max pulse width in microseconds (uS)
   int minAngle = 0;
@@ -94,13 +96,14 @@ class ServoMotor
   // constructor with same name as class, will be automatically called when a class object is declared
   // pass in the pin number, max and min pulse width and calculate the pulse width change for each degree
   ServoMotor(int pinNumber, float minPWus, float maxPWus){
-      // calculate the pulse width change for each degree
-      rate = (maxPWus - minPWus)/(maxAngle - minAngle);
-
+      
       // pass in the pin number, max and min pulse width to private variables
       minPW = minPWus;
       maxPW = maxPWus; 
       pin = pinNumber;
+
+      // calculate the pulse width change for each degree
+      rate = (maxPWus - minPWus)/(maxAngle - minAngle);
   }
 
   // function where you pass in an angle and it sets the servo motor to that angle
@@ -173,9 +176,24 @@ void loop() {   // codes to be ran continously
 
 // description of how both servos will turn in a particular direction while a button is depressed, the buttons control the direction of rotation
 
+When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction. If either button is pressed and hold down, either increase or decrease the angle 5 degrees every 0.2 second.
+
 #### A Closer Look at the Code
 
 // introduced object oriented programming for the first time in this code
+
+In this code, we introduce a new concept: the object oriented programming (OOP). We will take a look at some of the key elements of OOP: classes, objects, constructors and class members.
+
+// introduce the use of classes in arduino sketches: create a class to control servos
+//  - need to pass in the signal pin number & minimum and maximum pulse widths in the constructor
+//    -> do this in the setup() function
+//    -> the constructor should calculate the pulse width change for each degree - should be a class member
+//  - function where you pass in an angle and it programs the duty cycle for the pin of the servo
+//  implementation details:
+//    - will need to define the class at the beginning of the sketch
+//    - have two global objects of the class
+//    - instantiate the two global objects in the setup function
+//    - will be available for use once the setup function is run
 
 ##### Object Oriented Programming
 
@@ -185,3 +203,23 @@ void loop() {   // codes to be ran continously
 // talk about constructors and class members
 
 // can borrow from the starter kit - 7seg article
+
+In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is where object oriented programming (OPP) becomes handy. In OPP, a class is similar to a template and a object is defined based on the class template with its own specific attributes. For our example. We setup our template inside "class ServoMotor{...};". After that we defined two objects smallServo and standardServo, each with their own specific and different attributes. 
+
+These attributes are defined in the constructor of the ServoMotor class. A constructor is function of the class that have the exact same name as the class and will be automatically called when a class object is declared. Think of the constructor as a initialization function whose main purpose is to pass in all the class parameter (attributes). Our constructor also calculates the rate of the pulse width change for each degree. Also notice there is no "void" in front of our constructor function.
+
+A class member is a variable or a function declared as a part of the class template. It can be either a private, which can only be used within the class or a public, which can be called outside the class. For our ServoMotor class, we have seven private members (six variables and one object)declared under "private:" and two public member functions defined under "public:". Our public member functions include the constructor ServoMotor() and another function setAngle(). 
+
+To use our ServoClass template, we declared our two objects in the global scope similar to declaring global variables:
+
+ServoMotor smallServo (9, 500, 2000);
+ServoMotor standardServo (10, 0, 2500);
+
+However, our ServoMotor objects can only be called after our ServoMotor class has being defined. In addition, We can call setAngle() in our main program by 
+
+smallServo.setAngle(90);
+standardServo.setAngle(90);
+
+This is because setAngle() member function is defined under "public:".
+
+Furthermore, notice we have seven private member variables but we only use passed in three parameters (pinNumer,  minPWus, maxPWus) to three private member variable (pin, minPW, maxPW) in our constructor. This is because the three parameters are the only different parameters between different servo objects. The (rate) variable is calculated from the three parameters. The minimum and maximum servo angle (minAngle and maxAngle) are set to 0 degree and 180 degree for all servo objects. Lastly, we can even use an Servo object from the Arduino Servo library within our own ServoMotor class! Just remember to include the library: #include <Servo.h>

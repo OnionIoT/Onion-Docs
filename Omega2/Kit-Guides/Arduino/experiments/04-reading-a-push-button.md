@@ -2,22 +2,7 @@
 
 // description of what this experiment will accomplish and what we'll learn
 
-// TODO: include push button shared article
-
-// TODO: include debouncing switches shared article
-
-### Interrupts
-
-// description of what an interrupt is in the context of computer hardware:
-//  - trigger for an action
-//  - requires an interrupt service routine (ISR)
-
-### Building the Circuit
-
-// push button connected as input
-// 5-8 leds connected
-
-For this experiment we will be using the same components from the multiple LEDs tutorial (6 LEDs, 6 200 ohm resistors, breadboard and jumper wires). In addition, we will connect a push-button along with its debounce ciruit to a ATmega pin which is capable of using external interrupts (only pin 2 or 3 for ATmega328). The push button will be used as input (either pressed or not pressed) and the LEDs will show the desired state of the output pins.
+So far, our program have being continously running and performing actions. In this tutorial, we will tell our program to only perform an action when we need it to! We will again be using physical user input to control our software. However this time instead of using a trimpot as input, we will be using a push button.
 
 <!-- Push Button -->
 ```{r child = '../../shared/switches-push-button.md'}
@@ -26,6 +11,20 @@ For this experiment we will be using the same components from the multiple LEDs 
 <!-- Debouncing a Push Button -->
 ```{r child = '../../shared/switches-debouncing.md'}
 ```
+### Interrupts
+
+// description of what an interrupt is in the context of computer hardware:
+//  - trigger for an action
+//  - requires an interrupt service routine (ISR)
+
+We can use a interrupt to our program to only perform an action when we need it to. An interrupt is a signal send to the microprocessor through hardware or software as a immediate trigger for an action. After the microprocessor has received the interrupt signal, it will immediately call a function called the interrupt service routine (ISR).
+
+### Building the Circuit
+
+// push button connected as input
+// 5-8 leds connected
+
+For this experiment we will be using the same components from the multiple LEDs tutorial (six LEDs, six 200Ω resistors, breadboard and jumper wires). In addition, we will connect a push-button along with its debounce ciruit to a ATmega pin which is capable of using external interrupts (only pin 2 or 3 for ATmega328). The push button will be used as input (either pressed or not pressed) and the LEDs will show the desired state of the output pins.
 
 #### What You'll Need
 
