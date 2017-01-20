@@ -1,12 +1,13 @@
 ## Using a Buzzer
 
 // description of what this experiment will accomplish and what we'll learn
+In this tutorial, we will use a push button and a buzzer. If the push button is pressed the buzzer will buzz until the button is released. We learn to do this two ways: polling the input and using a interrupt.
 
 ### The Buzzer Element
 // should be its own markdown file
 
 // description of the buzzer: we apply current, it buzzes, have some photos
-
+A buzzer can be describedd as audio signalling device. They have two pin; if we connect the positive (marked with +) end to power and the other end (negative) to the ground, it will make a buzz sound.
 
 ### Building the Circuit
 

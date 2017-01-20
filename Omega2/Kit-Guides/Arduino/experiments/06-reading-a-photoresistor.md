@@ -1,11 +1,14 @@
 ## Reading a Photoresistor
 
 // description of what this experiment will accomplish and what we'll learn
+In this tutorial, we will use a photoresistor to detect the light intensity. We'll send data from the ATmega to the Omega through serial (uart 1) communcation.
 
 ### Photoresistor
 // should be its own markdown file
 
 // explanation that a photoresistor puts out a variable resistance based on the intensity of the light hitting it
+
+A photoresistor has a variable resistance based on the intensity of the light hitting it. However, its light intensity measured in a unit called lux is inverse proportional to its resistance: the resistance will decrease when the environment has more light. The photoresistor is made out of a semiconductor with high resistance and can go up to megohms when the environment is dark. 
 
 ### Building the Circuit
 
