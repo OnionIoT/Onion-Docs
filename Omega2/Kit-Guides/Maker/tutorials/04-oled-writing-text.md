@@ -5,7 +5,7 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 4
 ---
-
+// TODO: fix capitalization and emphasis
 ## Writing Text to the OLED Display {#writing-text-to-oled-display}
 
 In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's python library.

@@ -5,12 +5,12 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 4
 ---
-
-// Note from Lazar: for this and the rest of the pwm expansion articles, see https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py for code example, this (or something similar) is what the final result will be
+// TODO: fix capitalization and emphasis
+<!-- // Note from Lazar: for this and the rest of the pwm expansion articles, see https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py for code example, this (or something similar) is what the final result will be -->
 
 ## Controlling a DC Motor with an H-Bridge {#controlling-a-dc-motor-with-an-h-bridge}
 
-// this tutorial will show us how to control a dc motor using an h-bridge. we'll also continue using the class from the first example to create classes to help us accomplish our goals
+<!-- // this tutorial will show us how to control a dc motor using an h-bridge. we'll also continue using the class from the first example to create classes to help us accomplish our goals -->
 For this tutorial, we'll be controlling a motor using the PWM expansion. To do this, the PWM expansion will send appropriate signals to an 'H-bridge' by changing duty cycles, and the H-bridge will transmit the signal to the motor.
 
 <!-- dcmotor -->
@@ -26,8 +26,8 @@ The way a PWM signal operates a motor is by switching the power supply on and of
 
 ### Building the Circuit
 
-// omega -> h-bridge -> dc motor
-// three switches as gpio inputs to the omega
+<!-- // omega -> h-bridge -> dc motor
+// three switches as gpio inputs to the omega -->
 
 Before we start building, we recommend familiarizing yourself with how the H-bridge chip in our kit works. The chip contains two H-bridges, allowing control of two sources at once. For this tutorial, we'll be using one of them. Specifically, the pair of inputs and outputs (`1A`, `2A` and `1Y`, `2Y`)on the left side of the chip.
 
@@ -53,12 +53,12 @@ The 1,2EN pin is a little bit easier to understand. It simply turns the H-bridge
 
 #### Hooking up the Components
 
-// omega -> h-bridge: three channels from pwm expansion to control the two input pins and the duty cycle pin, all requisite wiring for power
+<!-- // omega -> h-bridge: three channels from pwm expansion to control the two input pins and the duty cycle pin, all requisite wiring for power
 //  * talk about how the IC should be plugged in across the channel of the breadboard (have this note in a markdown file so it can be easily reused)
 // h-bridge -> dc motor: the h-bridge motor outputs to the motor... duh
 
 // make sure to drive home the point that the H-bridge can be burnt if improperly wired
-//  make sure the pwm expansion is not producing any signals (or they're all at 0%) while you're wiring it
+//  make sure the pwm expansion is not producing any signals (or they're all at 0%) while you're wiring it -->
 
 
 When working with ICs, setting up the breadboard's rails can be very helpful in reducing clutter. For this tutorial, we'll do this first to reduce the wires needed. 
@@ -121,12 +121,12 @@ As you've probably seen before, we use an infinite loop here, and you can break 
 
 ### A Closer Look at the Code
 
-// is there something interesting about the code? if so cover it in this section
+<!-- // is there something interesting about the code? if so cover it in this section -->
 In this tutorial, we put together knowledge from the previous tutorials to control the DC motor with python. On top of that we mixed in python Tuples to codify the output we wish the PWM controller to send, and in doing so baked in failsafes to protect hardware from erroneous signalling. Finally, we used a lookup table to track and translate the input from the user into the output sent to the controller.
 
 #### Tuples
 
-In python, there's only one way to create 'permanent variables' - or to give values names: through what is know as a 'tuple'. It's short for multiple, and it represents a set of values that are permanent. In the code, we used it to enforce a set of signals to be sent to the PWM, so that the motor would always operate within range. In this way, tuples or other forms of permanent variables (final in java, or #def in C) can restrict devices to safe operating limits when dealing with variable user input. Here, no matter what you enter, the signals sent to operate the motor would always fall into either off, or between 30 to 50% power in either direction. This way, the motor never sees signal too low to force its turning, and never signals too high that would wear it out or damage the board.
+In python, there's only one way to create 'permanent variables' - or to give values names: through what is known as a 'tuple'. It's short for multiple, and it represents a set of values that are permanent. In the code, we used it to enforce a set of signals to be sent to the PWM, so that the motor would always operate within range. In this way, tuples or other forms of permanent variables (final in java, or #def in C) can restrict devices to safe operating limits when dealing with variable user input. Here, no matter what you enter, the signals sent to operate the motor would always fall into either off, or between 30 to 50% power in either direction. This way, the motor never sees signal too low to force its turning, and never signals too high that would wear it out or damage the board.
 
 #### Lookup Tables
 

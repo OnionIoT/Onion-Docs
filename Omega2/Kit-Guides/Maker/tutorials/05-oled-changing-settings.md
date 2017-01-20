@@ -5,7 +5,7 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 5
 ---
-
+// TODO: fix capitalization and emphasis
 ## Changing the Display's Behavior
 
 This tutorial will show how to change how the OLED displays based on text-based user input. We'll be scrolling the display contents as well as dimming and inverting the display, let's jump in.

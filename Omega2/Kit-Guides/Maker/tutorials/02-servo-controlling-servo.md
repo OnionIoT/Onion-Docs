@@ -5,13 +5,11 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 2
 ---
-
+// TODO: fix capitalization
 
 ## Controlling Servos with the PWM Expansion {#controlling-servos-with-the-pwm-expansion}
 
-
 In this tutorial we will learn how to control the channels on our servo expansion using python. But first, a brief introduction to servo motors is required
-
 
 <!-- servo -->
 ```{r child = '../../shared/servos.md'}
@@ -36,11 +34,11 @@ This circuit is relatively simple, as the motor and the PWM Expansion are both p
 
 1. Plug the PWM Expansion into your Expansion Dock.
 1. Plug the power cord of the servo motor into the `S0` channel of the PWM Expansion
-	* make sure the white white wire from the motor is connected to the pin with the white base on the expansion!
+	* make sure the white white wire from the motor is connected to the pin with the white base on the Expansion!
 
->If your driving a large load on your servo, you should provide an external power supply to the pwm expansion
+**Note 1:** If you're driving a large load on your servo, you should provide an external power supply to the PWM Expansion to avoid drawing too much current through the Omega!
 
->**Note**:If you own an Omega2 or Omega2+ and intend to use the PWM expansion with a DC power supply, please take note there is likely to be a short circuit between the barrel jack and the metal case of the Omega itself. We recommend inserting a thin plastic sheet between the expansion and the omega to break this short. For more information, see the [PWM Expansion](#pwm-expansion) article.
+**Note 2:** If you own an Omega2 or Omega2+ and intend to use the PWM expansion with a DC power supply, please take note there is likely to be a short circuit between the barrel jack and the metal case of the Omega itself. We recommend inserting a thin plastic sheet between the expansion and the omega to break this short. For more information, see the [PWM Expansion](#pwm-expansion) article.
 
 
 #### Writing the Code
