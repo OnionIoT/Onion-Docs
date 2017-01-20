@@ -12,7 +12,7 @@ TODO: remove all TODOs when you implement them -->
 
 An SD card is a flash memory device that uses quantum tunneling effects to store information. Sort of like locking a piece of iron a secure glass box, and using a magnet to move it around to store information. The smallest version of the SD card available right now is the MicroSD format.
 
-![MicroSD Card](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsdcard.png)
+![MicroSD Card](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/micromicrosd.png)
 
 The Omega2+ comes with a MicroSD card slot, enabling you to greatly expand the storage capacity of the Omega without much added cost. The MicroSD card slot on the Omega2+ can be found at the bottom of the board inbetween the pins.
 
@@ -28,20 +28,17 @@ We'll cover how to insert the SD card, how storage devices work in Linux, how to
 // add a note saying that the microSD card will be automatically mounted, point to the Accessing the MicroSD card section below
 -->
 
+The MicroSD slot is spring loaded, and it will remain in place once it's locked in. to properly seat it, 
 
-![MicroSD card sitting the slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-seated.jpg)
-
-The MicroSD slot is spring loaded.
-
-![Push it in firmly](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-lockedin.jpg)
-
-// TODO: should the push photo be here? Also, this photo is too blurry, pls retake
+![MicroSD card sitting the slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-seated.jpg)
 
 To insert the MicroSD card, you should firmly push the SD card into the slot until you hear and feel a click.
 
-![MicroSD properly locked in slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-push.jpg)
+![Push it in firmly](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-pushin.jpg)
 
-// TODO: broken image link above!
+This is what it should look like once seated properly
+
+![MicroSD properly locked in slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-lockedin.jpg)
 
 After you insert the card, you should make sure it's mounted in the fileystem and accessible.
 
@@ -79,6 +76,8 @@ root@Omega-1234:/tmp/mounts# ls
 SD-P1
 ```
 
+>The P1 in the name means partition #1 of the MicroSD card, if you have partitioned your MicroSD, they should show up as `SD-P1`, `SD-P2`, and so on.
+
 For more options on changing how your MicroSD card is mounted, refer to the [USB Storage](#changing-the-default-mount-point) article. 
 
 // TODO: see wording change above - didn't like the "See such and such section"
@@ -105,14 +104,15 @@ umount /tmp/mounts/SD-P1
 
 Now that the card is no longer being used by the Omega, we can physically remove it without risking corruption.
 
-![MicroSD properly locked in slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-push.jpg)
-
 The MicroSD card can now be safely removed.
 
-![Push it in firmly until you hear a click](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-lockedin.jpg)
+![Push it in firmly until you hear a click](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-lockedin.jpg)
 
 Just push until it clicks.
 
-![Pull the MicroSD out](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-pullout.jpg)
+![MicroSD properly locked in slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-pushin.jpg)
 
 Now you can pull it out of the slot - careful not to lose it!
+
+![Pull the MicroSD out](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-pullout.jpg)
+
