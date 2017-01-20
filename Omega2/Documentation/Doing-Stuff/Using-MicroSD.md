@@ -1,5 +1,6 @@
-<!-- TODO: everywhere you use MicroSD card, use the same capitalization!
-TODO: remove all TODOs when you implement them -->
+<!-- 
+TODO: remove all TODOs when you implement them 
+-->
 
 ## Using a MicroSD Card {#using-a-microsd-card}
 <!--
@@ -23,7 +24,8 @@ We'll cover how to insert the SD card, how storage devices work in Linux, how to
 *Note: The Omega2+ supports MicroSD card on firmware builds b143 and higher*
 
 ### Inserting a MicroSD Card
-<!-- // this section should include a step by step guide on how to correctly plug in a microSD card into a Omega2+ that's on a Dock
+<!-- 
+// this section should include a step by step guide on how to correctly plug in a microSD card into a Omega2+ that's on a Dock
 // should include photos of each major step
 // add a note saying that the microSD card will be automatically mounted, point to the Accessing the MicroSD card section below
 -->
@@ -36,7 +38,7 @@ To insert the MicroSD card, you should firmly push the SD card into the slot unt
 
 ![Push it in firmly](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-pushin.jpg)
 
-This is what it should look like once seated properly
+This is what it should look like once seated properly - 
 
 ![MicroSD properly locked in slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-lockedin.jpg)
 
@@ -78,11 +80,7 @@ SD-P1
 
 >The P1 in the name means partition #1 of the MicroSD card, if you have partitioned your MicroSD, they should show up as `SD-P1`, `SD-P2`, and so on.
 
-For more options on changing how your MicroSD card is mounted, refer to the [USB Storage](#changing-the-default-mount-point) article. 
-
-// TODO: see wording change above - didn't like the "See such and such section"
-// TODO: update the #tag to start with usb-storage, otherwise it can get confusing down the road
-
+If you'd like to change where the MicroSD card is mounted, we've written a [guide](#usb-storage-changing-default-mount-point) covering how to do so for both MicroSD cards and USB drives.
 
 ### Safely Removing a MicroSD Card
 

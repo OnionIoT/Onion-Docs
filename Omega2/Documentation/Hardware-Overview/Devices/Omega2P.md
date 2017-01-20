@@ -54,7 +54,7 @@ The Omega's can be reset using GPIO38. When plugged into a Dock (e.g. Expansion 
 <!-- - explanation that the microsd card slot is on the underside of the omega2+ -->
 <!-- - link to 'Using a MicroSD card' article, mention that it provides info on how to correctly use the slot and how to access data from the sd card -->
 
-The MircoSD card slot can be used to expande the Omega2+'s storage capacity to ridiculous levels. If 32MiB was a problem for you, you can now hit it with a tactical warhead. A detailed guide on how to get it working can be found in the [Using a MicroSD Card](#using-a-microsd-card) article.
+The MircoSD card slot can be used to expande the Omega2+'s storage capacity to ridiculous levels. If 32MiB was a problem for you, you can now hit it with a tactical warhead. To help you get started, we've written a guide to [using a MicroSD card](#using-a-microsd-card).
 
 The slot can be found at the bottom of the Omega2+. To physically mount a MicroSD card, slide it into the slot, push it down until it clicks. If it pops all the way back up, just do it again, and it should stay.
 

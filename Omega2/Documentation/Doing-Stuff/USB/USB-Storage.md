@@ -79,7 +79,7 @@ umount /tmp/mounts/USB-A1
 The USB device can now be safely unplugged.
 
 
-### Changing the default mount point {#changing-the-default-mount-point}
+### Changing the default mount point {#usb-storage-changing-default-mount-point}
 
 In order to change the default mount point of your USB storage devices you'll need to change a configuration file.
 
