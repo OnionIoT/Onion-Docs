@@ -35,11 +35,15 @@ The MicroSD slot is spring loaded.
 
 ![Push it in firmly](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-lockedin.jpg)
 
+// TODO: should the push photo be here? Also, this photo is too blurry, pls retake
+
 To insert the MicroSD card, you should firmly push the SD card into the slot until you hear and feel a click.
 
 ![MicroSD properly locked in slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/sdcard-push.jpg)
 
-After you insert the card, you should make sure it's mounted and accessible.
+// TODO: broken image link above!
+
+After you insert the card, you should make sure it's mounted in the fileystem and accessible.
 
 >Occasionally, the spring mechaism may be already preloaded and your card will pop right back out if you let go. Simply pushed it back in until the click, and you should be all set.
 
@@ -51,7 +55,7 @@ If you're running the latest firmware, the Omega should have automatically mount
 // (can rip this part off from the USB Storage article, it might be a good idea to isolate that part of the article into its own markdown file and include it here and the usb storage article)
 -->
 
-On a Linux device, a storage device needs to be mounted in order to access the data. Mounting a device maps it's storage space to a directory on your device so that you may access it.
+On a Linux device, a storage device needs to be mounted in order to access the data. Mounting a device maps its storage space to a directory on your device so that you may access it.
 
 The Omega2 comes ready with an auto-mounting tool that will take care of that process for you!
 
@@ -75,7 +79,10 @@ root@Omega-1234:/tmp/mounts# ls
 SD-P1
 ```
 
-For more options on changing how your MicroSD card is mounted, refer to the 'Changing the default mount point' section of the [USB Storage](#changing-the-default-mount-point) Article.
+For more options on changing how your MicroSD card is mounted, refer to the [USB Storage](#changing-the-default-mount-point) article. 
+
+// TODO: see wording change above - didn't like the "See such and such section"
+// TODO: update the #tag to start with usb-storage, otherwise it can get confusing down the road
 
 
 ### Safely Removing a MicroSD Card
