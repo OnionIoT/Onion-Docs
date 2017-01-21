@@ -5,7 +5,7 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 6
 ---
-
+// TODO: fix capitalization and emphasis
 ## Drawing on the OLED Screen {#drawing-on-the-oled-screen}
 
 // this tutorial will show how to draw lines on the oled display using text-based user input

@@ -5,7 +5,7 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 1
 ---
-
+// TODO: fix capitalization and emphasis
 
 ## Dimming LEDs with the PWM Expansion {#dimming-leds-with-pwm-expansion}
 
@@ -18,7 +18,7 @@ In this tutorial, we will be learning how to use the PWM Expansion with python a
 
 ### Building the Circuit
 
-// 16 LEDs connected to the Servo Expansion
+<!-- // 16 LEDs connected to the Servo Expansion -->
 
 For this circuit, we will connect one LED to each of the 16 channels (0-15) on the PWM Expansion. Using the breadboard here will keep things organised.
 
@@ -38,7 +38,7 @@ For this circuit, we will connect one LED to each of the 16 channels (0-15) on t
 
 #### Hooking up the Components
 
-// 16 example of the most basic LED circuit
+<!-- // 16 example of the most basic LED circuit -->
 Each LED will be connected to the board in the same way, so we'll cover wiring a single LED here the n you can repeat this proccess for all 16 and you should be good to go.
 
 1. Find the anode of the LED and the signal pin of any channel, we started at chanel 0 (`S0` on the expansion board) to avoid confusion.
@@ -57,8 +57,8 @@ Now we're all set!
 
 Here's a photo of our finished circuit:
 // TODO: IMAGE photo of finished circuit
-// - use M-F jumper wires to connect from the servo expansion
-// - make sure to use 5V from the pwm expansion channel header
+<!-- // - use M-F jumper wires to connect from the servo expansion
+// - make sure to use 5V from the pwm expansion channel header -->
 
 
 ### Writing the Code

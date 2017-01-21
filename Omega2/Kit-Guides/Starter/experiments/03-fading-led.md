@@ -6,65 +6,41 @@ devices: [ Omega , Omega2 ]
 order: 3
 ---
 
-# Dimming an LED
+## Dimming an LED
 
 So far we've been turning LEDs fully on and fully off, but it's also possible have LEDs dimmed to somewhere between on and off. And that's what we're going to do in this experiment: we're going to use Pulse Width Modulation (PWM) to create a dimming effect on an LED.
 
-## Pulse Width Modulation
+<!-- Pulse Width Modulation -->
+```{r child = '../../shared/pwm.md'}
+```
 
-Pulse Width Modulation (PWM) sounds complicated but in it's essence it's just turning a digital signal on and off at regular intervals. It allows us to easily control how much power is supplied to a component. In our case that component will be an LED and the less power we provide, the dimmer the light the LED will produce.
-
-// TODO: GRAPHIC: Insert square wave graphic
-
-### Duty Cycle
-
-The main method to describing PWM signals is the concept of the Duty Cycle: it tells us the percentage of the time the signal is on - at high voltage.
-
-// TODO: GRAPHIC: Insert PWM Square wave graphic (http://www.bristolwatch.com/picaxe/images/io43.gif)
-
-Consider a PWM signal with a 25% duty cycle: it will be **on** for 25% of the time and **off** for 75% of the time. Figuring out the duty cycle is a piece of cake, let's go over the main components:
-* The Time On, T<sub>on</sub>, is the amount of time the signal is **on** (also known as the *pulse width*)
-* The Time Off, T<sub>off</sub>, is the amount of time the signal is **off**
-* The total cycle time, T<sub>cycle</sub>, is the sum of T<sub>on</sub> and T<sub>off</sub>
-
-To calculate the duty cycle, we divide the time the signal is high, T<sub>on</sub>, by the complete cycle time, T<sub>CompleteCycle</sub>, and then express it as a percentage:
-
-$$DutyCycle = {\frac{T_{on}}{T_{on} + T_{off}}}\times100\% = {\frac{T_{on}}{T_{CompleteCycle}}}\times100\%$$
-
-If we remember that:
-
-$$Frequency = {\frac{1}{Period}}%%
-
-We see that the period - the total cycle time - is directly related to the frequency of the PWM signal. A PWM signal with a total cycle time of 20ms has a frequency of 50 Hz. All this means is that the signal will complete 50 full cycles in a second.
-
-### PWM and LEDs
+#### PWM and LEDs
 
 By sending a PWM signal to an LED, we can control how bright that LED appears to shine. What's actually going on is that the LED is turning on and off many, many times in a second. For example, if we send a 50% duty cycle PWM signal at 50 Hz to an LED, it will be on for 10ms, then be off for 10ms, then be on for 10ms and so on. You won't actually see the LED turning on and off, instead you'll see that the LED looks much dimmer than when you set the duty cycle to 100%.
 
-
-
-## Building the Circuit
+### Building the Circuit
 
 We're going to be providing power to the LED just like we did in the two previous experiments. The only difference is the speed at which we turn the LED on and off!
 
-### What You'll Need
+#### What You'll Need
 
 We'll need the same LED circuit we used in the previous two experiments, which includes at minimum:
 
 * Omega2 plugged into Expansion Dock
 * 1x LEDs
 * 2x Jumper Wires
-* 1x (// TODO: resistor value) Resistor
+* Resistors
+  * (// TODO: LED resistor) 
 * Breadboard
 
-### Hooking up the Components
+#### Hooking up the Components
 
 In this example we'll only be fading a single LED on GPIO 0 so go ahead and build the same circuit we used in the previous two experiments:
 
 * Plug the LED into the breadboard, with the anode and cathode in different rows
 * Connect the LED's
 
-## Writing the Code
+### Writing the Code
 
 <!-- Going to use fast-gpio pwm to avoid any muxing nonsense-->
 
@@ -85,7 +61,7 @@ def pwmLed(pin, frequency, dutyCyclePercentage):
 	command = "fast-gpio pwm %d %d %d" % (pin, frequency, dutyCyclePercentage) #Assign the arguments to the correct positions in the fast-gpio command
 	os.system(command) # Send the command to the command line
 
-# Infinite Loop Main Code
+## Infinite Loop Main Code
 while 1:
 	dutyCycle=dutyCycle+ledValue # Increment or decrement the duty cycle by the ledValue
 
@@ -102,7 +78,7 @@ while 1:
 
 <!-- TODO: FUTURE: Write using the Omega's PWM pins -->
 
-### What to Expect
+#### What to Expect
 
 // Your LED will fade in and then out, describe this and have a gif
 
@@ -111,7 +87,7 @@ When you run this script your LED will fade in and out. This is because we set t
 <!-- TODO: Insert gif of this -->
 
 
-### A Closer Look at the Code
+#### A Closer Look at the Code
 
 // intro to the code that was written
 //  new things introduced:
@@ -120,7 +96,7 @@ When you run this script your LED will fade in and out. This is because we set t
 
 We've used the code from Experiment 1 as a foundation for writing the code in the experiment. We will still instantiate the GPIO and set the direction to output, but afterwards we no longer use onionGpio. Instead we use `fast-gpio` for its software based PWM function. In our infinite loop we increment the duty cycle by the ledValue, and at 100% we reverse the value and decrement to 0.
 
-#### Functions
+##### Functions
 
 // explanation of why it was useful to package the fast-gpio os call into a function:
 //  * useful to have a readable & simple python interface for setting the pwm duty cycle

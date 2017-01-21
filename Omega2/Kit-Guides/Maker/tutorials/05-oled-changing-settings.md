@@ -108,4 +108,4 @@ In this code we used a dictionary structure to call a particular function based 
 
 #### Reading User Input
 
-Python allows us the ability to receive user input from the command line via the raw_input() function. Adding user input functionality can create an interactive user experience, where the program does different things depending on the input argument. If you want to learn more about user input, the [displaying images on the OLED](#drawing-on-the-oled-screen) tutorial developes this further.
+Python allows us the ability to receive user input from the command line via the `raw_input()` function. Adding user input functionality can create an interactive user experience, where the program does different things depending on the input argument. If you want to learn more about user input, the [displaying images on the OLED](#drawing-on-the-oled-screen) tutorial developes this further.

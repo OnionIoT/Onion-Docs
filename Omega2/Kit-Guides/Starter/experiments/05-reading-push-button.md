@@ -26,19 +26,15 @@ We'll be making a circuit with an LED controlled by a **push button**. When the 
 ```{r child = '../../shared/switches-push-button.md'}
 ```
 
-#### Debouncing Switches
-
 <!-- debouncing switches -->
 ```{r child = '../../shared/switches-debouncing.md'}
 ```
 
 ### Building an Example Circuit
 
-<!-- // circuit 1: button with debouncing circuit controls an LED directly -->
+<!-- // circuit 1: button without debouncing circuit controls an LED directly -->
 
-First we'll build a circuit with a button and a debouncer to control an LED directly. See the diagram below:
-
-![debouncer-button-01](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/debouncer-button-01.jpg)
+First we'll build a circuit with a button to control an LED directly. See the diagram below:
 
 // TODO: diagram
 
@@ -51,7 +47,7 @@ Prepare the following components from your kit:
 * Jumper wires
 * Tactile button
 * Resistors
-    * 1x (// TODO: resistor value) <!-- LED resistor -->
+    * 1x 200Ω <!-- LED resistor -->
     * 1x 50kΩ
     * 1x 5kΩ <!-- debounce resistors -->
 * 1x 100nF capacitor
@@ -110,6 +106,13 @@ Now we'll build a circuit with a button and debouncer circuit connected to a GPI
 
 #### What You'll Need
 
+You'll need to pull a few more components from your Kit. Prepare the following:
+
+* Resistors
+    * 1x 50kΩ
+    * 1x 5kΩ <!-- debounce resistors -->
+* 1x 100nF capacitor
+
 * Use the same components as in the first circuit above.
 * You may need a few more jumper wires handy.
 
@@ -117,7 +120,11 @@ Now we'll build a circuit with a button and debouncer circuit connected to a GPI
 
 Turn the Omega off before changing your circuit. Then, do the following:
 
-1. Remove the LED and its resistor from the breadboard.
+1. Connect one end of the switch to the 50kΩ resistor, and the other end of that resistor to Vcc.
+1. Connect the switch's bottom pin to ground.
+1. Connect one end of the 5kΩ resistor to the same point where the switch and 50kΩ resistor are connected, and the other end to an empty row on the breadboard.
+    * We'll call this the **button pin**.
+1. Connect one end of the capacitor to ground, and the other to the button pin.
 1. Connect GPIO 0 on the Expansion Dock to the button pin using a jumper wire from the Expansion Dock to the breadboard.
 1. Place the LED back on the breadboard by doing the following:
     1. Connect the cathode to GPIO 1 using a jumper wire from the breadboard to the Expansion Dock.
