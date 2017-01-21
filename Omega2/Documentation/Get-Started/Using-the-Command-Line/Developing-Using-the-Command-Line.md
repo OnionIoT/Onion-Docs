@@ -40,7 +40,7 @@ To tell the kernel that we are going to use the Morse code module, set the LED t
 echo morse > /sys/class/leds/onion\:amber\:system/trigger
 ```
 
-> To paste into the Terminal app, use `ctrl+shift+v` or `cmd+shift+v` on a MAC
+> To paste into the Terminal app, use `ctrl+shift+v` or `cmd+v` on a MAC
 
 
 You can verify that it worked by using `cat` to look at the virtual file:
