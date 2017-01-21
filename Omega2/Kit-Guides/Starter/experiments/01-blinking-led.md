@@ -52,7 +52,7 @@ OK here we go, let's put together our circuit! We're going to be connecting an L
 // TODO: FRITZING: fritzing circuit diagram of the experiment
 
 1. Plug in the LED into the breadboard, make sure you plug the anode and cathode into different rows and that you know which is plugged where.
-2. Let's choose GPIO0 on the Omega2 to drive our LED, so let's run a jumper wire to the row of the LED's anode.
+2. Let's choose `GPIO0` on the Omega2 to drive our LED, so let's run a jumper wire to the row of the LED's anode.
 3. Now connect one end of a (// TODO: figure out resistance)kΩ resistor to the the cathode row, and the other end to an empty row.
 4. The final step is connecting a jumper wire to a Ground pin on the Omega2.
 
