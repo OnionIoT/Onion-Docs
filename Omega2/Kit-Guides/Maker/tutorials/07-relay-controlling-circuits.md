@@ -5,7 +5,6 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 7
 ---
-// TODO: fix capitalization and emphasis
 ## Isolated Control with the Relay Expansion {#isolated-control-with-the-relay-expansion}
 
 In this tutorial, we'll use a switch with the Omega Relay expansion to turn a buzzer on or off. Along the way, we'll be looking into why relays are useful, and go into more detail regarding pitfalls when interacting with hardware.

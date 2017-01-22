@@ -5,7 +5,6 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 4
 ---
-// TODO: fix capitalization and emphasis
 <!-- // Note from Lazar: for this and the rest of the pwm expansion articles, see https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py for code example, this (or something similar) is what the final result will be -->
 
 ## Controlling a DC Motor with an H-Bridge {#controlling-a-dc-motor-with-an-h-bridge}
