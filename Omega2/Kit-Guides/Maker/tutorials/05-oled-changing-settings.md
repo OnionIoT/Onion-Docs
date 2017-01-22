@@ -17,7 +17,7 @@ This tutorial will show how to change how the OLED displays based on text-based 
   * color inversion
   * horizontal+diagonal scrolling
 
-The brightness refers to the intensity that a given pixel can be illuminated at. The brightness can be set to value between 0 and 255, from complete darkness to maximum brightness. By default the brightness is set to 207.
+The brightness refers to the intensity that a given pixel can be illuminated at. The brightness can be set to value between `0` and `255`, from complete darkness to maximum brightness. By default the brightness is set to `207`.
 
 Color inversion refers to setting all illumating pixel to dark and vice versa.
 
@@ -25,7 +25,7 @@ The scrolling setting allows you to move the content across the screen in a wrap
 
 ### Building the Circuit
 
-Plug the Oled Expansion into the Expansion Dock.
+Plug the OLED Expansion into the Expansion Dock.
 
 #### Writing the Code
 
@@ -96,7 +96,7 @@ if __name__ == '__main__':
 #### What to Expect
 
 
-When you run the program, the different possible commands that can be entered will be printed out on the command line. The commands will interatively change the display settings. For example, to dim the display, enter "dimDisplay".
+When you run the program, the different possible commands that can be entered will be printed out on the command line. The commands will interatively change the display settings. For example, to dim the display, enter `dimDisplay`.
 
 To stop the program enter `ctrl`+`c`
 

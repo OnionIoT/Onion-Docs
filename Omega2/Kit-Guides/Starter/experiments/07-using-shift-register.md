@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 7
 ---
 
-## Using a Shift Register to Control a Bunch of LEDs
+## Using a Shift Register to Control a Bunch of LEDs {#using-shift-register-control-leds}
 
 Shift registers are very useful tools; using a few GPIOs connected to a shift register, we can increase the number of output data pins that are available to us.
 
@@ -224,7 +224,7 @@ We've introduced some new concepts in this experiment in order to create cleaner
 A **Module** is a file containing Python definitions and statements. This can be used to split your project into multiple files for easier maintenance. The `registerClass.py` file is an example of a self-made module that we've imported. Some modules are built in to Python; some examples are `time` which you may have used before, and `signal` which is used in our main program.
 
 
-#### Creating and Using Classes
+#### Creating and Using Classes {#shift-register-creating-classes}
 
 Classes are a way to create a template for creating objects in our code. For example the class we created is a code template that represents having a shift register on our circuit. If we wanted to we could connect another shift register to our circuit, and easily create a new object using our shiftRegister class.
 

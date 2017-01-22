@@ -8,7 +8,6 @@ order: 7
 // TODO: fix capitalization and emphasis
 ## Isolated Control with the Relay Expansion {#isolated-control-with-the-relay-expansion}
 
-// this tutorial will go over how an omega with a relay expansion can be used to control other, independent circuits
 In this tutorial, we'll use a switch with the Omega Relay expansion to turn a buzzer on or off. Along the way, we'll be looking into why relays are useful, and go into more detail regarding pitfalls when interacting with hardware.
 
 >**Note**: this expansion allows you to switch power sources of a *much* higher voltage than the board - and possibly your body - is able to handle. We urge you to read up the specifications of the [Relay Expansion](#relay-expansion) in our hardware overview documentation to understand the capabilities and limits of the Relay Expansion. We cannot accept responsibility for damages you may incur, and we recommend you use this expansion only if you are comfortable with whatever you may be switching.
@@ -23,13 +22,11 @@ In this tutorial, we'll use a switch with the Omega Relay expansion to turn a bu
 
 Omega boards and components are not designed to handle much more than 5V circuit and 12V supply. Attempting to directly control 120V appliances like lights, heaters, garage doors will almost certainly fry your Omega. So how can you turn on your lights?
 
-Enter the **relay**! A relay is essentially a mechanical switch that is triggered electronically. This physically separates the circuit that triggers the switch and the circuit that the switch actually switches. The relay expansion is designed to isolate the Omega and the dock from high power circuits while allowing it to be controlled by the Omega. 
+Enter the **relay**! A relay is a mechanical switch that is triggered electronically. This physically separates the circuit that triggers the switch and the circuit that the switch actually switches. The relay expansion is designed to isolate the Omega and the dock from high power circuits while allowing it to be controlled by the Omega.
 
 
 ### Building the Circuit
 
-// 5V buzzer circuit connected to relay
-// push button as gpio to toggle the relay
 Our goal here is to connect a buzzer to the relay expansion and a power supply, and then connect a switch to the Omega's expansion headers. Once it's set up, we'll use the code to turn the buzzer on and off.
 
 The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole means there's a single power source being switched, dual throw means the power is always connected to one output or the other. The middle pin is the power input, and the two pins on the side are the outputs. Here we'll just use a single output, leaving the other as open circuit.
@@ -63,16 +60,16 @@ The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole me
 	* Grab a male-to-male jumper wire (we prefer red or orange, as this will be connected to power) and insert it into the terminal
 	* Turn the screw clockwise until the wire is tightly clamped.
 	* Repeat for the `OUT` terminal.
-1. Take the jumper connected to the `IN` terminal, and plug that into the 5V pin on the Dock.
+1. Take the jumper connected to the `IN` terminal, and plug that into the `5V` pin on the Dock.
 	* Or if you have a power supply, the positive terminal of it.
 1. Take the jumper connected to the `OUT` terminal and plug that into the row the positive terminal of your buzzer is plugged into. We used the socket in row 1 column C.
-1. Grab a jumper wire (preferably black) and connect one end to the GND pin on the Dock, and the other to the same row as the negative terminal of your buzzer. Row 1, column H for us.
+1. Grab a jumper wire (preferably black) and connect one end to the `GND` pin on the Dock, and the other to the same row as the negative terminal of your buzzer. Row 1, column H for us.
 // TODO: IMAGE diagram of the buzzer+relay configuration
 1. Now the buzzer can be turned off and on via commands to the Relay Expansion. Next we'll connect the switch, the final result should look something like this:
 // TODO: IMAGE diagram of the switch configuration
-1. Grab a red or orange jumper and plug one end into the 2.5V pin on the dock.
+1. Grab a red or orange jumper and plug one end into the `2.5V` pin on the dock.
 1. Plug the other end into the same row as the middle pin of the switch. We plugged it into row 6
-1. Next connect one of the two free pins on the switch to pin 0 on the dock using the last jumper wire.
+1. Next connect one of the two free pins on the switch to pin `0` on the dock using the last jumper wire.
 
 We're all done!
 
@@ -82,12 +79,11 @@ Here's a picture of our completed circuit.
 
 #### Writing the Code
 
-// write a script so that when the button is pushed: read the relay state, and flip it
 As usual, before running the code, make sure you have all the appropriate libraries installed. Commands as follows:
 
 ```
 opkg update
-opkg install python-light 
+opkg install python-light
 opkg install pyRelayExp pyOnionGpio
 ```
 
@@ -104,9 +100,9 @@ outputStrings = ['off', 'on']
 
 def main():
 
-    switch = OnionGpio(SWITCH_PIN)	# This works because we directly imported the 
+    switch = OnionGpio(SWITCH_PIN)	# This works because we directly imported the
 									# OnionGpio class from the module
-    
+
     status = switch.setInputDirection()
     if (status is False):
         print ("GPIO set direction error.")
@@ -123,7 +119,7 @@ def main():
     while (True):
         # getValue() returns a string with predictable formatting,
         # so we can convert it to int without trouble
-        switchState = int(switch.getValue(), 10) 
+        switchState = int(switch.getValue(), 10)
         relayState = relayExp.readChannel(RELAY_ID, RELAY_CHANNEL)
 
         if (switchState is not relayState):
@@ -143,8 +139,6 @@ if __name__ == "__main__":
 
 #### What to Expect
 
-// pressing the button will make the buzzer start buzzing, pressing it again will disable the sound
-
 When the script is running, you'll see a ton of debug messages from the console. Now when you flick the switch to on or off, the buzzer should respond by turning on or off appropriately.
 
 Infinite loop appears here as well, and as usual, exit the script with `ctrl`+`c`.
@@ -152,25 +146,21 @@ Infinite loop appears here as well, and as usual, exit the script with `ctrl`+`c
 
 ### A Closer Look at the Code
 
-// introduced a good practise: reading then writing
 From the PWM tutorials, we've touched on how to account for the limitations of hardware when writing software. In this tutorial we've put more of that into practice.
 
-Main topics covered: 
+Main topics covered:
 * Read - Modify - Write
 * Checking Status
 
 #### Reading then Writing
 
-// often times we will want to switch the state a device is in, reading and then writing (read-modify-write) is the correct way of going about this
 Almost always, when we want to switch hardware states in software, the program has no innate knowledge of the state the hardware is in already. To make sure hardware functions properly, and that no false signals or badly timed signals are sent, the software should as a rule read the state of the hardware first before making changes.
 
 This concept is known as Reading then Writing, and it actually applies to a lot of situations even in software. Multithreading, database updating, and filling and recieving forms all use this concept to try and ensure intended signals are sent, and no false signals get let through.
- 
+
 
 #### Checking Status
 
 You'll notice that of all the code, only about 5 lines are directly dedicated to changing the state of the relay! The bulk of the code is actually all about checking the states and making decisions off of that information. The reason is simple: we want to make sure the commands we send to the hardware is absolutely correct, since hardware errors are difficult to recover from! Software can be written, started, and restarted fairly quickly; but if you burn out an LED, it's gone for good.
 
 That's why we consider all the variables in this circuit by reading from the relay and the GPIO pins first and make sure to only change the state of the relay when it's safe, and it makes sense to do so. Of course when this circuit is properly wired, there's very little that can go wrong through bad signals, but it's always good practice to make sure.
-
-

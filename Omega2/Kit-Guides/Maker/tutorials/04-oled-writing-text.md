@@ -5,7 +5,6 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 4
 ---
-// TODO: fix capitalization and emphasis
 ## Writing Text to the OLED Display {#writing-text-to-oled-display}
 
 In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's python library.
@@ -24,7 +23,7 @@ The display keeps a cursor pointer in memory that indicates the current page and
 
 ### Building the Circuit
 
-This tutorial does not require you to wire anything in as the OLED Expansion is a complete circuit. Plug it into your expansion dock, and you're good to go!
+This tutorial does not require you to wire anything in, as the OLED Expansion is a complete circuit. Plug it into your expansion dock and you're good to go!
 
 
 #### What You'll Need
@@ -98,7 +97,7 @@ After running the python code, you should see the current current time on the ri
 
 ### A Closer Look at the Code
 
-To get the current time, we use the datetime library that is provided standard with python. We create a datetime object storing the current date and time using the datetime.datetime.now() constructor. We then access the object's hour and min attributes to the retrieve the time values of interest. The we use some logic and mathematical conversion to decide if it is "AM" or "PM" and which greeting to display.
+To get the current time, we use the datetime library that is provided standard with python. We create a datetime object storing the current date and time using the `datetime.datetime.now()` constructor. We then access the object's hour and min attributes to the retrieve the time values of interest. The we use some logic and mathematical conversion to decide if it is "AM" or "PM" and which greeting to display.
 
 For the fun of it, we decided to display a random quote at the end
 
