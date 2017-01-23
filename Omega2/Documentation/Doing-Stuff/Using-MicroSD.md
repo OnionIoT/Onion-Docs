@@ -1,5 +1,5 @@
-<!-- 
-TODO: remove all TODOs when you implement them 
+<!--
+TODO: remove all TODOs when you implement them
 -->
 
 ## Using a MicroSD Card {#using-a-microsd-card}
@@ -13,24 +13,24 @@ TODO: remove all TODOs when you implement them
 
 An SD card is a flash memory device that uses quantum tunneling effects to store information. Sort of like locking a piece of iron a secure glass box, and using a magnet to move it around to store information. The smallest version of the SD card available right now is the MicroSD format.
 
-![MicroSD Card](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/micromicrosd.png)
+![MicroSD Card](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd.png)
 
 The Omega2+ comes with a MicroSD card slot, enabling you to greatly expand the storage capacity of the Omega without much added cost. The MicroSD card slot on the Omega2+ can be found at the bottom of the board inbetween the pins.
 
-![MicroSD Card Slot Location](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-sd-slot.jpg)
+![MicroSD Card Slot Location](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-microsd-slot.jpg)
 
 We'll cover how to insert the SD card, how storage devices work in Linux, how to work with files on the card, and how to safely remove it without damaging your data.
 
 *Note: The Omega2+ supports MicroSD card on firmware builds b143 and higher*
 
 ### Inserting a MicroSD Card
-<!-- 
+<!--
 // this section should include a step by step guide on how to correctly plug in a microSD card into a Omega2+ that's on a Dock
 // should include photos of each major step
 // add a note saying that the microSD card will be automatically mounted, point to the Accessing the MicroSD card section below
 -->
 
-The MicroSD slot is spring loaded, and it will remain in place once it's locked in. to properly seat it, 
+The MicroSD slot is spring loaded, and it will remain in place once it's locked in. to properly seat it,
 
 ![MicroSD card sitting the slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-seated.jpg)
 
@@ -38,7 +38,7 @@ To insert the MicroSD card, you should firmly push the SD card into the slot unt
 
 ![Push it in firmly](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-pushin.jpg)
 
-This is what it should look like once seated properly - 
+This is what it should look like once seated properly -
 
 ![MicroSD properly locked in slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-lockedin.jpg)
 
@@ -113,4 +113,3 @@ Just push until it clicks.
 Now you can pull it out of the slot - careful not to lose it!
 
 ![Pull the MicroSD out](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-pullout.jpg)
-

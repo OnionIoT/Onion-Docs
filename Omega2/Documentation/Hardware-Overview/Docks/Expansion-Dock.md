@@ -89,10 +89,9 @@ GPIO 15 controls the blue LED.
 The RGB LED is active-low, meaning that setting the GPIO to 0 will turn on the designated LED.
 
 
-#### Mechanical Drawings
+### Mechanical Drawings
 
-<!-- [//]: # (insert gabe's dope mechanical drawings) -->
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-D-EXP.pdf) here.
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-D-EXP.PDF) of the dimensions and geometry of the Expansion Dock.
 
 
 ### Using the Dock

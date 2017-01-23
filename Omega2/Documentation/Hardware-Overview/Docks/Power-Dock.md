@@ -133,7 +133,11 @@ The main differences are:
   * No RGB LED
 
 
+<!--- TODO: IMAGE mechanical drawing of the power dock, recheck link and uncomment when drawing available
+### Mechanical drawing
 
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-D-PWR.PDF) of the dimensions and geometry of the Power Dock.
+--->
 
 ### Using the Power Dock
 

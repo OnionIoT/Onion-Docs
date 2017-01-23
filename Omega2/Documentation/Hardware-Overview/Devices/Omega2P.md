@@ -50,15 +50,12 @@ The Omega's can be reset using GPIO38. When plugged into a Dock (e.g. Expansion 
 
 ### MicroSD Card Slot
 
-<!--  little explanation of the MicroSD Slot -->
-<!-- - explanation that the microsd card slot is on the underside of the omega2+ -->
-<!-- - link to 'Using a MicroSD card' article, mention that it provides info on how to correctly use the slot and how to access data from the sd card -->
 
 The MircoSD card slot can be used to expande the Omega2+'s storage capacity to ridiculous levels. If 32MiB was a problem for you, you can now hit it with a tactical warhead. To help you get started, we've written a guide to [using a MicroSD card](#using-a-microsd-card).
 
 The slot can be found at the bottom of the Omega2+. To physically mount a MicroSD card, slide it into the slot, push it down until it clicks. If it pops all the way back up, just do it again, and it should stay.
 
-![MicroSD Card Slot Location](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-sd-slot.jpg)
+![MicroSD Card Slot Location](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-microsd-slot.jpg)
 
 
 
@@ -68,8 +65,6 @@ The slot can be found at the bottom of the Omega2+. To physically mount a MicroS
 <!--  Describe that U.FL connector can be used to connect other, bigger antennas -->
 
 <!--  leave this out for now -->
-<!-- ## Mechanical Drawing -->
-### Technical Drawing
+### Mechanical drawing
 
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-O2.PDF) here.
-<!--  insert mechanical drawing image, link to repo -->
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-O2.PDF) of the dimensions and geometry of the Omega2+.

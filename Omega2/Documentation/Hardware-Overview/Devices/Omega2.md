@@ -65,9 +65,7 @@ if a ufl antenna is plugged in, it will be used as the default antenna, no setup
 
 <!-- copy this part to omega2+ article -->
 
-<!-- TO DO: ## Mechanical Drawing -->
+### Mechanical Drawing
 
-### Technical Drawing
-
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-O2.PDF) here.
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-O2.PDF) of the dimensions and geometry of the Omega2.
 <!-- insert mechanical drawing image, link to repo -->

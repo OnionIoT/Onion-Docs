@@ -31,7 +31,9 @@ The GPS Expansion uses a u-blox GPS receiver which features a high performance u
 
 You can even change the antenna by disconnecting the included antenna and connecting your own to the onboard u.FL connector.
 
-#### Connecting to a Dock
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-expansion-illustration.png)
+
+### Connecting to a Dock
 
 <!-- // plugged into the USB Port -->
 <!-- // have photos of it plugged into the Exp dock, power dock, minidock, and arduino dock 2 -->
@@ -50,12 +52,7 @@ The GPS Expansion plugs into a Dock with a USB port. You can also connect a USB 
 
 This is one of the few Expansions that doesn't require Expansion headers, so you can even use it with the Mini Dock if you'd like!
 
-
-#### At a Glance
-
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-expansion-illustration.png)
-
-#### The ublox Chip and Antenna
+### The ublox Chip and Antenna
 
 <!-- // mention the ublox chip model -->
 <!-- // mention that the ublox chip translates the information received from the antenna into NMEA messages the omega can understand - maybe include a link to NMEA documentation -->
@@ -66,11 +63,17 @@ The ublox chip used on the GPS expansion is the **ublox NEO-6M**. This chip tran
 
 For more on the ublox chip, see the [ublox chip datasheet][1].
 
-#### USB Connector
+### USB Connector
 
 <!-- // means of powering the Expansion and communicating with the Omega -->
 
 The USB connector serves two purposes. By plugging the Expansion into a Dock's USB port we power the GPS Expansion, and we provide a means of communication between the Omega and the Expansion.
+
+<!--- TODO: LINK update gps exp mech drawing link when finished
+### Mechanical Drawings
+
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-GPS.PDF) of the dimensions and geometry of the GPS Expansion.
+-->
 
 ### Using the GPS Expansion
 

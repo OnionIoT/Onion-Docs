@@ -16,16 +16,17 @@ order: 4
 
 The Arduino Dock 2 is our supercharged version of an Arduino Uno R3 board. These two boards share the same microcontroller, the ATmel ATmega328P microcontroller (MCU), and have identical pin layouts. This allows you to use any Arduino shields that you've used with the Arduino Uno R3 with the Arduino Dock and the Omega.
 
+![arduino dock alone](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-alone.jpg)
+
 The Omega can program the microcontroller while connected to the board. This means you can wirelessly connect to the Omega, and then program the MCU for a wireless Arduino experience!
 
 ### The Hardware
 
 <!-- [//]: # (small overview of the things the headings below cover) -->
 
-![arduino dock alone](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-alone.jpg)
-
-
 The Arduino Dock includes an In-Circuit Serial Programming (ICSP) header to break out the SPI pins which can be used to program the Arduino Dock's microcontroller with an external programmer. Additionally, there is a USB-host port that is connected to the Omega which can be used for any sort of USB type application.
+
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-illustration.png)
 
 You can power the dock using a microUSB connection, or using the DC Barrel jack.
 
@@ -43,15 +44,6 @@ Make sure your Omega is pushed all the way down as demonstrated in the picture b
 ![arduino dock side view](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-side-view.jpg)
 
 You may need to line up the pins with the holes before pressing the Omega into the Dock.
-
-### Technical Drawing
-
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-D-ARD.PDF) here.
-
-### The Arduino Dock at a Glance
-
-<!-- [//]: # (illustration with all of the key parts labelled - see https://wiki.onion.io/Tutorials/Expansions/Using-the-Power-Dock#the-hardware_the-power-dock-at-a-glance for an example) -->
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-illustration.png)
 
 
 ### The Expansion Header
@@ -171,11 +163,9 @@ The four SPI connections are used to upload the ATmega with sketches using your 
 
 The reset connection is used to reset the ATmega chip. This can be done using the reset button, or using the Omega's GPIO 19.
 
+### Mechanical Drawings
 
-<!-- TODO: ### Mechanical Drawings -->
-
-<!-- [//]: # (insert gabe's dope mechanical drawings) -->
-
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-D-ARD.PDF) of the dimensions and geometry of the Arduino Dock 2.
 
 ### Using the Dock
 
