@@ -6,11 +6,11 @@ devices: [ Omega2 ]
 order: 2
 ---
 
-## Booting from USB Storage {#boot-from-usb-storage}
+## Booting from External Storage {#boot-from-external-storage}
 
 <!-- // mention that, yes, flash storage on the Omega is limited, so it is possible to have the Omega boot from attached USB storage -->
 
-The Omega comes with enough flash storage to get started and working on projects, but if you need more it's possible to extend the storage capacity using a USB drive!
+The Omega comes with enough flash storage to get started and working on projects, but if you need more it's possible to extend the storage capacity using a USB drive or MicroSD card!
 
 This article will explain and outline the procedure for the **pivot-overlay** process.
 
@@ -21,7 +21,7 @@ This article will explain and outline the procedure for the **pivot-overlay** pr
 
 pivot-overlay allows you to download, store, and install software and packages onto another device such as a USB drive. The drive can be as big or small as you need, so you'll (probably) never have to worry about running out of space again!
 
-The technical explanation is that it mounts a USB storage device to the writable part of your filesystem, `/overlay`, which is merged with the read-only part of your filesystem, `/rom`, to generate the entire filesystem, `/`.
+The technical explanation is that it mounts a storage device to the writable part of your filesystem, `/overlay`, which is merged with the read-only part of your filesystem, `/rom`, to generate the entire filesystem, `/`.
 
 <!-- ### Boot Process
 
@@ -34,7 +34,7 @@ The technical explanation is that it mounts a USB storage device to the writable
 
 You will need:
 
-* A USB drive with however much memory you need
+* A USB drive or MicroSD card with however much memory you need
 * A Dock with a USB host port
 * Firmware >= 0.1.9 b149
 * Onion Console installed (so you can confirm that the storage space has increased)
@@ -73,13 +73,21 @@ opkg install kmod-usb-storage-extras e2fsprogs kmod-fs-ext4
 opkg install block-mount
 ```
 
-Connect your USB drive to the USB host port on the Dock. By default, it will appear in `/dev` as `sda1`. In this case, run the following command:
+Connect your USB drive to the USB host port on the Dock. By default, it will appear in `/dev` as `sda1`. The Omega will automatically mount the device (at `/tmp/mounts/USB-A1` by ), but this will prevent us from formatting it. Unmount it by running the following command:
+
+
+
+In this case, run the following command:
 
 ```
 mkfs.ext4 /dev/sda1
 ```
 
 Replace `sda1` with the name of your drive if it appears differently.
+
+#### Device is Mounted, Cannot Format
+
+
 
 ### Mounting the USB Storage Device
 
