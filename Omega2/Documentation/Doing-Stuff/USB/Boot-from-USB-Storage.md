@@ -39,6 +39,11 @@ You will need:
 * Firmware >= 0.1.9 b149
 * Onion Console installed (so you can confirm that the storage space has increased)
 
+Before you begin, you can see for yourself how much space is being used on your filesystem, and how much is available in the Settings app in the Console. Here's what it would look like by default on an Omega2:
+
+![default-omega2-filesystem](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/pivot-overlay-01.jpg "Default Omega2 Filesystem")
+
+
 ### Important Warnings
 
 Updating or reflashing the firmware will undo this process.
@@ -139,7 +144,9 @@ Save the file and restart the Omega:
 reboot
 ```
 
-And voilà! Your Omega should automatically mount the `/overlay` directory. From this point on, all changes to your filesystem will be made on your USB storage device. 
+And voilà! Your Omega should automatically mount the `/overlay` directory. From this point on, all changes to your filesystem will be made on your USB storage device. This is what it should look like with a 16 GB USB drive:
+
+![pivot-overlay-omega2-filesystem](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/pivot-overlay-02.jpg "pivot-overlay Omega2 Filesystem")
 
 ### Booting Without the USB Drive Connected
 
