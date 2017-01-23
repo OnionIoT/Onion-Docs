@@ -48,7 +48,7 @@ Updating or reflashing the firmware will undo this process.
 
 <!-- // remember to include the important caveats:
 //  - updating the firmware might affect this (test this out and see what the outcome is) -->
-//  - when the usb storage is removed, the omega will boot from the onboard flash and all of the filesystem changes made on the usb storage device will not be transferred (test this as well to find out exactly what happens)
+<!-- //  - when the usb storage is removed, the omega will boot from the onboard flash and all of the filesystem changes made on the usb storage device will not be transferred (test this as well to find out exactly what happens) -->
 
 And as always, **make sure your Omega has the latest firmware.**
 
