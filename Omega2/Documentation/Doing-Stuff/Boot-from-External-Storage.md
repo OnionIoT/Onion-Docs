@@ -35,9 +35,10 @@ The technical explanation is that it mounts a storage device to the writable par
 You will need:
 
 * A USB drive or MicroSD card with however much memory you need
-* A Dock with a USB host port
+    * Only the Omega2+ can use MicroSD cards. Read our [MicroSD card guide](#using-a-microsd-card) for full details.
+* if using a USB drive, a Dock with a USB host port
 * Firmware >= 0.1.9 b149
-* Onion Console installed (so you can confirm that the storage space has increased)
+* Optional: Onion Console so you can easily confirm that the storage space has increased!
 
 Before you begin, you can see for yourself how much space is being used on your filesystem, and how much is available in the Settings app in the Console. Here's what it would look like by default on an Omega2:
 
@@ -46,18 +47,30 @@ Before you begin, you can see for yourself how much space is being used on your 
 
 ### Important Warnings
 
-Updating or reflashing the firmware will undo this process.
+This is process that modifies how the Omega stores its files, so please keep these warnings in mind before and after you're done.
 
-* All user-created files will be deleted. (this is a normal part of updating firmware)
-* The filesystem will return to residing only on the Omega's onboard flash storage.
+**Before you continue, make sure all of your user code and binaries on the Omega are backed up somewhere!**
+
+#### Updating or Reflashing Firmware
+
+Updating or reflashing the firmware will undo the pivot-overlay process.
+
+* The filesystem will be reverted to a fresh state and all user-created files will be deleted. (this is a normal part of the firmware update)
+* **The filesystem will return to residing only on the Omega's onboard flash storage.**
+
+#### Booting Without the Storage Device Connected
+
+**Caution:** If you power on the Omega without the storage device connected, the following will be unavailable or reset to default as they would have only been stored on the device:
+
+* User-created files
+* User-installed packages (eg. Python)
+* Software settings stored outside of `/etc`
+
+The filesystem will revert to a "fresh" state with only the default files and folders available. However, all of the above items will be accessible again once you reboot the Omega with the storage device connected!
 
 <!-- // remember to include the important caveats:
 //  - updating the firmware might affect this (test this out and see what the outcome is) -->
 <!-- //  - when the usb storage is removed, the omega will boot from the onboard flash and all of the filesystem changes made on the usb storage device will not be transferred (test this as well to find out exactly what happens) -->
-
-And as always, **make sure your Omega has the latest firmware.**
-
-**Before you continue, make sure all of your user code and binaries on the Omega are backed up somewhere!**
 
 ### Format Your Storage Device to `ext4`
 
@@ -67,7 +80,7 @@ And as always, **make sure your Omega has the latest firmware.**
 
 You will need a storage device formatted in `ext4`. If you don't have one that's formatted, you can format it using the Omega. 
 
-First turn the Omega `OFF`, then plug in your USB drive or Micro SD card. This will save us an extra step of unmounting the drives before formatting.
+First turn the Omega `OFF`, then plug in your USB drive or Micro SD card, then turn it back on again. This will save us an extra step of unmounting the drives before formatting.
 
 #### Installing the Tools
 
@@ -94,7 +107,7 @@ mkfs.ext4 /dev/<device name>
 
 It may warn you that the device contains a file system. Enter `y` to proceed.
 
-For a USB device, the process should look something like this:
+For a USB drive, the process should look something like this:
 
 ```
 root@Omega-7ADD:/tmp/mounts# mkfs.ext4 /dev/sda1
@@ -118,7 +131,7 @@ If you receive a message that looks like this:
 /dev/sda1 is mounted; will not make a filesystem here!
 ```
 
-Then the Omega may have automatically mounted your device for file input/output, which prevents us from formatting it. Read the section below to unmount your device.
+Then the Omega may have automatically mounted your device for file input/output, which prevents us from formatting it. Read the section below on how to resolve this.
 
 #### Unmounting External Storage Device
 
@@ -136,6 +149,8 @@ Unmount the target device by running the following command, replacing `<mount pa
 ```
 umount <mount path>
 ```
+
+Then go back to the **Formatting the Device** section above and continue on.
 
 ### Mounting the External Storage Device
 
@@ -203,13 +218,3 @@ reboot
 And voilà! Your Omega should automatically mount the `/overlay` directory. From this point on, all changes to your filesystem will be made on your USB storage device. This is what it should look like with a 16 GB USB drive:
 
 ![pivot-overlay-omega2-filesystem](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/pivot-overlay-02.jpg "pivot-overlay Omega2 Filesystem")
-
-### Booting Without the Storage Device Connected
-
-**Caution:** If you power on the Omega without the storage device connected, the following will be unavailable or reset to default as they would have only been stored on the device:
-
-* User-created files
-* User-installed packages (eg. Python)
-* Software settings stored outside of `/etc`
-
-They will be accessible again once you reboot the Omega with the device connected.
