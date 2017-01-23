@@ -143,7 +143,10 @@ And voilà! Your Omega should automatically mount the `/overlay` directory. From
 
 ### Booting Without the USB Drive Connected
 
-**Caution:** If you power on the Omega without the USB drive connected, the following will be unavailable as they would have only been stored on the drive:
+**Caution:** If you power on the Omega without the USB drive connected, the following will be unavailable or reset to default as they would have only been stored on the drive:
 
-* Certain firmware settings
+* User-created files
 * User-installed packages (eg. Python)
+* Software settings stored outside of `/etc`
+
+They will be accessible again once you reboot the Omega with the drive connected.
