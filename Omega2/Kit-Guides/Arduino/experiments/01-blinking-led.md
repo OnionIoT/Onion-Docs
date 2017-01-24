@@ -96,4 +96,4 @@ void loop(){
 	...
 }
 ```
-Then if we were to try to use `ledPin` in `loop()``, we will get a scope error when the code is compiled. The scope of a variable defines which part of the code it can be used.
+Then if we were to try to use `ledPin` in `loop()`, we will get a scope error when the code is compiled. The scope of a variable defines which part of the code it can be used.

@@ -1,14 +1,12 @@
 
 ## Using a Shift Register to Control a Bunch of LEDs
 
-// intro on using a shift register to increase the number of available digital outputs
-// explanation of controlling a bunch of LEDs using only a few microcontroller pins
+<!-- // intro on using a shift register to increase the number of available digital outputs
+// explanation of controlling a bunch of LEDs using only a few microcontroller pins -->
 
 Shift registers are very useful tools; using a few pins connected to a shift register, we can increase the number of output data pins that are available to us.
 
 In this experiment, we'll be using a shift register to control eight LEDs, but we'll only be using three pins from the ATmega.
-
-<!-- // TODO: update this number if required -->
 
 
 <!-- Shift Register -->
@@ -24,8 +22,8 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 
 ### Building the Circuit
 
-// wire up the microcontroller outputs to the shift register
-// have all shift register outputs connected to an LED circuit
+<!-- // wire up the microcontroller outputs to the shift register
+// have all shift register outputs connected to an LED circuit -->
 
 For this experiment we will use the send a byte (8 bits) signal from the ATmega to the shift register. When the latch pin of the shift register is set LOW, the shift register will use the stored 8 bits to set its 8 output pins accordingly. We will attach one LED to each of the 8 output pin to check if their state (1 or 0).
 
@@ -45,12 +43,12 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-//  * talk about how the IC should be plugged in across the channel of the breadboard (have this note in a markdown file so it can be easily reused)
+<!-- //  * talk about how the IC should be plugged in across the channel of the breadboard (have this note in a markdown file so it can be easily reused)
 
 //  * explain all of the wiring from microcontroller->shift reg
 //    * explain each of the lines running from the Omega and what they do - according to the names from the controlling a shift register section
 
-// TODO: add pinout of 74HC595
+// TODO: add pinout of 74HC595 -->
 
 The IC should be plugged in across the channel of your breadboard (the slot running down the middle separating the `abcde` columns from the `fghij` columns). If you don't do this you will short out the pins across your IC. You may need to bend the pins just a bit in order to get it to fit.
 
@@ -87,8 +85,8 @@ Lets take a look at how the 16 pins of the 74HC595 shift register chip are defin
 
 ### Writing the Code
 
-// create functions for using the shift register
-// create knight rider kitt animation with the leds, see the starter kit shift register article for details
+<!-- // create functions for using the shift register
+// create knight rider kitt animation with the leds, see the starter kit shift register article for details -->
 
 
 ``` arduino
@@ -146,21 +144,19 @@ void loop()
 
 #### What to Expect
 
-// explain that the animation will be Knight Rider Kitt style: maybe throw in a gif for nostalgia
-//  - it will run all the way left and then all the way right over and over again
+<!-- // explain that the animation will be Knight Rider Kitt style: maybe throw in a gif for nostalgia
+//  - it will run all the way left and then all the way right over and over again -->
 The eight LEDs will light up in the knight rider KITT pattern. The first LEDs will turn on, then the next will turn on and the previous one will turn off. This will repeat for all the LEDs in a loop from left to right and then from right to left. Only one LED should be lit at once.
 
 #### A Closer Look at the Code
 
-// an overview of the code, go into detail about something interesting
-
-We will use only three Arduino Dock pins to control 8 LEDs by using the shift register. Lets begin by declaring the three pin variables (latchPin, clockPin and dataPin) and initializing the three pins as output in setup(). For each time we want to light up a different LED, we use the updateShiftRegister() function. In this function, we send the 8 bits from the ATmega to the shift register:
+We will use only three Arduino Dock pins to control eight LEDs by using the shift register. Lets begin by declaring the three pin variables (`latchPin`, `clockPin` and `dataPin`) and initializing the three pins as output in `setup()`. For each time we want to light up a different LED, we use the `updateShiftRegister()` function. In this function, we send the 8 bits from the ATmega to the shift register:
 
 ``` 
 shiftOut(dataPin, clockPin, LSBFIRST, storageByte);  
 ``` 
 
-We set the latch LOW so that the 8 bits stored in the shift register will control the 8 output pins of the shift register:
+We set the latch `LOW` so that the 8 bits stored in the shift register will control the 8 output pins of the shift register:
 
 ``` 
 digitalWrite(latchPin, LOW); 
@@ -168,15 +164,17 @@ digitalWrite(latchPin, LOW);
 
 We must set the latch back high again after or else the output won't be set in the correct order.
 
-After we turn on the first LED by sending 00000001, we use a "for" loop to shift the "1" bit from the least significant bit (00000001) the 
-most significant bit (10000000). We shift one bit at a time for seven times, each time using the bitwise shift left operation 
+After we turn on the first LED by sending `00000001`, we use a `for` loop to shift the `1` bit from the least significant bit `00000001` the 
+most significant bit `10000000`. We shift one bit at a time for seven times, each time using the bitwise shift left operation:
+
 ```
 storageByte = storageByte << 1;
 ```
-After shifting to the most significant bit (10000000), we want to shift "1" bit back to the least significant bit (00000001) one bit at a time for seven times using
+
+After shifting to the most significant bit `10000000`, we want to shift `1` bit back to the least significant bit `00000001` one bit at a time for seven times using
 
 ```
 storageByte = storageByte >> 1;
 ```
 
-We must updateShiftRegister() after each bit shift and each time include a slight delay for the CPU to process and for our eyes to see whats going on.
+We must `updateShiftRegister()` after each bit shift and each time include a slight delay for the CPU to process and for our eyes to see whats going on.

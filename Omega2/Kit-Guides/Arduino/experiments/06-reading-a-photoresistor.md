@@ -1,12 +1,11 @@
 ## Reading a Photoresistor
 
-// description of what this experiment will accomplish and what we'll learn
+<!-- // description of what this experiment will accomplish and what we'll learn -->
 In this tutorial, we will use a photoresistor to detect the light intensity. We'll send data from the ATmega to the Omega through serial (uart 1) communcation.
 
 ### Photoresistor
-// should be its own markdown file
-
-// explanation that a photoresistor puts out a variable resistance based on the intensity of the light hitting it
+<!-- // should be its own markdown file
+// explanation that a photoresistor puts out a variable resistance based on the intensity of the light hitting it -->
 
 A photoresistor has a variable resistance based on the intensity of the light hitting it. However, its light intensity measured in a unit called lux is inverse proportional to its resistance: the resistance will decrease when the environment has more light. The photoresistor is made out of a semiconductor with high resistance and can go up to megohms when the environment is dark. 
 
@@ -33,9 +32,9 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-// walkthrough all of the wiring
+<!-- // walkthrough all of the wiring
 // 5V <-> photoresistor <-> 10K resistor <-> GND
-// A0 pin connected to between photoresistor and 10k resistor
+// A0 pin connected to between photoresistor and 10k resistor -->
 
 1. Connect one end of the photoresistor to 5V and the other end to the 10K resistor (the polarity does not matter). 
 1. Connect the other end of the 10K resistor to GND.
@@ -43,11 +42,11 @@ Prepare the following components from your kit:
 
 ### Writing the Code
 
-// write code that:
+<!-- // write code that:
 //  * reads the sensor voltage
 //  * converts it to light intensity
 //  * prints it on the serial line
-//    * maybe make it detect once every 1 seconds
+//    * maybe make it detect once every 1 seconds -->
 
 ``` arduino
 int lightPin = A0;  //the pin number connected to the photoresistor
@@ -83,24 +82,27 @@ void loop()
 
 #### What to Expect
 
-// make the omega connect to the microcontroller using uart1 (link to the article), read the light intensity data
-// have the user cover the photoresistor with their hand and observe the change in value, have them shine a light at it
+<!-- // make the omega connect to the microcontroller using uart1 (link to the article), read the light intensity data
+// have the user cover the photoresistor with their hand and observe the change in value, have them shine a light at it -->
 
-The ATmega will output through serial the output voltage of the voltage divider, the resistance of the photoresitor and the light intensity in Lux. We can use the following command line on our Omega to read the serial output of the ATmega:
+The ATmega will output through serial the output voltage of the voltage divider, the resistance of the photoresitor and the light intensity in lux. We can use the following command line on our Omega to read the serial output of the ATmega:
 
 ```
 cat < /dev/ttyS1
 ```
-If we cover the photoresistor with our hand, we should see on our Omega terminal that the light intensity value (in Lux) decrease significantly. The resistance of the photoresistor is inverse proportional to the light intensity (Lux).
+If we cover the photoresistor with our hand, we should see on our Omega terminal that the light intensity (lux) value decrease significantly. The resistance of the photoresistor is inverse proportional to the light intensity (lux).
 
 #### A Closer Look at the Code
 
-// highlight something interesting about this code
-This code is very similar to the previous tutorial. We use analogRead to obtain a digital value (0 to 1023) of analog voltage level at the output of the voltage divider. We first convert the digital value (0 to 1023) to the the output voltage level (0 to 5V) same as previous tutorial. We can then calculate the resistance of the photoresistor based on voltage level and the voltage divider formula. Lastly we convert the photoresistor resistance to light intensity using the formula for a typical photoresistor: light intentisty (Lux) is equal to 500 divide by the photoresistor resisntance (kΩ). 
+This code is very similar to the previous tutorial. We use analogRead to obtain a digital value (0 to 1023) of analog voltage level at the output of the voltage divider. We first convert the digital value (0 to 1023) to the the output voltage level (0 to 5V) same as previous tutorial. We can then calculate the resistance of the photoresistor based on voltage level and the voltage divider formula. Lastly we convert the photoresistor resistance to light intensity using the formula for a typical photoresistor: light intentisty (lux) is equal to 500 divide by the photoresistor resistance (kΩ). 
 
-We also use Serial.print() to send the values at all the stages of the calcuation to the Omega for better understanding the calculation process.
+We also use `Serial.print()` to send the values at all the stages of the calcuation to the Omega for better understanding the calculation process.
 
 ##### Output on serial
 
-// explanation of how the omega and atmega chip are linked, go into a little bit of detail
+<!-- // explanation of how the omega and atmega chip are linked, go into a little bit of detail -->
 We can obtain the output of the ATmega on our Omega through serial as explained in the previous tutorial.
+
+```
+cat < /dev/ttyS1
+```

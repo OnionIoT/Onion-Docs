@@ -119,10 +119,11 @@ It will print a digital value (0 to 1023), which has been converted from the ana
 
 #### A Closer Look at the Code
 <!-- // anything new that we introduced -->
+
 In this code we introduced several new concepts: analog read and analog (PWM) write; whereas previously we are using digital write. In addition, we will introduce a concept called polling. Let's take a look. 
 
 ##### Analog Read
-First we start by looking at the readPotValue() function, in which we use analogRead to get the output value of the potentiometer. The output of the potentiometer circuit is basically the output voltage of a voltage divider circuit. Since the input voltage is 5V, the output voltage will vary from 0V to 5V depending on the position of trimpot knob. The Arduino build-in function analogRead will convert that voltage (0-5V) to a digital value (0 to 1023). Lets store this value in the variable potValue for later use.
+First we start by looking at the `readPotValue()` function, in which we use analogRead to get the output value of the potentiometer. The output of the potentiometer circuit is basically the output voltage of a voltage divider circuit. Since the input voltage is 5V, the output voltage will vary from 0V to 5V depending on the position of trimpot knob. The Arduino build-in function analogRead will convert that voltage (0-5V) to a digital value (0 to 1023). Lets store this value in the variable potValue for later use.
 
 For analogRead to work we should use an analog pin (A0 - A6) on the Arduino Dock. Moreover, analogRead takes in only one parameter, the pin number. Also notice that we do not need to set the pinMode of the pin reading the potentiometer to INPUT. This is because as mention earlier, the GPIOs are INPUT by default.
 
@@ -136,7 +137,7 @@ The Arduino build-in function analogWrite takes in two parameters: the pin numbe
 
 Polling is the process of repeatedly checking an input.
 
-You may notice in the code there is a 0.1s delay in the readPotValue() function between reading the trimpot and the setting the LED. This delay was added for stability so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast!
+You may notice in the code there is a 0.1s delay in the `readPotValue()` function between reading the trimpot and the setting the LED. This delay was added for stability so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast!
 
 Some of the issues during polling are as follows:
 

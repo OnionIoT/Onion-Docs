@@ -15,7 +15,7 @@ For this tutorial, we will learn how to use a seven-segment display. In addition
 
 For this experiment, we will send a string from the Omega to the ATmega through serial communication. On the ATmega, we will then convert the string into an array of characters and display the first four characters on the seven segment display if each of the character (a letter or a number) can be represented using seven segments.
 
-For the circuit, we will need the 4-digit seven-segment display and eight 1kΩ current limiting resistors for each of the eight segment pins. The current limit resistor are essential since there is a LED in each segment. The 12 pins of the seven-segment display can be grouped into two types: digit pins and segments pins. There are 4 digits and for each digit, there are 8 segments including the decimal point. Therefore, there are a total of 4 x 8 = 32 LEDs.
+For the circuit, we will need the four-digit seven-segment display and eight 1kΩ current limiting resistors for each of the eight segment pins. The current limit resistor are essential since there is a LED in each segment. The 12 pins of the seven-segment display can be grouped into two types: digit pins and segments pins. There are four digits and for each digit, there are eight segments including the decimal point. Therefore, there are a total of `4 x 8 = 32` LEDs.
 
 
 #### What You'll Need
@@ -44,8 +44,8 @@ Lets first look at how the 12 pins at the back of the seven segment display are 
 
 ### Writing the Code
 
-// write a sketch that takes input from the Serial (ie the Omega) and writes it to the 7 seg display
-//  * ensure proper input validation is done so that only  hex numbers can be written to the display
+<!-- // write a sketch that takes input from the Serial (ie the Omega) and writes it to the 7 seg display
+//  * ensure proper input validation is done so that only  hex numbers can be written to the display -->
 
 ``` arduino
 static const byte digitCodeMap[] = {  // array of bytes, each byte represents how a different character will be displayed.
@@ -204,14 +204,13 @@ void loop() {    // codes to be continously ran
 
 #### What to Expect
 
-// explanation of what the user should expect when they enter valid numbers
-When the code has being flashed on the ATmega, the seven segment display should display the characters "1234". If we use the following command on our Omega:
+When the code has being flashed on the ATmega, the seven segment display should display the characters `1234`. If we use the following command on our Omega:
 
 ```
-echo -ne '1111' > /dev/ttyS1
+echo -ne 'AAAA' > /dev/ttyS1
 ```
 
-We should see the characters inside the single quoation mark '' displayed on our seven segment display.  By default echo will send the data and start a new line ('/n') after the data; we use the (-ne) operator to remove the new line. We can send any number and alphabet except for 'M' and 'W'. There will only be one way to display an alphabet regardless of its case. We can also send space ' ' and dash '-'; any undisplayable characters will be displayed as blank space ' '.  
+We should see the characters inside the single quoation mark '' displayed on our seven segment display.  By default echo will send the data and start a new line ('/n') after the data; we use the `-ne` operator to remove the new line. We can send any number and alphabet except for 'M' and 'W'. There will only be one way to display an alphabet regardless of its case. We can also send space ' ' and dash '-'; any undisplayable characters will be displayed as blank space ' '.  
 
 In addition, we can also add one decimal point in the string we send from the Omega. If multiple decimal points are used, only the right most one will be displayed. If the first charater send is a decimal point, it will not be displayed.
 
@@ -234,9 +233,9 @@ char charArray[5]="abcd";
 
 When we set the array of char with a string, there will be an extra char at the end called the null terminator "\0"; therefore our array needs to be five chars long in order to store "abcd". -->
 
-We start by making an array of bytes to represent how different number or alphebat can be displayed. Each byte in the array has 8 bits and set all the segments of a character. We start by turning all the LEDs segments off. Since the anodes are connected to the segment pins, we will set them LOW. The cathodes are connected to the digit pins, we set them HIGH. This way the current is flowing in the reverse bias direction and the LED will not light up.
+We start by making an array of bytes to represent how different number or alphebat can be displayed. Each byte in the array has eight bits and set all the segments of a character. We start by turning all the LEDs segments off. Since the anodes are connected to the segment pins, we will set them `LOW`. The cathodes are connected to the digit pins, we set them `HIGH`. This way the current is flowing in the reverse bias direction and the LED will not light up.
 
-To display all the digits correctly, we must turn all on the segments of one digit on before we turn off that digit and turn on the next digit. If we cycle through turning on and off each digit faster than the human eye can see, it will look like all the digits are displayed correctly. However, we must add one extra cycle of delay between turning on and off each digit for some characters to be displayed properly; try remove the following 'for' loop and see what happens:
+To display all the digits correctly, we must turn all on the segments of one digit on before we turn off that digit and turn on the next digit. If we cycle through turning on and off each digit faster than the human eye can see, it will look like all the digits are displayed correctly. However, we must add one extra cycle of delay between turning on and off each digit for some characters to be displayed properly; try remove the following `for` loop and see what happens:
 
 ```
 for (byte cycle = 0 ; cycle < 2 ; cycle++) { }
@@ -244,33 +243,32 @@ for (byte cycle = 0 ; cycle < 2 ; cycle++) { }
 
 The cycling of digits is required because due to the configuration of the LEDs, we can not have different characters display on all four digits at once. 
 
-You might be wondering how exactly can we set the correct segments for one digit on based on 8 bits. First we use a index byte (initally B00000001) to represent which bit we are currently setting using digitalWrite().
+You might be wondering how exactly can we set the correct segments for one digit on based on 8 bits. First we use a index byte (initally `B00000001`) to represent which bit we are currently setting using `digitalWrite()`.
 
 ```
 digitalWrite(segmentPins[segmentNum], currentDigitCode[digit] & index); 
 ```
 
-We use the bitwise AND operation (&) of the index and the character code to determine whether the bit is to be set HIGH or LOW. After we set one bit we shift the 1 bit of the the index to the left (from B00000001 to B00000010)
+We use the bitwise AND operation `&` of the index and the character code to determine whether the bit is to be set `HIGH` or `LOW`. After we set one bit we shift the 1 bit of the the index to the left (from `B00000001` to `B00000010`)
 
 ```
 index = index << 1; 
 ```
 
-and determine set the digitWrite() the next segment based on the index byte and the character code byte. We use a "for" loop to repeat 8 times for all the segments. Don't forget to set the index byte back to B00000001 after the loops.
+and determine set the `digitWrite()` the next segment based on the index byte and the character code byte. We use a `for` loop to repeat 8 times for all the segments. Don't forget to set the index byte back to `B00000001` after the loops.
 
 
 ##### Serial Input and Conversions
 
-// explain how we wait for input to be available and then read it in
-In our loop() function we first initialize the display by displaying the characters store initially in our array "1234". After which, the ATmega will continously check for serial (UART1) input. When we use the echo command on our Omega we send a string to the ATmega through serial. Once the ATmega detects data on the serial line, it will read the data and store it in a string variable. 
+In our `loop()` function we first initialize the display by displaying the characters store initially in our array `1234`. After which, the ATmega will continously check for serial (UART1) input. When we use the echo command on our Omega we send a string to the ATmega through serial. Once the ATmega detects data on the serial line, it will read the data and store it in a string variable. 
 
 ```
 String serialString = Serial.readString(); 
 ```
 
-We will need to process the string we received in order to display it. We must then convert the received string into an array of char using the Arduino build-in toCharArray() function. We will then need to convert a character to a integer and subtract from it the integer value of '0' according to the ASCII table. After that, we need to match the integer value of each character the an element from the digitCodeMap[] array using a case statement. A case statement is essentially an easier and more structured way of writing a bunch of if statements. 
+We will need to process the string we received in order to display it. We must then convert the received string into an array of char using the Arduino build-in `toCharArray()` function. We will then need to convert a character to a integer and subtract from it the integer value of '0' according to the ASCII table. After that, we need to match the integer value of each character the an element from the digitCodeMap[] array using a case statement. A case statement is essentially an easier and more structured way of writing a bunch of if statements. 
 
-For example, if we get the character 'A', we subtract '0' from it. According to their decimal value from the ASCII table, we have (65-48=17). Then in our case statement, 17 matches the (case 17 ... 42:), in which we subtract 17 by 7 to get the element 10 from digitCodeMap[], which corresponds to the segments to be displayed for 'A'.
+For example, if we get the character 'A', we subtract '0' from it. According to their decimal value from the ASCII table, we have `65-48=17`. Then in our case statement, 17 matches the `case 17 ... 42:`, in which we subtract 17 by 7 to get the element 10 from `digitCodeMap[]`, which corresponds to the segments to be displayed for 'A'.
 
 When we convert the string to a character array, we will get an extra character at the end of the array called the null terminator '/0'. This is how we determine how many characters to be displayed. If a string of only one char is send, our second element in the char array will be the null terminator, which will be -48 after subtracting '0' from it. In this case, we set the rest of our digits to display blank spaces.
 
@@ -280,7 +278,7 @@ The decimal point character '.' is special in the sense that it needs to be disp
 currentDigitCode[decimalPlace] = currentDigitCode[decimalPlace] | B10000000;
 ```
 
-In addition, we need to move the rest of the array after the decimal point one element forward to replace the decimal point character. This is done in the checkDecimalPoint() function.
+In addition, we need to move the rest of the array after the decimal point one element forward to replace the decimal point character. This is done in the `checkDecimalPoint()` function.
 
 #### Going Further: Automating the Script
 
