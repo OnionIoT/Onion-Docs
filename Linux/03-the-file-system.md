@@ -36,96 +36,46 @@ Firstly, connect your Omega and open up the terminal.
 
 The first command we will learn is the pwd command, which stands for print working directory. Type `pwd` in the command line and hit enter.
 
-
-
 You should see ...
-
-
-
-
 
 
 ![Pwd_Screen](http://i.imgur.com/oisFW07.png)
 
-
-
 The command line has returned "/", this means that we are at the top of the directory. If your command line has returned anything else, for example "abc/def/ghi" it means that you are in that directory.
-
-
-
-
-
-
 
 #### `ls` command
 
-
-
 The ls command list the contents of the directories. This may include, files, other directories(known as sub-directories), and programs. This is extremely useful command when looking for things in a directory. So let's see what's in our homeGETPROPERNAMEFORTHIS directory. Type "ls" into the command line and hit enter. You should see the sceen below
-
-
-
-
 
 ![Ls_Screen](http://i.imgur.com/vmAsoz8.png)
 
-
-
 As you can see, the command displayed the contents in our "home" folder.  You may or may not see the items in color depending on how you connect to the Omega. Since we are using Putty, we see them in color. Below is a short list of what the colors mean:
-
-
 
 1) blue = directory
 
-
-
 2) green = executable or recognized data file
-
-
 
 3) sky blue = linked file
 
-
-
 4) yellow with black background = device
-
-
 
 5) pink = graphic image file
 
-
-
 6) red = archive file
-
-
 
 If your still interested in the color coding, it might be worth giving [this](http://askubuntu.com/questions/17299/what-do-the-different-colors-mean-in-the-terminal) a read. Additionally, you can use the `ls` command with the -l option for a more detailed list of the directory, we will use this in the Owners/Permissions [Section](https://github.com/OnionIoT/wiki/blob/master/Tutorials/LinuxBasics/Permissions_Part6.md).
 
-
-
-
-
 #### `cd` command
-
-
 
  `cd` (change directory) is the main command we will use to navigate directories.
 
-
-
 To change to a particular directory all we have to do is type `cd` into the terminal followed by the path,
-
-
 
  ```
  cd path
  ```
 
-
-
  Let's try change our directory to /usr/bin/ directory.
-
-
 
 
 
@@ -147,11 +97,11 @@ The table below shows some of the different options you can use with the `cd` co
 
 | `cd`  |    Using `cd` by itself will take you to the root directory.       |
 
-| cd .. |    This will take you up one one level to the parent directory.   |  
+| `cd ..` |    This will take you up one one level to the parent directory.   |  
 
-| cd .  | This will keep you in your curent directory.|    
+| `cd .`  | This will keep you in your curent directory.|    
 
-| cd -  | This will change you to your previous directory, convenient when working in two directories simultaneously.|
+| `cd -`  | This will change you to your previous directory, convenient when working in two directories simultaneously.|
 
 
 
@@ -398,7 +348,7 @@ rm path/filename
 ```
 
 
-As our example we will delete the HelloWorld.txt we created above.
+As our example we will delete the `HelloWorld.txt` we created above.
 
 
 
@@ -410,3 +360,5 @@ As our example we will delete the HelloWorld.txt we created above.
 
 
 This concludes our introduction of Linux Filesystem. At this point, the reader should feel comfortable with navigating in Linux. In the following articles/sections we will look at some more advanced topics such as redirection and shell scripting.
+
+In the [next section](#redirection), we'll be going over the bread and butter of the command line: redirecting inputs and outputs of commands.
