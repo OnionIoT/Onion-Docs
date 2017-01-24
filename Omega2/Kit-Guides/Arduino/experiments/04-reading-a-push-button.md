@@ -144,6 +144,7 @@ Interrupts are are a more effecient way of reading input. Instead of continously
  
 In the first line of the setup() we attach a interupt to a pin using the build-in Arduino function attachInterrupt(). This function takes in three parameters. The first parameter is the pin number of a digital pin coverted to an interrupt pin using another build-in function digitalPinToInterrupt(pin). 
 
+The second parameter is the interrupt service routine (ISR). The ISR is a special kind of function which is called when the interrupt triggers. In our example, it's the setLED() function which turns on LED or turn all LEDs off if all the LEDs are lit. An ISR function have a few limitations. It must be short and fast, which means time delay should not be used. In addition, ISR does not have parameters and should not return any output value.
 
 The last parameter of attachInterrupt() function is the condition in which the interrupt triggers, either HIGH, LOW, RISING, FALLING or CHANGE as described earlier in this section. For our case, we use FALLING since the debounce circuit inverts the state of the button: HIGH when not press and LOW when pressed. So whenever the button is pressed, the ISR function setLED() will be called. The release of the button would fit as the RISING condition and does not matter in our case.
 
