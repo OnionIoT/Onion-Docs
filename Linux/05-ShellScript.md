@@ -1,8 +1,10 @@
-## Shell Scripting (#shell-scripting)
+## Shell Scripting {#shell-scripting}
 
 A shell script in simply a script that excutes a series of commands written in the script at once from the terminal. This is equivalent to any programming language where you can execute a script from a console. 
 
 Linux can come with two types of shells, the C shell and the and Bourne Shell. Since we are using OpenWRT we are only concerned with the latter, which we invoke when we type `sh` into the command line. At this point, we will write a simple script and explain what will happen at each step during execution. This script uses some general programming techniques. So if you are new to programming, we recommend reading [this](http://www.tutorialspoint.com/unix/unix-what-is-shell.htm) for an in depth explanation.
+
+Take a look at this example script below, we'll be working with it soon:
 
 ```
 # Anything after the hash symbol is considered a comment.
