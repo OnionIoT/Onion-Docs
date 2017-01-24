@@ -1,4 +1,4 @@
-## Shell Scripting
+## Shell Scripting (#shell-scripting)
 
 A shell script in simply a script that excutes a series of commands written in the script at once from the terminal. This is equivalent to any programming language where you can execute a script from a console. 
 

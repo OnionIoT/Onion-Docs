@@ -1,4 +1,4 @@
-## Redirection
+## Redirection {#redirection}
 
 When you run a command on the command line, you may see some text output or sometimes even be prompted for input. However, you can directly pass the output of one command as input to a file or another command, and the output of that command to another, and so on. This technique is known as **redirection**, and you can use this to create dynamic commands!
 
