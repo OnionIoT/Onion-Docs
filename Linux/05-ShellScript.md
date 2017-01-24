@@ -53,4 +53,4 @@ It should look something like this.
 
 ![Shell_Screen](http://i.imgur.com/9Q9mRWm.png)
 
-The last topic of the Linux Introduction Series, the introduce the concept of users, ownerships and permission in Linux Systems. 
+The last topic of the Linux Introduction Series introduces the concept of [Users, Ownerships and Permission in Linux systems](#ownership-and-permissions). 

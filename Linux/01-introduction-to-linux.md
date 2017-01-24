@@ -25,4 +25,4 @@ For now we will move onto using OpenWRT on the Omega, but we do encourage users 
 
 
 
-Next, we will move onto introducing users to the command line interface.
+Next, we will move onto introducing users to the [Command Line Interface](#the-command-line-interface).
