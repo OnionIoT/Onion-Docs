@@ -1,139 +1,86 @@
-##**Redirection**
+## Redirection
 
+When you run a command on the command line, you may see some text output or sometimes even be prompted for input. However, you can directly pass the output of one command as input to a file or another command, and the output of that command to another, and so on. This technique is known as **redirection**, and you can use this to create dynamic commands!
 
+### Input/Output Redirection
 
-Using the the redirection tools we are able to create dynamic commands. 
+We have already seen an example of this in the previous tutorial when we used the `cat` command to create a new file. When we executed the command:
 
+```
+cat > filename
+```
 
+we were prompted by the terminal to enter some text. This text was then passed from `cat` as input into the file's contents. This is known as **output redirection.**
 
-####**Input/Output Redirection**
+#### `echo` command
 
-We can use redirection to send the output of one command to files.
-
-
-
-We have already seen an example of this in the previous tutorial, when we used the _cat_ command to create a new file. 
-
-
-
-When we executed the command:
-
-
-
-```cat > filename```
-
-
-
-After the file was created,  we were prompted by the terminal to enter something by the cat command.The output of cat was redirected as input into the file's contents. This is known as output redirection. 
-
-
-
-We can also use the echo command in a similar manner.
-
-Follow the example below. 
-
-
-
- 
+We can also use the `echo` command in a similar manner. Follow the example below. 
 
 ![RedirOut_Screen](http://i.imgur.com/EWQ0SvZ.png)
 
 
+In this case, the `>` sign means to overwrite any contents of the file or create the file if it does not exist.
 
-We can redirect the output commands so it does not overwrite the contents of the file but rather appends to it. For that we use the pattern &gt;&gt;.
+However, we can also redirect a command's output so it adds to the end (bottom) of the file rather than overwriting it. Instead of a single `>`, use two like so: `>>`
 
-
-
-Say we wanted to append the date and time to this file we created in the previous example we could use a command like this. 
-
-
-
- 
+For example, let's say we wanted to append the date and time to the file we created in the previous example. We can use a command like this below:
 
 ![RedirApend_Screen](http://i.imgur.com/uiJEIn5.png)
 
+#### `sort` command
 
+Now let's try passing files as input to commands so that they can operate on the contents. This is known as **input redirection.** 
 
-####_sort_ command
+For example, let's use the `sort` command. This command sorts the content of a file in alphabetical order by default. 
 
+```
+sort < filename
+```
 
+In the next example we'll create a new file with randomly assorted letters called `alpha.txt`. Run the following command:
 
-Now lets try some input redirection, which allows us to pass files as input to commands. For that we will introduce a new command, _sort_, which sorts the content of a file in alphabetical order by default. 
-
-
-
-```sort < filename```
-
-
-
-In the next example we will create a new file with randomly assorted letters, called alpha. We will use the command:
-
-
-
-```sort < alpha.txt```
-
-
+```
+sort < alpha.txt
+```
 
 This will display the letters of the file in alphabetical order.
 
-
-
- 
-
 ![RedirIn_Screen](http://i.imgur.com/TIkn320.png)
 
+#### Example
 
+Now let's try both types of redirection in a practical example. In the next screen we will use output of the `sort` step as input into a new file containing the ordered alphabet. Run the following command:
 
-Now let's put both types of redirection in a practical example. In the next screen we will use output of the past screen as input into a new file containing the ordered alphabet. To do this we use the command.
-
-
-
-```sort < alpha.txt > ordered.txt```
-
-
-
- 
+```
+sort < alpha.txt > ordered.txt
+```
 
 ![RedirInOut_Screen](http://i.imgur.com/gi6NDdA.png)
 
-
-
-As you can see the ordered.txt file stores the contents of alpha.txt in alphabetical order. 
-
-
-
-
+As you can see the ordered.txt file stores the contents of `alpha.txt` in alphabetical order. 
 
 Now we will move onto Piping. 
 
+### Piping
 
+To create really dynamic commands, we can pass the output of one command into the input of another.  This is known as **piping**.
 
-####**Piping**
+The pipe symbol is `|`; it's not a lowercase "L" nor a numeral 1! If you're confused on where to find it, it's usually `Shift+\` on US keyboards and may look like a broken line.
 
+To show you the power of piping, let's create a file called `names.txt` which will have a different name on each line. Then execute the following command:
 
+```cat names.txt | grep a | grep j```
 
-As we learn more commands Pipes will allow us to create dynamic commands by passing the output of one command into the input of another command. Use of a pipe is indicated through the symbol |  
+Here's what's going down:
 
+* `cat` outputs the contents of `names.txt`.
+* The output of `cat` is passed as input to a `grep` command, which searches for and outputs only the lines containing the character `a`.
+* The output of the above step is passed to another `grep` command. This time, `grep` searches for and outputs only the lines containing the charactter `j`.
 
-
-To demonstrate the power of piping we will create a files called "names.txt" which will have a different name on each line. We will then execute the following command. 
-
-
-
-```cat names.txt | grep a```
-
-
-
-The output of cat is passed as input to the input of the _grep_ command which searches the output for all lines containing the character "a" and then do the same for all lines with "j". The end result will display all lines with "a" and "j" in a line . We have demonstrated this in the screenshot below. 
-
-
-
-
-
- 
+The end result will display all lines with both "a" and "j" in a line . Check it out in the screenshot below:
 
 ![Pipe_Screen](http://i.imgur.com/wZbo9Hk.png)
 
+We recommend getting comfortable with using pipes as they are essential in accomplishing more complicated tasks!
 
-
-We recommend that you get comfortable with using pipes as they are essential in accomplishing more complicated tasks. The next topic we will introduce is shell scripting. 
+The next topic we will introduce is shell scripting.
