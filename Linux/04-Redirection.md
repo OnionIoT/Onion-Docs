@@ -14,7 +14,7 @@ we were prompted by the terminal to enter some text. This text was then passed f
 
 #### `echo` command
 
-We can also use the `echo` command in a similar manner. Follow the example below. 
+We can also use the `echo` command in a similar manner. Follow the example below.
 
 ![RedirOut_Screen](http://i.imgur.com/EWQ0SvZ.png)
 
@@ -29,9 +29,9 @@ For example, let's say we wanted to append the date and time to the file we crea
 
 #### `sort` command
 
-Now let's try passing files as input to commands so that they can operate on the contents. This is known as **input redirection.** 
+Now let's try passing files as input to commands so that they can operate on the contents. This is known as **input redirection.**
 
-For example, let's use the `sort` command. This command sorts the content of a file in alphabetical order by default. 
+For example, let's use the `sort` command. This command sorts the content of a file in alphabetical order by default.
 
 ```
 sort < filename
@@ -57,9 +57,9 @@ sort < alpha.txt > ordered.txt
 
 ![RedirInOut_Screen](http://i.imgur.com/gi6NDdA.png)
 
-As you can see the ordered.txt file stores the contents of `alpha.txt` in alphabetical order. 
+As you can see the ordered.txt file stores the contents of `alpha.txt` in alphabetical order.
 
-Now we will move onto Piping. 
+Now we will move onto Piping.
 
 ### Piping
 
@@ -69,7 +69,9 @@ The pipe symbol is `|`; it's not a lowercase "L" nor a numeral 1! If you're conf
 
 To show you the power of piping, let's create a file called `names.txt` which will have a different name on each line. Then execute the following command:
 
-```cat names.txt | grep a | grep j```
+```
+cat names.txt | grep a | grep j
+```
 
 Here's what's going down:
 
@@ -83,4 +85,4 @@ The end result will display all lines with both "a" and "j" in a line . Check it
 
 We recommend getting comfortable with using pipes as they are essential in accomplishing more complicated tasks!
 
-The next topic we will introduce is shell scripting.
+Next up, we'll show you how to be lazy. Writing a command over and over again can get tedious, but [shell scripting](#shell-scripting) lets you write once and run over and over again.
