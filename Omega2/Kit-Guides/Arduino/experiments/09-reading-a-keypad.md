@@ -2,7 +2,7 @@
 
 // intro to getting numbers as input from the user, useful in many scenarios, just think of ATMs
 
-// in this experiment, we will be reading input from a keypad and treating it as a password, if the correct password is entered, an LED will light up
+In this experiment, we will be reading input from a keypad and treating it as a password, if the correct password is entered, an LED will light up. This will be useful in many scenarios, such as ATMs or building access systems. In addition, we will also learn how to use Arduino libraries which are not build-in.
 
 
 ### Keypad
@@ -14,6 +14,11 @@
 //    - Note from Lazar: keypads usually have pins that identify if a button on a horizontal row is pressed, and then other pins that identify if a button on a vertical column is pressed. to read specific numbers, the user has to look for intersections
 //    - need to explain the above in a concise and approachable way - include graphics
 
+A keypad allows the user to press a button and the attached computer system will be able to tell which digit was pressed. If we were to use a pin for every button, there will be too many pins and the connection will be tedious! Instead we only use a pin for each horizontol row and a pin for each vertical column. In our case we only need 7 (4 rows and 3 columns) instead of 15.
+
+// TODO: Image of a keypad
+
+However, since the pins are not a direct match with the buttons, our microprocess will have to decode the signals coming from the keypad. When a button is pressed, the microprocesser should be able to detect the pin corresponding to its row and the pin corresponding to its column. We must define in our code the location of each button based on its row and column intersection.
 
 ### Building the Circuit
 
@@ -54,6 +59,20 @@ Prepare the following components from your kit:
 //  - if the input matches the currently indexed digit in the password array, increment the index variable
 //  - if the input does not match, reset the index variable to 0
 //  - once the index variable reaches sizeof(password array), we consider to password to have been typed in, and we can turn on the LED (using the action function)
+
+This code will use a Keypad library which is probably not included in your the Ardiuno IDE by default. Here is two ways of including it in our code. In the first way we can install it directly from the Arduino IDE:
+
+1. On the Arduino IDE, click Sketch > Include Library > Manage Libraries. The Library Manager will show up; type "keypad" in the search bar and install the first search result.
+
+Another way is to manually install a library.
+
+1. Download the Keypad library from a source: http://playground.arduino.cc/Code/Keypad#Download
+2. Move the unzipped Keypad file folder to the Arduino library folder: on Windows, its located at C:/Program Files (x86)/Arduino/libraries
+
+To use the library we need to add the following line at the top of our code:
+```
+#include <Keypad.h>
+```
 
 ``` arduino
 // download the Keypad library: http://playground.arduino.cc/Code/Keypad#Download

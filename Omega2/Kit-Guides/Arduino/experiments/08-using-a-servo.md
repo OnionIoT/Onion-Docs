@@ -1,6 +1,7 @@
 ## Controlling Servos
 
 // intro to using pwm to control servos, this experiment will involve controlling servos using physical buttons
+In this tutorial, we will used two push buttons to control two servos: a sub-micro sized servo and a standard sized servo. In addition, we will learn about object oriented programming by creating our own class for servo motors. 
 
 
 // ### What is Pulse Width Modulation?
@@ -184,16 +185,6 @@ When one button is pressed, both servos will turn to one direction; when the oth
 
 In this code, we introduce a new concept: the object oriented programming (OOP). We will take a look at some of the key elements of OOP: classes, objects, constructors and class members.
 
-// introduce the use of classes in arduino sketches: create a class to control servos
-//  - need to pass in the signal pin number & minimum and maximum pulse widths in the constructor
-//    -> do this in the setup() function
-//    -> the constructor should calculate the pulse width change for each degree - should be a class member
-//  - function where you pass in an angle and it programs the duty cycle for the pin of the servo
-//  implementation details:
-//    - will need to define the class at the beginning of the sketch
-//    - have two global objects of the class
-//    - instantiate the two global objects in the setup function
-//    - will be available for use once the setup function is run
 
 ##### Object Oriented Programming
 

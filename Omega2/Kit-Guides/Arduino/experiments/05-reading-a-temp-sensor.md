@@ -9,7 +9,11 @@ In this tutorial, we will learn how to read the ambient temperature using a temp
 // detects the ambient air temperature
 // outputs different voltage based on the temperature
 
-An analog temperature will detect the ambient air temperature and outputs different voltage based on the temperature. There will typically be a offset the voltage to account for negative temperature. In addition, there will be a limit to the sensor's operating temperature, in our case the TMP36 will withstand a temperature range from 40°C to 125°C. Another important parameter of the temperature sensor is its scale factor, which is 10 mV/°C for the TMP36. The resolution of a sensor is the smallest change that it can detect. The resolution is effected by the ATmega, which performs analogRead at a 10-bit resolution (1024 steps), allowing for the smallest change to be 4.88mV if the input voltage is 5V.
+An analog temperature will detect the ambient air temperature and outputs different voltage based on the temperature. 
+
+// TODO: Image of a temperature sensor
+
+There will typically be a offset the voltage to account for negative temperature. In addition, there will be a limit to the sensor's operating temperature, in our case the TMP36 will withstand a temperature range from 40°C to 125°C. Another important parameter of the temperature sensor is its scale factor, which is 10 mV/°C for the TMP36. The resolution of a sensor is the smallest change that it can detect. The resolution is effected by the ATmega, which performs analogRead() at a 10-bit resolution (1024 steps), allowing for the smallest change to be 4.88mV if the input voltage is 5V.
 
 ### Building the Circuit
 

@@ -5,9 +5,13 @@ In this tutorial, we will use a push button and a buzzer. If the push button is 
 
 ### The Buzzer Element
 // should be its own markdown file
-
 // description of the buzzer: we apply current, it buzzes, have some photos
-A buzzer can be describedd as audio signalling device. They have two pin; if we connect the positive (marked with +) end to power and the other end (negative) to the ground, it will make a buzz sound.
+
+A buzzer can be describedd as audio signalling device. They have two pin; if we connect the positive (marked with +) end to power and the other end (negative) to the ground through a current limiting resistor, it will make a buzz sound. The buzzer which is included in our kit is electromagnetic. It uses electromagetism to generate repetitive mechancial motion. This mechanical vibration is what makes the buzz sound.
+
+// TODO: Image of a buzzer
+
+If we connect the positive end of the buzzer to a pin on our Arduino Dock, we can control its buzzing!
 
 ### Building the Circuit
 

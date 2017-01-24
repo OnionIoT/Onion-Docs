@@ -73,6 +73,7 @@ Your line-up of LEDs will be essentially chasing it's tail: the left-most LED wi
 #### A Closer Look at the Code
 
 // talk about the topics we introduced here
+In this code, we introduced some new concepts: arrays and "for" loops. Let's take a look.
 
 ##### Arrays
 
