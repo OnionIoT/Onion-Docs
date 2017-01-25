@@ -124,6 +124,8 @@ import os, datetime, time
 
 
 ## Set the Omega LED trigger to "timer" so that it blinks
+## Note: If you're using Omega2+, use the following line instead: 
+##       with open("/sys/class/leds/omega2p:amber:system/trigger", "w") as trigger:
 with open("/sys/class/leds/onion:amber:system/trigger", "w") as trigger:
           trigger.write("timer")
 
@@ -146,6 +148,8 @@ else:
 time.sleep(5)
 
 # Set the Omega LED back to being always on
+## Note: If you're using Omega2+, use the following line instead: 
+##       with open("/sys/class/leds/omega2p:amber:system/trigger", "w") as trigger:
 with open("/sys/class/leds/onion:amber:system/trigger", "w") as trigger:
         trigger.write("default-on")
 
