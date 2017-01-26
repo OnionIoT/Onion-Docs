@@ -60,26 +60,26 @@ Lets take a look at how the 16 pins of the 74HC595 shift register chip are defin
 
 1. Connecting your shift register to the breadboard
 
-  - Start by plugging in your shift register across the channel so that the each pin has its own row.
-  - Connect pin 16 and pin 10 to the positive rail (Vcc) on the breadboard
-  - Connect pin 8 and pin 13 to the negative rail (Ground) on the breadboard
+  * Start by plugging in your shift register across the channel so that the each pin has its own row.
+  * Connect pin 16 and pin 10 to the positive rail (Vcc) on the breadboard
+  * Connect pin 8 and pin 13 to the negative rail (Ground) on the breadboard
 
   <!-- TODO: Insert picture of this stage -->
 
 2. Connecting your LEDs
 
-  - Connect the anodes of the 8 LED each to one of the 8 output pins of the 74HC595 (pin 15 and pin 1 to 7). Place the LEDs left to right in the following pin order: 15, 1, 2, 3, .. 7.
-  - Attach the eight current limiting resistors from cathodes of LEDs to the negative rail (Ground) on the breadboard.
+  * Connect the anodes of the 8 LED each to one of the 8 output pins of the 74HC595 (pin 15 and pin 1 to 7). Place the LEDs left to right in the following pin order: 15, 1, 2, 3, .. 7.
+  * Attach the eight current limiting resistors from cathodes of LEDs to the negative rail (Ground) on the breadboard.
 
  <!-- TODO: Insert picture of this stage -->
 
 3. Connecting your Arduino Dock 
 
-  - Connect digital pin 4 to pin 14 on the shift register
-  - Connect digital pin 5 to pin 12 on the shift register
-  - Connect digital pin 6 to pin 11 on the shift register
-  - Connect the Ground header to the negative rail on the breadboard
-  - Connect the 5V header to the positive rail on the breadboard
+  * Connect digital pin 4 to pin 14 on the shift register
+  * Connect digital pin 5 to pin 12 on the shift register
+  * Connect digital pin 6 to pin 11 on the shift register
+  * Connect the Ground header to the negative rail on the breadboard
+  * Connect the 5V header to the positive rail on the breadboard
 
   <!-- TODO: Insert picture of this stage -->
 
