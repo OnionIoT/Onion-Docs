@@ -23,7 +23,7 @@ Using the shift register and a few additional GPIO from the Omega, we will contr
 
 #### Hooking up the Components
 
-// TODO: research how many scan pins there are, then decide how many gpios on the omega are required
+/<!-- / TODO: research how many scan pins there are, then decide how many gpios on the omega are required -->
 
 // omega -> shift register -> 7seg display a-g segment pins
 // omega -> 7seg scan pins

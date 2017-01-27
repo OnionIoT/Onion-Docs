@@ -55,7 +55,7 @@ Prepare the following components from your kit:
 * Breadboard
 * Jumper wires
 * SPDT switch
-* 1x (// TODO: resistor value) Resistor <!-- LED resistor -->
+* 1x 200Ω Resistor <!-- LED resistor -->
 * Any LED color of your choice!
 
 #### Hooking up the Components
@@ -79,7 +79,7 @@ Before putting the circuit together, make sure the Omega2 is powered OFF for saf
 
 Your circuit should look like this.
 
-// TODO: photo
+<!-- // TODO: photo -->
 
 If your circuit matches, go ahead and turn the Omega2 on!
 
@@ -106,7 +106,7 @@ This is a very simple circuit, but we wanted to illustrate how this switch works
 
 In the next circuit, the Omega2 connects to the slide switch and LED. We'll write a program that turns the LED on or off depending on how you set the switch.
 
-// TODO: photo
+<!-- // TODO: photo -->
 
 #### What You'll Need
 
@@ -129,7 +129,7 @@ Turn the Omega off before changing your circuit. Then, do the following:
 
 Your circuit should look like this:
 
-// TODO: photo
+<!-- // TODO: photo -->
 
 If your circuit matches, power your Omega back on!
 

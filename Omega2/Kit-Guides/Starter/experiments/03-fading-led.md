@@ -30,7 +30,7 @@ We'll need the same LED circuit we used in the previous two experiments, which i
 * 1x LEDs
 * 2x Jumper Wires
 * Resistors
-  * (// TODO: LED resistor) 
+  * 200Ω 
 * Breadboard
 
 #### Hooking up the Components
@@ -44,8 +44,8 @@ In this example we'll only be fading a single LED on GPIO 0 so go ahead and buil
 
 <!-- Going to use fast-gpio pwm to avoid any muxing nonsense-->
 
-// use fast-pwm to slowly increment the duty cycle on a gpio and then halfway through start decrementing the pwm, so that you get a fading in, and then fading out
-// make it progress slowly so you can tell that its getting brighter and dimmer
+<!-- // use fast-pwm to slowly increment the duty cycle on a gpio and then halfway through start decrementing the pwm, so that you get a fading in, and then fading out
+// make it progress slowly so you can tell that its getting brighter and dimmer -->
 
 ``` python
 import onionGpio
@@ -80,7 +80,7 @@ while 1:
 
 #### What to Expect
 
-// Your LED will fade in and then out, describe this and have a gif
+<!-- // Your LED will fade in and then out, describe this and have a gif -->
 
 When you run this script your LED will fade in and out. This is because we set the duty cycle to increase up to 100% (fade in to 100%), and then we begin to decrease the duty cycle down to 0% (fade out to 0%).
 
@@ -89,19 +89,19 @@ When you run this script your LED will fade in and out. This is because we set t
 
 #### A Closer Look at the Code
 
-// intro to the code that was written
+<!-- // intro to the code that was written
 //  new things introduced:
 //  * function where you pass in gpio # and duty cycle and it calls fast-gpio for you
-//  * fancy for loop
+//  * fancy for loop -->
 
 We've used the code from Experiment 1 as a foundation for writing the code in the experiment. We will still instantiate the GPIO and set the direction to output, but afterwards we no longer use onionGpio. Instead we use `fast-gpio` for its software based PWM function. In our infinite loop we increment the duty cycle by the ledValue, and at 100% we reverse the value and decrement to 0.
 
 ##### Functions
 
-// explanation of why it was useful to package the fast-gpio os call into a function:
+<!-- // explanation of why it was useful to package the fast-gpio os call into a function:
 //  * useful to have a readable & simple python interface for setting the pwm duty cycle
 //  * will be used a whole bunch
-//  * cleaner looking code and good practice
+//  * cleaner looking code and good practice -->
 
 
 In order to use `fast-gpio` we need to use the `os` module. This module allows us to send command-line arguments in Python using `os.system(command)`.
@@ -114,7 +114,7 @@ We then put this into it's own function so that we have a much simpler and easie
 
 By doing this we make it really easy to reuse for other pins, frequencies, and duty cycle values.
 
->It's good practice to break your code into small problems, and writing single functions to solve each problem.
+It's good practice to break your code into small problems, and writing single functions to solve each problem.
 
 <!-- #### Fancy For Loops
 
