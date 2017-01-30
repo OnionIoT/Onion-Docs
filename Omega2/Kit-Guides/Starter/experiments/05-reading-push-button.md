@@ -48,9 +48,6 @@ Prepare the following components from your kit:
 * Tactile button
 * Resistors
     * 1x 200Ω <!-- LED resistor -->
-    * 1x 50kΩ
-    * 1x 5kΩ <!-- debounce resistors -->
-* 1x 100nF capacitor
 * Any LED color of your choice!
 
 #### Hooking up the Components
@@ -65,15 +62,9 @@ Before putting the circuit together, make sure the Omega2 is powered OFF for saf
     * We'll call this column **ground**.
 1. Connect the push button to the breadboard as shown below:
     * ![push-button-breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/push-button-breadboard.jpg)
-    
-<!-- // TODO: photo -->
-
-1. Connect one end of the switch to the 50kΩ resistor, and the other end of that resistor to Vcc.
-1. Connect the switch's bottom pin to ground.
-1. Connect one end of the 5kΩ resistor to the same point where the switch and 50kΩ resistor are connected, and the other end to an empty row on the breadboard.
-    * We'll call this the **button pin**.
-1. Connect one end of the capacitor to ground, and the other to the button pin.
-1. Connect the LED's cathode to the button pin, and the anode to one end of a (// TODO: resistor value) resistor.
+    <!-- // TODO: photo showing how the legs are oriented across the breadboard-->
+1. Connect one side of the switch to Vcc.
+1. Connect the LED's cathode to the other side of the button, and the anode to one end of the 200Ω resistor.
 1. Connect the other end of that resistor to ground.
 
 Your circuit should look like this.
@@ -83,8 +74,6 @@ Your circuit should look like this.
 <!-- // TODO: photo -->
 
 If your circuit matches, go ahead and turn the Omega2 on!
-
-// TODO: if connecting an LED to the output given at the ganssle website with the 50k and 5k resistors, the LED will have 60 microamps of current at 3.3V! maybe we should change the debouncer to non-inverting (swap R1 and switch positions)
 
 #### What to Expect
 
@@ -97,12 +86,11 @@ When you push and hold the button, the LED should turn off. When you release the
 <!-- * // ^ all logic swapped for inverting debouncer -->
 <!-- * // TODO: regardless of whether the debouncer is inverting or not, there is so much resistance on the way to the LED that it will barely light up (microamps) -->
 
-
 ### Building the Real Circuit
 
 <!-- // circuit 2: button with debouncing circuit connected to GPIO,  LED connected to GPIO -->
 
-Now we'll build a circuit with a button and debouncer circuit connected to a GPIO, and an LED connected to another GPIO that is driven by software.
+Now we'll build a circuit with a button and inverting debouncer circuit connected to a GPIO, and an LED connected to another GPIO that is driven by software.
 
 #### What You'll Need
 
@@ -125,10 +113,10 @@ Turn the Omega off before changing your circuit. Then, do the following:
 1. Connect one end of the 5kΩ resistor to the same point where the switch and 50kΩ resistor are connected, and the other end to an empty row on the breadboard.
     * We'll call this the **button pin**.
 1. Connect one end of the capacitor to ground, and the other to the button pin.
-1. Connect GPIO 0 on the Expansion Dock to the button pin using a jumper wire from the Expansion Dock to the breadboard.
+1. Connect `GPIO0` on the Expansion Dock to the button pin using a jumper wire from the Expansion Dock to the breadboard.
 1. Place the LED back on the breadboard by doing the following:
     1. Connect the cathode to GPIO 1 using a jumper wire from the breadboard to the Expansion Dock.
-    1. Connect the anode to one end of the (// TODO: resistor value) resistor.    
+    1. Connect the anode to one end of the 200Ω resistor.    
 1. Connect the other end of that resistor to ground.
 
 Your circuit should look like this:
@@ -157,10 +145,12 @@ Let's go about writing our code, but first let's cover an important topic first.
 
 #### The Code Itself
 
-// * write a program that uses edge detection to turn an led on, sleep for 10 seconds and then turn it off
-note: the mechanism for edge detection hasn't been ironed out yet
+<!-- // write a program that uses edge detection to turn an led on, sleep for 10 seconds and then turn it off
+note: the mechanism for edge detection hasn't been ironed out yet -->
 
 Let's create a file called `debounceSwitch.py` to hold our code:
+
+<!-- LAZAR: work in progress -->
 
 ``` python
 import onionGpio
@@ -201,7 +191,6 @@ while 1:
         time.sleep(pollingInterval)            # sleep until we poll again
 ```
 
-
 #### What to Expect
 
 <!-- // hit the button, the light turns on, stays on for 10 seconds, turns off 
@@ -216,4 +205,4 @@ Now try pushing the button on and off. What happens?
 
 #### A Closer Look at the Code
 
-// explanation of the edge detection code
+<!-- // explanation of the edge detection code -->
