@@ -67,7 +67,7 @@ Prepare the following components from your kit:
 I'm guessing it's one of these, will come back to this later. Not exactly sure how this works yet, I need the sensor to try it out
 -->
 
-// TODO: need a scan program to find the 1W device's address if it's not known!
+<!-- // TODO: need a scan program to find the 1W device's address if it's not known! -->
 
 First, we'll create a Python **class** for the temperature sensor. Create a file called `temperatureSensor.py` and paste the following code into it:
 

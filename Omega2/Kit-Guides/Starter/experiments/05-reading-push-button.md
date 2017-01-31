@@ -36,7 +36,7 @@ We'll be making a circuit with an LED controlled by a **push button**. When the 
 
 First we'll build a circuit with a button to control an LED directly. See the diagram below:
 
-// TODO: diagram
+<!-- // TODO: diagram -->
 
 #### What You'll Need
 
@@ -66,7 +66,7 @@ Before putting the circuit together, make sure the Omega2 is powered OFF for saf
 1. Connect the push button to the breadboard as shown below:
     * ![push-button-breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/push-button-breadboard.jpg)
     
-// TODO: photo
+<!-- // TODO: photo -->
 
 1. Connect one end of the switch to the 50kΩ resistor, and the other end of that resistor to Vcc.
 1. Connect the switch's bottom pin to ground.
@@ -80,7 +80,7 @@ Your circuit should look like this.
 
 ![debouncer-circuit-setup-01](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/debouncer-circuit-setup-01.jpg)
 
-// TODO: photo
+<!-- // TODO: photo -->
 
 If your circuit matches, go ahead and turn the Omega2 on!
 
@@ -94,8 +94,8 @@ When you push and hold the button, the LED should turn off. When you release the
 // release it and the led turns off
 // the drawback of this circuit is that the switch just controls if there is current flowing to the LED or not
 // adding -->
-* // ^ all logic swapped for inverting debouncer
-* // TODO: regardless of whether the debouncer is inverting or not, there is so much resistance on the way to the LED that it will barely light up (microamps)
+<!-- * // ^ all logic swapped for inverting debouncer -->
+<!-- * // TODO: regardless of whether the debouncer is inverting or not, there is so much resistance on the way to the LED that it will barely light up (microamps) -->
 
 
 ### Building the Real Circuit
@@ -135,7 +135,7 @@ Your circuit should look like this:
 
 ![debouncer-circuit-setup-02](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/debouncer-circuit-setup-02.jpg)
 
-// TODO: photo
+<!-- // TODO: photo -->
 
 If your circuit matches, power your Omega back on!
 
@@ -149,11 +149,11 @@ Let's go about writing our code, but first let's cover an important topic first.
 ```{r child = '../../shared/gpio-edge-detection.md'}
 ```
 
-// edge detection is when the system waits for an "edge" in the signal to perform an action. an edge being a place where the signal goes from high to low (falling edge), or low to high (rising edge) (have an illustration)
+<!-- // edge detection is when the system waits for an "edge" in the signal to perform an action. an edge being a place where the signal goes from high to low (falling edge), or low to high (rising edge) (have an illustration)
 
 // in terms of the action, we'll be defining a function to be executed when the trigger, in this case the edge in the signal is detected
 // relate this back to interrupts and interrupt service routines
-
+ -->
 
 #### The Code Itself
 

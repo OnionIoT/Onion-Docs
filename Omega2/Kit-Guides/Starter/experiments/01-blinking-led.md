@@ -42,18 +42,18 @@ Prepare the following components from your kit:
 * Breadboard
 * Jumper wires
 * Resistors
-    * 1x (// TODO: LED resistor)Ω <!-- LED resistor -->
+    * 1x 200Ω
 * Any LED color of your choice!
 
 #### Hooking up the Components
 
 OK here we go, let's put together our circuit! We're going to be connecting an LED's anode to a GPIO on the Omega2, and cathode to Ground through a current limiting resistor.
 
-// TODO: FRITZING: fritzing circuit diagram of the experiment
+<!-- // TODO: FRITZING: fritzing circuit diagram of the experiment -->
 
 1. Plug in the LED into the breadboard, make sure you plug the anode and cathode into different rows and that you know which is plugged where.
 2. Let's choose `GPIO0` on the Omega2 to drive our LED, so let's run a jumper wire to the row of the LED's anode.
-3. Now connect one end of a (// TODO: figure out resistance)kΩ resistor to the the cathode row, and the other end to an empty row.
+3. Now connect one end of a 200Ω resistor to the the cathode row, and the other end to an empty row.
 4. The final step is connecting a jumper wire to a Ground pin on the Omega2.
 
 > A note on components with and without **polarity**:
@@ -64,14 +64,14 @@ OK here we go, let's put together our circuit! We're going to be connecting an L
 
 
 The circuit diagram for our first experiment looks like this:
-// TODO: CIRCUIT DIAGRAM: circuit showing this experiment
+<!-- // TODO: CIRCUIT DIAGRAM: circuit showing this experiment -->
 
 
 ### Writing the Code
 
 Now we get to write the code that will make our circuit actually do something! That something will be blinking our LED!
 
-// TODO: rework this when
+<!-- // TODO: rework this when -->
 
 Let's make a new file `blink.py` to hold our code:
 ``` python
@@ -104,7 +104,7 @@ python blink.py
 
 Your LED should be blinking; it should turn on for half a second, and then turn off for half a second, repeating until you exit the program.
 
-// TODO: GIF: Showing this experiment with the LED blinking
+<!-- // TODO: GIF: Showing this experiment with the LED blinking -->
 
 > To exit a program like this one: press `Ctrl+C` (`Cmd+C` for Mac users)
 
@@ -116,8 +116,8 @@ While this is a small program, there are quite a few things going on, let's take
 
 The very first line in the code imports a Python source code module. In this case, the module was made by the Onion team for controlling the Omega's GPIOs. The module contains a class that implements functions for everything you can do with a GPIO on an Omega.
 
-// TODO: add a note about the time module
-
+<!-- // TODO: add a note about the time module
+ -->
 ##### Object Oriented Programming - Instantiating an Object
 
 Then, the very next thing we do is **instatiate** an object of the `OnionGpio` class from the `onionGpio` module we just included above. Make sure to note that we passed an argument to the **constructor** of the `OnionGpio` class, this argument defines which of the Omega's GPIOs we are going to be using, `GPIO0` in this case.

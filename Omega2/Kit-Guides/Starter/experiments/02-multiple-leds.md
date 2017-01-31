@@ -12,7 +12,7 @@ order: 2
 
 In this experiment, we're going to use what we learned in the first experiment and wire up a bunch of LEDs. Then we're gonna make some visual effects.
 
-// TODO: tidy the circuit building sections up according to style guide
+<!-- // TODO: tidy the circuit building sections up according to style guide -->
 
 ### Building the Circuit
 
@@ -39,7 +39,7 @@ We'll be building a circuit on your breadboard using the following components:
 * 6x LEDs
 * 7x Jumper Wires
 * Resistors
-  * 6x (// TODO: led resistor)Ω
+  * 6x 200Ω
 * Breadboard
 
 #### Hooking up the Components
@@ -48,16 +48,16 @@ While the individual LEDs will be connected in exactly the same way as in the fi
 
 Grab six LEDs and let's do the following for each one:
 1. Plug in the LED into the breadboard, making sure to plug the anode and cathode into different rows.
-2. Connect one end of a (// TODO: figure out resistance)kΩ resistor to the the cathode row, and the other end into the power rail marked `-`
+2. Connect one end of a 200Ω resistor to the the cathode row, and the other end into the power rail marked `-`
 
 Now that you have all six LEDs plugged in, let's connect a jumper wire from the `-` power rail on the breadboard to a Ground pin on the Omega{{#if Omega2}}2{{/if}}. Since the power rail is connected vertically, what we've done is **connect all of the LED cathodes to the Ground on the Omega using just one pin on the Expansion Dock!**
 
-// TODO: FRITZING: fritzing diagram of the experiment
+<!-- // TODO: FRITZING: fritzing diagram of the experiment -->
 
 To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Omega{{#if Omega2}}2{{/if}} using jumper wires. We'll be using GPIOs 0, 1, 2, 3, 18, and 19 to control our six LEDs. To make our lives easy when writing the code to control the circuit, wire the left-most LED to GPIO0, the next one to GPIO1, and so on, with the right-most LED connected to GPIO19.
 
 The circuit diagram for our first experiment looks like this:''
-// TODO: CIRCUIT DIAGRAM: circuit showing this experiment
+<!-- // TODO: CIRCUIT DIAGRAM: circuit showing this experiment -->
 
 Like previously mentioned, it's just six copies of our first experiment together.
 
@@ -117,7 +117,7 @@ python lineUp.py
 
 Your line-up of LEDs will be essentially chasing its tail: the left-most LED will turn on, and then the next one, and the next and so on. When all of them turn on, the left-most one will turn off, and the rest will follow suit.
 
-// TODO: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another
+<!-- // TODO: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another -->
 
 This will repeat until you exit the program.
 
