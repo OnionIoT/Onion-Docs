@@ -66,7 +66,7 @@ The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole me
 // TODO: IMAGE diagram of the buzzer+relay configuration
 1. Now the buzzer can be turned off and on via commands to the Relay Expansion. Next we'll connect the switch, the final result should look something like this:
 // TODO: IMAGE diagram of the switch configuration
-1. Grab a red or orange jumper and plug one end into the `2.5V` pin on the dock.
+1. Grab a red or orange jumper and plug one end into the `3.3V` pin on the dock.
 1. Plug the other end into the same row as the middle pin of the switch. We plugged it into row 6
 1. Next connect one of the two free pins on the switch to pin `0` on the dock using the last jumper wire.
 
