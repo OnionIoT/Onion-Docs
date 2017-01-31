@@ -25,6 +25,8 @@ For this circuit, we will connect one LED to each of the 16 channels (0-15) on t
 
 #### What You'll Need
 
+Grab the following from your kit:
+
 * 1x Omega plugged into Expansion Dock
 * 1x Breadboard
 * 1x PWM Expansion plugged into the Expansion Dock

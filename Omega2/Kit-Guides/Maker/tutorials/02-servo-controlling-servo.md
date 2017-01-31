@@ -8,8 +8,7 @@ order: 2
 
 ## Controlling Servos with the PWM Expansion {#controlling-servos-with-the-pwm-expansion}
 
-// TODO: fix this intro to actually explain that we're going to be using servos
-In this tutorial we will learn how to control the channels on our servo expansion using python. But first, a brief introduction to servo motors is required
+In this tutorial we will learn how to control servo motors using the PWM Expansion with Python. But first, let's briefly introduce servo motors.
 
 <!-- servo -->
 ```{r child = '../../shared/servos.md'}
@@ -21,13 +20,17 @@ This circuit is relatively simple, as the motor and the PWM Expansion are both p
 
 #### What You'll Need
 
-* 1x Servo Motor (Standard size)
-* 1x PWM Expansion
+Grab the following from your kit:
 
+* 1x Omega plugged into Expansion Dock
+* Servo Motors
+    * 1x Standard Size
+    * 1x Micro Size
+* 1x PWM Expansion
 
 #### Hooking up the Components
 
-// TODO: update this whole article to use both of the included servos
+<!-- // TODO: update this whole article to use both of the included servos -->
 
 <!-- // - talk about how to connect a servo to the pwm expansion
 // - make sure to mention that an external power supply is required for more servos and larger loads
@@ -35,12 +38,13 @@ This circuit is relatively simple, as the motor and the PWM Expansion are both p
 //  * should isolate that text from the pwm hw article into markdown files that can be included here -->
 
 1. Plug the PWM Expansion into your Expansion Dock.
-1. Plug the power cord of the servo motor into the `S0` channel of the PWM Expansion
+1. Plug the power cord of the Standard Size servo motor into the `S0` channel of the PWM Expansion
 	* make sure the white white wire from the motor is connected to the pin with the white base on the Expansion!
+1. Repeat the step above to connect the Micro Servo into channel `S1`.
 
->**Note 1:** If you're driving a large load on your servo, you should provide an external power supply to the PWM Expansion to avoid drawing too much current through the Omega!
+**Note 1:** If you're driving a large load on your servo, you should provide an external power supply to the PWM Expansion to avoid drawing too much current through the Omega!
 
->**Note 2/follow up:** If you own an Omega2 or Omega2+ and intend to use the PWM expansion with a DC power supply, please take note there is likely to be a short circuit between the barrel jack and the metal case of the Omega itself. We recommend inserting a thin plastic sheet between the expansion and the omega to break this short. For more information, see the [PWM Expansion](#pwm-expansion) article.
+**Note 2/follow up:** If you own an Omega2 or Omega2+ and intend to use the PWM expansion with a DC power supply, please take note there is likely to be a short circuit between the barrel jack and the metal case of the Omega itself. We recommend inserting a thin plastic sheet between the expansion and the omega to break this short. For more information, see the [PWM Expansion](#pwm-expansion) article.
 
 
 #### Writing the Code
@@ -53,21 +57,11 @@ This circuit is relatively simple, as the motor and the PWM Expansion are both p
 // * the program should be something along the lines of setting the servo to 0˚, 45˚, 90˚, 135˚, 180˚, and then back down by 45˚ steps, have a noticeable but not annoyingly long delay between the steps
 //  * have it run in an infinite loop -->
 
-Before running the code you will need to have python and the OmegaExpansion libraries installed. You can install with the following commands
-
-// TODO: remove all opkg commands
-
-```
-opkg update
-opkg install python-light
-opkg install pyPwmExp
-```
-
 // TODO: look at code from https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py and implement it here
 
 // TODO: implement this servo class in a separate file, include the file from the previous exp
 
-Run the following python code and see what happens:
+Run the following Python code and see what happens:
 ```
 from OmegaExpansion import pwmExp
 import math
@@ -140,7 +134,7 @@ pwm-exp -s
 ### A Closer Look at the Code
 
 <!--// this code introduced
-// * doing math in python
+// * doing math in Python
 // * brought back the idea of using a class within a class (link back to the first time this was introduced in the 7seg article)
 // * brought back the infinite loop-->
 
@@ -148,11 +142,11 @@ pwm-exp -s
 
 For this tutorial:
 * infinite loops - a way to repeat actions over and over again
-* python math - integers, floats, and conversions
+* Python math - integers, floats, and conversions
 * timing - simple delay
 
 #### Infinite Loops
-As you may know by now, infinite loops in python (and many other languages) can be simply implemented with a loop that always evaluates true:
+As you may know by now, infinite loops in Python (and many other languages) can be simply implemented with a loop that always evaluates true:
 ```
 while(True):
 	#Code To Be Repeated Forever Goes Here
@@ -165,7 +159,7 @@ In this example, the loop does a simple progression of commands, but the concept
 
 #### Math in Python
 
-In this code example, as well as others, you will notice that integer numbers including a decimal place, regardless if it is necessary. The reason is that python will interpret the number as a floating point number and not an integer type. The former allows for decimal point precision in calculation unlike the latter. Of course occasions will arise when integer math is more preferable - but we'll leave that as an excercise for the reader.
+In this code example, as well as others, you will notice that integer numbers including a decimal place, regardless if it is necessary. The reason is that Python will interpret the number as a floating point number and not an integer type. The former allows for decimal point precision in calculation unlike the latter. Of course occasions will arise when integer math is more preferable - but we'll leave that as an excercise for the reader.
 
 To see the difference for yourself, run the following code:
 
@@ -178,7 +172,7 @@ print 4.0/3
 
 #### Timing
 
-The time python library is used here to provide a way to delay the signals transmitted to the servo. Should the `time.sleep()` functions be removed, the code would be executed as fast as the Omega can possibly handle, which more or less translates to 'much faster than the servo motor can handle' - the Omega2 runs at over 500MHz, while the servo recieves commands from 50~1kHz, that's over 50,000 times faster than the servo can react! So we use the `time.sleep()` function to give the command some time to take effect on the servo.
+The time Python library is used here to provide a way to delay the signals transmitted to the servo. Should the `time.sleep()` functions be removed, the code would be executed as fast as the Omega can possibly handle, which more or less translates to 'much faster than the servo motor can handle' - the Omega2 runs at over 500MHz, while the servo recieves commands from 50~1kHz, that's over 50,000 times faster than the servo can react! So we use the `time.sleep()` function to give the command some time to take effect on the servo.
 
 
 ### Moving Beyond
