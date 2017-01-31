@@ -39,37 +39,36 @@ For this circuit, we will connect one LED to each of the 16 channels (0-15) on t
 
 #### Hooking up the Components
 
-// TODO: adjust how the LEDs are wired up: servo exp -> breadboard w/ M-F jumper -> LED -> resistor -> GND
+<!-- // TODO: adjust how the LEDs are wired up: servo exp -> breadboard w/ M-F jumper -> LED -> resistor -> GND -->
 
 Each LED will be connected to the board in the same way, so we'll cover wiring a single LED here the n you can repeat this process for all 16 and you should be good to go.
 
-1. Find the anode of the LED and the signal pin of any channel, we started at chanel 0 (`S0` on the expansion board) to avoid confusion.
-	* The signal pin is the only pin out of the three with a white base, for channel `S0`, it should be clearly labelled as `SIGNAL` to the left side, we'll call this the `SIG` pin in the future
-1. Stake out three rows in your breadboard - we'll used these to connect the LED and resistor together, and lead them to the PWM Expansion
-1. Stick the LED into two rows out of the three, we started at row 1 and 2 on the A-E side. We chose to stick the anode into the lower numbered row for consistency.
-1. Connect the anode row (row 1 for our first LED) to the `SIG` pin with a male-to-female jumper wire.
-	* Connect the male end to any column in row 1 of your breadboard.
-	* Connect the female end to the `SIG` pin of channel 0 (`S0`) of the PWM expansion.
-1. Take a resistor and bend both pins so it forms a really square 'U' shape. Plug the two ends one into row 2, and one into row 3. Your circuit should look something like this:
-// TODO: IMAGE picture and/or circuit diagram
-1. Take one male-to-male and one female-to-female jumper wire, and connect them to form one long male-to-female jumper.
-1. Connect the franken-jumper between row 3 and the ground pin of `S0` on the PWM expansion (we'll call this GND in the future). On the board, it is the pin labelled `GND`, and the one furthest from the `SIG` pin
+1. Find the anode of the LED and the signal pin of any channel. We'll start at channel 0 (`S0` on the PWM Expansion).
+	* The signal pin is marked by a white plastic base. For channel `S0`, it should be clearly labelled as `SIGNAL` to the left side. We'll call this the `SIG` pin.
+1. Connect the `SIG` pin to a pin in column `a` in one of the rows on the left side of the breadboard using a M-F jumper wire. (eg. `1a`)
+    * We'll start at row 1 for the first one, and so on.
+1. Stick the cathode of the LED into the same row as the `SIG` jumper wire (eg. `1e`), and the anode into the pin on the other side of the middle gap in the same row (eg. `1f`).
+1. Take a 200 Ohm resistor and connect it to the LED's anode and to the `-` column on the right side.
+    * We'll call the `-` column the `GND` connection.
+1. Your circuit should now look like this<!-- // TODO: IMAGE picture and/or circuit diagram -->
+
+After you've wired up all the LEDs on the board, connect the breadboard's `GND` column to one of the `GND` pins on the PWM Expansion using a M-F jumper wire.
 
 Now we're all set!
 
 Here's a photo of our finished circuit:
-// TODO: IMAGE photo of finished circuit
+<!-- // TODO: IMAGE photo of finished circuit -->
 
-**Note**: The reason we can connect the LED to the `SIG` pin safely here is because the `SIG` pin is providing 5V from the board. If you decided to connect a DC supply to the barrel jack that supplies more than 5V, you'd need to change the resistor value to match the DC supply voltage.
+**Note**: The reason we can connect the LED to the `SIG` pin safely here is because the `SIG` pin is providing 5V from the board. **If you decided to connect a DC supply to the barrel jack that supplies more than 5V, you'd need to change the resistor value to match the DC supply voltage.**
 <!-- // - use M-F jumper wires to connect from the servo expansion
 // - make sure to use 5V from the pwm expansion channel header -->
-
 
 ### Writing the Code
 
 Let's write a class to abstract methods for a PWM pin on the Omega. Create a file called `omegaPwm.py` and paste the following code in it:
 
 ``` python
+from OmegaExpansion import pwmExp
 class OmegaPwm:
 	"""Base class for PWM signal"""
 
@@ -114,8 +113,7 @@ class OmegaPwm:
 Now let's write the script for the experiment. Create a file called `pwmLed.py` and throw the following code in it. Then run it and keep an eye on your LEDs:
 
 ``` python
-from OmegaExpansion import pwmExp
-import omegaPwm
+from omegaPwm import OmegaPwm
 import math
 import time
 
@@ -134,7 +132,7 @@ def main():
 	# Construct pwmLED object array
 	ledObjectArray = []
 	for i in range(16):
-		obj = omegaPwm(i, SERVO_FREQUENCY)
+		obj = OmegaPwm(i, SERVO_FREQUENCY)
 		ledObjectArray.append(obj)
 
 	phaseIncrement = (2 * math.pi)/16
@@ -182,7 +180,7 @@ In our case, we are making a class for a PWM channel. This class represents a si
 
 Python's functionality can be expaned with modules and packages - like extra lego sets allowing you to build more complex things. Here we use the PWM module (pyPwmExp) to control the PWM expansion. The module comes with a set of functions to control and modify the PWM expansion channels and properties. By running a script to control the expansion, you don't need to manually need to enter or trigger any commands through the terminal. You can simply leave it running, and it would automatically do its job!
 
-You can find a detailed guide to this module in the [pyPwmExp library](//TODO: LINK TO PWM LIBRARY IN PYTHON DOC) reference in the Onion docs.
+You can find a detailed guide to this module in the [pyPwmExp library](#pwm-expansion-python-module) reference in the Onion docs.
 
 Specifically, we use the following functions:
 
@@ -193,12 +191,12 @@ Specifically, we use the following functions:
 
 ##### Controlling the PWM Outputs
 
-In the code, you'll notice the servo frequency set to `1000Hz`, this is to ensure the LED doesn't flicker no matter what duty cycle we set the channel to output. To accomplish this, we call `setFrequency()` and give it `SERVO_FREQUENCY` as the argument. For each channel, we can change the duty cycle on the fly by calling `setupDriver()` and sending it the channel and duty cycle number (recall this is between 0% and 100%), by changing the duty cycle, we change the average voltage sent to the LED connected to the channel - this is how the LEDs dim and brighten.
-
+In the code, you'll notice the servo frequency was set to 1000 Hz. This is to ensure the LED doesn't flicker no matter what duty cycle we set the channel to output. This is done in the class' constructor function by passing `SERVO_FREQUENCY` as the 2nd argument. For each channel, we can change the duty cycle on the fly by calling `setupDriver()` and sending it the channel and duty cycle number (recall that this is between 0% and 100%). By changing the duty cycle, we change the average voltage sent to the LED connected to the channel - this is how the LEDs dim and brighten.
 
 ##### Initializing the PWM Expansion
 
 If you look at the constructor (the `__init__` function), you will notice the line:
+
 ```
 pwmExp.driverInit()
 ```
