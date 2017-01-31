@@ -25,17 +25,15 @@ For this circuit, we will connect one LED to each of the 16 channels (0-15) on t
 
 #### What You'll Need
 
+* 1x Omega plugged into Expansion Dock
 * 1x Breadboard
-* 1x PWM Expansion
+* 1x PWM Expansion plugged into the Expansion Dock
 * LEDs
 	* 16x any color
-* Jumper Wires		// TODO: adjust these jumper wire numbers, remove the F-F wires
-	* 16x M-M
+* Jumper Wires
 	* 16x M-F
-	* 16x F-F
 * Resistors
 	* 16x 200 Ohm
-
 
 #### Hooking up the Components
 
@@ -200,4 +198,5 @@ If you look at the constructor (the `__init__` function), you will notice the li
 ```
 pwmExp.driverInit()
 ```
+
 This line initializes the PWM expansion for usage. This starts the oscillator on the PWM expansion which actually produces the signals sent through the pins.
