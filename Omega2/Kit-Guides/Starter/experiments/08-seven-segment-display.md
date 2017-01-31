@@ -10,16 +10,13 @@ order: 8
 
 We've just learned about shift registers, now let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world.
 
-
 <!-- seven segment -->
 ```{r child = '../../shared/seven-segment.md'}
 ```
 
-
 ### Building the Circuit
 
 Using the shift register and a few additional GPIO from the Omega, we will control what's displayed on all four digits of the 7-segment display.
-
 
 #### Hooking up the Components
 

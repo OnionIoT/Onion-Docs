@@ -38,28 +38,191 @@ In this experiment, we will be building on the previous experiment by writing to
 
 // some i2c devices will require pull-up resistors on one, or both of SCL and SDA
 // [experiment with the i2c screen and see if it needs the resistors]
-// Gabe: the community member's tutorial has the screen hooked straight to the GPIOs, no pullups, so I'll try that
+// Gabe: the community member's tutorial has the screen hooked straight to the GPIOs, no pullups, but requires 5V power
 
 ## Writing the Code
 
-// have a script that:
+<!-- // have a script that:
 //  * reads the temperature data
 //  * writes the time and temperature to the display once a minute
-//    * use the onion i2c module to write to the display
+//    * use the onion i2c module to write to the display -->
 
-First, let's create 
+For this experiment, we'll be using our Onion I2C Python library which conveniently exposes the Omega's I2C functionality. If you're curious, you can see how it works in our 
+
+First, let's create a file containing a class that exposes the Omega's I2C functionality. Create a file called `i2c_lib.py` and paste the following code:
+
+``` python
+from time import *
+from OmegaExpansion import onionI2C
+
+class i2c_device:
+    def __init__(self, addr, port=1):
+        self.addr = addr
+        self.i2c = onionI2C.OnionI2C(port)
+
+# Write a single command
+    def write_cmd(self, cmd):
+        self.i2c.write(self.addr, [cmd])
+        sleep(0.0001)
+
+# Write a command and argument
+    def write_cmd_arg(self, cmd, data):
+        self.i2c.writeByte(self.addr, cmd, data)
+        sleep(0.0001)
+
+# Write a block of data
+    def write_block_data(self, cmd, data):
+        self.i2c.writeBytes(self.addr, cmd, [data])
+        sleep(0.0001)
+```
+
+Next, let's create a file that has all the low level code needed to drive the LCD display. Create a file called `lcdDriver.py` and paste the following in it:
+
+``` python
+import i2c_lib
+from time import *
+
+# commands
+LCD_CLEARDISPLAY = 0x01
+LCD_RETURNHOME = 0x02
+LCD_ENTRYMODESET = 0x04
+LCD_DISPLAYCONTROL = 0x08
+LCD_CURSORSHIFT = 0x10
+LCD_FUNCTIONSET = 0x20
+LCD_SETCGRAMADDR = 0x40
+LCD_SETDDRAMADDR = 0x80
+
+# flags for display entry mode
+LCD_ENTRYRIGHT = 0x00
+LCD_ENTRYLEFT = 0x02
+LCD_ENTRYSHIFTINCREMENT = 0x01
+LCD_ENTRYSHIFTDECREMENT = 0x00
+
+# flags for display on/off control
+LCD_DISPLAYON = 0x04
+LCD_DISPLAYOFF = 0x00
+LCD_CURSORON = 0x02
+LCD_CURSOROFF = 0x00
+LCD_BLINKON = 0x01
+LCD_BLINKOFF = 0x00
+
+# flags for display/cursor shift
+LCD_DISPLAYMOVE = 0x08
+LCD_CURSORMOVE = 0x00
+LCD_MOVERIGHT = 0x04
+LCD_MOVELEFT = 0x00
+
+# flags for function set
+LCD_8BITMODE = 0x10
+LCD_4BITMODE = 0x00
+LCD_2LINE = 0x08
+LCD_1LINE = 0x00
+LCD_5x10DOTS = 0x04
+LCD_5x8DOTS = 0x00
+
+# flags for backlight control
+LCD_BACKLIGHT = 0x08
+LCD_NOBACKLIGHT = 0x00
+
+En = 0b00000100 # Enable bit
+Rw = 0b00000010 # Read/Write bit
+Rs = 0b00000001 # Register select bit
+
+class lcd:
+    #initializes objects and lcd
+    def __init__(self,address):
+        self.address = address
+        self.lcdbacklight = LCD_BACKLIGHT #default status
+        self.line1= "";
+        self.line2= "";
+        self.line3= "";
+        self.line4= "";
+        
+        self.lcd_device = i2c_lib.i2c_device(self.address)
+
+        self.lcd_write(0x03)
+        self.lcd_write(0x03)
+        self.lcd_write(0x03)
+        self.lcd_write(0x02)
+
+        self.lcd_write(LCD_FUNCTIONSET | LCD_2LINE | LCD_5x8DOTS | LCD_4BITMODE)
+        self.lcd_write(LCD_DISPLAYCONTROL | LCD_DISPLAYON)
+        self.lcd_write(LCD_CLEARDISPLAY)
+        self.lcd_write(LCD_ENTRYMODESET | LCD_ENTRYLEFT)
+        sleep(0.2)
+
+    # clocks EN to latch command
+    def lcd_strobe(self, data):
+        self.lcd_device.write_cmd(data | En | self.lcdbacklight)
+        sleep(.0005)
+        self.lcd_device.write_cmd(((data & ~ En) | self.lcdbacklight))
+        sleep(.0001)
+
+    def lcd_write_four_bits(self, data):
+        self.lcd_device.write_cmd(data | self.lcdbacklight)
+        self.lcd_strobe(data)
+
+    # write a command to lcd
+    def lcd_write(self, cmd, mode=0):
+        self.lcd_write_four_bits(mode | (cmd & 0xF0))
+        self.lcd_write_four_bits(mode | ((cmd << 4) & 0xF0))
+
+    # write string display
+    def lcd_display_string(self, string, line):
+        if line == 1:
+            self.line1 = string;
+            self.lcd_write(0x80)
+        if line == 2:
+            self.line2 = string;
+            self.lcd_write(0xC0)
+        if line == 3:
+            self.line1 = string;
+            self.lcd_write(0x94)
+        if line == 4:
+            self.line4 = string;
+            self.lcd_write(0xD4)
+
+        for char in string:
+            self.lcd_write(ord(char), Rs)
+
+    # clear lcd and set to home
+    def lcd_clear(self):
+        self.lcd_write(LCD_CLEARDISPLAY)
+        self.lcd_write(LCD_RETURNHOME)
+      
+    def refresh(self):
+        self.lcd_display_string(self.line1,1)
+        self.lcd_display_string(self.line2,2)
+        self.lcd_display_string(self.line3,3)
+        self.lcd_display_string(self.line4,4)
+    
+    #def backlight
+    def backlightOn(self):
+        self.lcdbacklight = LCD_BACKLIGHT
+        self.refresh()
+       
+    def backlightOff(self):
+        self.lcdbacklight = LCD_NOBACKLIGHT
+        self.refresh()
+```
+
+
 
 Let's create a file called `temperatureLCD.py` in `/root`. Paste the code below in it:
 
 ``` python
 
-# default address of i2c backpack with no jumpers is 0x27: http://store.alhekma4u.com/content/Displays/I2C%20LCD%20interface.pdf
+lcdAddress = 0x3f                                           # default address of i2c backpack is 0x3f by default
+
+lcd = lcddriver.lcd(lcdAddress)                             # instantiate lcd object
+lcd.backlightOn()                                           # turn backlight on
 
 # instantiate one wire temperature sensor object
 
 while 1:
     # read temp data
     # write to LCD screen
+    
     time.sleep(pollingInterval)
 ```
 
@@ -70,6 +233,8 @@ while 1:
 ### A Closer Look at the Code
 
 // intro to the onion i2c module
+
+Here we've introduced 
 
 #### The Onion I2C Module
 
