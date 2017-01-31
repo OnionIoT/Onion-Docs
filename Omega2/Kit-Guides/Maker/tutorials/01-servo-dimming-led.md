@@ -8,6 +8,8 @@ order: 1
 
 ## Dimming LEDs with the PWM Expansion {#dimming-leds-with-pwm-expansion}
 
+// TODO: need to capitalize Python EVERYWHERE
+
 In this tutorial, we will be learning how to use the PWM Expansion with python and animating 16 LEDs along the way. We'll be wiring the LEDs to the PWM expansion through the breadboard, then we'll write some code to light up the LEDs for a mini light show.
 
 
@@ -27,7 +29,7 @@ For this circuit, we will connect one LED to each of the 16 channels (0-15) on t
 * 1x PWM Expansion
 * LEDs
 	* 16x any color
-* Jumper Wires
+* Jumper Wires		// TODO: adjust these jumper wire numbers, remove the F-F wires
 	* 16x M-M
 	* 16x M-F
 	* 16x F-F
@@ -37,7 +39,9 @@ For this circuit, we will connect one LED to each of the 16 channels (0-15) on t
 
 #### Hooking up the Components
 
-Each LED will be connected to the board in the same way, so we'll cover wiring a single LED here the n you can repeat this proccess for all 16 and you should be good to go.
+// TODO: adjust how the LEDs are wired up: servo exp -> breadboard w/ M-F jumper -> LED -> resistor -> GND
+
+Each LED will be connected to the board in the same way, so we'll cover wiring a single LED here the n you can repeat this process for all 16 and you should be good to go.
 
 1. Find the anode of the LED and the signal pin of any channel, we started at chanel 0 (`S0` on the expansion board) to avoid confusion.
 	* The signal pin is the only pin out of the three with a white base, for channel `S0`, it should be clearly labelled as `SIGNAL` to the left side, we'll call this the `SIG` pin in the future
@@ -65,12 +69,17 @@ Here's a photo of our finished circuit:
 
 Prior to running the code you will need to have python-light and the OmegaExpansion libraries installed. You can install with the following commands
 
+// TODO: remove all opkg commands
 ```
 opkg update
 opkg install python-light
 opkg install pyPwmExp
 ```
-Run the following python code and observe your LEDS.
+
+// TODO: look at code from https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py and implement it here
+// TODO: implement this omegaPwm class in a separate file
+
+Run the following python code and keep an eye on your LEDs:
 ```
 from OmegaExpansion import pwmExp
 import math

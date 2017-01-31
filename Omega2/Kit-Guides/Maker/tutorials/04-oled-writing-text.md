@@ -7,12 +7,12 @@ order: 4
 ---
 ## Writing Text to the OLED Display {#writing-text-to-oled-display}
 
-In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's python library.
+In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python library.
 
 
 ### The OLED Display
 // TODO: IMAGE upload the imgur pngs to github!
-The oled display has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages.
+The OLED Expansion has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages.
 ![display](http://i.imgur.com/4JsaahS.png)
 
 Each page consists of 8 horizontal pixel rows. When a byte is written to the display, the Least Significant Byte (LSB) corresponds to the top-most pixel of the page in the current column. The Most Significant Byte (MSB) corresponds to the bottom-most pixel of the page in the current column.
@@ -35,6 +35,7 @@ This tutorial does not require you to wire anything in, as the OLED Expansion is
 
 Prior to running the code you will need to have python and the oledExp libraries installed. In case you don't have them, you can get them by running the folllowing commands:
 
+// TODO: remove opkg commands
 ```
 opkg update
 opkg install python-light

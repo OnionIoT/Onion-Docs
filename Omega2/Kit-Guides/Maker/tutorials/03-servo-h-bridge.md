@@ -99,6 +99,8 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 //  * one switch: controls the direction (on is left, and off is right, or whatever makes sense)
 // duty cycle: 0 -> 30 -> 40 -> 50
 
+// TODO: implement this h-bridge class in a separate file, include any required files from the previous experiments
+
 
 #### What to Expect
 

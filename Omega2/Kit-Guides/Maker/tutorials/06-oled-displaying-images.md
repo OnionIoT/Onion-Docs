@@ -34,6 +34,7 @@ opkg update
 opkg install python-light
 opkg install pyOledExp
 ```
+// TODO: remove opkg commands
 
 If you'd like to play with the console commands to test things out, the `oled-exp` package should be installed as well.
 
@@ -88,6 +89,8 @@ def main():
 
     # creating a buffer
     b = buffer()
+
+    // TODO: create a function for user input, replace all of these repeated While (True) code blocks
 
     while (True):
         # Obtain the orientation of the line
