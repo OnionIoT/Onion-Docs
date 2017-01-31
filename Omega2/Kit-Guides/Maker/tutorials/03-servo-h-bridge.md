@@ -32,22 +32,22 @@ The way a PWM signal operates a motor is by switching the power supply on and of
 
 Before we start building, we recommend familiarizing yourself with how the H-bridge chip in our kit works. The chip contains two H-bridges, allowing control of two sources at once. For this tutorial, we'll be using one of them. Specifically, the pair of inputs and outputs (`1A`, `2A` and `1Y`, `2Y`)on the left side of the chip.
 
-// TODO: IMAGE diagram of the SN754410
+<!-- // TODO: IMAGE diagram of the SN754410 -->
 
 The way we'll be controlling this specific H-bridge is through three pins - `1A`, `2A` and `1,2EN`. `1A` controls the polarity of `1Y`, `2A` controls the polarity to `2Y`. To further explain, at a very high level, this H-bridge chip 'assigns' the outputs (the pins labelled `Y`) according to the voltage (or signal) fed to the inputs (the pins labelled `A`). For example, sending a a 'high' signal to `1A` will lead to the same signal being sent out `1Y` the difference is the signal sent *out* uses the voltage supplied to pin `8`. Voltage acts kind of like a waterfall - it sends the current flowing from the voltage source (top) to the ground (bottom), so if the signal to `1A` is high, that means the H-bridge switches `1Y` to the top of the fall, if low is sent instead, the H-bridge switches `1Y` to the bottom of the falls. A waterfall only falls if there's a top and a bottom, so if both `1A` and `2A` see the same signal (both high, or both low) then nothing moves and the motor won't turn. If the top and the bottom of the 'falls' - or if `2A` gets sent high, and `1A` low - are swapped, the logically the the movement flips and the motor changes directions!
 
 The `1,2EN` pin is a little bit easier to understand. It simply turns the H-bridge on or off. If `1,2EN` sees a 'high', then everything we've covered above happens as normal, if it's off, then there won't be anything sent to the outputs no matter what `1A` and `2A` are set to.
 
->**Note**: As can be seen above, the chip is roughly mirrored. The top right and bottom left pins are the power supply for the output (pin `8`) and the chip (pin `16`) respectively, the difference being the voltage supplied for the output can be up to 36V, while the voltage supplied to the chip is recommended to be around 5V for proper operation. This means if you want to power a large motor, and you have an external power supply, you should power the motor with the external supply and control it with the H-bridge without any fuss, you simply need to power the chip (pin `16`) and the H-bridge output (pin `8`) with the correct supplies
+**Note**: As can be seen above, the chip is roughly mirrored. The top right and bottom left pins are the power supply for the output (pin `8`) and the chip (pin `16`) respectively, the difference being the voltage supplied for the output can be up to 36V, while the voltage supplied to the chip is recommended to be around 5V for proper operation. This means if you want to power a large motor, and you have an external power supply, you should power the motor with the external supply and control it with the H-bridge without any fuss, you simply need to power the chip (pin `16`) and the H-bridge output (pin `8`) with the correct supplies.
 
 #### What You'll Need
 
 * 1x PWM Expansion
 * 1x DC Motor
-* 1x H-bridge (SN754410)
+* 1x H-bridge (has "SN754410" on top of the chip)
 * 1x Breadboard
 * 1x Something solid to fix the motor down on
-* 1x strip of tape to see the motor spinning more clearly
+* Some household clear or electrical tape
 * Jumper wires
 	* 3x M-F
 	* 10x M-M
@@ -61,19 +61,18 @@ The `1,2EN` pin is a little bit easier to understand. It simply turns the H-brid
 // make sure to drive home the point that the H-bridge can be burnt if improperly wired
 //  make sure the pwm expansion is not producing any signals (or they're all at 0%) while you're wiring it -->
 
-
 When working with ICs, setting up the breadboard's rails can be very helpful in reducing clutter. For this tutorial, we'll do this first to reduce the wires needed.
 
-1. Connect the `-` rails on either side of the board together on one end (usually the end away from most of the wiring) with a M-M jumper, we'll call this the ground (or GND) rail.
-1. Do the same with the `+` rails, we'll call these Vcc rails in this tutorial.
-// TODO: IMAGE of connected rails on a breadboard
+1. Connect the `-` rails on either side of the board together on one end (usually the end away from most of the wiring) with a M-M jumper, we'll call this the `GND` rail.
+1. Do the same with the `+` rails, we'll call these `Vcc` rails in this tutorial.
+<!-- // TODO: IMAGE of connected rails on a breadboard -->
 1. Now that the rails are connected, we'll plug in two M-M jumpers to the ground and Vcc rails - we recommend using and reserving red wires for Vcc and black for ground to make it easier to debug.
-	* Leave the other ends dangling for now - these will go into the power output of the expansion later
+	* Leave the other ends dangling for now - these will go into the power output of the Expansion later
 	* Power is usually wired in last to keep your chips and components safe from accidental shorts when you're wiring.
 1. Grab your H-bridge, pick a location on your breadboard and plug the H-bridge across the channel in the middle of your breadboard. It should be setting across with one side in column E and the other in column F. We picked rows 5 to 12 in our breadboard.
-// TODO: IMAGE of H-bridge across channel with pins labelled
-1. Take note of where your pins are - look for the half circle denoting the 'top' of the H-bridge to orient it correctly.
-	* **Note**: This is super important, because the H-bridge could quickly fry itself if it's wired incorrectly!
+<!-- // TODO: IMAGE of H-bridge across channel with pins labelled -->
+1. Take note of where your pins are - look for the little half circle cutout on the chip denoting the 'top' of the H-bridge to orient it correctly.
+	* **Note: This is super important, you can quickly fry the H-bridge if it's not wired correctly!**
 1. Wire pins `4`, `5`, `12`, and `13` to the ground rail on their respective sides using four M-M jumpers.
 1. Using the three M-F jumpers,
 	* Connect the row that pin `1` (labelled as `1,2EN`) on the IC is plugged into (row 5 on our board) to channel `S0` on the PWM expansion.
@@ -100,6 +99,87 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 // duty cycle: 0 -> 30 -> 40 -> 50
 
 // TODO: implement this h-bridge class in a separate file, include any required files from the previous experiments
+
+Let's add a class blueprint for a DC motor controlled by an H-bridge to our motors file we made in the previous tutorial. Open the `motors.py` file and add this snippet of code to the top:
+
+``` python
+from onionGpio import OnionGpio
+```
+
+Then add the H-bridge motor class to the bottom:
+
+``` python
+class hBridgeMotor:
+	"""Class that two digital signals and a pwm signal to control an h-bridge"""
+
+	def __init__(self, pwmChannel, fwdChannel, revChannel):
+		# note the channels
+		self.pwmChannel 	= pwmChannel
+		self.fwdChannel		= fwdChannel
+		self.revChannel 	= revChannel
+
+		# setup the objects
+		self.pwmDriver 		= OmegaPwm(self.pwmChannel)
+		self.pwmDriver.setDutyCycle(0)
+		self.fwdDriver 		= OnionGpio(fwdChannel)
+		self.fwdDriver.setOutputDirection(0)
+		self.revDriver 		= OnionGpio(revChannel)
+		self.revDriver.setOutputDirection(0)
+
+		# setup the limitations
+		self.minDuty 		= 0
+		self.maxDuty		= 100
+
+	def setupMinDuty(self, duty):
+		"""Set the minimum allowed duty cycle for pwm"""
+		self.minDuty 		= duty
+
+	def setupMaxDuty(self, duty):
+		"""Set the maximum allowed duty cycle for pwm"""
+		self.maxDuty 		= duty
+
+	def reset(self):
+		"""Set the PWM to 0%, disable both h-bridge controls"""
+		ret 	=  self.pwmDriver.setDutyCycle(0)
+		ret 	|= self.fwdDriver.setOutputDirection(0)
+		ret 	|= self.revDriver.setOutputDirection(0)
+
+		return ret
+
+	def spin(self, direction, duty):
+		"""Set the PWM to the specified duty, and in the specified direction"""
+		ret 	= 0
+
+		# 0 - forward, 1 - reverse
+		if (direction == H_BRIDGE_MOTOR_FORWARD):
+			self.revDriver.setOutputDirection(0)
+			self.fwdDriver.setOutputDirection(1)
+		elif (direction == H_BRIDGE_MOTOR_REVERSE):
+			self.fwdDriver.setOutputDirection(0)
+			self.revDriver.setOutputDirection(1)
+		else:
+			ret 	= -1
+
+		if (ret == 0):
+			# check against the minimum and maximium pwm
+			if duty < self.minDuty:
+				duty 	= self.minDuty
+			elif duty > self.maxDuty:
+				duty 	= self.maxDuty
+		
+			# program the duty cycle
+			ret 	= self.pwmDriver.setDutyCycle(duty)
+		return ret
+
+	def spinForward(self, duty):
+		ret 	= self.drive(H_BRIDGE_MOTOR_FORWARD, duty)
+		return ret
+
+	def spinReverse(self, duty):
+		ret 	= self.drive(H_BRIDGE_MOTOR_REVERSE, duty)
+		return ret
+
+```
 
 
 #### What to Expect

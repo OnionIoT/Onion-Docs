@@ -69,6 +69,7 @@ Let's write a class to abstract methods for a PWM pin on the Omega. Create a fil
 
 ``` python
 from OmegaExpansion import pwmExp
+
 class OmegaPwm:
 	"""Base class for PWM signal"""
 

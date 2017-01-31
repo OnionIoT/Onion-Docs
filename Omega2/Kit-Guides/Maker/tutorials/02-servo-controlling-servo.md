@@ -44,8 +44,7 @@ Grab the following from your kit:
 
 **Note 1:** If you're driving a large load on your servo, you should provide an external power supply to the PWM Expansion to avoid drawing too much current through the Omega!
 
-**Note 2/follow up:** If you own an Omega2 or Omega2+ and intend to use the PWM expansion with a DC power supply, please take note there is likely to be a short circuit between the barrel jack and the metal case of the Omega itself. We recommend inserting a thin plastic sheet between the expansion and the omega to break this short. For more information, see the [PWM Expansion](#pwm-expansion) article.
-
+**Note 2/follow up:** When the Servo Expansion is plugged in as the bottom of the Expansion stack, the pins on the underside of the board may be short circuited by contact with the USB receptacle directly underneath when pressure is applied to the top of the Expansion. We recommend inserting a thin plastic sheet between the expansion and the omega to break this short. For more information, see the [PWM Expansion](#pwm-expansion) article.
 
 #### Writing the Code
 
@@ -57,44 +56,77 @@ Grab the following from your kit:
 // * the program should be something along the lines of setting the servo to 0˚, 45˚, 90˚, 135˚, 180˚, and then back down by 45˚ steps, have a noticeable but not annoyingly long delay between the steps
 //  * have it run in an infinite loop -->
 
-// TODO: look at code from https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py and implement it here
+<!-- // TODO: look at code from https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py and implement it here
 
-// TODO: implement this servo class in a separate file, include the file from the previous exp
+// TODO: implement this servo class in a separate file, include the file from the previous exp -->
+
+Let's write another class to represent a servo motor based on the class we wrote in the first experiment. Create a file called `motors.py` and paste the following code in it:
+
+``` python
+from omegaPwm import OmegaPwm
+
+# Servo motor
+class Servo:
+	"""Class that uses PWM signals to drive a servo"""
+
+	def __init__(self, channel, minPulse=1000, maxPulse=2000):
+		# initialize a pwm channel
+		self.channel 	= channel
+        self.frequency	= 50
+		self.pwmDriver 	= OmegaPwm(self.channel, self.frequency)
+
+		# note the min and max pulses (in microseconds)
+		self.minPulse 	= minPulse
+		self.maxPulse 	= maxPulse
+
+		# calculate the total range
+		self.range 		= self.maxPulse - self.minPulse
+
+		# calculate the us / degree
+		self.step 		= self.range / float(180)
+
+		# calculate the period (in us)
+		self.period 	= (1000000 / self.pwmDriver.getFrequency()) 
+
+		# initialize the min and max angles
+		self.minAngle 	= 0
+		self.maxAngle 	= 180
+
+	def setAngle(self, angle):
+		"""Move the servo to the specified angle"""
+		# check against the minimum and maximium angles
+		if angle < self.minAngle:
+			angle 	= self.minAngle
+		elif angle > self.maxAngle:
+			angle 	= self.maxAngle
+
+		# calculate pulse width for this angle
+		pulseWidth 	= angle * self.step + self.minPulse
+
+		# find the duty cycle percentage of the pulse width
+		duty 		= (pulseWidth * 100) / float(self.period)
+
+		# program the duty cycle
+		ret = self.pwmDriver.setDutyCycle(duty)
+		return ret
+    def setDutyCycle(self, duty):
+		"""Set duty cycle for pwm channel"""
+		ret 	= pwmExp.setupDriver(self.channel, duty, 0)
+		if (ret != 0):
+			print 'ERROR: pwm-exp setupDriver not successful!'
+
+		return ret
+```
 
 Run the following Python code and see what happens:
-```
-from OmegaExpansion import pwmExp
-import math
+
+``` python
+from motors import Servo
 import time
 
-class servoChannel:
-	def __init__(self,channel,minPulse,maxPulse):
-		self.channel = channel
-		self.frequecy = SERVO_FREQUENCY
-		self.minPulse = minPulse
-		self.maxPulse = maxPulse
-		self.neutralPulse = (self.maxPulse - self.minPulse)/2
-		self.pulseScale = 90/self.neutralPulse
-
-		bInit = pwmExp.checkInit()
-		if (bInit == 0):
-			ret = pwmExp.driverInit()
-			if (ret != 0):
-				print "Error initializing expansion"
-
-	def setAngle(self,angle):
-		dutyCycle = angle/self.pulseScale + self.minPulse
-                print ('dc = ' + str(dutyCycle))
-		self.setDutyCycle(dutyCycle)
-
-	def setDutyCycle(self,dutyCycle):
-		ret = pwmExp.setupDriver(self.channel, dutyCycle, 0)
-		if(ret != 0):
-			print "Error setting channel duty cycle"
-
-
 def main():
-	servoControl = servoChannel(0, 3.0, 11.5)
+	standardServo = Servo(0, 3.0, 11.5)
+    
 
 	servoControl.setAngle(90.0)
 	time.sleep(2)
@@ -120,11 +152,11 @@ if __name__ == '__main__':
 //  - make sure in the gif it's oriented in the same way as above in the servo section
 -->
 
-The script should initialize the servo motor to the 0 degree position.
+The script should first initialize the servo motor to the 0 degree position.
 
 Then a repeating pattern happens. First, the motor shaft move to the `0` degree position staying there for two seconds. Next the shaft will move to the `90` degree (neutral) positon and stay there for two seconds. Finally it will move to the `180` degree positon and stay there for two seconds. Then the pattern will repeat itself.
 
-Since the pattern will repeat infinitely, you will need to break by entering `ctrl`+`c`.
+Since the pattern will repeat infinitely, you will need to break by entering `Ctrl-C`.
 
 >Due to the nature of the servo motors in the kit, it's highly recommended to turn the oscillator off after killing the script by running the following in ssh or terminal:
 ```
@@ -138,16 +170,15 @@ pwm-exp -s
 // * brought back the idea of using a class within a class (link back to the first time this was introduced in the 7seg article)
 // * brought back the infinite loop-->
 
-// TODO: capitalize bullet sentences
-
 For this tutorial:
-* infinite loops - a way to repeat actions over and over again
+* Infinite loops - a way to repeat actions over and over again
 * Python math - integers, floats, and conversions
-* timing - simple delay
+* Timing - simple delay
 
 #### Infinite Loops
 As you may know by now, infinite loops in Python (and many other languages) can be simply implemented with a loop that always evaluates true:
-```
+
+``` python
 while(True):
 	#Code To Be Repeated Forever Goes Here
 ```
@@ -163,7 +194,7 @@ In this code example, as well as others, you will notice that integer numbers in
 
 To see the difference for yourself, run the following code:
 
-```
+``` python
 print 4/3
 # will print "1"
 print 4.0/3
