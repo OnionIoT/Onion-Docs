@@ -8,6 +8,7 @@ order: 2
 
 ## Controlling Servos with the PWM Expansion {#controlling-servos-with-the-pwm-expansion}
 
+// TODO: fix this intro to actually explain that we're going to be using servos
 In this tutorial we will learn how to control the channels on our servo expansion using python. But first, a brief introduction to servo motors is required
 
 <!-- servo -->
@@ -25,6 +26,8 @@ This circuit is relatively simple, as the motor and the PWM Expansion are both p
 
 
 #### Hooking up the Components
+
+// TODO: update this whole article to use both of the included servos
 
 <!-- // - talk about how to connect a servo to the pwm expansion
 // - make sure to mention that an external power supply is required for more servos and larger loads
@@ -52,11 +55,17 @@ This circuit is relatively simple, as the motor and the PWM Expansion are both p
 
 Before running the code you will need to have python and the OmegaExpansion libraries installed. You can install with the following commands
 
+// TODO: remove all opkg commands
+
 ```
 opkg update
 opkg install python-light
 opkg install pyPwmExp
 ```
+
+// TODO: look at code from https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py and implement it here
+
+// TODO: implement this servo class in a separate file, include the file from the previous exp
 
 Run the following python code and see what happens:
 ```
@@ -134,6 +143,8 @@ pwm-exp -s
 // * doing math in python
 // * brought back the idea of using a class within a class (link back to the first time this was introduced in the 7seg article)
 // * brought back the infinite loop-->
+
+// TODO: capitalize bullet sentences
 
 For this tutorial:
 * infinite loops - a way to repeat actions over and over again

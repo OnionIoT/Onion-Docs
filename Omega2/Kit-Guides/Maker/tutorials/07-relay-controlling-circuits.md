@@ -86,6 +86,8 @@ opkg install python-light
 opkg install pyRelayExp pyOnionGpio
 ```
 
+//TODO: remove all opkg commands
+
 The code we'll be running:
 
 ```

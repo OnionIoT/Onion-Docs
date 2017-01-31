@@ -30,7 +30,7 @@ We'll need the same LED circuit we used in the previous two experiments, which i
 * 1x LEDs
 * 2x Jumper Wires
 * Resistors
-  * 200Ω 
+  * 200Ω
 * Breadboard
 
 #### Hooking up the Components
@@ -44,6 +44,7 @@ In this example we'll only be fading a single LED on GPIO 0 so go ahead and buil
 
 <!-- Going to use fast-gpio pwm to avoid any muxing nonsense-->
 
+// TODO: get rid of the two comment lines below and replace with a nice intro
 <!-- // use fast-pwm to slowly increment the duty cycle on a gpio and then halfway through start decrementing the pwm, so that you get a fading in, and then fading out
 // make it progress slowly so you can tell that its getting brighter and dimmer -->
 
