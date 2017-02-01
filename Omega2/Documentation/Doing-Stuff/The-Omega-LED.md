@@ -20,13 +20,17 @@ To control the Omega's LED, we are going to be writing to files that are used to
 
 The Omega's LED is named in the filesystem according to the LEDE style guide:
 
-* On the *Omega2* it is named `omega2:amber:system`
-* On the *Omega2+* it is named `omega2p:amber:system`
+| Device  | LED Name               |
+|---------|------------------------|
+| Omega2  | `omega2:amber:system`  |
+| Omega2+ | `omega2p:amber:system` |
 
-The `sysfs` interface for the LED can be found in a directory named after the LED at `/sys/class/leds`. So:
+The `sysfs` interface for the LED can be found in a directory named after the LED at `/sys/class/leds`
 
-* On the *Omega2*, see `/sys/class/leds/omega2\:amber\:system/`
-* On the *Omega2+*, see `/sys/class/leds/omega2p\:amber\:system/`
+| Device  | Location                                  |
+|---------|-------------------------------------------|
+| Omega2  | `/sys/class/leds/omega2\:amber\:system/`  |
+| Omega2+ | `/sys/class/leds/omega2p\:amber\:system/` |
 
 **Note the difference in name and path between the Omega2 and Omega2+, keep this in mind when using the commands below!**
 
