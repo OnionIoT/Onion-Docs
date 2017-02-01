@@ -80,7 +80,7 @@ The C++ library is implemented around an `onionNeopixel` class. It provides publ
 
 To add the Onion Neopixel Library to your program, include the header file in your code:
 ``` c++
-##include <neopixel.h>
+#include <neopixel.h>
 ```
 
 **Library for Linker**
@@ -370,7 +370,7 @@ The C library is a series of C functions that provide wrappers to the C++ `onion
 
 To add the Onion Neopixel Library to your program, include the header file in your code:
 ``` c
-##include <neopixel_Cwrapper.h>
+#include <neopixel_Cwrapper.h>
 ```
 
 **Library for Linker**

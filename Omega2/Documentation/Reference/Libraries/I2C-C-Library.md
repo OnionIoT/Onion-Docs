@@ -31,7 +31,7 @@ Each of the read and write functions have been written to be self-contained, so 
 
 To add the Onion I2C Library to your C/C++ program, include the header file in your C code:
 ``` c
-##include <onion-i2c.h>
+#include <onion-i2c.h>
 ```
 
 **Library for Linker**

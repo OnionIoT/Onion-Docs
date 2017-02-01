@@ -120,11 +120,14 @@ Now we'll copy the following code into the file:
 
 ```Python
 # Importing packages
-import os, datetime, time
+import os, datetime, time, subprocess
 
+# find the path to the Omega LED
+ledName = subprocess.check_output(["uci", "get", "system.@led[0].sysfs"])
+ledTriggerPath = "/sys/class/leds/%s/trigger"%(ledName.rstrip())
 
 ## Set the Omega LED trigger to "timer" so that it blinks
-with open("/sys/class/leds/onion:amber:system/trigger", "w") as trigger:
+with open(ledTriggerPath, "w") as trigger:
           trigger.write("timer")
 
 
@@ -146,7 +149,7 @@ else:
 time.sleep(5)
 
 # Set the Omega LED back to being always on
-with open("/sys/class/leds/onion:amber:system/trigger", "w") as trigger:
+with open(ledTriggerPath, "w") as trigger:
         trigger.write("default-on")
 
 ```
