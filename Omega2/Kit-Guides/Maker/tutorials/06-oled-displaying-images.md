@@ -12,34 +12,25 @@ This tutorial will walk you through drawing to the OLED Expansion. It will demon
 
 ### The OLED Screen & Images
 
-// describe how the OLED Screen works
+<!-- // describe how the OLED Screen works -->
 
 The OLED is an efficient low-power screen that can be programmed to display any monochrome visuals included text, graphics, and even animations! In depth information about how the OLED operates can be found in the [OLED Expansion article](https://docs.onion.io/omega2-docs/oled-expansion.html) in the Hardware Overview section of the docs. It is highly recommended to have the [OLED Python Module](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) reference handy, as this project is entirely software.
 
 One important concept to understand is the cursor. The cursor is essentially the position of the next byte to be written to the screen. After a byte is written, the cursor will automaticaly advance once. As an example, simply calling `oledExp.writeByte(0xff)` multiple times is enough to light up the whole OLED display.
 
-// can be largely copied from the understanding the display section of the oled hw article
+<!-- // can be largely copied from the understanding the display section of the oled hw article -->
 
 We'll be creating a line drawing python script using a Frame Buffer to more manage sending drawings to the screen. More specifically, the frame buffer will be implemented with a multi-dimensional array. If this sounds daunting, fear not, it's really a fairly simple concept. As a bonus, some basic input and output will be done as well.
 
 ### Building the Circuit
 
-The OLED Expansion is a complete circuit. So for this tutorial, we just need to plug it into the expansion board and we'll be good to go!
+The OLED Expansion is a complete circuit. So for this tutorial, we just need to plug it into the Expansion Dock and we'll be good to go!
 
 #### Writing the Code
 
-In case you haven't already, you can install the libraries needed to play with the OLED screen by running the following:
-```
-opkg update
-opkg install python-light
-opkg install pyOledExp
-```
-// TODO: remove opkg commands
-
-If you'd like to play with the console commands to test things out, the `oled-exp` package should be installed as well.
-
 Here's the script we'll be working with:
-```
+
+``` python
 from OmegaExpansion import oledExp
 
 initStatus = 0
@@ -170,9 +161,9 @@ if __name__ == '__main__':
 
 This program will ask you to submit a bunch of numbers and draw a line based on them. You control the line's orientation (either vertical or horizontal) and the length based on your inputs.
 
-The lines you draw will stay on the screen, and you can draw as many as you like. To exit the script, simply press `ctrl`+`c`.
+The lines you draw will stay on the screen, and you can draw as many as you like. To exit the script, simply press `Ctrl-C`.
 
-// TODO: IMAGE add gif or picture of lines being drawn
+<!-- // TODO: IMAGE add gif or picture of lines being drawn -->
 
 ### A Closer Look at the Code
 

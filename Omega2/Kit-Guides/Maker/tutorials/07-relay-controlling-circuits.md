@@ -9,8 +9,8 @@ order: 7
 
 In this tutorial, we'll use a switch with the Omega Relay expansion to turn a buzzer on or off. Along the way, we'll be looking into why relays are useful, and go into more detail regarding pitfalls when interacting with hardware.
 
->**Note**: this expansion allows you to switch power sources of a *much* higher voltage than the board - and possibly your body - is able to handle. We urge you to read up the specifications of the [Relay Expansion](#relay-expansion) in our hardware overview documentation to understand the capabilities and limits of the Relay Expansion. We cannot accept responsibility for damages you may incur, and we recommend you use this expansion only if you are comfortable with whatever you may be switching.
-
+<!-- // TODO: can modify or replace this warning with the one from our store (should keep same friendly tone) -->
+**Note:** this Expansion allows you to switch power sources of a **much higher voltage** than the board - and possibly your body - is able to handle. We urge you to read up the specifications of the [Relay Expansion](#relay-expansion) in our hardware overview documentation to understand the capabilities and limits of the Relay Expansion. We cannot accept responsibility for damages you may incur, and outside of this experiment we recommend you use this Expansion only if you are comfortable working **safely** with whatever you may be switching.
 
 ### Circuit Isolation
 
@@ -42,7 +42,6 @@ The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole me
 * Jumper wires
 	* 5x M-M
 
-
 #### Hooking up the Components
 
 <!-- // detailed explanation of connecting wires to the screw terminals
@@ -52,7 +51,7 @@ The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole me
 1. First we'll have to find a place on the breadboard to place the buzzer, we chose row 1 and mounted the buzzer across the middle channel
 	* Taking note where the cathode (+) and where the anode (-) is, we'll have to make sure the right wires go in the right terminal later
 1. Next the switch needs to go into the breadboard, with each pin plugged into a different row. We chose row 5-8.
-// TODO: IMAGE of breadboard with switch and buzzer in
+<!-- // TODO: IMAGE of breadboard with switch and buzzer in -->
 1. Now to set up the relay connections. We'll be using channel 0, with all switches on the relay set to `OFF`. We've included a diagram below to help out.
 	* Turn the screw on the `IN` terminal counterclockwise until the metal clamp inside is sitting a bit less than halfway in the bottom of the housing, not too much or the screw might pop out.
 	* If you're unsure, close the terminal all the way by turning the screw clockwise until you can't anymore, then open it.
@@ -63,9 +62,9 @@ The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole me
 	* Or if you have a power supply, the positive terminal of it.
 1. Take the jumper connected to the `OUT` terminal and plug that into the row the positive terminal of your buzzer is plugged into. We used the socket in row 1 column C.
 1. Grab a jumper wire (preferably black) and connect one end to the `GND` pin on the Dock, and the other to the same row as the negative terminal of your buzzer. Row 1, column H for us.
-// TODO: IMAGE diagram of the buzzer+relay configuration
+<!-- // TODO: IMAGE diagram of the buzzer+relay configuration -->
 1. Now the buzzer can be turned off and on via commands to the Relay Expansion. Next we'll connect the switch, the final result should look something like this:
-// TODO: IMAGE diagram of the switch configuration
+<!-- // TODO: IMAGE diagram of the switch configuration -->
 1. Grab a red or orange jumper and plug one end into the `3.3V` pin on the dock.
 1. Plug the other end into the same row as the middle pin of the switch. We plugged it into row 6
 1. Next connect one of the two free pins on the switch to pin `0` on the dock using the last jumper wire.
@@ -73,24 +72,14 @@ The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole me
 We're all done!
 
 Here's a picture of our completed circuit.
-// TODO: IMAGE of completed circuit
+<!-- // TODO: IMAGE of completed circuit -->
 
 
 #### Writing the Code
 
-As usual, before running the code, make sure you have all the appropriate libraries installed. Commands as follows:
+Create a file called `relayCircuit.py` and paste the following code in it:
 
-```
-opkg update
-opkg install python-light
-opkg install pyRelayExp pyOnionGpio
-```
-
-//TODO: remove all opkg commands
-
-The code we'll be running:
-
-```
+``` python
 from onionGpio import OnionGpio
 from OmegaExpansion import relayExp
 

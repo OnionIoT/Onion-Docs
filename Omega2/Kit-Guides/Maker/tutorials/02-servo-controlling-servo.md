@@ -22,11 +22,11 @@ This circuit is relatively simple, as the motor and the PWM Expansion are both p
 
 Grab the following from your kit:
 
-* 1x Omega plugged into Expansion Dock
+* 1x Omega2 plugged into Expansion Dock
+* 1x PWM Expansion plugged into Expansion Dock above
 * Servo Motors
     * 1x Standard Size
     * 1x Micro Size
-* 1x PWM Expansion
 
 #### Hooking up the Components
 
@@ -187,23 +187,35 @@ The reason to use an infinite loop is so we can create programs that will always
 
 In this example, the loop does a simple progression of commands, but the concept remains the same.
 
-
 #### Math in Python
 
-In this code example, as well as others, you will notice that integer numbers including a decimal place, regardless if it is necessary. The reason is that Python will interpret the number as a floating point number and not an integer type. The former allows for decimal point precision in calculation unlike the latter. Of course occasions will arise when integer math is more preferable - but we'll leave that as an excercise for the reader.
+In this code example, as well as others, you will notice that decimal places are included for integer numbers, regardless if it is necessary or not (eg. `3.0`). This is to tell Python interpret the number as a decimal, or **floating point**, number, which will make it behave like your typical pocket calculator.
 
-To see the difference for yourself, run the following code:
+However, if we specified our numbers as integers (eg. `3`), we'd be doing **integer math**. In this case, Python basically **drops the decimal part** of any calculation,  such as division. There are times when this is not an issue, such as counting discrete objects or iterating through loops, but you have to be careful when you write a math equation and expect a decimal answer!
+
+To see the difference for yourself, start the interactive Python interpreter on the command line by simply typing `python`, then run each of the `print` commands below:
 
 ``` python
+# simple examples of floating point vs integer math
+print 4.0/3
+# will print "1.3333333..."
 print 4/3
 # will print "1"
-print 4.0/3
-# will print "1.33333333"
+
+# difference between floating point and integer math in expressions
+print 5.0/3 + 8.0/3
+# will print "4.3333333..."
+print 5/3 + 8/3
+# will print "3"
 ```
+
+You can see in the first two examples how the decimal part is dropped from the answer, and in the last two you can see that this error can carry forward(!!!).
+
+Due to the way decimal and integer numbers are handled by computers, this also applies to most other programming languages as well. Be careful!
 
 #### Timing
 
-The time Python library is used here to provide a way to delay the signals transmitted to the servo. Should the `time.sleep()` functions be removed, the code would be executed as fast as the Omega can possibly handle, which more or less translates to 'much faster than the servo motor can handle' - the Omega2 runs at over 500MHz, while the servo recieves commands from 50~1kHz, that's over 50,000 times faster than the servo can react! So we use the `time.sleep()` function to give the command some time to take effect on the servo.
+The time Python library is used here to provide a way to delay the signals transmitted to the servo. Without the `time.sleep()` function calls, the code would be executed as fast as the Omega can possibly handle, which is pretty much faster than the servo motor can handle. The Omega2 runs at over 500MHz while the servo receives commands from 50~1kHz, which is over 50,000 times faster than the servo can react! So we use the `time.sleep()` function to give the command some time to take effect on the servo.
 
 
 ### Moving Beyond

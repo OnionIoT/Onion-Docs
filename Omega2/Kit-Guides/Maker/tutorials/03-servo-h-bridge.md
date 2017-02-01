@@ -34,7 +34,8 @@ Before we start building, we recommend familiarizing yourself with how the H-bri
 
 <!-- // TODO: IMAGE diagram of the SN754410 -->
 
-The way we'll be controlling this specific H-bridge is through three pins - `1A`, `2A` and `1,2EN`. `1A` controls the polarity of `1Y`, `2A` controls the polarity to `2Y`. To further explain, at a very high level, this H-bridge chip 'assigns' the outputs (the pins labelled `Y`) according to the voltage (or signal) fed to the inputs (the pins labelled `A`). For example, sending a a 'high' signal to `1A` will lead to the same signal being sent out `1Y` the difference is the signal sent *out* uses the voltage supplied to pin `8`. Voltage acts kind of like a waterfall - it sends the current flowing from the voltage source (top) to the ground (bottom), so if the signal to `1A` is high, that means the H-bridge switches `1Y` to the top of the fall, if low is sent instead, the H-bridge switches `1Y` to the bottom of the falls. A waterfall only falls if there's a top and a bottom, so if both `1A` and `2A` see the same signal (both high, or both low) then nothing moves and the motor won't turn. If the top and the bottom of the 'falls' - or if `2A` gets sent high, and `1A` low - are swapped, the logically the the movement flips and the motor changes directions!
+<!-- // TODO: this paragraph is extremely long and should be bulleted -->
+We'll be controlling this specific H-bridge is through three pins - `1A`, `2A` and `1,2EN`. `1A` controls the polarity of `1Y`, `2A` controls the polarity to `2Y`. To further explain, at a very high level, this H-bridge chip 'assigns' the outputs (the pins labelled `Y`) according to the voltage (or signal) fed to the inputs (the pins labelled `A`). For example, sending a a 'high' signal to `1A` will lead to the same signal being sent out `1Y` the difference is the signal sent *out* uses the voltage supplied to pin `8`. Voltage acts kind of like a waterfall - it sends the current flowing from the voltage source (top) to the ground (bottom), so if the signal to `1A` is high, that means the H-bridge switches `1Y` to the top of the fall, if low is sent instead, the H-bridge switches `1Y` to the bottom of the falls. A waterfall only falls if there's a top and a bottom, so if both `1A` and `2A` see the same signal (both high, or both low) then nothing moves and the motor won't turn. If the top and the bottom of the 'falls' - or if `2A` gets sent high, and `1A` low - are swapped, the logically the the movement flips and the motor changes directions!
 
 The `1,2EN` pin is a little bit easier to understand. It simply turns the H-bridge on or off. If `1,2EN` sees a 'high', then everything we've covered above happens as normal, if it's off, then there won't be anything sent to the outputs no matter what `1A` and `2A` are set to.
 
@@ -42,7 +43,8 @@ The `1,2EN` pin is a little bit easier to understand. It simply turns the H-brid
 
 #### What You'll Need
 
-* 1x PWM Expansion
+* 1x Omega2 plugged into Expansion Dock
+* 1x PWM Expansion plugged into Expansion Dock above
 * 1x DC Motor
 * 1x H-bridge (has "SN754410" on top of the chip)
 * 1x Breadboard
@@ -60,6 +62,8 @@ The `1,2EN` pin is a little bit easier to understand. It simply turns the H-brid
 
 // make sure to drive home the point that the H-bridge can be burnt if improperly wired
 //  make sure the pwm expansion is not producing any signals (or they're all at 0%) while you're wiring it -->
+
+<!-- // the # of SPDT switches in the kit will be increased to 10 as of 2017-01-01 -->
 
 When working with ICs, setting up the breadboard's rails can be very helpful in reducing clutter. For this tutorial, we'll do this first to reduce the wires needed.
 
@@ -82,13 +86,13 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 1. Now it's time to connect the motor, the motor should have two wires with male pin connectors, one red and one black.
 	* Connect the red wire to the row pin `3` is plugged into (for us, it's row 7)
 	* Connect the black wire to *pin*  `7` (row 10 on our board)
-1. We'll ground the circuit by connectin the dangling end of the ground (black) jumper wire to the `GND` pin on the expansion header.
+1. We'll ground the circuit by connecting the dangling end of the ground (black) jumper wire to the `GND` pin on the expansion header.
 1. Last but not least, we'll set power to the Vcc rail by connecting the dangling end of the Vcc (red) jumper to the `5V` pin on the expansion's header.
 
 
 #### Writing the Code
 
-// Note from Lazar: for this and the rest of the pwm expansion articles, see https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py for code example
+<!-- // Note from Lazar: for this and the rest of the pwm expansion articles, see https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py for code example
 
 // * write the hBridge class (from the file above) that drives an h-bridge
 //  * don't have to bother with a DigitalPin class like the file above, just set the two direction inputs using 0% or 100% duty cycle
@@ -98,15 +102,9 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 //  * one switch: controls the direction (on is left, and off is right, or whatever makes sense)
 // duty cycle: 0 -> 30 -> 40 -> 50
 
-// TODO: implement this h-bridge class in a separate file, include any required files from the previous experiments
+// TODO: implement this h-bridge class in a separate file, include any required files from the previous experiments -->
 
-Let's add a class blueprint for a DC motor controlled by an H-bridge to our motors file we made in the previous tutorial. Open the `motors.py` file and add this snippet of code to the top:
-
-``` python
-from onionGpio import OnionGpio
-```
-
-Then add the H-bridge motor class to the bottom:
+Let's add a class blueprint for a DC motor controlled by an H-bridge to our motors file we made in the previous tutorial. Open the `motors.py` file and add this the bottom:
 
 ``` python
 class hBridgeMotor:
@@ -121,10 +119,14 @@ class hBridgeMotor:
 		# setup the objects
 		self.pwmDriver 		= OmegaPwm(self.pwmChannel)
 		self.pwmDriver.setDutyCycle(0)
-		self.fwdDriver 		= OnionGpio(fwdChannel)
-		self.fwdDriver.setOutputDirection(0)
-		self.revDriver 		= OnionGpio(revChannel)
-		self.revDriver.setOutputDirection(0)
+		self.fwdDriver 		= OmegaPwm(fwdChannel)
+		self.fwdDriver.setDutyCycle(0)
+		self.revDriver 		= OmegaPwm(revChannel)
+		self.revDriver.setDutyCycle(0)
+        
+        # 0 - forward, 1 - reverse
+        self.fwdDirection   = 0
+        self.revDirection   = 1
 
 		# setup the limitations
 		self.minDuty 		= 0
@@ -141,8 +143,8 @@ class hBridgeMotor:
 	def reset(self):
 		"""Set the PWM to 0%, disable both h-bridge controls"""
 		ret 	=  self.pwmDriver.setDutyCycle(0)
-		ret 	|= self.fwdDriver.setOutputDirection(0)
-		ret 	|= self.revDriver.setOutputDirection(0)
+		ret 	|= self.fwdDriver.setDutyCycle(0)
+		ret 	|= self.revDriver.setDutyCycle(0)
 
 		return ret
 
@@ -150,14 +152,14 @@ class hBridgeMotor:
 		"""Set the PWM to the specified duty, and in the specified direction"""
 		ret 	= 0
 
-		# 0 - forward, 1 - reverse
-		if (direction == H_BRIDGE_MOTOR_FORWARD):
-			self.revDriver.setOutputDirection(0)
-			self.fwdDriver.setOutputDirection(1)
-		elif (direction == H_BRIDGE_MOTOR_REVERSE):
-			self.fwdDriver.setOutputDirection(0)
-			self.revDriver.setOutputDirection(1)
+		if (direction == self.fwdDirection):
+			self.revDriver.setDutyCycle(0)
+			self.fwdDriver.setDutyCycle(100)
+		elif (direction == self.revDirection):
+			self.fwdDriver.setDutyCycle(0)
+			self.revDriver.setDutyCycle(100)
 		else:
+            # invalid direction
 			ret 	= -1
 
 		if (ret == 0):
@@ -172,15 +174,63 @@ class hBridgeMotor:
 		return ret
 
 	def spinForward(self, duty):
-		ret 	= self.drive(H_BRIDGE_MOTOR_FORWARD, duty)
+		ret 	= self.spin(fwdDirection, duty)
 		return ret
 
 	def spinReverse(self, duty):
-		ret 	= self.drive(H_BRIDGE_MOTOR_REVERSE, duty)
+		ret 	= self.spin(revDirection, duty)
 		return ret
-
 ```
 
+Next, let's write the code for the experiment. Create a file called `hBridgeExperiment.py` and paste the following code in it:
+
+``` python
+from motors import hBridgeMotor
+
+# set up hbridge pins on the Omega
+motorEN = 
+motor1A = 
+motor2A = 
+
+# set up a multiline prompt
+userInputPrompt = [
+    "Enter a 3 digit binary number.",
+    "Digit 1:        0 - Forwards",
+    "                1 - Backwards",
+    "Digits 2 & 3:   00 - off",
+    "                01 - 30% speed",
+    "                10 - 40% speed",
+    "                11 - 50% speed",
+    ">> " # user types in their input at the end of this line
+]
+
+# create a dictionary of functions against which to check user input
+# this is basically a dispatch table to map function calls to different names
+motorCommands = {
+    '000': (lambda motor: motor.reset()),
+    '001': (lambda motor: motor.spinForward(30)),
+    '010': (lambda motor: motor.spinForward(40)),
+    '011': (lambda motor: motor.spinForward(50)),
+    '100': (lambda motor: motor.reset()),
+    '101': (lambda motor: motor.spinReverse(30)),
+    '110': (lambda motor: motor.spinReverse(40)),
+    '111': (lambda motor: motor.spinReverse(50)),
+}
+
+def main():
+    # instantiate the motor object
+    motor = hBridgeMotor(motorEn, motor1A, motor2A)
+    
+    # loop forever
+    while(True):
+        # get user input
+        command = raw_input("\n".join(userInputPrompt))
+        # check user input against dictionary, run the corresponding function
+        motorCommands[command](motor)
+    
+if __name__ == '__main__'
+    main()
+```
 
 #### What to Expect
 
@@ -195,19 +245,19 @@ When run, the script starts the PWM oscillator, and then sets the output to be e
 |                 | 10   | 40% speed                     |
 |                 | 11   | 50% speed                     |
 
-As you've probably seen before, we use an infinite loop here, and you can break it by hitting `ctrl`+`c`.
+As you've probably seen before, we use an infinite loop here, and you can break it by hitting `Ctrl-C`.
 
->We recommend setting the motor to 000 before breaking the loop to avoid damaging the motor. If you forgot, you can simply call `pwm-exp -s` to stop the motor in the terminal or ssh.
-
+**Note**: We recommend setting the motor to `000` before breaking the loop to avoid damaging the motor. As a reminder, you can simply call `pwm-exp -s` to stop the motor in the terminal or ssh.
 
 ### A Closer Look at the Code
 
-<!-- // is there something interesting about the code? if so cover it in this section -->
-In this tutorial, we put together knowledge from the previous tutorials to control the DC motor with python. On top of that we mixed in python Tuples to codify the output we wish the PWM controller to send, and in doing so baked in failsafes to protect hardware from erroneous signalling. Finally, we used a lookup table to track and translate the input from the user into the output sent to the controller.
+// TODO: introduce reading user input here instead of in 05-oled-changing-settings
+
+In this tutorial, we put together knowledge from the previous tutorials to control a DC motor with Python. We're now **receiving user input** interactively, allowing us to change the script's behaviour in real-time. On top of that we mixed in Python **tuples** to codify the output we wish the PWM controller to send, and in doing so baked in failsafes to protect hardware from erroneous signalling. Finally, we used a **lookup table** to track and translate the input from the user into the output sent to the controller.
 
 #### Tuples
 
-In python, there's only one way to create 'permanent variables' - or to give values names: through what is known as a 'tuple'. It's short for multiple, and it represents a set of values that are permanent. In the code, we used it to enforce a set of signals to be sent to the PWM, so that the motor would always operate within range. In this way, tuples or other forms of permanent variables (`final` in java, or `#define` in C) can restrict devices to safe operating limits when dealing with variable user input. Here, no matter what you enter, the signals sent to operate the motor would always fall into either off, or between 30 to 50% power in either direction. This way, the motor never sees signal too low to force its turning, and never signals too high that would wear it out or damage the board.
+In Python, there's only one way to create 'permanent variables' - or to give values names: through what is known as a **tuple**. It's short for multiple, and it represents a set of values that are permanent. In the code, we used it to enforce a set of signals to be sent to the PWM, so that the motor would always operate within range. In this way, tuples or other forms of permanent variables (`final` in Java, or `#define` in C) can restrict devices to safe operating limits when dealing with variable user input. Here, no matter what you enter, the signals sent to operate the motor would always fall into either off, or between 30 to 50% power in either direction. This way, the motor never sees signal too low to force its turning, and never signals too high that would wear it out or damage the board.
 
 #### Lookup Tables
 

@@ -73,7 +73,7 @@ from OmegaExpansion import pwmExp
 class OmegaPwm:
 	"""Base class for PWM signal"""
 
-	def __init__(self, channel, frequency):
+	def __init__(self, channel, frequency=50):
 		self.channel 	= channel
 		self.frequency 	= frequency
 

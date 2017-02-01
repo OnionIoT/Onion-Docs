@@ -25,17 +25,13 @@ The scrolling setting allows you to move the content across the screen in a wrap
 
 ### Building the Circuit
 
-Plug the OLED Expansion into the Expansion Dock.
+Plug your Omega2 and the OLED Expansion into the Expansion Dock like in the previous tutorial.
 
 #### Writing the Code
 
-```
-opkg update
-opkg install python-light
-opkg install pyOledExp
-```
+Create a file called `oledChangeSettings.py` and paste the following code in it:
 
-```
+``` python
 from OmegaExpansion import oledExp
 bInvert = 0
 
@@ -46,7 +42,6 @@ def toggle():
 	else:
 		bInvert = 0
 
-
 def printCommands():
 	print "Enter any of the following to change diplsay"
 	print "toggleColor: This will invert the color setting of the display"
@@ -54,7 +49,7 @@ def printCommands():
 	print "brightenDisplay: This will brighten the display"
 	print "scrollHorizontal : This will scroll display to the left"
 	print "scrollDiagonal: This will diagonally scroll the display up to the right"
-	print "scrollStop: This will stop the Scroll"
+	print "scrollStop: This will stop the scroll"
 
 def toggleColor():
 	toggle()
@@ -79,7 +74,14 @@ def scrollDiagonal():
 def scrollStop():
 	oledExp.scrollStop()
 
-commandFunctions  = {'toggleColor':toggleColor, 'dimDisplay':dimDisplay, 'brightenDisplay':brightenDisplay, 'scrollHorizontal':scrollHorizontal, 'scrollDiagonal':scrollDiagonal, 'scrollStop':scrollStop}
+commandFunctions  = {
+    'toggleColor': toggleColor,
+    'dimDisplay': dimDisplay,
+    'brightenDisplay': brightenDisplay,
+    'scrollHorizontal': scrollHorizontal,
+    'scrollDiagonal': scrollDiagonal,
+    'scrollStop': scrollStop
+}
 
 def main():
 	oledExp.driverInit()
@@ -96,16 +98,17 @@ if __name__ == '__main__':
 #### What to Expect
 
 
-When you run the program, the different possible commands that can be entered will be printed out on the command line. The commands will interatively change the display settings. For example, to dim the display, enter `dimDisplay`.
+When you run the program, the different possible commands that can be entered will be printed out on the command line. The commands will interactively change the display settings. For example, to dim the display, enter `dimDisplay`.
 
 To stop the program enter `ctrl`+`c`
 
-// TODO: IMAGE Add gif
+<!-- // TODO: IMAGE Add gif -->
 
 ### A Closer Look at the Code
 
 In this code we used a dictionary structure to call a particular function based on the input. This is advantageous to us, because we don't need an if statement to decide which function to call based on input.
 
+// TODO: reading user input was introduced in 03, so remove it from here
 #### Reading User Input
 
 Python allows us the ability to receive user input from the command line via the `raw_input()` function. Adding user input functionality can create an interactive user experience, where the program does different things depending on the input argument. If you want to learn more about user input, the [displaying images on the OLED](#drawing-on-the-oled-screen) tutorial developes this further.
