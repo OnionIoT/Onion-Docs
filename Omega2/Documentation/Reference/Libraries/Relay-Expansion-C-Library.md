@@ -72,7 +72,7 @@ The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https:/
 
 To add the Onion Relay Expansion Library to your program, include the header file in your code:
 ``` c
-###include <relay-exp.h>
+#include <relay-exp.h>
 ```
 
 **Library for Linker**

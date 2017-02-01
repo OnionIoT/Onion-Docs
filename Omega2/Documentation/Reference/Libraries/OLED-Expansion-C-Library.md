@@ -63,7 +63,7 @@ The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https:/
 
 To add the Onion OLED Expansion Library to your program, include the header file in your code:
 ``` c
-###include <oled-exp.h>
+#include <oled-exp.h>
 ```
 
 **Library for Linker**
