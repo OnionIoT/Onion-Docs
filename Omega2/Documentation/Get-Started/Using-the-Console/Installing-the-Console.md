@@ -12,7 +12,7 @@ order: 2
 The Console can be installed through the Setup Wizard, or through the command line.
 Follow this [guide](#first-time-setup) on setting up your Omega, if you have not already done so.
 
-#### Installing through the Setup Wizard
+### Installing Using the Setup Wizard
 
 If you have set up the Omega and didn't install the console, skip to the Software page and make sure the checkbox is checked.
 ![checkbox](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-checkmark.png)
@@ -31,7 +31,7 @@ username: root
 password: onioneer
 ```
 
-#### Installing through the Command Line
+### Installing Using the Command Line
 
 The console can also be installed using the command line using the Omega's package manager, `opkg`.
 >For information on how to access the Omega's command line, follow this [guide to connecting to the Omega's Terminal](#connecting-to-the-omega-terminal)
