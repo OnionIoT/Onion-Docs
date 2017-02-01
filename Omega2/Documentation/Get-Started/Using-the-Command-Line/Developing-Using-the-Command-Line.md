@@ -40,7 +40,7 @@ To tell the kernel that we are going to use the Morse code module, set the LED t
 echo morse > /sys/class/leds/omega2\:amber\:system/trigger
 ```
 
->If you're using an Omega2+, the system call should use **`omega2p`** instead of `omega2` - i.e. -  `/sys/class/leds/omega2p\:amber\:system/trigger`
+>If you're using an Omega2+, the LED will be named `omega2p:amber:system` as opposed to `omega2:amber:system` so you will have to pipe the above command to `/sys/class/leds/omega2p\:amber\:system/trigger`
 
 To paste into the Terminal app, use `ctrl+shift+v` or `cmd+shift+v` on a MAC
 
@@ -101,24 +101,25 @@ Copy the code below into the terminal.
 ```bash
 #!/bin/sh
 
+# find the name of the board, to be used in the name of the LED
 . /lib/ramips.sh
 board=$(ramips_board_name)
 
+# define the function that will set the LED to blink the arguments in morse code
 _MorseMain () {
 
-	echo morse > /sys/class/leds/omega2\:amber\:system/trigger
-	echo 120 > /sys/class/leds/omega2\:amber\:system/delay
-	echo $* > /sys/class/leds/omega2\:amber\:system/message
+	echo morse > /sys/class/leds/$board\:amber\:system/trigger
+	echo 120 > /sys/class/leds/$board\:amber\:system/delay
+	echo $* > /sys/class/leds/$board\:amber\:system/message
 }
 
 
 ##### Main Program #####
 
+# run the function and pass in all of the arguments
 _MorseMain $*
 
-
 exit
-
 ```
 
 
@@ -159,3 +160,4 @@ Once you're done, you can set the blinking back to `default-on` with the followi
 ```
 echo default-on > /sys/class/leds/omega2\:amber\:system/trigger
 ```
+>Remember, on an Omega2+, the LED will be named `omega2p:amber:system` as opposed to `omega2:amber:system` so you will have to pipe the above command to `/sys/class/leds/omega2p\:amber\:system/trigger`
