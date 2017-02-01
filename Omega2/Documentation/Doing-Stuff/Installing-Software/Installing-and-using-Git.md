@@ -20,18 +20,22 @@ It's really easy to install Git on your Omega2/Omega2+ using OPKG. For a tutoria
 
 2. Run the command `opkg update`
 
-3. After opkg updates, run `opkg install git git-http`
+3. After opkg updates, run `opkg install git git-http ca-bundle`
+
+> The `ca-bundle` package is required if you will be cloning private repositories.
 
 4. A successful installation will show:
 ```
 Configuring git.
 Configuring git-http.
+Configuring ca-bundle.
 ```
 
 If your installation fails, make sure you're connected to the internet and that you've updated opkg.
+
 > To check if you've got an internet connection run `ping www.google.com`
 
-4. To check if you have Git already installed type `opkg list-installed | grep git`
+5. To check if you have Git already installed type `opkg list-installed | grep git`
 	* The desired output is
 	```
 	git - <version number>
