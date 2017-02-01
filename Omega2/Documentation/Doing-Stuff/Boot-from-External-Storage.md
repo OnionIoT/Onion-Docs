@@ -203,7 +203,14 @@ mount /dev/<device name> /mnt ; tar -C /overlay -cvf - . | tar -C /mnt -xf - ; u
 
 ### Automatically Mount `/overlay` on Startup
 
-Generate the `fstab` template using `block-mount`:
+If you already formatted your storage device to `ext4` using another computer, make sure to install `block-mount`:
+
+```
+opkg update
+opkg install block-mount
+```
+
+Now generate the device's `fstab` entry using `block-mount`:
 
 ```
 block detect > /etc/config/fstab
