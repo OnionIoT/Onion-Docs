@@ -10,11 +10,11 @@ So far, we've been using a program to control output pins. Let's try using physi
 
 The trimpot (trimmer potentiometer) is essentially two variable resistors (R1 and R2) connected in series. The total resistance of the two variable resistors (R1 + R2) will always be the same as the value of the trimpot, in our case 10KΩ. However, we can turn the knob on the trimpot to decrease the resistance of one resistor and at the same time increase the resistance of the other resistor. If we turn the knob to either end, one resistor will be 0Ω will the other one will be 10KΩ.
 
-// TODO: Image of a trimpot
+<!-- // TODO: Image of a trimpot -->
 
 One variable resistor is between the left and middle pin of the trimpot while the other one is between the middle and right pin of the trimpot. If we connect the trimpot as a voltage divider as shown below, we will be able to vary the output voltage from 0V to the input voltage (5V) by simply turning the knob!
 
-// TODO: add schematic and equation of voltage divider.
+<!-- // TODO: add schematic and equation of voltage divider. -->
 
 ### Dimming an LED
 
@@ -24,10 +24,6 @@ One variable resistor is between the left and middle pin of the trimpot while th
 // add a note saying that the analog signal is actually pwm, but don't go into heavy detail -->
 
 So far we've been turning LEDs fully on and fully off, but it's also possible have LEDs dimmed to somewhere between on and off. And that's what we're going to do in this experiment: we're going to use Pulse Width Modulation (PWM) to create a dimming effect on an LED.
-
-### Pulse Width Modulation
-
-Pulse Width Modulation (PWM) sounds complicated but in it's essence it's just turning a digital signal on and off at regular intervals. It allows us to easily control how much power is supplied to a component. In our case that component will be an LED and the less power we provide, the dimmer the light the LED will produce.
 
 <!-- PWM Signals -->
 ```{r child = '../../shared/pwm.md'}
@@ -41,7 +37,7 @@ Pulse Width Modulation (PWM) sounds complicated but in it's essence it's just tu
 
 For this experiment, we will use the knob of the trimpot (trimmer potentiometer) to control the brightness of the LED. We will connect a potentiometer to the analog input and an LED to a PWM pin with a current-limiting resistor. 
 
-Let's take a more detailed look at the ATMega pins on the Arduino dock since we'll be using them mostly throughout these tutorials. Analog pins are from prefixed with capital A (A0 to A5). Pins 0 to 13 are digital pins. If there is a tilde sign (~) in front of the pin number, it means it can be used as a PWM pin. Pin 0 and 1 are serial pins and should not be used if we want to do serial communication between the ATmega and the Omega.
+Let's take a more detailed look at the ATMega pins on the Arduino dock since we'll be using them mostly throughout these tutorials. Analog pins are from prefixed with capital A (`A0` to `A5`). Pins `0` to `13` are digital pins. If there is a tilde sign `~` in front of the pin number, it means it can be used as a PWM pin. Pins `0` and `1` are serial pins and should not be used if we want to do serial communication between the ATmega and the Omega.
 
 #### What You'll Need
 
@@ -60,15 +56,17 @@ Prepare the following components from your kit:
 <!-- // details on how to connect everything -->
 
 1. First plug the potentiometer on the breadboard with each of the three pins in a different row.
-2. Connect the middle pin of the trimpot to the analog pin (A0 defined in code) on the Arduino dock using a jumper wire.
-3. Connect one of the remaining pin to GND and the other one to 5V (the polarity does not matter). 
-4. Connect the anode of LED to a PWM pin (~9 defined in code) on the Arduino Dock. Connect the cathode to the ground through the 200Ω current limiting resistor.
+2. Connect the middle pin of the trimpot to the analog pin (`A0` defined in code) on the Arduino dock using a jumper wire.
+3. Connect one of the remaining pin to `GND` and the other one to `5V` (the polarity does not matter). 
+4. Connect the anode of LED to a PWM pin (`~9` defined in code) on the Arduino Dock. Connect the cathode to the ground through the 200Ω current limiting resistor.
+
+<!-- // TODO: photo -->
 
 ### Writing the Code
 
-// write a sketch that polls the input voltage from the trimpot circuit
+<!-- // write a sketch that polls the input voltage from the trimpot circuit
 // uses that reading to set the output strength (pwm duty cycle) for the led circuit
-// ensure that everything is written cleanly, using functions for each separate action, don't want the setup function to be full of all sorts of different code
+// ensure that everything is written cleanly, using functions for each separate action, don't want the setup function to be full of all sorts of different code -->
 
 ``` arduino
 int potPin = A0;    // analog pin for reading the potentiometer value
@@ -102,12 +100,12 @@ void loop() {
 
 ```
 
-// TODO: mention about using the omega as serial monitor using cat or screen ttyS1
+<!-- // TODO: mention about using the omega as serial monitor using cat or screen ttyS1 -->
 
 #### What to Expect
 
-// instructions to turn the pot and observe how the led changes
-// correlate turning the pot to increasing/decreasing the resistance
+<!-- // instructions to turn the pot and observe how the led changes
+// correlate turning the pot to increasing/decreasing the resistance -->
 
 When the code has been flashed on the ATmega, we will be able to adjust the brightness of the LED by turning the knob of the trimpot. This is because we can use the trimpot to set duty cycle to increase up to 100% (fade in to 100%), and then we begin to decrease the duty cycle down to 0% (fade out to 0%). In addition, we can use the following command line on our Omega to read the serial output of the ATmega:
 
@@ -116,6 +114,8 @@ cat < /dev/ttyS1
 ```
 
 It will print a digital value (0 to 1023), which has been converted from the analog output of the potentiometer. This value should also correspond to the brightness of the LED.
+
+<!-- // TODO: gif -->
 
 #### A Closer Look at the Code
 <!-- // anything new that we introduced -->

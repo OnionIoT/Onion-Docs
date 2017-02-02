@@ -30,6 +30,8 @@ Prepare the following components from your kit:
 3. Connect cathodes of the LEDs to negative rail marked '-' on the breadboard each through a different 200Ω current limiting resistor.
 4. Connect a jumper wire from the `-` negative rail on the breadboard to a ground (GND) pin on the Arduino Dock. 
 
+<!-- // TODO: photo -->
+
 ### Writing the Code
 
 <!-- // write an arduino sketch that makes the LEDs turn on one-by-one going left to right, and then turn off, again going left to right
@@ -68,7 +70,7 @@ void loop() {     // codes to be ran continously
 
 Your line-up of LEDs will be essentially chasing it's tail: the left-most LED will turn on, and then the next one, and the next and so on. When all of them turn on, the left-most one will turn off, and the rest will follow suit.
 
-// TODO: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another
+<!-- // TODO: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another -->
 
 #### A Closer Look at the Code
 

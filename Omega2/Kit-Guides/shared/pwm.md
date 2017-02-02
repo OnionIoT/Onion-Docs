@@ -1,6 +1,6 @@
 ### Pulse Width Modulation
 
-PWM (Pulse Width Modulation) is a technique of producing varying analog signals from a digital source. 
+PWM (Pulse Width Modulation) is a technique of producing varying analog signals from a digital source. Basically it's just turning a digital signal on and off at regular intervals. It easily allows us to control how much power is supplied to a component. In our case that component will be an LED and the less power we provide, the dimmer the light the LED will produce.
 
 ![alt text](http://www.bristolwatch.com/picaxe/images/io43.gif)
 

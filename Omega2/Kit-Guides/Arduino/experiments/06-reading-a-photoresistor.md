@@ -9,13 +9,13 @@ In this tutorial, we will use a photoresistor to detect the light intensity. We'
 
 A photoresistor has a variable resistance based on the intensity of the light hitting it. However, its light intensity measured in a unit called lux is inverse proportional to its resistance: the resistance will decrease when the environment has more light. The photoresistor is made out of a semiconductor with high resistance and can go up to megohms when the environment is dark. 
 
-// TODO: Image of a photoresistor
+<!-- // TODO: Image of a photoresistor -->
 
 ### Building the Circuit
 
 For this circuit we will need use a photoresistor and a 10K resistor to make a voltage divider on a breadboard. We will be using jumper wires for the connections.
 
-// TODO: diagram and equation for a voltage divider
+<!-- // TODO: diagram and equation for a voltage divider -->
 
 Using the equation for the voltage divider, we will be able to determine the resistance of the photoresistor and therefore calculate the light intensity.
 

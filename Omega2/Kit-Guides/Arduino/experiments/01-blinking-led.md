@@ -40,6 +40,8 @@ Prepare the following components from your kit:
 2. Connect the anode of the LED (the longer leg) to pin 4 on the Arduino Dock.
 3. Connect the cathode of the LED (the shorter leg) to one end of the resistor and the other end of the resistor to ground (GND).
 
+<!-- // TODO: photo -->
+
 ### Writing the Code
 
 First, prepare your computer by following [our guide to flashing sketches wirelessly to the Arduino Dock](#flash-arduino-dock-wirelessly).
