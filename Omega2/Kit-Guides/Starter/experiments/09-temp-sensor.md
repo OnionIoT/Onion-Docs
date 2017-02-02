@@ -53,21 +53,29 @@ Prepare the following components from your kit:
 //  * perform a a reading (have this in its own function)
 //  * display the reading on the command line
 
-// should create a temperature sensor class that does the above
+/// NEW NEW NEW!
+// overall implementation:
+// 1. checking for the 1-wire master device in Linux
+//   - if `/sys/devices/w1_bus_master1` does not exist
+//      - need to run `insmod w1-gpio-custom bus0=0,19,0` where 19 is the gpio number where we connect the 1w data line
+//      - add a wait and then check to make sure the dir above exists
+//   - if it exists, all good, keep going
 
-// implementation:
-// take a look at: https://wiki.onion.io/Tutorials/Reading-1Wire-Sensor-Data
-//  the procedure for using 1w on the omega2 is likely similar
+// 2. find the ID of the 1-wire slave device
+//  - first check that there are any slaves by reading `/sys/devices/w1_bus_master1/w1_master_slave_count`,
+//  - if the number of slaves is > 0 then:
+//    - find the id of the slave by reading `/sys/devices/w1_bus_master1/w1_
+master_slaves`
+//  - if there are no slaves, that means the temp sensor has not been detected by the kernel module! need to exit in this case
 
-<!-- // from gabe: o2 firmware 0.1.6b136 has the following files in /etc/modules.d:
-./55-sound-soc-core ## the existing wiki article says to use 55-w1-gpio-custom
-./w1-master-gpio ## only contains "w1-gpio"
-./w1-slave-therm ## only contains "w1_therm"
-(no files with the word "custom")
-I'm guessing it's one of these, will come back to this later. Not exactly sure how this works yet, I need the sensor to try it out
--->
+// 3. find the temperature reading from the sensor by reading: `/sys/devices/w1
+_bus_master1/<1-wire slave ID>/w1_slave` where <1-wire slave ID> is what we read in step 2
+//  it will output something like:
+        b1 01 4b 46 7f ff 0c 10 d8 : crc=d8 YES
+        b1 01 4b 46 7f ff 0c 10 d8 t=27062
 
-<!-- // TODO: need a scan program to find the 1W device's address if it's not known! -->
+// the t=27062 part means that the temperature is 27.062 degrees celsius. the contents of this file will have to be parsed to isolate just the temperature
+
 
 First, we'll create a Python **class** for the temperature sensor. Create a file called `temperatureSensor.py` and paste the following code into it:
 
@@ -76,17 +84,17 @@ class OneWire:
     def __init__(self, uniqueId):
         self.uniqueId = uniqueId
         self.__prepare()
-    
+
     def __prepare(self): # internal use only
         # check if the system file exists
             # if so, check if it's registered
                 # if not, call the register function
-                
+
     // TODO: the existing wiki article says you need to reboot the Omega to set up a new 1W sensor
 
     def __register(self):
         # register the device    
-        
+
     def readValue(self): # call this to read data from the sensor
         # read from the system file
         return sensorValue
