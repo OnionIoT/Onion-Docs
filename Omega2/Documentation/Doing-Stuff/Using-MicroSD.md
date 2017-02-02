@@ -13,7 +13,7 @@ TODO: remove all TODOs when you implement them
 
 An SD card is a flash memory device that uses quantum tunneling effects to store information. Sort of like locking a piece of iron a secure glass box, and using a magnet to move it around to store information. The smallest version of the SD card available right now is the MicroSD format.
 
-![MicroSD Card](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd.png)
+![MicroSD Card](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsdcard.png)
 
 The Omega2+ comes with a MicroSD card slot, enabling you to greatly expand the storage capacity of the Omega without much added cost. The MicroSD card slot on the Omega2+ can be found at the bottom of the board inbetween the pins.
 
