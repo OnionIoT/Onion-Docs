@@ -21,7 +21,7 @@ The Omega2+ comes with a MicroSD card slot, enabling you to greatly expand the s
 
 We'll cover how to insert the SD card, how storage devices work in Linux, how to work with files on the card, and how to safely remove it without damaging your data.
 
-*Note: The Omega2+ supports MicroSD card on firmware builds b143 and higher*
+**Note:** The Omega2+ supports MicroSD card on firmware builds **b143** and higher. Always remember to upgrade to the latest firmware when working with SD cards!
 
 ### Inserting a MicroSD Card
 <!--
