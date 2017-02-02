@@ -22,3 +22,6 @@ This can only be done on Docks that have Reset Buttons:
 <!-- Illustrations that point out reset buttons on each of the docks -->
 ```{r child = './Component-Reset-Button-Photos.md'}
 ```
+
+<!-- TODO: add this section -->
+<!-- ### With the Console -->

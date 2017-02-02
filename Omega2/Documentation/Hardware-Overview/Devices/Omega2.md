@@ -33,22 +33,21 @@ The datasheet for the Omega2's processor can be found here: [Mediatek MT7688 Dat
 
 <!-- TODO: include section on the 50pin connector -->
 
+<!-- operating system -->
+```{r child = '../shared/Hardware-Overview-Component-90-Omega-operating-system.md'}
+```
 
-### The Operating system
+### The Omega LED {#omega2-hw-omega-led}
 
-The Omega2 runs the Linux Embedded Development Environment (LEDE) operating system, a distribution based on OpenWRT. This distribution gives the Omega2 access to the OPKG functionality, allowing you to download packages to enhance your experience.
+<!-- omega led content -->
+```{r child = '../shared/Hardware-Overview-Component-91-Omega-omega-led-content.md'}
+```
 
-### The Omega LED {#omega-hw-omega-led}
 
-The Omega LED is a great tool for communicating information with a user. It notifies you when your Omega is on, when it's off, and when it's booting.
+<!-- reset gpio -->
+```{r child = '../shared/Hardware-Overview-Component-92-Omega-reset-gpio.md'}
+```
 
-The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](#the-omega-led)
-
-<!-- TODO: fix this link -->
-
-### Reset GPIO
-
-The Omega's can be reset using GPIO38. When plugged into a Dock (e.g. Expansion Dock), this GPIO gives various functionality to the reset button found on docks. For example, a quick button press triggers the reboot command, whereas holding the button for longer than 7 seconds will trigger a factory reset command.
 
 <!-- batch2: ## Antenna and U.FL Connector -->
 
