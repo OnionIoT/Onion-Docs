@@ -45,12 +45,6 @@ The datasheet for the Omega2 Plus' processor can be found here: [Mediatek MT7688
 
 <!-- reset gpio -->
 ```{r child = '../shared/Hardware-Overview-Component-92-Omega-reset-gpio.md'}
-```<!-- wifi antenna -->
-```{r child = '../shared/Hardware-Overview-Component-92-Omega-smt-antenna.md'}
-```
-
-<!-- u.fl connector -->
-```{r child = '../shared/Hardware-Overview-Component-92-Omega-ufl-connector.md'}
 ```
 
 
