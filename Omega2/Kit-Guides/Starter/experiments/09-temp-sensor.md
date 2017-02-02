@@ -75,6 +75,10 @@ _bus_master1/<1-wire slave ID>/w1_slave` where <1-wire slave ID> is what we read
         b1 01 4b 46 7f ff 0c 10 d8 t=27062
 
 // the t=27062 part means that the temperature is 27.062 degrees celsius. the contents of this file will have to be parsed to isolate just the temperature
+// make sure the following cases are handled correctly:
+//  - negative temperature will be shown as: t=-1234 this means -1.234
+//  - when 0 < temp < 1 the temperature will be shown as t=543 meaning 0.543 degrees
+//  - when -1 < temp < 0 the temp will be shown as t=-876 meaning -0.876 degrees
 
 
 First, we'll create a Python **class** for the temperature sensor. Create a file called `temperatureSensor.py` and paste the following code into it:
