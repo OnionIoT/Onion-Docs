@@ -45,7 +45,14 @@ The datasheet for the Omega2 Plus' processor can be found here: [Mediatek MT7688
 
 <!-- reset gpio -->
 ```{r child = '../shared/Hardware-Overview-Component-92-Omega-reset-gpio.md'}
+```<!-- wifi antenna -->
+```{r child = '../shared/Hardware-Overview-Component-92-Omega-smt-antenna.md'}
 ```
+
+<!-- u.fl connector -->
+```{r child = '../shared/Hardware-Overview-Component-92-Omega-ufl-connector.md'}
+```
+
 
 ### MicroSD Card Slot
 
@@ -56,11 +63,14 @@ The slot can be found at the bottom of the Omega2+. To physically mount a MicroS
 ![MicroSD Card Slot Location](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-microsd-slot.jpg)
 
 
+<!-- wifi antenna -->
+```{r child = '../shared/Hardware-Overview-Component-92-Omega-smt-antenna.md'}
+```
 
-<!-- batch2: ## Antenna and U.FL Connector -->
+<!-- u.fl connector -->
+```{r child = '../shared/Hardware-Overview-Component-93-Omega-ufl-connector.md'}
+```
 
-<!--  Description of SMT antenna used on the Omega, mention that it's directional, have a diagram of the directionality -->
-<!--  Describe that U.FL connector can be used to connect other, bigger antennas -->
 
 <!--  leave this out for now -->
 ### Mechanical drawing

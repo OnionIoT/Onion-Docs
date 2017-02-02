@@ -117,7 +117,7 @@ Create a new file:
 
 Let's name it `morse.sh`:
 
-![name the new file morse.sh]((https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-editor-2-new-morse-sh-file.png)
+![name the new file morse.sh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-editor-2-new-morse-sh-file.png)
 
 Copy the code below, and save the file:
 

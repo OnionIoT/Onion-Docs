@@ -49,20 +49,15 @@ The datasheet for the Omega2's processor can be found here: [Mediatek MT7688 Dat
 ```
 
 
-<!-- batch2: ## Antenna and U.FL Connector -->
+<!-- wifi antenna -->
+```{r child = '../shared/Hardware-Overview-Component-92-Omega-smt-antenna.md'}
+```
 
-<!-- info on antenna
-mention that it's a smt antenna
-LAZAR: add bit about it being directional later -->
+<!-- u.fl connector -->
+```{r child = '../shared/Hardware-Overview-Component-93-Omega-ufl-connector.md'}
+```
 
-<!-- Info on ufl connector:
-https://en.wikipedia.org/wiki/Hirose_U.FL
-The Omega has a male surface-mount u.fl connector, other bigger antennas can be connected to it to extend the range of the wifi
-something like this will boost wifi range: https://www.adafruit.com/product/2308
-it's also possible to get a converter and use antennas like this: http://i.ebayimg.com/images/i/251300891906-0-1/s-l1000.jpg
-if a ufl antenna is plugged in, it will be used as the default antenna, no setup required -->
 
-<!-- copy this part to omega2+ article -->
 
 ### Mechanical Drawing
 
