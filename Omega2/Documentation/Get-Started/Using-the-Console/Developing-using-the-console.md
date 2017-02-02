@@ -31,7 +31,11 @@ In order to develop programs on the console you'll need the Terminal and Editor 
 At this point you are now ready to develop code for your Omega from your browser!
 
 
-### Controlling the LED from the Terminal App
+### Controlling the LED from the Terminal App {#developing-using-the-console-terminal-app}
+
+If you haven't already, install the Terminal app by opening it on the Console and clicking the Install button.
+
+> See our article on [Installing Console Apps](#installing-apps) for a walkthrough.
 
 Open the Terminal App and log in using your username and password. The defaults are:
 
@@ -99,7 +103,21 @@ echo default-on > /sys/class/leds/omega2\:amber\:system/trigger
 
 A Unix Shell is an interpreter that reads commands from the command-line and executes them. A Shell Script is a way of coding using those basic commands to create a more complex program. Essentially, we are going to use the same basic commands from the last section to create a program that will read a message and then blink that message in morse code.
 
-Create a file called `morse.sh` in the root directory using the Editor App.
+If you haven't done so already, install the Editor app by opening it on the Console and clicking the Install button.
+
+> See our article on [Installing Console Apps](#installing-apps) for a walkthrough.
+
+Open the Editor app, navigate to the `/root` directory:
+
+![navigate to root directory](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-editor-0-navigate-to-root-dir.png)
+
+Create a new file:
+
+![create new file](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-editor-1-new-file.png)
+
+Let's name it `morse.sh`:
+
+![name the new file morse.sh]((https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-editor-2-new-morse-sh-file.png)
 
 Copy the code below, and save the file:
 
