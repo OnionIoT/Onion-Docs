@@ -23,9 +23,7 @@ We'll cover how to:
 
 ### Warnings
 
-#### Filesystem
-
-This is a process that modifies how the Omega stores its files, so if you have any files or programs you created on the Omega, make sure you **back them up** before proceeding!
+Before you proceed, you'll need to be aware of the following warnings. This is a process that modifies how the Omega stores its files and any user files or programs you've added to the Omega may possibly be deleted. **Make sure you back them up before proceeding!**
 
 #### Firmware Updates
 
@@ -38,23 +36,15 @@ Updating or reflashing the firmware will **undo** the pivot-overlay process:
 
 Gabe: as in their files will all be erased/reset, AND the Omega will not use the external device's storage space, they'll be back to the flash only -->
 
-<!-- TODO:
-- add a few more plain-english sentences here of what pivot-overlay will help us accomplish:
-    - move the writeable portion of the firmware to the usb storage
-    - Expands the Omega's filesystem to the entire external storage device
-- give a small outline that this article will be covering:
-    - the procedure on how to set it all up
-    - provides warnings and troubleshooting for working with this type of system -->
-
 #### Booting Without the Storage Device Connected
 
 **Caution:** If you power on the Omega without the storage device connected, the following will be unavailable or reset to default as they would have only been stored on the device:
 
 * User-created files
 * User-installed packages (eg. Python, Git)
-* Software settings stored outside of `/etc`
+* Settings for system software or packages
 
-The filesystem will revert to a "fresh" state with only the default files and folders available. However, all of the above items will be accessible again once you reboot the Omega with the storage device connected!
+The filesystem will only boot into a "fresh" state with only the default files and folders available. However, all of the above items will be accessible again once you reboot the Omega with the storage device connected!
 
 <!-- // remember to include the important caveats:
 //  - updating the firmware might affect this (test this out and see what the outcome is) -->
@@ -70,9 +60,14 @@ update the paragraph below to:
     - /rom holds the read-only firmware, /overlay are your changes that you've made to the base firmware, when the omega boots, it combines the two.
  - then describe that what pivot overlay does is that it moves the /overlay to the usb storage, allowing for hella additional space
   -->
+Here's how it works. The Omega's filesystem is comprised of two main parts:
 
+* `/rom` - Contains the base, read-only part of the firmware
+* `/overlay` - Contains changes to the base firmware, such as when you modify files or install packages
 
-The technical explanation is that it mounts a storage device to the writable part of your filesystem, `/overlay`, which is merged with the read-only part of your filesystem, `/rom`, to generate the entire filesystem, `/`.
+When the Omega boots, it combines the contents of both to create the entire filesystem, `/`. This is where you can access your folders such as `/root`, `/etc`, and `/bin`.
+
+pivot-overlay moves the `/overlay` part to the external storage device, allowing for as much space as you can give it!
 
 <!-- ### Boot Process
 
@@ -111,6 +106,10 @@ Here we have about 14.6 MB of space total on the Omega's flash, which is the sum
 
 * `/overlay` - the `overlayfs:/overlay` entry
 * `/rom` - the `/dev/root` entry
+
+This is what it looks like in the Console. The decimals in the previous example are rounded and may be slightly different from the Console's calculations.
+
+![default-omega2-filesystem](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/pivot-overlay-01.jpg "Default Omega2 Filesystem")
 
 Now let's get started on preparing the external storage device.
 
@@ -189,9 +188,9 @@ Writing superblocks and filesystem accounting information: done
 
 ### Mounting the External Storage Device {#boot-from-external-storage-mounting-the-external-storage-device}
 
-<!-- TODO: throw in a photo of the Omega&Dock with a USB drive plugged in and the Omega2+ with an SD card inserted -->
-
 If you did not need to use the Omega to format your storage device, make sure the device is now connected to the Omega.
+
+![omegas-storage-devices](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/omega2-usb-sdcard.jpg)
 
 Run the following commands and fill in `<device name>` with your device's name (eg. `sda1`).
 
@@ -259,9 +258,25 @@ Save the file and restart the Omega:
 reboot
 ```
 
+### Verify The New Filesystem
+
 <!-- TODO: make this last part its own section, we really want to highlight what they've accomplished! -->
 
-And voilà! Your Omega should automatically mount the `/overlay` directory. From this point on, all changes to your filesystem will be made on your USB storage device. This is what it should look like with a 16 GB USB drive:
+And voilà! Your Omega should automatically mount the `/overlay` directory. From this point on, all changes to your filesystem will be made on your storage device, and you've increased your Omega's storage by about a hundred times over! Great job!
+
+When you run `df -h` again, this is what it should look like with a 16 GB USB drive:
+
+```
+Filesystem                Size      Used Available Use% Mounted on
+/dev/root                 5.5M      5.5M         0 100% /rom
+tmpfs                    29.7M    196.0K     29.5M   1% /tmp
+/dev/sda1                14.1G     46.7M     13.4G   0% /overlay
+overlayfs:/overlay       14.1G     46.7M     13.4G   0% /
+tmpfs                   512.0K         0    512.0K   0% /dev
+/dev/sda1                14.1G     46.7M     13.4G   0% /tmp/run/mountd/sda1
+```
+
+Here's what it looks like in the Console.
 
 ![pivot-overlay-omega2-filesystem](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/pivot-overlay-02.jpg "pivot-overlay Omega2 Filesystem")
 
