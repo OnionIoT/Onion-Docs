@@ -8,8 +8,6 @@ order: 2
 
 ## Booting from External Storage {#boot-from-external-storage}
 
-<!-- // mention that, yes, flash storage on the Omega is limited, so it is possible to have the Omega boot from attached USB storage -->
-
 The Omega comes with enough flash storage to get started and working on projects, but if you need more it's possible to extend the storage capacity using a USB drive or MicroSD card!
 
 This article will explain and outline the procedure for the **pivot-overlay** process. Basically we move the writeable portion of the Omega's firmware to an external storage device such as a MicroSD card or USB drive. Then we expand the Omega's filesystem to use the entire storage device.
@@ -54,12 +52,6 @@ The filesystem will only boot into a "fresh" state with only the default files a
 
 The pivot-overlay procedure allows you to download, store, and install software and packages onto another storage device like an SD card or USB drive. The storage can be as big or small as you need, so you'll (probably) never have to worry about running out of space again!
 
-<!-- TODO: the single sentence below is trying to do too much at once!
-update the paragraph below to:
- - describe how the Omega's filesystem works:
-    - /rom holds the read-only firmware, /overlay are your changes that you've made to the base firmware, when the omega boots, it combines the two.
- - then describe that what pivot overlay does is that it moves the /overlay to the usb storage, allowing for hella additional space
-  -->
 Here's how it works. The Omega's filesystem is comprised of two main parts:
 
 * `/rom` - Contains the base, read-only part of the firmware
@@ -260,8 +252,6 @@ reboot
 
 ### Verify The New Filesystem
 
-<!-- TODO: make this last part its own section, we really want to highlight what they've accomplished! -->
-
 And voilà! Your Omega should automatically mount the `/overlay` directory. From this point on, all changes to your filesystem will be made on your storage device, and you've increased your Omega's storage by about a hundred times over! Great job!
 
 When you run `df -h` again, this is what it should look like with a 16 GB USB drive:
@@ -279,6 +269,3 @@ tmpfs                   512.0K         0    512.0K   0% /dev
 Here's what it looks like in the Console.
 
 ![pivot-overlay-omega2-filesystem](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/pivot-overlay-02.jpg "pivot-overlay Omega2 Filesystem")
-
-
-<!-- TODO: add a blurb about the `df -h` command and show a screencap of the new space! -->
