@@ -101,10 +101,10 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 //  * two switches: control how fast the motor spins (binary 00 -> 11, make sure to include a truth table)
 //  * one switch: controls the direction (on is left, and off is right, or whatever makes sense)
 // duty cycle: 0 -> 30 -> 40 -> 50
-
-// TODO: implement this h-bridge class in a separate file, include any required files from the previous experiments -->
+-->
 
 Let's add a class blueprint for a DC motor controlled by an H-bridge to our motors file we made in the previous tutorial. Open the `motors.py` file and add this the bottom:
+<!-- // TODO: change the class below to PWM the input pins, not the enable pin -->
 
 ``` python
 class hBridgeMotor:
@@ -182,7 +182,9 @@ class hBridgeMotor:
 		return ret
 ```
 
-Next, let's write the code for the experiment. Create a file called `hBridgeExperiment.py` and paste the following code in it:
+Next, let's write the code for the experiment. Create a file called `MAK03-hBridgeExperiment.py` and paste the following code in it:
+
+// TODO: rework code to work off 3 SPDT switches
 
 ``` python
 from motors import hBridgeMotor
@@ -251,7 +253,7 @@ As you've probably seen before, we use an infinite loop here, and you can break 
 
 ### A Closer Look at the Code
 
-// TODO: introduce reading user input here instead of in 05-oled-changing-settings
+// TODO: remove and replace with whatever you introduce above - tuples probably won't work in this situation
 
 In this tutorial, we put together knowledge from the previous tutorials to control a DC motor with Python. We're now **receiving user input** interactively, allowing us to change the script's behaviour in real-time. On top of that we mixed in Python **tuples** to codify the output we wish the PWM controller to send, and in doing so baked in failsafes to protect hardware from erroneous signalling. Finally, we used a **lookup table** to track and translate the input from the user into the output sent to the controller.
 

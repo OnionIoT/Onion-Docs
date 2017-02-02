@@ -48,15 +48,11 @@ Grab the following from your kit:
 
 #### Writing the Code
 
-<!-- // Note from Lazar: for this and the rest of the pwm expansion articles, see https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py for code example
-
-// * create a class that uses the omegapwm class from the previous example to drive a servo
+<!-- // * create a class that uses the omegapwm class from the previous example to drive a servo
 //    * essentially create the servo class (from the file above), can skip the getSettings, setupMinAngle, and setupMaxAngle functions for the purposes of this example
 //    * make sure the class follows the angle described in the servo section above ie 0˚->180˚ as opposed to -90-˚>90˚
 // * the program should be something along the lines of setting the servo to 0˚, 45˚, 90˚, 135˚, 180˚, and then back down by 45˚ steps, have a noticeable but not annoyingly long delay between the steps
 //  * have it run in an infinite loop -->
-
-<!-- // TODO: look at code from https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py and implement it here
 
 // TODO: implement this servo class in a separate file, include the file from the previous exp -->
 
@@ -125,6 +121,9 @@ from motors import Servo
 import time
 
 def main():
+    // TODO: change the min and max pulse arguments for std servo
+    // TODO: add micro servo to this script (double check the revised class definition in 01)
+    
 	standardServo = Servo(0, 3.0, 11.5)
     
 
@@ -189,7 +188,7 @@ In this example, the loop does a simple progression of commands, but the concept
 
 #### Math in Python
 
-In this code example, as well as others, you will notice that decimal places are included for integer numbers, regardless if it is necessary or not (eg. `3.0`). This is to tell Python interpret the number as a decimal, or **floating point**, number, which will make it behave like your typical pocket calculator.
+In this code example, as well as others, you will notice that decimal places are included for integer numbers, regardless if it is necessary or not (eg. `3.0`). This is to tell Python to interpret the number as a decimal, or **floating point**, number, which will make it behave like your typical pocket calculator.
 
 However, if we specified our numbers as integers (eg. `3`), we'd be doing **integer math**. In this case, Python basically **drops the decimal part** of any calculation,  such as division. There are times when this is not an issue, such as counting discrete objects or iterating through loops, but you have to be careful when you write a math equation and expect a decimal answer!
 
@@ -219,5 +218,7 @@ The time Python library is used here to provide a way to delay the signals trans
 
 
 ### Moving Beyond
+
+// TODO: clean this paragraph up
 
 Since each servo motor is slightly different, we instantiate our class with the channel that the motor is connected to along with the duty cycle for the 0 degree position and the duty cycle for the `180` degree position. The numbers we used (`3.0` and `11.5`) are values we've tested and found to work with our particular servo. Due to manufacturing imperfections, design flaws, and a whole host of other issues, you would often need to test and find the numbers that work for your particular servo at the angles you need - this is called calibration. Moving beyond, see if you can use the command line tools or the libraries to figure out what duty cycles correspond to what kind of movement in your own servo.
