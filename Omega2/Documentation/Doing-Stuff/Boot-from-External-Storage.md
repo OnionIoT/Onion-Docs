@@ -14,13 +14,13 @@ The Omega comes with enough flash storage to get started and working on projects
 
 This article will explain and outline the procedure for the **pivot-overlay** process.
 
-TODO:
+<!-- TODO:
 - add a few more plain-english sentences here of what pivot-overlay will help us accomplish:
     - move the writeable portion of the firmware to the usb storage
     - Expands the Omega's filesystem to the entire external storage device
 - give a small outline that this article will be covering:
     - the procedure on how to set it all up
-    - provides warnings and troubleshooting for working with this type of system
+    - provides warnings and troubleshooting for working with this type of system -->
 
 
 <!-- // base this on the existing article:
