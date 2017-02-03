@@ -12,6 +12,8 @@ This page lists all of the currently identified issues in the Omega OS. The issu
     * Status: **Fixed** in b142
 * ~~Omega2+ cannot mount MicroSD cards~~
     * Status: **Fixed** in b143
+* ~~Cannot successfully register a 1-Wire master in the filesystem~~
+    * Status: **Fixed** in b151
 * The `fast-gpio` program always crashes
     * Root Cause: the firmware does not expose the `/dev/mem` device which allows access to the memory map
     * Status: Investigating
