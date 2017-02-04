@@ -1,6 +1,6 @@
 ## Communicating with 1-Wire Devices {#communicating-with-1w-devices}
 
-The One-Wire protocol is a bus-based protocol that, as the name implies, uses one data wire to transmit data between devices. It allows controllers and processors like the Omega2 to easily communicate with peripheral devices like:
+The One-Wire protocol is a bus-based protocol that, as the name implies, uses jsut one data wire to transmit data between devices. It allows controllers and processors like the Omega2 to easily communicate with peripheral devices like:
 
 * Sensors, such as temperature, humidity
 * Programmable Input/Output chips
@@ -20,7 +20,7 @@ One Wire is also referred to as **1W, 1-Wire, W1** etc.
 
 ### The Omega & One-Wire
 
-Interacting with One-Wire devices with the Omega is slightly different from I2C, SPI, and UART, but you'll see that it's not a big deal. Since there is no dedicated hardware One-Wire controller on the Omega, your One-Wire device can be connected to any GPIO. We will then register a One-Wire master in Linux associated with the selected GPIO that will allow us to communicate with the One-Wire slave devices.
+Interacting with One-Wire devices with the Omega is slightly different from [I2C](#communicating-with-i2c-devices), [SPI](#communicating-with-spi-devices), and [Serial](#uart1) devices, but you'll see that it's not a big deal. Since there is no dedicated hardware One-Wire controller on the Omega, your One-Wire device can be connected to any GPIO. We will then register a One-Wire master in Linux associated with the selected GPIO that will allow us to communicate with the One-Wire slave devices.
 
 **Note that you need to be on firmware b151 or higher!**
 
@@ -48,7 +48,7 @@ Make the following connections to your Omega:
 
 Most GPIOs will work, but for now, let's use GPIO19. Some One-Wire devices will require a **pull-up resistor** on the Data line. For example, the popular DS18B20 temperature sensor, requires a 4.7 kΩ pull-up resistor on the Data line to operate properly. Some One-Wire devices have built-in pull-up resistors or can require different resistance values, check the datasheet of your device to be sure!
 
-> A pull-up resistor is a connection between, in this case, the data line and the voltage line. When the Data line is in active the pull up resistor will "pull" the signal to a logical high. Then when the Data line goes active, it will override the pull-up. It essentially ensures the logical level is always valid.
+> A pull-up resistor is a connection between, in this case, the data line and the voltage line. When the Data line is inactive, the pull up resistor will "pull" the signal to a logical high. Then when the Data line goes active, it will override the pull-up. It essentially ensures the logical level is always valid.
 
 <!-- TODO: expand on pull up resistors -->
 
@@ -103,7 +103,8 @@ cat /sys/devices/w1_bus_master1/w1_master_slave_count
 The output will be a number that will tell us how many slave devices are connected:
 
 * If it is a `1`, you already have your device plugged in and you're good to go.
-* If you see a `0`, go ahead and plug in your device. The One-Wire bus master kernel module scans the data pin every 10 seconds for new devices so wait a little while and try again
+* If you see a `0`, go ahead and plug in your device.
+  * The One-Wire bus master kernel module scans the data pin every 10 seconds for new devices so wait a little while and try again
 
 #### Finding your Specific Device
 
