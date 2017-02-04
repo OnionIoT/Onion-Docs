@@ -20,11 +20,11 @@ This page lists all of the currently identified issues in the Omega OS. The issu
 * WiFi Issues
     * No automatic support for TKIP-encrypted WiFi networks
         * See [this post](https://community.onion.io/topic/1149/omega2-fails-to-connect-to-wifi/25) on the Onion Community for an interim, manual fix
-        * Status: expect a fix in late January
+        * Status: expect a fix in February
     * No support for enterprise WiFi that requires a username and password
         * Status: expect a fix in February
     * No automatic support for WiFi channels 13 and 14
-        * Status: expect a fix early February
+        * Status: expect a fix in February
 
 
 ### Console Issue Listing
