@@ -16,7 +16,11 @@ The Ethernet Expansion adds an Ethernet port to the Omega. With this expansion y
 
 ### The Hardware
 
-#### Connecting to a Dock
+The Ethernet Expansion includes a single standard ethernet port. Simple, but effective.
+
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-expansion-illustration.png)
+
+### Connecting to a Dock
 
 <!-- // plugged into the expansion Header -->
 <!-- // TODO: have photos of it plugged into the Exp dock, power dock, and arduino dock 2 -->
@@ -36,11 +40,8 @@ The Ethernet Expansion is to be plugged into an Expansion Header. These headers 
 
 This Expansion features an Expansion Header, so other expansions can be safely stacked on top of it.
 
-#### At a Glance
 
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-expansion-illustration.png)
-
-#### Connecting an Ethernet Cable
+### Connecting an Ethernet Cable
 
 <!-- // instructions and photos of connecting and disconnecting an ethernet Cable -->
 
@@ -63,6 +64,9 @@ In order to disconnect the Ethernet cable you'll need to press down on the cord 
 
 ![ethernet arduino dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-cord-plugged-in.JPG)
 
+### Mechanical Drawings 
+
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-ETH.PDF) of the dimensions and geometry of the Ethernet Expansion.
 
 ### Using the Ethernet Expansion
 
@@ -79,6 +83,3 @@ To learn more about using the Ethernet Expansion check out our guide to [using t
 <!-- //  - using the omega as a router -->
 <!-- //  - using the omega as an ethernet bridge -->
 
-### Technical Drawing
-
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-ETH.PDF) here.

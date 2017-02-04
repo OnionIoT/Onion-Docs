@@ -22,7 +22,9 @@ The Breadboard Dock provides power to the Omega via a Micro-USB port that takes 
 
 All of the Omega's pins are broken out via a breadboard header. You can use this Dock with your own circuits, custom embedded applications, or just for hacking!
 
-#### Connecting an Omega
+![breadboard-dock-illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/breadboard-dock-illustration.png)
+
+### Connecting an Omega
 
 <!-- [//]: # (picture guide on how to properly plug in an Omega) -->
 
@@ -30,13 +32,8 @@ Connect your Omega to the Breadboard Dock by lining up the two rows of header pi
 
 ![connect-omega](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/breadboard-dock-omega-connected.jpg)
 
-#### The Breadboard Dock at a Glance
 
-<!-- https://wiki.onion.io/Tutorials/Expansions/Using-the-Power-Dock#the-hardware_the-power-dock-at-a-glance for an example) -->
-
-![breadboard-dock-illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/breadboard-dock-illustration.png)
-
-#### The Breadboard Header
+### The Breadboard Header
 
 <!-- // explanation of the breadboard header, have photos of plugging it into a breadboard -->
 
@@ -54,7 +51,7 @@ Fully insert the Dock so that all of the breadboard header's pins fit into the b
 
 
 
-<!-- TODO: ##### Detailed Pinout diagram -->
+<!-- TODO: IMAGE ##### Detailed Pinout diagram -->
 
 <!-- [//]: # (A detailed pinout diagram of the Breadboard Header, showing which pins are multiplexed - see Lazar for an example) -->
 
@@ -69,3 +66,9 @@ Fully insert the Dock so that all of the breadboard header's pins fit into the b
 <!-- Reset Button -->
 ```{r child = '../shared/Hardware-Overview-Component-0-Reset-Button.md'}
 ```
+
+<!-- TODO: IMAGE breadboard dock drawing, recheck link and uncomment section when finished
+### Mechanical Drawings
+
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-D-BRD.PDF) of the dimensions and geometry of the Breadboard Dock.
+-->

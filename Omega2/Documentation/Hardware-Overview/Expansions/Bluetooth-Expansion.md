@@ -22,23 +22,24 @@ The Bluetooth Low-Energy (BLE) Expansion is a USB-based expansion that adds Blue
 
 The white plastic casing houses the antenna, circuitry and an LED indicator. The other part of the Expansion is the USB connector that allows you to plug in the dongle into your Docks.
 
-#### Connecting to a Dock
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bluetooth-expansion-illustration.png)
+
+### Connecting to a Dock
 
 // plugged into the USB Port
 // have photos of it plugged into the Exp dock, power dock, minidock, and arduino dock 2
 
-
-#### At a Glance
-
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bluetooth-expansion-illustration.png)
-
-#### LED
+### LED
 
 // LED will be solid when the antenna is in use, it might flash, this needs to be tested
 
 The LED will be solid blue when the antenna is in use.
 
+<!---
+### Mechanical Drawings
 
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-BLE.PDF) of the dimensions and geometry of the Bluetooth Expansion.
+--->
 
 ### Using the Bluetooth Expansion
 
@@ -57,9 +58,3 @@ You can check out our [guide to using the Bluetooth Expansion](#using-bluetooth-
 // refer to the existing article for details:
 https://wiki.onion.io/Tutorials/Bluetooth-Streaming-Audio
 
-<!--
-
-### Technical Drawing
-
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/wiki/master/Documentation/Hardware/Technical-Drawings/NAME.PDF) here.
--->

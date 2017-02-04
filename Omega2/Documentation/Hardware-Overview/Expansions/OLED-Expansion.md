@@ -8,11 +8,13 @@ order: 2
 
 ## OLED Expansion {#oled-expansion}
 
-<!-- // intro to the oled expansion - power efficient, tiny screen, mention the resolution and that it's monochrome
+<!-- // intro to the oled expansion - power efficient, tiny screen, mention the resolution and that it's monochrome -->
 <!-- // can write text, draw images, adjust settings, do some little animations (scrolling) -->
 
 
 The OLED Expansion is an extremely power efficient 0.96″ monochrome (black and white) OLED display for your Omega. With a resolution of 128×64, it is very handy for displaying text, drawing images, and even animation!
+
+![photo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/oled-onion-display.png)
 
 This Expansion communicates with the Omega using the I2C protocol. If you're curious, check out the [article on I2C](#communicating-with-i2c-devices).
 
@@ -25,10 +27,10 @@ This Expansion communicates with the Omega using the I2C protocol. If you're cur
 
 The main purpose of the OLED expansion is to display things on a screen. That's why the only significant hardware on the Expansion is an OLED screen.
 
-![photo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/oled-onion-display.png)
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-illustration.png)
 
 
-#### Connecting to a Dock
+### Connecting to a Dock
 
 <!-- // plugged into the expansion Header -->
 <!-- // have photos of it plugged into the Exp dock, power dock, and arduino dock 2 -->
@@ -46,20 +48,16 @@ The OLED Expansion plugs into a Dock with an Expansion Header. You can also stac
 
 The OLED Expansion headers are blind, meaning you can't stack other Expansions on top. Otherwise you wouldn't be able to see the screen!
 
-#### At a Glance
 
-<!-- // illustration -->
 
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-illustration.png)
-
-#### The Screen
+### The Screen
 
 <!-- // talk about how it's an OLED screen, mention the size and resolution, and mention resolution in terms of text characters -->
 
 The screen is a 0.96″ OLED (organic light-emitting diode) screen and so the display makes its own light, no backlight is required. This reduces the power required to run the OLED and is why the display has such high contrast. The resolution of the screen is 128x64 (Length x Width), and when displaying text there are 8 rows, with 21 possible characters in each row.
 
 
-#### Understanding the Display
+### Understanding the Display
 
 <!-- // see the following section: https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-C-Library#programming-flow_understanding-the-display -->
 
@@ -77,6 +75,10 @@ So writing `0x0f` to `SEG0` would produce the top 4 pixels being colored in, and
 
 ![colored-in-example](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-colored-in.png)
 
+### Mechanical Drawings
+
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-OLE.PDF) of the dimensions and geometry of the OLED Expansion.
+
 ### Using the OLED Expansion
 
 <!-- // give an example of when this would be useful: displaying some data using your omega -->
@@ -85,10 +87,6 @@ The OLED Expansion is incredibly useful because it gives you the ability to disp
 
 
 For more on using the Omega Expansion you can check out our [guide to using the OLED Expansion](#using-oled-expansion).
-
-### Technical Drawing
-
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-OLE.PDF) here.
 
 <!-- // point them to the article on using the oled expansion -->
 <!-- // this article can be heavily based on the existing doc: https://wiki.onion.io/Tutorials/Expansions/Using-the-OLED-Expansion -->

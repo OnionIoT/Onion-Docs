@@ -20,7 +20,9 @@ The Relay Expansion is designed so you can stack multiple Relay Expansions onto 
 
 The Relay Expansion comes with two electromagnetic relays with screw terminals.
 
-#### Connecting to a Dock
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-expansion-illustration.png)
+
+### Connecting to a Dock
 
 <!-- // plugged into the expansion Header
 // have photos of it plugged into the Exp dock, power dock, and arduino dock 2
@@ -37,11 +39,8 @@ You can use the Relay Expansion with the Expansion Dock, Power Dock, or Arduino 
 
 To connect the Relay Expansion to the Omega, plug it into the Expansion Header on the Expansion Dock.
 
-#### At a Glance
 
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-expansion-illustration.png)
-
-#### The Relays
+### The Relays
 
 Relays are simple switches that can open (disconnect) and close (connect) circuits. Take the following example circuit:
 
@@ -64,13 +63,13 @@ The relays channels are labelled below:
 
 ![relay-labels](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-expansion-channels-labelled.png)
 
-#### The Screw Terminals
+### The Screw Terminals
 
 The green block on the board is called the *terminal block*. It houses 4 terminals, 2 for each relay, into which you plug your circuit wires. To secure the wires inside the terminal block, screw them down with a small flathead screwdriver.
 
 ![screw-terminals](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-screw-terminal.jpg)
 
-#### The Address Switch
+### The Address Switch
 
 The address switch allows you to change the I2C address of the board. This is needed to differentiate multiple Relay Expansions from each other when connected to the same Omega.
 
@@ -102,6 +101,10 @@ The I2C addresses corresponding to the different switch positions are shown belo
 | 0x21               | 011                   |
 | 0x20               | 111                   |
 
+### Mechanical Drawings
+
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-RLY.PDF) of the dimensions and geometry of the Relay Expansion.
+
 ### Using the Relay Expansion
 
 Consider this LED circuit:
@@ -128,6 +131,4 @@ The Relay Expansion can be used to control almost any type of external circuit, 
 
 Read our [guide to using the Relay Expansion](#using-relay-expansion) to learn how to control it using software.
 
-### Technical Drawing
 
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-E-RLY.PDF) here.

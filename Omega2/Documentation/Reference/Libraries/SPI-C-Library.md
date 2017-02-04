@@ -76,7 +76,7 @@ After the above is complete, the functions to transfer data using the SPI protoc
 
 To add the Onion SPI Library to your C/C++ program, include the header file in your C code:
 ``` c
-###include <onion-spi.h>
+#include <onion-spi.h>
 ```
 
 **Library for Linker**

@@ -30,23 +30,25 @@ password: onioneer
 ```
 
 
-
 The Omega comes ready with a kernel module that can translate text to Morse code and blink the LEDs, but you'll need to tell the kernel which LED you want to blink.  The kernel exposes a lot of hardware status and configuration options through a virtual filesystem under `/sys`.  
 > The files under `/sys` aren't *actually* files, but they look and act like files to make it very easy to access them from the command line and in scripts or programs.
 
 To tell the kernel that we are going to use the Morse code module, set the LED trigger condition for the Onion system LED to `morse` by using the `echo` command to write the setting into the virtual file:
 
+
 ```
-echo morse > /sys/class/leds/onion\:amber\:system/trigger
+echo morse > /sys/class/leds/omega2\:amber\:system/trigger
 ```
 
-> To paste into the Terminal app, use `ctrl+shift+v` or `cmd+v` on a MAC
+>If you're using an Omega2+, the LED will be named `omega2p:amber:system` as opposed to `omega2:amber:system` so you will have to pipe the above command to `/sys/class/leds/omega2p\:amber\:system/trigger`
 
+
+Depending on which Terminal app you're using, the keyboard shortcut to paste might not be the straight-forward `Ctrl+v` or `Cmd+v` on a Mac. Some Windows terminal programs use `Ctrl+Shift+v` as the paste shortcut!
 
 You can verify that it worked by using `cat` to look at the virtual file:
 
 ```
-root@Omega-2757:~# cat /sys/class/leds/onion\:amber\:system/trigger                                                              
+root@Omega-2757:~# cat /sys/class/leds/omega2\:amber\:system/trigger                                                              
 none mmc0 timer default-on netdev transient gpio heartbeat [morse] oneshot
 ```
 
@@ -55,32 +57,32 @@ The square brackets indicate that the `morse` trigger is currently selected. The
 Anyway, now we have everything set up!  We just need to tell the kernel what message to blink on the LED.  Conveniently, once the morse option is selected, the kernel creates a new virtual file for that called (unsurprisingly enough) `message`.  We can use `echo` again to put text there:
 
 ```
-echo Hello, Onion > /sys/class/leds/onion\:amber\:system/message
+echo Hello, Onion > /sys/class/leds/omega2\:amber\:system/message
 ```
 
 Now watch your LED!  If it's too fast or too slow, you can change the speed with the `delay` file that also gets created:
 
 ```
-root@Omega-12D9:~# cat /sys/class/leds/onion\:amber\:system/delay
+root@Omega-12D9:~# cat /sys/class/leds/omega2\:amber\:system/delay
 50
 ```
 
 That's pretty fast!  Let's slow it down a bit so that people like me who aren't experts can read it:
 
 ```
-root@Omega-12D9:~# echo 100 > /sys/class/leds/onion\:amber\:system/delay
+root@Omega-12D9:~# echo 100 > /sys/class/leds/omega2\:amber\:system/delay
 ```
 
 The message will keep looping forever or until you change it.  To stop it, you can either clear the message entirely:
 
 ```
-echo > /sys/class/leds/onion\:amber\:system/message
+echo > /sys/class/leds/omega2\:amber\:system/message
 ```
 
 or change the LED trigger to something else:
 
 ```
-echo default-on > /sys/class/leds/onion\:amber\:system/trigger
+echo default-on > /sys/class/leds/omega2\:amber\:system/trigger
 ```
 
 ### Writing a Shell Script in the Terminal using `vi`
@@ -100,21 +102,25 @@ Copy the code below into the terminal.
 ```bash
 #!/bin/sh
 
+# find the name of the board, to be used in the name of the LED
+. /lib/ramips.sh
+board=$(ramips_board_name)
+
+# define the function that will set the LED to blink the arguments in morse code
 _MorseMain () {
 
-	echo morse > /sys/class/leds/onion\:amber\:system/trigger
-	echo 120 > /sys/class/leds/onion\:amber\:system/delay
-	echo $* > /sys/class/leds/onion\:amber\:system/message
+	echo morse > /sys/class/leds/$board\:amber\:system/trigger
+	echo 120 > /sys/class/leds/$board\:amber\:system/delay
+	echo $* > /sys/class/leds/$board\:amber\:system/message
 }
 
 
 ##### Main Program #####
 
+# run the function and pass in all of the arguments
 _MorseMain $*
 
-
 exit
-
 ```
 
 
@@ -153,5 +159,6 @@ root@Omega-2757:~# sh /root/morse.sh Hello Onion
 Once you're done, you can set the blinking back to `default-on` with the following command:
 
 ```
-echo default-on > /sys/class/leds/onion\:amber\:system/trigger
+echo default-on > /sys/class/leds/omega2\:amber\:system/trigger
 ```
+>Remember, on an Omega2+, the LED will be named `omega2p:amber:system` as opposed to `omega2:amber:system` so you will have to pipe the above command to `/sys/class/leds/omega2p\:amber\:system/trigger`

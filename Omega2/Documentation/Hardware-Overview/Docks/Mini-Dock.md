@@ -15,6 +15,8 @@ order: 3
 
 The Mini Dock functions very similarly to the Expansion Dock. It supplies your Omega with power and allows you to communicate serially via a Micro-USB port. It also has a USB type A connector for you to use. All of this with a fraction of the size of an Expansion Dock.
 
+![mini dock alone](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mini-dock-alone.JPG)
+
 The Mini Dock is same size as the Omega. It does not have the Expansion Header of some of the other Docks, but this makes it perfect for Omega-only or USB-based projects.
 
 ### The Hardware
@@ -23,15 +25,11 @@ The Mini Dock is same size as the Omega. It does not have the Expansion Header o
 <!-- [//]: # (Maybe in depth discussion of various pieces, like USB to serial chip. People like that.) -->
 <!-- [//]: # (Refer to current Power Dock Expansion doc for more info) -->
 
-![mini dock alone](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mini-dock-alone.JPG)
-
-
 The Mini Dock is tiny. It is approximately 4.3cm (1.7in) long, and 2.7cm (1.07in) wide.
 
-The Mini Dock is powered by the Micro-USB port that supplies 5V to the Dock. This voltage is stepped down to the required 3.3V required to power the Omega, and also provides 5V to the USB Host port
+The Mini Dock is powered by the Micro-USB port that supplies 5V to the Dock. This voltage is stepped down to the required 3.3V required to power the Omega, and also provides 5V to the USB Host port.
 
 ![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mini-dock-illustration.png)
-
 
 The Mini Dock allows for easy communication via the USB-to-Serial chip located in the center of the board.
 
@@ -78,11 +76,9 @@ You may need to line up the pins with the holes before pressing the Omega into t
 ```{r child = '../shared/Hardware-Overview-Component-5-Omega-USB-Port.md'}
 ```
 
-#### Mechanical Drawings
+### Mechanical Drawings
 
-<!-- [//]: # (insert gabe's dope mechanical drawings) -->
-
-We have provided a [PDF](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-D-MINI.pdf) here.
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-D-MINI.PDF) of the dimensions and geometry of the Mini Dock.
 
 <!-- [//]: # (LATER: Add using the dock:) -->
 <!-- [//]: # ( - usb storage ) -->
