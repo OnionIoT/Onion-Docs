@@ -1,4 +1,4 @@
-## Communicating with 1-Wire Devices {#communicating-with-1w-devices}
+## Communicating with One-Wire Devices {#communicating-with-1w-devices}
 
 The One-Wire protocol is a bus-based protocol that, as the name implies, uses jsut one data wire to transmit data between devices. It allows controllers and processors like the Omega2 to easily communicate with peripheral devices like:
 
