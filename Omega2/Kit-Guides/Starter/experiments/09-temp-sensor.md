@@ -6,80 +6,54 @@ devices: [ Omega , Omega2 ]
 order: 9
 ---
 
-# Reading a One-Wire Temperature Sensor
+## Reading a One-Wire Temperature Sensor
 
 <!-- // in this experiment we will:
 //  * introduce the one-wire bus protocol
 //  * read the ambient temperature using a sensor
 //  * learn how to read and write files -->
 
-Let's now learn about and use the One Wire bus protocol to read the ambient temperature using a temperature sensor. We'll also learn how to read and write files.
-
-## One Wire Protocol
+Let's now learn about and use the **1-Wire bus protocol** to read the ambient temperature using a temperature sensor. We'll also learn how to **read from and write to files**.
 
 <!-- one wire -->
 ```{r child = '../../shared/one-wire.md'}
 ```
 
-## Building the Circuit
+### Building the Circuit
 
-// very straight-forward circuit: signal wire to a gpio, Vcc (3.3V), GND
+We'll be building a very simple circuit to connect the 1-Wire temperature sensor to the Omega. As the name implies, only one data line is needed for communication between any and all devices on the bus! 
 
-### What You'll Need
+#### What You'll Need
 
 Prepare the following components from your kit:
 
 * Omega plugged into Expansion Dock
 * Breadboard
 * Jumper wires
+    * 3x M-M
 * Resistors
-    * 1x 5kΩ
-* One Wire temperature sensor
+    * 1x 5.1kΩ (yellow-purple-red)
+* 1-Wire temperature sensor
     * Should read "Dallas 18B20" on the part
-    * Don't mix this up with the analog temperature sensor! (says "TMP 36" on it)
 
-### Hooking up the Components
+#### Hooking up the Components
 
-// most 1-wire devices need a pull-up resistor on the data line
-// [experiment with the 1-wire temperature sensor to confirm]
+1. Find the flat side of the temperature sensor. This is the **front** side.
+1. With the front of the sensor facing to the left side of the breadboard, insert the three pins into column `e` in 3 consecutive rows, eg. 13, 14, and 15.
+1. Turn the breadboard so that the front of the sensor is facing you. 
+1. Insert jumpers for the following connections into column `a` in the row corresponding to the pins below:
+    * Left - `GND`. Connect this to the Omega's `GND` pin.
+    * Middle - `DATA`. Connect this to the Omega's `GPIO18`.
+    * Right - `Vcc`. Connect this to the Omega's `3.3V`.
+1. Connect the 5.1kΩ resistor across the `DATA` and `Vcc` pins.
 
+Your circuit should look like this:
 
-## Writing the Code
+<!-- TODO: photo -->
 
+### Writing the Code
 
-// the script: should read and write from files on the filesystem
-//  * check if the device exists/is registered
-//    * if not, register it with the system (have this in its own function)
-//  * perform a a reading (have this in its own function)
-//  * display the reading on the command line
-
-/// NEW NEW NEW!
-// overall implementation:
-// 1. checking for the 1-wire master device in Linux
-//   - if `/sys/devices/w1_bus_master1` does not exist
-//      - need to run `insmod w1-gpio-custom bus0=0,19,0` where 19 is the gpio number where we connect the 1w data line
-//      - add a wait and then check to make sure the dir above exists
-//   - if it exists, all good, keep going
-
-// 2. find the ID of the 1-wire slave device
-//  - first check that there are any slaves by reading `/sys/devices/w1_bus_master1/w1_master_slave_count`,
-//  - if the number of slaves is > 0 then:
-//    - find the id of the slave by reading `/sys/devices/w1_bus_master1/w1_master_slaves`
-//  - if there are no slaves, that means the temp sensor has not been detected by the kernel module! need to exit in this case
-
-// 3. find the temperature reading from the sensor by reading: `/sys/devices/w1_bus_master1/<1-wire slave ID>/w1_slave` where <1-wire slave ID> is what we read in step 2
-//  it will output something like:
-        b1 01 4b 46 7f ff 0c 10 d8 : crc=d8 YES
-        b1 01 4b 46 7f ff 0c 10 d8 t=27062
-
-// the t=27062 part means that the temperature is 27.062 degrees celsius. the contents of this file will have to be parsed to isolate just the temperature
-// make sure the following cases are handled correctly:
-//  - negative temperature will be shown as: t=-1234 this means -1.234
-//  - when 0 < temp < 1 the temperature will be shown as t=543 meaning 0.543 degrees
-//  - when -1 < temp < 0 the temp will be shown as t=-876 meaning -0.876 degrees
-
-
-First, let's create a base class for any generic One-Wire device. Create a file called `oneWire.py` and paste the following code in it:
+First, let's create a base class for any generic 1-Wire device. Create a file called `oneWire.py` and paste the following code in it:
 
 ``` python
 import os
@@ -106,6 +80,7 @@ def scanOneAddress():
     addresses = scanAddresses()
     return addresses[0]
 
+# main class definition
 class OneWire:
     def __init__(self, address, gpio=19):      # use gpio 19 by default if not specified
         self.gpio = str(gpio)
@@ -211,38 +186,57 @@ class TemperatureSensor:
 Now let's write the script for the main routine. Create a file called `STK09-temp-sensor.py` and paste the following in it.
 
 ``` python
-# main routine
-
+# import modules and classes
 from temperatureSensor import TemperatureSensor
 import oneWire
 import time
 
-# get the address of the temperature sensor when it's the only device connected
-sensorAddress = oneWire.scanOneAddress()
-# set the GPIO that we've connected the sensor to
-oneWireGpio = 18
+oneWireGpio = 18 # set the GPIO that we've connected the sensor to
 
-pollingInterval = 1                             # seconds
+pollingInterval = 1 # seconds
+
+# get the address of the temperature sensor
+# it should be the only device connected in this experiment
+sensorAddress = oneWire.scanOneAddress() 
 
 sensor = TemperatureSensor("oneWire", { "address": sensorAddress, "gpio": oneWireGpio })
+if not sensor.ready:
+    print "Sensor was not set up correctly. Please make sure that your sensor is firmly connected to the GPIO specified above and try again."
+    return -1
 
 # periodically check and print the temperature
 while 1:
     value = sensor.readValue()
-    print value
+    print "T = " + str(value) + " C"
     time.sleep(pollingInterval)
 ```
 
-### What to Expect
+Run the `STK09-temp-sensor.py` script and watch the terminal for output. Try pinching the sensor with your fingers and seeing how it reacts!
+
+#### What to Expect
 
 <!-- // run the program, get a print-out on the command line of the current temperature -->
-You should see the Omega printing the ambient temperature in degrees Celsius measured by the sensor once every second.
+You should see the Omega printing the temperature in degrees Celsius measured by the sensor once every second.
 
-### A Closer Look at the Code
+#### A Closer Look at the Code
 
-// reading from and writing to the filesystem
+Here we've introduced reading and writing to the filesystem. The Omega's hardware such as the serial ports, I2C, and SPI bus are exposed as files somewhere in the system. In order for software and programs to interact with these connections, they must work with the corresponding files. This is a very important concept, so please make sure to remember it!
 
-#### Writing to the Filesystem
+##### Reading and Writing to the Filesystem
 
-// explanations of opening files, writing/reading the contents, closing the file
-// mention that all programs that interact with the filesystem work like this
+Working with a file on the filesystem requires you to do the following:
+
+* **Open** the file for reading, writing, or both at the same time
+* **Reading** from or **writing** to the file
+* **Closing** it when you're done
+
+and this applies to all programs that interact with the filesystem, not just Python.
+
+Here, we're taking advantage of Python's `with` statement. This allows us to cleanly open the file and automatically close it when we're done! Here's an example of all of this happening in the `oneWire.py` file:
+
+``` python
+with open(self.slaveFilePath) as slave:
+    message = slave.read().split("\n")
+```
+
+This simple 2-line block reads from the slave's system file at `/sys/devices/w1_bus_master1/<address>/w1_slave"`, which triggers the Omega to physically send a request to the 1-Wire sensor and return the data to our program. The file is then automatically closed once the program exits that block.

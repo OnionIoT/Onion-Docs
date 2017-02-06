@@ -47,40 +47,42 @@ In this experiment, we will be building on the previous experiment by writing to
 //  * writes the time and temperature to the display once a minute
 //    * use the onion i2c module to write to the display -->
 
-For this experiment, we'll be using our Onion I2C Python library which conveniently exposes the Omega's I2C functionality. If you're curious, you can see how it works in our 
+For this experiment, we'll be using our Onion I2C Python library which conveniently exposes the Omega's I2C functionality. If you're curious, you can see how it works in our [I2C Python module reference]()
 
-First, let's create a file containing a class that exposes the Omega's I2C functionality. Create a file called `i2c_lib.py` and paste the following code:
+First, let's create a file containing a class that exposes the Omega's I2C functionality. Create a file called `i2cLib.py` and paste the following code:
 
 ``` python
-from time import *
+from time import sleep
 from OmegaExpansion import onionI2C
 
-class i2c_device:
-    def __init__(self, addr, port=1):
-        self.addr = addr
+sleepInterval = 0.0001
+
+class I2CDevice:
+    def __init__(self, address, port=1):
+        self.address = address
         self.i2c = onionI2C.OnionI2C(port)
 
 # Write a single command
     def write_cmd(self, cmd):
-        self.i2c.write(self.addr, [cmd])
-        sleep(0.0001)
+        self.i2c.write(self.address [cmd])
+        sleep(sleepInterval)
 
 # Write a command and argument
     def write_cmd_arg(self, cmd, data):
-        self.i2c.writeByte(self.addr, cmd, data)
-        sleep(0.0001)
+        self.i2c.writeByte(self.address cmd, data)
+        sleep(sleepInterval)
 
 # Write a block of data
     def write_block_data(self, cmd, data):
-        self.i2c.writeBytes(self.addr, cmd, [data])
-        sleep(0.0001)
+        self.i2c.writeBytes(self.address cmd, [data])
+        sleep(sleepInterval)
 ```
 
 Next, let's create a file that has all the low level code needed to drive the LCD display. Create a file called `lcdDriver.py` and paste the following in it:
 
 ``` python
-import i2c_lib
-from time import *
+import i2cLib
+from time import sleep
 
 # commands
 LCD_CLEARDISPLAY = 0x01
@@ -138,7 +140,7 @@ class lcd:
         self.line3= "";
         self.line4= "";
         
-        self.lcd_device = i2c_lib.i2c_device(self.address)
+        self.lcd_device = i2cLib.I2CDevice(self.address)
 
         self.lcd_write(0x03)
         self.lcd_write(0x03)
