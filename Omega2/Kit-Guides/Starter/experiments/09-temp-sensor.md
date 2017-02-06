@@ -43,7 +43,7 @@ Prepare the following components from your kit:
 1. Turn the breadboard so that the front of the sensor is facing you. 
 1. Insert jumpers for the following connections into column `a` in the row corresponding to the pins below:
     * Left - `GND`. Connect this to the Omega's `GND` pin.
-    * Middle - `DATA`. Connect this to the Omega's `GPIO18`.
+    * Middle - `DATA`. Connect this to the Omega's `GPIO19`.
     * Right - `Vcc`. Connect this to the Omega's `3.3V`.
 1. Connect the 5.1kΩ resistor across the `DATA` and `Vcc` pins.
 
@@ -191,7 +191,7 @@ from temperatureSensor import TemperatureSensor
 import oneWire
 import time
 
-oneWireGpio = 18 # set the GPIO that we've connected the sensor to
+oneWireGpio = 19 # set the GPIO that we've connected the sensor to
 
 pollingInterval = 1 # seconds
 
