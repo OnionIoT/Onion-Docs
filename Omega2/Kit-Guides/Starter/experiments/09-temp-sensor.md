@@ -67,8 +67,48 @@ paths = {
     "slaves": oneWireDir + "/w1_master_slaves"        
 }
 
+# insert the kernel module
+def insertKernelModule(gpio):
+    argBus = "bus0=0," + gpio + ",0"
+    call(["insmod", "w1-gpio-custom", argBus])
+    
+def checkFilesystem():
+    return os.path.isdir(oneWireDir)
+    
+def setupOneWire(gpio):
+    for i in range (2):
+        if checkFilesystem():
+            return True
+        insertKernelModule(gpio)
+        # wait for a bit, then check again
+        sleep(setupDelay)
+    else:
+        # could not set up 1wire on the gpio
+        return False
+        
+def checkSlaves():
+    # check that the kernel is detecting slaves
+    with open(paths["slaveCount"]) as slaveCountFile:
+        slaveCount = slaveCountFile.read().split("\n")[0]
+        
+    if slaveCount == "0":
+        # slaves not detected by kernel               
+        return False
+    return True
+    
+def checkRegistered(address):
+    slaveList = scanAddresses()
+    registered = False
+    for line in slaveList:
+        if address in line:
+            registered = True
+    return registered
+    
 # scan addresses of all connected 1-w devices
 def scanAddresses():
+    if not checkFilesystem():
+        return False
+        
     with open(paths["slaves"]) as slaveListFile:
         slaveList = slaveListFile.read().split("\n")
         # last element is an empty string due to the split
@@ -86,45 +126,25 @@ class OneWire:
         self.gpio = str(gpio)
         self.address = str(address)
         self.slaveFilePath = oneWireDir + "/" + self.address + "/" + "w1_slave"
-        
-        self.ready = self.__prepare()
-        
-    def __insertKernelModule(self):
-        argBus = "bus0=0," + self.gpio + ",0"
-        call(["insmod", "w1-gpio-custom", argBus])
+        self.setupComplete = self.__prepare()
     
     # prepare the object
     def __prepare(self):
         # check if the system file exists
         # if not, set it up, then check one more time
-        for i in range (2):
-            if os.path.isdir(oneWireDir):    
-                break
-            self.__insertKernelModule()
-            
-            # wait for a bit, then check again
-            sleep(setupDelay)                   
-        else:
-            # could not set up 1wire on the gpio
-            return False                        
+        if not setupOneWire(self.gpio):
+            print "Could not set up 1-Wire on GPIO " + self.gpio
+            return False
         
-        # check that the kernel is detecting slaves
-        with open(paths["slaveCount"]) as slaveCountFile:
-            slaveCount = slaveCountFile.read().split("\n")[0]
-            
-        if slaveCount == "0":
-            # slaves not detected by kernel               
+        # check if the kernel is recognizing slaves
+        if not checkSlaves():
+            print "Kernel is not recognizing slaves."
             return False
         
         # check if this instance's device is properly registered
-        slaveList = scanAddresses()
-        registered = False
-        for line in slaveList:
-            if self.address in line:
-                registered = True
-        
-        if not registered:
-            # device is not recognized by the kernel  
+        if not checkRegistered(self.address):
+            # device is not recognized by the kernel
+            print "Device is not registered on the bus."
             return False                        
         
         # the device has been properly set up
@@ -148,6 +168,7 @@ class TemperatureSensor:
     def __init__(self, interface, args):
         self.supportedInterfaces = ["oneWire"]
         self.interface = interface
+        self.ready = False
         
         # if specified interface not supported
         if self.interface not in self.supportedInterfaces:
@@ -155,10 +176,12 @@ class TemperatureSensor:
             self.listInterfaces()
             return
             
-        # set up a driver based on the interface type 
+        # set up a driver based on the interface type
         # you can extend this class by adding more! (eg. 1-Wire, serial, I2C, etc)
         if self.interface == "oneWire":
             self.driver = OneWire(args.get("address"), args.get("gpio", None))
+            # signal ready status
+            self.ready = self.driver.setupComplete
             # match the return value to 
             self.readValue = self.__readOneWire;
     
@@ -197,18 +220,27 @@ pollingInterval = 1 # seconds
 
 # get the address of the temperature sensor
 # it should be the only device connected in this experiment
-sensorAddress = oneWire.scanOneAddress() 
 
-sensor = TemperatureSensor("oneWire", { "address": sensorAddress, "gpio": oneWireGpio })
-if not sensor.ready:
-    print "Sensor was not set up correctly. Please make sure that your sensor is firmly connected to the GPIO specified above and try again."
-    return -1
+def __main__():
+    if not oneWire.setupOneWire(str(oneWireGpio)):
+        print "Kernel module could not be inserted. Please reboot and try again."
+        return -1
+        
+    sensorAddress = oneWire.scanOneAddress() 
 
-# periodically check and print the temperature
-while 1:
-    value = sensor.readValue()
-    print "T = " + str(value) + " C"
-    time.sleep(pollingInterval)
+    sensor = TemperatureSensor("oneWire", { "address": sensorAddress, "gpio": oneWireGpio })
+    if not sensor.ready:
+        print "Sensor was not set up correctly. Please make sure that your sensor is firmly connected to the GPIO specified above and try again."
+        return -1
+
+    # periodically check and print the temperature
+    while 1:
+        value = sensor.readValue()
+        print "T = " + str(value) + " C"
+        time.sleep(pollingInterval)
+
+if __name__ == '__main__':
+    __main__()
 ```
 
 Run the `STK09-temp-sensor.py` script and watch the terminal for output. Try pinching the sensor with your fingers and seeing how it reacts!
