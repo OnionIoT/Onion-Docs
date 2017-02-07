@@ -10,7 +10,7 @@ order: 4
 ## Controlling a DC Motor with an H-Bridge {#controlling-a-dc-motor-with-an-h-bridge}
 
 <!-- // this tutorial will show us how to control a dc motor using an h-bridge. we'll also continue using the class from the first example to create classes to help us accomplish our goals -->
-For this tutorial, we'll be controlling a motor using the PWM expansion. To do this, the PWM expansion will send appropriate signals to an 'H-bridge' by changing duty cycles, and the H-bridge will transmit the signal to the motor.
+For this tutorial, we'll be controlling a motor using the PWM expansion. To do this, the PWM expansion will send appropriate signals to an 'H-bridge' by changing duty cycles, and the H-bridge will transmit the signal to the motor. Using three switches, we can send signals to change the speed and direction of the motor
 
 >If you need a refresher on how PWM (or Pulse-Width Modulation) works, you can find an explaination in the [Using PWM Expansion](#using-pwm-expansion) article.
 
@@ -24,22 +24,32 @@ For this tutorial, we'll be controlling a motor using the PWM expansion. To do t
 
 The way a PWM signal operates a motor is by switching the power supply on and off really quickly. Normally this can be done sending the PWM signal to a transistor, and have the transistor switch ther power supply, but an H-bridge adds functionality to this control by allowing the direction of the current to be easily changed. In the H-bridge diagram above, the PWM expansion will be sending signals to open and close the four switches on the H-bridge. In our circuit, we'll be using an H-bridge integrated chip (IC) so we don't need to wire the internals ourselves, and to prevent short circuits that could arise if we directly controlled those switches.
 
+If you want to start building right away, skip ahead to the [next section](#controlling-a-dc-motor-with-an-h-bridge-building-the-circuit). If you'd like to know how the signals from our code will control the motor, read on!
 
-### Building the Circuit
+#### The SN754410 Integrated H-Bridge Chip
+
+The [SN754410 chip](http://www.ti.com/lit/ds/symlink/sn754410.pdf) contains two H-bridges, allowing control of four outputs. The chip conveniently handles short circuit situations and simplifies the operation of an H-bridge to two switches from four. So instead of S1/S2/S3/S4 (as seen above), we'll be switching `1A` and `2A` (as seen in the datasheet). For this tutorial, we'll be using one of the two H-bridges to control power sent to the two inputs of your DC motor. Specifically, the pair of inputs and outputs (`1A`, `2A` and `1Y`, `2Y`) on the left side of the chip. In total, we'll be sending signals to three pins: `1A`, `2A` and `1,2EN`.
+
+<!-- // TODO: IMAGE diagram of the SN754410 -->
+
+On the chip, `1A` controls the polarity of `1Y`, `2A` controls the polarity of `2Y`. At a very high level, this H-bridge chip 'assigns' the outputs (the pins labelled `Y`) according to the voltage fed to the inputs (the pins labelled `A`). For example, sending a a 'high' signal to `1A` will lead to the same signal being sent out `1Y` the difference is the signal sent out uses the voltage supplied to pin `8`.
+
+Voltage acts kind of like a waterfall - it sends the current flowing from the voltage **source** (top) to the **ground** (bottom). In this case, if the signal to `1A` is high, that means the H-bridge switches `1Y` to the source, if low is sent instead, the H-bridge switches `1Y` to ground.
+
+>Water only falls from top to bottom. This is how we're able to get the motor to change directions: by changing the direction of the electricity flowing through. By the same logic, if both `1Y` and `2Y` are the same polarity, no water (electricity) will move.
+
+The `1,2EN` pin simply turns the H-bridge on or off. If `1,2EN` sees a 'high', then everything we've covered above happens as normal, if it's off, then there won't be anything sent to the outputs no matter what `1A` and `2A` are set to.
+
+**Note**: As can be seen above, the chip is roughly mirrored. The top right and bottom left pins are the power supply for the outputs (`pin 8`) and the chip (`pin 16`) respectively. The difference between the two power pins is the voltage supplied to the outputs can be up to 36V, while the voltage supplied to the chip is recommended to be within 2~5V. If you want to power a large motor, you should power the motor with the external supply through `pin 8` and supply around 3V to `pin 16`.
+
+### Building the Circuit {#controlling-a-dc-motor-with-an-h-bridge-building-the-circuit}
 
 <!-- // omega -> h-bridge -> dc motor
 // three switches as gpio inputs to the omega -->
 
-Before we start building, we recommend familiarizing yourself with how the H-bridge chip in our kit works. The chip contains two H-bridges, allowing control of two sources at once. For this tutorial, we'll be using one of them. Specifically, the pair of inputs and outputs (`1A`, `2A` and `1Y`, `2Y`)on the left side of the chip.
+This build can get a bit messy, if you want to make sure your board cleans up nicely, we recommend using short wires (Male-to-Male) for connecting `GND` and `Vcc` points from the components to the rails. If you're not sure how that would work, just swap 12 male-to-male jumpers for 12 shorter wires when gathering components, we'll let you know in the instructions whenever you can use shorter wires.
 
-<!-- // TODO: IMAGE diagram of the SN754410 -->
-
-<!-- // TODO: this paragraph is extremely long and should be bulleted -->
-We'll be controlling this specific H-bridge is through three pins - `1A`, `2A` and `1,2EN`. `1A` controls the polarity of `1Y`, `2A` controls the polarity to `2Y`. To further explain, at a very high level, this H-bridge chip 'assigns' the outputs (the pins labelled `Y`) according to the voltage (or signal) fed to the inputs (the pins labelled `A`). For example, sending a a 'high' signal to `1A` will lead to the same signal being sent out `1Y` the difference is the signal sent *out* uses the voltage supplied to pin `8`. Voltage acts kind of like a waterfall - it sends the current flowing from the voltage source (top) to the ground (bottom), so if the signal to `1A` is high, that means the H-bridge switches `1Y` to the top of the fall, if low is sent instead, the H-bridge switches `1Y` to the bottom of the falls. A waterfall only falls if there's a top and a bottom, so if both `1A` and `2A` see the same signal (both high, or both low) then nothing moves and the motor won't turn. If the top and the bottom of the 'falls' - or if `2A` gets sent high, and `1A` low - are swapped, the logically the the movement flips and the motor changes directions!
-
-The `1,2EN` pin is a little bit easier to understand. It simply turns the H-bridge on or off. If `1,2EN` sees a 'high', then everything we've covered above happens as normal, if it's off, then there won't be anything sent to the outputs no matter what `1A` and `2A` are set to.
-
-**Note**: As can be seen above, the chip is roughly mirrored. The top right and bottom left pins are the power supply for the output (pin `8`) and the chip (pin `16`) respectively, the difference being the voltage supplied for the output can be up to 36V, while the voltage supplied to the chip is recommended to be around 5V for proper operation. This means if you want to power a large motor, and you have an external power supply, you should power the motor with the external supply and control it with the H-bridge without any fuss, you simply need to power the chip (pin `16`) and the H-bridge output (pin `8`) with the correct supplies.
+>We taped a piece of paper to the motor axle to see the rotations clearly.
 
 #### What You'll Need
 
@@ -48,11 +58,12 @@ The `1,2EN` pin is a little bit easier to understand. It simply turns the H-brid
 * 1x DC Motor
 * 1x H-bridge (has "SN754410" on top of the chip)
 * 1x Breadboard
-* 1x Something solid to fix the motor down on
-* Some household clear or electrical tape
+* 1x Something solid to mount the motor on
+* 1x Method of strapping the motor down
+* 3x SPDT switches
 * Jumper wires
-	* 3x M-F
-	* 10x M-M
+	* 4x M-F
+	* 18x M-M
 
 #### Hooking up the Components
 
@@ -67,28 +78,50 @@ The `1,2EN` pin is a little bit easier to understand. It simply turns the H-brid
 
 When working with ICs, setting up the breadboard's rails can be very helpful in reducing clutter. For this tutorial, we'll do this first to reduce the wires needed.
 
-1. Connect the `-` rails on either side of the board together on one end (usually the end away from most of the wiring) with a M-M jumper, we'll call this the `GND` rail.
-1. Do the same with the `+` rails, we'll call these `Vcc` rails in this tutorial.
-<!-- // TODO: IMAGE of connected rails on a breadboard -->
-1. Now that the rails are connected, we'll plug in two M-M jumpers to the ground and Vcc rails - we recommend using and reserving red wires for Vcc and black for ground to make it easier to debug.
-	* Leave the other ends dangling for now - these will go into the power output of the Expansion later
-	* Power is usually wired in last to keep your chips and components safe from accidental shorts when you're wiring.
-1. Grab your H-bridge, pick a location on your breadboard and plug the H-bridge across the channel in the middle of your breadboard. It should be setting across with one side in column E and the other in column F. We picked rows 5 to 12 in our breadboard.
-<!-- // TODO: IMAGE of H-bridge across channel with pins labelled -->
-1. Take note of where your pins are - look for the little half circle cutout on the chip denoting the 'top' of the H-bridge to orient it correctly.
-	* **Note: This is super important, you can quickly fry the H-bridge if it's not wired correctly!**
-1. Wire pins `4`, `5`, `12`, and `13` to the ground rail on their respective sides using four M-M jumpers.
-1. Using the three M-F jumpers,
-	* Connect the row that pin `1` (labelled as `1,2EN`) on the IC is plugged into (row 5 on our board) to channel `S0` on the PWM expansion.
-	* Connect pin `2` (`1A`, or row 6 on our board) to channel `S1`
-	* Lastly, pin `7` (`2A`, or row 11) to channel `S2`
-	* Your board should now look something like ours (below), make sure the pins on the IC and the channels on the PWM match properly, otherwise the code we'll run won't work!
-1. Now it's time to connect the motor, the motor should have two wires with male pin connectors, one red and one black.
-	* Connect the red wire to the row pin `3` is plugged into (for us, it's row 7)
-	* Connect the black wire to *pin*  `7` (row 10 on our board)
-1. We'll ground the circuit by connecting the dangling end of the ground (black) jumper wire to the `GND` pin on the expansion header.
-1. Last but not least, we'll set power to the Vcc rail by connecting the dangling end of the Vcc (red) jumper to the `5V` pin on the expansion's header.
+1. Connect the negative (`-`) rails on either side of the board together on one end (usually the end away from most of the wiring) with a M-M jumper, we'll call this the `GND` rail.
 
+1. Do the same with the positive (`+`) rails, we'll call these `Vcc` rails in this tutorial.
+
+<!-- // TODO: IMAGE of connected rails on a breadboard -->
+
+3. Now that the rails are connected, we'll plug in two M-F jumpers to the `GND` and `Vcc` rails - we recommend using and reserving red wires for Vcc and black for ground to make it easier to debug.
+	* Leave the other ends dangling for now - these will go into the 3.3V and ground pins of the Expansion later.
+
+1. Grab your H-bridge, pick a location on your breadboard and plug the H-bridge across the channel in the middle of your breadboard. It should be sitting across with one side in column E and the other in column F, with the **half-circle cutout** pointing toward the closer edge of the breadboard. We picked rows 5 to 12 in our breadboard.
+
+<!-- // TODO: IMAGE of H-bridge across channel with pins labelled -->
+
+5. Take note of where your pins are - if you're lost, always look for the little half circle cutout on the chip denoting the 'top' of the H-bridge to orient it correctly.
+	* **This is super important, you can quickly fry the H-bridge if it's not wired correctly!**
+
+1. Wire pins `4`, `5`, `12`, and `13` to the ground rail on their respective sides using four M-M jumpers. Use short wires here if you have them handy.
+
+1. Using the last two M-F jumpers,
+	* Connect pin `2` (`1A`, or row 6 on our board) to channel `S0`.
+	* Connect pin `7` (`2A`, or row 11) to channel `S1`.
+	* Your board should now look something like ours (below), make sure the pins on the IC and the channels on the PWM match properly, otherwise the code we'll run won't work!
+
+<!-- TODO: IMAGE of fully wired H-bridge, short wires, pins labelled -->
+
+8. Now it's time to connect the motor, the motor should have two wires with male pin connectors, one red and one black.
+	* Connect the red wire to the row pin `3` is plugged into (for us, it's row 7).
+	* Connect the black wire to *pin*  `7` (row 10 on our board).
+
+1. We'll ground the circuit by connecting the dangling end of the ground (black) jumper wire to the `GND` pin on channel `S0` on the PWM expansion.
+
+1. Next, we'll set up the switches - we'll use them to send digital signals to control the PWM, and in turn the motor.
+	* Pick three sets of 3 rows (we used row 25 to 33)
+	* Plug your switches into the rows, three rows per switch
+
+1. Using 3 M-M jumpers, connect the center row of each switch to `pin 6`, `pin 7`, `pin 8` - make sure you remember which is which, since these will control your motor later!
+
+1. With 6 M-M jumpers, connect the leftmost row of each switch to `GND`, and the rightmost row of each switch to `Vcc`. If you have short wires ready, you should use them here.
+
+1. Take one M-M jumper and connect `pin 1` on the IC (row 5 on our board) to `pin 1` on the expansion headers.
+
+1. Last but not least, we'll set power to the Vcc rail by connecting the dangling end of the Vcc (red) jumper to the `VCC` pin of channel `S0` of the PWM expansion.
+
+>Power is usually wired in last to keep your chips and components safe from accidental shorts when you're wiring.
 
 #### Writing the Code
 
@@ -103,30 +136,22 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 // duty cycle: 0 -> 30 -> 40 -> 50
 -->
 
-Let's add a class blueprint for a DC motor controlled by an H-bridge to our motors file we made in the previous tutorial. Open the `motors.py` file and add this the bottom:
-<!-- // TODO: change the class below to PWM the input pins, not the enable pin -->
+Let's add a class blueprint for a DC motor controlled by an H-bridge to our motors file we made in the previous tutorial. Open the `motors.py` file and add this:
 
 ``` python
 class hBridgeMotor:
 	"""Class that two digital signals and a pwm signal to control an h-bridge"""
 
-	def __init__(self, pwmChannel, fwdChannel, revChannel):
+	def __init__(self, fwdChannel, revChannel):
 		# note the channels
-		self.pwmChannel 	= pwmChannel
 		self.fwdChannel		= fwdChannel
 		self.revChannel 	= revChannel
 
 		# setup the objects
-		self.pwmDriver 		= OmegaPwm(self.pwmChannel)
-		self.pwmDriver.setDutyCycle(0)
-		self.fwdDriver 		= OmegaPwm(fwdChannel)
+		self.fwdDriver 		= OmegaPwm(self.fwdChannel)
 		self.fwdDriver.setDutyCycle(0)
-		self.revDriver 		= OmegaPwm(revChannel)
+		self.revDriver 		= OmegaPwm(self.revChannel)
 		self.revDriver.setDutyCycle(0)
-        
-        # 0 - forward, 1 - reverse
-        self.fwdDirection   = 0
-        self.revDirection   = 1
 
 		# setup the limitations
 		self.minDuty 		= 0
@@ -142,69 +167,54 @@ class hBridgeMotor:
 
 	def reset(self):
 		"""Set the PWM to 0%, disable both h-bridge controls"""
-		ret 	=  self.pwmDriver.setDutyCycle(0)
 		ret 	|= self.fwdDriver.setDutyCycle(0)
 		ret 	|= self.revDriver.setDutyCycle(0)
 
 		return ret
 
-	def spin(self, direction, duty):
+	def drive(self, direction, duty):
 		"""Set the PWM to the specified duty, and in the specified direction"""
 		ret 	= 0
+		if duty < self.minDuty:
+				duty 	= self.minDuty
+    elif duty > self.maxDuty:
+        duty 	= self.maxDuty
 
-		if (direction == self.fwdDirection):
+
+		# 0 - forward, 1 - reverse
+		if (direction == H_BRIDGE_MOTOR_FORWARD):
 			self.revDriver.setDutyCycle(0)
-			self.fwdDriver.setDutyCycle(100)
-		elif (direction == self.revDirection):
+			self.fwdDriver.setDutyCycle(duty)
+		elif (direction == H_BRIDGE_MOTOR_REVERSE):
 			self.fwdDriver.setDutyCycle(0)
-			self.revDriver.setDutyCycle(100)
+			self.revDriver.setDutyCycle(duty)
 		else:
-            # invalid direction
 			ret 	= -1
 
-		if (ret == 0):
-			# check against the minimum and maximium pwm
-			if duty < self.minDuty:
-				duty 	= self.minDuty
-			elif duty > self.maxDuty:
-				duty 	= self.maxDuty
-		
-			# program the duty cycle
-			ret 	= self.pwmDriver.setDutyCycle(duty)
 		return ret
 
 	def spinForward(self, duty):
-		ret 	= self.spin(fwdDirection, duty)
+		ret 	= self.drive(H_BRIDGE_MOTOR_FORWARD, duty)
 		return ret
 
 	def spinReverse(self, duty):
-		ret 	= self.spin(revDirection, duty)
+		ret 	= self.drive(H_BRIDGE_MOTOR_REVERSE, duty)
 		return ret
 ```
 
 Next, let's write the code for the experiment. Create a file called `MAK03-hBridgeExperiment.py` and paste the following code in it:
 
-// TODO: rework code to work off 3 SPDT switches
-
 ``` python
-from motors import hBridgeMotor
+from omegaMotors import hBridgeMotor
+import onionGpio
+import time
 
 # set up hbridge pins on the Omega
-motorEN = 
-motor1A = 
-motor2A = 
-
-# set up a multiline prompt
-userInputPrompt = [
-    "Enter a 3 digit binary number.",
-    "Digit 1:        0 - Forwards",
-    "                1 - Backwards",
-    "Digits 2 & 3:   00 - off",
-    "                01 - 30% speed",
-    "                10 - 40% speed",
-    "                11 - 50% speed",
-    ">> " # user types in their input at the end of this line
-]
+dircSignalPin = onionGpio.OnionGpio(6)
+spd1SignalPin = onionGpio.OnionGpio(7)
+spd2SignalPin = onionGpio.OnionGpio(8)
+motor1A = 0
+motor2A = 1
 
 # create a dictionary of functions against which to check user input
 # this is basically a dispatch table to map function calls to different names
@@ -221,16 +231,28 @@ motorCommands = {
 
 def main():
     # instantiate the motor object
-    motor = hBridgeMotor(motorEn, motor1A, motor2A)
-    
+    motor = hBridgeMotor(motor1A, motor2A)
+    command = '000';
+
     # loop forever
     while(True):
-        # get user input
-        command = raw_input("\n".join(userInputPrompt))
+				# sleeps for a bit to accomodate slow switches
+				time.sleep(0.5)
+
+				# gets the signals going through the switches
+        commandNew = dircSignalPin.getValue()[0]
+        commandNew = commandNew + spd1SignalPin.getValue()[0]
+        commandNew = commandNew + spd2SignalPin.getValue()[0]
+
+				# parses the command into motorCommands format
+        commandNew.replace('\n', '')
+
         # check user input against dictionary, run the corresponding function
-        motorCommands[command](motor)
-    
-if __name__ == '__main__'
+        if (command != commandNew):
+            command = commandNew
+            motorCommands[command](motor)
+
+if __name__ == '__main__':
     main()
 ```
 
@@ -255,15 +277,17 @@ As you've probably seen before, we use an infinite loop here, and you can break 
 
 // TODO: remove and replace with whatever you introduce above - tuples probably won't work in this situation
 
-In this tutorial, we put together knowledge from the previous tutorials to control a DC motor with Python. We're now **receiving user input** interactively, allowing us to change the script's behaviour in real-time. On top of that we mixed in Python **tuples** to codify the output we wish the PWM controller to send, and in doing so baked in failsafes to protect hardware from erroneous signalling. Finally, we used a **lookup table** to track and translate the input from the user into the output sent to the controller.
+In this tutorial, we put together knowledge from the previous tutorials to control a DC motor with Python. We're now **receiving user input** interactively, allowing us to change the output in real-time. On top of that we we used a **lookup table** to track and translate the input from the user into the output sent to the controller.
 
-#### Tuples
+#### Receiving User Input
 
-In Python, there's only one way to create 'permanent variables' - or to give values names: through what is known as a **tuple**. It's short for multiple, and it represents a set of values that are permanent. In the code, we used it to enforce a set of signals to be sent to the PWM, so that the motor would always operate within range. In this way, tuples or other forms of permanent variables (`final` in Java, or `#define` in C) can restrict devices to safe operating limits when dealing with variable user input. Here, no matter what you enter, the signals sent to operate the motor would always fall into either off, or between 30 to 50% power in either direction. This way, the motor never sees signal too low to force its turning, and never signals too high that would wear it out or damage the board.
+Here we started to interactively obtain input in a very controlled way. With some quick math, there's only 8 ways a set of 3 switches can be flipped. This means that we really only have to account for 8 separate input cases. However when requesting and processing user input, always keep in mind that all kinds of different inputs can be recieved. Here, our error checking happens right at the start of the interaction by limiting the number of inputs that the user has access to in the first place. If we allowed users to enter arbitrary commands, we would have to do a lot more validation.
 
 #### Lookup Tables
 
-You may notice that the input given by the user in the main loop is always checked against the [// TODO: fill in variable name] variable - this variable stores a set of known values to be checked against. In our case, the table contains valid user input matched with its corresponding output - also known as a key-value pair - and the script sends out the output to the PWM controller if the input obtained from the user matches any value in the table.
+You may notice that the input given by the user in the main loop is always checked against the motorCommands variable - this variable stores a set of known values to be checked against. In our case, the table contains valid switch input matched with its corresponding output - also known as a key-value pair - and the script sends out the output to the PWM controller if the input obtained from the user matches any value in the table.
+
+By checking input against a lookup table before sending commands, we can guarantee that no erroneous commands are sent. Couple this with proper calibration and we can greatly reduce the risk of operating hardware remotely.
 
 ### Limits of PWM Motor Control
 
