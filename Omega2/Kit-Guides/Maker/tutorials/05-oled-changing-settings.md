@@ -102,7 +102,7 @@ if __name__ == '__main__':
 
 When you run the program, the different possible commands that can be entered will be printed out on the command line. The commands will interactively change the display settings. For example, to dim the display, enter `dimDisplay`.
 
-To stop the program enter `ctrl`+`c`
+To stop the program enter `Ctrl+C`
 
 <!-- // TODO: IMAGE Add gif -->
 
