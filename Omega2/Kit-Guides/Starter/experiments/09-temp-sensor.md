@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 9
 ---
 
-## Reading a One-Wire Temperature Sensor
+## Reading a One-Wire Temperature Sensor {#starter-kit-reading-one-wire-temperature-sensor}
 
 <!-- // in this experiment we will:
 //  * introduce the one-wire bus protocol
@@ -214,18 +214,18 @@ from temperatureSensor import TemperatureSensor
 import oneWire
 import time
 
+# setup onewire and polling interval
 oneWireGpio = 19 # set the GPIO that we've connected the sensor to
-
 pollingInterval = 1 # seconds
 
-# get the address of the temperature sensor
-# it should be the only device connected in this experiment
-
 def __main__():
+    # check if 1-Wire is setup in the kernel
     if not oneWire.setupOneWire(str(oneWireGpio)):
         print "Kernel module could not be inserted. Please reboot and try again."
         return -1
-        
+    
+    # get the address of the temperature sensor
+    # it should be the only device connected in this experiment    
     sensorAddress = oneWire.scanOneAddress() 
 
     sensor = TemperatureSensor("oneWire", { "address": sensorAddress, "gpio": oneWireGpio })
