@@ -186,11 +186,12 @@ In the script provided, we create a `buffer` class which handles all the drawing
 
 In the main function, we call an infinite loop to continuously populate the buffer with new lines as dictated by the orientation, which row or column it is located in, and length - this happens in lines 64 to 138. At the end of the loop, we call `b.writeByteToBuffer` to update the buffer with the new line we wish to draw, and `b.drawToScreen` to actually make it appear. The lines drawn previously are actually held within the buffer `b`, and since `oledExp.clear()` is never called until the end, the buffer will remember all the previously drawn lines and display them when the `b.drawToScreen` is called.
 
-#### Input and output
+#### Dynamic Errors
 
-You'll probably notice there's a lot of checking for what kind of input you give the script, this is done to make sure the script doesn't 'crash' when incorrect information is sent. This can include numbers that are too large, things that may not be numbers at all, and all kinds of other things. Often users give unexpected input to programs, filtering and catching errors is needed to make sure your scripts don't crash during the middle of asking for input.
-
+You'll probably notice there's a *lot* of error checking and user direction in this script. This is because the program asks for many different types of input. To make it worse, previous input will change the way future input is interpreted. There's no new concepts regarding input and output here, but as a taste, this is how complicated even 'simple' commandline tools can become.
 
 ### Hack the Script
 
-There can be lots of optimizations done to make this script faster, for example skipping blank bytes, or skipping bytes that have already been drawn previously. Feel free to experiment and see if you can make it run faster.
+There can be lots of optimizations done to make this script faster, for example skipping blank bytes, or skipping bytes that have already been drawn previously. Feel free to experiment and see if you can make it run faster. Even better, see if you can figure out a way to draw thin horizontal lines.
+
+>In case you were wondering, the thick lines are due to a limition imposed by the hardware of the OLED screen. Drawing thin horizontal lines is definitely possible with some calculation - you have all the tools you need.

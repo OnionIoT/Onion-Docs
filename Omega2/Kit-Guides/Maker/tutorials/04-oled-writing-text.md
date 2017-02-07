@@ -32,14 +32,13 @@ This tutorial does not require you to use a breadboard as the OLED Expansion is 
 
 #### Writing the Code
 
-Create a file called `oledWriteText.py` and paste the following code in it:
+Create a file called `MAK04-oledWriteText.py` and paste the following code in it:
 
 ``` python
 from OmegaExpansion import oledExp
 import time
 import datetime
 import math
-from random import randint
 
 quoteArray = ['Banging your head against a wall burns 150 calories an hour.',
 'In the UK, it is illegal to eat mince pies on Christmas Day!',
@@ -51,6 +50,7 @@ def main():
 	dateTimeObj = datetime.datetime.now()
 	hour = dateTimeObj.hour
 	minute = str(dateTimeObj.minute)
+	sec = dateTimeObj.second
 	if(hour/12 == 0):
 		day = "AM"
 		hour = str(hour % 12)
@@ -72,7 +72,7 @@ def main():
 	oledExp.setCursor(2,0)
 	oledExp.write(greeting)
 	oledExp.setCursor(4,0)
-	oledExp.write(quoteArray[randint(0,(len(quoteArray)-1))])
+	oledExp.write(quoteArray[sec%5])
 
 if __name__ == '__main__':
 	main()

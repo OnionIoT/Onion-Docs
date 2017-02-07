@@ -52,7 +52,7 @@ Grab the following from your kit:
 //    * essentially create the servo class (from the file above), can skip the getSettings, setupMinAngle, and setupMaxAngle functions for the purposes of this example
 //    * make sure the class follows the angle described in the servo section above ie 0˚->180˚ as opposed to -90-˚>90˚
 // * the program should be something along the lines of setting the servo to 0˚, 45˚, 90˚, 135˚, 180˚, and then back down by 45˚ steps, have a noticeable but not annoyingly long delay between the steps
-//  * have it run in an infinite loop -->
+//  * have it run in an infinite loop 
 
 // TODO: implement this servo class in a separate file, include the file from the previous exp -->
 
@@ -105,6 +105,7 @@ class Servo:
 		# program the duty cycle
 		ret = self.pwmDriver.setDutyCycle(duty)
 		return ret
+
     def setDutyCycle(self, duty):
 		"""Set duty cycle for pwm channel"""
 		ret 	= pwmExp.setupDriver(self.channel, duty, 0)
@@ -121,24 +122,27 @@ from motors import Servo
 import time
 
 def main():
-    // TODO: change the min and max pulse arguments for std servo
-    // TODO: add micro servo to this script (double check the revised class definition in 01)
     
-	standardServo = Servo(0, 3.0, 11.5)
+	standardServo = Servo(0, 500, 2500) 
+	microServer = Servo(1, 500, 2000);
     
 
-	servoControl.setAngle(90.0)
+	standardServo.setAngle(90.0)
+	microServo.setAngle(90.0)
 	time.sleep(2)
 
 	while(True):
 		# Turn motor to the 0 angle position
-		servoControl.setAngle(0.0)
+		standardServo.setAngle(90.0)
+		microServo.setAngle(90.0)
 		time.sleep(2)
 		# Turn motor to the neutral position
-		servoControl.setAngle(90.0)
+		standardServo.setAngle(90.0)
+		microServo.setAngle(90.0)
 		time.sleep(2)
 		# Turn motor to the 180 angle position
-		servoControl.setAngle(180.0)
+		standardServo.setAngle(90.0)
+		microServo.setAngle(90.0)
 		time.sleep(2)
 if __name__ == '__main__':
 	main()
@@ -151,13 +155,13 @@ if __name__ == '__main__':
 //  - make sure in the gif it's oriented in the same way as above in the servo section
 -->
 
-The script should first initialize the servo motor to the 0 degree position.
+The script should first initialize the servo motor to the 90 degree position.
 
 Then a repeating pattern happens. First, the motor shaft move to the `0` degree position staying there for two seconds. Next the shaft will move to the `90` degree (neutral) positon and stay there for two seconds. Finally it will move to the `180` degree positon and stay there for two seconds. Then the pattern will repeat itself.
 
 Since the pattern will repeat infinitely, you will need to break by entering `Ctrl-C`.
 
->Due to the nature of the servo motors in the kit, it's highly recommended to turn the oscillator off after killing the script by running the following in ssh or terminal:
+**Note**: Due to the nature of the servo motors in the kit, it's highly recommended to turn the oscillator off after killing the script by running the following in ssh or terminal:
 ```
 pwm-exp -s
 ```
@@ -221,4 +225,4 @@ The time Python library is used here to provide a way to delay the signals trans
 
 // TODO: clean this paragraph up
 
-Since each servo motor is slightly different, we instantiate our class with the channel that the motor is connected to along with the duty cycle for the 0 degree position and the duty cycle for the `180` degree position. The numbers we used (`3.0` and `11.5`) are values we've tested and found to work with our particular servo. Due to manufacturing imperfections, design flaws, and a whole host of other issues, you would often need to test and find the numbers that work for your particular servo at the angles you need - this is called calibration. Moving beyond, see if you can use the command line tools or the libraries to figure out what duty cycles correspond to what kind of movement in your own servo.
+In reality, there's always going to be differences in the hardware we use even if they're of the same make and model. For this reason, we can't send the same signals to the different motors and expect them to behave exactly the same . The minimum and maximum pulses we used to instantiate our servo objects (`500`, `2000`, `500`, `2500`) are values we've found to work with servos in our lab. Due to manufacturing imperfections, design flaws, and a whole host of other issues, you would often need to test and find the numbers that work for your particular servo at the angles you need - this is called calibration. See if you can use the command line tools or the libraries to figure out what duty cycles correspond to what kind of movement in your own servo.
