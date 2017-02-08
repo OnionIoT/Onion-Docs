@@ -17,21 +17,14 @@ So far, we've been using a program to control GPIOs. Let's try using physical us
 We'll be using a **slide switch** as an input to control whether an LED should be turned on or off.
 
 
-### GPIO Pins as Input
-
 <!-- gpio input -->
 ```{r child = '../../shared/gpio-input.md'}
 ```
 
 
-### Switches
-
 <!-- switches -->
 ```{r child = '../../shared/switches.md'}
 ```
-
-
-### Slide Switches
 
 <!-- slide switches -->
 ```{r child = '../../shared/switches-slide-switch.md'}
@@ -45,7 +38,7 @@ We'll be using a **slide switch** as an input to control whether an LED should b
 
 We'll be building the following circuit.
 
-// TODO: circuit diagram, see paper notes
+<!-- // TODO: circuit diagram, see paper notes -->
 
 #### What You'll Need
 
@@ -55,7 +48,7 @@ Prepare the following components from your kit:
 * Breadboard
 * Jumper wires
 * SPDT switch
-* 1x 200Ω Resistor <!-- LED resistor -->
+* 1x 200Ω Resistor
 * Any LED color of your choice!
 
 #### Hooking up the Components

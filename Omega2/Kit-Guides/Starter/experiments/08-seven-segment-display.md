@@ -78,3 +78,8 @@ To accomplish this, we will write a new class that uses the shift register class
 ##### Dictionary
 
 // explanation of the dictionary variable type: many elements, all have an id and a value
+
+
+
+
+Next: [Reading a One-Wire Temperature Sensor](#starter-kit-reading-one-wire-temperature-sensor)
