@@ -18,16 +18,18 @@ d="0 1 1 1 1 0 1 0"
 e="1 0 0 1 1 1 1 0"
 f="1 0 0 0 1 1 1 0"
 
-echo 1 >/sys/class/gpio/export 
-echo 3 >/sys/class/gpio/export 
-echo 2 >/sys/class/gpio/export 
+# setup shift register pins
+echo 1 >/sys/class/gpio/export # data
+echo 3 >/sys/class/gpio/export # clock
+echo 2 >/sys/class/gpio/export # latch
 
-echo 11 >/sys/class/gpio/export 
-echo 18 >/sys/class/gpio/export 
-echo 19 >/sys/class/gpio/export 
+# setup digit pins
+echo 11 >/sys/class/gpio/export # digit 1
+echo 18 >/sys/class/gpio/export # digit 2
+echo 19 >/sys/class/gpio/export # digit 3
+echo 0 >/sys/class/gpio/export # digit 4
 
-echo 0 >/sys/class/gpio/export 
-
+# set direction for the pins above (out/input)
 echo out >/sys/class/gpio/gpio1/direction
 echo out >/sys/class/gpio/gpio2/direction
 echo out >/sys/class/gpio/gpio3/direction
@@ -37,16 +39,19 @@ echo out >/sys/class/gpio/gpio18/direction
 echo out >/sys/class/gpio/gpio19/direction
 echo out >/sys/class/gpio/gpio0/direction
 
+# write out values from the SR's buffer to the outputs
 latchSR (){
 	echo 1 >/sys/class/gpio/gpio3/value
 	echo 0 >/sys/class/gpio/gpio3/value
 }
 
+# pulse the SR clock and shift in one bit from the data line
 pulseClock (){
 	echo 1 >/sys/class/gpio/gpio2/value
 	echo 0 >/sys/class/gpio/gpio2/value
 }
 
+# set one digit
 setOneDig(){
 	  	
 	echo out >/sys/class/gpio/gpio1/direction
@@ -61,7 +66,7 @@ setOneDig(){
 	latchSR
 }
 
-
+# turn on all the pins (turn on their enable pins, common sink)
 initDigPins (){
 	echo 1 >/sys/class/gpio/gpio0/value
 	echo 1 >/sys/class/gpio/gpio18/value
@@ -73,6 +78,8 @@ initDigPins
 
 # sleep 1;
 
+# write the number "3133" to the display
+# play around with this to see how the gpio#s correspond to the digits
 while true; do
 
 echo 0 >/sys/class/gpio/gpio0/value
