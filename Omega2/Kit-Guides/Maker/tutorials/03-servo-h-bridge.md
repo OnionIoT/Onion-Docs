@@ -121,6 +121,8 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 
 1. Last but not least, we'll set power to the Vcc rail by connecting the dangling end of the Vcc (red) jumper to the `VCC` pin of channel `S0` of the PWM expansion.
 
+There is a reason we use the `GND` and `Vcc` pins on the **PWM expansion** instead on the header pins from the dock. If it's connected to the header pins, the motor will feedback voltage to the expansion dock. This can cause a boot-loop or other unpredictable behaviour with the omega. The PWM expansion's `Vcc`/`GND` pins have circuit breaking diodes in place to prevent this.
+
 >Power is usually wired in last to keep your chips and components safe from accidental shorts when you're wiring.
 
 #### Writing the Code
@@ -137,6 +139,7 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 -->
 
 Let's add a class blueprint for a DC motor controlled by an H-bridge to our motors file we made in the previous tutorial. Open the `motors.py` file and add this:
+
 
 ``` python
 class hBridgeMotor:
