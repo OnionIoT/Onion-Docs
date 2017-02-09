@@ -257,7 +257,7 @@ if __name__ == '__main__':
 ```
 
 #### What to Expect
-
+<!-- TODO: IMAGE or gif of project working -->
 When run, the script starts the PWM oscillator, and then sets the output to be enabled (channel 0 to 100% duty). Then the script will ask you for a set of 3 digits, the first one sets the direction of the motor, the next two digits set the speed. The program will repeated ask for input, and adjust the speed and direction accordingly.
 
 | Position        | Code | Result                        |

@@ -50,7 +50,7 @@ The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole me
 
 1. First we'll have to find a place on the breadboard to place the buzzer, we chose row 1 and mounted the buzzer across the middle channel
 	* Taking note where the cathode (+) and where the anode (-) is, we'll have to make sure the right wires go in the right terminal later
-	
+
 1. Next the switch needs to go into the breadboard, with each pin plugged into a different row. We chose row 5-8.
 
 <!-- // TODO: IMAGE of breadboard with switch and buzzer in -->
@@ -104,7 +104,7 @@ outputStrings = ['off', 'on']
 
 def main():
 
-    switch = OnionGpio(SWITCH_PIN)	# This works because we directly imported 
+    switch = OnionGpio(SWITCH_PIN)	# This works because we directly imported
 									# the OnionGpio class from the module
 
 	# Initializes switch GPIO, exits if the pin sends an error
@@ -139,7 +139,7 @@ def main():
                 print ("Error switching relay, the script will now exit.")
                 break
             else:
-                print ("Switch flipped, turning relay " + 
+                print ("Switch flipped, turning relay " +
 						outputStrings[switchState] + ".")
 
     relayExp.setChannel(RELAY_ID, RELAY_CHANNEL, 0)
@@ -151,6 +151,8 @@ if __name__ == "__main__":
 
 #### What to Expect
 
+<!-- TODO: IMAGE or gif of project working -->
+
 When the script is running, you'll see a ton of debug messages from the console. Now when you flick the switch to on or off, the buzzer should respond by turning on or off appropriately.
 
 Infinite loop appears here as well, and as usual, exit the script with `Ctrl-C`.
@@ -158,7 +160,7 @@ Infinite loop appears here as well, and as usual, exit the script with `Ctrl-C`.
 
 ### A Closer Look at the Code
 
-From the PWM tutorials, we've touched on how to account for the limitations of hardware when writing software. In this tutorial we've put more of that into practice. One important thing introduced is the **Read - Modify - Write** cycle. One major part of the cycle is **checking status** of our components (the 'read' part of the cycle). Additionally, we **log** the status - this is a very good habit to get into for fast debugging. 
+From the PWM tutorials, we've touched on how to account for the limitations of hardware when writing software. In this tutorial we've put more of that into practice. One important thing introduced is the **Read - Modify - Write** cycle. One major part of the cycle is **checking status** of our components (the 'read' part of the cycle). Additionally, we **log** the status - this is a very good habit to get into for fast debugging.
 
 
 #### Reading then Writing
