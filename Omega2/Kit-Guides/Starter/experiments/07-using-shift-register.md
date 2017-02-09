@@ -123,7 +123,6 @@ class shiftRegister:
 				self.srclk.setValue(0)
 			self.latch()
 
-
 		#Sets the GPIOs to output with an initial value of zero
 		def setup(self):
 			self.ser.setOutputDirection(0)

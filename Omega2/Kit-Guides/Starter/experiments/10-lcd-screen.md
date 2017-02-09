@@ -197,7 +197,8 @@ class Lcd:
 
         for char in string:
             self.lcd_write(ord(char), Rs)
-            
+    
+    # print an array of strings        
     def lcd_display_string_array(self, strings):
         for i in range(min(len(strings), 4)):
             self.lcd_display_string(strings[i], i+1)
@@ -300,7 +301,7 @@ This is an incredibly common programming technique and is at the heart of Object
 
 We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
 
-<!-- TODO: this is taken from the latest article on docs.onion. fix this entire process for python, it doesn't work on gabe's omega2p -->
+<!-- TODO: fix cron, this doesn't work -->
 
 First, create a file in `/root` called `runTemperatureSensorScript.sh` and write the following in it:
 
