@@ -28,28 +28,25 @@ If you want to start building right away, skip ahead to the [next section](#cont
 
 #### The SN754410 Integrated H-Bridge Chip
 
-The [SN754410 chip](http://www.ti.com/lit/ds/symlink/sn754410.pdf) contains two H-bridges, allowing control of four outputs. The chip conveniently handles short circuit situations and simplifies the operation of an H-bridge to two switches from four. So instead of S1/S2/S3/S4 (as seen above), we'll be switching `1A` and `2A` (as seen in the datasheet). For this tutorial, we'll be using one of the two H-bridges to control power sent to the two inputs of your DC motor. Specifically, the pair of inputs and outputs (`1A`, `2A` and `1Y`, `2Y`) on the left side of the chip. In total, we'll be sending signals to three pins: `1A`, `2A` and `1,2EN`.
+The [SN754410 chip](http://www.ti.com/lit/ds/symlink/sn754410.pdf) contains two H-bridges, allowing control of four outputs. The chip conveniently handles short circuit situations and simplifies the operation of an H-bridge to two switches from four. So instead of S1/S2/S3/S4 (as seen above), we'll be switching `1A` and `2A` (as seen in the datasheet). For this tutorial, we'll be using one of the two H-bridges to control power sent to the two inputs of your DC motor. Specifically, the pair of inputs and outputs (`1A`, `2A` and `1Y`, `2Y`) on the left side of the chip.
 
 <!-- // TODO: IMAGE diagram of the SN754410 -->
 
-On the chip, `1A` controls the polarity of `1Y`, `2A` controls the polarity of `2Y`. At a very high level, this H-bridge chip 'assigns' the outputs (the pins labelled `Y`) according to the voltage fed to the inputs (the pins labelled `A`). For example, sending a a 'high' signal to `1A` will lead to the same signal being sent out `1Y` the difference is the signal sent out uses the voltage supplied to pin `8`.
+On the chip, `1A` controls the polarity of `1Y`, same goes for `2A` and `2Y`. At a very high level, this H-bridge chip changes the output voltage (to the pins labelled `Y`) according to the input voltage sent to the pins labelled `A`. For example, sending a 'high' to `1A` will send the same to `1Y`. The difference is the signal sent out to `Y` pins use the voltage supplied to pin `8` regardless of what the input voltage is.
 
-Voltage acts kind of like a waterfall - it sends the current flowing from the voltage **source** (top) to the **ground** (bottom). In this case, if the signal to `1A` is high, that means the H-bridge switches `1Y` to the source, if low is sent instead, the H-bridge switches `1Y` to ground.
-
->Water only falls from top to bottom. This is how we're able to get the motor to change directions: by changing the direction of the electricity flowing through. By the same logic, if both `1Y` and `2Y` are the same polarity, no water (electricity) will move.
+Voltage acts kind of like a waterfall - it always sends the current flowing from the voltage **source** (top) to the **ground** (bottom). You can think of the source as `HIGH` and ground as `LOW`. So if you connect a motor to `1Y` and `2Y`, it'll only move if they're sending out **different** signals.
 
 The `1,2EN` pin simply turns the H-bridge on or off. If `1,2EN` sees a 'high', then everything we've covered above happens as normal, if it's off, then there won't be anything sent to the outputs no matter what `1A` and `2A` are set to.
 
-**Note**: As can be seen above, the chip is roughly mirrored. The top right and bottom left pins are the power supply for the outputs (`pin 8`) and the chip (`pin 16`) respectively. The difference between the two power pins is the voltage supplied to the outputs can be up to 36V, while the voltage supplied to the chip is recommended to be within 2~5V. If you want to power a large motor, you should power the motor with the external supply through `pin 8` and supply around 3V to `pin 16`.
 
 ### Building the Circuit {#controlling-a-dc-motor-with-an-h-bridge-building-the-circuit}
 
-<!-- // omega -> h-bridge -> dc motor
-// three switches as gpio inputs to the omega -->
-
 This build can get a bit messy, if you want to make sure your board cleans up nicely, we recommend using short wires (Male-to-Male) for connecting `GND` and `Vcc` points from the components to the rails. If you're not sure how that would work, just swap 12 male-to-male jumpers for 12 shorter wires when gathering components, we'll let you know in the instructions whenever you can use shorter wires.
 
->We taped a piece of paper to the motor axle to see the rotations clearly.
+For better viewing, we taped a piece of paper to the motor axle to see the rotations clearly.
+
+**Note**: As can be seen above, the chip is roughly mirrored. The top right and bottom left pins are the power supply for the outputs (`pin 8`) and the chip (`pin 16`) respectively. The difference between the two power pins is the voltage supplied to the outputs can be up to 36V, while the voltage supplied to the chip is recommended to be within 2~5V. If you want to power a large motor, you should power the motor with the external supply through `pin 8` and supply around 3V to `pin 16`.
+
 
 #### What You'll Need
 

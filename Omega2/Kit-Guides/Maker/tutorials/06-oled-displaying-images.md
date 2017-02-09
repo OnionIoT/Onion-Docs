@@ -26,9 +26,16 @@ We'll be creating a line drawing python script using a Frame Buffer to more mana
 
 The OLED Expansion is a complete circuit. So for this tutorial, we just need to plug it into the Expansion Dock and we'll be good to go!
 
+#### What You'll Need
+
+1x Omega2 plugged into the Expansion Dock
+1x OLED Expansion plugged into Expansion Dock
+
 #### Writing the Code
 
-Here's the script we'll be working with:
+Copy the code below into a file named `MAK06-drawingLines.py`, and run it on your Omega to see it in action.
+
+<!-- TODO: fix the code to be less ugly, functionalise user input retreival -->
 
 ``` python
 from OmegaExpansion import oledExp
@@ -71,6 +78,25 @@ class buffer:
             for y in range(0,PAGE_MAX+1):
                  tmpframe[x].append(0)
         return tmpframe
+		
+
+def getPosition (maxPos, orientation, located):
+    pos = 0
+    while (True):
+        print ('Which ' + orientation + ' should the line ' + located)
+        # Getting input from user
+        pos = raw_input('>>> ')
+
+        try:
+            pos = int (pos, 10)
+        except ValueError as e:
+            print ('Numbers only please!')
+
+        if (type(pos) != int or pos > maxPos or pos < 0):
+            print ('That\'s out of range, please try again.')
+        else:
+            return pos
+
 
 def main():
     initStatus = oledExp.driverInit();
@@ -97,43 +123,22 @@ def main():
         # Changing the questions asked depending according to orientation
         if (orientation == VER):
             headPosMax = SEG_MAX
-            linePosMax = PAGE_MAX
+            endPosMax = PAGE_MAX
             headAskedWord = 'column'
             lineAskedWord = 'row'
         else:
             headPosMax = PAGE_MAX
-            linePosMax = SEG_MAX
+            endPosMax = SEG_MAX
             headAskedWord = 'row'
             lineAskedWord = 'column'
 
         # Obtaining the column or row the line will exist in
-        while (True):
-            print ('Which ' + headAskedWord + ' should the line occupy? ')
-            headPos = raw_input()
-            headPos = int (headPos, 10)
-            if(headPos > headPosMax or headPos < 0):
-                print ('That\'s out of range, please try again.')
-            else:
-                break
+        headPos = getPosition(headPosMax, headAskedWord, 'occupy?')
 
         # Obtaining the starting and ending positions of the line
-        while (True):
-            print ('Which ' + lineAskedWord + ' should the line start on?')
-            startPos = raw_input()
-            startPos = int (startPos, 10)
-            if (type(startPos) != int or startPos > linePosMax or startPos < 0):
-                print ('That\'s out of range, please try again.')
-            else:
-                break
+        startPos = getPosition(startPosMax, lineAskedWord, 'start on?')
+        endPos = getPosition(endPosMax, lineAskedWord, 'end on?')
 
-        while (True):
-            print ('Which ' + lineAskedWord + ' should the line end on?')
-            endPos = raw_input()
-            endPos = int (endPos, 10)
-            if (type(endPos) != int or endPos > linePosMax or endPos < 0):
-                print ('That\'s out of range, please try again.')
-            else:
-                break
 
         # In case you put the numbers reversed
         if (startPos > endPos):
@@ -152,10 +157,10 @@ def main():
 
     oledExp.clear()
 
+
 if __name__ == '__main__':
     main()
 ```
-
 
 #### What to Expect
 
@@ -190,8 +195,7 @@ In the main function, we call an infinite loop to continuously populate the buff
 
 You'll probably notice there's a *lot* of error checking and user direction in this script. This is because the program asks for many different types of input. To make it worse, previous input will change the way future input is interpreted. There's no new concepts regarding input and output here, but as a taste, this is how complicated even 'simple' commandline tools can become.
 
-### Hack the Script
+### Flexibility versus Cost
 
-There can be lots of optimizations done to make this script faster, for example skipping blank bytes, or skipping bytes that have already been drawn previously. Feel free to experiment and see if you can make it run faster. Even better, see if you can figure out a way to draw thin horizontal lines.
+The OLED screen we use is pretty different from the ones you have on the lastest smartphones and tablets. It isn't design to be addressable through exact pixel co-ordinates (as you already know). This is because it is designed to be operated by the I2C protocol, which reads and writes bytes only. For ease of manufacture, and to keep the cost under control, the screen accepts directions byte-by-byte. There's a great way to draw pixel by pixel using a pixel-based buffer and translating it to bytes. If you want to go further, try implementing it and change the script to draw single-pixel horizontal lines!
 
->In case you were wondering, the thick lines are due to a limition imposed by the hardware of the OLED screen. Drawing thin horizontal lines is definitely possible with some calculation - you have all the tools you need.

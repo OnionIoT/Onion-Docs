@@ -50,23 +50,35 @@ The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole me
 
 1. First we'll have to find a place on the breadboard to place the buzzer, we chose row 1 and mounted the buzzer across the middle channel
 	* Taking note where the cathode (+) and where the anode (-) is, we'll have to make sure the right wires go in the right terminal later
+	
 1. Next the switch needs to go into the breadboard, with each pin plugged into a different row. We chose row 5-8.
+
 <!-- // TODO: IMAGE of breadboard with switch and buzzer in -->
+
 1. Now to set up the relay connections. We'll be using channel 0, with all switches on the relay set to `OFF`. We've included a diagram below to help out.
 	* Turn the screw on the `IN` terminal counterclockwise until the metal clamp inside is sitting a bit less than halfway in the bottom of the housing, not too much or the screw might pop out.
 	* If you're unsure, close the terminal all the way by turning the screw clockwise until you can't anymore, then open it.
 	* Grab a male-to-male jumper wire (we prefer red or orange, as this will be connected to power) and insert it into the terminal
 	* Turn the screw clockwise until the wire is tightly clamped.
 	* Repeat for the `OUT` terminal.
+
 1. Take the jumper connected to the `IN` terminal, and plug that into the `5V` pin on the Dock.
 	* Or if you have a power supply, the positive terminal of it.
+
 1. Take the jumper connected to the `OUT` terminal and plug that into the row the positive terminal of your buzzer is plugged into. We used the socket in row 1 column C.
+
 1. Grab a jumper wire (preferably black) and connect one end to the `GND` pin on the Dock, and the other to the same row as the negative terminal of your buzzer. Row 1, column H for us.
+
 <!-- // TODO: IMAGE diagram of the buzzer+relay configuration -->
-1. Now the buzzer can be turned off and on via commands to the Relay Expansion. Next we'll connect the switch, the final result should look something like this:
+
+5. Now the buzzer can be turned off and on via commands to the Relay Expansion. Next we'll connect the switch, the final result should look something like this:
+
 <!-- // TODO: IMAGE diagram of the switch configuration -->
-1. Grab a red or orange jumper and plug one end into the `3.3V` pin on the dock.
+
+6. Grab a red or orange jumper and plug one end into the `3.3V` pin on the dock.
+
 1. Plug the other end into the same row as the middle pin of the switch. We plugged it into row 6
+
 1. Next connect one of the two free pins on the switch to pin `0` on the dock using the last jumper wire.
 
 We're all done!
@@ -77,7 +89,9 @@ Here's a picture of our completed circuit.
 
 #### Writing the Code
 
-Create a file called `relayCircuit.py` and paste the following code in it:
+
+Create a file called `MAK07-relayCircuit.py` and paste the following code in it:
+
 
 ``` python
 from onionGpio import OnionGpio
@@ -90,21 +104,28 @@ outputStrings = ['off', 'on']
 
 def main():
 
-    switch = OnionGpio(SWITCH_PIN)	# This works because we directly imported the
-									# OnionGpio class from the module
+    switch = OnionGpio(SWITCH_PIN)	# This works because we directly imported 
+									# the OnionGpio class from the module
 
-    status = switch.setInputDirection()
-    if (status is False):
+	# Initializes switch GPIO, exits if the pin sends an error
+    bSwitch = switch.setInputDirection()
+    print ("Setting GPIO pin " + str(SWITCH_PIN) + " to input.")
+    if (bSwitch is False):
         print ("GPIO set direction error.")
+		return
+	print ("Pin set.")
 
-    relayStatus = relayExp.checkInit(RELAY_ID)
+	# Initializes the relay, exits if the channel sends an error
+    bRelay = relayExp.checkInit(RELAY_ID)
     print ("Checking Relay 0x2" + str(RELAY_ID) + " status.")
-
-    if (relayStatus is False):
-        relayExp.driverInit(RELAY_ID)
+    if (bRelay is False):
+        bInit = relayExp.driverInit(RELAY_ID)
         print ("Initializing Relay")
-
+		if (bInit is False):
+			print ("Relay initialization failure.")
+			return
     print ("Relay initialized.")
+
 
     while (True):
         # getValue() returns a string with predictable formatting,
@@ -118,7 +139,8 @@ def main():
                 print ("Error switching relay, the script will now exit.")
                 break
             else:
-                print ("Switch flipped, turning relay " + outputStrings[switchState] + ".")
+                print ("Switch flipped, turning relay " + 
+						outputStrings[switchState] + ".")
 
     relayExp.setChannel(RELAY_ID, RELAY_CHANNEL, 0)
 
@@ -131,16 +153,13 @@ if __name__ == "__main__":
 
 When the script is running, you'll see a ton of debug messages from the console. Now when you flick the switch to on or off, the buzzer should respond by turning on or off appropriately.
 
-Infinite loop appears here as well, and as usual, exit the script with `ctrl`+`c`.
+Infinite loop appears here as well, and as usual, exit the script with `Ctrl-C`.
 
 
 ### A Closer Look at the Code
 
-From the PWM tutorials, we've touched on how to account for the limitations of hardware when writing software. In this tutorial we've put more of that into practice.
+From the PWM tutorials, we've touched on how to account for the limitations of hardware when writing software. In this tutorial we've put more of that into practice. One important thing introduced is the **Read - Modify - Write** cycle. One major part of the cycle is **checking status** of our components (the 'read' part of the cycle). Additionally, we **log** the status - this is a very good habit to get into for fast debugging. 
 
-Main topics covered:
-* Read - Modify - Write
-* Checking Status
 
 #### Reading then Writing
 
@@ -154,3 +173,7 @@ This concept is known as Reading then Writing, and it actually applies to a lot 
 You'll notice that of all the code, only about 5 lines are directly dedicated to changing the state of the relay! The bulk of the code is actually all about checking the states and making decisions off of that information. The reason is simple: we want to make sure the commands we send to the hardware is absolutely correct, since hardware errors are difficult to recover from! Software can be written, started, and restarted fairly quickly; but if you burn out an LED, it's gone for good.
 
 That's why we consider all the variables in this circuit by reading from the relay and the GPIO pins first and make sure to only change the state of the relay when it's safe, and it makes sense to do so. Of course when this circuit is properly wired, there's very little that can go wrong through bad signals, but it's always good practice to make sure.
+
+#### Logging Errors and Successes
+
+There's often a great deal of difference between what we *expect* our software to do versus what our software *actually* does. Logging is how we can sync up the expected behaviour with actual behaviour. Printing out values of variables, messages of success and failures, we bring what is normally hidden to light. This way, we can follow our code as it runs and make sure it's doing what we really want.

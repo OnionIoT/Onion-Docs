@@ -115,7 +115,7 @@ class Servo:
 		return ret
 ```
 
-Run the following Python code and see what happens:
+Paste the code below into a file called `MAK02-servoControl.py`, make sure your circuit is set up, then run it and see what happens!
 
 ``` python
 from motors import Servo
@@ -192,9 +192,9 @@ In this example, the loop does a simple progression of commands, but the concept
 
 #### Math in Python
 
-In this code example, as well as others, you will notice that decimal places are included for integer numbers, regardless if it is necessary or not (eg. `3.0`). This is to tell Python to interpret the number as a decimal, or **floating point**, number, which will make it behave like your typical pocket calculator.
+In this code example, you can find integer numbers with decimal points (eg. `3.0`). The reason `3.0` is used instead of `3` is to tell Python to interpret the number as a decimal, or **floating point** number. This makes it behave like a number in a calculator.
 
-However, if we specified our numbers as integers (eg. `3`), we'd be doing **integer math**. In this case, Python basically **drops the decimal part** of any calculation,  such as division. There are times when this is not an issue, such as counting discrete objects or iterating through loops, but you have to be careful when you write a math equation and expect a decimal answer!
+If we dropped the decimal point (simply using `3`), we'd be doing **integer math**. In this case, Python will literally **drop the decimal part** of any calculation. This is desired behaviour in some cases, such as when counting objects or iterating through loops. But this behaviour can be the source of numerous errors if you need to do precise calculations!
 
 To see the difference for yourself, start the interactive Python interpreter on the command line by simply typing `python`, then run each of the `print` commands below:
 
@@ -221,8 +221,10 @@ Due to the way decimal and integer numbers are handled by computers, this also a
 The time Python library is used here to provide a way to delay the signals transmitted to the servo. Without the `time.sleep()` function calls, the code would be executed as fast as the Omega can possibly handle, which is pretty much faster than the servo motor can handle. The Omega2 runs at over 500MHz while the servo receives commands from 50~1kHz, which is over 50,000 times faster than the servo can react! So we use the `time.sleep()` function to give the command some time to take effect on the servo.
 
 
-### Moving Beyond
+### Hardware Calibration
 
-// TODO: clean this paragraph up
+In reality, there's always going to be differences in the hardware we use even if they're of the same make and model.
 
-In reality, there's always going to be differences in the hardware we use even if they're of the same make and model. For this reason, we can't send the same signals to the different motors and expect them to behave exactly the same . The minimum and maximum pulses we used to instantiate our servo objects (`500`, `2000`, `500`, `2500`) are values we've found to work with servos in our lab. Due to manufacturing imperfections, design flaws, and a whole host of other issues, you would often need to test and find the numbers that work for your particular servo at the angles you need - this is called calibration. See if you can use the command line tools or the libraries to figure out what duty cycles correspond to what kind of movement in your own servo.
+For this reason, we can't send the same signals to the different motors and expect them to behave exactly the same. The minimum and maximum pulses we used to instantiate our servo objects - `500`, `2000`, `500`, `2500` - are values we've found to work with servos in our lab. 
+
+Due to these reasons, you should do some testing to find the numbers that work for your particular hardware. This proccess is called calibration. See if you can use the command line tools or the libraries to figure out what duty cycles correspond to what kind of movement in your own servos.
