@@ -53,6 +53,98 @@ To accomplish this, we will write a new class that uses the shift register class
 //  * input sanitization to ensure they only enter hex numbers (really good practise)
 //  * write the sanitized input to the 7seg
 
+``` python
+from shiftRegister import ShiftRegister
+import omegaGpioExporter
+
+class SevenSegDisplay:
+    digitMap = {
+        "0": "00111111",
+        "1": "00000110",
+        "2": "01011011",
+        "3": "01001111",
+        "4": "01100110",
+        "5": "01101101",
+        "6": "01111101",
+        "7": "00000111",
+        "8": "01111111",
+        "9": "01101111",
+        "a": "01110111",
+        "b": "01111100",
+        "c": "10011100",
+        "d": "01111010",
+        "e": "10011110",
+        "f": "10001110",
+        "off": "00000000",
+        "-": "01000000",
+    }
+    
+    def __init__(self, shiftRegPins, digitPins):
+        # requires shiftRegister pins in the following order:
+        # [dataPin, clockPin, registerPin]
+        self.shiftReg = ShiftRegister(shiftRegPins[0], shiftRegPins[1], shiftRegPins[2])
+        self.digitPins = digitPins
+        self.gpioDriver = omegaGpioExporter.omegaGpioExporter()
+        
+        self.digitOn = 0
+        self.digitOff = 1
+        
+        # turn on the LEDs to verify it's on
+        self.allDash()
+        
+        # digitPins are in L-R order
+        for i in range(4):
+            self.gpioDriver.exportPin(self.digitPins[i])
+            self.gpioDriver.exportDirection(self.digitPins[i], "out")
+            
+        self.clear()
+        
+    def allDash():
+        self.digits = ["-", "-", "-", "-"]
+        self.refresh()
+    
+    def allOff():
+        self.digits = ["off", "off", "off", "off"]
+        self.refresh()
+    
+    def setDigit(character, digit):
+        if (digit < 1) or (digit > 4):
+            print "Digit out of range."
+            return -1
+            
+        self.digits[i-1] = character
+        
+    def setDigits(string):
+        if len(string) > 4:
+            print "String too long, cannot print!"
+            return -1
+        
+        characters = list(string)
+        for i in range(4):
+            self.setDigit(character, i+1)
+        
+        self.refresh()
+    
+    def refresh():
+        for i in range(4):
+            # write out the current digit to the shift register
+            self.shiftReg.writeBytestring(digitMap.get(digits[i], default="-")      
+            # turn off the previous digit            
+            self.gpioDriver.writeValue(digitPins[i-1], digitOff)               
+            # turn on the current digit
+            self.gpioDriver.writeValue(digitPins[i], digitOn)
+            
+            
+
+```
+
+Main script:
+
+``` python
+digitPins = [11, 18, 19, 0]
+shiftRegPins = []
+
+```
 #### What to Expect
 
 // walk them through running a program from the command line with arguments
@@ -78,3 +170,8 @@ To accomplish this, we will write a new class that uses the shift register class
 ##### Dictionary
 
 // explanation of the dictionary variable type: many elements, all have an id and a value
+
+
+
+
+Next: [Reading a One-Wire Temperature Sensor](#starter-kit-reading-one-wire-temperature-sensor)

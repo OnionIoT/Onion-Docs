@@ -20,10 +20,11 @@ f="1 0 0 0 1 1 1 0"
 
 # setup shift register pins
 echo 1 >/sys/class/gpio/export # data
-echo 3 >/sys/class/gpio/export # clock
-echo 2 >/sys/class/gpio/export # latch
+echo 3 >/sys/class/gpio/export # latch
+echo 2 >/sys/class/gpio/export # clock
 
 # setup digit pins
+# all directions are from left
 echo 11 >/sys/class/gpio/export # digit 1
 echo 18 >/sys/class/gpio/export # digit 2
 echo 19 >/sys/class/gpio/export # digit 3
@@ -66,7 +67,7 @@ setOneDig(){
 	latchSR
 }
 
-# turn on all the pins (turn on their enable pins, common sink)
+# turn off all the pins (enable pins are active LOW)
 initDigPins (){
 	echo 1 >/sys/class/gpio/gpio0/value
 	echo 1 >/sys/class/gpio/gpio18/value
@@ -83,18 +84,19 @@ initDigPins
 while true; do
 
 echo 0 >/sys/class/gpio/gpio0/value
-setOneDig $one
+setOneDig $three
 echo 1 >/sys/class/gpio/gpio0/value
 
-echo 0 >/sys/class/gpio/gpio18/value
-setOneDig $three
-echo 1 >/sys/class/gpio/gpio18/value
-
+# enable the digit
 echo 0 >/sys/class/gpio/gpio19/value
-setOneDig $three
+setOneDig $one
 echo 1 >/sys/class/gpio/gpio19/value
 
 echo 0 >/sys/class/gpio/gpio11/value
-setOneDig $three
+setOneDig $two
 echo 1 >/sys/class/gpio/gpio11/value
+
+echo 0 >/sys/class/gpio/gpio18/value
+setOneDig $four
+echo 1 >/sys/class/gpio/gpio18/value
 done

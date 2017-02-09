@@ -212,7 +212,6 @@ Now let's write the script for the main routine. Create a file called `STK09-tem
 # import modules and classes
 from temperatureSensor import TemperatureSensor
 import oneWire
-import time
 
 # setup onewire and polling interval
 oneWireGpio = 19 # set the GPIO that we've connected the sensor to
@@ -233,11 +232,9 @@ def __main__():
         print "Sensor was not set up correctly. Please make sure that your sensor is firmly connected to the GPIO specified above and try again."
         return -1
 
-    # periodically check and print the temperature
-    while 1:
-        value = sensor.readValue()
-        print "T = " + str(value) + " C"
-        time.sleep(pollingInterval)
+    # check and print the temperature
+    value = sensor.readValue()
+    print "T = " + str(value) + " C"
 
 if __name__ == '__main__':
     __main__()
@@ -252,19 +249,21 @@ You should see the Omega printing the temperature in degrees Celsius measured by
 
 #### A Closer Look at the Code
 
-Here we've introduced reading and writing to the filesystem. The Omega's hardware such as the serial ports, I2C, and SPI bus are exposed as files somewhere in the system. In order for software and programs to interact with these connections, they must work with the corresponding files. This is a very important concept, so please make sure to remember it!
+Here we've introduced **reading and writing to the filesystem**. We also introduced the concept of **scanning a bus** for devices and device addresses.
 
 ##### Reading and Writing to the Filesystem
 
-Working with a file on the filesystem requires you to do the following:
+The Omega's hardware such as the serial ports, I2C, and SPI bus are exposed as files somewhere in the system. In order for software and programs to interact with these connections, they must work with the corresponding files. This is a very important concept, so please make sure to remember it!
+
+When working with a file from within a program, you must go through the following steps:
 
 * **Open** the file for reading, writing, or both at the same time
-* **Reading** from or **writing** to the file
-* **Closing** it when you're done
+* **Read** from or **wriet** to the file
+* **Close** it when you're done
 
-and this applies to all programs that interact with the filesystem, not just Python.
+This applies to all programs that interact with the filesystem, not just Python.
 
-Here, we're taking advantage of Python's `with` statement. This allows us to cleanly open the file and automatically close it when we're done! Here's an example of all of this happening in the `oneWire.py` file:
+In this experiment, we're taking advantage of Python's `with` statement. This allows us to cleanly open the file and automatically close it when we're done! Here's an example of all of this happening in the `oneWire.py` file:
 
 ``` python
 with open(self.slaveFilePath) as slave:
@@ -272,3 +271,30 @@ with open(self.slaveFilePath) as slave:
 ```
 
 This simple 2-line block reads from the slave's system file at `/sys/devices/w1_bus_master1/<address>/w1_slave"`, which triggers the Omega to physically send a request to the 1-Wire sensor and return the data to our program. The file is then automatically closed once the program exits that block.
+
+##### Scanning a Bus
+
+You may have noticed that the the `OneWire` class is used by the `TemperatureSensor` class and should not need to be imported explicitly. However, for the purposes of this experiment, we included it in the main script to use its `scanOneAddress()` function. 
+
+This is because every 1-Wire sensor has its own unique address. To work with a sensor from within a program, you would have to manually find the address and write it in your code as a variable. To make this process faster:
+
+1. We make sure that the sensor is the only 1-Wire device connected to the bus.
+1. We then query the bus for device addresses. 
+1. The only one that will appear is the one that corresponds to our sensor.
+
+This is all done automatically to save you time.
+
+If you want to find the address of a 1-Wire device to write it down for later, follow these steps:
+
+1. Disconnect all other 1-Wire devices from the Omega, then connect your device.
+1. `cd` to the folder containing `oneWire.py` and start the Python interpreter with `Python`.
+1. Run these commands:
+
+``` python
+import oneWire
+oneWire.scanOneAddress()
+```
+
+The device's address will then be printed on the screen.
+
+Next: [Controlling an LED Screen](#starter-kit-controlling-an-lcd-screen)

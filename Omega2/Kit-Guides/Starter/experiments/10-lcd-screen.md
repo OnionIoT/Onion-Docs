@@ -40,16 +40,16 @@ Then grab the following from your kit:
 
 #### Hooking up the Components
 
-// refer them back to the temp sensor article for that part
+<!-- // refer them back to the temp sensor article for that part
 
 // some i2c devices will require pull-up resistors on one, or both of SCL and SDA
 // [experiment with the i2c screen and see if it needs the resistors]
-// Gabe: the community member's tutorial has the screen hooked straight to the GPIOs, no pullups, but requires 5V power
+// Gabe: the community member's tutorial has the screen hooked straight to the GPIOs, no pullups, but requires 5V power -->
 
 1. If you've taken apart your temperature sensor circuit, wire it back up according to the instructions in the [previous experiment](#starter-kit-reading-one-wire-temperature-sensor).
 1. Connect the pins from the I2C display to the Expansion Dock according to this table:
 
-| I2C Pin | Expansion Dock |
+| Display Pin | Expansion Dock |
 |---------|----------------|
 | GND     | GND            |
 | VCC     | 5V             |
@@ -67,6 +67,8 @@ Then grab the following from your kit:
 
 For this experiment, we'll be using our Onion I2C Python library which conveniently exposes some I2C functionality. If you're curious, you can see how it works in our [I2C Python module reference](#i2c-python-module).
 
+>The LCD display driver code is based on user [**natbett**'s post](https://www.raspberrypi.org/forums/viewtopic.php?f=32&t=34261&p=378524) on the Raspberry Pi forums.
+
 First, let's create a file containing a class to work with the I2C bus. Create a file called `i2cLib.py` and paste the following code:
 
 ``` python
@@ -75,24 +77,14 @@ from OmegaExpansion import onionI2C
 
 sleepInterval = 0.0001
 
-class I2CDevice:
-    def __init__(self, address, port=1):
-        self.address = address
+class i2cDevice:
+    def __init__(self, addr, port=0):
+        self.addr = addr
         self.i2c = onionI2C.OnionI2C(port)
 
     # write a single command
     def write_cmd(self, cmd):
-        self.i2c.write(self.address [cmd])
-        sleep(sleepInterval)
-
-    # write a command and argument
-    def write_cmd_arg(self, cmd, data):
-        self.i2c.writeByte(self.address cmd, data)
-        sleep(sleepInterval)
-
-    # write a block of data
-    def write_block_data(self, cmd, data):
-        self.i2c.writeBytes(self.address cmd, [data])
+        self.i2c.write(self.addr, [cmd])
         sleep(sleepInterval)
 ```
 
@@ -102,7 +94,7 @@ Next, let's create a file that has all the low level code needed to drive the LC
 import i2cLib
 from time import sleep
 
-## commands
+# commands
 LCD_CLEARDISPLAY = 0x01
 LCD_RETURNHOME = 0x02
 LCD_ENTRYMODESET = 0x04
@@ -112,13 +104,13 @@ LCD_FUNCTIONSET = 0x20
 LCD_SETCGRAMADDR = 0x40
 LCD_SETDDRAMADDR = 0x80
 
-## flags for display entry mode
+# flags for display entry mode
 LCD_ENTRYRIGHT = 0x00
 LCD_ENTRYLEFT = 0x02
 LCD_ENTRYSHIFTINCREMENT = 0x01
 LCD_ENTRYSHIFTDECREMENT = 0x00
 
-## flags for display on/off control
+# flags for display on/off control
 LCD_DISPLAYON = 0x04
 LCD_DISPLAYOFF = 0x00
 LCD_CURSORON = 0x02
@@ -126,13 +118,13 @@ LCD_CURSOROFF = 0x00
 LCD_BLINKON = 0x01
 LCD_BLINKOFF = 0x00
 
-## flags for display/cursor shift
+# flags for display/cursor shift
 LCD_DISPLAYMOVE = 0x08
 LCD_CURSORMOVE = 0x00
 LCD_MOVERIGHT = 0x04
 LCD_MOVELEFT = 0x00
 
-## flags for function set
+# flags for function set
 LCD_8BITMODE = 0x10
 LCD_4BITMODE = 0x00
 LCD_2LINE = 0x08
@@ -140,7 +132,7 @@ LCD_1LINE = 0x00
 LCD_5x10DOTS = 0x04
 LCD_5x8DOTS = 0x00
 
-## flags for backlight control
+# flags for backlight control
 LCD_BACKLIGHT = 0x08
 LCD_NOBACKLIGHT = 0x00
 
@@ -150,7 +142,7 @@ Rs = 0b00000001 # Register select bit
 
 class Lcd:
     #initializes objects and lcd
-    def __init__(self, address):
+    def __init__(self,address):
         self.address = address
         self.lcdbacklight = LCD_BACKLIGHT #default status
         self.line1= "";
@@ -158,7 +150,8 @@ class Lcd:
         self.line3= "";
         self.line4= "";
         
-        self.lcd_device = i2cLib.I2CDevice(self.address)
+        # use the Onion I2C module to handle reading/writing
+        self.lcd_device = i2cLib.i2cDevice(self.address)
 
         self.lcd_write(0x03)
         self.lcd_write(0x03)
@@ -187,7 +180,7 @@ class Lcd:
         self.lcd_write_four_bits(mode | (cmd & 0xF0))
         self.lcd_write_four_bits(mode | ((cmd << 4) & 0xF0))
 
-    # write string display
+    # write a string to the display
     def lcd_display_string(self, string, line):
         if line == 1:
             self.line1 = string;
@@ -204,8 +197,9 @@ class Lcd:
 
         for char in string:
             self.lcd_write(ord(char), Rs)
-        
-    def lcd_display_strings_array(self, strings)
+    
+    # print an array of strings        
+    def lcd_display_string_array(self, strings):
         for i in range(min(len(strings), 4)):
             self.lcd_display_string(strings[i], i+1)
 
@@ -230,17 +224,15 @@ class Lcd:
         self.refresh()
 ```
 
-Now let's write the main routine for the experiment. Create a file called `temperatureLCD.py` in `/root`. Paste the code below in it:
+Now let's write the main routine for the experiment. Create a file called `STK10-temperatureLCD.py` in `/root`. Paste the code below in it:
 
 ``` python
 import lcdDriver
 from temperatureSensor import TemperatureSensor
 import oneWire
-import time
 
-lcdAddress = 0x3f                                       # default address of i2c backpack is 0x3f by default
-
-
+# default address of i2c backpack is 0x3f by default
+lcdAddress = 0x3f                                       
 
 # setup one wire temperature sensor object
 oneWireGpio = 19 # set the GPIO that we've connected the sensor to
@@ -262,17 +254,14 @@ def __main__():
         return -1
 
     # setup LCD
-    lcd = lcddriver.Lcd(lcdAddress)                         # instantiate lcd object
-    lcd.backlightOn()                                       # turn backlight on    
+    lcd = lcdDriver.Lcd(lcdAddress)
+    lcd.backlightOn()    
     
-    # periodically check and print the temperature
-    while 1:
-        value = sensor.readValue()
-        lcd.lcd_display_strings_array([
-            "Temperature:",
-            str(value) + " C"
-        ])
-        time.sleep(pollingInterval)
+    value = sensor.readValue()
+    lcd.lcd_display_string_array([
+        "Temperature:",
+        str(value) + " C"
+    ])
 
 if __name__ == '__main__':
     __main__()
@@ -280,22 +269,30 @@ if __name__ == '__main__':
 
 #### What to Expect
 
-// calling the script will update the lcd screen, but wouldn't it be nice if something could run the script for us every minute to actually update the lcd?
+Calling the script will update the LCD screen with a fresh temperature reading.
+
+<!-- TODO: gif -->
+
+However, wouldn't it be nice if something could run the script for us every minute to actually update the LCD?
 
 #### A Closer Look at the Code
 
-// intro to the onion i2c module
-
-Here we've introduced 
+Here we've introduced the **Onion I2C module**, and we've also shown that you can use **multiple different objects** in the same script.
 
 ##### The Onion I2C Module
 
-// introduce the onion i2c module, written by Onion to facilitate the easy use of the i2c bus
-// give a brief overview of the functions that we used and point them to the documentation reference (need to include docs.onion.io link, not markdown tag)
+<!-- // introduce the onion i2c module, written by Onion to facilitate the easy use of the i2c bus
+// give a brief overview of the functions that we used and point them to the documentation reference (need to include docs.onion.io link, not markdown tag) -->
+
+We wrote this module to make it easy for you to use the I2C bus. 
 
 ##### Multiple Different Objects
 
-// small blurb about how the main program uses two objects of different classes to accomplish its purpose - make a note that this is an incredibly common programming method/technique
+<!-- // small blurb about how the main program uses two objects of different classes to accomplish its purpose - make a note that this is an incredibly common programming method/technique -->
+
+Here we're using two objects of different classes to accomplish our goal, `TemperatureSensor` and `Lcd`. If we had other devices we wanted to include in this experiment, we can simply write more class definitions and load them using the `import` statement.
+
+This is an incredibly common programming technique and is at the heart of Object Oriented Programming!
 
 #### Going Further: Automating the Script
 
@@ -304,7 +301,7 @@ Here we've introduced
 
 We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
 
-<!-- TODO: this is taken from the latest article on docs.onion. fix this entire process for python, it doesn't work on gabe's omega2p -->
+<!-- TODO: fix cron, this doesn't work -->
 
 First, create a file in `/root` called `runTemperatureSensorScript.sh` and write the following in it:
 
