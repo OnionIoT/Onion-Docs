@@ -1,23 +1,35 @@
-import os
+from os import path
 from subprocess import call
 
 gpioPath = "/sys/class/gpio"
-gpioExportPath = os.path.join(gpioPath, "export")
+gpioExportPath = path.join(gpioPath, "export")
 
 class OmegaGpioExporter:
     def __init__(self):
         pass
         
-    def exportPin(pin):
-        call(["echo", pin, ">" + gpioExportPath])
+    def exportPin(self, pin):
+        filepath = path.join(gpioExportPath, "gpio" + str(pin))
         
-    def exportDirection(pin, direction):
-        call(["echo", direction, ">" + os.path.join(gpioPath, "gpio" + str(pin), "direction"])
+        if not path.isdir(filepath):
+            with open(gpioExportPath, "w") as export:
+                export.write(str(pin) + "\n")
         
-    def writeValue(pin, value):
-        call(["echo", value, ">" + os.path.join(gpioPath, "gpio" + str(pin), "value"])
+    def exportDirection(self, pin, direction):
+        filepath = path.join(gpioPath, "gpio" + str(pin), "direction")
+        
+        if path.exists(filepath):
+            with open(filepath, "w") as directionFile:
+                directionFile.write(direction + "\n")
+        
+    def writeValue(self, pin, value):
+        filepath = path.join(gpioPath, "gpio" + str(pin), "value")
+        
+        if path.exists(filepath):
+            with open(filepath, "w") as valueFile:
+                valueFile.write(str(value) + "\n")
  
-    def pulse(pin, direction):
+    def pulse(self, pin, direction):
         if direction == 0:
             self.writeValue(pin, 1)
             self.writeValue(pin, 0)
