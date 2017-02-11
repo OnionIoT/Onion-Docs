@@ -22,7 +22,7 @@ After each power-cycle, the chip that controls the OLED Expansion must be progra
 After the initialization, the other functions can be used to ajdust various screen settings or display text or images.
 
 
-#### Understanding the Display
+### Understanding the Display
 
 The screen has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages:
 
@@ -55,18 +55,23 @@ The `libonionoledexp` C library is a series of functions that perform all of the
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-<!-- Using the C Library -->
+<!-- TODO: sanity against spec 
 
 #### Using the C Library
 
 **Header File**
+-->
+#### Header File
 
 To add the Onion OLED Expansion Library to your program, include the header file in your code:
 ``` c
 #include <oled-exp.h>
 ```
 
+<!-- 
 **Library for Linker**
+-->
+#### Library for Linker
 
 In your project's makefile, you will need to add the following dynamic libraries to the linker command:
 ``` c
@@ -107,7 +112,7 @@ An error message will be printed that will give more information on the reason b
 
 <!-- Init Function -->
 
-#### Initialization Function
+### Initialization Function
 
 This function programs the initialization sequence on the OLED Expansion, after this step is completed, the other various OLED functions can be used with success:
 ``` c
@@ -140,7 +145,7 @@ There is a series of functions that adjust various settings on the OLED Display.
 
 <!-- Screen on/off -->
 
-##### Turn the Screen On and Off
+### Turn the Screen On and Off
 
 The screen can be turned on and off while still preserving the displayed contents:
 
@@ -176,7 +181,7 @@ status = oledSetDisplayPower(1);
 
 <!-- Invert Display Colours -->
 
-##### Invert Display Colours
+### Invert Display Colours
 
 The screen driver has the ability to invert the display colours, meaning that black becomes white and vice versa:
 
@@ -209,7 +214,7 @@ status = oledSetDisplayMode(0);
 
 <!-- Set Brightness -->
 
-##### Set the Display Brightness
+### Set the Display Brightness
 
 The brightness of the display can be adjusted in a granularity of 256 steps:
 
@@ -245,7 +250,7 @@ status = oledSetBrightness(127);
 
 <!-- Dim the display -->
 
-##### Dim the display
+### Dim the display
 
 This function implements a 'dim' and a 'normal' setting for the display:
 
@@ -281,7 +286,7 @@ status = oledSetDim(0);
 
 <!-- Set the memory mode -->
 
-##### Set Memory Mode
+### Set Memory Mode
 
 Implements the ability to select the display's memory mode:
 
@@ -336,7 +341,7 @@ status = oledSetMemoryMode(OLED_EXP_MEM_PAGE_ADDR_MODE);
 
 <!-- Set Column Addressing -->
 
-##### Set Column Addressing
+### Set Column Addressing
 
 This function is used to define where each page starts and ends horizontally:
 
@@ -380,7 +385,7 @@ status = oledSetColumnAddressing(63, 95);
 
 <!-- Set Column Addressing: Text Columns -->
 
-###### Set Columns for Text
+### Set Columns for Text
 
 A function exists to define the column addressing specifically for text:
 
@@ -393,7 +398,7 @@ It sets the start pixel to 0 and the end pixel to 125. This allows for 21 text c
 
 <!-- Set Column Addressing: Image Columns -->
 
-###### Set Columns for Images
+### Set Columns for Images
 
 Also, a function exists to define the column addressing to cover the entire screen:
 
@@ -420,7 +425,7 @@ Two methods exist:
 
 <!-- Set Cursor Position: By Character Column -->
 
-###### Set Cursor Position by Character Column
+### Set Cursor Position by Character Column
 
 This function is used to position the cursor on a specific page and character column. After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
 
@@ -466,7 +471,7 @@ status	|= oledWrite("hi there");
 
 <!-- Set Cursor Position: By Pixel -->
 
-###### Set Cursor Position by Pixel
+### Set Cursor Position by Pixel
 
 This function is used to position the cursor on a specific page and pixel row. This gives more fine grain control than setting by character column.
 
@@ -515,7 +520,7 @@ status	|= oledWrite("hi there");
 
 <!-- Clearing Function -->
 
-#### Clear the Screen
+### Clear the Screen
 
 To clear the screen and move the cursor to the starting position at the top-left of the screen:
 
@@ -534,7 +539,7 @@ Listed below are the functions that write bytes, characters, strings, or images 
 
 <!-- Write Byte -->
 
-##### Write a Single Byte
+### Write a Single Byte
 
 Write a single byte, eight vertical pixels, to the current position of the cursor:
 
@@ -569,7 +574,7 @@ status |= oledWriteByte(0x3f);		// 0x3f = 0b 0011 1111
 
 <!-- Write Character -->
 
-##### Write a Single Character
+### Write a Single Character
 
 Write a single character to the current position of the cursor:
 
@@ -602,7 +607,7 @@ status |= oledWriteChar(')');
 
 <!-- Write String -->
 
-##### Write a String
+### Write a String
 
 Write an entire string of characters, starting at the current position of the cursor:
 
@@ -673,7 +678,7 @@ If this is unclear, see the [Understanding the Display Section](#programming-flo
 
 ##### Displaying Images from a File
 
-###### Read Image Data
+### Read Image Data
 
 First, the data from the file needs to be loaded into a buffer:
 ``` c
@@ -686,7 +691,7 @@ The `file` argument is the path to the OLED image file.
 
 The `buffer` argument is a pointer to the memory that will hold the image data. It needs to be able to hold 1024 bytes (1 byte for each column in a page).
 
-###### Write Image Data to the Display
+### Write Image Data to the Display
 
 Then, write the data from the buffer to the display:
 ``` c
@@ -755,7 +760,7 @@ The OLED can scroll the contents of the screen horizontally or upwards at a 45 d
 
 <!-- Horizontal scrolling -->
 
-##### Horizontal Scrolling
+### Horizontal Scrolling
 
 Scroll all or part of the screen horizontally:
 
@@ -813,7 +818,7 @@ status = oledScroll (1, OLED_EXP_SCROLL_SPEED_25_FRAMES, 1, 5);
 
 <!-- Diagonal scrolling -->
 
-##### Diagonal Scrolling
+### Diagonal Scrolling
 
 Scroll all or part of the screen diagonally upwards:
 
@@ -911,7 +916,7 @@ status = oledScrollDiagonal (	1,
 
 <!-- Stop scrolling -->
 
-##### Stop Scrolling
+### Stop Scrolling
 
 Disables all active scrolling:
 

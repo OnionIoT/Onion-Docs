@@ -32,7 +32,7 @@ For more details on SPI, check out the [Wikipedia article](https://en.wikipedia.
 
 <!-- The SPI Protocol: Linux and SPI -->
 
-#### Linux and SPI
+### Linux and SPI
 
 Linux systems usually control SPI devices through kernel drivers. However, it is also possible to generate the SPI protocol by bit-banging on connecte GPIOs. Bit-banging SPI is done through an adapter usually found at `/dev/spidevX.Y` where `X` is the device number and `Y` is the bus number.
 
@@ -48,14 +48,14 @@ The `onionSpi` Python module provides a Python object, `OnionSpi`, that serves a
 
 <!-- Source Code -->
 
-#### Source Code
+### Source Code
 
 The source code can be found in the [Onion `spi-gpio-driver` GitHub Repo](https://github.com/OnionIoT/spi-gpio-driver).
 
 
 <!-- Python: Programming Flow -->
 
-#### Programming Flow
+### Programming Flow
 
 The Python module revolves around the `OnionSpi` object; once it is initialized with the bus number and device ID that the desired SPI adapter uses, the rest of the class functions can be used to register the adapater, setup the adapter's SPI options, and most importantly, make data transfers!
 
@@ -68,11 +68,8 @@ Once the object is initialized, the recommended flow is as follows:
 The details of the specific functions to perform these actions are outlined below.
 
 
-<!-- Using the Python Module -->
 
-#### Using the Python Module
-
-**Installing the Module**
+#### Installing the Module
 
 To install the Python module, run the following commands:
 ```
@@ -82,10 +79,7 @@ opkg install python-light pyOnionSpi
 
 This will install the module to `/usr/lib/python2.7/OmegaExpansion/`
 
-*Note: this only has to be done once.*
-
-
-**Using the Module**
+>This only needs to be done once.
 
 To add the Onion SPI Module to your Python program, include the following in your code:
 ``` python
@@ -102,7 +96,7 @@ An example of how the `OnionSpi` object is used can be found in the [`spi-gpio-d
 
 <!-- Python: Initialization -->
 
-#### Initialization of the Object
+### Initialization of the Object
 
 The object needs to be initialized before it can be used for reading and writing:
 
@@ -209,7 +203,7 @@ The following functions are used to register the SPI device adapter and setup an
 
 <!-- Python: Check if Device is Registered -->
 
-##### Check if Device is Registered
+### Check if Device is Registered
 
 To check if a device adapter with the bus number and device ID that were specified in the object constructor is already registered with the system:
 
@@ -226,7 +220,7 @@ The return value will be `1` if the device adapter is NOT mapped/
 
 <!-- Python: Register Device -->
 
-##### Register Device
+### Register Device
 
 This function will register an SPI device with the bus number, device ID, and other SPI parameters as specified in the object variable members:
 
@@ -266,7 +260,7 @@ spi.registerDevice()
 
 <!-- Python: Setup SPI Device -->
 
-##### Setup SPI Device
+### Setup SPI Device
 
 This function will setup additional SPI parameters on the device adapter
 ``` python
@@ -288,7 +282,7 @@ Once a device is registered, data can be read from and written to the device via
 
 <!-- Python: Reading Functions -->
 
-#### Reading Function
+### Reading Function
 
 This function reads a specified number of bytes from a specified address on an SPI device:
 ``` python
@@ -334,7 +328,7 @@ The `OnionSpi` class has two functions that can be used to write data via SPI:
 
 <!-- Python: Write Bytes -->
 
-##### Write Bytes
+### Write Bytes
 
 This function will write a list of bytes to a specified address on an SPI device
 ``` python
@@ -363,7 +357,7 @@ ret 	= spi.writeBytes(0x96, vals)
 
 <!-- Python: Write Bytes without an Address -->
 
-##### Write Bytes without an Address
+### Write Bytes without an Address
 
 This function will just write a list of bytes to an SPI device (without specifying an address):
 ``` python

@@ -17,24 +17,26 @@ The Onion I2C library uses the `/dev/i2c-0` adapter, and implements read and wri
 
 The `libonioni2c` C library is a series of functions that implement I2C communication through the Linux device interface.
 
-### Source Code
+#### Source Code
 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
-### Programming Flow
+#### Programming Flow
 
 Each of the read and write functions have been written to be self-contained, so one function call will complete the desired action.
 
+<!-- TODO: check if the comments follow spec! 
 ### Using the Library
 
-**Header File**
+-->
 
+#### Header File
 To add the Onion I2C Library to your C/C++ program, include the header file in your C code:
 ``` c
 #include <onion-i2c.h>
 ```
 
-**Library for Linker**
+#### Library for Linker
 
 In your project's makefile, you will need to add the following dynamic libraries to the linker command:
 ``` c
@@ -53,7 +55,7 @@ Specifically, a variety of functions are used in the [PWM Expansion source code]
 
 Each of the main functions implemented in this library are described below.
 
-#### Function Flow
+### Function Flow
 
 All of the functions follow the same general pattern:
 * Get a file descriptor to the I2C adapter
@@ -62,7 +64,7 @@ All of the functions follow the same general pattern:
 * Release the I2C adapter device handle
 * Return the function status
 
-#### Return Values
+### Return Values
 
 All functions follow the same pattern with return values:
 
@@ -80,7 +82,7 @@ An error message will be printed that will give more information on the reason b
 
 Functions that perform reads from devices on the I2C bus
 
-##### Function: `i2c_readByte`
+### Function: `i2c_readByte`
 
 The `i2c_readByte` function will read one byte from a register address on a specified device on the I2C bus.
 
@@ -111,7 +113,7 @@ int 	status, rdByte;
 status 	= i2c_write(0, 0x5a, 0x01, &rdByte);
 ```
 
-##### Function: `i2c_read`
+### Function: `i2c_read`
 
 The `i2c_read` function will read a specified number of bytes from a register address on a device on the I2C bus.
 
@@ -167,7 +169,7 @@ status 			= i2c_read(0, 0x48, 0x00, buffer, 2);
 
 Functions that perform writes to devices on the I2C bus.
 
-##### Function: `i2c_writeBuffer`
+### Function: `i2c_writeBuffer`
 
 The `i2c_writeBuffer` function will write a specified number of bytes from a previously populated pointer or array to a register address on an I2C device.
 
@@ -229,7 +231,7 @@ buffer[3] 	= 0xff;
 status 		= i2c_writeBuffer(0, 0x30, 0x54, buffer, 4);
 ```
 
-##### Function: `i2c_writeBytes`
+### Function: `i2c_writeBytes`
 
 The `i2c_writeBytes` function will write a specified number of bytes from an integer variable to an address on an I2C device. Sometimes it's a little quicker to pass in an integer rather than create a buffer like the `i2c_writeBuffer` function above requires. Note that the Least Significant Byte (LSB) of the integer will be written first and that the maximum number of bytes is 4 (since an int holds 32 bits on the Omega).
 

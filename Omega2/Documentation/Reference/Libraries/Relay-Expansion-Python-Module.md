@@ -58,12 +58,7 @@ The `relayExp` Python Module in the `OmegaExpansion` package provides a wrapper 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-
-<!-- Using the Python Module -->
-
-#### Using the Python Module
-
-**Installing the Module**
+#### Installing the Module
 
 To install the Python module, run the following commands:
 ```
@@ -73,10 +68,7 @@ opkg install python-light pyRelayExp
 
 This will install the module to `/usr/lib/python2.7/OmegaExpansion/`
 
-*Note: this only has to be done once.*
-
-
-**Using the Module**
+>This only needs to be done once.
 
 To add the Onion Relay Expansion Module to your Python program, include the following in your code:
 ``` python
@@ -122,7 +114,7 @@ Each of the main functions implemented in this module are described below.
 
 <!-- Python: Init Function -->
 
-##### Initialization Function
+### Initialization Function
 
 To perform the initialization sequence on the Relay Expansion:
 ``` python
@@ -150,7 +142,7 @@ status 	= relayExp.driverInit(4)
 
 <!-- Python: Check Init Function -->
 
-##### Check for Initialization
+### Check for Initialization
 
 Performs several reads to determine if the Relay Expansion requires the initialization sequence to be programmed before the relay states can be changed:
 ``` python
@@ -185,7 +177,7 @@ else:
 
 <!-- Python: Set Relay State -->
 
-##### Set Relay State
+### Set Relay State
 
 Use this function to change the state of the relay:
 ``` python
@@ -212,7 +204,7 @@ status 	= relayExp.setChannel(0, 0, 1)
 
 <!-- Python: Set Relay State for Both Relays -->
 
-##### Set State for both Relays
+### Set State for both Relays
 
 In the event that both relays need to be turned on or off at the same time:
 ``` python
@@ -247,7 +239,7 @@ status 	= relayExp.setAllChannels(0, 1)
 
 <!-- Python: Read Relay State -->
 
-##### Read Relay State
+### Read Relay State
 
 Use this function to read the state of a specific relay:
 

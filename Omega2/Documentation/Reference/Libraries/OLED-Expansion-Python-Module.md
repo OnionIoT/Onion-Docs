@@ -50,11 +50,14 @@ The `oledExp` Python module in the `OmegaExpansion` package provides a wrapper a
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-<!-- Using the Python Module -->
+<!-- TODO: Sanity against spec
 
 #### Using the Python Module
 
 **Installing the Module**
+-->
+
+#### Installing the Module
 
 To install the Python module, run the following commands:
 ```
@@ -64,11 +67,11 @@ opkg install python-light pyOledExp
 
 This will install the module to `/usr/lib/python2.7/OmegaExpansion/`
 
-*Note: this only has to be done once.*
+>This only needs to be done once.
 
-
+<!--
 **Using the Module**
-
+-->
 To add the Onion OLED Expansion Module to your Python program, include the following in your code:
 ``` python
 from OmegaExpansion import oledExp
@@ -101,7 +104,7 @@ If the function operation is not successful, the function will return `1`.
 
 <!-- Python: Init Function -->
 
-#### Initialization Function
+### Initialization Function
 
 Perform the initialization sequence on the OLED Expansion, after this step is completed, the other various OLED functions can be used with success:
 ``` python
@@ -133,7 +136,7 @@ There is a series of functions that adjust various settings on the OLED Display.
 
 <!-- Python: Screen on/off -->
 
-##### Turn the Screen On and Off
+### Turn the Screen On and Off
 
 The screen can be turned on and off while still preserving the displayed contents:
 ``` python
@@ -167,7 +170,7 @@ status = oledExp.setDisplayPower(1)
 
 <!-- Python: Invert Display Colours -->
 
-##### Invert Display Colours
+### Invert Display Colours
 
 The screen driver has the ability to invert the display colours, meaning that black becomes white and vice versa:
 ``` python
@@ -198,7 +201,7 @@ status = oledExp.setDisplayMode(0)
 
 <!-- Python: Set Brightness -->
 
-##### Set the Display Brightness
+### Set the Display Brightness
 
 The brightness of the display can be adjusted in a granularity of 256 steps:
 ``` python
@@ -232,7 +235,7 @@ status = oledExp.setBrightness(127)
 
 <!-- Python: Dim the display -->
 
-##### Dim the display
+### Dim the display
 
 This function implements a 'dim' and a 'normal' setting for the display:
 ``` python
@@ -266,7 +269,7 @@ status = oledExp.setDim(0)
 
 <!-- Python: Set the memory mode -->
 
-##### Set Memory Mode
+### Set Memory Mode
 
 Implements the ability to select the display's memory mode:
 ``` python
@@ -324,7 +327,7 @@ status = oledExp.setMemoryMode(0)
 
 <!-- Python: Set Column Addressing -->
 
-##### Set Column Addressing
+### Set Column Addressing
 
 This function is used to define where each page starts and ends horizontally:
 ``` python
@@ -367,7 +370,7 @@ status = oledExp.setColumnAddressing(63, 95)
 
 <!-- Python: Set Column Addressing: Text Columns -->
 
-###### Set Columns for Text
+### Set Columns for Text
 
 This function defines the column addressing specifically for text:
 ``` python
@@ -379,7 +382,7 @@ It sets the start pixel to 0 and the end pixel to 125. This allows for 21 text c
 
 <!-- Python: Set Column Addressing: Image Columns -->
 
-###### Set Columns for Images
+### Set Columns for Images
 
 Alternatively, this function defines the column addressing to cover the entire screen:
 ``` python
@@ -406,7 +409,7 @@ Two methods exist:
 
 <!-- Python: Set Cursor Position: By Character Column -->
 
-###### Set Cursor Position by Character Column
+### Set Cursor Position by Character Column
 
 This function is used to position the cursor on a specific page and character column. After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
 ``` python
@@ -451,7 +454,7 @@ status	|= oledExp.write("hi there")
 
 <!-- Python: Set Cursor Position by Pixel -->
 
-###### Set Cursor Position by Pixel
+### Set Cursor Position by Pixel
 
 This function is used to position the cursor on a specific page and pixel row. This gives more fine grain control than setting by character column. After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
 
@@ -499,7 +502,7 @@ oledExp.write("hi there")
 
 <!-- Clearing Function -->
 
-#### Clear the Screen
+### Clear the Screen
 
 To clear the screen and move the cursor to the starting position at the top-left of the screen:
 ``` python
@@ -518,7 +521,7 @@ Listed below are the functions that write bytes, characters, strings, or images 
 
 <!-- Python: Write Byte -->
 
-##### Write a Single Byte
+### Write a Single Byte
 
 Write a single byte, eight vertical pixels, to the current position of the cursor:
 
@@ -552,7 +555,7 @@ status |= oledExp.writeByte(0x3f)			# 0x3f = 0b 0011 1111
 
 <!-- Python: Write Character -->
 
-##### Write a Single Character
+### Write a Single Character
 
 Write a single character to the current position of the cursor:
 ``` python
@@ -584,7 +587,7 @@ status |= oledExp.writeChar(')')
 
 <!-- Python: Write String -->
 
-##### Write a String
+### Write a String
 
 Write an entire string of characters, starting at the current position of the cursor:
 ``` python
@@ -653,7 +656,7 @@ If this is unclear, see the [Understanding the Display Section](#programming-flo
 
 <!-- Displaying Images: Displaying Images from a File -->
 
-##### Displaying Images from a File
+### Displaying Images from a File
 
 Read the image data from a file and display on the OLED screen:
 ``` python
@@ -687,7 +690,7 @@ The OLED can scroll the contents of the screen horizontally or upwards at a 45 d
 
 <!-- Horizontal scrolling -->
 
-##### Horizontal Scrolling
+### Horizontal Scrolling
 
 Scroll all or part of the screen horizontally:
 ``` python
@@ -744,7 +747,7 @@ status = oledExp.scroll (1, 6, 1, 5)
 
 <!-- Diagonal scrolling -->
 
-##### Diagonal Scrolling
+### Diagonal Scrolling
 
 Scroll all or part of the screen diagonally upwards:
 ``` python
@@ -815,7 +818,7 @@ status = oledExp.scrollDiagonal (	1,
 
 <!-- Stop scrolling -->
 
-##### Stop Scrolling
+### Stop Scrolling
 
 Disables all active scrolling:
 ``` python

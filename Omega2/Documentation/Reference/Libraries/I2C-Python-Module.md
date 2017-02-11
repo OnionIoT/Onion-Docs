@@ -25,9 +25,13 @@ The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https:/
 
 Once the I2C object is initialized, the read and write functions can be called freely using the object.
 
+<!-- TODO: check if the edits make sense against the spec
 ### Using the Python Module
 
 **Installing the Module**
+-->
+
+#### Installing the Module
 
 To install the Python module, run the following commands:
 ```
@@ -37,10 +41,11 @@ opkg install python-light pyOnionI2C
 
 This will install the module to `/usr/lib/python2.7/OmegaExpansion/`
 
-*Note: this only has to be done once.*
+>This only needs to be done once.
 
-
+<!--
 **Using the Module**
+-->
 
 To add the Onion I2C Module to your Python program, include the following in your code:
 ``` python
@@ -57,7 +62,7 @@ The example code programs the Relay Expansion directly.
 
 Each of the main functions implemented in this module are described below.
 
-#### Initialization
+### Initialization
 
 The object needs to be initialized before it can be used for reading and writing:
 ``` python
@@ -76,7 +81,7 @@ If your use case requires a different adapter, add an integer argument to the co
 
 #### Reading from an I2C Slave
 
-##### Reading Bytes
+### Reading Bytes
 
 This function reads a specified number of bytes from a specific device on the I2C bus, and returns them in a list:
 ``` python
@@ -111,7 +116,7 @@ All writing functions share the same schema for return values:
 * For a successful write, `0` will be returned
 * An unsuccessful write will return `1`
 
-##### Write a Single Byte
+### Write a Single Byte
 
 This function will write a single byte to a specific device on the I2C bus:
 ``` python
@@ -139,7 +144,7 @@ Write `0xbe` to address `0xaa` on a device with an address of` 0x33`:
 status  = i2c.writeByte(0x33, 0xaa, 0xbe)
 ```
 
-##### Write a List of Bytes
+### Write a List of Bytes
 
 This function will write a list of bytes to an address on a specific device on the I2C bus:
 ``` python
@@ -173,7 +178,7 @@ Write `0x01, 0x03, 0x05` to address `0x55` on a device with an address of `0x24`
 status  = i2c.writeBytes(0x24, 0x55, [0x01, 0x03, 0x05])
 ```
 
-##### Write a List of Bytes without Specifying an Address
+### Write a List of Bytes without Specifying an Address
 
 This function will write a list of bytes to a specific device on the I2C bus:
 ``` python

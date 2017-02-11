@@ -54,11 +54,8 @@ The `pwmExp` Python module in the `OmegaExpansion` package provides a wrapper ar
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-<!-- Using the Python Module -->
 
-#### Using the Python Module
-
-**Installing the Module**
+#### Installing the Module
 
 To install the Python module, run the following commands:
 ```
@@ -68,10 +65,7 @@ opkg install python-light pyPwmExp
 
 This will install the module to `/usr/lib/python2.7/OmegaExpansion/`
 
-*Note: this only has to be done once.*
-
-
-**Using the Module**
+>This only needs to be done once.
 
 To add the Onion PWM Expansion Module to your Python program, include the following in your code:
 ``` python
@@ -106,7 +100,7 @@ Each of the main functions implemented in this module are described below.
 
 <!-- Python: Init Function -->
 
-##### Initialization Function
+### Initialization Function
 
 This function programs the initialization sequence on the Servo Expansion, after this step is completed, the functions to generate PWM signals or change the signal frequency can be used with success:
 ``` python
@@ -123,7 +117,7 @@ status 	= pwmExp.driverInit();
 
 <!-- Python: Check Init Function -->
 
-##### Check for Initialization
+### Check for Initialization
 
 This function performs several reads to determine if the Servo Expansion has been initialized and the oscillator is running:
 
@@ -154,7 +148,7 @@ else:
 
 <!-- Python: Generate PWM Signal Function -->
 
-##### Generate a PWM Signal
+### Generate a PWM Signal
 
 This function is used to generate a PWM singal on a specified channel:
 ``` python
@@ -193,7 +187,7 @@ status = pwmExp.setupDriver(-1, 66.66, 9)
 
 <!-- Python: Set Signal Frequency -->
 
-##### Set PWM Signal Frequency
+### Set PWM Signal Frequency
 
 The oscillator can be reprogrammed to generate a variety of different frequencies:
 ``` python
@@ -224,7 +218,7 @@ status = pwmExp.setFrequency(92.23)
 
 <!-- Python: Disable Oscillator -->
 
-##### Disabling the Oscillator
+### Disabling the Oscillator
 
 The oscillator can also be disabled, automatically stopping all PWM signal generation:
 ``` python

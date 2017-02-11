@@ -64,18 +64,14 @@ The `libonionrelayexp` C library is a series of functions that perform all of th
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-<!-- Using the C Library -->
-
-#### Using the C Library
-
-**Header File**
+#### Header File
 
 To add the Onion Relay Expansion Library to your program, include the header file in your code:
 ``` c
 #include <relay-exp.h>
 ```
 
-**Library for Linker**
+#### Library for Linker
 
 In your project's makefile, you will need to add the following dynamic libraries to the linker command:
 ``` c
@@ -139,7 +135,7 @@ Each of the main functions implemented in this library are described below.
 
 <!-- Init Function -->
 
-##### Initialization Function
+### Initialization Function
 
 This function programs the initialization sequence on the Relay Expansion, after this step is completed, the functions to set the relay states can be used with success:
 ``` c
@@ -173,7 +169,7 @@ int status 	= relayDriverInit(4);
 
 <!-- Check Init Function -->
 
-##### Check for Initialization
+### Check for Initialization
 
 This function performs several reads to determine if the Relay Expansion requires the initialization sequence to be programmed before the relay states can be changed.
 
@@ -212,7 +208,7 @@ else {
 
 <!-- Set Relay State Function -->
 
-##### Set Relay State
+### Set Relay State
 
 Finally the fun stuff! Use this function to change the state of the relay:
 
@@ -241,7 +237,7 @@ status 	|= relaySetChannel (7, 1, 0);
 
 <!-- Set State for Both Relays Function -->
 
-##### Set State for both Relays
+### Set State for both Relays
 
 In the event that both relays need to be turned on or off at the same time:
 
@@ -271,7 +267,7 @@ status 	|= relaySetAllChannels (7, 0);
 
 <!-- Read Relay State -->
 
-##### Read Relay State
+### Read Relay State
 
 Use this function to read the state of a specific relay:
 

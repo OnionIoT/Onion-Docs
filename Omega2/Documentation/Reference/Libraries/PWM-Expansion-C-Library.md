@@ -60,18 +60,14 @@ The `libonionpwmexp` C library is a series of functions that perform all of the 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-<!-- Using the C Library -->
-
-#### Using the C Library
-
-**Header File**
+#### Header File
 
 To add the Onion PWM Expansion Library to your program, include the header file in your code:
 ``` c
 #include <pwm-exp.h>
 ```
 
-**Library for Linker**
+#### Library for Linker
 
 In your project's makefile, you will need to add the following dynamic libraries to the linker command:
 ``` c
@@ -116,7 +112,7 @@ Each of the main functions implemented in this module are described below.
 
 <!-- Init Function -->
 
-##### Initialization Function
+### Initialization Function
 
 This function programs the initialization sequence on the Servo Expansion, after this step is completed, the functions to generate PWM signals or change the signal frequency can be used with success:
 ``` c
@@ -137,7 +133,7 @@ int status 	= pwmDriverInit();
 
 <!-- Check Init Function -->
 
-##### Check for Initialization
+### Check for Initialization
 
 This function performs several reads to determine if the Servo Expansion has been initialized and the oscillator is running.
 
@@ -177,7 +173,7 @@ else {
 
 <!-- Generate PWM Signal Function -->
 
-##### Generate a PWM Signal
+### Generate a PWM Signal
 
 Here we go! Use this function to generate a PWM signal on a specified channel:
 
@@ -237,7 +233,7 @@ status = pwmSetupDriver(-1, 15.65f, 0.0f);
 
 <!-- Set Signal Frequency -->
 
-##### Set PWM Signal Frequency
+### Set PWM Signal Frequency
 
 The oscillator can be reprogrammed to generate a variety of different frequencies:
 
@@ -273,7 +269,7 @@ status 		= pwmSetupDriver	(13, 82, 0);
 
 <!-- Disable Oscillator -->
 
-##### Disabling the Oscillator
+### Disabling the Oscillator
 
 The oscillator can also be disabled, automatically stopping all PWM signal generation:
 
