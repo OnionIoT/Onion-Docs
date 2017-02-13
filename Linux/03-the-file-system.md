@@ -10,11 +10,11 @@ By the end of this section, the reader will be able to:
 
 
 
-1)navigate directories
+1) Navigate directories
 
 
 
-2)create/delete directories and files
+2) Create/delete directories and files
 
 
 
@@ -45,7 +45,7 @@ The command line has returned "/", this means that we are at the top of the dire
 
 #### `ls` command
 
-The ls command list the contents of the directories. This may include, files, other directories(known as sub-directories), and programs. This is extremely useful command when looking for things in a directory. So let's see what's in our homeGETPROPERNAMEFORTHIS directory. Type "ls" into the command line and hit enter. You should see the sceen below
+The ls command list the contents of the directories. This may include, files, other directories(known as sub-directories), and programs. This is extremely useful command when looking for things in a directory. So let's see what's in `/`, our home directory. Type "ls" into the command line and hit enter. You should see the sceen below
 
 ![Ls_Screen](http://i.imgur.com/vmAsoz8.png)
 
