@@ -130,12 +130,18 @@ typedef enum e_RelayDriverChannels {
 
 #### Functions
 
-Each of the main functions implemented in this library are described below.
+| Function | Prototype |
+|--------------------------------------------------------|------------------------------------------------------------|
+| [Initialization Function](#relay-c-init-function) | `int relayDriverInit (int addr)` |
+| [Check for Initialization](#relay-c-check-init) | `int relayCheckInit (int addr, int *bInitialized)` |
+| [Set Relay State](#relay-c-set-channel) | `int relaySetChannel,(int addr, int channel, int state)` |
+| [Set State for both Relays](#relay-c-set-all-channels) | `int relaySetAllChannels (int addr, int state)` |
+| [Read Relay State](#relay-c-read-channel) | `int relayReadChannel (int addr, int channel, int *state)` |
 
 
 <!-- Init Function -->
 
-### Initialization Function
+### Initialization Function - `int relayDriverInit (int)` {#relay-c-init-function}
 
 This function programs the initialization sequence on the Relay Expansion, after this step is completed, the functions to set the relay states can be used with success:
 ``` c
@@ -169,7 +175,7 @@ int status 	= relayDriverInit(4);
 
 <!-- Check Init Function -->
 
-### Check for Initialization
+### Check for Initialization - `int relayCheckInit (int, int*)` {#relay-c-check-init}
 
 This function performs several reads to determine if the Relay Expansion requires the initialization sequence to be programmed before the relay states can be changed.
 
@@ -208,7 +214,7 @@ else {
 
 <!-- Set Relay State Function -->
 
-### Set Relay State
+### Set Relay State - `int relaySetChannel	(int, int, int)` {#relay-c-set-channel}
 
 Finally the fun stuff! Use this function to change the state of the relay:
 
@@ -237,7 +243,7 @@ status 	|= relaySetChannel (7, 1, 0);
 
 <!-- Set State for Both Relays Function -->
 
-### Set State for both Relays
+### Set State for both Relays - `int relaySetAllChannels (int, int)` {#relay-c-set-all-channels}
 
 In the event that both relays need to be turned on or off at the same time:
 
@@ -267,7 +273,7 @@ status 	|= relaySetAllChannels (7, 0);
 
 <!-- Read Relay State -->
 
-### Read Relay State
+### Read Relay State - `int relayReadChannel (int, int, int*)` {#relay-c-read-channel}
 
 Use this function to read the state of a specific relay:
 

@@ -108,11 +108,17 @@ An error message will be printed that will give more information on the reason b
 
 #### Functions
 
-Each of the main functions implemented in this module are described below.
+| Function | Prototype |
+|--------------------------------------------------|---------------------------------------------------------------|
+| [Initialization Function](#pwm-c-init-function) | `int pwmDriverInit ()` |
+| [Check for Initialization](#pwm-c-check-init) | `int pwmCheckInit (int *bInitialized)` |
+| [Generate a PWM Signal](#pwm-c-setup-driver) | `int pwmSetupDriver (int driverNum, float duty, float delay)` |
+| [Set PWM Signal Frequency](#pwm-c-set-frequency) | `int pwmSetFrequency (float freq)` |
+| [Disabling the Oscillator](#pwm-c-disable-chip) | `int pwmDisableChip ()` |
 
 <!-- Init Function -->
 
-### Initialization Function
+### Initialization Function - `int	pwmDriverInit ()` {#pwm-c-init-function}
 
 This function programs the initialization sequence on the Servo Expansion, after this step is completed, the functions to generate PWM signals or change the signal frequency can be used with success:
 ``` c
@@ -133,7 +139,7 @@ int status 	= pwmDriverInit();
 
 <!-- Check Init Function -->
 
-### Check for Initialization
+### Check for Initialization - `int pwmCheckInit (int*)` {#pwm-c-check-init}
 
 This function performs several reads to determine if the Servo Expansion has been initialized and the oscillator is running.
 
@@ -173,7 +179,7 @@ else {
 
 <!-- Generate PWM Signal Function -->
 
-### Generate a PWM Signal
+### Generate a PWM Signal - `int pwmSetupDriver (int, float, float)` {#pwm-c-setup-driver}
 
 Here we go! Use this function to generate a PWM signal on a specified channel:
 
@@ -233,7 +239,7 @@ status = pwmSetupDriver(-1, 15.65f, 0.0f);
 
 <!-- Set Signal Frequency -->
 
-### Set PWM Signal Frequency
+### Set PWM Signal Frequency - `int pwmSetFrequency	(float)` {#pwm-c-set-frequency}
 
 The oscillator can be reprogrammed to generate a variety of different frequencies:
 
@@ -269,7 +275,7 @@ status 		= pwmSetupDriver	(13, 82, 0);
 
 <!-- Disable Oscillator -->
 
-### Disabling the Oscillator
+### Disabling the Oscillator - `int pwmDisableChip ()` {#pwm-c-disable-chip}
 
 The oscillator can also be disabled, automatically stopping all PWM signal generation:
 

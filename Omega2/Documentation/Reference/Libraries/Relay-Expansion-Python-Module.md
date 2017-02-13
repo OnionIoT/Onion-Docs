@@ -109,12 +109,17 @@ If the function operation is not successful, the function will return `1`.
 
 #### Functions
 
-Each of the main functions implemented in this module are described below.
-
+| Function | Prototype |
+|---------------------------------------------------------|------------------------------------|
+| [Initialization Function](#relay-py-init-function) | `driverInit(addr)` |
+| [Check for Initialization](#relay-py-check-init) | `checkInit(addr)` |
+| [Set Relay State](#relay-py-set-channel) | `setChannel(addr, channel, state)` |
+| [Set State for both Relays](#relay-py-set-all-channels) | `setAllChannels(addr, state)` |
+| [Read Relay State](#relay-py-read-channel) | `readChannel(addr, channel)` |
 
 <!-- Python: Init Function -->
 
-### Initialization Function
+### Initialization Function - `driverInit()` {#relay-py-init-function}
 
 To perform the initialization sequence on the Relay Expansion:
 ``` python
@@ -142,7 +147,7 @@ status 	= relayExp.driverInit(4)
 
 <!-- Python: Check Init Function -->
 
-### Check for Initialization
+### Check for Initialization - `checkInit()` {#relay-py-check-init}
 
 Performs several reads to determine if the Relay Expansion requires the initialization sequence to be programmed before the relay states can be changed:
 ``` python
@@ -177,7 +182,7 @@ else:
 
 <!-- Python: Set Relay State -->
 
-### Set Relay State
+### Set Relay State - `setChannel()` {#relay-py-set-channel}
 
 Use this function to change the state of the relay:
 ``` python
@@ -204,7 +209,7 @@ status 	= relayExp.setChannel(0, 0, 1)
 
 <!-- Python: Set Relay State for Both Relays -->
 
-### Set State for both Relays
+### Set State for both Relays - `setAllChannels()` {#relay-py-set-all-channels}
 
 In the event that both relays need to be turned on or off at the same time:
 ``` python
@@ -239,7 +244,7 @@ status 	= relayExp.setAllChannels(0, 1)
 
 <!-- Python: Read Relay State -->
 
-### Read Relay State
+### Read Relay State - `readChannel()` {#relay-py-read-channel}
 
 Use this function to read the state of a specific relay:
 

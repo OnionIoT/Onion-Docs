@@ -5,7 +5,6 @@ The `onionGpio` Python module provides a Python object, `OnionGpio` that allows 
 
 
 
-
 <!-- Python: Programming Flow -->
 
 ### Programming Flow
@@ -15,8 +14,6 @@ Once the `OnionGpio` object is initialized, the class methods can be used to:
 * Set the GPIO to the input or output direction
 * Read the value of the GPIO (for both the input and output directions)
 * Set the value of the GPIO (only in the output direction)
-
-
 
 
 
@@ -31,7 +28,7 @@ opkg install python-light pyOnionGpio
 
 This will install the module to `/usr/lib/python2.7/`
 
->Conveniently, this only needs to be done once!
+>This only needs to be done once
 
 To make use of the Onion GPIO Module, include the following in your code:
 
@@ -51,14 +48,20 @@ The main example is the [`gpio-test.py` script](https://github.com/OnionIoT/onio
 
 <!-- Functions -->
 
-### Functions
+#### Functions
 
-Each of the main functions implemented in this module are described below.
+| Function | Prototype |
+|---------------------------------------------------------|-----------------------------------|
+| [Constructor](#gpio-py-constructor)                     | `onionGpio.OnionGpio(gpioNumber)` |
+| [Reading the Current Direction](#gpio-py-get-direction) | `getDirection()`                  |
+| [Setting the Direction](#gpio-py-set-input-direction)   | `setInputDirection()`             |
+| [Reading the Value](#gpio-py-get-value)                 | `getValue()`                      |
+| [Setting the Value](#gpio-py-set-value)                 | `setValue(value)`                      |
 
 
 <!-- Functions: Constructor -->
 
-### Constructor
+### Constructor - `onionGpio.OnionGpio()` {#gpio-py-constructor}
 
 The object needs to be initialized before it can be used, hence, the constructor:
 ``` python
@@ -88,7 +91,7 @@ The GPIOs on the Omega can be set to the input or output direction. When in the 
 
 <!-- Functions: GPIO Direction: Read the Direction -->
 
-### Reading the Current Direction
+### Reading the Current Direction - `getDirection()` {#gpio-py-get-direction}
 
 In some instances, it will be useful to find out the current direction of the GPIO:
 ``` python
@@ -104,7 +107,7 @@ The function will return the following:
 
 <!-- Functions: GPIO Direction: Set the Direction -->
 
-### Setting the Direction
+### Setting the Direction - `setInputDirection()` {#gpio-py-set-input-direction}
 
 The direction of the GPIO can be set to **input**:
 ``` python
@@ -162,7 +165,7 @@ The good part, finally! Now we will be reading and setting a GPIO's value.
 
 <!-- Functions: GPIO Value: Reading -->
 
-### Reading the Value
+### Reading the Value - `getValue()` {#gpio-py-get-value}
 
 Reading the current value of the GPIO:
 ``` python
@@ -225,7 +228,7 @@ print ' initial value: %d'%(int(value))
 
 <!-- Functions: GPIO Value: Setting -->
 
-### Setting the Value
+### Setting the Value - `setValue()` {#gpio-py-set-value}
 
 And what we've all been waiting for, setting the value of a GPIO:
 ``` python

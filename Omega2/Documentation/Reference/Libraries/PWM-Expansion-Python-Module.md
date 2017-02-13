@@ -96,13 +96,20 @@ If the function operation is not successful, the function will return `1`.
 
 #### Functions
 
-Each of the main functions implemented in this module are described below.
+| Function | Prototype |
+|---------------------------------------------------|-------------------------------------|
+| [Initialization Function](#pwm-py-init-function) | `driverInit()` |
+| [Check for Initialization](#pwm-py-check-init) | `checkInit()` |
+| [Generate a PWM Signal](#pwm-py-setup-driver) | `setupDriver(channel, duty, delay)` |
+| [Set PWM Signal Frequency](#pwm-py-set-frequency) | `setFrequency(frequency)` |
+| [Disabling the Oscillator](#pwm-py-disable-chip) | `disableChip()` |
 
 <!-- Python: Init Function -->
 
-### Initialization Function
+### Initialization Function - `driverInit()` {#pwm-py-init-function}
 
 This function programs the initialization sequence on the Servo Expansion, after this step is completed, the functions to generate PWM signals or change the signal frequency can be used with success:
+
 ``` python
 pwmExp.driverInit()
 ```
@@ -117,7 +124,7 @@ status 	= pwmExp.driverInit();
 
 <!-- Python: Check Init Function -->
 
-### Check for Initialization
+### Check for Initialization - `checkInit()` {#pwm-py-check-init}
 
 This function performs several reads to determine if the Servo Expansion has been initialized and the oscillator is running:
 
@@ -148,7 +155,7 @@ else:
 
 <!-- Python: Generate PWM Signal Function -->
 
-### Generate a PWM Signal
+### Generate a PWM Signal - `setupDriver()` {#pwm-py-setup-driver}
 
 This function is used to generate a PWM singal on a specified channel:
 ``` python
@@ -187,7 +194,7 @@ status = pwmExp.setupDriver(-1, 66.66, 9)
 
 <!-- Python: Set Signal Frequency -->
 
-### Set PWM Signal Frequency
+### Set PWM Signal Frequency - `setFrequency()` {#pwm-py-set-frequency}
 
 The oscillator can be reprogrammed to generate a variety of different frequencies:
 ``` python
@@ -218,7 +225,7 @@ status = pwmExp.setFrequency(92.23)
 
 <!-- Python: Disable Oscillator -->
 
-### Disabling the Oscillator
+### Disabling the Oscillator - `disableChip()` {#pwm-py-disable-chip}
 
 The oscillator can also be disabled, automatically stopping all PWM signal generation:
 ``` python

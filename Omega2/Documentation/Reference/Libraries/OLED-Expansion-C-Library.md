@@ -55,7 +55,7 @@ The `libonionoledexp` C library is a series of functions that perform all of the
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-<!-- TODO: sanity against spec 
+<!-- TODO: sanity against spec
 
 #### Using the C Library
 
@@ -68,7 +68,7 @@ To add the Onion OLED Expansion Library to your program, include the header file
 #include <oled-exp.h>
 ```
 
-<!-- 
+<!--
 **Library for Linker**
 -->
 #### Library for Linker
@@ -110,9 +110,34 @@ An error message will be printed that will give more information on the reason b
 
 
 
+#### Functions
+
+| Function | Prototype |
+|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| [Initialization Function](#oled-c-init-function) | `int oledDriverInit ()` |
+| [Turn the Screen On and Off](#oled-c-display-power) | `int oledSetDisplayPower (int bPowerOn)` |
+| [Invert Display Colours](#oled-c-display-mode) | `int oledSetDisplayMode (int bInvert)` |
+| [Set the Display Brightness](#oled-c-set-brightness) | `int oledSetBrightness (int brightness)` |
+| [Dim the Display](#oled-c-set-dim) | `int oledSetDim (int dim)` |
+| [Set Memory Mode](#oled-c-set-memory-mode) | `int oledSetMemoryMode (int mode)` |
+| [Set Column Addressing](#oled-c-set-column-addressing) | `int oledSetColumnAddressing (int startPixel, int endPixel)` |
+| [Set Columns for Text](#oled-c-set-text-columns) | `int oledSetTextColumns ()` |
+| [Set Columns for Images](#oled-c-set-image-columns) | `int oledSetImageColumns ()` |
+| [Set Cursor Position by Character Column](#oled-c-set-cursor) | `int oledSetCursor (int row, int column)` |
+| [Set Cursor Position by Pixel](#oled-c-set-cursor-by-pixel) | `int oledSetCursorByPixel (int row, int pixel)` |
+| [Clear the Screen](#oled-c-clear) | `int oledClear ()` |
+| [Write a Single Byte](#oled-c-write-byte) | `int oledWriteByte (int byte)` |
+| [Write a Single Character](#oled-c-write-char) | `int oledWriteChar (char c)` |
+| [Write a String](#oled-c-write-str) | `int oledWrite (char *msg)` |
+| [Read Image Data](#oled-c-read-lcd-file) | `int oledReadLcdFile (char* file, uint8_t *buffer)` |
+| [Write Image Data to the Display](#oled-c-draw) | `int oledDraw (uint8_t *buffer, int bytes)` |
+| [Horizontal Scrolling](#oled-c-horizontal-scroll) | `int oledScroll (int direction, int scrollSpeed, int startPage, int stopPage)` |
+| [Diagonal Scrolling](#oled-c-diagonal-scroll) | `int oledScrollDiagonal (int direction, int scrollSpeed, int fixedRows, int scrollRows, int verticalOffset, int startPage, int stopPage)` |
+| [Stop Scrolling](#oled-c-scroll-stop) | `int oledScrollStop ()` |
+
 <!-- Init Function -->
 
-### Initialization Function
+### Initialization Function - `int oledDriverInit ()` {#oled-c-init-function}
 
 This function programs the initialization sequence on the OLED Expansion, after this step is completed, the other various OLED functions can be used with success:
 ``` c
@@ -145,7 +170,7 @@ There is a series of functions that adjust various settings on the OLED Display.
 
 <!-- Screen on/off -->
 
-### Turn the Screen On and Off
+### Turn the Screen On and Off  - `int oledSetDisplayPower (int)` {#oled-c-display-power}
 
 The screen can be turned on and off while still preserving the displayed contents:
 
@@ -181,7 +206,7 @@ status = oledSetDisplayPower(1);
 
 <!-- Invert Display Colours -->
 
-### Invert Display Colours
+### Invert Display Colours - `int oledSetDisplayMode (int)` {#oled-c-display-mode}
 
 The screen driver has the ability to invert the display colours, meaning that black becomes white and vice versa:
 
@@ -214,7 +239,7 @@ status = oledSetDisplayMode(0);
 
 <!-- Set Brightness -->
 
-### Set the Display Brightness
+### Set the Display Brightness - `int oledSetBrightness (int)` {#oled-c-set-brightness}
 
 The brightness of the display can be adjusted in a granularity of 256 steps:
 
@@ -250,7 +275,7 @@ status = oledSetBrightness(127);
 
 <!-- Dim the display -->
 
-### Dim the display
+### Dim the Display - `int oledSetDim (int)` {#oled-c-set-dim}
 
 This function implements a 'dim' and a 'normal' setting for the display:
 
@@ -286,7 +311,7 @@ status = oledSetDim(0);
 
 <!-- Set the memory mode -->
 
-### Set Memory Mode
+### Set Memory Mode - `int oledSetMemoryMode (int)` {#oled-c-set-memory-mode}
 
 Implements the ability to select the display's memory mode:
 
@@ -341,7 +366,7 @@ status = oledSetMemoryMode(OLED_EXP_MEM_PAGE_ADDR_MODE);
 
 <!-- Set Column Addressing -->
 
-### Set Column Addressing
+### Set Column Addressing - `int oledSetColumnAddressing (int, int)` {#oled-c-set-column-addressing}
 
 This function is used to define where each page starts and ends horizontally:
 
@@ -385,7 +410,7 @@ status = oledSetColumnAddressing(63, 95);
 
 <!-- Set Column Addressing: Text Columns -->
 
-### Set Columns for Text
+### Set Columns for Text - `int oledSetTextColumns ()` {#oled-c-set-text-columns}
 
 A function exists to define the column addressing specifically for text:
 
@@ -398,7 +423,7 @@ It sets the start pixel to 0 and the end pixel to 125. This allows for 21 text c
 
 <!-- Set Column Addressing: Image Columns -->
 
-### Set Columns for Images
+### Set Columns for Images - `int oledSetImageColumns ()` {#oled-c-set-image-columns}
 
 Also, a function exists to define the column addressing to cover the entire screen:
 
@@ -425,7 +450,7 @@ Two methods exist:
 
 <!-- Set Cursor Position: By Character Column -->
 
-### Set Cursor Position by Character Column
+### Set Cursor Position by Character Column - `int oledSetCursor (int, int)` {#oled-c-set-cursor}
 
 This function is used to position the cursor on a specific page and character column. After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
 
@@ -471,7 +496,7 @@ status	|= oledWrite("hi there");
 
 <!-- Set Cursor Position: By Pixel -->
 
-### Set Cursor Position by Pixel
+### Set Cursor Position by Pixel - `int oledSetCursorByPixel (int, int)` {#oled-c-set-cursor-by-pixel}
 
 This function is used to position the cursor on a specific page and pixel row. This gives more fine grain control than setting by character column.
 
@@ -520,7 +545,7 @@ status	|= oledWrite("hi there");
 
 <!-- Clearing Function -->
 
-### Clear the Screen
+### Clear the Screen - `int oledClear ()` {#oled-c-clear}
 
 To clear the screen and move the cursor to the starting position at the top-left of the screen:
 
@@ -539,7 +564,7 @@ Listed below are the functions that write bytes, characters, strings, or images 
 
 <!-- Write Byte -->
 
-### Write a Single Byte
+### Write a Single Byte - `int oledWriteByte (int)` {#oled-c-write-byte}
 
 Write a single byte, eight vertical pixels, to the current position of the cursor:
 
@@ -574,7 +599,7 @@ status |= oledWriteByte(0x3f);		// 0x3f = 0b 0011 1111
 
 <!-- Write Character -->
 
-### Write a Single Character
+### Write a Single Character - `int oledWriteChar (char)` {#oled-c-write-char}
 
 Write a single character to the current position of the cursor:
 
@@ -607,7 +632,7 @@ status |= oledWriteChar(')');
 
 <!-- Write String -->
 
-### Write a String
+### Write a String - `int oledWrite (char*)` {#oled-c-write-str}
 
 Write an entire string of characters, starting at the current position of the cursor:
 
@@ -678,7 +703,7 @@ If this is unclear, see the [Understanding the Display Section](#programming-flo
 
 ##### Displaying Images from a File
 
-### Read Image Data
+### Read Image Data - `int oledReadLcdFile	(char*, uint8_t*)` {#oled-c-read-lcd-file}
 
 First, the data from the file needs to be loaded into a buffer:
 ``` c
@@ -691,7 +716,7 @@ The `file` argument is the path to the OLED image file.
 
 The `buffer` argument is a pointer to the memory that will hold the image data. It needs to be able to hold 1024 bytes (1 byte for each column in a page).
 
-### Write Image Data to the Display
+### Write Image Data to the Display - `int oledDraw (uint8_t *buffer, int bytes)` {#oled-c-draw}
 
 Then, write the data from the buffer to the display:
 ``` c
@@ -760,7 +785,7 @@ The OLED can scroll the contents of the screen horizontally or upwards at a 45 d
 
 <!-- Horizontal scrolling -->
 
-### Horizontal Scrolling
+### Horizontal Scrolling - `int oledScroll 	(int, int, int, int)` {#oled-c-horizontal-scroll}
 
 Scroll all or part of the screen horizontally:
 
@@ -818,7 +843,7 @@ status = oledScroll (1, OLED_EXP_SCROLL_SPEED_25_FRAMES, 1, 5);
 
 <!-- Diagonal scrolling -->
 
-### Diagonal Scrolling
+### Diagonal Scrolling - `int oledScrollDiagonal (int, int, int, int, int, int, int)` {#oled-c-diagonal-scroll}
 
 Scroll all or part of the screen diagonally upwards:
 
@@ -916,7 +941,7 @@ status = oledScrollDiagonal (	1,
 
 <!-- Stop scrolling -->
 
-### Stop Scrolling
+### Stop Scrolling - `int oledScrollStop ()` {#oled-c-scroll-stop}
 
 Disables all active scrolling:
 

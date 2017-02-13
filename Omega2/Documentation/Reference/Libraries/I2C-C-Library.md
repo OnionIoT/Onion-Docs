@@ -25,7 +25,7 @@ The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https:/
 
 Each of the read and write functions have been written to be self-contained, so one function call will complete the desired action.
 
-<!-- TODO: check if the comments follow spec! 
+<!-- TODO: check if the comments follow spec!
 ### Using the Library
 
 -->
@@ -45,17 +45,14 @@ In your project's makefile, you will need to add the following dynamic libraries
 
 The dynamic libraries are stored in `/usr/lib` on the Omega.
 
-### Example
+#### Example
 
 An example of how the `libonioni2c` library is used can be found in the GitHub Repo for the drivers for the [PWM, Relay, and OLED Expansions](https://github.com/OnionIoT/i2c-exp-driver).
 
 Specifically, a variety of functions are used in the [PWM Expansion source code](https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/pwm-exp.c).
 
-### Functions
 
-Each of the main functions implemented in this library are described below.
-
-### Function Flow
+##### Function Flow
 
 All of the functions follow the same general pattern:
 * Get a file descriptor to the I2C adapter
@@ -64,7 +61,7 @@ All of the functions follow the same general pattern:
 * Release the I2C adapter device handle
 * Return the function status
 
-### Return Values
+#### Return Values
 
 All functions follow the same pattern with return values:
 
@@ -78,11 +75,20 @@ A few reasons why the function might not be successful:
 
 An error message will be printed that will give more information on the reason behind the failure.
 
+#### Functions
+
+| Function | Prototype |
+|---------------------------------------------------|--------------------------------------------------------------------------------------|
+| [Read a Single Byte](#i2c-c-read-byte) | `int i2c_readByte (int devNum, int devAddr, int addr, int *val)` |
+| [Read Multiple Bytes](#i2c-c-read-multiple-bytes) | `int i2c_read (int devNum, int devAddr, int addr, uint8_t *buffer, int numBytes)` |
+| [Write to Buffer](#i2c-c-write-buffer) | `int i2c_writeBuffer,(int devNum, int devAddr, int addr, uint8_t *buffer, int size)` |
+| [Directly Write to Address](#i2c-c-write-bytes) | `int i2c_writeBytes (int devNum, int devAddr, int addr, int val, int numBytes)` |
+
 #### Read Functions
 
 Functions that perform reads from devices on the I2C bus
 
-### Function: `i2c_readByte`
+### Read a Single Byte - `int i2c_readByte (int, int, int, int)` {#i2c-c-read-byte}
 
 The `i2c_readByte` function will read one byte from a register address on a specified device on the I2C bus.
 
@@ -113,7 +119,7 @@ int 	status, rdByte;
 status 	= i2c_write(0, 0x5a, 0x01, &rdByte);
 ```
 
-### Function: `i2c_read`
+### Read Multiple Bytes - `int i2c_read(int, int, int, uint8_t*, int)` {#i2c-c-read-multiple-bytes}
 
 The `i2c_read` function will read a specified number of bytes from a register address on a device on the I2C bus.
 
@@ -169,7 +175,8 @@ status 			= i2c_read(0, 0x48, 0x00, buffer, 2);
 
 Functions that perform writes to devices on the I2C bus.
 
-### Function: `i2c_writeBuffer`
+### Write Buffer to Address - `int i2c_writeBuffer (int, int, int, uint8_t*, int)` {#i2c-c-write-buffer}
+
 
 The `i2c_writeBuffer` function will write a specified number of bytes from a previously populated pointer or array to a register address on an I2C device.
 
@@ -231,7 +238,7 @@ buffer[3] 	= 0xff;
 status 		= i2c_writeBuffer(0, 0x30, 0x54, buffer, 4);
 ```
 
-### Function: `i2c_writeBytes`
+### Directly Write to Address - `int i2c_writeBytes (int, int, int, int, int)` {#i2c-c-write-direct}
 
 The `i2c_writeBytes` function will write a specified number of bytes from an integer variable to an address on an I2C device. Sometimes it's a little quicker to pass in an integer rather than create a buffer like the `i2c_writeBuffer` function above requires. Note that the Least Significant Byte (LSB) of the integer will be written first and that the maximum number of bytes is 4 (since an int holds 32 bits on the Omega).
 
