@@ -1,11 +1,11 @@
 ## OLED Expansion for Node.js
 
 
-As a part of our efforts to add expansion support to node.js, we have added control of the OLED expansion by way of node.js addon. To use the display within your node.js programs, all you have to do is import the OLED addon in the same way as a module and call methods to control the display.
+As a part of our efforts to add expansion support to node.js, we have added control of the OLED expansion by way of node.js module. To use the display within your node.js programs, all you have to do is import the OLED module in the same way as a module and call methods to control the display.
 
 ![Omega+OLED Expansion](http://i.imgur.com/tqcRlgG.jpg)
 
-The addon is a wrapper around the OLED C library. The library's documentation can be found [here](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-Library), many of the node functions follow the same input-output structure as the C library.
+The module is a wrapper around the OLED C library. The library's documentation can be found [here](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-Library), many of the node functions follow the same input-output structure as the C library.
 
 
 
@@ -18,7 +18,7 @@ After each power-cycle, the chip that controls the OLED Expansion must be progra
 
 After the initialization, the other functions can be used to adjust vaious screen settings or display text or images.
 
-#### Understanding the Display
+### Understanding the Display
 
 The screen has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages:
 
@@ -33,17 +33,17 @@ So writing 0x0f would produce the top 4 pixels being coloured in, and the bottom
 The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed below.
 
 <!-- MAJOR HEADING -->
-<!-- The Node Addon -->
+<!-- The Node Module -->
 
-### The Node Addon
+### The Node Module
 
-The OLED Expansion addon exposes a series of methods that perform all of the actions specified in the Programming Flow section.
+The OLED Expansion module exposes a series of methods that perform all of the actions specified in the Programming Flow section.
 
-<!-- Install the Addon -->
+<!-- Install the Module -->
 
-### **Install the Addon**
+#### Install the Module
 
-Install the addon on your Omega:
+Install the module on your Omega:
 ```
 opkg update
 opkg install oled-exp-node
@@ -54,44 +54,44 @@ NodeJS will need to be installed for Node programs to actually run:
 opkg install nodejs
 ```
 
-<!-- Importing the Addon -->
-### **Importing the addon into your Node Script**
+<!-- Importing the Module -->
+#### Importing the module into your Node Script
 
-To use the addon within your script you have to import it into your node program as you would a module. Use the following command in your node script.
+To use the module within your script you have to import it into your node program as you would a module. Use the following command in your node script.
 
 ```
-var oledAddon = require("/usr/bin/oled-exp-addon");
+var oledExp = require("/usr/bin/oled-exp-module");
 ```
 
 
 
 
 <!-- Example Code -->
-### **Example Code**
+#### Example Code
 
-Example code that uses the `oled-exp-node` addon can be [found here](https://github.com/OnionIoT/i2c-exp-node-addons/blob/master/Examples/oled_node_example.js) in the `i2c-exp-node-addons` Onion GitHub Repo.
+Example code that uses the `oled-exp-node` module can be [found here](https://github.com/OnionIoT/i2c-exp-node-modules/blob/master/Examples/oled_node_example.js) in the `i2c-exp-node-modules` Onion GitHub Repo.
 
 
 
 
 <!-- Return Values -->
-### **Return Values**
+#### Return Values
 
 All of the functions will either return a 0 indicating success or 1 indicating failure.
 
 
 <!-- Calling Methods -->
-### **Calling Methods**
+#### Calling Methods
 
 Methods are called in the following format.
 
 ```
-oledAddon.method();
+oledExp.method();
 ```
 Replace method with your funcion of interest.
 
 <!-- Available Methods -->
-### **Available Methods**
+#### Available Methods
 
 Refer to the table below for a list and brief description of available OLED methods.
 
@@ -117,22 +117,17 @@ Refer to the table below for a list and brief description of available OLED meth
 |scrollStop()|none|Disables all active scrolling|
 |readLcdFile("path")| "Path to LCD File"|Displays lcd image file on the screen|
 
-<!-- MAJOR HEADING -->
-<!-- Usage -->
-
-### **Usage**
-
 
 <!-- Init Function -->
-####**Initialization**
+####Initialization
 This function programs the initilization sequence on the OLED Expansion, after this step is completed, the various OLED functions can be used with success:
 ```
-oledAddon.init();
+oledExp.init();
 ```
 <!-- SUB-HEADING -->
 <!-- Settings Functions -->
 
-####**Functions to Adjust Settings**
+####Functions to Adjust Settings
 
 There is a series of functions that adjust various settings on the OLED Display. The adjustable settings are:
 
@@ -145,13 +140,13 @@ There is a series of functions that adjust various settings on the OLED Display.
 
 <!-- Screen on/off -->
 
-#####**Turn Display Off/On**
+###Turn Display Off/On
 The screen cab be turned on and off while still preserving the displayed contents.Note: turning on a screen that is already on, or turning off a screen that is already off will have no effect.
 ```
-oledAddon.setDisplayPower(int bPowerON);
+oledExp.setDisplayPower(int bPowerON);
 ```
 
-**Arguments**
+#### Arguments
 
 The `bPowerOn` argument determines whether to turn the display on or off.
 
@@ -160,29 +155,29 @@ The `bPowerOn` argument determines whether to turn the display on or off.
 |0    |Turn the screen off |
 |1    |Turn the screen on  |
 
-**Examples**
+#### Examples
 
 Turn the screen off with:
 
 ```
-oledAddon.setDisplayPower(0);
+oledExp.setDisplayPower(0);
 ```
 Turn the screen on with:
 
 ```
-oledAddon.setDisplayPower(1);
+oledExp.setDisplayPower(1);
 ```
 
 
 <!-- Invert Display Colours -->
 
-#####**Invert Display Color**
+###Invert Display Color
 The screen driver has the ability to invert the display colors, meaning that black becomes white and vice versa. To invert the colors:
 ```
-oledAddon.setDisplayMode(int bInvert);
+oledExp.setDisplayMode(int bInvert);
 ```
 
-**Arguments**
+#### Arguments
 
 The `bInvert` argument determines whether to inver the colors or not.
 
@@ -192,61 +187,61 @@ The `bInvert` argument determines whether to inver the colors or not.
 |1    |Inverted color settings |
 
 
-**Examples**
+#### Examples
 
 To invert the colors:
 ```
-oledAddon.setDisplayMode(1);
+oledExp.setDisplayMode(1);
 ```
 
 To revert back to the normal colors:
 ```
-oledAddon.setDisplayMode(0);
+oledExp.setDisplayMode(0);
 ```
 
 <!-- Set Brightness -->
 
-#####**Set the Display Brightness**
+###Set the Display Brightness
 
 The brightness of the display can be adjusted in a granularity of 256 steps. The default brightness after initialization is 207.
 ```
-oledAddon.setBrightness(int brightness);
+oledExp.setBrightness(int brightness);
 ```
 
-**Arguments**
+#### Arguments
 
 The `brightness` argument determines the brightness with a range of 0-255, with 255 being the brightest setting and 0 being the dimmest.
 
-**Examples**
+#### Examples
 
 So to set the maximum brightness:
 ```
-oledAddon.setBrightness(255);
+oledExp.setBrightness(255);
 ```
 
 To set the lowest brightness:
 ```
-oledAddon.setBrightness(0);
+oledExp.setBrightness(0);
 ```
 
 And to set the middle brightness:
 ```
-oledAddon.setBrightness(127);
+oledExp.setBrightness(127);
 ```
 
 <!-- Dim the display -->
-##### **Dim the Display**
+### Dim the Display
 
 This function implements a 'dim' and a 'normal' setting for the display:
 
 ```
-oledAddon.setDim(int dim);
+oledExp.setDim(int dim);
 ```
 
 While the brightness adjustment function described just above impleents the same feature, this function
 simplifies the procedure with two distinct settings.
 
-**Arguments**
+#### Arguments
 
 The `dim` argument determines whether to enable the dim setting
 
@@ -256,24 +251,24 @@ The `dim` argument determines whether to enable the dim setting
 |1     |Dimmed Screen:0        |
 
 
-**Examples**
+#### Examples
 
 Dim the Display:
 ```
-oledAddon.setDim(1);
+oledExp.setDim(1);
 ```
 
 Set the Display to normal brightness:
 ```
-oledAddon.setDim(0);
+oledExp.setDim(0);
 ```
 
 <!-- Set the memory mode -->
-##### **Set Memory Mode**
+### Set Memory Mode
 
 Implements the ability to select the display's memory mode:
 ```
-oledAddon.setMemoryMode(int mode);
+oledExp.setMemoryMode(int mode);
 ```
 The memory mode affects how the cursor is automatically advanced when the display memory is written with text or images.
 
@@ -297,7 +292,7 @@ The column cursor advances horizontally to the right along each page, once the e
 
 By default, **Horizontal Addressing** is used.
 
-**Arguments**
+#### Arguments
 
 The `mode` argument determines which memory mode is active.
 
@@ -307,20 +302,20 @@ The `mode` argument determines which memory mode is active.
 |Vertical Addressing Mode   |1     |
 |Page Addressing Mode       |2     |
 
-**Examples**
+#### Examples
 
 Set to the page addressing mode:
 ```
-oledAddon.setMemoryMode(2);
+oledExp.setMemoryMode(2);
 ```
 
 
 <!-- Set Column Addressing -->
-##### **Set Column Addressing**
+### Set Column Addressing
 
 This function is used to define where each page starts and ends horizontally:
 ```
-oledAddon.setColumnAddressing(int startPixel, int endPixel);
+oledExp.setColumnAddressing(int startPixel, int endPixel);
 ```
 
 Changing the start and end pixels changes the width of each page. By default, the column addressing is set from 0 to pixel 127. This means that each page has 128 usable columns, once the cursor reaches the last column, the display knows this page is filled.
@@ -329,7 +324,7 @@ For example, when writing text, the oledWrite function will set the columns to r
 
 Note: the column cursor is not preserved after a column addressing change.
 
-**Arguments**
+#### Arguments
 
 The `startPixel` argument sets the starting column for each page.
 
@@ -337,45 +332,45 @@ The `endPixel` argument sets the end column for each page.
 
 Both arguments must be between the 0-127 and the startPixel must be **less than** endPixel.
 
-**Examples**
+#### Examples
 
 Set the column addressing display text:
 ```
-oledAddon.setColumnAddressing(0,127);
+oledExp.setColumnAddressing(0,127);
 ```
 
 Set the column addressing to the full display width:
 ```
-oledAddon.setColumnAddressing(0,63);
+oledExp.setColumnAddressing(0,63);
 ```
 
 Set each column to start halfway across an to enf three quartes of the way accross the display:
 ```
-oledAddon.setColumnAddressing(63,95);
+oledExp.setColumnAddressing(63,95);
 ```
 
 <!-- Set Column Addressing: Text Columns -->
-##### **Set Columns for Text**
+### Set Columns for Text
 
 A function exists to define the column addressing specifically for text:
 ```
-oledAddon.setTextColumns();
+oledExp.setTextColumns();
 ```
 
 It sets the start pixel to 0 and the end pixel to 125. This allows for the 21 text characters per line This function should be run, before setting the cursor for writing text.
 
 <!-- Set Column Addressing: Image Columns -->
-##### **Set Columns for Images**
+### Set Columns for Images
 
 Also, a function exists to define the column addressing to cover the entire screen:
 ```
-oledAddon.setImageColumns();
+oledExp.setImageColumns();
 ```
 
 It sets the start pixel to 0 and te end pixel to 127. This enables the use of the entire screen.
 
 <!-- Set Cursor Position -->
-#### **Set Cursor Position**
+#### Set Cursor Position
 
 Any data written to the screen gets writting to the current position of the cursor. This position can be adjusted.
 
@@ -385,98 +380,98 @@ Two methods exist:
  * Specifying the page row and pixel column
 
 <!-- Set Cursor Position: By Character Column -->
-##### **Set Cursor Position by Character Column**
+### Set Cursor Position by Character Column
 
 This function is used to position the cursor on a specific page and character column. After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
 ```
-oledAddon.setCursor(int row, int column);
+oledExp.setCursor(int row, int column);
 ```
 
 Note: since the column cursor is not preserved after a column addressing change, the column addressing **needs be set to 0-125 using the oledSetTextColumns() function to properly display text before the cursor position is programmed.**
 
-**Arguments**
+#### Arguments
 
 The `row` argument sets the page for the cursor, so the range is 0 to 7.
 
 The `column` argument sets the character column position of the cursor, the range is 0 to 20.
 
-**Examples**
+#### Examples
 
 Set the cursor to the start of the last page:
 ```
-oledAddon.setCursor(7,0);
+oledExp.setCursor(7,0);
 ```
 
 Set the cursor to the middle of the 4th row:
 ```
-oledAddon.setCursor(3,10);
+oledExp.setCursor(3,10);
 ```
 
 Set the cursor to the starting position at the top-left:
 ```
-oledAddon.setCursor(0,0);
+oledExp.setCursor(0,0);
 ```
 
 
 
 <!-- Set Cursor Position: By Pixel -->
-##### **Set Cursor Position by Pixel**
+### Set Cursor Position by Pixel
 This function is used to position the cursor on a specific page and pixel row. This gives more fine grain control than setting by character column.
 
 After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
 ```
-oledAddon.setCursorByPixel(int row, int pixel);
+oledExp.setCursorByPixel(int row, int pixel);
 ```
 
 It allows for cursor positions that are not aligned with the 21 possible character columns.
 
-**Arguments**
+#### Arguments
 
 The `row` argument sets the page for the cursor, so the range is 0-7
 
 The `pixel` argument sets the horizontal pixel position of the cursor, the range is 0 to 127
 
-**Examples**
+#### Examples
 
 Set the cursor to the start of the last page:
 ```
-oledAddon.setCursorByPixel(7,0);
+oledExp.setCursorByPixel(7,0);
 ```
 
 Set the cursor to the middle of the 4th row:
 ```
-oledAddon.setCursorByPixel(3,63);
+oledExp.setCursorByPixel(3,63);
 ```
 
 Set the cursor to the bottom-left
 ```
-oledAddon.setCursorByPixel(7,0);
+oledExp.setCursorByPixel(7,0);
 ```
 
 
 <!-- Clearing Function -->
 
-#####**Clearing the Display**
+###Clearing the Display
 To clear the screen and move the cursor to the starting position at the top-left of the screen:
 ```
-oledAddon.clear();
+oledExp.clear();
 ```
 
 
 <!-- SUB-HEADING -->
 <!-- Writing Text -->
 
-####**Writing Text to The Display**
+####Writing Text to The Display
 Listed below are the functions that write bytes, characters, strings, or images to the display.
 
 <!-- Write Byte -->
-#####**Write a Single Byte**
+###Write a Single Byte
 Write a single byte, eight vertical pixels, to the current position of the cursor:
 ```
-oledAddon.oledWriteByte(int byte);
+oledExp.oledWriteByte(int byte);
 ```
 
-**Arguments**
+#### Arguments
 
 The `byte` argument holds the eight bits that will be written to the screen. The Least Significant Bit (LSB) in the byte corresponds to the top-most pixel in the column, the Most Significant Bit (MSB) corresponds to the bottom-most pixel in the column.
 
@@ -484,43 +479,43 @@ The `byte` argument holds the eight bits that will be written to the screen. The
 
 After the byte is set, the cursor will automatically move to the next page column.
 
-**Examples**
+#### Examples
 
 Draw the following pattern:
 
 ![imgur](http://i.imgur.com/lxs1q8J.png)
 
 ```
-oledAddon.writeByte(0x3f);
+oledExp.writeByte(0x3f);
 ```
 
 <!-- Write Character -->
-##### **Write a Single Character**
+### Write a Single Character
 
 Write a single character to the current position of the cursor:
 ```
-oledAddon.writeChar(character);
+oledExp.writeChar(character);
 ```
 
-**Arguments**
+#### Arguments
 
 The `character` argument is the character that is to be written to the screen.
 
 Make sure to check the asciiTable dynamic array found in oled-exp.h, it defines the bitmap pattern of each allowed character. Any characters not found in the table will be ignored.
 
-**Examples**
+#### Examples
 
 Write an 'O'
 ```
-oledAddon.writeChar('O');
+oledExp.writeChar('O');
 ```
 
 <!-- Write String -->
-##### **Write a String**
+### Write a String
 
 Write an entire string of characters, starting at the current position of the cursor:
 ```
-oledAddon.write(msg);
+oledExp.write(msg);
 ```
 
 Underneath, this uses the writeChar function to display characters and also implements newline functionality.
@@ -529,36 +524,36 @@ The newline functionality is implemented by using a global variable to keep trac
 
 Note: the column addressing will be set to 0-125 to properly display text during this call, at the end of the function it will be reset back to 0-127.
 
-**Arguments**
+#### Arguments
 
 The `msg` argument is the string to be written to the display. Any characters not found in the asciiTable array will be ignored.
 
-**Examples**
+#### Examples
 
 Write 'Onion Omega':
 ```
-oledAddon.write('Onion Omega');
+oledExp.write('Onion Omega');
 ```
 
 Write 'Onion Omega', then 'Inventing the Future' on the next line, and then 'Today' two lines below:
 
 ```
-oledAddon.write("Onion Omega\nInventing the Future\n\nToday");
+oledExp.write("Onion Omega\nInventing the Future\n\nToday");
 ```
 
 <!-- SUB-HEADING -->
 <!-- Scrolling the Display -->
-#### **Scrolling the Display Contents**
+#### Scrolling the Display Contents
 The OLED can scroll the contents of the screen horizontally or upwards at a 45 degree angle. The displayed content will wrap around when it reaches the edge of the display.
 
 <!-- Horizontal scrolling -->
-##### **Horizontal Scrolling**
+### Horizontal Scrolling
 Scroll the contents of the screen horizontally or upwards at a 45 degree angle. Contents will wrap around after reaching edge of display
 ```
-oledAddon.scroll(int direction, int scrollSpeed, int startPage, int stopPage);
+oledExp.scroll(int direction, int scrollSpeed, int startPage, int stopPage);
 ```
 
-###### **Arguments**
+#### Arguments
 
 **Direction**
 
@@ -589,21 +584,21 @@ Determines the number of frames between each scroll step.
 Thes two arguments define which page to start and stop scrolling at respectively. Both can have values between 0-7, however **_startPage must be less than stopPage_**.
 
 
-**Example**
+#### Examples
 
 Let's scroll the entire screen to the left
 ```
-oledAddon.scroll(0,0,0,7);
+oledExp.scroll(0,0,0,7);
 ```
 
 <!-- Diagonal scrolling -->
-##### **Diagonal Scrolling**
+### Diagonal Scrolling
 Scroll all or part of the screen diagonally upwards:
 
 ```
 scrollDiagonal(int direction, int scrollSpeed, int fixedRows, int scrollRows, int verticalOffset, int startPage, int stopPage);
 ```
-###### **Arguments**
+#### Arguments
 
 **Direction**
 
@@ -646,22 +641,22 @@ Defines the number of vertical rows to scroll by each frame.
 
 Thes two arguments define which page to start and stop scrolling at respectively. Both can have values between 0-7, however **_startPage must be less than stopPage_**.
 
-**Examples**
+#### Examples
 
 Let's scroll the entire screen upwards to the left.
 ```
-oledAddon.scrollDiagonal(0,5,0,127,1,0,7);
+oledExp.scrollDiagonal(0,5,0,127,1,0,7);
 ```
 
 <!-- Stop scrolling -->
-##### **Stop Scrolling**
+### Stop Scrolling
 
 Disables all active scrolling
 ```
-oledAddon.scrollStop();
+oledExp.scrollStop();
 ```
 
-### **Further Reading**
+### Further Reading
 
 If you are unsure of how the display works. We recommend you take a look at the documentation for the Dynamic C library for the OLED Expansion, which can be found [here](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-Library).
 
