@@ -9,10 +9,6 @@ The library can be used in C and C++ programs.
 This library is also available as a [module for use in Python](./PWM-Expansion-Python-Module). The module is called `pwmExp` and is part of the `OmegaExpansion` package.
 
 
-
-
-
-
 <!-- Programming Flow -->
 
 ### Programming Flow
@@ -24,29 +20,9 @@ After the initialization, the other functions can be used to generate PWM signal
 Additionally, it is possible to disable to the oscillator, disabling the generation of all PWM signals at once. Before generating new PWM signals, the initialization sequence must be run again.
 
 
-#### Channels
+```{r child = '../Shared/PWM-Refresher.md'}
+```
 
-The PWM Expansion has 16 channels that can generate distinct PWM signals. Note that they will all be running on the same frequency.
-
-
-
-<!-- PWM Signal Refresher -->
-
-### PWM Signal Refresher
-
-Pulse Width Modulated signals can be described with duty cycle percentages and frequencies/periods:
-
-![Duty Cycle Graph](http://www.bristolwatch.com/picaxe/images/io43.gif)
-
-The **duty cycle** indicates what percentage of time a signal is on or high voltage.
-
-The **frequency** determines the overall period of the pulse.
-
-For a more detailed explanation, see the guide on [using the Servo Expansion.](../../Tutorials/Expansions/Using-the-Servo-Expansion#pwm-signals)
-
-
-<!-- MAJOR HEADING -->
-<!-- The C Library -->
 
 ### The C Library
 

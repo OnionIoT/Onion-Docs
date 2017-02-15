@@ -5,12 +5,6 @@ The Onion PWM Expansion Python module, `pwmExp` is based on the [C PWM Expansion
 ![PWM Expansion Photo](http://i.imgur.com/aNoYCZc.png)
 
 
-
-
-
-
-<!-- Programming Flow -->
-
 ### Programming Flow
 
 After each power-cycle, the chip that controls the PWM Expansion must be programmed with an initialization sequence to enable the on-board oscillator so that PWM signals can be generated.
@@ -20,34 +14,14 @@ After the initialization, the other functions can be used to generate PWM signal
 Additionally, it is possible to disable to the oscillator, disabling the generation of all PWM signals at once. Before generating new PWM signals, the initialization sequence must be run again.
 
 
-#### Channels
+```{r child = '../Shared/PWM-Refresher.md'}
+```
 
-The PWM Expansion has 16 channels that can generate distinct PWM signals. Note that they will all be running on the same frequency.
-
-
-
-<!-- PWM Signal Refresher -->
-
-### PWM Signal Refresher
-
-Pulse Width Modulated signals can be described with duty cycle percentages and frequencies/periods:
-
-![Duty Cycle Graph](http://www.bristolwatch.com/picaxe/images/io43.gif)
-
-The **duty cycle** indicates what percentage of time a signal is on or high voltage.
-
-The **frequency** determines the overall period of the pulse.
-
-For a more detailed explanation, see the guide on [using the Servo Expansion.](../../Tutorials/Expansions/Using-the-Servo-Expansion#pwm-signals)
-<!-- MAJOR HEADING -->
-<!-- The Python Module -->
 
 ### The Python Module
 
 The `pwmExp` Python module in the `OmegaExpansion` package provides a wrapper around the C library functions. The functions are largely the same as their C counterparts, including the arguments and return values. Any differences from the C library will be explicitly mentioned below.
 
-
-<!-- Source Code -->
 
 #### Source Code
 

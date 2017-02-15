@@ -18,22 +18,10 @@ Additionally, it is possible to disable to the oscillator, disabling the generat
 
 Before generating new PWM signals, the initialization sequence must be run again.
 
-### PWM Refresher
 
-The PWM Expansion has 16 channels that can generate distinct PWM signals. Note that they will all be running on the **same frequency**
+```{r child = '../Shared/PWM-Refresher.md'}
+```
 
-Pulse Width Modulated signals can be described with duty cycle percentages and frequencies/periods:
-
-
-<!-- TODO: IMAGE reupload this to github -->
-
-![imgur](http://www.bristolwatch.com/picaxe/images/io43.gif)
-
-The **duty cycle** indicates what percentage of time a signal is on or high voltage.
-
-The **frequency** determines the overall period of the pulse.
-
-For a more detailed explanation, see the guide on using the [PWM Expansion](https://docs.onion.io/omega2-docs/using-pwm-expansion.html).
 
 ### The Node Module
 
