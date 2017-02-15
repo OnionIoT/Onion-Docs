@@ -1,16 +1,13 @@
 ## OLED Expansion for Node.js
 
-
 As a part of our efforts to add expansion support to node.js, we have added control of the OLED expansion by way of node.js module. To use the display within your node.js programs, all you have to do is import the OLED module in the same way as a module and call methods to control the display.
+
+<!-- TODO: IMAGE reupload this to github -->
 
 ![Omega+OLED Expansion](http://i.imgur.com/tqcRlgG.jpg)
 
 The module is a wrapper around the OLED C library. The library's documentation can be found [here](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-Library), many of the node functions follow the same input-output structure as the C library.
 
-
-
-
-<!-- Programming Flow -->
 
 ### Programming Flow
 
@@ -22,9 +19,14 @@ After the initialization, the other functions can be used to adjust vaious scree
 
 The screen has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages:
 
+
+<!-- TODO: IMAGE reupload this to github -->
+
 ![imgur](http://i.imgur.com/4JsaahS.png)
 
 Each page consists of 8 horizontal pixel rows. When a byte is written to the display, the Least Significant Byte (LSB) corresponds to the top-most pixel of the page in the current column. The Most Significant Byte (MSB) corresponds to the bottom-most pixel of the page in the current column.
+
+<!-- TODO: IMAGE reupload this to github -->
 
 ![imgur](http://i.imgur.com/8DIiN2n.png)
 
@@ -32,65 +34,57 @@ So writing 0x0f would produce the top 4 pixels being coloured in, and the bottom
 
 The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed below.
 
-<!-- MAJOR HEADING -->
-<!-- The Node Module -->
 
 ### The Node Module
 
 The OLED Expansion module exposes a series of methods that perform all of the actions specified in the Programming Flow section.
 
-<!-- Install the Module -->
 
 #### Install the Module
 
 Install the module on your Omega:
-```
+
+``` bash
 opkg update
-opkg install oled-exp-node
+opkg install node-oled-exp
 ```
 
 NodeJS will need to be installed for Node programs to actually run:
-```
+
+``` bash
 opkg install nodejs
 ```
 
-<!-- Importing the Module -->
 #### Importing the module into your Node Script
 
 To use the module within your script you have to import it into your node program as you would a module. Use the following command in your node script.
 
+``` javascript
+var oledExp = require("/usr/bin/node-oled-exp");
 ```
-var oledExp = require("/usr/bin/oled-exp-module");
-```
 
 
 
 
-<!-- Example Code -->
 #### Example Code
 
-Example code that uses the `oled-exp-node` module can be [found here](https://github.com/OnionIoT/i2c-exp-node-modules/blob/master/Examples/oled_node_example.js) in the `i2c-exp-node-modules` Onion GitHub Repo.
+Example code that uses the `node-oled-exp` module can be [found here](https://github.com/OnionIoT/i2c-exp-node-addons/blob/master/Examples/oled_node_example.js) in the `i2c-exp-node-addons` Onion GitHub Repo.
 
 
-
-
-<!-- Return Values -->
 #### Return Values
 
 All of the functions will either return a 0 indicating success or 1 indicating failure.
 
 
-<!-- Calling Methods -->
 #### Calling Methods
 
 Methods are called in the following format.
 
-```
+``` javascript
 oledExp.method();
 ```
 Replace method with your funcion of interest.
 
-<!-- Available Methods -->
 #### Available Methods
 
 Refer to the table below for a list and brief description of available OLED methods.
@@ -118,16 +112,15 @@ Refer to the table below for a list and brief description of available OLED meth
 |readLcdFile("path")| "Path to LCD File"|Displays lcd image file on the screen|
 
 
-<!-- Init Function -->
-####Initialization
+#### Initialization
+
 This function programs the initilization sequence on the OLED Expansion, after this step is completed, the various OLED functions can be used with success:
-```
+
+``` javascript
 oledExp.init();
 ```
-<!-- SUB-HEADING -->
-<!-- Settings Functions -->
 
-####Functions to Adjust Settings
+#### Functions to Adjust Settings
 
 There is a series of functions that adjust various settings on the OLED Display. The adjustable settings are:
 
@@ -138,11 +131,10 @@ There is a series of functions that adjust various settings on the OLED Display.
  * Defining the width of each page
  * Setting the cursor position
 
-<!-- Screen on/off -->
 
-###Turn Display Off/On
+### Turn Display Off/On
 The screen cab be turned on and off while still preserving the displayed contents.Note: turning on a screen that is already on, or turning off a screen that is already off will have no effect.
-```
+``` javascript
 oledExp.setDisplayPower(int bPowerON);
 ```
 
@@ -159,21 +151,20 @@ The `bPowerOn` argument determines whether to turn the display on or off.
 
 Turn the screen off with:
 
-```
+``` javascript
 oledExp.setDisplayPower(0);
 ```
 Turn the screen on with:
 
-```
+``` javascript
 oledExp.setDisplayPower(1);
 ```
 
 
-<!-- Invert Display Colours -->
 
-###Invert Display Color
+### Invert Display Color
 The screen driver has the ability to invert the display colors, meaning that black becomes white and vice versa. To invert the colors:
-```
+``` javascript
 oledExp.setDisplayMode(int bInvert);
 ```
 
@@ -190,21 +181,20 @@ The `bInvert` argument determines whether to inver the colors or not.
 #### Examples
 
 To invert the colors:
-```
+``` javascript
 oledExp.setDisplayMode(1);
 ```
 
 To revert back to the normal colors:
-```
+``` javascript
 oledExp.setDisplayMode(0);
 ```
 
-<!-- Set Brightness -->
 
-###Set the Display Brightness
+### Set the Display Brightness
 
 The brightness of the display can be adjusted in a granularity of 256 steps. The default brightness after initialization is 207.
-```
+``` javascript
 oledExp.setBrightness(int brightness);
 ```
 
@@ -215,26 +205,25 @@ The `brightness` argument determines the brightness with a range of 0-255, with 
 #### Examples
 
 So to set the maximum brightness:
-```
+``` javascript
 oledExp.setBrightness(255);
 ```
 
 To set the lowest brightness:
-```
+``` javascript
 oledExp.setBrightness(0);
 ```
 
 And to set the middle brightness:
-```
+``` javascript
 oledExp.setBrightness(127);
 ```
 
-<!-- Dim the display -->
 ### Dim the Display
 
 This function implements a 'dim' and a 'normal' setting for the display:
 
-```
+``` javascript
 oledExp.setDim(int dim);
 ```
 
@@ -254,25 +243,26 @@ The `dim` argument determines whether to enable the dim setting
 #### Examples
 
 Dim the Display:
-```
+``` javascript
 oledExp.setDim(1);
 ```
 
 Set the Display to normal brightness:
-```
+``` javascript
 oledExp.setDim(0);
 ```
 
-<!-- Set the memory mode -->
 ### Set Memory Mode
 
 Implements the ability to select the display's memory mode:
-```
+``` javascript
 oledExp.setMemoryMode(int mode);
 ```
 The memory mode affects how the cursor is automatically advanced when the display memory is written with text or images.
 
 **Horizontal Addressing Mode**
+
+<!-- TODO: IMAGE reupload this to github -->
 
 ![imgur](http://i.imgur.com/sU0WyZY.png)
 
@@ -280,11 +270,15 @@ After each write, the column cursor advances horizontally to the right along the
 
 **Vertical Addressing Mode**
 
+<!-- TODO: IMAGE reupload this to github -->
+
 ![imgur](http://i.imgur.com/Dv1smND.png)
 
 After each write, the page cursor advances vertically downward through the pages, once the last page is reached, the column cursor is advanced to the next pixel column.
 
 **Page Addressing Mode**
+
+<!-- TODO: IMAGE reupload this to github -->
 
 ![imgur](http://i.imgur.com/oW4giq6.png)
 
@@ -305,16 +299,15 @@ The `mode` argument determines which memory mode is active.
 #### Examples
 
 Set to the page addressing mode:
-```
+``` javascript
 oledExp.setMemoryMode(2);
 ```
 
 
-<!-- Set Column Addressing -->
 ### Set Column Addressing
 
 This function is used to define where each page starts and ends horizontally:
-```
+``` javascript
 oledExp.setColumnAddressing(int startPixel, int endPixel);
 ```
 
@@ -335,41 +328,38 @@ Both arguments must be between the 0-127 and the startPixel must be **less than*
 #### Examples
 
 Set the column addressing display text:
-```
+``` javascript
 oledExp.setColumnAddressing(0,127);
 ```
 
 Set the column addressing to the full display width:
-```
+``` javascript
 oledExp.setColumnAddressing(0,63);
 ```
 
 Set each column to start halfway across an to enf three quartes of the way accross the display:
-```
+``` javascript
 oledExp.setColumnAddressing(63,95);
 ```
 
-<!-- Set Column Addressing: Text Columns -->
 ### Set Columns for Text
 
 A function exists to define the column addressing specifically for text:
-```
+``` javascript
 oledExp.setTextColumns();
 ```
 
 It sets the start pixel to 0 and the end pixel to 125. This allows for the 21 text characters per line This function should be run, before setting the cursor for writing text.
 
-<!-- Set Column Addressing: Image Columns -->
 ### Set Columns for Images
 
 Also, a function exists to define the column addressing to cover the entire screen:
-```
+``` javascript
 oledExp.setImageColumns();
 ```
 
 It sets the start pixel to 0 and te end pixel to 127. This enables the use of the entire screen.
 
-<!-- Set Cursor Position -->
 #### Set Cursor Position
 
 Any data written to the screen gets writting to the current position of the cursor. This position can be adjusted.
@@ -379,11 +369,10 @@ Two methods exist:
  * Specifying the page row and character column
  * Specifying the page row and pixel column
 
-<!-- Set Cursor Position: By Character Column -->
 ### Set Cursor Position by Character Column
 
 This function is used to position the cursor on a specific page and character column. After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
-```
+``` javascript
 oledExp.setCursor(int row, int column);
 ```
 
@@ -398,28 +387,27 @@ The `column` argument sets the character column position of the cursor, the rang
 #### Examples
 
 Set the cursor to the start of the last page:
-```
+``` javascript
 oledExp.setCursor(7,0);
 ```
 
 Set the cursor to the middle of the 4th row:
-```
+``` javascript
 oledExp.setCursor(3,10);
 ```
 
 Set the cursor to the starting position at the top-left:
-```
+``` javascript
 oledExp.setCursor(0,0);
 ```
 
 
 
-<!-- Set Cursor Position: By Pixel -->
 ### Set Cursor Position by Pixel
 This function is used to position the cursor on a specific page and pixel row. This gives more fine grain control than setting by character column.
 
 After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
-```
+``` javascript
 oledExp.setCursorByPixel(int row, int pixel);
 ```
 
@@ -434,46 +422,44 @@ The `pixel` argument sets the horizontal pixel position of the cursor, the range
 #### Examples
 
 Set the cursor to the start of the last page:
-```
+``` javascript
 oledExp.setCursorByPixel(7,0);
 ```
 
 Set the cursor to the middle of the 4th row:
-```
+``` javascript
 oledExp.setCursorByPixel(3,63);
 ```
 
 Set the cursor to the bottom-left
-```
+``` javascript
 oledExp.setCursorByPixel(7,0);
 ```
 
 
-<!-- Clearing Function -->
 
 ###Clearing the Display
 To clear the screen and move the cursor to the starting position at the top-left of the screen:
-```
+``` javascript
 oledExp.clear();
 ```
 
 
-<!-- SUB-HEADING -->
-<!-- Writing Text -->
 
-####Writing Text to The Display
+#### Writing Text to The Display
 Listed below are the functions that write bytes, characters, strings, or images to the display.
 
-<!-- Write Byte -->
-###Write a Single Byte
+### Write a Single Byte
 Write a single byte, eight vertical pixels, to the current position of the cursor:
-```
+``` javascript
 oledExp.oledWriteByte(int byte);
 ```
 
 #### Arguments
 
 The `byte` argument holds the eight bits that will be written to the screen. The Least Significant Bit (LSB) in the byte corresponds to the top-most pixel in the column, the Most Significant Bit (MSB) corresponds to the bottom-most pixel in the column.
+
+<!-- TODO: IMAGE reupload this to github -->
 
 ![imgur](http://i.imgur.com/8DIiN2n.png)
 
@@ -483,17 +469,18 @@ After the byte is set, the cursor will automatically move to the next page colum
 
 Draw the following pattern:
 
+<!-- TODO: IMAGE reupload this to github -->
+
 ![imgur](http://i.imgur.com/lxs1q8J.png)
 
-```
+``` javascript
 oledExp.writeByte(0x3f);
 ```
 
-<!-- Write Character -->
 ### Write a Single Character
 
 Write a single character to the current position of the cursor:
-```
+``` javascript
 oledExp.writeChar(character);
 ```
 
@@ -506,15 +493,14 @@ Make sure to check the asciiTable dynamic array found in oled-exp.h, it defines 
 #### Examples
 
 Write an 'O'
-```
+``` javascript
 oledExp.writeChar('O');
 ```
 
-<!-- Write String -->
 ### Write a String
 
 Write an entire string of characters, starting at the current position of the cursor:
-```
+``` javascript
 oledExp.write(msg);
 ```
 
@@ -531,25 +517,22 @@ The `msg` argument is the string to be written to the display. Any characters no
 #### Examples
 
 Write 'Onion Omega':
-```
+``` javascript
 oledExp.write('Onion Omega');
 ```
 
 Write 'Onion Omega', then 'Inventing the Future' on the next line, and then 'Today' two lines below:
 
-```
+``` javascript
 oledExp.write("Onion Omega\nInventing the Future\n\nToday");
 ```
 
-<!-- SUB-HEADING -->
-<!-- Scrolling the Display -->
 #### Scrolling the Display Contents
 The OLED can scroll the contents of the screen horizontally or upwards at a 45 degree angle. The displayed content will wrap around when it reaches the edge of the display.
 
-<!-- Horizontal scrolling -->
 ### Horizontal Scrolling
 Scroll the contents of the screen horizontally or upwards at a 45 degree angle. Contents will wrap around after reaching edge of display
-```
+``` javascript
 oledExp.scroll(int direction, int scrollSpeed, int startPage, int stopPage);
 ```
 
@@ -581,21 +564,20 @@ Determines the number of frames between each scroll step.
 
 **startPage and stopPage**
 
-Thes two arguments define which page to start and stop scrolling at respectively. Both can have values between 0-7, however **_startPage must be less than stopPage_**.
+Thes two arguments define which page to start and stop scrolling at respectively. Both can have values between 0-7, however **startPage must be less than stopPage**.
 
 
 #### Examples
 
 Let's scroll the entire screen to the left
-```
+``` javascript
 oledExp.scroll(0,0,0,7);
 ```
 
-<!-- Diagonal scrolling -->
 ### Diagonal Scrolling
 Scroll all or part of the screen diagonally upwards:
 
-```
+``` javascript
 scrollDiagonal(int direction, int scrollSpeed, int fixedRows, int scrollRows, int verticalOffset, int startPage, int stopPage);
 ```
 #### Arguments
@@ -639,25 +621,24 @@ Defines the number of vertical rows to scroll by each frame.
 
 **startPage and stopPage**
 
-Thes two arguments define which page to start and stop scrolling at respectively. Both can have values between 0-7, however **_startPage must be less than stopPage_**.
+Thes two arguments define which page to start and stop scrolling at respectively. Both can have values between 0-7, however **startPage must be less than stopPage**.
 
 #### Examples
 
 Let's scroll the entire screen upwards to the left.
-```
+``` javascript
 oledExp.scrollDiagonal(0,5,0,127,1,0,7);
 ```
 
-<!-- Stop scrolling -->
 ### Stop Scrolling
 
 Disables all active scrolling
-```
+``` javascript
 oledExp.scrollStop();
 ```
 
 ### Further Reading
 
-If you are unsure of how the display works. We recommend you take a look at the documentation for the Dynamic C library for the OLED Expansion, which can be found [here](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-Library).
+If you are unsure of how the display works. We recommend you take a look at the documentation for the Dynamic C library for the OLED Expansion, which can be found [here](https://docs.onion.io/omega2-docs/oled-expansion-c-library.html).
 
 The node functions are a direct mapping to the functions available from the C library.

@@ -1,6 +1,8 @@
 ## Relay Expansion Node Module
 
-The Onion Relay Node Module, relay-node-module is a wrapper around the `libonionrelayexp` dynmic C library that provides functions to setup and control the relay expansion.
+The Onion Relay Node Module, node-relay-exp is a wrapper around the `libonionrelayexp` dynmic C library that provides functions to setup and control the relay expansion.
+
+<!-- TODO: IMAGE reupload this to github -->
 
 ![Relay Expansion](http://i.imgur.com/iPswHOC.jpg)
 
@@ -8,13 +10,11 @@ The same library is available for use in C and Python programs.
 
 
 
-<!-- Programming Flow -->
 ### Programming Flow
 
 After each power-cycle, the chip that controls the Relay Expansion must be programmed with an initialization sequence. After the initialization, the relays can be turned on and off at will.
 
-<!-- I2C Device Address -->
-### I2C Device Address
+### I2C Device Address {#relay-node-i2c-device-address}
 The Relay Expansion is the only expansion that has a configurable I2C device address. This was done so that up to eight Relay Expansions can be stacked on a single Omega, giving the user the ability to control 16 relay modules independently.
 
 The base device address is 0x20, the dip switches control the offset added to the base address:
@@ -42,66 +42,61 @@ All of the functions in this library will require an address argument that speci
 
 Each relay expansion has two channel which can be called using binary values.
 
+
+<!-- TODO: IMAGE reupload this to github -->
+
 ![imgur](https://i.imgur.com/Wk6Z9lW.png)
 
-<!-- MAJOR HEADING -->
-<!-- The Node Module -->
 
 ### The Node Module
 
-The relay-exp-module exposes a series of methods that perform all of the actions specified in the Programming Flow section.
+The node-relay-exp module exposes a series of methods that perform all of the actions specified in the Programming Flow section.
 
-<!-- Install the Module -->
 #### Install the Module
 
 Install the module on your Omega:
-```
+
+``` bash
 opkg update
-opkg install relay-exp-node
+opkg install node-relay-exp
 ```
 
 NodeJS will need to be installed for Node programs to actually run:
-```
+
+``` bash
 opkg install nodejs
 ```
 
-<!-- Importing the Module -->
 #### Importing the module into your Node Script
 
 To use the module within your script you have to import it into your node program as you would a module:
 
+``` javascript
+var relayExp = require("/usr/bin/node-relay-exp");
 ```
-var relayExp = require("/usr/bin/relay-node-module");
-```
 
 
-
-
-<!-- Example Code -->
 #### Example Code
 
-Example code that uses the `relay-exp-node` module can be [found here](https://github.com/OnionIoT/i2c-exp-node-modules/blob/master/Examples/relay_node_example.js) in the `i2c-exp-node-modules` Onion GitHub Repo.
+Example code that uses the `node-relay-exp` module can be [found here](https://github.com/OnionIoT/i2c-exp-node-addons/blob/master/Examples/relay_node_example.js) in the `i2c-exp-node-addons` Onion GitHub Repo.
 
 
 
 
-<!-- Return Values -->
 #### Return Values
 
 All of the functions will either return a 0 indicating success or 1 indicating failure.
 
 
-<!-- Calling Methods -->
 #### Calling Methods
 
 Methods are called in the following format.
 
-```
+``` javascript
 relayExp.method();
 ```
 Replace method with your funcion of interest.
 
-<!-- Available Methods -->
 #### Available Methods
 
 Refer to the table below for a list and brief description of available relay methods.
@@ -113,66 +108,73 @@ Refer to the table below for a list and brief description of available relay met
 |setChannel(int addr, int channel, int state)|0-7,0-1,0-1|Sets the selected channel on the selected relay to the specified states.|
 |setAllChannels(int addr, int state)|0-7,0-1| Sets all channels on the selected relay expansion to the specified state.|
 
-<!-- Init Function -->
 ### Initialization Function
+
 This function programs the initialization sequence on the Relay Expansion, after this step is completed, the functions to set the relay states can be used with success:
-```
+
+``` javascript
 relayExp.init(int addr);
 ```
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the I2C Device Address section.
 
-**Examples**
+#### Examples
+
 Initialize a Relay Expansion with all switches set to 0, meaning the I2C device address will be 0x27:
-```
+
+``` javascript
 relayExp.init(7);
 ```
 
 Initialize with switches set to on-off-on (device address: 0x22):
-```
+
+``` javascript
 relayExp.init(2);
 ```
 
 Initialize with switches set to on-on-off (device address: 0x24):
-```
+
+``` javascript
 relayExp.init(4);
 ```
 
-<!-- Check Init Function -->
 ### Check for Initialization
 
 This function performs several reads to determine if the Relay Expansion requires the initialization sequence to be programmed before the relay states can be changed.
 
-```
+``` javascript
 relayExp.checkInit(int addr);
 ```
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the I2C Device Address section.
 
-**Examples**
+#### Examples
 
-Check if a Relay Expansion(with all switches set to On) is initialized:
-```
+<!-- TODO: all switches set to on? '(with all switches set to On)' -->
+
+Check if a Relay Expansion is initialized:
+
+``` javascript
 relayExp.checkInit(0);
 ```
 
 
-<!-- Set Relay State Function -->
 
 ### Set Relay State
 
 Finally the fun stuff! Use this function to change the sate of the relay:
-```
+
+``` javascript
 relayExp.setChannel(int addr, int  channel, int state);
 ```
 
-**Arguments**
+#### Arguments
 
-The `addr` argument is described above in the [I2C Device Address](#i2c-device-address) section.
+The `addr` argument is described above in the [I2C Device Address](#relay-node-i2c-device-address) section.
 
 The `channel` argument selects the relay channel in question.
 
@@ -181,35 +183,39 @@ The `state` argument allows the user to select if the relay will be turned on or
  * 1 turn the relay ON
 
 
-**Examples**
+#### Examples
 
-Let's turn Relay0 **on** and Relay1 **off** (all switches Off)
-```
+<!-- TODO: all switches off? -->
+
+Let's turn Relay0 **on** and Relay1 **off**. <!-- (all switches Off) -->
+
+``` javascript
 relayExp.setChannel(7,0,1);
 relayExp.setChannel(7,1,0);
 ```
 
-<!-- Set State for Both Relays Function -->
 ### Set State for both Relays
+
 In the event that both relays need to be turned on or off at the same time:
-```
+
+``` javascript
 relayExp.setAllChannels(int addr, int state);
 ```
 
 This is performed with a single register write so both relays should react at the same time.
 
-**Arguments**
+#### Arguments
 
-The `addr` argument is described above in the [I2C Device Address](#i2c-device-address) section.
+The `addr` argument is described above in the [I2C Device Address](#relay-node-i2c-device-address) section.
 
 The `state` argument allows the user to select if the relays will be turned on or off:
  * 0 turn the relays OFF
  * 1 turn the relays ON
 
-**Examples**
+#### Examples
 
 All switches are in Off position, turn both relays on, then turn Relay 0 off, the send a command to turn both off:
-```
+``` javascript
 relayExp.setAllChannels(7,1);
 relayExp.setChannel(7,0,0);
 relayExp.setAllChannels(7,0);
