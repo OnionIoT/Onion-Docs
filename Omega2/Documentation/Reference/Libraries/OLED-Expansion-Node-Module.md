@@ -15,24 +15,9 @@ After each power-cycle, the chip that controls the OLED Expansion must be progra
 
 After the initialization, the other functions can be used to adjust vaious screen settings or display text or images.
 
-### Understanding the Display
 
-The screen has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages:
-
-
-<!-- TODO: IMAGE reupload this to github -->
-
-![imgur](http://i.imgur.com/4JsaahS.png)
-
-Each page consists of 8 horizontal pixel rows. When a byte is written to the display, the Least Significant Byte (LSB) corresponds to the top-most pixel of the page in the current column. The Most Significant Byte (MSB) corresponds to the bottom-most pixel of the page in the current column.
-
-<!-- TODO: IMAGE reupload this to github -->
-
-![imgur](http://i.imgur.com/8DIiN2n.png)
-
-So writing 0x0f would produce the top 4 pixels being coloured in, and the bottom 4 being left blank.
-
-The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed below.
+```{r child = '../Shared/Understanding-the-Display.md'}
+```
 
 
 ### The Node Module
@@ -85,34 +70,34 @@ oledExp.method();
 ```
 Replace method with your funcion of interest.
 
-#### Available Methods
+### Available Methods
 
 Refer to the table below for a list and brief description of available OLED methods.
 
-|  Method |   Inputs|  Description |
-|---|---|---|
-| init()  |none  | Initializes the display. Must be called once before using display |
-|  clear() | none  | Clears the Display of all contents.  |
-| setDisplayPower(int)| 1,0| Turns the screen on or off. Preserves screen content|
-| setDisplayMode(int)| 1,0| Inverts the color settings.|
-|setBrightness(int)|0-255|Adjust display brightness by inputting value from 0(dimmest)-255(brightest), 207 by default.|
-|setDim(int)|1,0|Similar to the setBrightness method where 0:Normal brightness 207 and 1:Dimmed Screen 0|
-|setMemoryMode(int)|0,1,2|Implements the ability to select the display's memory mode, ie, how the cursor is automatically advanced when the display memory is written to with text or images. 0=Horizontal Addressing Mode, 1=Vertical Addressing Mode, 2=Page Addressing Mode |
-|setCursor(int row, int column)|0-7,0-20|Position the cursor on a specific page and character column.|
-|setCursorByPixel(int row, int pixel)|0-7,0-127|This function positions the cursor on a specific page and pixel row|
-|setColumnAddressing(int startPixel, int endPixel)|0-127,0-127 | Used to determine where each page starts and ends horizontally|
-|setTextColumns()|none|Defines the column addressing specifically for text. Sets the start pixel to 0 and end pixel to 125. This allows for 21 text characters per line. This function should be run before setting the cursor for writing text. |
-|setImageColumns()|none|This function defines the column addressing to cover the entire screen. It sets the start pixel to 0 and end pixel to 127.|
-|writeChar(char "A")| single character in a string input|Writes a single character to the current position of the cursor. Any unrecognized characters will be ignored, for a list of acceptable characters refer to asciiTable in oled-exp.h|
-|write(msg)|string "HelloWorld" |Write an entire string of characters, starting at the current positon of the cursor|
-|writeByte(int byte)| 0x00 - 0xFF| Write a single byte, eight vertical pixels, to the current position of the cursor.|
-|scroll(int direction, int scrollSpeed, int startPage, int stopPage)| \* |Scroll the contents of the screen horizontally or upwards at a 45 degree angle. The displayed contents will wrap around when it reaches the edge of the display.|
-|scrollDiagonal( int direction, int scrollSpeed, int fixedRows, int scrollRows, int verticalOffset, int startPage, int stopPage)|\*\*|Scroll all or part of the screen diagonally upwards|
-|scrollStop()|none|Disables all active scrolling|
-|readLcdFile("path")| "Path to LCD File"|Displays lcd image file on the screen|
+| Method                                                                                                                          | Inputs                             | Description                                                                             |
+|---------------------------------------------------------------------------------------------------------------------------------|------------------------------------|-----------------------------------------------------------------------------------------|
+| [init()](#oled-node-init)                                                                                                                          | none                               | Initializes the display                                                                 |
+| [clear()](#oled-node-clear)                                                                                                                         | none                               | Clears the Display                                                                      |
+| [setDisplayPower(int)](#oled-node-set-display-power)                                                                                                            | 1,0                                | Turns the screen on or off                                                              |
+| [setDisplayMode(int)](#oled-node-set-display-mode)                                                                                                             | 1,0                                | Inverts the color settings                                                              |
+| [setBrightness(int)](#oled-node-set-brightness)                                                                                                              | 0-255                              | Adjust display brightness                                                               |
+| [setDim(int)](#oled-node-set-dim)                                                                                                                     | 1,0                                | Dims/brightens display to preset value.                                                 |
+| [setMemoryMode(int)](#oled-node-set-memory-mode)                                                                                                             | 0,1,2                              | Sets the display's memory mode                                                          |
+| [setCursor(int row, int column)](#oled-node-set-cursor)                                                                                                  | 0-7,0-20                           | Position the cursor on a specific page and character column.                            |
+| [setCursorByPixel(int row, int pixel)](#oled-node-set-cursor-by-pixel)                                                                                            | 0-7,0-127                          | Positions the cursor on a specific page and pixel row                                   |
+| [setColumnAddressing(int startPixel, int endPixel)](#oled-node-set-column-addressing)                                                                               | 0-127,0-127                        | Sets where each page starts and ends horizontally                                       |
+| [setTextColumns()](#oled-node-set-text-columns)                                                                                                                | none                               | Sets the column addressing for text display                                             |
+| [setImageColumns()](#oled-node-set-image-columns)                                                                                                               | none                               | Sets the column addressing to default                                                   |
+| [writeChar(char "A")](#oled-node-write-char)                                                                                                             | single character in a string input | Writes a single character to the current position of the cursor.                        |
+| [write(msg)](#oled-node-write)                                                                                                                      | string "HelloWorld"                | Writes a string of characters, starting at the current positon of the cursor            |
+| [writeByte(int byte)](#oled-node-write-byte)                                                                                                             | 0x00 - 0xFF                        | Write a single byte to the current position of the cursor.                              |
+| [scroll(int direction, int scrollSpeed, int startPage, int stopPage)](#oled-node-scroll)                                                             | \*                                 | Scroll all or part of the screen horizontally - contents will wrap        |
+| [scrollDiagonal( int direction, int scrollSpeed, int fixedRows, int scrollRows, int verticalOffset, int startPage, int stopPage)](#oled-node-scroll-diagonal) | \*\*                               | Scroll all or part of the screen diagonally upwards - contents will wrap                |
+| [scrollStop()](#oled-node-scroll-stop)                                                                                                                    | none                               | Disables all active scrolling                                                           |
+| [readLcdFile("path")](#oled-node-read-lcd-file)                                                                                                             | "Path to LCD File"                 | Displays lcd image file on the screen                                                   |
 
 
-#### Initialization
+### Initialization {#oled-node-init}
 
 This function programs the initilization sequence on the OLED Expansion, after this step is completed, the various OLED functions can be used with success:
 
@@ -120,19 +105,27 @@ This function programs the initilization sequence on the OLED Expansion, after t
 oledExp.init();
 ```
 
-#### Functions to Adjust Settings
+
+### Clearing the Display {#oled-node-clear}
+To clear the screen and move the cursor to the starting position at the top-left of the screen:
+``` javascript
+oledExp.clear();
+```
+
+
+### Functions to Adjust Settings
 
 There is a series of functions that adjust various settings on the OLED Display. The adjustable settings are:
 
- * Screen on/off
- * Color inversion
- * Setting screen brightness
- * Setting the memory mode
- * Defining the width of each page
- * Setting the cursor position
+ * [Screen on/off](#oled-node-set-display-power)
+ * [Color inversion](#oled-node-set-display-mode)
+ * [Setting screen brightness](#oled-node-set-brightness)
+ * [Setting the memory mode](#oled-node-set-memory-mode)
+ * [Defining the width of each page](#oled-node-set-column-addressing)
+ * [Setting the cursor position](#oled-node-set-cursor)
 
 
-### Turn Display Off/On
+### Turn Display Off/On {#oled-node-set-display-power}
 The screen cab be turned on and off while still preserving the displayed contents.Note: turning on a screen that is already on, or turning off a screen that is already off will have no effect.
 ``` javascript
 oledExp.setDisplayPower(int bPowerON);
@@ -161,8 +154,7 @@ oledExp.setDisplayPower(1);
 ```
 
 
-
-### Invert Display Color
+### Invert Display Color {#oled-node-set-display-mode}
 The screen driver has the ability to invert the display colors, meaning that black becomes white and vice versa. To invert the colors:
 ``` javascript
 oledExp.setDisplayMode(int bInvert);
@@ -191,7 +183,7 @@ oledExp.setDisplayMode(0);
 ```
 
 
-### Set the Display Brightness
+### Set the Display Brightness {#oled-node-set-brightness}
 
 The brightness of the display can be adjusted in a granularity of 256 steps. The default brightness after initialization is 207.
 ``` javascript
@@ -200,7 +192,7 @@ oledExp.setBrightness(int brightness);
 
 #### Arguments
 
-The `brightness` argument determines the brightness with a range of 0-255, with 255 being the brightest setting and 0 being the dimmest.
+The `brightness` argument determines the brightness with a range of `0-255`, with `255` being the brightest setting and `0` being the dimmest.
 
 #### Examples
 
@@ -219,7 +211,7 @@ And to set the middle brightness:
 oledExp.setBrightness(127);
 ```
 
-### Dim the Display
+### Dim the Display {#oled-node-set-dim}
 
 This function implements a 'dim' and a 'normal' setting for the display:
 
@@ -252,7 +244,7 @@ Set the Display to normal brightness:
 oledExp.setDim(0);
 ```
 
-### Set Memory Mode
+### Set Memory Mode {#oled-node-set-memory-mode}
 
 Implements the ability to select the display's memory mode:
 ``` javascript
@@ -304,7 +296,7 @@ oledExp.setMemoryMode(2);
 ```
 
 
-### Set Column Addressing
+### Set Column Addressing {#oled-node-set-column-addressing}
 
 This function is used to define where each page starts and ends horizontally:
 ``` javascript
@@ -319,9 +311,10 @@ Note: the column cursor is not preserved after a column addressing change.
 
 #### Arguments
 
-The `startPixel` argument sets the starting column for each page.
-
-The `endPixel` argument sets the end column for each page.
+|  Argument  |    Values    |  Description                              |
+|------------|--------------|-------------------------------------------|
+| startPixel | `0 - 127`  |  Sets the starting column for each page.  |
+| endPixel   | `0 - 127`  |  Sets the ending column for each page.    |
 
 Both arguments must be between the 0-127 and the startPixel must be **less than** endPixel.
 
@@ -342,7 +335,7 @@ Set each column to start halfway across an to enf three quartes of the way accro
 oledExp.setColumnAddressing(63,95);
 ```
 
-### Set Columns for Text
+### Set Columns for Text {#oled-node-set-text-columns}
 
 A function exists to define the column addressing specifically for text:
 ``` javascript
@@ -351,7 +344,7 @@ oledExp.setTextColumns();
 
 It sets the start pixel to 0 and the end pixel to 125. This allows for the 21 text characters per line This function should be run, before setting the cursor for writing text.
 
-### Set Columns for Images
+### Set Columns for Images {#oled-node-set-image-column}
 
 Also, a function exists to define the column addressing to cover the entire screen:
 ``` javascript
@@ -360,16 +353,16 @@ oledExp.setImageColumns();
 
 It sets the start pixel to 0 and te end pixel to 127. This enables the use of the entire screen.
 
-#### Set Cursor Position
+### Set Cursor Position
 
 Any data written to the screen gets writting to the current position of the cursor. This position can be adjusted.
 
 Two methods exist:
 
- * Specifying the page row and character column
- * Specifying the page row and pixel column
+ * [Specifying the page row and character column](#oled-node-set-cursor)
+ * [Specifying the page row and pixel column](#oled-node-set-cursor-by-pixel)
 
-### Set Cursor Position by Character Column
+### Set Cursor Position by Character Column {#oled-node-set-cursor}
 
 This function is used to position the cursor on a specific page and character column. After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
 ``` javascript
@@ -380,7 +373,10 @@ Note: since the column cursor is not preserved after a column addressing change,
 
 #### Arguments
 
-The `row` argument sets the page for the cursor, so the range is 0 to 7.
+|  Argument  |    Values    |  Description                                        |
+|------------|--------------|-----------------------------------------------------|
+| row        | `0 - 7`    |  Sets the page for the cursor.                      |
+| column     | `0 - 20`   |  Sets the character column position of the cursor.  |
 
 The `column` argument sets the character column position of the cursor, the range is 0 to 20.
 
@@ -403,7 +399,7 @@ oledExp.setCursor(0,0);
 
 
 
-### Set Cursor Position by Pixel
+### Set Cursor Position by Pixel {#oled-node-set-cursor-by-pixel}
 This function is used to position the cursor on a specific page and pixel row. This gives more fine grain control than setting by character column.
 
 After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
@@ -415,9 +411,13 @@ It allows for cursor positions that are not aligned with the 21 possible charact
 
 #### Arguments
 
-The `row` argument sets the page for the cursor, so the range is 0-7
+This function requires two arguments, that define vertical row and horizontal pixel position.
 
-The `pixel` argument sets the horizontal pixel position of the cursor, the range is 0 to 127
+|  Argument  |    Values    |  Description                                        |
+|------------|--------------|-----------------------------------------------------|
+| row        | `0 - 7`    |  Sets the page for the cursor.                      |
+| pixel      | `0 - 127`  |  Sets the horizontal pixel position of the cursor.  |
+
 
 #### Examples
 
@@ -438,18 +438,16 @@ oledExp.setCursorByPixel(7,0);
 
 
 
-###Clearing the Display
-To clear the screen and move the cursor to the starting position at the top-left of the screen:
-``` javascript
-oledExp.clear();
-```
 
+### Writing Text to The Display
 
-
-#### Writing Text to The Display
 Listed below are the functions that write bytes, characters, strings, or images to the display.
 
-### Write a Single Byte
+* [Write a single byte](#oled-node-write-byte)
+* [Write a single character](#oled-node-write-char)
+* [Write a string](#oled-node-write)
+
+### Write a Single Byte {#oled-node-write-byte}
 Write a single byte, eight vertical pixels, to the current position of the cursor:
 ``` javascript
 oledExp.oledWriteByte(int byte);
@@ -477,7 +475,7 @@ Draw the following pattern:
 oledExp.writeByte(0x3f);
 ```
 
-### Write a Single Character
+### Write a Single Character {#oled-node-write-char}
 
 Write a single character to the current position of the cursor:
 ``` javascript
@@ -497,7 +495,7 @@ Write an 'O'
 oledExp.writeChar('O');
 ```
 
-### Write a String
+### Write a String {#oled-node-write}
 
 Write an entire string of characters, starting at the current position of the cursor:
 ``` javascript
@@ -527,10 +525,14 @@ Write 'Onion Omega', then 'Inventing the Future' on the next line, and then 'Tod
 oledExp.write("Onion Omega\nInventing the Future\n\nToday");
 ```
 
-#### Scrolling the Display Contents
+### Scrolling the Display Contents
 The OLED can scroll the contents of the screen horizontally or upwards at a 45 degree angle. The displayed content will wrap around when it reaches the edge of the display.
 
-### Horizontal Scrolling
+* [Scroll horizontally](#oled-node-scroll)
+* [Scroll diagonally](#oled-node-scroll-diagonal)
+* [Stop scrolling](#oled-node-scroll-stop)
+
+### Horizontal Scrolling {#oled-node-scroll}
 Scroll the contents of the screen horizontally or upwards at a 45 degree angle. Contents will wrap around after reaching edge of display
 ``` javascript
 oledExp.scroll(int direction, int scrollSpeed, int startPage, int stopPage);
@@ -574,7 +576,7 @@ Let's scroll the entire screen to the left
 oledExp.scroll(0,0,0,7);
 ```
 
-### Diagonal Scrolling
+### Diagonal Scrolling {#oled-node-scroll-diagonal}
 Scroll all or part of the screen diagonally upwards:
 
 ``` javascript
@@ -630,15 +632,9 @@ Let's scroll the entire screen upwards to the left.
 oledExp.scrollDiagonal(0,5,0,127,1,0,7);
 ```
 
-### Stop Scrolling
+### Stop Scrolling {#oled-node-scroll-stop}
 
 Disables all active scrolling
 ``` javascript
 oledExp.scrollStop();
 ```
-
-### Further Reading
-
-If you are unsure of how the display works. We recommend you take a look at the documentation for the Dynamic C library for the OLED Expansion, which can be found [here](https://docs.onion.io/omega2-docs/oled-expansion-c-library.html).
-
-The node functions are a direct mapping to the functions available from the C library.

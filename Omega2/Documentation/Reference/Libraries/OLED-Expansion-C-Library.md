@@ -22,22 +22,8 @@ After each power-cycle, the chip that controls the OLED Expansion must be progra
 After the initialization, the other functions can be used to ajdust various screen settings or display text or images.
 
 
-### Understanding the Display
-
-The screen has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages:
-
-![Page and column visual](http://i.imgur.com/4JsaahS.png)
-
-Each page consists of 8 horizontal pixel rows. When a byte is written to the display, the Least Significant Byte (LSB) corresponds to the top-most pixel of the page in the current column. The Most Significant Byte (MSB) corresponds to the bottom-most pixel of the page in the current column.
-
-![Page detail](http://i.imgur.com/8DIiN2n.png)
-
-So writing `0x0f` would produce the top 4 pixels being coloured in, and the bottom 4 being left blank.
-
-<!-- LAZAR: add more examples and an image showing the examples -->
-
-The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed below.
-
+```{r child = '../Shared/Understanding-the-Display.md'}
+```
 
 
 <!-- MAJOR HEADING -->

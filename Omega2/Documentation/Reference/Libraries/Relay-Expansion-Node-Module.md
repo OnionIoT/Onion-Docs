@@ -24,16 +24,16 @@ The base device address is 0x20, the dip switches control the offset added to th
 
 The table below defines the relationship:
 
-| Switch 1 | Switch 2 | Switch 3 | I2C Device Address |
-|----------|----------|----------|--------------------|
-| Off      | Off      | Off      | *0x27*             |
-| Off      | Off      | On       | *0x26*             |
-| Off      | On       | Off      | *0x25*             |
-| Off      | On       | On       | *0x24*             |
-| On       | Off      | Off      | *0x23*             |
-| On       | Off      | On       | *0x22*             |
-| On       | On       | Off      | *0x21*             |
-| On       | On       | On       | *0x20*             |
+|  Switch 1  |  Switch 2  |  Switch 3  |  I2C Device Address  |
+|:----------:|:----------:|:----------:|:--------------------:|
+|    Off     |    Off     |     Off    |         0x27         |
+|    Off     |    Off     |   **On**   |         0x26         |
+|    Off     |  **On**    |     Off    |         0x25         |
+|    Off     |  **On**    |   **On**   |         0x24         |
+|  **On**    |    Off     |     Off    |         0x23         |
+|  **On**    |    Off     |   **On**   |         0x22         |
+|  **On**    |  **On**    |     Off    |         0x21         |
+|  **On**    |  **On**    |   **On**   |         0x20         |
 
 
 All of the functions in this library will require an address argument that specifies the offset to add to the base address of 0x20.
@@ -81,8 +81,6 @@ var relayExp = require("/usr/bin/node-relay-exp");
 Example code that uses the `node-relay-exp` module can be [found here](https://github.com/OnionIoT/i2c-exp-node-addons/blob/master/Examples/relay_node_example.js) in the `i2c-exp-node-addons` Onion GitHub Repo.
 
 
-
-
 #### Return Values
 
 All of the functions will either return a 0 indicating success or 1 indicating failure.
@@ -97,18 +95,19 @@ relayExp.method();
 ```
 Replace method with your funcion of interest.
 
-#### Available Methods
+
+### Available Methods
 
 Refer to the table below for a list and brief description of available relay methods.
 
-|Methods|Inputs|Description|
-|---|---|---|
-|init(int addr)|0-7|Initializes the selected relay expansion (0-7), relay states can be set after initialization.|
-|checkInit(int addr)|0-7|Checks initialization state of selected relay expansion.|
-|setChannel(int addr, int channel, int state)|0-7,0-1,0-1|Sets the selected channel on the selected relay to the specified states.|
-|setAllChannels(int addr, int state)|0-7,0-1| Sets all channels on the selected relay expansion to the specified state.|
+| Methods                                      | Inputs      | Description                                                                                   |
+|----------------------------------------------|-------------|-----------------------------------------------------------------------------------------------|
+| [init(int addr)](#relay-node-init)                               | 0-7         | Initializes the selected relay expansion (0-7), relay states can be set after initialization. |
+| [checkInit(int addr)](#relay-node-check-init)                          | 0-7         | Checks initialization state of selected relay expansion.                                      |
+| [setChannel(int addr, int channel, int state)](#relay-node-set-channel) | 0-7,0-1,0-1 | Sets the selected channel on the selected relay to the specified states.                      |
+| [setAllChannels(int addr, int state)](#relay-node-set-all-channels)          | 0-7,0-1     | Sets all channels on the selected relay expansion to the specified state.                     |
 
-### Initialization Function
+### Initialization Function {#relay-node-init}
 
 This function programs the initialization sequence on the Relay Expansion, after this step is completed, the functions to set the relay states can be used with success:
 
@@ -118,7 +117,7 @@ relayExp.init(int addr);
 
 #### Arguments
 
-The `addr` argument is described above in the I2C Device Address section.
+The `addr` argument is described above in the [I2C Device Address](#relay-node-i2c-device-address) section.
 
 #### Examples
 
@@ -140,7 +139,7 @@ Initialize with switches set to on-on-off (device address: 0x24):
 relayExp.init(4);
 ```
 
-### Check for Initialization
+### Check for Initialization {#relay-node-check-init}
 
 This function performs several reads to determine if the Relay Expansion requires the initialization sequence to be programmed before the relay states can be changed.
 
@@ -150,7 +149,7 @@ relayExp.checkInit(int addr);
 
 #### Arguments
 
-The `addr` argument is described above in the I2C Device Address section.
+The `addr` argument is described above in the [I2C Device Address](#relay-node-i2c-device-address) section.
 
 #### Examples
 
@@ -164,7 +163,7 @@ relayExp.checkInit(0);
 
 
 
-### Set Relay State
+### Set Relay State {#relay-node-set-channel}
 
 Finally the fun stuff! Use this function to change the sate of the relay:
 
@@ -174,13 +173,14 @@ relayExp.setChannel(int addr, int  channel, int state);
 
 #### Arguments
 
+|  Argument  |  Input                |  Meaning                                |
+|------------|:---------------------:|-----------------------------------------|
+| addr       |  `0 - 7`            |  I2C Device Address                     |
+| channel    |  `0`, `1`         |  Relay channel                          |
+| state      |  `0`, `1`         |  Relay state (`0` - Off, `1` - On)  |
+
 The `addr` argument is described above in the [I2C Device Address](#relay-node-i2c-device-address) section.
 
-The `channel` argument selects the relay channel in question.
-
-The `state` argument allows the user to select if the relay will be turned on or off:
- * 0 turn the relay OFF
- * 1 turn the relay ON
 
 
 #### Examples
@@ -194,7 +194,7 @@ relayExp.setChannel(7,0,1);
 relayExp.setChannel(7,1,0);
 ```
 
-### Set State for both Relays
+### Set State for both Relays {#relay-node-set-all-channels}
 
 In the event that both relays need to be turned on or off at the same time:
 
@@ -206,11 +206,13 @@ This is performed with a single register write so both relays should react at th
 
 #### Arguments
 
+|  Argument  |  Input                |  Meaning                                |
+|------------|:---------------------:|-----------------------------------------|
+| addr       |  `0 - 7`            |  I2C Device Address                     |
+| state      |  `0`, `1`         |  Relay state (`0` - Off, `1` - On)  |
+
 The `addr` argument is described above in the [I2C Device Address](#relay-node-i2c-device-address) section.
 
-The `state` argument allows the user to select if the relays will be turned on or off:
- * 0 turn the relays OFF
- * 1 turn the relays ON
 
 #### Examples
 
