@@ -78,7 +78,7 @@ To see a list of the python packages available via `opkg`, enter the following c
 opkg update
 opkg list | grep python
 ```
-*Note: enter `opkg list | grep python3` to get the packages specific to python3*
+> Note: use `opkg list | grep python3` to get the packages specific to Python3
 
 
 This will list all the available packages with python in their name. You can run:
@@ -117,7 +117,7 @@ opkg update
 opkg install python-pip
 ```
 
-<!-- TODO: different for python3? -->
+> Note: use `opkg install python3-pip` to install `pip` for Python3
 
 ##### Installing Modules
 
@@ -188,7 +188,7 @@ Successfully installed paho-mqtt-1.2
 
 Since the Omega is a Linux computer, it's really easy to get started with Python on the Omega. You can enter `python` in your command-line to start the interpreter.
 
->If you've installed python3, you'll need to enter `python3` in your command-line to get started.
+>If you've installed Python3, you'll need to enter `python3` in your command-line to get started.
 
 Note that the interpreter is a good tool for quickly testing some code, but the real power of Python comes from writing reusable scripts.
 
@@ -255,7 +255,7 @@ You can execute the script using the following command:
 python /root/greeting.py
 ```
 
->Note: If you installed python3, you would enter `python3` instead of `python`.
+> Note: If you installed Python3, you would enter `python3` instead of `python`.
 
 
 And you'll see the following output:
@@ -272,7 +272,7 @@ During this time your Omega's LED will be blinking on and off.
 
 ### Onion Python Modules
 
-We've developed modules for controlling the Omega's hardware as well as our Expansions:
+We've developed modules for controlling the Omega's GPIOs and several Expansions. Check out the documentation for the Modules for more details:
 
 * [Controlling the Omega's GPIOs](#gpio-python-module)
 * [Controlling the OLED Expansion](#oled-expansion-python-module)
