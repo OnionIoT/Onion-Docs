@@ -20,7 +20,7 @@ Using the shift register and a few additional GPIO from the Omega, we will contr
 
 #### Hooking up the Components
 
-/<!-- / TODO: research how many scan pins there are, then decide how many gpios on the omega are required -->
+<!-- / TODO: research how many scan pins there are, then decide how many gpios on the omega are required -->
 
 // omega -> shift register -> 7seg display a-g segment pins
 // omega -> 7seg scan pins
@@ -40,7 +40,7 @@ We'll be developing a program that takes input from command line arguments when 
 
 To accomplish this, we will write a new class that uses the shift register class we wrote for the previous experiment and introduces it's own variables and functions.
 
-// [notes on the code]
+<!-- // [notes on the code]
 // create a class that uses the shift reg class but specifically to control the 7seg display
 //  * the 7seg class has self.shiftReg
 //  functions:
@@ -51,7 +51,9 @@ To accomplish this, we will write a new class that uses the shift register class
 // command line arguments:
 //  * make sure to check that a command line argument is present, if not, print an error message and exit the program
 //  * input sanitization to ensure they only enter hex numbers (really good practise)
-//  * write the sanitized input to the 7seg
+//  * write the sanitized input to the 7seg 
+
+-->
 
 Now let's create a class to `sevenSegDisplay.py`
 

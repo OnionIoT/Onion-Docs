@@ -58,7 +58,7 @@ The IC should be plugged in across the channel of your breadboard (the slot runn
 
 Now there are a lot of connections you'll need to make in order to power the IC and use it with the Omega, so we'll go through it step by step. We'll be referring to each pin by the numbers provided in the diagram above.
 
->Note: Your IC will have a semi-circle indentation that indicates "up". Make sure that you plug it in properly.
+**Note:** Your IC will have a semi-circle indentation that indicates "up". Make sure that you plug it in properly.
 
 1. Connecting your Shift Register
 

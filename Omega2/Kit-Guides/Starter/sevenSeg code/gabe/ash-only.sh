@@ -8,6 +8,7 @@ chr1="$(echo $input | sed -e 's/^..\(.\).*/\1/')"
 chr2="$(echo $input | sed -e 's/^...\(.\).*/\1/')"
 chr3="$(echo $input | sed -e 's/^....\(.\).*/\1/')"
 chr4="$(echo $input | sed -e 's/^.....\(.\).*/\1/')"
+# todo: add a check for chr5; if chr5 is not blank, exit (4 digits only)
 
 if ! [[ "$pref1" == "0" && "$pref2" == "x" ]]; then
     echo "Please input a hex number in the following format: 0x12ab"
@@ -119,7 +120,6 @@ initDigPins
 
 # sleep 1;
 
-# write the number "3133" to the display
 # play around with this to see how the gpio#s correspond to the digits
 while true; do
 
