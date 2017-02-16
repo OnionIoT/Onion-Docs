@@ -22,7 +22,7 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 ```{r child = '../../shared/shift-register-control.md'}
 ```
 
-### Building the Circuit
+### Building the Circuit {#STK07-building-the-circuit}
 
 This circuit is quite involved but we're going to split it up into 3 parts: connecting the shift register, connecting your Omega, and connecting the LEDs.
 It's going to be essentially the same thing as the second experiment but we're going to use 8 LEDs and a shift register.
