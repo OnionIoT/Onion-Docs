@@ -5,7 +5,15 @@ The Onion SPI Library, `libonionspi` is a dynamic C library that provides functi
 Also available is a Python module, called `onionSpi`, that implements an SPI object using functions from the C Library.
 
 
+<!-- Programming Flow -->
 
+#### Programming Flow
+
+Any program using the `libonionspi` library must first initialize the `spiParams` structure since it is used by all of the other library functions. Then, the `spiParams` structure members should be modified to suit the requirements of the use case. For example, the desired bus number and device ID should be programmed.
+
+Transactions will not work if the SPI adapter is not registered with the system, there are functions to check if an adapter is registered, and if not, to register the adapter. There is also a setup function to set  additional parameters on the adapter.
+
+After the above is complete, the functions to transfer data using the SPI protocol can be used freely
 
 
 <!-- The SPI Protocol -->
@@ -39,7 +47,6 @@ Linux systems usually control SPI devices through kernel drivers. However, it is
 The Omega does not have an SPI bit-banging adapter setup by default, but this can be done by using the `insmod` command to insert a module into the kernel. The `libonionspi` library takes care of this for you so you don't have to deal with the intricacies.
 
 
-
 <!-- MAJOR HEADING -->
 <!-- The C Library -->
 
@@ -55,31 +62,17 @@ The `libonionspi` C library is a series of functions that implement SPI communic
 The source code can be found in the [Onion `spi-gpio-driver` GitHub Repo](https://github.com/OnionIoT/spi-gpio-driver).
 
 
-<!-- Programming Flow -->
-
-#### Programming Flow
-
-Any program using the `libonionspi` library must first initialize the `spiParams` structure since it is used by all of the other library functions. Then, the `spiParams` structure members should be modified to suit the requirements of the use case. For example, the desired bus number and device ID should be programmed.
-
-Transactions will not work if the SPI adapter is not registered with the system, there are functions to check if an adapter is registered, and if not, to register the adapter. There is also a setup function to set  additional parameters on the adapter.
-
-After the above is complete, the functions to transfer data using the SPI protocol can be used freely
 
 
 
-
-<!-- Using the Library -->
-
-#### Using the Library
-
-**Header File**
+#### Header File
 
 To add the Onion SPI Library to your C/C++ program, include the header file in your C code:
 ``` c
 #include <onion-spi.h>
 ```
 
-**Library for Linker**
+#### Library for Linker
 
 In your project's makefile, you will need to add the following dynamic libraries to the linker command:
 ``` c
@@ -164,6 +157,17 @@ params.modeBits |= SPI_LSB_FIRST;
 
 Then run the `spiSetupDevice()` function to set the options in the adapter device. More information on this function in the sections below.
 
+#### Functions
+
+| Function | Prototype |
+|---------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| [Initialize the Parameter Structure](#spi-c-param-init) | `void spiParamInit (struct spiParams *params)` |
+| [Check if SPI Device is Mapped](#spi-c-check-device) | `int spiCheckDevice (int busNum, int devId, int printSeverity)` |
+| [Register SPI Device](#spi-c-register-device) | `int spiRegisterDevice (struct spiParams *params)` |
+| [Setup SPI Device](#spi-c-setup-device) | `int spiSetupDevice (struct spiParams *params)` |
+| [Transferring Data](#spi-c-transfer-data) | `int spiTransfer (struct spiParams *params, uint8_t *txBuffer, uint8_t *rxBuffer, int bytes)` |
+| [Reading Data](#spi-c-read-data) | `int spiRead(struct spiParams *params, int addr, uint8_t *rdBuffer, int bytes)` |
+| [Writing Data](#spi-c-writing-data) | `int spiWrite(struct spiParams *params, int addr, uint8_t *wrBuffer, int bytes)` |
 
 
 <!-- SUB-HEADING -->
@@ -175,7 +179,7 @@ The following functions serve to initialize the `spiParams` structure and do any
 
 <!-- Initialize the Parameter Structure -->
 
-##### Initialize the Parameter Structure: `spiParamInit()`
+### Initialize the Parameter Structure - `spiParamInit(spiParams*)` {#spi-c-param-init}
 
 There is a function to initialize the `spiParams` structure with acceptable default values:
 ``` c
@@ -209,7 +213,7 @@ The `params` argument should be the structure you want to initialize passed by r
 
 <!-- Check if SPI Device is Mapped -->
 
-##### Check if SPI Device is Mapped: `spiCheckDevice()`
+### Check if SPI Device is Mapped - `int spiCheckDevice(int, int, int)` {#spi-c-check-device}
 
 Performs a check to see if an SPI device with the specified bus number and device ID is mapped:
 
@@ -249,7 +253,7 @@ else {
 
 <!-- Register SPI Device -->
 
-##### Register SPI Device: `spiRegisterDevice()`
+### Register SPI Device - `int spiRegisterDevice (spiParams*)` {#spi-c-register-device}
 
 This function will register an SPI device with the bus number, device ID, and other SPI parameters as specified in the parameter structure:
 
@@ -298,9 +302,10 @@ status 	= spiRegisterDevice(&params);
 
 <!-- Setup SPI Device -->
 
-##### Setup SPI Device: `spiSetupDevice()`
+### Setup SPI Device - `int spiSetupDevice (spiParams*)` {#spi-c-setup-device}
 
 This function will setup additional SPI parameters on the device adapter
+
 ``` c
 int spiSetupDevice (struct spiParams *params);
 ```
@@ -322,7 +327,7 @@ Once a device adapter is registered, the functions below can be used to read fro
 
 <!-- Transfer Data Function -->
 
-##### Transferring Data: `spiTransfer()`
+### Transferring Data - `int spiTransfer (spiParams*, uint8_t*, uint8_t*, int)` {#spi-c-transfer-data}
 
 This is the function that implements all data transfers using the SPI protocol:
 ``` c
@@ -342,7 +347,7 @@ And finally, the `bytes` argument indicates the number of bytes being transferre
 
 <!-- Transfer Data Function: Example Code: Reading -->
 
-###### Example Code: Reading a Byte
+#### Example Code: Reading a Byte
 
 The following example code uses the SPI protocol to read a byte of data from a specific address on an SPI device:
 
@@ -395,7 +400,7 @@ Refer to the datasheet of your device for specifics.
 
 <!-- Transfer Data Function: Example Code: Writing -->
 
-###### Example Code: Writing a Value
+#### Example Code: Writing a Value
 
 This example uses the SPI protocol to write a byte of data to a specific address on an SPI device:
 
@@ -439,7 +444,7 @@ In this case, the SPI Master will first send the register address where the writ
 
 <!-- Transfer Data Function: Example Code: Writing Stream of Data -->
 
-###### Example Code: Writing Several Values
+#### Example Code: Writing Several Values
 
 Some devices allow/require the user to write a stream of data with no address, this can be accomplished using the `spiTransfer()` function as well:
 
@@ -482,16 +487,17 @@ void SpiWriteValues(int addr, int* data, int size)
 
 <!-- Additional Functions -->
 
-##### Additional Functions
+#### Additional Functions
 
 The `spiTransfer()` is all that's required to perform reads and writes using SPI. However, two additional functions are provided to perform reads and writes. Internally, they both use the `spiTransfer()` function, but they provide a slightly simpler interface.
 
 
 <!-- Additional Functions: spiRead -->
 
-###### Reading Data: `spiRead()`
+### Reading Data - `int spiRead(spiParams*, int, uint8_t*, int)` {#spi-c-read-data}
 
 This function can be used to perform a register read:
+
 ``` c
 int spiRead(struct spiParams *params, int addr, uint8_t *rdBuffer, int bytes);
 ```
@@ -509,7 +515,7 @@ The `rdBuffer` argument will be populated by data received during the SPI transf
 And finally, the `bytes` argument indicates the number of bytes being read. Note that the `rdBuffer` needs to be allocated to at least this size.
 
 
-####### Example Code
+#### Example Code
 
 The following function will read two bytes from the specified address, the data will be stored in `rdBuffer`:
 
@@ -548,9 +554,10 @@ In essence, this simplifies the use of the `spiTransfer()` for read scenarios.
 
 <!-- Additional Functions: spiWrite -->
 
-###### Reading Data: `spiWrite()`
+### Writing Data - `int spiWrite(spiParams*, int, uint8_t*, int)` {#spi-c-writing-data}
 
 This function can be used to perform a register write:
+
 ``` c
 int spiWrite(struct spiParams *params, int addr, uint8_t *wrBuffer, int bytes);
 ```
@@ -568,7 +575,7 @@ The `wrBuffer` argument holds the data to be transmitted during the SPI transfer
 And finally, the `bytes` argument indicates the number of bytes being written. Note that the `wdBuffer` needs to be allocated to at least this size.
 
 
-####### Example Code
+#### Example Code
 
 The following code will write a byte to the specified address, the data will be stored in `rdBuffer`:
 

@@ -17,7 +17,7 @@ The Onion I2C library uses the `/dev/i2c-0` adapter, and implements read and wri
 
 The `onionI2C` Python module in the `OmegaExpansion` package provides a Python object that serves as a wrapper around the C library functions. The usage is slightly different since the Python module is object oriented and the C library is just a set of functions.
 
-### Source Code
+#### Source Code
 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
@@ -25,9 +25,13 @@ The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https:/
 
 Once the I2C object is initialized, the read and write functions can be called freely using the object.
 
+<!-- TODO: check if the edits make sense against the spec
 ### Using the Python Module
 
 **Installing the Module**
+-->
+
+#### Installing the Module
 
 To install the Python module, run the following commands:
 ```
@@ -37,27 +41,35 @@ opkg install python-light pyOnionI2C
 
 This will install the module to `/usr/lib/python2.7/OmegaExpansion/`
 
-*Note: this only has to be done once.*
+>This only needs to be done once.
 
-
+<!--
 **Using the Module**
+-->
 
 To add the Onion I2C Module to your Python program, include the following in your code:
 ``` python
 from OmegaExpansion import onionI2C
 ```
 
-### Example
+#### Example
 
 An example of how the `onionI2C` library is used can be found in the [`i2c-exp-driver` repo.](https://github.com/OnionIoT/i2c-exp-driver/blob/master/examples/onion-i2c.py)
 
 The example code programs the Relay Expansion directly.
 
-### Functions
+#### Functions
 
-Each of the main functions implemented in this module are described below.
+| Function | Prototype |
+|----------------------------------------------------------------------------------|-------------------------------------|
+| [Initialization](#i2c-py-constructor) | `onionI2C.OnionI2C()` |
+| [Reading Bytes](#i2c-py-read-bytes) | `readBytes(devAddr, addr, size)` |
+| [Write a Single Byte](#i2c-py-write-byte) | `writeByte(devAddr, addr, value)` |
+| [Write a List of Bytes](#i2c-py-write-byte-list) | `writeBytes(devAddr, addr, values)` |
+| [Write a List of Bytes without Specifying an Address](#i2c-py-write-addressless) | `write(devAddr, values)` |
 
-#### Initialization
+
+### Initialization - `onionI2C.OnionI2C()` {#i2c-py-constructor}
 
 The object needs to be initialized before it can be used for reading and writing:
 ``` python
@@ -76,7 +88,7 @@ If your use case requires a different adapter, add an integer argument to the co
 
 #### Reading from an I2C Slave
 
-##### Reading Bytes
+### Reading Bytes - `readBytes()` {#i2c-py-read-bytes}
 
 This function reads a specified number of bytes from a specific device on the I2C bus, and returns them in a list:
 ``` python
@@ -111,7 +123,7 @@ All writing functions share the same schema for return values:
 * For a successful write, `0` will be returned
 * An unsuccessful write will return `1`
 
-##### Write a Single Byte
+### Write a Single Byte - `writeByte()` {#i2c-py-write-byte}
 
 This function will write a single byte to a specific device on the I2C bus:
 ``` python
@@ -139,7 +151,7 @@ Write `0xbe` to address `0xaa` on a device with an address of` 0x33`:
 status  = i2c.writeByte(0x33, 0xaa, 0xbe)
 ```
 
-##### Write a List of Bytes
+### Write a List of Bytes - `writeBytes()` {#i2c-py-write-byte-list}
 
 This function will write a list of bytes to an address on a specific device on the I2C bus:
 ``` python
@@ -173,7 +185,7 @@ Write `0x01, 0x03, 0x05` to address `0x55` on a device with an address of `0x24`
 status  = i2c.writeBytes(0x24, 0x55, [0x01, 0x03, 0x05])
 ```
 
-##### Write a List of Bytes without Specifying an Address
+### Write a List of Bytes without Specifying an Address - `write()` {#i2c-py-write-addressless}
 
 This function will write a list of bytes to a specific device on the I2C bus:
 ``` python

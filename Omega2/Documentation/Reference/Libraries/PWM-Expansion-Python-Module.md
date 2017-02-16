@@ -5,12 +5,6 @@ The Onion PWM Expansion Python module, `pwmExp` is based on the [C PWM Expansion
 ![PWM Expansion Photo](http://i.imgur.com/aNoYCZc.png)
 
 
-
-
-
-
-<!-- Programming Flow -->
-
 ### Programming Flow
 
 After each power-cycle, the chip that controls the PWM Expansion must be programmed with an initialization sequence to enable the on-board oscillator so that PWM signals can be generated.
@@ -20,45 +14,22 @@ After the initialization, the other functions can be used to generate PWM signal
 Additionally, it is possible to disable to the oscillator, disabling the generation of all PWM signals at once. Before generating new PWM signals, the initialization sequence must be run again.
 
 
-#### Channels
+```{r child = '../Shared/PWM-Refresher.md'}
+```
 
-The PWM Expansion has 16 channels that can generate distinct PWM signals. Note that they will all be running on the same frequency.
-
-
-
-<!-- PWM Signal Refresher -->
-
-### PWM Signal Refresher
-
-Pulse Width Modulated signals can be described with duty cycle percentages and frequencies/periods:
-
-![Duty Cycle Graph](http://www.bristolwatch.com/picaxe/images/io43.gif)
-
-The **duty cycle** indicates what percentage of time a signal is on or high voltage.
-
-The **frequency** determines the overall period of the pulse.
-
-For a more detailed explanation, see the guide on [using the Servo Expansion.](../../Tutorials/Expansions/Using-the-Servo-Expansion#pwm-signals)
-<!-- MAJOR HEADING -->
-<!-- The Python Module -->
 
 ### The Python Module
 
 The `pwmExp` Python module in the `OmegaExpansion` package provides a wrapper around the C library functions. The functions are largely the same as their C counterparts, including the arguments and return values. Any differences from the C library will be explicitly mentioned below.
 
 
-<!-- Source Code -->
-
 #### Source Code
 
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-<!-- Using the Python Module -->
 
-#### Using the Python Module
-
-**Installing the Module**
+#### Installing the Module
 
 To install the Python module, run the following commands:
 ```
@@ -68,10 +39,7 @@ opkg install python-light pyPwmExp
 
 This will install the module to `/usr/lib/python2.7/OmegaExpansion/`
 
-*Note: this only has to be done once.*
-
-
-**Using the Module**
+>This only needs to be done once.
 
 To add the Onion PWM Expansion Module to your Python program, include the following in your code:
 ``` python
@@ -102,13 +70,20 @@ If the function operation is not successful, the function will return `1`.
 
 #### Functions
 
-Each of the main functions implemented in this module are described below.
+| Function | Prototype |
+|---------------------------------------------------|-------------------------------------|
+| [Initialization Function](#pwm-py-init-function) | `driverInit()` |
+| [Check for Initialization](#pwm-py-check-init) | `checkInit()` |
+| [Generate a PWM Signal](#pwm-py-setup-driver) | `setupDriver(channel, duty, delay)` |
+| [Set PWM Signal Frequency](#pwm-py-set-frequency) | `setFrequency(frequency)` |
+| [Disabling the Oscillator](#pwm-py-disable-chip) | `disableChip()` |
 
 <!-- Python: Init Function -->
 
-##### Initialization Function
+### Initialization Function - `driverInit()` {#pwm-py-init-function}
 
 This function programs the initialization sequence on the Servo Expansion, after this step is completed, the functions to generate PWM signals or change the signal frequency can be used with success:
+
 ``` python
 pwmExp.driverInit()
 ```
@@ -123,7 +98,7 @@ status 	= pwmExp.driverInit();
 
 <!-- Python: Check Init Function -->
 
-##### Check for Initialization
+### Check for Initialization - `checkInit()` {#pwm-py-check-init}
 
 This function performs several reads to determine if the Servo Expansion has been initialized and the oscillator is running:
 
@@ -154,7 +129,7 @@ else:
 
 <!-- Python: Generate PWM Signal Function -->
 
-##### Generate a PWM Signal
+### Generate a PWM Signal - `setupDriver()` {#pwm-py-setup-driver}
 
 This function is used to generate a PWM singal on a specified channel:
 ``` python
@@ -193,7 +168,7 @@ status = pwmExp.setupDriver(-1, 66.66, 9)
 
 <!-- Python: Set Signal Frequency -->
 
-##### Set PWM Signal Frequency
+### Set PWM Signal Frequency - `setFrequency()` {#pwm-py-set-frequency}
 
 The oscillator can be reprogrammed to generate a variety of different frequencies:
 ``` python
@@ -224,7 +199,7 @@ status = pwmExp.setFrequency(92.23)
 
 <!-- Python: Disable Oscillator -->
 
-##### Disabling the Oscillator
+### Disabling the Oscillator - `disableChip()` {#pwm-py-disable-chip}
 
 The oscillator can also be disabled, automatically stopping all PWM signal generation:
 ``` python

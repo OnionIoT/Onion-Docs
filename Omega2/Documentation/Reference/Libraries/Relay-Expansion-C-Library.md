@@ -2,15 +2,13 @@
 
 The Onion Relay Expansion library, `libonionrelayexp` is a dynamic C library that provides functions to setup, read, and change the state of the relays on the Relay Expansion.
 
+<!-- TODO: IMAGE reupload this to github -->
+
 ![Relay Expansion](http://i.imgur.com/iPswHOC.jpg)
 
 The library can be used in C and C++ programs.
 
 This library is also available as a [module for use in Python](./Relay-Expansion-Python-Module). The module is called `relayExp` and is part of the `OmegaExpansion` package.
-
-
-
-
 
 
 <!-- Programming Flow -->
@@ -20,37 +18,9 @@ This library is also available as a [module for use in Python](./Relay-Expansion
 After each power-cycle, the chip that controls the Relay Expansion must be programmed with an initialization sequence. After the initialization, the relays can be turned on and off at will.
 
 
+```{r child = '../Shared/I2C-Device-Address.md'}
+```
 
-<!-- I2C Device Address -->
-
-### I2C Device Address
-
-The Relay Expansion is the only expansion that has a configurable I2C device address. This was done so that up to eight Relay Expansions can be stacked on a single Omega, giving the user the ability to control 16 relay modules independently.
-
-The base device address is `0x20`, the dip switches control the offset added to the base address:
-* The 'Off' position for each switch is when the toggle is close to the numbers on the switch, or away from the relay modules.
-* The 'On' position is when the toggle is away from the numbers on the switch, or closer to the relay modules.
-
-The table below defines the relationship:
-
-| Switch 1 | Switch 2 | Switch 3 | I2C Device Address |
-|----------|----------|----------|--------------------|
-| Off      | Off      | Off      | *0x27*             |
-| Off      | Off      | On       | *0x26*             |
-| Off      | On       | Off      | *0x25*             |
-| Off      | On       | On       | *0x24*             |
-| On       | Off      | Off      | *0x23*             |
-| On       | Off      | On       | *0x22*             |
-| On       | On       | Off      | *0x21*             |
-| On       | On       | On       | *0x20*             |
-
-
-**All of the functions in this library will require an address argument that specifies the offset to add to the base address of `0x20`**
-
-
-
-<!-- MAJOR HEADING -->
-<!-- The C Library -->
 
 ### The C Library
 
@@ -64,18 +34,14 @@ The `libonionrelayexp` C library is a series of functions that perform all of th
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-<!-- Using the C Library -->
-
-#### Using the C Library
-
-**Header File**
+#### Header File
 
 To add the Onion Relay Expansion Library to your program, include the header file in your code:
 ``` c
 #include <relay-exp.h>
 ```
 
-**Library for Linker**
+#### Library for Linker
 
 In your project's makefile, you will need to add the following dynamic libraries to the linker command:
 ``` c
@@ -134,12 +100,18 @@ typedef enum e_RelayDriverChannels {
 
 #### Functions
 
-Each of the main functions implemented in this library are described below.
+| Function | Prototype |
+|--------------------------------------------------------|------------------------------------------------------------|
+| [Initialization Function](#relay-c-init-function) | `int relayDriverInit (int addr)` |
+| [Check for Initialization](#relay-c-check-init) | `int relayCheckInit (int addr, int *bInitialized)` |
+| [Set Relay State](#relay-c-set-channel) | `int relaySetChannel,(int addr, int channel, int state)` |
+| [Set State for both Relays](#relay-c-set-all-channels) | `int relaySetAllChannels (int addr, int state)` |
+| [Read Relay State](#relay-c-read-channel) | `int relayReadChannel (int addr, int channel, int *state)` |
 
 
 <!-- Init Function -->
 
-##### Initialization Function
+### Initialization Function - `int relayDriverInit (int)` {#relay-c-init-function}
 
 This function programs the initialization sequence on the Relay Expansion, after this step is completed, the functions to set the relay states can be used with success:
 ``` c
@@ -173,7 +145,7 @@ int status 	= relayDriverInit(4);
 
 <!-- Check Init Function -->
 
-##### Check for Initialization
+### Check for Initialization - `int relayCheckInit (int, int*)` {#relay-c-check-init}
 
 This function performs several reads to determine if the Relay Expansion requires the initialization sequence to be programmed before the relay states can be changed.
 
@@ -212,7 +184,7 @@ else {
 
 <!-- Set Relay State Function -->
 
-##### Set Relay State
+### Set Relay State - `int relaySetChannel	(int, int, int)` {#relay-c-set-channel}
 
 Finally the fun stuff! Use this function to change the state of the relay:
 
@@ -241,7 +213,7 @@ status 	|= relaySetChannel (7, 1, 0);
 
 <!-- Set State for Both Relays Function -->
 
-##### Set State for both Relays
+### Set State for both Relays - `int relaySetAllChannels (int, int)` {#relay-c-set-all-channels}
 
 In the event that both relays need to be turned on or off at the same time:
 
@@ -271,7 +243,7 @@ status 	|= relaySetAllChannels (7, 0);
 
 <!-- Read Relay State -->
 
-##### Read Relay State
+### Read Relay State - `int relayReadChannel (int, int, int*)` {#relay-c-read-channel}
 
 Use this function to read the state of a specific relay:
 

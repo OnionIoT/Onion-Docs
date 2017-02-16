@@ -19,21 +19,9 @@ After each power-cycle, the chip that controls the OLED Expansion must be progra
 After the initialization, the other functions can be used to ajdust various screen settings or display text or images.
 
 
-#### Understanding the Display
+```{r child = '../Shared/Understanding-the-Display.md'}
+```
 
-The screen has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages:
-
-![Page and column visual](http://i.imgur.com/4JsaahS.png)
-
-Each page consists of 8 horizontal pixel rows. When a byte is written to the display, the Least Significant Byte (LSB) corresponds to the top-most pixel of the page in the current column. The Most Significant Byte (MSB) corresponds to the bottom-most pixel of the page in the current column.
-
-![Page detail](http://i.imgur.com/8DIiN2n.png)
-
-So writing `0x0f` would produce the top 4 pixels being coloured in, and the bottom 4 being left blank.
-
-<!-- LAZAR: add more examples and an image showing the examples -->
-
-The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed below.
 
 <!-- MAJOR HEADING -->
 <!-- The Python Module -->
@@ -50,11 +38,14 @@ The `oledExp` Python module in the `OmegaExpansion` package provides a wrapper a
 The source code can be found in the [Onion `i2c-exp-driver` GitHub Repo](https://github.com/OnionIoT/i2c-exp-driver).
 
 
-<!-- Using the Python Module -->
+<!-- TODO: Sanity against spec
 
 #### Using the Python Module
 
 **Installing the Module**
+-->
+
+#### Installing the Module
 
 To install the Python module, run the following commands:
 ```
@@ -64,11 +55,11 @@ opkg install python-light pyOledExp
 
 This will install the module to `/usr/lib/python2.7/OmegaExpansion/`
 
-*Note: this only has to be done once.*
+>This only needs to be done once.
 
-
+<!--
 **Using the Module**
-
+-->
 To add the Onion OLED Expansion Module to your Python program, include the following in your code:
 ``` python
 from OmegaExpansion import oledExp
@@ -98,10 +89,34 @@ If the function operation is successful, the return value will be `0`.
 If the function operation is not successful, the function will return `1`.
 
 
+#### Functions
+
+| Function | Prototype |
+|----------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| [Initialization Function](#oled-py-driver-init) | `driverInit()` |
+| [Turn the Screen On and Off](#oled-py-set-display-power) | `setDisplayPower(bPowerOn)` |
+| [Invert Display Colours](#oled-py-set-display-mode) | `setDisplayMode(bInvert)` |
+| [Set the Display Brightness](#oled-py-set-brightness) | `setBrightness(brightness)` |
+| [Dim the Display](#oled-py-set-dim) | `setDim(dim)` |
+| [Set Memory Mode](#oled-py-set-memory-mode) | `setMemoryMode(mode)` |
+| [Set Column Addressing](#oled-py-set-column-addressing) | `setColumnAddressing(startPixel, endPixel)` |
+| [Set Columns for Text](#oled-py-set-text-columns) | `setTextColumns()` |
+| [Set Columns for Images](#oled-py-set-image-columns) | `setImageColumns()` |
+| [Set Cursor Position by Character Column](#oled-py-set-cursor) | `setCursor(row, column)` |
+| [Set Cursor Position by Pixel](#oled-py-set-cursor-by-pixel) | `setCursorByPixel(row, pixel)` |
+| [Clear the Screen](#oled-py-clear) | `clear()` |
+| [Write a Single Byte](#oled-py-write-byte) | `writeByte(byte)` |
+| [Write a Single Character](#oled-py-write-char) | `writeChar(c)` |
+| [Write a String](#oled-py-write-str) | `write(msg)` |
+| [Display Images from a File](#oled-py-draw-from-file) | `drawFromFile(file)` |
+| [Horizontal Scrolling](#oled-py-horizontal-scroll) | `scroll(direction, scrollSpeed, startPage, stopPage)` |
+| [Diagonal Scrolling](#oled-py-diagonal-scroll) | `scrollDiagonal(direction, scrollSpeed, fixedRows, scrollRows, verticalOffset, startPage, stopPage)` |
+| [Stop Scrolling](#oled-py-scroll-stop) | `scrollStop()` |
+
 
 <!-- Python: Init Function -->
 
-#### Initialization Function
+### Initialization Function - `driverInit()` {#oled-py-driver-init}
 
 Perform the initialization sequence on the OLED Expansion, after this step is completed, the other various OLED functions can be used with success:
 ``` python
@@ -133,7 +148,7 @@ There is a series of functions that adjust various settings on the OLED Display.
 
 <!-- Python: Screen on/off -->
 
-##### Turn the Screen On and Off
+### Turn the Screen On and Off - `setDisplayPower()` {#oled-py-set-display-power}
 
 The screen can be turned on and off while still preserving the displayed contents:
 ``` python
@@ -167,7 +182,7 @@ status = oledExp.setDisplayPower(1)
 
 <!-- Python: Invert Display Colours -->
 
-##### Invert Display Colours
+### Invert Display Colours - `setDisplayMode()` {#oled-py-set-display-mode}
 
 The screen driver has the ability to invert the display colours, meaning that black becomes white and vice versa:
 ``` python
@@ -198,7 +213,7 @@ status = oledExp.setDisplayMode(0)
 
 <!-- Python: Set Brightness -->
 
-##### Set the Display Brightness
+### Set the Display Brightness - `setBrightness()` {#oled-py-set-}
 
 The brightness of the display can be adjusted in a granularity of 256 steps:
 ``` python
@@ -232,7 +247,7 @@ status = oledExp.setBrightness(127)
 
 <!-- Python: Dim the display -->
 
-##### Dim the display
+### Dim the Display - `setDim()` {#oled-py-set-dim}
 
 This function implements a 'dim' and a 'normal' setting for the display:
 ``` python
@@ -266,7 +281,7 @@ status = oledExp.setDim(0)
 
 <!-- Python: Set the memory mode -->
 
-##### Set Memory Mode
+### Set Memory Mode - `setMemoryMode()` {#oled-py-set-memory-mode}
 
 Implements the ability to select the display's memory mode:
 ``` python
@@ -324,7 +339,7 @@ status = oledExp.setMemoryMode(0)
 
 <!-- Python: Set Column Addressing -->
 
-##### Set Column Addressing
+### Set Column Addressing - `setColumnAddressing()` {#oled-py-set-column-addressing}
 
 This function is used to define where each page starts and ends horizontally:
 ``` python
@@ -367,7 +382,7 @@ status = oledExp.setColumnAddressing(63, 95)
 
 <!-- Python: Set Column Addressing: Text Columns -->
 
-###### Set Columns for Text
+### Set Columns for Text - `setTextColumns()` {#oled-py-set-text-columns}
 
 This function defines the column addressing specifically for text:
 ``` python
@@ -379,7 +394,7 @@ It sets the start pixel to 0 and the end pixel to 125. This allows for 21 text c
 
 <!-- Python: Set Column Addressing: Image Columns -->
 
-###### Set Columns for Images
+### Set Columns for Images - `setImageColumns()` {#oled-py-set-image-columns}
 
 Alternatively, this function defines the column addressing to cover the entire screen:
 ``` python
@@ -406,14 +421,14 @@ Two methods exist:
 
 <!-- Python: Set Cursor Position: By Character Column -->
 
-###### Set Cursor Position by Character Column
+### Set Cursor Position by Character Column - `setCursor()` {#oled-py-set-cursor}
 
 This function is used to position the cursor on a specific page and character column. After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
 ``` python
 oledExp.setCursor(row, column)
 ```
 
-Note: since the column cursor is not preserved after a column addressing change, the column addressing **needs be set to 0-125 to using the `oledExp.setTextColumns()` function to properly display text before the cursor position is programmed.**
+Note: since the column cursor is not preserved after a column addressing change, the column addressing **needs be set to 0-125 to using the `setTextColumns()` function to properly display text before the cursor position is programmed.**
 
 
 **Arguments**
@@ -451,7 +466,7 @@ status	|= oledExp.write("hi there")
 
 <!-- Python: Set Cursor Position by Pixel -->
 
-###### Set Cursor Position by Pixel
+### Set Cursor Position by Pixel - `setCursorByPixel()` {#oled-py-set-cursor-by-pixel}
 
 This function is used to position the cursor on a specific page and pixel row. This gives more fine grain control than setting by character column. After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
 
@@ -499,7 +514,7 @@ oledExp.write("hi there")
 
 <!-- Clearing Function -->
 
-#### Clear the Screen
+### Clear the Screen - `clear()` {#oled-py-clear}
 
 To clear the screen and move the cursor to the starting position at the top-left of the screen:
 ``` python
@@ -518,7 +533,7 @@ Listed below are the functions that write bytes, characters, strings, or images 
 
 <!-- Python: Write Byte -->
 
-##### Write a Single Byte
+### Write a Single Byte - `writeByte()` {#oled-py-write-byte}
 
 Write a single byte, eight vertical pixels, to the current position of the cursor:
 
@@ -552,7 +567,7 @@ status |= oledExp.writeByte(0x3f)			# 0x3f = 0b 0011 1111
 
 <!-- Python: Write Character -->
 
-##### Write a Single Character
+### Write a Single Character - `writeChar()` {#oled-py-write-char}
 
 Write a single character to the current position of the cursor:
 ``` python
@@ -584,7 +599,7 @@ status |= oledExp.writeChar(')')
 
 <!-- Python: Write String -->
 
-##### Write a String
+### Write a String - `write()` {#oled-py-write-str}
 
 Write an entire string of characters, starting at the current position of the cursor:
 ``` python
@@ -653,7 +668,7 @@ If this is unclear, see the [Understanding the Display Section](#programming-flo
 
 <!-- Displaying Images: Displaying Images from a File -->
 
-##### Displaying Images from a File
+### Displaying Images from a File - `drawFromFile()` {#oled-py-draw-from-file}
 
 Read the image data from a file and display on the OLED screen:
 ``` python
@@ -687,7 +702,7 @@ The OLED can scroll the contents of the screen horizontally or upwards at a 45 d
 
 <!-- Horizontal scrolling -->
 
-##### Horizontal Scrolling
+### Horizontal Scrolling - `scroll()` {#oled-py-horizontal-scroll}
 
 Scroll all or part of the screen horizontally:
 ``` python
@@ -717,7 +732,7 @@ The `scrollSpeed` argument determines the number of "frames" between each scroll
 | OLED_EXP_SCROLL_SPEED_2_FRAMES	| 7                       |
 
 
-The `startPage` argument defines at which page to start scrolling, and `stopPage` defines at which page to start the scroll. The range for both is **0 to 7**, and startPage must be less than stopPage.
+The `startPage` argument defines at which page to start scrolling, and `stopPage` defines at which page to stop the scroll. The range for both is **0 to 7**, and startPage must be less than stopPage.
 
 
 **Examples**
@@ -744,7 +759,7 @@ status = oledExp.scroll (1, 6, 1, 5)
 
 <!-- Diagonal scrolling -->
 
-##### Diagonal Scrolling
+### Diagonal Scrolling - `scrollDiagonal()` {#oled-py-diagonal-scroll}
 
 Scroll all or part of the screen diagonally upwards:
 ``` python
@@ -815,7 +830,7 @@ status = oledExp.scrollDiagonal (	1,
 
 <!-- Stop scrolling -->
 
-##### Stop Scrolling
+### Stop Scrolling - `scrollStop()` {#oled-py-scroll-stop}
 
 Disables all active scrolling:
 ``` python
