@@ -385,10 +385,9 @@ the driver will need to be installed. Continue to **Step 2**.
 
 **Step 2: Download and install the Silicon Labs CP2102 driver source files**
 
-For Linux kernel **3.x.x and higher**: [[https://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip]].
+For Linux kernel [**3.x.x and higher**](https://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip).
 
-For Linux kernel **2.6.x**:
-[[https://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip]].
+For Linux kernel [**2.6.x**](https://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip).
 
 **Step 3: Build and install the driver**
 
