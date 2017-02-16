@@ -35,7 +35,7 @@ Grab the following from your kit:
 * Jumper Wires
     * 16x M-F
 * Resistors
-    * 16x 200 Ohm
+    * 16x 200Ω
 
 #### Hooking up the Components
 
