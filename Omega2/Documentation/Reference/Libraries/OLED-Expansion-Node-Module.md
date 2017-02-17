@@ -1,4 +1,4 @@
-## OLED Expansion for Node.js
+## OLED Expansion Node Module
 
 As a part of our efforts to add expansion support to node.js, we have added control of the OLED expansion by way of node.js module. To use the display within your node.js programs, all you have to do is import the OLED module in the same way as a module and call methods to control the display.
 

@@ -155,7 +155,11 @@ Documentation for the packages can be found on the main [Onion Documentation](ht
 [Relay Expansion](https://docs.onion.io/omega2-docs/relay-expansion-node-module.html)
 
 
-<!-- #### Using Blynk with the Omega -->
+#### Using Blynk with the Omega
+
+The Omega supports Blynk!
+
+You can learn about how to get it up and running on your Omega in our Software Reference [article](#blynk-library)
 
 <!-- // brief description of Blynk and how they're awesome -->
 <!-- // link to the main blynk article -->
