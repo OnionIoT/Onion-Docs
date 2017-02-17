@@ -8,16 +8,18 @@ The base device address is 0x20, the dip switches control the offset added to th
 
 The table below defines the relationship:
 
-|  Switch 1  |  Switch 2  |  Switch 3  |  I2C Device Address  |
-|:----------:|:----------:|:----------:|:--------------------:|
-|    Off     |    Off     |     Off    |         0x27         |
-|    Off     |    Off     |   **On**   |         0x26         |
-|    Off     |  **On**    |     Off    |         0x25         |
-|    Off     |  **On**    |   **On**   |         0x24         |
-|  **On**    |    Off     |     Off    |         0x23         |
-|  **On**    |    Off     |   **On**   |         0x22         |
-|  **On**    |  **On**    |     Off    |         0x21         |
-|  **On**    |  **On**    |   **On**   |         0x20         |
+| Switch 1 | Switch 2 | Switch 3 | I2C Device Address | `addr` Argument |
+|:--------:|:--------:|:--------:|:------------------:|:---------------:|
+|    Off   |    Off   |    Off   |        0x27        |       `7`       |
+|    Off   |    Off   |  **On**  |        0x26        |       `6`       |
+|    Off   |  **On**  |    Off   |        0x25        |       `5`       |
+|    Off   |  **On**  |  **On**  |        0x24        |       `4`       |
+|  **On**  |    Off   |    Off   |        0x23        |       `3`       |
+|  **On**  |    Off   |  **On**  |        0x22        |       `2`       |
+|  **On**  |  **On**  |    Off   |        0x21        |       `1`       |
+|  **On**  |  **On**  |  **On**  |        0x20        |       `0`       |
+
+The `addr` argument is used for library functions to specify which Relay Expansion to act on.
 
 #### Relay Module Select
 

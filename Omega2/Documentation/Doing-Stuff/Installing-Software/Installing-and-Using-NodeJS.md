@@ -122,19 +122,20 @@ If you have packages installed already, they will be included as dependencies, a
 
 ### Going further
 
-This section will give you more information on how you can use NodeJS on the Omega to create fantastic projects.
+We've included links to guides on how you can use NodeJS on the Omega to create fantastic projects.
 
 #### Learning NodeJS
 
 <!-- // link to nodejs documentation and guides for more info on getting started and learning NodeJS -->
 
-[NodeJS Documentation](https://nodejs.org/api/)
+[NodeJS Documentation](https://nodejs.org/docs/latest-v4.x/api/) is available from the official Node website.
 
 #### Omega Expansion NodeJS packages
 
 Currently, all software for the Omega Expansions are available through `opkg`.
 
 ``` bash
+opkg update
 opkg install node-oled-exp
 opkg install node-pwm-exp
 opkg install node-relay-exp
@@ -155,20 +156,3 @@ Documentation for the packages can be found on the main [Onion Documentation](ht
 <!-- // link to the main blynk article -->
 
 <!-- Not available on current firmware -->
-
-
-<!-- #### Using npm - Node Package manager -->
-
-<!-- // info on why npm is useful, note that packages that require compilation will not be installed -->
-<!-- // note how much space installing npm will take up -->
-
-<!-- Not available on current firmware -->
-
-
-<!-- ##### Installing npm -->
-
-<!-- // steps to install npm -->
-
-<!-- ##### Using npm -->
-
-<!-- // give an example of installing a package with npm -->
