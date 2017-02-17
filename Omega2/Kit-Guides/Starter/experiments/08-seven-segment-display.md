@@ -164,7 +164,8 @@ def __main__():
 
 The Python code above should ask you for a hex string, then print the digits one by one on to the 7 segment display. If you're wondering if this is expected behaviour... yes. However you probably guessed that it really should output them all at once.
 
-If you'd like to see how that looks, we've provided a shell script below that does this properly.
+If you'd like to see how that looks, we've provided a shell script below that does this properly. 
+
 
 ``` bash
 #!/bin/sh
@@ -309,6 +310,16 @@ setOneDig $dig4
 echo 1 >/sys/class/gpio/gpio18/value
 done
 ```
+
+To run it, copy the code to `/root/STK08-seven-seg-display.sh` then run the following:
+
+```
+sh /root/STK08-seven-seg-display.sh [hex number]
+```
+
+You'll have to put a hex number as the first argument.
+
+
 ### A Closer Look at the Code
 
 This experiment has us putting a class inside a class,
