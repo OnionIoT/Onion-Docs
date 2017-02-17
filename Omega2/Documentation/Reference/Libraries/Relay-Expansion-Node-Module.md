@@ -9,7 +9,8 @@ The Onion Relay Node Module, node-relay-exp is a wrapper around the `libonionrel
 The same library is available for use in C and Python programs.
 
 
-### Programming Flow
+### Programming Flow {#relay-node-programming-flow}
+
 
 After each power-cycle, the chip that controls the Relay Expansion must be programmed with an initialization sequence. After the initialization, the relays can be turned on and off at will.
 
@@ -18,7 +19,7 @@ After each power-cycle, the chip that controls the Relay Expansion must be progr
 ```
 
 
-### The Node Module
+### The Node Module {#relay-node-description}
 
 The node-relay-exp module exposes a series of methods that perform all of the actions specified in the Programming Flow section.
 
@@ -66,7 +67,7 @@ relayExp.method();
 Replace method with your funcion of interest.
 
 
-### Available Methods
+### Available Methods {#relay-node-function-table}
 
 Refer to the table below for a list and brief description of available relay methods.
 

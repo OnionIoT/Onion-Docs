@@ -6,10 +6,11 @@ As a part of our efforts to add expansion support to node.js, we have added cont
 
 ![Omega+OLED Expansion](http://i.imgur.com/tqcRlgG.jpg)
 
-The module is a wrapper around the OLED C library. The library's documentation can be found [here](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-Library), many of the node functions follow the same input-output structure as the C library.
+The module is a wrapper around the OLED C library. The library's documentation can be found [here](https://docs.onion.io/omega2-docs/oled-expansion-c-library.html), many of the node functions follow the same input-output structure as the C library.
 
 
-### Programming Flow
+### Programming Flow {#oled-node-programming-flow}
+
 
 After each power-cycle, the chip that controls the OLED Expansion must be programmed with an initialization sequence to setup the display and enable it to receive additional commands.
 
@@ -20,7 +21,8 @@ After the initialization, the other functions can be used to adjust vaious scree
 ```
 
 
-### The Node Module
+### The Node Module {#oled-node-description}
+
 
 The OLED Expansion module exposes a series of methods that perform all of the actions specified in the Programming Flow section.
 
@@ -70,7 +72,7 @@ oledExp.method();
 ```
 Replace method with your funcion of interest.
 
-### Available Methods
+### Available Methods {#oled-node-function-table}
 
 Refer to the table below for a list and brief description of available OLED methods.
 
@@ -113,7 +115,7 @@ oledExp.clear();
 ```
 
 
-### Functions to Adjust Settings
+### Functions to Adjust Settings {#oled-node-adjust-settings}
 
 There is a series of functions that adjust various settings on the OLED Display. The adjustable settings are:
 
@@ -240,6 +242,7 @@ oledExp.setDim(1);
 ```
 
 Set the Display to normal brightness:
+
 ``` javascript
 oledExp.setDim(0);
 ```
@@ -353,7 +356,8 @@ oledExp.setImageColumns();
 
 It sets the start pixel to 0 and te end pixel to 127. This enables the use of the entire screen.
 
-### Set Cursor Position
+### Set Cursor Position {#oled-node-set-cursor-position}
+
 
 Any data written to the screen gets writting to the current position of the cursor. This position can be adjusted.
 
@@ -439,7 +443,7 @@ oledExp.setCursorByPixel(7,0);
 
 
 
-### Writing Text to The Display
+### Writing Text to The Display {#oled-node-writing-text}
 
 Listed below are the functions that write bytes, characters, strings, or images to the display.
 
@@ -525,7 +529,7 @@ Write 'Onion Omega', then 'Inventing the Future' on the next line, and then 'Tod
 oledExp.write("Onion Omega\nInventing the Future\n\nToday");
 ```
 
-### Scrolling the Display Contents
+### Scrolling the Display Contents {#oled-node-scrolling}
 The OLED can scroll the contents of the screen horizontally or upwards at a 45 degree angle. The displayed content will wrap around when it reaches the edge of the display.
 
 * [Scroll horizontally](#oled-node-scroll)

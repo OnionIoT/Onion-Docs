@@ -8,7 +8,7 @@ The Onion PWM Node Module, node-pwm-exp is a wrapper around the `libonionpwmexp`
 ![imgur](http://i.imgur.com/aNoYCZc.png)
 
 
-### Programming Flow
+### Programming Flow {#pwm-node-programming-flow}
 
 After each power-cycle, the chip that controls the PWM Expansion must be programmed with an initialization sequence to enable the on-board oscillator so that PWM signals can be generated.
 
@@ -23,7 +23,8 @@ Before generating new PWM signals, the initialization sequence must be run again
 ```
 
 
-### The Node Module
+### The Node Module {#pwm-node-description}
+
 
 The node-pwm-exp exposes a series of methods that perform all of the actions specified in the Programming Flow section.
 
@@ -46,7 +47,7 @@ opkg install nodejs
 To use the module within your script you have to import it into your node program as you would a module:
 
 ``` javascript
-var oledModule = require("/usr/bin/node-pwm-exp");
+var pwmModule = require("/usr/bin/node-pwm-exp");
 ```
 
 
@@ -73,7 +74,7 @@ pwmExp.method();
 Replace method with your funcion of interest.
 
 
-### Available Methods
+### Available Methods {#pwm-node-function-table}
 
 Refer to the table below for a list and brief description of available PWM methods.
 

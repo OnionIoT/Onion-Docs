@@ -10,20 +10,14 @@ order: 3
 
 ## Installing and Using NodeJS {#software-installing-and-using-nodejs}
 
-<!-- // brief intro to NodeJS (scripting language, easy to write) -->
-<!-- // make sure to mention that its v4.3.1 -->
-<!-- // make sure to note how much space installing node will take up -->
+NodeJS is a scripting language that uses a JavaScript runtime, essentially, it is Javascript you can run without using a browser. It's incredibly easy to make powerful and complex applications. NodeJS takes advantage of a large amount of open-source modules developed by the community in order to further simplify your work.
 
+**Note**: The Omega supports NodeJS **4.3.1**.
 
-
-NodeJS is a scripting language that uses a JavaScript runtime, essentially, it writes like JavaScript but gives you a lot of flexibility and power. It's incredibly easy to make powerful and complex applications. NodeJS takes advantage of a large amount of open-source modules developed by the community in order to further simplify your work.
-
-
-The Omega supports NodeJS 4.3.1 which can be installed on your Omega using `opkg`.
 
 ### Installing NodeJS
 
->*Installing NodeJS will take about 8.5MB of space on the Omega, so make sure you've got enough space before continuing.*
+Installing NodeJS will take about **8.5MB** of space on the Omega, so make sure you've got enough space before continuing.
 
 Connect to the Omega's terminal using either SSH or Serial.
 
@@ -35,18 +29,96 @@ opkg install nodejs
 ```
 
 ### Using NodeJS
-<!-- // How to use NodeJS on the Omega.
 
-// example of writing a basic python script that changes the trigger of the Omega LED
-// example of how to run it from the command line -->
+For a quick demo, you can save this to `/root/greeting.js`
 
-// TODO: add example of writing a basic script and running it - script should say good morning, good afternoon, good evening based on the system time, also have the Omega LED start blinking at the beginning of the script, when the print is done, sleep for 10 seconds, and then set it back to default-on
+```javascript
+// Importing packages
+var fs      = require('fs');
+var util    = require('util');
+    exec    = require('child_process').exec;
+
+var child = exec('uci get system.@led[0].sysfs',
+      function (error, stdout, stderr) {
+        ledName = stdout;
+        }
+    );
+
+// find the path to the Omega LED
+// TODO: test for stripping needs
+ledTriggerPath = '/sys/class/leds/' + ledName + '/trigger'
+
+// Set the Omega LED trigger to "timer" so that it blinks
+fs.open(ledTriggerPath, 'w', (err, fd) => {
+    fs.write(fd, 'timer', (fd) =>{
+        fs.close(fd);
+    });
+});
+
+
+// Print a greeting based on the time of day
+// Gets the current time
+currentTime = Date();
+
+// Sets the Omega LED trigger to "default-on"
+if (currentTime.getHours() < 12) {
+        conosle.log('Good morning.');
+}
+else if (currentTime.getHours() < 18  && currentTime.getHours() >= 12) {
+        conosle.log('Good afternoon.');
+}
+else {
+        conosle.log('Good evening.');
+}
+
+// Set the Omega LED back to being always on
+setTimeout(() => {
+    fs.open(ledTriggerPath, 'w', (err, fd) => {
+        fs.write(fd, 'default-on', (fd) =>{
+            fs.close(fd);
+        });
+    });
+}, 5000);
+```
 
 You can use NodeJS the same way you would on a computer. Just write a script and execute it with the following command:
 
-```
+``` bash
 node /path/to/script.js
 ```
+
+
+### npm
+
+npm stands for Node Package Manager. As the name implies, it's the official way of installing and updating node packages. Node is usable on its own, but npm gives you access to a whole new world of software others have built - so you don't need to do it yourself!
+
+#### Installing npm
+
+The commands and procedure is much the same as installing NodeJS:
+
+``` bash
+opkg update
+opkg install npm
+```
+
+>If you've updated already, you can skip it.
+
+
+### Using npm
+
+Installing packages with npm is easy, all you need is the package name and npm installed. Then you can run the following command:
+
+``` bash
+npm install <package>
+```
+
+Not only can npm install packages, it can also create a package out of your project! To do so, run the command below, it will guide you through the creation of your own node package.
+
+``` bash
+npm init
+```
+
+If you have packages installed already, they will be included as dependencies, and your package.json will be updated accordingly.
 
 ### Going further
 
@@ -58,11 +130,24 @@ This section will give you more information on how you can use NodeJS on the Ome
 
 [NodeJS Documentation](https://nodejs.org/api/)
 
-<!-- #### Omega NodeJS packages -->
+#### Omega Expansion NodeJS packages
 
-<!-- // several nodejs packages created by onion to control omega Expansions -->
-<!-- // have a list of articles with links -->
-<!-- // note: we will create a fourth documentation section, reference, to house all of th e existing documentation -->
+Currently, all software for the Omega Expansions are available through `opkg`.
+
+``` bash
+opkg install node-oled-exp
+opkg install node-pwm-exp
+opkg install node-relay-exp
+```
+
+Documentation for the packages can be found on the main [Onion Documentation](https://docs.onion.io) site.
+
+[OLED Expansion](https://docs.onion.io/omega2-docs/oled-expansion-node-module.html)
+
+[PWM Expansion](https://docs.onion.io/omega2-docs/pwm-expansion-node-module.html)
+
+[Relay Expansion](https://docs.onion.io/omega2-docs/relay-expansion-node-module.html)
+
 
 <!-- #### Using Blynk with the Omega -->
 
