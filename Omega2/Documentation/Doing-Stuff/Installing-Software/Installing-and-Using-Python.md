@@ -64,11 +64,11 @@ opkg install python3
 ```
 
 
-### Installing Additional Python Modules
+### Getting More Python Modules
 
 There's two ways to install additional Python modules on the Omega, either using `opkg` to install precompiled packages, or using `pip`, the Python package manager.
 
-#### Using `opkg`
+### Using `opkg` to Install Python Modules
 
 Once you've installed Python (or Python3), you can use `opkg` to install additional Python packages. This is probably the quicker method, but the selection of available packages is likely smaller than when using `pip`.
 
@@ -104,11 +104,11 @@ And then your scripts can import the module:
 import urllib3
 ```
 
-#### Using `pip`
+### Using `pip` to Install Python Modules
 
 The official Python package manager, `pip`, is the standard way of installing Python modules on a system. You will get a large selection of available packages from which to choose.
 
-##### Installing `pip`
+#### Installing `pip`
 
 We'll need to first install `pip` on the Omega:
 
@@ -119,7 +119,7 @@ opkg install python-pip
 
 > Note: use `opkg install python3-pip` to install `pip` for Python3
 
-##### Installing Modules
+#### Installing Modules
 
 To install a module:
 
@@ -137,7 +137,7 @@ pip install paho-mqtt
 
 
 
-##### Fixing the Setup Tools Issue
+#### Fixing the Setup Tools Issue
 
 If you're trying to install a Python module with `pip` and get an error like the following:
 
