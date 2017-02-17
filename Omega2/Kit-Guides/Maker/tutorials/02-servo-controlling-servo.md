@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 2
 ---
 
-## Controlling Servos with the PWM Expansion {#controlling-servos-with-the-pwm-expansion}
+## Controlling Servos with the PWM Expansion {#MAK02-servo-controlling-servo}
 
 In this tutorial we will learn how to control servo motors using the PWM Expansion with Python. But first, let's briefly introduce servo motors.
 
@@ -52,7 +52,7 @@ Grab the following from your kit:
 //    * essentially create the servo class (from the file above), can skip the getSettings, setupMinAngle, and setupMaxAngle functions for the purposes of this example
 //    * make sure the class follows the angle described in the servo section above ie 0˚->180˚ as opposed to -90-˚>90˚
 // * the program should be something along the lines of setting the servo to 0˚, 45˚, 90˚, 135˚, 180˚, and then back down by 45˚ steps, have a noticeable but not annoyingly long delay between the steps
-//  * have it run in an infinite loop 
+//  * have it run in an infinite loop
 
 // TODO: implement this servo class in a separate file, include the file from the previous exp -->
 
@@ -82,7 +82,7 @@ class Servo:
 		self.step 		= self.range / float(180)
 
 		# calculate the period (in us)
-		self.period 	= (1000000 / self.pwmDriver.getFrequency()) 
+		self.period 	= (1000000 / self.pwmDriver.getFrequency())
 
 		# initialize the min and max angles
 		self.minAngle 	= 0
@@ -122,10 +122,10 @@ from motors import Servo
 import time
 
 def main():
-    
-	standardServo = Servo(0, 500, 2500) 
+
+	standardServo = Servo(0, 500, 2500)
 	microServer = Servo(1, 500, 2000);
-    
+
 
 	standardServo.setAngle(90.0)
 	microServo.setAngle(90.0)
@@ -225,6 +225,8 @@ The time Python library is used here to provide a way to delay the signals trans
 
 In reality, there's always going to be differences in the hardware we use even if they're of the same make and model.
 
-For this reason, we can't send the same signals to the different motors and expect them to behave exactly the same. The minimum and maximum pulses we used to instantiate our servo objects - `500`, `2000`, `500`, `2500` - are values we've found to work with servos in our lab. 
+For this reason, we can't send the same signals to the different motors and expect them to behave exactly the same. The minimum and maximum pulses we used to instantiate our servo objects - `500`, `2000`, `500`, `2500` - are values we've found to work with servos in our lab.
 
 Due to these reasons, you should do some testing to find the numbers that work for your particular hardware. This proccess is called calibration. See if you can use the command line tools or the libraries to figure out what duty cycles correspond to what kind of movement in your own servos.
+
+Next time, we [spin a motor](#MAK03-servo-h-bridge).

@@ -5,7 +5,7 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 7
 ---
-## Isolated Control with the Relay Expansion {#isolated-control-with-the-relay-expansion}
+## Isolated Control with the Relay Expansion {#MAK07-relay-controlling-circuits}
 
 In this tutorial, we'll use a switch with the Omega Relay expansion to turn a buzzer on or off. Along the way, we'll be looking into why relays are useful, and go into more detail regarding pitfalls when interacting with hardware.
 
@@ -179,3 +179,6 @@ That's why we consider all the variables in this circuit by reading from the rel
 #### Logging Errors and Successes
 
 There's often a great deal of difference between what we *expect* our software to do versus what our software *actually* does. Logging is how we can sync up the expected behaviour with actual behaviour. Printing out values of variables, messages of success and failures, we bring what is normally hidden to light. This way, we can follow our code as it runs and make sure it's doing what we really want.
+
+
+Next time, sky's the limit!

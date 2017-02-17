@@ -5,7 +5,7 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 4
 ---
-## Writing Text to the OLED Display {#writing-text-to-oled-display}
+## Writing Text to the OLED Display {#MAK04-oled-writing-text}
 
 In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python library.
 
@@ -103,3 +103,5 @@ This is a very rudimentary  way of generating a random number, and it is not act
 ### Pseudo-Random vs. True Random
 
 Securing messages on the internet is currently the biggest way random numbers are used right now. Almost all methods of sending and receiving secure messages need truly random numbers. As an extremely simplified explaination, If the numbers used are generated from an algorithm (like the one above), the secure message can be decoded by coyping the algorithm and predicting the random number output. Cyber-security is a much much larger topic than we can cover here. If you are interested, there's a great deal of resources available online from much more qualified sources.
+
+Next time, we [fiddle with the screen](#MAK05-oled-change-settings).

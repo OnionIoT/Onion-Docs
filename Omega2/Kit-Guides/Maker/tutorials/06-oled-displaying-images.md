@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 6
 ---
 
-## Drawing on the OLED Screen {#drawing-on-the-oled-screen}
+## Drawing on the OLED Screen {#MAK06-oled-displaying-images}
 
 This tutorial will walk you through drawing to the OLED Expansion. It will demonstrate a simple line drawing script and go through how to represent images and image data in your scripts.
 
@@ -78,7 +78,7 @@ class buffer:
             for y in range(0,PAGE_MAX+1):
                  tmpframe[x].append(0)
         return tmpframe
-		
+
 
 def getPosition (maxPos, orientation, located):
     pos = 0
@@ -199,3 +199,4 @@ You'll probably notice there's a *lot* of error checking and user direction in t
 
 The OLED screen we use is pretty different from the ones you have on the lastest smartphones and tablets. It isn't design to be addressable through exact pixel co-ordinates (as you already know). This is because it is designed to be operated by the I2C protocol, which reads and writes bytes only. For ease of manufacture, and to keep the cost under control, the screen accepts directions byte-by-byte. There's a great way to draw pixel by pixel using a pixel-based buffer and translating it to bytes. If you want to go further, try implementing it and change the script to draw single-pixel horizontal lines!
 
+Next time, we [make some noise](#MAK07-relay-controlling-circuits).

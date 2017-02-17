@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 1
 ---
 
-## Dimming LEDs with the PWM Expansion {#dimming-leds-with-pwm-expansion}
+## Dimming LEDs with the PWM Expansion {#MAK01-servo-dimming-led}
 
 <!-- // TODO: need to capitalize Python EVERYWHERE -->
 
@@ -226,4 +226,6 @@ Before we initialize the oscillator, we can check if it's already on with `pwmEx
 
 ### What's Math?
 
-You'll notice a lot of mathematical operations going on with the math module in python. Combined, this allows the brightness of the LEDs to vary sinusoidally. Python's built in mathematical operations are pretty powerful, but it does have some pitfalls which we'll go over next tutorial.
+You'll notice a lot of mathematical operations going on with the math module in Python. Combined, this allows the brightness of the LEDs to vary sinusoidally. Python's built in mathematical operations are pretty powerful, but it does have some pitfalls which we'll go over next tutorial.
+
+Next time, we [control servos](#MAK02-servo-controlling-servo).

@@ -7,7 +7,7 @@ order: 4
 ---
 <!-- // Note from Lazar: for this and the rest of the pwm expansion articles, see https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py for code example, this (or something similar) is what the final result will be -->
 
-## Controlling a DC Motor with an H-Bridge {#controlling-a-dc-motor-with-an-h-bridge}
+## Controlling a DC Motor with an H-Bridge {#MAK03-servo-h-bridge}
 
 <!-- // this tutorial will show us how to control a dc motor using an h-bridge. we'll also continue using the class from the first example to create classes to help us accomplish our goals -->
 For this tutorial, we'll be controlling a motor using the PWM expansion. To do this, the PWM expansion will send appropriate signals to an 'H-bridge' by changing duty cycles, and the H-bridge will transmit the signal to the motor. Using three switches, we can send signals to change the speed and direction of the motor
@@ -294,3 +294,5 @@ By checking input against a lookup table before sending commands, we can guarant
 DC motors rely on an applied voltage to run, and using PWM means the motor is actually being 'tapped' by a series of pulses. Sort of like pushing a box to make it move versus tapping it really quickly. There's a limit to how short each tap can be before the the motor won't have time to react to it - if you send out a duty cycle of less than about 15% at 50Hz, you'll see the motor would wiggle, but won't rotate at all. Another way to see this in action is to set the motor to about 30%, but set the frequency to 100Hz, the same thing should happen, since the actual pulses of 'high' voltage being sent to the motor is dropping below a certain timeframe.
 
 Try out different outputs to the motor and see how it behaves. If you're testing a project with motors and want to slow it down to debug, keeping the limitations of PWM motor control in mind can save you a lot of time!
+
+Next time, we [write text to a screen](#MAK04-oled-writing-text).
