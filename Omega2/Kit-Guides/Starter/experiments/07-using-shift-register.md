@@ -45,11 +45,13 @@ These have been highlighted in the image below:
 We'll be building a circuit on your breadboard using the following components:
 
 * Omega2 plugged into Expansion Dock
-* 8x LEDs
-* 17x Jumper Wires
-* 8x <!-- TODO: Find resistance value --> Resistors
 * Breadboard
 * Shift Register
+* 8x LEDs
+* Jumper Wires
+    * 17x M-M
+* Resistors
+    * 8x 200Ω
 
 #### Hooking up the Components
 
@@ -66,7 +68,7 @@ Now there are a lot of connections you'll need to make in order to power the IC 
   - Connect pin 16 and pin 10 to the positive rail (Vcc)
   - Connect pin 8 and pin 13 to the negative rail (Ground)
 
-  <!-- TODO: Insert picture of this stage -->
+  <!-- TODO: IMAGE picture of this stage -->
 
 2. Connecting your Omega
 
@@ -76,7 +78,7 @@ Now there are a lot of connections you'll need to make in order to power the IC 
   - Connect the Ground header to the negative rail on the breadboard
   - Connect the 3.3V header to the positive rail on the breadboard
 
-  <!-- TODO: Insert picture of this stage -->
+  <!-- TODO: IMAGE picture of this stage -->
 
 
 3. Connecting your LEDs
@@ -84,7 +86,7 @@ Now there are a lot of connections you'll need to make in order to power the IC 
   - Connect 8 LEDs the same way we did in experiment 2, (cathode in ground, anode connected to resistor)
   - Connect the jumper wires from the LEDs to the output pins on the shift register. In order from first to last these are pin 15 (QA), followed by pin 1(QB) to pin7(QH)
 
-  <!-- TODO: Insert picture of this stage -->
+  <!-- TODO: IMAGE picture of this stage -->
 
 And there you have it, it's all wired up and ready to run. Now let's take a look at the code we're going to use to control our shift register.
 

@@ -12,7 +12,8 @@ We've just learned about shift registers, now let's apply that knowledge to cont
 
 <!-- seven segment -->
 
-``` {r child = '../../shared/seven-segment.md'}
+```
+{r child = '../../shared/seven-segment.md'}
 ```
 
 ### Building the Circuit
@@ -35,16 +36,17 @@ Using the shift register and a few additional GPIOs from the Omega, we will cont
 <!-- TODO: write out critical instructions -->
 <!-- TODO: consider explaing the need for resistors (common gnd) -->
 
-First things first, if you've done the previous experiment, keep the shift register wired up just like you had it. If you didn't, [check it out](#STK07-building-the-circuit) and wire the Shift Register to the Expansion Dock and Breadboard exactly the same way.
+First things first, if you've done the previous experiment, keep the shift register wired up just like you had it. If you didn't, [check it out](#STK07-building-the-circuit) and wire the Shift Register to the Expansion Dock and Breadboard exactly the same way. For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
 
 <!-- TODO: IMAGE diagram of shift register/dock/breadboard wiring -->
+
 
 When you have the shift register wired up, it's time to connect it to the 7-segment display. First, we recommend you set up the resistors across the center first, and do all the wiring in one go.
 
 For each resistor:
 
 1. Pick a column.
-1. Connect one end of the resistor to row `G`
+1. Connect one end of the resistor to row `g`
 1. Connect the other end to row `d`
 
 We've included a diagram below for reference instead of instructions, as this one has a lot of wiring to do. All ends connecting to the 7-segment display require F jumper heads.
@@ -125,7 +127,7 @@ class sevenSegment:
     		self.digitPin[i] = onionGpio.OnionGpio(dPin[i])
 ```
 
-Main script `STK08-seven-segment-display`:
+Once that's out of the way, create `STK08-seven-seg-display` and paste the following in it:
 
 ``` python
 import registerClass
@@ -155,16 +157,23 @@ def __main__():
         for i in range(inputLen):
         	sevenDisplay.showDigit(i,inputHexString[i])
 ```
+
+To see it in action, make sure you have `registerClass.py`, `sevenSegDisplay.py` and `STK08-seven-seg-display.py` in your `/root/` directory.
+
+Then run the following:
+
+``` bash
+python /root/STK08-seven-seg-display.py
+```
+
+
 #### What to Expect
 
-// walk them through running a program from the command line with arguments
+The Python code above should ask you for a hex string, then print the digits one by one on to the 7 segment display. Infinite loops here as well, and you can exit with `Ctrl-C`
 
-// description of whatever they put as the argument will be display
-// example: display the numbers from your Omega name
+Now you may be wondering if what you saw is expected behaviour - yes. However you probably guessed that it really should be displaying them all at once.
 
-The Python code above should ask you for a hex string, then print the digits one by one on to the 7 segment display. If you're wondering if this is expected behaviour... yes. However you probably guessed that it really should output them all at once.
-
-If you'd like to see how that looks, we've provided a shell script below that does this properly. 
+If you'd like to see how that looks, we've provided a shell script below that does this properly.
 
 
 ``` bash
@@ -311,25 +320,25 @@ echo 1 >/sys/class/gpio/gpio18/value
 done
 ```
 
-To run it, copy the code to `/root/STK08-seven-seg-display.sh` then run the following:
+To run it, copy the code to `/root/STK08-seven-seg-display.sh` then run the following with a hex number as the first argument:
 
 ```
 sh /root/STK08-seven-seg-display.sh [hex number]
 ```
 
-You'll have to put a hex number as the first argument.
+Trust us when we say these two scripts are intended to be doing the same thing. If you're wondering why? Read on!
 
 
 ### A Closer Look at the Code
 
-This experiment has us putting a class inside a class,
-//TODO FINISH
+To display numbers on the 7-Segment display, we mapped the outputs to binary using a **dictionary**. We put a class inside a class to better encapsulate the operation of the physical components. However the end result was limited by the software we used: we wanted and expected thed 7-segment display to light up all at once, but our script couldn't make it happen fast enough. In fact there's no way in Python to get our inteded behaviour without basically calling the shell commands used in the script through Python.
+
 
 #### Software Limitations
 
-// explanation of how they work, why we h
+In this experiment, software and hardware come together to produce behaviour we didn't intend. The code runs as well as it possibly can, and the hardware does its best to operate from the signals its given, but it ultimately doesn't make the result workable. The root cause is the way the libraries are programmed. The GPIOs are operated by reading and writing to files, and the `onionGpio` module operates this in a very safe and consistent way through our C library - meaning it's quite slow.
 
-In this experiment, software and hardware come together to produce behaviour we didn't intend. The code runs as well as it possibly can, and the hardware does its best tox operate from the signals its given, but it ultimately doesn't make the result workable. The root cause is the way the libraries are programmed. The GPIOs are operated by file access, and the `onionGpio` module operates them in a very safe way. // TODO finish this
+The reason why the shell scripted works is because it skips a bunch of unnecessary safety steps in writing to the GPIO outputs. If your code is trying to push the boundaries of the hardware, it necessitates a deeper understanding of the hardware.
 
 
 #### Classes using Classes
@@ -343,7 +352,7 @@ Logically separating the devices like this makes it easier in complicated projec
 
 #### Dictionary
 
-Dictionaries work in programming much the same way as in real life. By keying a definition to a name or title, you can look it up. Python has a built-in dictionary data type, which we make use of here to map out letters and numbers to the shift. Dictionaries are **immutable** - they cannot be changed after they are created.
+Also known as 'hash tables', though not strictly the same. Dictionaries work in programming much the same way as in real life. By keying a definition to a name or title, you can look it up. Python has a built-in dictionary data type, which we make use of here to map out letters and numbers to the shift. Dictionaries are **immutable** - they cannot be changed after they are created.
 
 We use a dictionary here as a translation between string characters and the shift register representation of it. We can simply insert `digitMap[<character>]` to the shift register display function and let the `ShiftRegister` object sort out the rest without needing to copy-paste the binary code.
 
