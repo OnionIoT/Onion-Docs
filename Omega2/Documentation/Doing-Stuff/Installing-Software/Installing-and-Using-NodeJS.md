@@ -40,45 +40,50 @@ var util    = require('util');
 
 var child = exec('uci get system.@led[0].sysfs',
       function (error, stdout, stderr) {
-        ledName = stdout;
+            var triggerPath = '/sys/class/leds/' + stdout.replace('\n','') + '/trigger'
+            blinkLed(triggerPath);
+            resetAndExit(triggerPath);
         }
     );
 
 // find the path to the Omega LED
 // TODO: test for stripping needs
-ledTriggerPath = '/sys/class/leds/' + ledName + '/trigger'
 
 // Set the Omega LED trigger to "timer" so that it blinks
-fs.open(ledTriggerPath, 'w', (err, fd) => {
-    fs.write(fd, 'timer', (fd) =>{
-        fs.close(fd);
+function blinkLed (triggerPath) {
+    fs.open(triggerPath, 'w', (err, fd) => {
+        fs.write(fd, 'timer', () =>{
+            fs.close(fd);
+        });
     });
-});
+}
+
+function resetAndExit (triggerPath) {
+    setTimeout(() => {
+        currentTime = new Date();
+
+        // Sets the Omega LED trigger to "default-on"
+        if (currentTime.getHours() < 12) {
+                console.log('Good morning.');
+        }
+        else if (currentTime.getHours() < 18  && currentTime.getHours() >= 12) {
+                console.log('Good afternoon.');
+        }
+        else {
+                console.log('Good evening.');
+        }
+
+        // Set the Omega LED back to being always on
+        fs.open(triggerPath, 'w', (err, fd) => {
+            fs.writeSync(fd, 'default-on');
+            fs.closeSync(fd);
+        });
+    }, 5000);
+}
 
 
 // Print a greeting based on the time of day
 // Gets the current time
-currentTime = Date();
-
-// Sets the Omega LED trigger to "default-on"
-if (currentTime.getHours() < 12) {
-        conosle.log('Good morning.');
-}
-else if (currentTime.getHours() < 18  && currentTime.getHours() >= 12) {
-        conosle.log('Good afternoon.');
-}
-else {
-        conosle.log('Good evening.');
-}
-
-// Set the Omega LED back to being always on
-setTimeout(() => {
-    fs.open(ledTriggerPath, 'w', (err, fd) => {
-        fs.write(fd, 'default-on', (fd) =>{
-            fs.close(fd);
-        });
-    });
-}, 5000);
 ```
 
 You can use NodeJS the same way you would on a computer. Just write a script and execute it with the following command:
