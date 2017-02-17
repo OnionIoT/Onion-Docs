@@ -64,9 +64,13 @@ opkg install python3
 ```
 
 
-#### Installing Additional Python Modules
+### Getting More Python Modules
 
-You can choose to install the light version of Python or Python3, and then install the individual packages that you require.
+There's two ways to install additional Python modules on the Omega, either using `opkg` to install precompiled packages, or using `pip`, the Python package manager.
+
+### Using `opkg` to Install Python Modules
+
+Once you've installed Python (or Python3), you can use `opkg` to install additional Python packages. This is probably the quicker method, but the selection of available packages is likely smaller than when using `pip`.
 
 To see a list of the python packages available via `opkg`, enter the following commands:
 
@@ -74,7 +78,7 @@ To see a list of the python packages available via `opkg`, enter the following c
 opkg update
 opkg list | grep python
 ```
-*Note: enter `opkg list | grep python3` to get the packages specific to python3*
+> Note: use `opkg list | grep python3` to get the packages specific to Python3
 
 
 This will list all the available packages with python in their name. You can run:
@@ -87,15 +91,104 @@ To install the desired package.
 
 >For more on `opkg` you can check out our [guide to using opkg](#software-using-opkg)
 
-<!-- // DONE: add note about installing python3 packages -->
+For example, if you would like your script to make HTTP requests, you will need the `urllib3` package:
 
-<!-- TODO: LATER: talk about pip -->
+```
+opkg update
+opkg install python-urllib3
+```
+
+And then your scripts can import the module:
+
+```
+import urllib3
+```
+
+### Using `pip` to Install Python Modules
+
+The official Python package manager, `pip`, is the standard way of installing Python modules on a system. You will get a large selection of available packages from which to choose.
+
+#### Installing `pip`
+
+We'll need to first install `pip` on the Omega:
+
+```
+opkg update
+opkg install python-pip
+```
+
+> Note: use `opkg install python3-pip` to install `pip` for Python3
+
+#### Installing Modules
+
+To install a module:
+
+```
+pip install <module name>
+```
+
+Let's say I'm writing a script that uses MQTT and would like to use the `paho-mqtt` module:
+
+```
+pip install paho-mqtt
+```
+
+> Much like `opkg`, `pip` is a feature-complete package manager. Run `pip --help` to see more usage options or look up their [documentation](https://packaging.python.org/installing/).
+
+
+
+#### Fixing the Setup Tools Issue
+
+If you're trying to install a Python module with `pip` and get an error like the following:
+
+```
+root@Omega-296A:~# pip install paho-mqtt
+Collecting paho-mqtt
+  Downloading paho-mqtt-1.2.tar.gz (49kB)
+    100% |████████████████████████████████| 51kB 215kB/s
+Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-cHKrSf/paho-mqtt/
+```
+
+Don't worry! It's just a small configuration issue with the `setuptools` module and cab be **easily fixed** with the following command:
+
+```
+pip install --upgrade setuptools
+```
+
+Now you'll be able to successfully use `pip`:
+
+```
+root@Omega-296A:~# pip install --upgrade setuptools
+Collecting setuptools
+  Downloading setuptools-34.2.0-py2.py3-none-any.whl (389kB)
+    100% |████████████████████████████████| 399kB 109kB/s
+Collecting appdirs>=1.4.0 (from setuptools)
+  Downloading appdirs-1.4.0-py2.py3-none-any.whl
+Collecting packaging>=16.8 (from setuptools)
+  Downloading packaging-16.8-py2.py3-none-any.whl
+Collecting six>=1.6.0 (from setuptools)
+  Downloading six-1.10.0-py2.py3-none-any.whl
+Collecting pyparsing (from packaging>=16.8->setuptools)
+  Downloading pyparsing-2.1.10-py2.py3-none-any.whl (56kB)
+    100% |████████████████████████████████| 61kB 343kB/s
+Installing collected packages: appdirs, pyparsing, six, packaging, setuptools
+Successfully installed appdirs-1.4.0 packaging-16.8 pyparsing-2.1.10 setuptools-34.2.0 six-1.10.0
+root@Omega-296A:~# pip install paho-mqtt
+Collecting paho-mqtt
+  Using cached paho-mqtt-1.2.tar.gz
+Installing collected packages: paho-mqtt
+  Running setup.py install for paho-mqtt ... done
+Successfully installed paho-mqtt-1.2
+```
+
+<!-- TODO: maybe get rid of the preceding printout? -->
+
 
 ### Using Python
 
 Since the Omega is a Linux computer, it's really easy to get started with Python on the Omega. You can enter `python` in your command-line to start the interpreter.
 
->If you've installed python3, you'll need to enter `python3` in your command-line to get started.
+>If you've installed Python3, you'll need to enter `python3` in your command-line to get started.
 
 Note that the interpreter is a good tool for quickly testing some code, but the real power of Python comes from writing reusable scripts.
 
@@ -162,7 +255,7 @@ You can execute the script using the following command:
 python /root/greeting.py
 ```
 
->Note: If you installed python3, you would enter `python3` instead of `python`.
+> Note: If you installed Python3, you would enter `python3` instead of `python`.
 
 
 And you'll see the following output:
@@ -176,6 +269,17 @@ Good evening.
 During this time your Omega's LED will be blinking on and off.
 
 
+
+### Onion Python Modules
+
+We've developed modules for controlling the Omega's GPIOs and several Expansions. Check out the documentation for the Modules for more details:
+
+* [Controlling the Omega's GPIOs](#gpio-python-module)
+* [Controlling the OLED Expansion](#oled-expansion-python-module)
+* [Controlling the PWM Expansion](#pwm-expansion-python-module)
+* [Controlling the Relay Expansion](#relay-expansion-python-module)
+
+
 ### Going Further
 
 This section will give you more information on how you can use Python on the Omega to create fantastic projects.
@@ -185,16 +289,3 @@ This section will give you more information on how you can use Python on the Ome
 <!-- // link to some python documentation and guides for more info on getting started with python -->
 [Python 2.7 documentation](https://docs.python.org/2/)<br>
 [Python 3 documentation](https://docs.python.org/3/)
-
-<!-- #### Omega Python Modules -->
-
-<!-- // there are a bunch of python packages created by onion to control anything from omega gpios to Expansions -->
-<!-- // have a list of articles with links -->
-<!-- // note: we will create a fourth documentation section, reference, to house all of the existing documentation -->
-
-
-
-<!-- ### Using Pip - Python's package manager -->
-
-<!-- // it's possible to use pip to get additional python packages, just not for packages that need to be compiled -->
-<!-- // ask michael for implementation details -->
