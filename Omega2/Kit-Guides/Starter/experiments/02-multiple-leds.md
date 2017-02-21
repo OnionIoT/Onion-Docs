@@ -38,7 +38,7 @@ We'll be building a circuit on your breadboard using the following components:
 * 1x Omega2 plugged into Expansion Dock
 * 1x Breadboard
 * 6x LEDs
-* 7x Jumper Wires (Male-to-Male)
+* 7x Jumper Wires (M-M)
 * 6x 200Ω Resisters
 
 #### Hooking up the Components

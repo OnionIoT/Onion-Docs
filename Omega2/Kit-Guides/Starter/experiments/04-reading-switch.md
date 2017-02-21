@@ -54,7 +54,7 @@ Prepare the following components from your kit:
 * 1x Breadboard
 * 1x SPDT switch
 * 1x 200Ω Resistor
-* 4x Jumper wires (Male-to-Male)
+* 4x Jumper wires (M-M)
 * 1x Any LED color of your choice!
 
 #### Hooking up the Components
