@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 5
 ---
 
-## Changing the Display's Behavior {#changing-the-displays-behaviour}
+## Changing the Display's Behavior {#MAK05-oled-change-settings}
 
 This tutorial will show how to change how the OLED displays based on text-based user input. We'll be scrolling the display contents as well as dimming and inverting the display, let's jump in.
 
@@ -29,7 +29,7 @@ Plug your Omega2 and the OLED Expansion into the Expansion Dock like in the prev
 
 #### Writing the Code
 
-Create a file called `oledChangeSettings.py` and paste the following code in it:
+Create a file called `MAK05-oledChangeSettings.py` and paste the following code in it:
 
 ``` python
 from OmegaExpansion import oledExp
@@ -75,12 +75,12 @@ def scrollStop():
 	oledExp.scrollStop()
 
 commandFunctions  = {
-    'toggleColor': toggleColor,
-    'dimDisplay': dimDisplay,
-    'brightenDisplay': brightenDisplay,
-    'scrollHorizontal': scrollHorizontal,
-    'scrollDiagonal': scrollDiagonal,
-    'scrollStop': scrollStop
+	'toggleColor': toggleColor,
+	'dimDisplay': dimDisplay,
+	'brightenDisplay': brightenDisplay,
+	'scrollHorizontal': scrollHorizontal,
+	'scrollDiagonal': scrollDiagonal,
+	'scrollStop': scrollStop
 }
 
 def main():
@@ -89,7 +89,10 @@ def main():
 	printCommands()
 	while(True):
 		userInput = raw_input(">> ")
-		commandFunctions[userInput]()
+		try:
+			commandFunctions[userInput]()
+		except KeyError as e:
+			pass
 
 if __name__ == '__main__':
 	main()
@@ -97,18 +100,41 @@ if __name__ == '__main__':
 
 #### What to Expect
 
-
 When you run the program, the different possible commands that can be entered will be printed out on the command line. The commands will interactively change the display settings. For example, to dim the display, enter `dimDisplay`.
 
-To stop the program enter `ctrl`+`c`
+To stop the program enter `Ctrl+C`
 
 <!-- // TODO: IMAGE Add gif -->
 
 ### A Closer Look at the Code
 
-In this code we used a dictionary structure to call a particular function based on the input. This is advantageous to us, because we don't need an if statement to decide which function to call based on input.
+In this script, we use the lookup table once again to codify valid inputs. However this time, we're reading arbitrary input from the command line. This means we'll have to do some **error checking**. Additionally, we're operating with more interactivity now, so some sort of **user interface** is required to help the user with entering correct commands.
 
-// TODO: reading user input was introduced in 03, so remove it from here
-#### Reading User Input
+#### Error Checking
 
-Python allows us the ability to receive user input from the command line via the `raw_input()` function. Adding user input functionality can create an interactive user experience, where the program does different things depending on the input argument. If you want to learn more about user input, the [displaying images on the OLED](#drawing-on-the-oled-screen) tutorial developes this further.
+User input is a core part of any product - from cars to carpets. For this tutorial, we use Python's command line as the source of user input. In Python, we can request input via the `raw_input()` function. This function pauses the Python interpreter and reads keyboard commands until it sees the enter key being pressed (in most languages it's represented by the '\n' characters). Taking in user input doesn't help much if we can't interpret it and send the desired signals. This is where error checking becomes necessary.
+
+If you typed in `asdf` to the command line when prompted, nothing would happen to the screen. This is expected behavior! If the code was not error checked, we'd see something entirely different. To try it out, replace the following section in the code:
+
+``` python
+		try:
+			commandFunctions[userInput]()
+		except KeyError as e:
+			pass
+```
+
+With this:
+
+``` python
+		commandFunctions[userInput]()
+```
+
+If you did it 'right', the next time you run the code and enter an invalid command like `asdf`, the script should crash. The `try:/except:` structure prevents crashing by catching the error when it's 'thrown'. In effect, it lets you continue to type commands and change the behaviour of the OLED screen no matter how badly you mistyped them.
+
+If you want to learn more about user input, the [displaying images on the OLED](#drawing-on-the-oled-screen) tutorial developes this further.
+
+#### User interface
+
+A user interface is how software communicate to users. Here, the user interface is the list of commands we output and the prompt we print afterwards (`>>`). These come together to communicate how the software can be operated. Having you UI communicate clearly and effectively is important not only if you want to share your work, but also for future-you! When you make a cool project and come back to it later, you could have forgotten how to use it - having a clear UI can let you know how to make your project work even if you don't remember at all.
+
+Next time, we [draw some lines](#MAK06-oled-displaying-images).

@@ -55,8 +55,8 @@ Prepare the following components from your kit:
 2. Plug the push button onto the breadboard and setup its debounce circuit as show below:
     ![push-button-breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/push-button-breadboard.jpg)
     
-// TODO: photo
-
+    <!-- // TODO: photo of button and debouncer circuit with LEDs only-->
+    
     * Connect one end of the switch to the 51kΩ resistor, and the other end of that resistor to 5V on Arduino Dock.
     * Connect the other end of the switch to negative (-) power rail .
     * Connect one end of the 5.1kΩ resistor to the same point where the switch and 51kΩ resistor are connected
@@ -64,6 +64,8 @@ Prepare the following components from your kit:
     * Connect the other end of the capacitor to the negative (-) power rail.
 3. Connect the negative (-) power rail to ground (GND).
 4. Connect the point in the debounce circuit between the 5.1kΩ resistor and the capacitor to pin 2 of the Arduino Dock.
+
+<!-- // TODO: photo of assembled circuit with Arduino-->
 
 ### Writing the Code
 
@@ -79,7 +81,7 @@ Prepare the following components from your kit:
 //  * write a function to implement the above
 //  * register that function as an interrupt service routine for the push button connected gpio -->
 
-``` arduino
+``` c++
 int interruptPin = 2;       // the pin number connected to the push button interrupt
 int ledPins[] = {9, 8, 7, 6, 5, 4};       // an array of GPIO numbers with LED attached
 int pinCount = 6;           // number of GPIOs used
@@ -130,6 +132,8 @@ void setLED() {
 When the button is pressed, the left most LED should turns on. For each additional button press, another led will turn on, going from left to right. When all leds are on and the button is pressed, all the LEDs will turn off at once. Additional button presses will repeat the previous actions.
 
 In addition, if we use the `cat` command on our Omega like previous tutorial, we will see a bitwise representation of our actual LEDs.
+
+<!-- // TODO: gif -->
 
 #### A Closer Look at the Code
 

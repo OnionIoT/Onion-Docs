@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 1
 ---
 
-## Blinking an LED
+## Blinking an LED {#starter-kit-blinking-led}
 
 In our very first experiment, we're going to blink an LED on and off. This is the hardware development equivalent of the 'Hello World' program. This first experiment will start small but it will be a solid foundation for the rest of the experiments.
 

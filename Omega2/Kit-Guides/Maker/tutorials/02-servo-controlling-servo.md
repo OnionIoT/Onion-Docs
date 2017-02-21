@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 2
 ---
 
-## Controlling Servos with the PWM Expansion {#controlling-servos-with-the-pwm-expansion}
+## Controlling Servos with the PWM Expansion {#MAK02-servo-controlling-servo}
 
 In this tutorial we will learn how to control servo motors using the PWM Expansion with Python. But first, let's briefly introduce servo motors.
 
@@ -52,7 +52,7 @@ Grab the following from your kit:
 //    * essentially create the servo class (from the file above), can skip the getSettings, setupMinAngle, and setupMaxAngle functions for the purposes of this example
 //    * make sure the class follows the angle described in the servo section above ie 0˚->180˚ as opposed to -90-˚>90˚
 // * the program should be something along the lines of setting the servo to 0˚, 45˚, 90˚, 135˚, 180˚, and then back down by 45˚ steps, have a noticeable but not annoyingly long delay between the steps
-//  * have it run in an infinite loop -->
+//  * have it run in an infinite loop
 
 // TODO: implement this servo class in a separate file, include the file from the previous exp -->
 
@@ -82,7 +82,7 @@ class Servo:
 		self.step 		= self.range / float(180)
 
 		# calculate the period (in us)
-		self.period 	= (1000000 / self.pwmDriver.getFrequency()) 
+		self.period 	= (1000000 / self.pwmDriver.getFrequency())
 
 		# initialize the min and max angles
 		self.minAngle 	= 0
@@ -105,6 +105,7 @@ class Servo:
 		# program the duty cycle
 		ret = self.pwmDriver.setDutyCycle(duty)
 		return ret
+
     def setDutyCycle(self, duty):
 		"""Set duty cycle for pwm channel"""
 		ret 	= pwmExp.setupDriver(self.channel, duty, 0)
@@ -114,31 +115,34 @@ class Servo:
 		return ret
 ```
 
-Run the following Python code and see what happens:
+Paste the code below into a file called `MAK02-servoControl.py`, make sure your circuit is set up, then run it and see what happens!
 
 ``` python
 from motors import Servo
 import time
 
 def main():
-    // TODO: change the min and max pulse arguments for std servo
-    // TODO: add micro servo to this script (double check the revised class definition in 01)
-    
-	standardServo = Servo(0, 3.0, 11.5)
-    
 
-	servoControl.setAngle(90.0)
+	standardServo = Servo(0, 500, 2500)
+	microServer = Servo(1, 500, 2000);
+
+
+	standardServo.setAngle(90.0)
+	microServo.setAngle(90.0)
 	time.sleep(2)
 
 	while(True):
 		# Turn motor to the 0 angle position
-		servoControl.setAngle(0.0)
+		standardServo.setAngle(90.0)
+		microServo.setAngle(90.0)
 		time.sleep(2)
 		# Turn motor to the neutral position
-		servoControl.setAngle(90.0)
+		standardServo.setAngle(90.0)
+		microServo.setAngle(90.0)
 		time.sleep(2)
 		# Turn motor to the 180 angle position
-		servoControl.setAngle(180.0)
+		standardServo.setAngle(90.0)
+		microServo.setAngle(90.0)
 		time.sleep(2)
 if __name__ == '__main__':
 	main()
@@ -151,13 +155,13 @@ if __name__ == '__main__':
 //  - make sure in the gif it's oriented in the same way as above in the servo section
 -->
 
-The script should first initialize the servo motor to the 0 degree position.
+The script should first initialize the servo motor to the 90 degree position.
 
 Then a repeating pattern happens. First, the motor shaft move to the `0` degree position staying there for two seconds. Next the shaft will move to the `90` degree (neutral) positon and stay there for two seconds. Finally it will move to the `180` degree positon and stay there for two seconds. Then the pattern will repeat itself.
 
 Since the pattern will repeat infinitely, you will need to break by entering `Ctrl-C`.
 
->Due to the nature of the servo motors in the kit, it's highly recommended to turn the oscillator off after killing the script by running the following in ssh or terminal:
+**Note**: Due to the nature of the servo motors in the kit, it's highly recommended to turn the oscillator off after killing the script by running the following in ssh or terminal:
 ```
 pwm-exp -s
 ```
@@ -188,9 +192,9 @@ In this example, the loop does a simple progression of commands, but the concept
 
 #### Math in Python
 
-In this code example, as well as others, you will notice that decimal places are included for integer numbers, regardless if it is necessary or not (eg. `3.0`). This is to tell Python to interpret the number as a decimal, or **floating point**, number, which will make it behave like your typical pocket calculator.
+In this code example, you can find integer numbers with decimal points (eg. `3.0`). The reason `3.0` is used instead of `3` is to tell Python to interpret the number as a decimal, or **floating point** number. This makes it behave like a number in a calculator.
 
-However, if we specified our numbers as integers (eg. `3`), we'd be doing **integer math**. In this case, Python basically **drops the decimal part** of any calculation,  such as division. There are times when this is not an issue, such as counting discrete objects or iterating through loops, but you have to be careful when you write a math equation and expect a decimal answer!
+If we dropped the decimal point (simply using `3`), we'd be doing **integer math**. In this case, Python will literally **drop the decimal part** of any calculation. This is desired behaviour in some cases, such as when counting objects or iterating through loops. But this behaviour can be the source of numerous errors if you need to do precise calculations!
 
 To see the difference for yourself, start the interactive Python interpreter on the command line by simply typing `python`, then run each of the `print` commands below:
 
@@ -217,8 +221,12 @@ Due to the way decimal and integer numbers are handled by computers, this also a
 The time Python library is used here to provide a way to delay the signals transmitted to the servo. Without the `time.sleep()` function calls, the code would be executed as fast as the Omega can possibly handle, which is pretty much faster than the servo motor can handle. The Omega2 runs at over 500MHz while the servo receives commands from 50~1kHz, which is over 50,000 times faster than the servo can react! So we use the `time.sleep()` function to give the command some time to take effect on the servo.
 
 
-### Moving Beyond
+### Hardware Calibration
 
-// TODO: clean this paragraph up
+In reality, there's always going to be differences in the hardware we use even if they're of the same make and model.
 
-Since each servo motor is slightly different, we instantiate our class with the channel that the motor is connected to along with the duty cycle for the 0 degree position and the duty cycle for the `180` degree position. The numbers we used (`3.0` and `11.5`) are values we've tested and found to work with our particular servo. Due to manufacturing imperfections, design flaws, and a whole host of other issues, you would often need to test and find the numbers that work for your particular servo at the angles you need - this is called calibration. Moving beyond, see if you can use the command line tools or the libraries to figure out what duty cycles correspond to what kind of movement in your own servo.
+For this reason, we can't send the same signals to the different motors and expect them to behave exactly the same. The minimum and maximum pulses we used to instantiate our servo objects - `500`, `2000`, `500`, `2500` - are values we've found to work with servos in our lab.
+
+Due to these reasons, you should do some testing to find the numbers that work for your particular hardware. This proccess is called calibration. See if you can use the command line tools or the libraries to figure out what duty cycles correspond to what kind of movement in your own servos.
+
+Next time, we [spin a motor](#MAK03-servo-h-bridge).

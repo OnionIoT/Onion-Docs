@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 10
 ---
 
-# Controlling an LCD Screen {#starter-kit-controlling-an-lcd-screen}
+## Controlling an LCD Screen {#starter-kit-controlling-an-lcd-screen}
 
 <!-- // in this experiment, we will:
 //  * be building on the previous experiment
@@ -15,72 +15,84 @@ order: 10
 
 In this experiment, we will be building on the previous experiment by writing to an LCD screen using the I2C protocol.
 
-## LCD Screen
-<!-- // should be in its own markdown file -->
+<!-- lcd -->
 ```{r child = '../../shared/lcd.md'}
 ```
 
-## The I2C Bus
-<!-- // should be in its own markdown file -->
-
+<!-- i2c -->
 ```{r child = '../../shared/i2c.md'}
 ```
 
-## Building the Circuit
+### Building the Circuit
 
-// start from the temperature sensor circuit
-// straight-forward addition: I2C SCL+SDA, Vcc (3.3V), GND
+<!-- // start from the temperature sensor circuit
+// straight-forward addition: I2C SCL+SDA, Vcc (3.3V), GND -->
+We'll be using the same temperature sensor circuit from the previous experiment, but we'll also be connecting the I2C display to the Omega.
 
+#### What You'll Need
 
-### Hooking up the Components
+If you've taken apart your temperature sensor circuit, wire it back up according to the instructions in the [previous experiment](#starter-kit-reading-one-wire-temperature-sensor).
 
-// refer them back to the temp sensor article for that part
+Then grab the following from your kit:
+
+* Jumper wires
+    * 4x M-F
+
+#### Hooking up the Components
+
+<!-- // refer them back to the temp sensor article for that part
 
 // some i2c devices will require pull-up resistors on one, or both of SCL and SDA
 // [experiment with the i2c screen and see if it needs the resistors]
-// Gabe: the community member's tutorial has the screen hooked straight to the GPIOs, no pullups, but requires 5V power
+// Gabe: the community member's tutorial has the screen hooked straight to the GPIOs, no pullups, but requires 5V power -->
 
-## Writing the Code
+1. If you've taken apart your temperature sensor circuit, wire it back up according to the instructions in the [previous experiment](#starter-kit-reading-one-wire-temperature-sensor).
+1. Connect the pins from the I2C display to the Expansion Dock according to this table:
+
+| Display Pin | Expansion Dock |
+|---------|----------------|
+| GND     | GND            |
+| VCC     | 5V             |
+| SDA     | SDA            |
+| SCL     | SCL            |
+
+<!-- TODO: photo -->
+
+### Writing the Code
 
 <!-- // have a script that:
 //  * reads the temperature data
 //  * writes the time and temperature to the display once a minute
 //    * use the onion i2c module to write to the display -->
 
-For this experiment, we'll be using our Onion I2C Python library which conveniently exposes the Omega's I2C functionality. If you're curious, you can see how it works in our 
+For this experiment, we'll be using our Onion I2C Python library which conveniently exposes some I2C functionality. If you're curious, you can see how it works in our [I2C Python module reference](#i2c-python-module).
 
-First, let's create a file containing a class that exposes the Omega's I2C functionality. Create a file called `i2c_lib.py` and paste the following code:
+>The LCD display driver code is based on user [**natbett**'s post](https://www.raspberrypi.org/forums/viewtopic.php?f=32&t=34261&p=378524) on the Raspberry Pi forums.
+
+First, let's create a file containing a class to work with the I2C bus. Create a file called `i2cLib.py` and paste the following code:
 
 ``` python
-from time import *
+from time import sleep
 from OmegaExpansion import onionI2C
 
-class i2c_device:
-    def __init__(self, addr, port=1):
+sleepInterval = 0.0001
+
+class i2cDevice:
+    def __init__(self, addr, port=0):
         self.addr = addr
         self.i2c = onionI2C.OnionI2C(port)
 
-# Write a single command
+    # write a single command
     def write_cmd(self, cmd):
         self.i2c.write(self.addr, [cmd])
-        sleep(0.0001)
-
-# Write a command and argument
-    def write_cmd_arg(self, cmd, data):
-        self.i2c.writeByte(self.addr, cmd, data)
-        sleep(0.0001)
-
-# Write a block of data
-    def write_block_data(self, cmd, data):
-        self.i2c.writeBytes(self.addr, cmd, [data])
-        sleep(0.0001)
+        sleep(sleepInterval)
 ```
 
 Next, let's create a file that has all the low level code needed to drive the LCD display. Create a file called `lcdDriver.py` and paste the following in it:
 
 ``` python
-import i2c_lib
-from time import *
+import i2cLib
+from time import sleep
 
 # commands
 LCD_CLEARDISPLAY = 0x01
@@ -128,7 +140,7 @@ En = 0b00000100 # Enable bit
 Rw = 0b00000010 # Read/Write bit
 Rs = 0b00000001 # Register select bit
 
-class lcd:
+class Lcd:
     #initializes objects and lcd
     def __init__(self,address):
         self.address = address
@@ -138,7 +150,8 @@ class lcd:
         self.line3= "";
         self.line4= "";
         
-        self.lcd_device = i2c_lib.i2c_device(self.address)
+        # use the Onion I2C module to handle reading/writing
+        self.lcd_device = i2cLib.i2cDevice(self.address)
 
         self.lcd_write(0x03)
         self.lcd_write(0x03)
@@ -167,7 +180,7 @@ class lcd:
         self.lcd_write_four_bits(mode | (cmd & 0xF0))
         self.lcd_write_four_bits(mode | ((cmd << 4) & 0xF0))
 
-    # write string display
+    # write a string to the display
     def lcd_display_string(self, string, line):
         if line == 1:
             self.line1 = string;
@@ -184,6 +197,11 @@ class lcd:
 
         for char in string:
             self.lcd_write(ord(char), Rs)
+    
+    # print an array of strings        
+    def lcd_display_string_array(self, strings):
+        for i in range(min(len(strings), 4)):
+            self.lcd_display_string(strings[i], i+1)
 
     # clear lcd and set to home
     def lcd_clear(self):
@@ -206,58 +224,89 @@ class lcd:
         self.refresh()
 ```
 
-
-
-Let's create a file called `temperatureLCD.py` in `/root`. Paste the code below in it:
+Now let's write the main routine for the experiment. Create a file called `STK10-temperatureLCD.py` in `/root`. Paste the code below in it:
 
 ``` python
+import lcdDriver
+from temperatureSensor import TemperatureSensor
+import oneWire
 
-lcdAddress = 0x3f                                           # default address of i2c backpack is 0x3f by default
+# default address of i2c backpack is 0x3f by default
+lcdAddress = 0x3f                                       
 
-lcd = lcddriver.lcd(lcdAddress)                             # instantiate lcd object
-lcd.backlightOn()                                           # turn backlight on
+# setup one wire temperature sensor object
+oneWireGpio = 19 # set the GPIO that we've connected the sensor to
+pollingInterval = 1 # seconds
 
-# instantiate one wire temperature sensor object
-
-while 1:
-    # read temp data
-    # write to LCD screen
+def __main__():
+    # check if 1-Wire was setup in the kernel
+    if not oneWire.setupOneWire(str(oneWireGpio)):
+        print "Kernel module could not be inserted. Please reboot and try again."
+        return -1
+        
+    # get the address of the temperature sensor
+    # it should be the only device connected in this experiment
+    sensorAddress = oneWire.scanOneAddress()
     
-    time.sleep(pollingInterval)
+    sensor = TemperatureSensor("oneWire", { "address": sensorAddress, "gpio": oneWireGpio })
+    if not sensor.ready:
+        print "Sensor was not set up correctly. Please make sure that your sensor is firmly connected to the GPIO specified above and try again."
+        return -1
+
+    # setup LCD
+    lcd = lcdDriver.Lcd(lcdAddress)
+    lcd.backlightOn()    
+    
+    value = sensor.readValue()
+    lcd.lcd_display_string_array([
+        "Temperature:",
+        str(value) + " C"
+    ])
+
+if __name__ == '__main__':
+    __main__()
 ```
 
-### What to Expect
+#### What to Expect
 
-// calling the script will update the lcd screen, but wouldn't it be nice if something could run the script for us every minute to actually update the lcd?
+Calling the script will update the LCD screen with a fresh temperature reading.
 
-### A Closer Look at the Code
+<!-- TODO: gif -->
 
-// intro to the onion i2c module
+However, wouldn't it be nice if something could run the script for us every minute to actually update the LCD?
 
-Here we've introduced 
+#### A Closer Look at the Code
 
-#### The Onion I2C Module
+Here we've introduced the **Onion I2C module**, and we've also shown that you can use **multiple different objects** in the same script.
 
-// introduce the onion i2c module, written by Onion to facilitate the easy use of the i2c bus
-// give a brief overview of the functions that we used and point them to the documentation reference (need to include docs.onion.io link, not markdown tag)
+##### The Onion I2C Module
 
-#### Multiple Different Objects
+<!-- // introduce the onion i2c module, written by Onion to facilitate the easy use of the i2c bus
+// give a brief overview of the functions that we used and point them to the documentation reference (need to include docs.onion.io link, not markdown tag) -->
 
-// small blurb about how the main program uses two objects of different classes to accomplish its purpose - make a note that this is an incredibly common programming method/technique
+We wrote this module to make it easy for you to use the I2C bus. 
 
-### Going Further: Automating the Script
+##### Multiple Different Objects
+
+<!-- // small blurb about how the main program uses two objects of different classes to accomplish its purpose - make a note that this is an incredibly common programming method/technique -->
+
+Here we're using two objects of different classes to accomplish our goal, `TemperatureSensor` and `Lcd`. If we had other devices we wanted to include in this experiment, we can simply write more class definitions and load them using the `import` statement.
+
+This is an incredibly common programming technique and is at the heart of Object Oriented Programming!
+
+#### Going Further: Automating the Script
 
 <!-- // introduce cron
 // show example of how to setup cron to run the script we wrote once every minute -->
 
 We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
 
-<!-- TODO: this is taken from the latest article on docs.onion. fix this entire process for python, it doesn't work on gabe's omega2p -->
+<!-- TODO: fix cron, this doesn't work -->
 
 First, create a file in `/root` called `runTemperatureSensorScript.sh` and write the following in it:
 
 ```
-#!/bin/sh -e
+##!/bin/sh -e
 /usr/bin/python /root/temperatureLCD.py
 ```
 
@@ -270,9 +319,9 @@ chmod +x runTemperatureSensorScript.sh
 Run `crontab -e` to edit the file that contains commands and schedules to run them, and add this segment at the end of the file:
 
 ```
-#
+##
 */1 * * * * /root/runTempSensorScript.sh
-#
+##
 ```
 
 Finally, run the following command to restart cron so it can start running your script:

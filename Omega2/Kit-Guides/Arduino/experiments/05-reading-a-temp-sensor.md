@@ -11,7 +11,7 @@ In this tutorial, we will learn how to read the ambient temperature using a temp
 
 An analog temperature will detect the ambient air temperature and outputs different voltage based on the temperature. 
 
-// TODO: Image of a temperature sensor
+<!-- // TODO: Image of a temperature sensor -->
 
 There will typically be a offset the voltage to account for negative temperature. In addition, there will be a limit to the sensor's operating temperature, in our case the TMP36 will withstand a temperature range from 40°C to 125°C. Another important parameter of the temperature sensor is its scale factor, which is 10 mV/°C for the TMP36. The resolution of a sensor is the smallest change that it can detect. The resolution is effected by the ATmega, which performs analogRead() at a 10-bit resolution (1024 steps), allowing for the smallest change to be 4.88mV if the input voltage is 5V.
 
@@ -36,7 +36,9 @@ Prepare the following components from your kit:
 // potentially isolate the push button instructions into it's own markdown file -->
 
 1. Plug the TMP36 onto the breadboard.
-2. When facing the flat side of the device, connect the left pin to 5V, the middle pin to analog pin A0, and the right pin to ground (GND). 
+2. When facing the flat side of the device, connect the left pin to 5V, the middle pin to analog pin A0, and the right pin to ground (GND).
+
+<!-- // TODO: photo -->
 
 ### Writing the Code
 
@@ -46,7 +48,7 @@ Prepare the following components from your kit:
 //  * prints it on the serial line
 //    * maybe make it detect once every 10 seconds -->
 
-``` arduino
+``` c++
 //the scale factor of TMP36 (temperature sensor) is 10 mV/°C with a 500 mV offset to allow for negative temperatures
 
 int sensorPin = A0; // the analog pin number connected to the TMP36
@@ -58,7 +60,7 @@ void setup()
  
 void loop()
 {
- //getting the voltage reading from the temperature sensor
+ // getting the voltage reading from the temperature sensor
  int reading = analogRead(sensorPin);  
  
  // convert the analog reading (0 to 1023) to voltage (0 - 5V)

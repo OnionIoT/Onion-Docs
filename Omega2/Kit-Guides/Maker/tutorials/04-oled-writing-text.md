@@ -5,7 +5,7 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 4
 ---
-## Writing Text to the OLED Display {#writing-text-to-oled-display}
+## Writing Text to the OLED Display {#MAK04-oled-writing-text}
 
 In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python library.
 
@@ -32,14 +32,13 @@ This tutorial does not require you to use a breadboard as the OLED Expansion is 
 
 #### Writing the Code
 
-Create a file called `oledWriteText.py` and paste the following code in it:
+Create a file called `MAK04-oledWriteText.py` and paste the following code in it:
 
 ``` python
 from OmegaExpansion import oledExp
 import time
 import datetime
 import math
-from random import randint
 
 quoteArray = ['Banging your head against a wall burns 150 calories an hour.',
 'In the UK, it is illegal to eat mince pies on Christmas Day!',
@@ -51,6 +50,7 @@ def main():
 	dateTimeObj = datetime.datetime.now()
 	hour = dateTimeObj.hour
 	minute = str(dateTimeObj.minute)
+	sec = dateTimeObj.second
 	if(hour/12 == 0):
 		day = "AM"
 		hour = str(hour % 12)
@@ -72,11 +72,10 @@ def main():
 	oledExp.setCursor(2,0)
 	oledExp.write(greeting)
 	oledExp.setCursor(4,0)
-	oledExp.write(quoteArray[randint(0,(len(quoteArray)-1))])
+	oledExp.write(quoteArray[sec%5])
 
 if __name__ == '__main__':
 	main()
-
 ```
 
 #### What to Expect
@@ -89,10 +88,20 @@ After running the Python code, you should see the current current time on the ri
 
 To get the current time, we use the `datetime` library that is provided standard with Python. We create a `datetime` object storing the current date and time using the `datetime.datetime.now()` constructor. We then access the object's hour and minutes attributes to the retrieve the time values of interest. The we use some logic and mathematical conversion to decide if it is AM or PM and which greeting to display.
 
-And for the fun of it, we decided to display a random fact at the end!
+For the quote, we use a rudimentary way of generating random numbers to select which one to display.
+
+#### Date, Time, and Logic
+
+When we check the time in real life, it's likely because we want to make a decision based on it. Timing is just as important in software and automation. Python's time library pulls the time from low level operating system commands, and there are built-in functions to parse them into readable strings. We use the time function to make a decision to show 'Afternoon', 'Evening', or 'Morning'. You can apply the exact same idea and code to make timing decisions in your own projects to do cooler stuff!
 
 #### Generating Random Numbers
 
-To generate a random number, we use the `randInt` class from the `random` library. We pass the range of random numbers to choose from, in this case the length of the array. We then use this random integer to decide which quote will be written to the display.
+Random numbers are an integral part of many pieces of software. They are used to generate unique IDs, testing, statistics, and even games (dice rolls, card shuffles are all random!). Here we generate a random number in two steps. First, we get the time in seconds. Next we take the remainder of the current time (in seconds) divided by 5. The resultant number is relatively unordered, and we use that to select which quote we show.
 
-It should be noted that we are using a pseudo-random generator which uses the Mersenne Twister and is completely deterministic. Hence, this generator would not be suitable for important applications where truly random numbers are required, such as cryptography.
+This is a very rudimentary  way of generating a random number, and it is not actually truly random! This kind of number is often called a 'pseudo-random' number.
+
+### Pseudo-Random vs. True Random
+
+Securing messages on the internet is currently the biggest way random numbers are used right now. Almost all methods of sending and receiving secure messages need truly random numbers. As an extremely simplified explaination, If the numbers used are generated from an algorithm (like the one above), the secure message can be decoded by coyping the algorithm and predicting the random number output. Cyber-security is a much much larger topic than we can cover here. If you are interested, there's a great deal of resources available online from much more qualified sources.
+
+Next time, we [fiddle with the screen](#MAK05-oled-change-settings).

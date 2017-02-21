@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 1
 ---
 
-## Dimming LEDs with the PWM Expansion {#dimming-leds-with-pwm-expansion}
+## Dimming LEDs with the PWM Expansion {#MAK01-servo-dimming-led}
 
 <!-- // TODO: need to capitalize Python EVERYWHERE -->
 
@@ -14,7 +14,7 @@ In this tutorial, we will be learning how to use the PWM Expansion with Python a
 
 
 <!-- pwm -->
-```{r child = '../../shared/pwm.md'}
+``` {r child = '../../shared/pwm.md'}
 ```
 
 ### Building the Circuit
@@ -31,26 +31,26 @@ Grab the following from your kit:
 * 1x Breadboard
 * 1x PWM Expansion plugged into the Expansion Dock
 * LEDs
-	* 16x any color
+    * 16x any color
 * Jumper Wires
-	* 16x M-F
+    * 16x M-F
 * Resistors
-	* 16x 200 Ohm
+    * 16x 200Ω
 
 #### Hooking up the Components
 
 <!-- // TODO: adjust how the LEDs are wired up: servo exp -> breadboard w/ M-F jumper -> LED -> resistor -> GND -->
 
-Each LED will be connected to the board in the same way, so we'll cover wiring a single LED here the n you can repeat this process for all 16 and you should be good to go.
+Each LED will be connected to the board in the same way, so we'll cover wiring a single LED first. Then you can repeat this process for all 16 and you should be good to go.
 
 1. Find the anode of the LED and the signal pin of any channel. We'll start at channel 0 (`S0` on the PWM Expansion).
-	* The signal pin is marked by a white plastic base. For channel `S0`, it should be clearly labelled as `SIGNAL` to the left side. We'll call this the `SIG` pin.
+    * The signal pin is marked by a white plastic base. For channel `S0`, it should be clearly labelled as `SIGNAL` to the left side. We'll call this the `SIG` pin.
 1. Connect the `SIG` pin to a pin in column `a` in one of the rows on the left side of the breadboard using a M-F jumper wire. (eg. `1a`)
     * We'll start at row 1 for the first one, and so on.
 1. Stick the cathode of the LED into the same row as the `SIG` jumper wire (eg. `1e`), and the anode into the pin on the other side of the middle gap in the same row (eg. `1f`).
-1. Take a 200 Ohm resistor and connect it to the LED's anode and to the `-` column on the right side.
+1. Take a 200 Ohm resistor and connect it to the LED's cathode and to the `-` column on the right side.
     * We'll call the `-` column the `GND` connection.
-1. Your circuit should now look like this<!-- // TODO: IMAGE picture and/or circuit diagram -->
+1. Your circuit should now look like this: <!-- // TODO: IMAGE picture and/or circuit diagram -->
 
 After you've wired up all the LEDs on the board, connect the breadboard's `GND` column to one of the `GND` pins on the PWM Expansion using a M-F jumper wire.
 
@@ -71,47 +71,47 @@ Let's write a class to abstract methods for a PWM pin on the Omega. Create a fil
 from OmegaExpansion import pwmExp
 
 class OmegaPwm:
-	"""Base class for PWM signal"""
+    """Base class for PWM signal"""
 
-	def __init__(self, channel, frequency=50):
-		self.channel 	= channel
-		self.frequency 	= frequency
+    def __init__(self, channel, frequency=50):
+        self.channel     = channel
+        self.frequency     = frequency
 
-		# check that pwm-exp has been initialized
-		bInit 	= pwmExp.checkInit()
+        # check that pwm-exp has been initialized
+        bInit     = pwmExp.checkInit()
 
-		if (bInit == 0):
-			# initialize the expansion
-			ret 	= pwmExp.driverInit()
-			if (ret != 0):
-				print 'ERROR: pwm-exp init not successful!'
+        if (bInit == 0):
+            # initialize the expansion
+            ret     = pwmExp.driverInit()
+            if (ret != 0):
+                print 'ERROR: pwm-exp init not successful!'
 
-			# set to default frequency
-			self._setFrequency(self.frequency)
+            # set to default frequency
+            self._setFrequency(self.frequency)
 
-	def _setFrequency(self, freq):
-		"""Set frequency of pwm-exp oscillator"""
-		self.frequency 	= freq
-		ret 	= pwmExp.setFrequency(freq);
-		if (ret != 0):
-			print 'ERROR: pwm-exp setFrequency not successful!'
+    def _setFrequency(self, freq):
+        """Set frequency of pwm-exp oscillator"""
+        self.frequency     = freq
+        ret     = pwmExp.setFrequency(freq);
+        if (ret != 0):
+            print 'ERROR: pwm-exp setFrequency not successful!'
 
-		return ret
+        return ret
 
-	def getFrequency(self):
-		"""Get frequency of pwm-exp oscillator"""
-		return self.frequency
+    def getFrequency(self):
+        """Get frequency of pwm-exp oscillator"""
+        return self.frequency
 
-	def setDutyCycle(self, duty):
-		"""Set duty cycle for pwm channel"""
-		ret 	= pwmExp.setupDriver(self.channel, duty, 0)
-		if (ret != 0):
-			print 'ERROR: pwm-exp setupDriver not successful!'
+    def setDutyCycle(self, duty):
+        """Set duty cycle for pwm channel"""
+        ret     = pwmExp.setupDriver(self.channel, duty, 0)
+        if (ret != 0):
+            print 'ERROR: pwm-exp setupDriver not successful!'
 
-		return ret
+        return ret
 ```
 
-Now let's write the script for the experiment. Create a file called `pwmLed.py` and throw the following code in it. Then run it and keep an eye on your LEDs:
+Now let's write the script for the experiment. Create a file called `MAK01-pwmLed.py` and throw the following code in it. Then run it and keep an eye on your LEDs:
 
 ``` python
 from omegaPwm import OmegaPwm
@@ -119,35 +119,38 @@ import math
 import time
 
 # define constants
-SERVO_FREQUENCY = 1000
+PWM_FREQUENCY = 1000
 
 def calcDutyCycle(rad):
-	result = 50.0*(math.sin(rad)) + 50.0
-	if(result > 100.0):
-		result = 100.0
-	if(result < 0.0):
-		result = 0.0
-	return result
+    result = 50.0*(math.sin(rad)) + 50.0
+    if(result > 100.0):
+        result = 100.0
+    if(result < 0.0):
+        result = 0.0
+    return result
 
 def main():
-	# Construct pwmLED object array
-	ledObjectArray = []
-	for i in range(16):
-		obj = OmegaPwm(i, SERVO_FREQUENCY)
-		ledObjectArray.append(obj)
+    # Construct pwmLED object array
+    ledObjectArray = []
+    for i in range(16):
+        obj = OmegaPwm(i, PWM_FREQUENCY)
+        ledObjectArray.append(obj)
 
-	phaseIncrement = (2 * math.pi)/16
-	actualIncrement = (2 * math.pi)/160
-    
-	i = 0
-	while(True):
-		for idx,element in enumerate(ledObjectArray):
-			element.setDutyCycle(calcDutyCycle(((idx)*phaseIncrement)+(i*actualIncrement)))
-		i += 1
-		time.sleep(.005)
+    phaseIncrement = (2 * math.pi)/16
+    actualIncrement = (2 * math.pi)/160
+
+    i = 0
+    duty = 0
+    while(True):
+        for index,element in enumerate(ledObjectArray):
+            duty = calcDutyCycle(( (index) * phaseIncrement ) + (i * actualIncrement))
+            element.setDutyCycle(duty)
+        i += 1
+        i = i % 160
+        time.sleep(.005)
 
 if __name__ == '__main__':
-	main()
+    main()
 ```
 
 <!-- // TODO: the above main loop has the variable `i` increase without bounds, and does mapping in the function it's passed to. fix this later -->
@@ -169,17 +172,29 @@ Some points of interest here:
 * Creating objects from classes
 * Using the PWM Python Module
 
+Additionally, this code has a lot of mathematical operators, if you're confused, here's a cheat-sheet of what do the operators do:
+
+|    Operator   | Effect                                       |
+|:-------------:|----------------------------------------------|
+|    `a * b`    | Multiplies a and b                           |
+|    `a / b`    | Divides a by b                               |
+|    `a % b`    | Returns the remainder of a divided by b      |
+| `math.sin(a)` | Returns the sine of a, where a is in radians |
+|   `math.pi`   | Returns the value of pi                      |
+|    `a += b`   | Assigns the value of a plus b to a           |
+
+
 #### Creating a class
 
-As a refresher, in Object Oriented Programming, classes are essentially blueprints or an abstraction. An **object** is a collection of data that is defined by the class blueprint with its own unique properties. For example, for a class created as "four sided polygon", an object created from this class may be "square". Creating an objects is called **instantiation**, and copies of an object are called **instances**.
+As a refresher, in Object Oriented Programming, classes are essentially blueprints or an abstraction. An **object** is a set of data created from the class blueprint with its own unique properties. For example, for a class created as "four sided polygon", an object created from this class may be "square". Creating an objects is called **instantiation**, and objects created from the same class are called **instances** of said class.
 
 To see another example of another example of classes in Python, check out the [shift register](#shift-register-creating-classes) article where we first introduced them.
 
-In our case, we are making a class for a PWM channel. This class represents a single PWM output channel, and objects of this class will represent and control an actual PWM channel on the board. The function `setDutyCycle()` sets the particular duty cycle on whichever channel the object represents. Once we instantiate each channel object we store the objects inside of a list, such that their index corresponds to the channel number. This makes our coding a little simpler.
+In our case, we used the class `OmegaPwm` as a blueprint for a single PWM output channel. By creating objects of this class, we're can represent and control an actual PWM channel on the board. When we call the `OmegaPwm()` function with arguments `i` and `PWM_FREQUENCY` we're initializing an object of the `OmegaPwm` representing channel `i` on the expansion. Once we instantiate each channel object we store the objects inside of a list, such that their index corresponds to the channel number. This makes our coding a little simpler.
 
 #### Using the Onion PWM Expansion Python Module
 
-Python's functionality can be expaned with modules and packages - like extra lego sets allowing you to build more complex things. Here we use the PWM module (pyPwmExp) to control the PWM expansion. The module comes with a set of functions to control and modify the PWM expansion channels and properties. By running a script to control the expansion, you don't need to manually need to enter or trigger any commands through the terminal. You can simply leave it running, and it would automatically do its job!
+Python's functionality can be expanded with modules and packages - like extra lego sets allowing you to build more complex things. Here we use the PWM module (pyPwmExp) to control the PWM expansion. The module comes with a set of functions to control and modify the PWM expansion channels and properties. By running a script to control the expansion, you don't need to manually need to enter or trigger any commands through the terminal. You can simply leave it running, and it would automatically do its job!
 
 You can find a detailed guide to this module in the [pyPwmExp library](#pwm-expansion-python-module) reference in the Onion docs.
 
@@ -190,9 +205,12 @@ Specifically, we use the following functions:
 * `checkInit()`
 * `driverInit()`
 
+
 ##### Controlling the PWM Outputs
 
-In the code, you'll notice the servo frequency was set to 1000 Hz. This is to ensure the LED doesn't flicker no matter what duty cycle we set the channel to output. This is done in the class' constructor function by passing `SERVO_FREQUENCY` as the 2nd argument. For each channel, we can change the duty cycle on the fly by calling `setupDriver()` and sending it the channel and duty cycle number (recall that this is between 0% and 100%). By changing the duty cycle, we change the average voltage sent to the LED connected to the channel - this is how the LEDs dim and brighten.
+In `omegaPwm.py`, you'll notice the servo frequency was set to 1000 Hz. This is to ensure the LED doesn't flicker no matter what duty cycle we set the channel to output. This is done in the class' constructor function by passing `PWM_FREQUENCY` as the 2nd argument. For each channel, we can change the duty cycle on the fly by calling `setupDriver()` and sending in the channel, and the duty cycle (recall that this is between 0% and 100%). By changing the duty cycle, we change the average voltage sent to the LED connected to the channel - this is how the LEDs dim and brighten.
+
+Instantiating an `OmegaPwm` object requires a channel number and frequency. Note that if you change the frequency of one channel (through initialization or `setFrequency()`), you change it for **all** channels. This is because the PWM expansion only has one oscillator shared between all the outputs.
 
 ##### Initializing the PWM Expansion
 
@@ -202,4 +220,12 @@ If you look at the constructor (the `__init__` function), you will notice the li
 pwmExp.driverInit()
 ```
 
-This line initializes the PWM expansion for usage. This starts the oscillator on the PWM expansion which actually produces the signals sent through the pins.
+This line initializes the PWM expansion for usage. This starts the oscillator on the PWM expansion which actually produces the signals sent through the pins. Without this line, the oscillator will be off and the expansion won't respond!
+
+Before we initialize the oscillator, we can check if it's already on with `pwmExp.driverInit()`. By checking the return value we can avoid initializing it twice. For the PWM expansion in particular, initilizing it twice doens't really matter much. However initlization for other hardware devices may take quite a while, so it's a pretty good habit to get into to save you some time.
+
+### What's Math?
+
+You'll notice a lot of mathematical operations going on with the math module in Python. Combined, this allows the brightness of the LEDs to vary sinusoidally. Python's built in mathematical operations are pretty powerful, but it does have some pitfalls which we'll go over next tutorial.
+
+Next time, we [control servos](#MAK02-servo-controlling-servo).
