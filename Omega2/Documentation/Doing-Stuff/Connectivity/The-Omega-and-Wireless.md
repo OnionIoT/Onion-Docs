@@ -38,7 +38,7 @@ The Omega's AP is a network to which your devices can connect in order to commun
 
 Connecting the Omega to the internet greatly expands its capabilities. It allows you to send and receive data over the internet and gives you the ability to download and install packages with `opkg`, the package manger used by the Omega.
 
-> For more on `opkg`, you can read this [article on using opkg](#software-using-opkg).
+> For more on `opkg`, you can read this [article on using opkg](#using-opkg).
 
 All of this is can be done by connecting your Omega to an existing WiFi network that is supplying internet, in the same way you would connect a laptop or a smartphone to internet.
 

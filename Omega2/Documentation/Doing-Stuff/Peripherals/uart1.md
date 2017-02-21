@@ -215,7 +215,7 @@ You can use Python in order to communicate serially via the UART. The module to 
 
 You'll need to have Python or Python-light installed in order to continue. If you've installed the full version of Python you will already have PySerial.
 
->You can read our guide to [installing and using Python on the Omega](#software-installing-and-using-python) for more information.
+>You can read our guide to [installing and using Python on the Omega](#installing-and-using-python) for more information.
 
 First update `opkg`:
 

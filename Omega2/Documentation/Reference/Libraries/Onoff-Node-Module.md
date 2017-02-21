@@ -10,7 +10,7 @@ The onoff package allows control of the direction and state of a pin. It provide
 
 ### Installation
 
-Make sure you have node installed, we've written a [guide](#software-installing-and-using-nodejs) in case you get stuck. To install the onoff package run the following commands:
+Make sure you have node installed, we've written a [guide](#installing-and-using-nodejs) in case you get stuck. To install the onoff package run the following commands:
 
 ```
 opkg update

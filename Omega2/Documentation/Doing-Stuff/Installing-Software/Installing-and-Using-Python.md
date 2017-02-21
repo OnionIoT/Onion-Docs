@@ -8,7 +8,7 @@ order: 2
 
 <!-- // refer to the existing article for guidance -->
 
-## Installing and Using Python {#software-installing-and-using-python}
+## Installing and Using Python {#installing-and-using-python}
 
 <!-- // brief intro to Python (scripting language, easy to write) -->
 
@@ -89,7 +89,7 @@ opkg install <PACKAGE NAME>
 
 To install the desired package.
 
->For more on `opkg` you can check out our [guide to using opkg](#software-using-opkg)
+>For more on `opkg` you can check out our [guide to using opkg](#using-opkg)
 
 For example, if you would like your script to make HTTP requests, you will need the `urllib3` package:
 
