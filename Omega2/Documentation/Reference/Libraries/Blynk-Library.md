@@ -99,6 +99,4 @@ node test.js
 Press the button on you app and note the output on the screen.
 
 
-You can take this further by using the [OnOff module](https://wiki.onion.io/Tutorials/onoff-node) to control the Omega's GPIOs.
-
-<!-- TODO: don't link back to the wiki, let's make a new article for onoff  -->
+You can take this further by using the [OnOff module](#onoff-node-module) to control the Omega's GPIOs.

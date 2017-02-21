@@ -8,7 +8,7 @@ order: 3
 
 <!-- // refer to the existing article for guidance -->
 
-## Installing and Using NodeJS {#software-installing-and-using-nodejs}
+## Installing and Using NodeJS {#installing-and-using-nodejs}
 
 NodeJS is a scripting language that uses a JavaScript runtime, essentially, it is Javascript you can run without using a browser. It's incredibly easy to make powerful and complex applications. NodeJS takes advantage of a large amount of open-source modules developed by the community in order to further simplify your work.
 
@@ -19,8 +19,7 @@ NodeJS is a scripting language that uses a JavaScript runtime, essentially, it i
 
 Installing NodeJS will take about **8.5MB** of space on the Omega, so make sure you've got enough space before continuing.
 
-Connect to the Omega's terminal using either SSH or Serial.
-<!-- TODO: link to connecting to the omega's command line article -->
+Connect to the [Omega's terminal](#connecting-to-the-omega-terminal) using either SSH or Serial.
 
 Run the following commands on the terminal:
 
@@ -39,8 +38,6 @@ node /path/to/script.js
 ```
 
 For a quick demo, you can save this to `/root/greeting.js`
-
-TODO: verify the modified script works
 
 ```javascript
 // Importing packages
@@ -128,7 +125,7 @@ We've included links to guides on how you can use NodeJS on the Omega to create 
 
 ### Omega Expansion NodeJS packages
 
-We have developed NodeJS modules for controlling several Omega Expansions, they're all available hrough `opkg`.
+We have developed NodeJS modules for controlling several Omega Expansions, they're all available through `opkg`.
 
 ``` bash
 opkg update
@@ -137,22 +134,20 @@ opkg install node-pwm-exp
 opkg install node-relay-exp
 ```
 
-<!-- TODO: this is hosted on the documentation site... no need for the link -->
+We've also provided in depth documentation for each expansion.
 
-Documentation for the packages can be found on the main [Onion Documentation](https://docs.onion.io) site:
+* [OLED Expansion](#oled-expansion-node-module)
+* [PWM Expansion](#pwm-expansion-node-module))
+* [Relay Expansion](#relay-expansion-node-module)
 
-* [OLED Expansion](https://docs.onion.io/omega2-docs/oled-expansion-node-module.html)
-* [PWM Expansion](https://docs.onion.io/omega2-docs/pwm-expansion-node-module.html)
-* [Relay Expansion](https://docs.onion.io/omega2-docs/relay-expansion-node-module.html)
-
-<!-- TODO: change the above links to use the #tags -->
 
 
 ### Blynk & the Omega
 
-The Omega supports Blynk! Check out our [Blynk article](#blynk-library) to learn more!
+The Omega supports Blynk!
 
-<!-- TODO: add a little bit more info on blynk to this blurb -->
+Blynk is a platform that allows you to build an app in minutes to connect your Omega and your smartphone with a beautiful interface. Check out our [Blynk article](#blynk-library) to learn more!
+
 
 <!-- // brief description of Blynk and how they're awesome -->
 <!-- // link to the main blynk article -->
