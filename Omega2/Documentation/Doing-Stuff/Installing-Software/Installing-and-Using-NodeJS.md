@@ -137,7 +137,7 @@ opkg install node-relay-exp
 We've also provided in depth documentation for each expansion.
 
 * [OLED Expansion](#oled-expansion-node-module)
-* [PWM Expansion](#pwm-expansion-node-module))
+* [PWM Expansion](#pwm-expansion-node-module)
 * [Relay Expansion](#relay-expansion-node-module)
 
 
