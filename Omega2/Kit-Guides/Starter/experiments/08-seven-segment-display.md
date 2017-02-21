@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 8
 ---
 
-## Controlling a 7-Segment Display
+## Controlling a 7-Segment Display {#starter-kit-07-seven-segment-display}
 
 We've just learned about shift registers, now let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world.
 
@@ -34,7 +34,7 @@ Using the shift register and a few additional GPIOs from the Omega, we will cont
 <!-- TODO: write out critical instructions -->
 <!-- TODO: consider explaing the need for resistors (common gnd) -->
 
-First things first, if you've done the previous experiment, keep the shift register wired up just like you had it. If you didn't, [check it out](#STK07-building-the-circuit) and wire the Shift Register to the Expansion Dock and Breadboard exactly the same way. For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
+First things first, if you've done the previous experiment, keep the shift register wired up just like you had it. If you didn't, [check it out](#STK06-building-the-circuit) and wire the Shift Register to the Expansion Dock and Breadboard exactly the same way. For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
 
 <!-- TODO: IMAGE diagram of shift register/dock/breadboard wiring -->
 
@@ -73,10 +73,9 @@ To accomplish this, we will write a new class that uses the shift register class
 
 -->
 
-<!-- TODO: code verification -->
-<!-- TODO: copies of the code are in sevenSeg code/python -->
+<!-- TODO: change numbering for removal of 06 -->
 
-Now let's create a class named `sevenSegDisplay.py`.
+Now let's create a class named `STK07-sevenSegDisplay.py`.
 
 ``` python
 import registerClass
@@ -125,7 +124,7 @@ class sevenSegment:
     		self.digitPin[i] = onionGpio.OnionGpio(dPin[i])
 ```
 
-Once that's out of the way, create `STK08-seven-seg-display` and paste the following in it:
+Once that's out of the way, create `STK07-seven-seg-display` and paste the following in it:
 
 ``` python
 import registerClass
@@ -156,12 +155,12 @@ def __main__():
         	sevenDisplay.showDigit(i,inputHexString[i])
 ```
 
-To see it in action, make sure you have `registerClass.py`, `sevenSegDisplay.py` and `STK08-seven-seg-display.py` in your `/root/` directory.
+To see it in action, make sure you have `registerClass.py`, `sevenSegDisplay.py` and `STK07-seven-seg-display.py` in your `/root/` directory.
 
 Then run the following:
 
 ``` bash
-python /root/STK08-seven-seg-display.py
+python /root/STK07-seven-seg-display.py
 ```
 
 
@@ -318,10 +317,10 @@ echo 1 >/sys/class/gpio/gpio18/value
 done
 ```
 
-To run it, copy the code to `/root/STK08-seven-seg-display.sh` then run the following with a hex number as the first argument:
+To run it, copy the code to `/root/STK07-seven-seg-display.sh` then run the following with a hex number as the first argument:
 
 ```
-sh /root/STK08-seven-seg-display.sh [hex number]
+sh /root/STK07-seven-seg-display.sh [hex number]
 ```
 
 Trust us when we say these two scripts are intended to be doing the same thing. If you're wondering why? Read on!

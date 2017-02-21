@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 10
 ---
 
-## Controlling an LCD Screen {#starter-kit-controlling-an-lcd-screen}
+## Controlling an LCD Screen {#starter-kit-09-controlling-an-lcd-screen}
 
 <!-- // in this experiment, we will:
 //  * be building on the previous experiment
@@ -149,7 +149,7 @@ class Lcd:
         self.line2= "";
         self.line3= "";
         self.line4= "";
-        
+
         # use the Onion I2C module to handle reading/writing
         self.lcd_device = i2cLib.i2cDevice(self.address)
 
@@ -197,7 +197,7 @@ class Lcd:
 
         for char in string:
             self.lcd_write(ord(char), Rs)
-    
+
     # print an array of strings        
     def lcd_display_string_array(self, strings):
         for i in range(min(len(strings), 4)):
@@ -207,24 +207,24 @@ class Lcd:
     def lcd_clear(self):
         self.lcd_write(LCD_CLEARDISPLAY)
         self.lcd_write(LCD_RETURNHOME)
-      
+
     def refresh(self):
         self.lcd_display_string(self.line1,1)
         self.lcd_display_string(self.line2,2)
         self.lcd_display_string(self.line3,3)
         self.lcd_display_string(self.line4,4)
-    
+
     #def backlight
     def backlightOn(self):
         self.lcdbacklight = LCD_BACKLIGHT
         self.refresh()
-       
+
     def backlightOff(self):
         self.lcdbacklight = LCD_NOBACKLIGHT
         self.refresh()
 ```
 
-Now let's write the main routine for the experiment. Create a file called `STK10-temperatureLCD.py` in `/root`. Paste the code below in it:
+Now let's write the main routine for the experiment. Create a file called `STK09-temperatureLCD.py` in `/root`. Paste the code below in it:
 
 ``` python
 import lcdDriver
@@ -243,11 +243,11 @@ def __main__():
     if not oneWire.setupOneWire(str(oneWireGpio)):
         print "Kernel module could not be inserted. Please reboot and try again."
         return -1
-        
+
     # get the address of the temperature sensor
     # it should be the only device connected in this experiment
     sensorAddress = oneWire.scanOneAddress()
-    
+
     sensor = TemperatureSensor("oneWire", { "address": sensorAddress, "gpio": oneWireGpio })
     if not sensor.ready:
         print "Sensor was not set up correctly. Please make sure that your sensor is firmly connected to the GPIO specified above and try again."
@@ -256,7 +256,7 @@ def __main__():
     # setup LCD
     lcd = lcdDriver.Lcd(lcdAddress)
     lcd.backlightOn()    
-    
+
     value = sensor.readValue()
     lcd.lcd_display_string_array([
         "Temperature:",
@@ -284,7 +284,7 @@ Here we've introduced the **Onion I2C module**, and we've also shown that you ca
 <!-- // introduce the onion i2c module, written by Onion to facilitate the easy use of the i2c bus
 // give a brief overview of the functions that we used and point them to the documentation reference (need to include docs.onion.io link, not markdown tag) -->
 
-We wrote this module to make it easy for you to use the I2C bus. 
+We wrote this module to make it easy for you to use the I2C bus.
 
 ##### Multiple Different Objects
 
