@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 4
 ---
 
-## Reading a Switch {#starter-kit-04-reading-switch}
+## Reading a Switch {#starter-kit-reading-switch}
 
 <!-- // intro to this experiment:
 //  * so far, we've been using a program to control GPIOs, lets have some physical, user input controlling our software

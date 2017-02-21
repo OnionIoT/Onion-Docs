@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 2
 ---
 
-## Controlling Many LEDs {#starter-kit-02-multiple-leds}
+## Controlling Many LEDs {#starter-kit-multiple-leds}
 
 "We've blinked one LED sure, but what about a second LED?"
 

@@ -8,7 +8,7 @@ order: 8
 
 ## Controlling a 7-Segment Display {#starter-kit-07-seven-segment-display}
 
-We've just learned about shift registers, now let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world.
+We've just learned about shift registers, now let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world. We'll construct a circuit that connects the Omega to the shift register and the shift register to the 7-segment display. The Omega will send serial signals to the shift register, and those signals will be transformed into numbers and letters by the 7-segment display.
 
 <!-- seven segment -->
 ```{r child = '../../shared/seven-segment.md'}
@@ -23,33 +23,34 @@ Using the shift register and a few additional GPIOs from the Omega, we will cont
 * 1x Omega2 pluged into Expansion Dock
 * 1x 7-Segment Display
 * 1x Shift Register
-* Resistors
-    * 4x 330Ω
+* 4x 330Ω Resistors
 * Jumpers
     * 12x M-F
     * 13x M-M
 
 #### Hooking up the Components
 
-<!-- TODO: write out critical instructions -->
-<!-- TODO: consider explaing the need for resistors (common gnd) -->
-
 First things first, if you've done the previous experiment, keep the shift register wired up just like you had it. If you didn't, [check it out](#STK06-building-the-circuit) and wire the Shift Register to the Expansion Dock and Breadboard exactly the same way. For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
 
 <!-- TODO: IMAGE diagram of shift register/dock/breadboard wiring -->
 
+1. Connecting your Shift Register
+
+  - Start by plugging in your shift register across the channel so that the each pin has its own row.
+  - Connect pin 16 and pin 10 to the positive rail (Vcc)
+  - Connect pin 8 and pin 13 to the negative rail (Ground)
+
 
 When you have the shift register wired up, it's time to connect it to the 7-segment display. First, we recommend you set up the resistors across the center first, and do all the wiring in one go.
 
-For each resistor:
-
-1. Pick a column.
-1. Connect one end of the resistor to row `g`
-1. Connect the other end to row `d`
-
-We've included a diagram below for reference instead of instructions, as this one has a lot of wiring to do. All ends connecting to the 7-segment display require F jumper heads.
+We've included a diagram below for reference instead of instructions, as this one has a lot of wiring to do and they end up going every which way. Note that all ends connecting to the 7-segment display require F jumper heads - that's where your M-F jumpers will be used.
 
 <!-- TODO: IMAGE wiring diagram of 7-seg to shift register and dock -->
+
+Once you've connected the 7-segment display to the Omega and shift register, it's all done!
+
+``` {r child = '../../shared/wiring-precautions.md'}
+```
 
 
 ### Writing the Code
@@ -72,8 +73,6 @@ To accomplish this, we will write a new class that uses the shift register class
 //  * write the sanitized input to the 7seg
 
 -->
-
-<!-- TODO: change numbering for removal of 06 -->
 
 Now let's create a class named `STK07-sevenSegDisplay.py`.
 
@@ -164,7 +163,7 @@ python /root/STK07-seven-seg-display.py
 ```
 
 
-#### What to Expect
+### What to Expect
 
 The Python code above should ask you for a hex string, then print the digits one by one on to the 7 segment display. Infinite loops here as well, and you can exit with `Ctrl-C`
 
@@ -355,4 +354,4 @@ We use a dictionary here as a translation between string characters and the shif
 
 
 
-Next: [Reading a One-Wire Temperature Sensor](#starter-kit-reading-one-wire-temperature-sensor)
+Next: [Reading a One-Wire Temperature Sensor](#starter-kit-temp-sensor)
