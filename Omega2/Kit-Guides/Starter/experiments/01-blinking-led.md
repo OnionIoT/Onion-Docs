@@ -40,7 +40,7 @@ Prepare the following components from your kit:
 
 * Omega plugged into Expansion Dock
 * Breadboard
-* Jumper wires
+* Jumper wires (Male-to-Male)
 * Resistors
     * 1x 200Ω
 * Any LED color of your choice!
@@ -54,12 +54,16 @@ OK here we go, let's put together our circuit! We're going to be connecting an L
 1. Plug in the LED into the breadboard, make sure you plug the anode and cathode into different rows and that you know which is plugged where.
 2. Let's choose `GPIO0` on the Omega2 to drive our LED, so let's run a jumper wire to the row of the LED's anode.
 3. Now connect one end of a 200Ω resistor to the the cathode row, and the other end to an empty row.
-4. The final step is connecting a jumper wire to a Ground pin on the Omega2.
+4. The final step is using a jumper wire to connect the current-limiting resistor to a Ground pin on the Omega2.
+
+Your circuit should now look like this:
+
+// TODO: image of circuit
 
 > A note on components with and without **polarity**:
-
+>
 > You'll notice that we were careful to make sure which end of the LED we connected to incoming current and which we connected to ground. This is because LEDs are polarized, so they will only when current is flowing in the correct direction, that is, when they're plugged in the correct way.
-
+>
 > With the resistor, either way will work since resistors are symmetric components, meaning they don't care which way current flows through them, they'll work either way.
 
 

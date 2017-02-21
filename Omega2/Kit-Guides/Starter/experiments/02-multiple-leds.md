@@ -37,7 +37,7 @@ We'll be building a circuit on your breadboard using the following components:
 
 * Omega2 plugged into Expansion Dock
 * 6x LEDs
-* 7x Jumper Wires
+* 7x Jumper Wires (Male-to-Male)
 * Resistors
   * 6x 200Ω
 * Breadboard
@@ -47,19 +47,24 @@ We'll be building a circuit on your breadboard using the following components:
 While the individual LEDs will be connected in exactly the same way as in the first experiment, we're going to be using the power rail on the breadboard to make the wiring a little simpler. You'll see what I mean in a second.
 
 Grab six LEDs and let's do the following for each one:
-1. Plug in the LED into the breadboard, making sure to plug the anode and cathode into different rows.
-2. Connect one end of a 200Ω resistor to the the cathode row, and the other end into the power rail marked `-`
 
-Now that you have all six LEDs plugged in, let's connect a jumper wire from the `-` power rail on the breadboard to a Ground pin on the Omega{{#if Omega2}}2{{/if}}. Since the power rail is connected vertically, what we've done is **connect all of the LED cathodes to the Ground on the Omega using just one pin on the Expansion Dock!**
+1. Plug in the LED into the breadboard, making sure to plug the anode and cathode into different rows.
+2. Connect one end of a 200Ω resistor to the cathode row, and the other end into the power rail marked `-`
+
+Now that you have all six LEDs plugged in, let's connect a jumper wire from the `-` power rail on the breadboard to a Ground pin on the Omega. Since the power rail is connected vertically, what we've done is **connect all of the LED cathodes to the Ground on the Omega using just one pin on the Expansion Dock!**
 
 <!-- // TODO: FRITZING: fritzing diagram of the experiment -->
 
-To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Omega{{#if Omega2}}2{{/if}} using jumper wires. We'll be using GPIOs 0, 1, 2, 3, 18, and 19 to control our six LEDs. To make our lives easy when writing the code to control the circuit, wire the left-most LED to GPIO0, the next one to GPIO1, and so on, with the right-most LED connected to GPIO19.
+To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Omega using jumper wires. We'll be using GPIOs 0, 1, 2, 3, 18, and 19 to control our six LEDs. To make our lives easy when writing the code to control the circuit, wire the left-most LED to GPIO0, the next one to GPIO1, and so on, with the right-most LED connected to GPIO19.
 
-The circuit diagram for our first experiment looks like this:''
-<!-- // TODO: CIRCUIT DIAGRAM: circuit showing this experiment -->
+Your circuit should look something like this:
+
+<!-- // TODO: photo of circuit -->
 
 Like previously mentioned, it's just six copies of our first experiment together.
+
+The circuit diagram for our first experiment looks like this:
+<!-- // TODO: CIRCUIT DIAGRAM: circuit showing this experiment -->
 
 ### Writing the Code
 
@@ -85,13 +90,6 @@ for gpioElement in gpioPins:
 	ledObj = onionGpio.OnionGpio(gpioElement)		# instatiate a GPIO object for this gpio pin
 	ledObj.setOutputDirection(0)		# set to output direction with zero being the default value
 	gpioObjects.append(ledObj)	# add the GPIO object to our array
-
-	// LAZAR: alternative code
-	# add a GPIO object to the array that's initialized with the current GPIO pin number
-	gpioObjects.append( onionGpio.OnionGpio(gpioElement) )
-	# set the GPIO to the output direction
-	gpioObjects[-1].setOutputDirection(0)
-
 
 ledValue 	= 1
 
@@ -136,7 +134,7 @@ The `gpioObjects` array is a little different; we're going to be using it to hol
 
 ##### For Loop
 
-A `for loop` is used when you have code that needs to be repeated a known number of times, like in our example how we want to print each GPIO from our `gpioPins` array. The line that starts with `for` will define how many times the loop will be run, our example will run the loop body once for each element in the `gpioPins` array, with the value of the current element being stored in the `gpioElement` variable. The indented line below makes up the body of the loop, here we are only printing the contents of the gpio variable.
+A `for loop` is used when you have code that needs to be repeated a known number of times, like in our example how we want to print each GPIO from our `gpioPins` array. The line that starts with `for` will define how many times the loop will be run, our example will run the loop body once for each element in the `gpioPins` array, with the value of the current element being stored in the `gpioElement` variable. The indented line directly below the `for` line makes up the body of the loop, here we are only printing the contents of the gpio variable.
 
 The loop will go through the array from start to finish, with the `gpioElement` variable taking on the value of the current array element. We will see the following being printed:
 
@@ -155,6 +153,7 @@ Using GPIOs:
 The second `for loop` in the program is used to populate the `gpioObjects` array with objects of the GPIO class that will control the six GPIOs connected to the LEDs in our circuit. The loop will run for each of the elements in the `gpioPins` array, meaning for each of the GPIOs that we will be using.
 
 The loop body will instantiate an object of the GPIO class to control the GPIO pin the `gpioElement` variable contains and add it to the end of the `gpioObjects` array. It will also set each of the GPIOs to the output direction.
+<!-- TODO: see if there's a better way of saying the above -->
 
 By the end of the for loop, the `gpioObjects` array will contain six GPIO class objects, each setup to control one of the GPIOs listed in the `gpioPins` array.
 
