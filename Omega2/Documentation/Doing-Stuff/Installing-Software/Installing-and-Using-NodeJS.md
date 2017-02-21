@@ -20,6 +20,7 @@ NodeJS is a scripting language that uses a JavaScript runtime, essentially, it i
 Installing NodeJS will take about **8.5MB** of space on the Omega, so make sure you've got enough space before continuing.
 
 Connect to the Omega's terminal using either SSH or Serial.
+<!-- TODO: link to connecting to the omega's command line article -->
 
 Run the following commands on the terminal:
 
@@ -30,7 +31,16 @@ opkg install nodejs
 
 ### Using NodeJS
 
+
+You can use NodeJS the same way you would on a computer. Just write a script and execute it with the following command:
+
+``` bash
+node /path/to/script.js
+```
+
 For a quick demo, you can save this to `/root/greeting.js`
+
+TODO: verify the modified script works
 
 ```javascript
 // Importing packages
@@ -38,58 +48,39 @@ var fs      = require('fs');
 var util    = require('util');
     exec    = require('child_process').exec;
 
-var child = exec('uci get system.@led[0].sysfs',
-      function (error, stdout, stderr) {
-            var triggerPath = '/sys/class/leds/' + stdout.replace('\n','') + '/trigger'
-            blinkLed(triggerPath);
-            resetAndExit(triggerPath);
-        }
-    );
-
-// find the path to the Omega LED
-// TODO: test for stripping needs
-
-// Set the Omega LED trigger to "timer" so that it blinks
-function blinkLed (triggerPath) {
+// Set the Omega LED trigger to the specified mode
+function setLed (triggerPath, triggerMode) {
     fs.open(triggerPath, 'w', (err, fd) => {
-        fs.write(fd, 'timer', () =>{
+        fs.write(fd, triggerMode, () =>{
             fs.close(fd);
         });
     });
 }
 
-function resetAndExit (triggerPath) {
-    setTimeout(() => {
-        currentTime = new Date();
+var child = exec('uci get system.@led[0].sysfs',
+      function (error, stdout, stderr) {
+            // set the Omega LED to blink
+            var triggerPath = '/sys/class/leds/' + stdout.replace('\n','') + '/trigger'
+            setLed(triggerPath, 'timer');
 
-        // Sets the Omega LED trigger to "default-on"
-        if (currentTime.getHours() < 12) {
-                console.log('Good morning.');
+            // Print a greeting based on the time of day
+            currentTime = new Date(); // get the current time
+            if (currentTime.getHours() < 12) {
+                    console.log('Good morning.');
+            }
+            else if (currentTime.getHours() < 18  && currentTime.getHours() >= 12) {
+                    console.log('Good afternoon.');
+            }
+            else {
+                    console.log('Good evening.');
+            }
+
+            // set the Omega LED to solid after 5 seconds
+            setTimeout(() => {
+                setLed(triggerPath, 'default-on');
+            }, 5000);
         }
-        else if (currentTime.getHours() < 18  && currentTime.getHours() >= 12) {
-                console.log('Good afternoon.');
-        }
-        else {
-                console.log('Good evening.');
-        }
-
-        // Set the Omega LED back to being always on
-        fs.open(triggerPath, 'w', (err, fd) => {
-            fs.writeSync(fd, 'default-on');
-            fs.closeSync(fd);
-        });
-    }, 5000);
-}
-
-
-// Print a greeting based on the time of day
-// Gets the current time
-```
-
-You can use NodeJS the same way you would on a computer. Just write a script and execute it with the following command:
-
-``` bash
-node /path/to/script.js
+    );
 ```
 
 
@@ -135,9 +126,9 @@ We've included links to guides on how you can use NodeJS on the Omega to create 
 
 [NodeJS Documentation](https://nodejs.org/docs/latest-v4.x/api/) is available from the official Node website.
 
-#### Omega Expansion NodeJS packages
+### Omega Expansion NodeJS packages
 
-Currently, all software for the Omega Expansions are available through `opkg`.
+We have developed NodeJS modules for controlling several Omega Expansions, they're all available hrough `opkg`.
 
 ``` bash
 opkg update
@@ -146,22 +137,22 @@ opkg install node-pwm-exp
 opkg install node-relay-exp
 ```
 
-Documentation for the packages can be found on the main [Onion Documentation](https://docs.onion.io) site.
+<!-- TODO: this is hosted on the documentation site... no need for the link -->
 
-[OLED Expansion](https://docs.onion.io/omega2-docs/oled-expansion-node-module.html)
+Documentation for the packages can be found on the main [Onion Documentation](https://docs.onion.io) site:
 
-[PWM Expansion](https://docs.onion.io/omega2-docs/pwm-expansion-node-module.html)
+* [OLED Expansion](https://docs.onion.io/omega2-docs/oled-expansion-node-module.html)
+* [PWM Expansion](https://docs.onion.io/omega2-docs/pwm-expansion-node-module.html)
+* [Relay Expansion](https://docs.onion.io/omega2-docs/relay-expansion-node-module.html)
 
-[Relay Expansion](https://docs.onion.io/omega2-docs/relay-expansion-node-module.html)
+<!-- TODO: change the above links to use the #tags -->
 
 
-#### Using Blynk with the Omega
+### Blynk & the Omega
 
-The Omega supports Blynk!
+The Omega supports Blynk! Check out our [Blynk article](#blynk-library) to learn more!
 
-You can learn about how to get it up and running on your Omega in our Software Reference [article](#blynk-library)
+<!-- TODO: add a little bit more info on blynk to this blurb -->
 
 <!-- // brief description of Blynk and how they're awesome -->
 <!-- // link to the main blynk article -->
-
-<!-- Not available on current firmware -->

@@ -1,11 +1,11 @@
 ## Blynk Library for Omega {#blynk-library}
 
-The Omega now officially supports Blynk and the Blynk Library. You can now use the Blynk app to control your Omega. This means you can get your project running in minutes! The library comes as a NodeJS module, and can be installed through either opkg or npm.
+The Omega officially supports Blynk and the Blynk Library. You can now use the Blynk app to control your Omega. This means you can get your project running in minutes! The library comes as a NodeJS module, and can be installed using opkg.
 
 
 ### Programming Flow {#blynk-programming-flow}
 
-The Blynk library for the omega works with node, and uses virtual pins to send signals to the Omega. In the front end, you can connect pins to buttons, knobs and dials to suit your needs.
+The Blynk library for the Omega works with [NodeJS](#software-installing-and-using-nodejs), and uses virtual pins to send signals to the Omega. In the front end, you can connect pins to buttons, knobs and dials to suit your needs.
 
 ### In the Blynk of an Eye {#blynk-context}
 
@@ -16,7 +16,7 @@ For further reading on the library's functionality refer to the [documentation](
 
 ### The Blynk Library {#blynk-description}
 
-The library comes with NodeJS - Blynk leverages the Node ecosystem, so you can integrate it to any Node projects with ease!
+The library works with NodeJS - Blynk leverages the Node ecosystem, so you can integrate it to any Node projects with ease!
 
 
 #### Installation
@@ -55,6 +55,8 @@ You can run a quick check to see if your Auth Token works correctly:
 ``` js
 node /usr/bin/blynk-library/bin/blynk-client.js <Auth Token>
 ```
+
+> See [Blynk's getting started guide](http://www.blynk.cc/getting-started/) for info on creating your Auth Token
 
 
 ### Using the Library {#blynk-using-library}
@@ -98,3 +100,5 @@ Press the button on you app and note the output on the screen.
 
 
 You can take this further by using the [OnOff module](https://wiki.onion.io/Tutorials/onoff-node) to control the Omega's GPIOs.
+
+<!-- TODO: don't link back to the wiki, let's make a new article for onoff  -->
