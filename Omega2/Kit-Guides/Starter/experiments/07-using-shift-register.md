@@ -138,6 +138,7 @@ class shiftRegister:
 			self.rclk.setOutputDirection(0)
 
 			self.clear()
+      # TODO: this function should be called in the init of the class
 
 		#Sets the serial pin to the correct value and then pulses the serial clock to shift it in
 		def inputBit(self, inputValue):
@@ -165,6 +166,7 @@ import signal
 
 shiftRegister = shiftRegister(1,2,3) #Data pin is GPIO 1, serial clock pin is GPIO 2, Latch pin is GPIO 3
 
+# TODO: add a comment describing this chunk of code
 def signal_handler(signal, frame):
     global interrupted
     interrupted = True
@@ -172,6 +174,7 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 
+# TODO: comments
 shiftRegister.setup()
 value = 192
 interrupted = False
@@ -223,15 +226,19 @@ You can terminate the code by pressing `ctrl+c` or `cmd+c` for MACs.
 
 We've introduced some new concepts in this experiment in order to create cleaner and more robust code. Let's examine some of these concepts.
 
+// TODO: introduce the new concepts briefly
+
 
 #### Creating and Importing Modules
 
 <!-- // describe how the import process works, make sure to note how the directory structure has to fit -->
 
-A **Module** is a file containing Python definitions and statements. This can be used to split your project into multiple files for easier maintenance. The `registerClass.py` file is an example of a self-made module that we've imported. Some modules are built in to Python; some examples are `time` which you may have used before, and `signal` which is used in our main program.
+A **module** is a file containing Python definitions and statements. This can be used to split your project into multiple files for easier maintenance. The `registerClass.py` file is an example of a self-made module that we've imported. Some modules are built in to Python; some examples are `time` which you may have used before, and `signal` which is used in our main program.
 
 
 #### Creating and Using Classes {#shift-register-creating-classes}
+
+// TODO: mention how we've used the onionGpio class before, now we're going one step further and creating our own class
 
 Classes are a way to create a template for creating objects in our code. For example the class we created is a code template that represents having a shift register on our circuit. If we wanted to we could connect another shift register to our circuit, and easily create a new object using our shiftRegister class.
 
@@ -253,7 +260,7 @@ def outputBits(self, inputValues):
 
 You'll also notice that we include `self` in our Python class functions. This is necessary so that we are always referencing the variable or function that pertains to the current object.
 
-Finally, you can import other modules into your self-made modules. In our shiftRegister class we use `onionGpio` in order to create our GPIO objects, which is made possible by importing `onionGpio`.
+Finally, you can import other modules into your self-made modules. In our `shiftRegister` class we use `onionGpio` in order to create our GPIO objects, which is made possible by importing the `onionGpio` module.
 
 <!-- // explanation of Classes
 //  - definition of Classes
@@ -267,10 +274,22 @@ Finally, you can import other modules into your self-made modules. In our shiftR
 
 When using GPIOs it is important that you exit your code properly so that your GPIOs are properly freed and you don't get locked out of using them. This can be quite difficult when we create an infinite loop so we've included a solution to that.
 
-When inspecting our main program we see a function defined as `signal_handler`. We also see an signal listener in the form of
+When inspecting our main program we see a function defined as `signal_handler`. We also see an signal listener in the form of:
 
 ```
 signal.signal(signal.SIGINT, signal_handler)
 ```
 
-This listener is listening for an interrupt from the user in order to run the signal handler code. So when you enter `ctrl+c` or `cmd+c` you are sending a *Keyboard Interrupt* which is then handled by the function in a safe way. This way your code will always finish a cycle before exiting, thus making sure that your GPIOs are properly freed.
+This listener is waiting for an interrupt from the user in order to run the signal handler code. So when you enter `ctrl+c` or `cmd+c` you are sending a *Keyboard Interrupt* which is then handled by the function, in order to exit the program in a safe way. This way your code will always finish a cycle before exiting, thus making sure that your GPIOs are properly freed. // TODO: what do you mean by a cycle in this last sentence? clarify!
+
+// TODO: nowhere did we explain this part of the main program:
+```
+for x in range(0, 12):
+  binValue = "{0:08b}".format(value) # Transforms the value into a binary number (192 = 11000000)
+  shiftRegister.outputBits(binValue) # Sends the 8 bit value to be output by the shift register
+  if x < 6:
+    value >>= 1 #Shifts the value right by one (11000000 -> 01100000)
+  else:
+    value <<= 1 #Shifts the value left by one (01100000 -> 11000000)
+```
+// TODO: please add a section (AND COMMENTS IN THE CODE) describing what this will accomplish
