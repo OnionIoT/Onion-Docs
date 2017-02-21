@@ -11,9 +11,7 @@ order: 8
 We've just learned about shift registers, now let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world.
 
 <!-- seven segment -->
-
-```
-{r child = '../../shared/seven-segment.md'}
+```{r child = '../../shared/seven-segment.md'}
 ```
 
 ### Building the Circuit
