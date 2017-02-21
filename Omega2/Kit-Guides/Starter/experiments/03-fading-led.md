@@ -20,7 +20,7 @@ By sending a PWM signal to an LED, we can control how bright that LED appears to
 
 ### Building the Circuit
 
-We're going to be providing power to the LED just like we did in the two previous experiments. The only difference is the speed at which we turn the LED on and off!
+We're going to be providing power to the LED just like we did in the two previous experiments. The only difference is the speed at which we turn the LED on and off, and that will be taken care of in the software!
 
 #### What You'll Need
 
@@ -29,8 +29,8 @@ We'll need the same LED circuit we used in the previous two experiments, which i
 * Omega2 plugged into Expansion Dock
 * 1x LEDs
 * 2x Jumper Wires
-* Resistors
-  * 200Ω
+* 1x Resistor
+    * 200Ω
 * Breadboard
 
 #### Hooking up the Components
@@ -39,6 +39,8 @@ In this example we'll only be fading a single LED on GPIO 0 so go ahead and buil
 
 * Plug the LED into the breadboard, with the anode and cathode in different rows
 * Connect the LED's
+
+TODO: encapsulate the hooking up the components text from experiment one into a file and include it here
 
 ### Writing the Code
 
@@ -49,12 +51,8 @@ In this example we'll only be fading a single LED on GPIO 0 so go ahead and buil
 // make it progress slowly so you can tell that its getting brighter and dimmer -->
 
 ``` python
-import onionGpio
 import time
 import os
-
-gpio0 	= onionGpio.OnionGpio(0)	# initialize a GPIO object
-gpio0.setOutputDirection(0)		# set to output direction with zero being the default value
 
 ledValue  = 2
 dutyCycle = 0
@@ -95,7 +93,16 @@ When you run this script your LED will fade in and out. This is because we set t
 //  * function where you pass in gpio # and duty cycle and it calls fast-gpio for you
 //  * fancy for loop -->
 
+// TODO: the onionGpio part was taken out, rewrite the below to match that
+
 We've used the code from Experiment 1 as a foundation for writing the code in the experiment. We will still instantiate the GPIO and set the direction to output, but afterwards we no longer use onionGpio. Instead we use `fast-gpio` for its software based PWM function. In our infinite loop we increment the duty cycle by the ledValue, and at 100% we reverse the value and decrement to 0.
+
+// TODO: this is a new section
+##### Making OS Calls
+
+// TODO: include some background on fast-gpio, talk about how we use os.system to call a command line tool from within python
+
+In order to use `fast-gpio` we need to use the `os` module. This module allows us to send command-line arguments in Python using `os.system(command)`.
 
 ##### Functions
 
@@ -104,8 +111,7 @@ We've used the code from Experiment 1 as a foundation for writing the code in th
 //  * will be used a whole bunch
 //  * cleaner looking code and good practice -->
 
-
-In order to use `fast-gpio` we need to use the `os` module. This module allows us to send command-line arguments in Python using `os.system(command)`.
+// TODO: this section should talk about how it's nice that we wrapped the ugly system call in a nice python interface, ie expand on whats written here
 
 We then put this into it's own function so that we have a much simpler and easier to read Python interface for setting the PWM duty cycle. This function takes in the following arguments:
 

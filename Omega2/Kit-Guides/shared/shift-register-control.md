@@ -10,8 +10,10 @@ The SRCLK is used to set up the pins on the shift register. When the SRCLK is pu
 
 The RCLK, or latch pin, is used as a signal to set the output pins to the values to those of the new shift register values. When this is pulled **high** the values that the SRCLK set up are sent out to the output pins. We pulse this pin in order to show the new values on the shift register's output pins.
 
+// TODO: should use common nomenclature (SRCLK, RCLK, SER) in this and the other shift register snippet. go back to the previous shift register snippet and explicityl introduce the data, clock, and latch lines, introduce the SRCLK, RCLK, and SER names as well
 
-You can refer to [the SN74hc595 datasheet](http://www.ti.com/lit/ds/symlink/sn74hc595.pdf) for more information. The clock cycles can be found on page 8.
+
+You can refer to the [datasheet of the SN74HC595 shift register](http://www.ti.com/lit/ds/symlink/sn74hc595.pdf) for more information. The clock cycle timing diagram can be found on page 8.
 
 <!-- // introduce the idea of a clock, explain that it provides the shift register with a signal to read the data that's currently on the serial data in pin. make sure to note that the data on the serial data in pin needs to be settled before the clock edge!
 

@@ -16,6 +16,8 @@ So far, we've been using a program to control GPIOs. Let's try using physical us
 
 We'll be using a **slide switch** as an input to control whether an LED should be turned on or off.
 
+// TODO: append a sentence along the lines of: First we'll make a simple circuit to illustrate how the switch works, and then we'll move on to building a circuit where the switch is connected to your Omega.
+
 
 <!-- gpio input -->
 ```{r child = '../../shared/gpio-input.md'}
@@ -35,6 +37,8 @@ We'll be using a **slide switch** as an input to control whether an LED should b
 <!-- // diagram, general description of what the circuit does/the purpose
 // circuit 1: switch controls turning an LED on and off to illustrate how the slide switch works
 // spdt switch (one side is pull-up, other side is pull-down) connected to an led -->
+
+// TODO: this is an awful intro. mention that this is an example circuit that we're making to show off how switches work. briefly describe what we'll be building
 
 We'll be building the following circuit.
 
@@ -56,7 +60,7 @@ Prepare the following components from your kit:
 <!-- // step by step guide of how to hook up the components
 //  * how to connect one side of the switch to gnd and one to vcc
 //  * connect the switchable part to the led -->
-Before putting the circuit together, make sure the Omega2 is powered OFF for safety. 
+Before putting the circuit together, make sure the Omega2 is powered OFF for safety.
 
 1. Connect the Expansion Dock's 3.3V pin to one of the "+" columns on the breadboard.
     * We'll call this column **Vcc**.
@@ -70,11 +74,17 @@ Before putting the circuit together, make sure the Omega2 is powered OFF for saf
 1. Connect the LED's anode to ground, and the cathode to one end of a (// TODO: resistor value) resistor.
 1. Connect the other end of that resistor to the middle of the slide switch.
 
-Your circuit should look like this.
+Your circuit should look like something like this:
 
 <!-- // TODO: photo -->
 
 If your circuit matches, go ahead and turn the Omega2 on!
+
+// TODO: about this section, i don't like that we keep the omega off for safety, people might get the wrong impression and think that this is actually dangerous.
+//  Let's change it:
+//  * we first build the circuit, then connect the ground, and then connect Vcc
+//    - make a note that this is how you should usually connect circuits, gnd first and then vcc
+//  * make sure to mention that we're just using the omega as a power supply
 
 #### What to Expect
 
@@ -84,18 +94,24 @@ If your circuit matches, go ahead and turn the Omega2 on!
 
 // this is a simple circuit but we wanted to illustrate how the switch works, let's move on to including our Omega in this circuit -->
 
-The slide switch physically controls if electricity flows or does not flow to the LED. 
+The slide switch physically controls if electricity flows or does not flow to the LED.
 
-* When the switch is set to the pull-up fork, the LED receives power and lights up. 
+* When the switch is set to the pull-up fork, the LED receives power and lights up.
 * When the switch is set to the pull-down fork, the LED does not receive power and turns off.
 
-This is a very simple circuit, but we wanted to illustrate how this switch works. Let's move on to including our Omega in this setup!
+This is a pretty simple circuit, but we wanted to illustrate how this switch works. Let's move on to including our Omega in this setup!
+
+// TODO: note that the 'pretty' in the sentence above used to be 'very', let's avoid words that can sound even remotely condescending
 
 ### Building the Experiment Circuit
 
 <!-- // circuit 2: switch connected to GPIO, controls LED with software
 // spdt switch (with pull-up and pull-down sides) connected to gpio input
 // regular led circuit connected to gpio setup as output -->
+
+// TODO: this intro is bad:
+//  * doesn't go with the tense of the rest of the article
+//  * when describing the program, say that we will be getting input from the switch and using that to turn the LED on or off - really drive home the point that we're reading input
 
 In the next circuit, the Omega2 connects to the slide switch and LED. We'll write a program that turns the LED on or off depending on how you set the switch.
 
@@ -104,7 +120,7 @@ In the next circuit, the Omega2 connects to the slide switch and LED. We'll writ
 #### What You'll Need
 
 * Use the same components as in the first circuit above.
-* You may need a few more jumper wires handy.
+* You may need a few more jumper wires
 
 #### Hooking up the Components
 
@@ -126,6 +142,8 @@ Your circuit should look like this:
 
 If your circuit matches, power your Omega back on!
 
+// TODO: again, don't like turning the omega off... that's ridiculous
+
 ### Writing the Code
 
 Let's make a new file called `readSwitch.py` to hold our code:
@@ -140,18 +158,24 @@ Let's make a new file called `readSwitch.py` to hold our code:
 import onionGpio
 import time
 
-# initialize GPIOs
-switchPin     = onionGpio.OnionGpio(0)      # use GPIO0
-ledPin        = onionGpio.OnionGpio(1)      # use GPIO1
+# TODO: Lazar: point out this addition
+# set which GPIOs will be used
+switchPin     = 0      # use GPIO0
+ledPin        = 1      # use GPIO1
+
+
+# instantiate GPIO objects
+switch        = onionGpio.OnionGpio(switchPin)
+led           = onionGpio.OnionGpio(ledPin)
 
 # set the GPIO directions
-switchPin.setInputDirection()               # switch pin is an input
-ledPin.setOutputDirection(0)                # led pin is an output
+switch.setInputDirection()               # switch pin is an input
+led.setOutputDirection(0)                # led pin is an output
 
 # periodically check the switch and turn the LED on or off
 while 1:
-	switchValue = switchPin.getValue()     # read the switch's value
-    ledPin.setValue(switchValue)           # turn the LED on/off depending on the switch
+	switchValue = switch.getValue()     # read the switch's value
+	led.setValue(switchValue)           # turn the LED on/off depending on the switch
 
 	time.sleep(2)                          # sleep for 2 seconds
 ```
@@ -167,9 +191,11 @@ Now try flipping the switch on and off. What happens?
 
 <!-- // the switch controls whether the LED is on or off. yes the same thing was achieved with the far simpler circuit, but is meant to illustrate how a physical input can control something virtual -->
 
-This circuit does pretty much the same thing as the first circuit, albeit with a slower reaction to the switch input. This is meant as a simple example of a physical input affecting something virtual (eg. a program), which can in turn affect the physical world or interact with other virtual entities.
+This circuit does pretty much the same thing as the first circuit, albeit with a much slower reaction to the switch input. This is meant as a simple example of a physical input affecting something virtual (like a program), which can in turn affect the physical world or interact with other virtual entities.
 
 #### A Closer Look at the Code
+
+// TODO: need an intro for this section
 
 <!-- // small overview of anything new we did -->
 ##### Polling
@@ -187,6 +213,8 @@ This circuit does pretty much the same thing as the first circuit, albeit with a
 Polling is the process of repeatedly checking an input.
 
 When flipping the switch, you may have noticed a delay of 2 seconds before the LED reacted. This delay was added so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast!
+
+// TODO: erm... again, we don't want to alarm people, 'burn up the CPU' sounds horrifying if I'm a newbie, change it to something like 'unnecessarily overload the CPU'
 
 The delay length is set by the `time.sleep(2)` line. Try changing the number to something shorter, like 0.5 or 0.1, and seeing what happens.
 
