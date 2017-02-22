@@ -1,11 +1,14 @@
+<!-- this content is rewritten in shift-register.md
+// keeping it here for reference -->
+
 ### Controlling a Shift Register
 <!-- {{!insert 'shift-register-control'}} -->
 
-There are two clocks on the shift register included in your kit: SRCLK (serial clock) and the RCLK (register clock). These pins are called **clocks** because they trigger the IC to do something when they receive a signal pulse, kind of like ticking on a clock. We will refer to the register clock as the **latch pin**.
+There are two clocks on the shift register included in your kit: SRCLK (serial clock) and the RCLK (register clock).  We will refer to the register clock as the **latch pin**.
 
 The SRCLK is used to set up the pins on the shift register. When the SRCLK is pulled **high** the shift register reads the value on the SER pin. How does this let us control LEDs again? Well, say you have 8 LEDs hooked up to the shift registers outputs, and we want to turn on the 1st, 3rd and the 8th LED. So what we do is clear out the register so all LEDs are off. Then we set the SER pin to 1, and pulse the SRCLK (pull it high and then low). We repeat this for four 0s, one 1, one 0, then one last 1. This leaves us with `10000101`.
 
->Every time we want to add a new value to the shift register, we pulse the SRCLK. This moves all the values on the shift register's output pins down one, and inserts the value currently on the data pin into position 1.
+Every time we want to add a new value to the shift register, we pulse the SRCLK. This moves all the values on the shift register's output pins forwards by one position, and inserts the current value of the data pin into position 1.
 
 
 The RCLK, or latch pin, is used as a signal to set the output pins to the values to those of the new shift register values. When this is pulled **high** the values that the SRCLK set up are sent out to the output pins. We pulse this pin in order to show the new values on the shift register's output pins.

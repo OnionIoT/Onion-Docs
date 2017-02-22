@@ -18,24 +18,16 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 <!-- Shift Register -->
 ```{r child = '../../shared/shift-register.md'}
 ```
-<!-- Controlling shift register -->
-```{r child = '../../shared/shift-register-control.md'}
-```
 
-### Building the Circuit {#STK06-building-the-circuit}
+### Building the Circuit {#starter-kit-using-shift-register-building-the-circuit}
 
 This circuit is quite involved but we're going to split it up into 3 parts: 
 
 1. Connecting the shift register
-1. Connecting the LEDs.
+1. Connecting the LEDs
 1. Connecting your Omega
 
-It's going to be similar to the second experiment, but this time we're going to use 8 LEDs and a shift register.
-
-TODO: order should be wiring up the shift register, connecting the LEDs and then connecting the Omega
-
-<!-- TODO: insert a link to the second experiment -->
-
+It's going to be similar to the second experiment, but this time we're going to use 8 LEDs and a shift register. Refer to the [circuit building instructions in Experiment 2](#starter-kit-multiple-leds-building-the-circuit), except you will be connecting 8 LEDs to the shift register instead of the Omega's GPIOs.
 
 The GPIOs that are going to be used in this experiment are:
 
@@ -82,7 +74,7 @@ Now, there are a lot of connections you'll need to make in order to power the IC
 3. Connecting your LEDs
 
   - Connect 8 LEDs the same way we did in experiment 2, (cathode in ground, anode connected to resistor)
-  - Connect the jumper wires from the LEDs to the output pins on the shift register. In order from first to last these are pin 15 (QA), followed by pin 1(QB) to pin7(QH)
+  - Connect the jumper wires from the LEDs to the output pins on the shift register. In order from first to last these are pin 15 (QA), followed by pin 1 (QB) to pin7 (QH)
 
   <!-- TODO: IMAGE picture of this stage -->
   
@@ -112,53 +104,53 @@ We're going to split our code into two files; one for our main program, and one 
 import onionGpio
 
 class shiftRegister:
-		#Initializes the GPIO objects based on the pin numbers
-		def __init__(self, dataPin, serialClock, registerClock):
-			self.ser = onionGpio.OnionGpio(dataPin)
-			self.srclk = onionGpio.OnionGpio(serialClock)
-			self.rclk = onionGpio.OnionGpio(registerClock)
+	#Initializes the GPIO objects based on the pin numbers
+	def __init__(self, dataPin, serialClock, registerClock):
+		self.ser = onionGpio.OnionGpio(dataPin)
+		self.srclk = onionGpio.OnionGpio(serialClock)
+		self.rclk = onionGpio.OnionGpio(registerClock)
+        self.setup()
 
-		#Pulses the latchpin
-		def latch(self):
-			self.rclk.setValue(1)
-			self.rclk.setValue(0)
+	#Pulses the latchpin
+	def latch(self):
+		self.rclk.setValue(1)
+		self.rclk.setValue(0)
 
-		# Pulses the Serial Clock 8 times in and then latches to clear all the LEDs
-		def clear(self):
-			self.ser.setValue(0)
-			for x in range(0, 8): #Clears out all the values currently in the register
-				self.srclk.setValue(1)
-				self.srclk.setValue(0)
-			self.latch()
-
-		#Sets the GPIOs to output with an initial value of zero
-		def setup(self):
-			self.ser.setOutputDirection(0)
-			self.srclk.setOutputDirection(0)
-			self.rclk.setOutputDirection(0)
-
-			self.clear()
-      # TODO: this function should be called in the init of the class
-
-		#Sets the serial pin to the correct value and then pulses the serial clock to shift it in
-		def inputBit(self, inputValue):
-			self.ser.setValue(inputValue)
+	# Pulses the Serial Clock 8 times in and then latches to clear all the LEDs
+	def clear(self):
+		self.ser.setValue(0)
+		for x in range(0, 8): #Clears out all the values currently in the register
 			self.srclk.setValue(1)
 			self.srclk.setValue(0)
+		self.latch()
 
-		#Splits the input values into individual values and inputs them. The pulses the latch pin to show the output.
-		def outputBits(self, inputValues):
-			inputValues = str(inputValues) # Converts the binary value into a string (11000000 -> "11000000")
-			mylist = list(inputValues) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
-			for x in mylist:
-				x = int(x) # Transforms the character back into an int ("1" -> 1)
-				self.inputBit(x)
-			self.latch()
+	#Sets the GPIOs to output with an initial value of zero
+	def setup(self):
+		self.ser.setOutputDirection(0)
+		self.srclk.setOutputDirection(0)
+		self.rclk.setOutputDirection(0)
+
+		self.clear()
+    
+	#Sets the serial pin to the correct value and then pulses the serial clock to shift it in
+	def inputBit(self, inputValue):
+		self.ser.setValue(inputValue)
+		self.srclk.setValue(1)
+		self.srclk.setValue(0)
+
+	#Splits the input values into individual values and inputs them. The pulses the latch pin to show the output.
+	def outputBits(self, inputValues):
+		inputValues = str(inputValues) # Converts the binary value into a string (11000000 -> "11000000")
+		mylist = list(inputValues) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
+		for x in mylist:
+			x = int(x) # Transforms the character back into an int ("1" -> 1)
+			self.inputBit(x)
+		self.latch()
 ```
 
 This file contains a single class that allows us to write a really clean main program. The main component here is the `__init__` function which initializes the class object.
 
-The next component of our code is the main program, you can name this file whatever you'd like but make sure its in the same directory as `registerClass.py`:
+Now let's write the main script. Create a file in the same directory called `STK06-using-shift-register.py` and paste the following code in it:
 
 ``` python
 from registerClass import shiftRegister
@@ -175,7 +167,6 @@ signal.signal(signal.SIGINT, signal_handler)
 
 
 # TODO: comments
-shiftRegister.setup()
 value = 192
 interrupted = False
 while 1:
@@ -215,7 +206,7 @@ The main program imports the class we wrote and creates an object `shiftRegister
 
 What this will do is light up two of your LEDs, and then move them all the way to one side, and back again (think Kitt from Knight Rider).
 
-You can terminate the code by pressing `ctrl+c` or `cmd+c` for MACs.
+You can terminate the code by pressing `Ctrl-C` or `Cmd-C` on Mac OS.
 
 <!-- // explain that the animation will be Knight Rider Kitt style: maybe throw in a gif for nostalgia
 //  - it will run all the way left and then all the way right over and over again -->
@@ -224,10 +215,11 @@ You can terminate the code by pressing `ctrl+c` or `cmd+c` for MACs.
 
 <!-- // an overview of the code -->
 
-We've introduced some new concepts in this experiment in order to create cleaner and more robust code. Let's examine some of these concepts.
+We've introduced some new and important concepts in this experiment. We've created and imported **modules**, files containing code that can be called and reused in other scripts without having to re-type it all. When you update a module, any program that calls them will get the new changes!
 
-// TODO: introduce the new concepts briefly
+We've also introduced **classes** which are blueprints for Python objects. Python objects are collections of data that are meant to help you wrap up low-level grunt-work code into simpler, more usable functions and variables.
 
+Finally, we introduced **safely exiting from an infinite loop**, to ensure that the Omega's GPIOs are properly freed from the Python script once you want to end the program.
 
 #### Creating and Importing Modules
 
@@ -235,18 +227,19 @@ We've introduced some new concepts in this experiment in order to create cleaner
 
 A **module** is a file containing Python definitions and statements. This can be used to split your project into multiple files for easier maintenance. The `registerClass.py` file is an example of a self-made module that we've imported. Some modules are built in to Python; some examples are `time` which you may have used before, and `signal` which is used in our main program.
 
-
 #### Creating and Using Classes {#shift-register-creating-classes}
 
-// TODO: mention how we've used the onionGpio class before, now we're going one step further and creating our own class
+<!-- // TODO: mention how we've used the onionGpio class before, now we're going one step further and creating our own class -->
 
-Classes are a way to create a template for creating objects in our code. For example the class we created is a code template that represents having a shift register on our circuit. If we wanted to we could connect another shift register to our circuit, and easily create a new object using our shiftRegister class.
+Classes are a way to create a template for creating objects in our code. For example, the class we created is a code template that represents having a shift register on our circuit. If we wanted to we could connect another shift register to our circuit, and easily create a new object using our `shiftRegister` class.
 
 When we've created our class object we also get access to the functions defined by the class. We can call these functions through our instantiated object:
 
 ``` python
 shiftRegister.outputBits(binValue)
 ```
+
+In the `shiftRegister` class file:
 
 ``` python
 def outputBits(self, inputValues):
