@@ -13,7 +13,10 @@ order: 10
 //  * writing to an lcd screen
 //    * using the i2c protocol -->
 
-In this experiment, we will be building on the previous experiment by writing to an LCD screen using the I2C protocol.
+In this experiment, we will be building on the previous experiment by adding an LCD screen to display the measured temperature.
+
+// TODO: add to this intro, LAZAR fill in more here
+// TODO: recommend that they do the previous experiment first!
 
 <!-- lcd -->
 ```{r child = '../../shared/lcd.md'}
@@ -32,6 +35,7 @@ We'll be using the same temperature sensor circuit from the previous experiment,
 #### What You'll Need
 
 If you've taken apart your temperature sensor circuit, wire it back up according to the instructions in the [previous experiment](#starter-kit-reading-one-wire-temperature-sensor).
+// TODO: change this to 'Everything from the Temperature Sensor experiment' and then list all of those materials
 
 Then grab the following from your kit:
 
@@ -64,10 +68,20 @@ Then grab the following from your kit:
 //  * writes the time and temperature to the display once a minute
 //    * use the onion i2c module to write to the display -->
 
+// TODO: it isn't convenient that the I2C python MODULE exposes functionality and it's not some functionality. remember, these users are likely to be beginners so they might get a completely wrong idea about the i2c python module... change it to say somthing like 'which provides convenient functions for interacting with I2C devices'
 For this experiment, we'll be using our Onion I2C Python library which conveniently exposes some I2C functionality. If you're curious, you can see how it works in our [I2C Python module reference](#i2c-python-module).
+// TODO: the above link needs to be changed to https://docs.onion.io/blahblah, can't use #tags to link to docs articles since they are built separately
 
 >The LCD display driver code is based on user [**natbett**'s post](https://www.raspberrypi.org/forums/viewtopic.php?f=32&t=34261&p=378524) on the Raspberry Pi forums.
 
+// TODO: the wrapper around the OnionI2C object is unnecessary and will be confusing/difficult to explain.
+// The fix: change the Lcd class to use the OnionI2C class directly:
+//  * the `__init__` function will instantiate an OnionI2C object
+//  * the `lcd_strobe` and `lcd_write_four_bits` will be changed to use the OnionI2C object writing functions
+
+// TODO: include a block diagram of our software system
+
+// TODO: add a brief description (1-2 sentences) of what this class will implement
 First, let's create a file containing a class to work with the I2C bus. Create a file called `i2cLib.py` and paste the following code:
 
 ``` python
@@ -223,7 +237,12 @@ class Lcd:
         self.refresh()
 ```
 
+// TODO: add a brief description of what this will accmplish
 Now let's write the main routine for the experiment. Create a file called `STK09-temperatureLCD.py` in `/root`. Paste the code below in it:
+
+// TODO: code changes:
+//  * encapsulate some of this stuff into their own functions: 1 function for setting up and reading the temperature sensor, another to write to the lcd, etc
+//  * lets print the current date and time to the screen as well
 
 ``` python
 import lcdDriver
@@ -270,7 +289,7 @@ if __name__ == '__main__':
 
 Calling the script will update the LCD screen with a fresh temperature reading.
 
-<!-- TODO: IMAGE gif -->
+<!-- TODO: IMAGE gif of the setup with the temperature changing-->
 
 However, wouldn't it be nice if something could run the script for us every minute to actually update the LCD?
 
@@ -295,7 +314,8 @@ Here we're using two objects of different classes to accomplish our goal, `Tempe
 
 This is an incredibly common programming technique and is at the heart of Object Oriented Programming!
 
-<!-- TODO: fix cron, this doesn't work -->
+// TODO: implement the using cron section
+// note, you should be able to run python files directly in cron, i've done it before
 <!-- ### Going Further: Automating the Script
 
 We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
