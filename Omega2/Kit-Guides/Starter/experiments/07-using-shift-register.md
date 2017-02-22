@@ -158,7 +158,7 @@ import signal
 
 shiftRegister = shiftRegister(1,2,3) #Data pin is GPIO 1, serial clock pin is GPIO 2, Latch pin is GPIO 3
 
-# TODO: add a comment describing this chunk of code
+# Signal interrupt handler to safely exit when Ctrl-C is pressed
 def signal_handler(signal, frame):
     global interrupted
     interrupted = True
@@ -200,9 +200,7 @@ The main program imports the class we wrote and creates an object `shiftRegister
 // for loop using the object to display on all the leds
 //  there should be two leds on at a time, have it run all the way to the left, and then all the way to the right -->
 
-
 #### What to Expect
-
 
 What this will do is light up two of your LEDs, and then move them all the way to one side, and back again (think Kitt from Knight Rider).
 
@@ -215,9 +213,11 @@ You can terminate the code by pressing `Ctrl-C` or `Cmd-C` on Mac OS.
 
 <!-- // an overview of the code -->
 
-We've introduced some new and important concepts in this experiment. We've created and imported **modules**, files containing code that can be called and reused in other scripts without having to re-type it all. When you update a module, any program that calls them will get the new changes!
+We've introduced some new and important concepts in this experiment. 
 
-We've also introduced **classes** which are blueprints for Python objects. Python objects are collections of data that are meant to help you wrap up low-level grunt-work code into simpler, more usable functions and variables.
+We've created and imported **modules**, files containing code that can be called and reused in other scripts without having to re-type it all. We've also introduced **classes** which are blueprints for Python objects. Python objects are collections of data that are meant to help you wrap up low-level grunt-work code into simpler, more usable functions and variables.
+
+Modules and classes are a crucial part of writing clean and maintainable software. It's best practice to write your code to make use of modules or classes and avoid retyping the same code over and over again so you can update or make fixes much more easily.
 
 Finally, we introduced **safely exiting from an infinite loop**, to ensure that the Omega's GPIOs are properly freed from the Python script once you want to end the program.
 
@@ -227,19 +227,25 @@ Finally, we introduced **safely exiting from an infinite loop**, to ensure that 
 
 A **module** is a file containing Python definitions and statements. This can be used to split your project into multiple files for easier maintenance. The `registerClass.py` file is an example of a self-made module that we've imported. Some modules are built in to Python; some examples are `time` which you may have used before, and `signal` which is used in our main program.
 
-#### Creating and Using Classes {#shift-register-creating-classes}
+An important concept of modules is that if you update a module, any program that calls them will get the new changes!
+
+#### Creating and Using Classes {#starter-kit-using-shift-register-creating-classes}
 
 <!-- // TODO: mention how we've used the onionGpio class before, now we're going one step further and creating our own class -->
 
-Classes are a way to create a template for creating objects in our code. For example, the class we created is a code template that represents having a shift register on our circuit. If we wanted to we could connect another shift register to our circuit, and easily create a new object using our `shiftRegister` class.
+Classes are a way to create a template for creating objects in our code. So far, we've been using the `onionGpio` class that we at Onion developed to make your development experience easier. This class includes clean, easy-to-use functions such as `setValue()` that hide away boring and time-consuming system calls from you, the up-and-coming programmer who wants to get to the fun stuff!
 
-When we've created our class object we also get access to the functions defined by the class. We can call these functions through our instantiated object:
+Here, we've gone once step further by creating our own class called `shiftRegister` that also uses the `onionGpio` class in order to create our shift register objects. This is because in this case, we're more interested in **the data** we send to the shift register than controlling the shift register's GPIOs!
+
+The class we created is a code template that represents having a shift register on our circuit. If we wanted to we could connect another shift register to our circuit, and easily create a new object using our `shiftRegister` class.
+
+After creating our class object, we get access to the functions defined by the class. We can call these functions through our instantiated object like in this example:
 
 ``` python
 shiftRegister.outputBits(binValue)
 ```
 
-In the `shiftRegister` class file:
+This function is defined in the `shiftRegister` class file:
 
 ``` python
 def outputBits(self, inputValues):
@@ -251,9 +257,7 @@ def outputBits(self, inputValues):
   self.latch()
 ```
 
-You'll also notice that we include `self` in our Python class functions. This is necessary so that we are always referencing the variable or function that pertains to the current object.
-
-Finally, you can import other modules into your self-made modules. In our `shiftRegister` class we use `onionGpio` in order to create our GPIO objects, which is made possible by importing the `onionGpio` module.
+You'll also notice that we include `self` in our Python class functions. This is necessary so that we are always working with variables or functions pertaining to the current object. This is called **explicit self** in Python.
 
 <!-- // explanation of Classes
 //  - definition of Classes
@@ -273,7 +277,7 @@ When inspecting our main program we see a function defined as `signal_handler`. 
 signal.signal(signal.SIGINT, signal_handler)
 ```
 
-This listener is waiting for an interrupt from the user in order to run the signal handler code. So when you enter `ctrl+c` or `cmd+c` you are sending a *Keyboard Interrupt* which is then handled by the function, in order to exit the program in a safe way. This way your code will always finish a cycle before exiting, thus making sure that your GPIOs are properly freed. // TODO: what do you mean by a cycle in this last sentence? clarify!
+This listener is waiting for an interrupt from the user in order to run the signal handler code. So when you enter `Ctrl-C` or `Cmd-C` you are sending a *Keyboard Interrupt* which is then handled by the function, in order to exit the program in a safe way. This way your code will always finish a cycle before exiting, thus making sure that your GPIOs are properly freed. // TODO: what do you mean by a cycle in this last sentence? clarify!
 
 // TODO: nowhere did we explain this part of the main program:
 ```
