@@ -8,22 +8,27 @@ order: 9
 
 ## Reading a One-Wire Temperature Sensor {#starter-kit-08-reading-a-one-wire-temp-sensor}
 
-// TODO: choose a way to write One-Wire and stick to it through the whole article, it helps to mention that One-Wire is often referred to as: (list all of the variations 1-Wire, 1W, W1, etc)
+// TODO: choose a way to write One-Wire and stick to it through the whole article, it helps to mention that One-Wire is often referred to as: (list all of the variations 1-Wire, 1-Wire, W1, etc)
 
 <!-- // in this experiment we will:
 //  * introduce the one-wire bus protocol
 //  * read the ambient temperature using a sensor
 //  * learn how to read and write files -->
 
-Let's now learn about and use the **1-Wire bus protocol** to read the ambient temperature using a temperature sensor. We'll also learn how to **read from and write to files**.
+Let's now learn about and use the **1-Wire bus protocol** to read the ambient temperature using a temperature sensor. To do that, we'll first build a circuit using the 1-Wire temperature sensor. After it's built, we'll control this circuit with a script.
 
-// TODO: add intro to the script: how we'll first register a 1W bus master, and then read from the sensor, etc
+
+// TODO: add intro to the script: how we'll first register a 1-Wire bus master, and then read from the sensor, etc
 
 <!-- one wire -->
 ```{r child = '../../shared/one-wire.md'}
 ```
 
-// TODO: need a section on 1W & the Omega, describing how the Omega needs to register a 1w bus master in order to be able to communicate with the 1w sensor,
+There's no dedicated 1-Wire controller in the Omega. Thus to make 1-Wire work with the Omega, we must first label a GPIO as a '1-Wire master bus'. This will be the main contact point between the Omega and any 1-Wire devices. Once we have the master bus set up , we can then scan for the sensor through it and read from the sensor as needed. Along the way, we'll get a good look at the process of **reading and writing files**.
+// ASDF FINISH THIS RIGHT HERE ABOVE
+
+
+// TODO: need a section on 1-Wire & the Omega, describing how the Omega needs to register a 1w bus master in order to be able to communicate with the 1w sensor,
 //  see the docs https://docs.onion.io/omega2-docs/communicating-with-1w-devices.html#the-omega-one-wire for an example but do not just copy the text, adapt it to this article and the beginner audience, also avoid all mentions of I2C, SPI, UART, etc
 
 ### Building the Circuit
@@ -65,7 +70,7 @@ Your circuit should look like this:
 ### Writing the Code
 
 First, let's create a base class for any generic 1-Wire device.
-// TODO: a sentence or two describing what the 1W class will implement
+// TODO: a sentence or two describing what the 1-Wire class will implement
 
 Create a file called `oneWire.py` and paste the following code in it:
 
@@ -261,14 +266,13 @@ if __name__ == '__main__':
 
 Run the `STK08-temp-sensor.py` script and watch the terminal for output.
 
-#### What to Expect
+### What to Expect
 
-<!-- // run the program, get a print-out on the command line of the current temperature -->
 You should see the Omega printing the temperature in degrees Celsius measured by the sensor once every second. Try pinching the sensor with your fingers and seeing how it reacts!
 
-// TODO: include a screenshort of the printout, or a gif or something
+<!-- // TODO: IMAGE include a screenshort of the printout, or a gif or something -->
 
-#### A Closer Look at the Code
+### A Closer Look at the Code
 
 Here we've introduced **reading and writing to the filesystem**. We also introduced the concept of **scanning a bus** for devices and device addresses.
 
