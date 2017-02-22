@@ -15,7 +15,7 @@ order: 10
 
 In this experiment, we will be building on the previous experiment by adding an LCD screen to display the measured temperature.
 
-// TODO: add to this intro, LAZAR fill in more here
+// TODO: add to this intro, talk about the script we're going to write, what we'll accomplish by the end of the experiment, and tease the automation portion
 // TODO: recommend that they do the previous experiment first!
 
 <!-- lcd -->
