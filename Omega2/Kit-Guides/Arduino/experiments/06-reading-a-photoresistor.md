@@ -1,4 +1,4 @@
-## Reading a Photoresistor
+## Reading a Photoresistor {#arduino-kit-reading-a-photoresistor}
 
 <!-- // description of what this experiment will accomplish and what we'll learn -->
 In this tutorial, we will use a photoresistor to detect the light intensity. We'll send data from the ATmega to the Omega through serial (uart 1) communcation.
@@ -7,7 +7,7 @@ In this tutorial, we will use a photoresistor to detect the light intensity. We'
 <!-- // should be its own markdown file
 // explanation that a photoresistor puts out a variable resistance based on the intensity of the light hitting it -->
 
-A photoresistor has a variable resistance based on the intensity of the light hitting it. However, its light intensity measured in a unit called lux is inverse proportional to its resistance: the resistance will decrease when the environment has more light. The photoresistor is made out of a semiconductor with high resistance and can go up to megohms when the environment is dark. 
+A photoresistor has a variable resistance based on the intensity of the light hitting it. However, its light intensity measured in a unit called lux is inverse proportional to its resistance: the resistance will decrease when the environment has more light. The photoresistor is made out of a semiconductor with high resistance and can go up to megohms when the environment is dark.
 
 <!-- // TODO: Image of a photoresistor -->
 
@@ -36,7 +36,7 @@ Prepare the following components from your kit:
 // 5V <-> photoresistor <-> 10K resistor <-> GND
 // A0 pin connected to between photoresistor and 10k resistor -->
 
-1. Connect one end of the photoresistor to 5V and the other end to the 10K resistor (the polarity does not matter). 
+1. Connect one end of the photoresistor to 5V and the other end to the 10K resistor (the polarity does not matter).
 1. Connect the other end of the 10K resistor to GND.
 1. Connect the middle point between the photoresistor and resistor to an analog pin on the Arduino Dock (A0 is defined in the code).
 
@@ -62,7 +62,7 @@ void loop()
     // read a value (0 to 1023) from the analog pin and print to the Omega through serial
     int reading = analogRead(lightPin);
     Serial.println(reading);   
-    
+
     // convert the reading to voltage level (0 to 5V)
     float voltage = reading * 5.0 / 1024.0;
     Serial.print(voltage); Serial.println(" volts");
@@ -75,7 +75,7 @@ void loop()
     // convert photoresistance resistance to light intensity in lux
     float lightIntensity = 500/(Rphoto/1000);
     Serial.print(lightIntensity); Serial.println(" lux");
-    
+
     delay(1000);     //1 second delay between the readings
 }
 ```
@@ -94,7 +94,7 @@ If we cover the photoresistor with our hand, we should see on our Omega terminal
 
 #### A Closer Look at the Code
 
-This code is very similar to the previous tutorial. We use analogRead to obtain a digital value (0 to 1023) of analog voltage level at the output of the voltage divider. We first convert the digital value (0 to 1023) to the the output voltage level (0 to 5V) same as previous tutorial. We can then calculate the resistance of the photoresistor based on voltage level and the voltage divider formula. Lastly we convert the photoresistor resistance to light intensity using the formula for a typical photoresistor: light intentisty (lux) is equal to 500 divide by the photoresistor resistance (kΩ). 
+This code is very similar to the previous tutorial. We use analogRead to obtain a digital value (0 to 1023) of analog voltage level at the output of the voltage divider. We first convert the digital value (0 to 1023) to the the output voltage level (0 to 5V) same as previous tutorial. We can then calculate the resistance of the photoresistor based on voltage level and the voltage divider formula. Lastly we convert the photoresistor resistance to light intensity using the formula for a typical photoresistor: light intentisty (lux) is equal to 500 divide by the photoresistor resistance (kΩ).
 
 We also use `Serial.print()` to send the values at all the stages of the calcuation to the Omega for better understanding the calculation process.
 

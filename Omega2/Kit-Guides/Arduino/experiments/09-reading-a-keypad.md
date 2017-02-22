@@ -1,4 +1,4 @@
-## Reading a Key-Pad
+## Reading a Key-Pad {#arduino-kit-reading-a-keypad}
 
 In this experiment, we will be reading input from a keypad and treating it as a password, if the correct password is entered, an LED will light up. This will be useful in many scenarios, such as ATMs or building access systems. In addition, we will also learn how to use Arduino libraries which are not build-in.
 
@@ -74,7 +74,7 @@ To use the library we need to add the following line at the top of our code:
 
 ``` arduino
 // download the Keypad library: http://playground.arduino.cc/Code/Keypad#Download
-// move the unzipped Keypad file folder to the Arduino library folder: C:/Program Files (x86)/Arduino/libraries 
+// move the unzipped Keypad file folder to the Arduino library folder: C:/Program Files (x86)/Arduino/libraries
 // include the Keypad library
 #include <Keypad.h>
 
@@ -103,7 +103,7 @@ void loop(){
 
   // set LED off
   digitalWrite (13, LOW);
-  
+
   char key = keypad.getKey();   // read the key entered as a char
   int keyCheck = 0;   // index for the number of correct keys entered after #
   int i = 0;      // index for the number of keys entered after #
@@ -121,7 +121,7 @@ void loop(){
           key = keypad.getKey();    // read the key entered as a char
           if (key != NO_KEY){   // wait until a key has been pressed
           Serial.println(key);   
-          
+
               // if the correct key is entered in the same order as the password, increment keyCheck
               if (key == password[i]){
                  keyCheck ++;
@@ -148,7 +148,7 @@ void loop(){
     }
   }
 }
-``` 
+```
 
 
 #### What to Expect
@@ -162,9 +162,9 @@ We will be using the keypad for a password-protected system. After the user ente
 
 For this code we will use the Arduino Keypad library. An Arduino library is very similar to a class which we talked about in the previous tutorial. To use the library, we declare an our own Keypad object (named keypad) of the Keypad class.
 
-``` 
+```
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
-``` 
+```
 
 Notice we must include addition file `Keypad.h` which is inside the Arduino library folder. This file is where the `Keypad` class is defined. However, before to declare our `Keypad` object, we need declare the variables which needed to be passed into the Keypad object. This includes a two-dimensional array `keys[][]`.
 

@@ -1,8 +1,8 @@
-## Reading an Potentiometer
+## Reading an Potentiometer {#arduino-kit-reading-a-pot}
 
 <!-- // this experiment will use a potentiometer to control brightness of an LED -->
 
-So far, we've been using a program to control output pins. Let's try using physical user input to control our software! This experiment will use a potentiometer (trimpot) to control brightness of an LED. Before we begin, let's take a look at the trimpot and one way to change the brightness of the LED. 
+So far, we've been using a program to control output pins. Let's try using physical user input to control our software! This experiment will use a potentiometer (trimpot) to control brightness of an LED. Before we begin, let's take a look at the trimpot and one way to change the brightness of the LED.
 
 ### Potentiometer
 
@@ -35,7 +35,7 @@ So far we've been turning LEDs fully on and fully off, but it's also possible ha
 
 // an LED connected to one of the (pwm) outputs -->
 
-For this experiment, we will use the knob of the trimpot (trimmer potentiometer) to control the brightness of the LED. We will connect a potentiometer to the analog input and an LED to a PWM pin with a current-limiting resistor. 
+For this experiment, we will use the knob of the trimpot (trimmer potentiometer) to control the brightness of the LED. We will connect a potentiometer to the analog input and an LED to a PWM pin with a current-limiting resistor.
 
 Let's take a more detailed look at the ATMega pins on the Arduino dock since we'll be using them mostly throughout these tutorials. Analog pins are from prefixed with capital A (`A0` to `A5`). Pins `0` to `13` are digital pins. If there is a tilde sign `~` in front of the pin number, it means it can be used as a PWM pin. Pins `0` and `1` are serial pins and should not be used if we want to do serial communication between the ATmega and the Omega.
 
@@ -49,7 +49,7 @@ Prepare the following components from your kit:
 * Jumper wires
 * 1x 10KΩ Trimpot
 * 1x 200Ω Resistor
-* 1x LED color of your choice! 
+* 1x LED color of your choice!
 
 #### Hooking up the Components
 
@@ -57,7 +57,7 @@ Prepare the following components from your kit:
 
 1. First plug the potentiometer on the breadboard with each of the three pins in a different row.
 2. Connect the middle pin of the trimpot to the analog pin (`A0` defined in code) on the Arduino dock using a jumper wire.
-3. Connect one of the remaining pin to `GND` and the other one to `5V` (the polarity does not matter). 
+3. Connect one of the remaining pin to `GND` and the other one to `5V` (the polarity does not matter).
 4. Connect the anode of LED to a PWM pin (`~9` defined in code) on the Arduino Dock. Connect the cathode to the ground through the 200Ω current limiting resistor.
 
 <!-- // TODO: photo -->
@@ -91,7 +91,7 @@ void setLED()
 {
   analogWrite(ledPin, potValue/4);
 }
-  
+
 // continuously read the potentiometer and set the LED  
 void loop() {
   readPotValue();
@@ -120,7 +120,7 @@ It will print a digital value (0 to 1023), which has been converted from the ana
 #### A Closer Look at the Code
 <!-- // anything new that we introduced -->
 
-In this code we introduced several new concepts: analog read and analog (PWM) write; whereas previously we are using digital write. In addition, we will introduce a concept called polling. Let's take a look. 
+In this code we introduced several new concepts: analog read and analog (PWM) write; whereas previously we are using digital write. In addition, we will introduce a concept called polling. Let's take a look.
 
 ##### Analog Read
 First we start by looking at the `readPotValue()` function, in which we use analogRead to get the output value of the potentiometer. The output of the potentiometer circuit is basically the output voltage of a voltage divider circuit. Since the input voltage is 5V, the output voltage will vary from 0V to 5V depending on the position of trimpot knob. The Arduino build-in function analogRead will convert that voltage (0-5V) to a digital value (0 to 1023). Lets store this value in the variable potValue for later use.

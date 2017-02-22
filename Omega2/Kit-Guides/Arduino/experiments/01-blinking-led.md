@@ -1,4 +1,4 @@
-## Blinking an LED {#blink-led-arduino-kit}
+## Blinking an LED {#arduino-kit-blinking-led}
 
 In our very first experiment, we're going to blink an LED on and off. This is the hardware development equivalent of the 'Hello World' program. This first experiment will start small but it will be a solid foundation for the rest of the experiments.
 
@@ -20,7 +20,7 @@ Before we start building our experiment, let's first go over some of the buildin
 ```{r child = '../../shared/breadboard.md'}
 ```
 
-Let's also take a look at the headers on the Arduino Dock. The double-row headers beside the Omega and the three male pins near the OMEGA_RESET are pins connected to the Omega. The rest of the headers are connected to the ATmega and have the same layout as that of an Arduino UNO. We will be using the ATmega pins mostly throughout these tutorials. 
+Let's also take a look at the headers on the Arduino Dock. The double-row headers beside the Omega and the three male pins near the OMEGA_RESET are pins connected to the Omega. The rest of the headers are connected to the ATmega and have the same layout as that of an Arduino UNO. We will be using the ATmega pins mostly throughout these tutorials.
 
 #### What You'll Need
 

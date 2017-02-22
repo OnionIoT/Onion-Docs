@@ -1,4 +1,4 @@
-## Controlling Many LEDs
+## Controlling Many LEDs {#arduino-kit-multiple-leds}
 
 "We've blinked one LED sure, but what about a second LED?"
 
@@ -28,7 +28,7 @@ Prepare the following components from your kit:
 1. Plug in six LEDs onto the breadboard in parallel, each across the middle channel of the breadboard.
 2. Connect the six anodes of LEDs (left to right) to six digital pins (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector).
 3. Connect cathodes of the LEDs to negative rail marked '-' on the breadboard each through a different 200Ω current limiting resistor.
-4. Connect a jumper wire from the `-` negative rail on the breadboard to a ground (GND) pin on the Arduino Dock. 
+4. Connect a jumper wire from the `-` negative rail on the breadboard to a ground (GND) pin on the Arduino Dock.
 
 <!-- // TODO: photo -->
 
@@ -57,7 +57,7 @@ void loop() {     // codes to be ran continously
     delay(timer);
   }
 
-  // loop for turn off GPIOs one-by-one going left to right 
+  // loop for turn off GPIOs one-by-one going left to right
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
     // turn the pin on:
     digitalWrite(ledPins[thisPin], LOW);
@@ -102,7 +102,7 @@ for (int thisPin = 0; thisPin < pinCount; thisPin++) {
 
 The first part declares a counter variable indicating the number for the current iteration. We initalize it as 0 to fit the array element number.
 
-The second part specifies a condition, which if became **false**, will end the loop. For our case, we want to continue the loop until the loop counter is at the last element of the array. We use a variable called pinCount to specify the length of the array which we manually set as 6 at the beginning. Instead of pinCount variable, we can also use sizeof(ledPins) to the same effect. The build-in Arduino function `sizeof()`, if used with an array, will give you the total number of elements in it. 
+The second part specifies a condition, which if became **false**, will end the loop. For our case, we want to continue the loop until the loop counter is at the last element of the array. We use a variable called pinCount to specify the length of the array which we manually set as 6 at the beginning. Instead of pinCount variable, we can also use sizeof(ledPins) to the same effect. The build-in Arduino function `sizeof()`, if used with an array, will give you the total number of elements in it.
 
 The third part indicates whether the loop counter increments or decrements after each iteration and by how much does it increment or decrement. For our example, we want to increment our counter by 1 as to go through all the elements of the array once.
 
