@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 7
 ---
 
-## Using a Shift Register to Control a Bunch of LEDs {#starter-kit-06-using-shift-register}
+## Using a Shift Register to Control a Bunch of LEDs {#starter-kit-using-shift-register}
 
 Shift registers are very useful tools; using a few GPIOs connected to a shift register, we can increase the number of output data pins that are available to us.
 
@@ -24,8 +24,13 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 
 ### Building the Circuit {#STK06-building-the-circuit}
 
-This circuit is quite involved but we're going to split it up into 3 parts: connecting the shift register, connecting your Omega, and connecting the LEDs.
-It's going to be essentially the same thing as the second experiment but we're going to use 8 LEDs and a shift register.
+This circuit is quite involved but we're going to split it up into 3 parts: 
+
+1. Connecting the shift register
+1. Connecting the LEDs.
+1. Connecting your Omega
+
+It's going to be similar to the second experiment, but this time we're going to use 8 LEDs and a shift register.
 
 TODO: order should be wiring up the shift register, connecting the LEDs and then connecting the Omega
 
@@ -50,21 +55,21 @@ We'll be building a circuit on your breadboard using the following components:
 * Breadboard
 * Shift Register
 * 8x LEDs
-* Jumper Wires
-    * 17x M-M
-* Resistors
-    * 8x 200Ω
+* 17x M-M Jumper Wires
+* 8x 200Ω Resistors
 
 #### Hooking up the Components
 
 
-The IC should be plugged in across the channel of your breadboard (the slot running down the middle separating the `abcde` columns from the `fghij` columns). If you don't do this you will short out the pins across your IC. You may need to bend the pins just a bit in order to get it to fit.
+The IC should be plugged in across the channel of your breadboard (the slot running down the middle separating the `abcde` columns from the `fghij` columns). If you don't do this, you will short-circuit the pins across your IC. You may need to bend the pins just a bit in order to get it to fit.
 
-// TODO: add a small note to the end of the above sentence saying something along the lines of 'Don't worry, as you'll find out, eletronics are actually pretty tough and won't be hurt by a little bit of manual pin bending.'
+Don't worry so much; as you'll find out, electronics are actually pretty tough and won't be hurt by a little bit of manual pin bending.
 
-Now there are a lot of connections you'll need to make in order to power the IC and use it with the Omega, so we'll go through it step by step. We'll be referring to each pin by the numbers provided in the diagram above.
+Now, there are a lot of connections you'll need to make in order to power the IC and use it with the Omega, so we'll go through it step by step. We'll be referring to each pin by the numbers provided in the diagram above.
 
-**Note:** Your IC will have a semi-circle indentation that indicates "up". Make sure that you plug it in properly.
+<!-- IC direction marker -->
+```{r child = '../../shared/ic-direction-marker.md'}
+```
 
 1. Connecting your Shift Register
 
@@ -74,7 +79,14 @@ Now there are a lot of connections you'll need to make in order to power the IC 
 
   <!-- TODO: IMAGE picture of this stage -->
 
-2. Connecting your Omega
+3. Connecting your LEDs
+
+  - Connect 8 LEDs the same way we did in experiment 2, (cathode in ground, anode connected to resistor)
+  - Connect the jumper wires from the LEDs to the output pins on the shift register. In order from first to last these are pin 15 (QA), followed by pin 1(QB) to pin7(QH)
+
+  <!-- TODO: IMAGE picture of this stage -->
+  
+3. Connecting your Omega
 
   - Connect GPIO 1 to pin 14 on the shift register
   - Connect GPIO 2 to pin 11 on the shift register
@@ -84,25 +96,13 @@ Now there are a lot of connections you'll need to make in order to power the IC 
 
   <!-- TODO: IMAGE picture of this stage -->
 
-
-3. Connecting your LEDs
-
-  - Connect 8 LEDs the same way we did in experiment 2, (cathode in ground, anode connected to resistor)
-  - Connect the jumper wires from the LEDs to the output pins on the shift register. In order from first to last these are pin 15 (QA), followed by pin 1(QB) to pin7(QH)
-
-  <!-- TODO: IMAGE picture of this stage -->
-
 And there you have it, it's all wired up and ready to run. Now let's take a look at the code we're going to use to control our shift register.
-
-// TODO: as mentioned: should be shift reg first, leds second, connecting omega third
 
 <!-- //  * talk about how the IC should be plugged in across the channel of the breadboard (have this note in a markdown file so it can be easily reused)
 
 //  * explain all of the wiring from omega->shift reg
 //    * explain each of the lines running from the Omega and what they do - according to the names from the controlling a shift register section
- -->
-
-
+-->
 
 ### Writing the Code
 

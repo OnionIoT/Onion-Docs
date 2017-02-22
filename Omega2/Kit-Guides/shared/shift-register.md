@@ -4,7 +4,18 @@
 A shift register is an external integrated circuit (IC) that can be used to expand the number of output pins available to us. Essentially they let you take serial inputs (one bit after the other) and output them in parallel (all at once on separate data lines).
 
 
-So how does this work? Well, we use three pins on the Omega in order to control the shift register. One pin, the data pin, is used to send the value we want the shift register to output to *one* of its output pins. The second pin, the clock pin, is used to notify the shift register that the data pin has changed and needs to be read. The last pin, the latch pin, notifies the shift register that it's time to output the values that are currently on the shift registers data pins. All of this happens incredibly quickly so it seems to us that it happens simultaneously.
+So how does this work? Well, the shift register is named that way because it contains two **registers** that it **shifts** values through. The register is basically a unit of memory that stores 8 binary values (bits).
+
+* The storage register stores 8 binary values before they are written to the output register and the output lines.
+* The output register controls the 8 output lines on the IC, and takes on the values from the storage register whenever the latch pin is pulsed (more on this below).
+
+we use three pins on the Omega in order to control the shift register. 
+
+* The data pin, labelled SER, is read by the shift register whenever we pulse the clock pin.
+
+* The clock pin, labelled SRCLK, is used to trigger the shift register to shift each bit in the storage register forwards by one position, then loads the value from the SER pin into the 1st position. 
+
+* The latch pin, labelled RCLK, notifies the shift register that it's time to output the values that are currently on the shift registers data pins. All of this happens incredibly quickly so it seems to us that it happens simultaneously.
 
 // TODO: the latch pin explanation is confusing!
 
