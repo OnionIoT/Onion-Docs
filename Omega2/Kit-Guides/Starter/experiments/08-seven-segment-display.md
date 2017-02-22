@@ -10,6 +10,10 @@ order: 8
 
 We've just learned about shift registers, now let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world.
 
+// TODO: add a description of what we're going to do in this experiment: wire up the 7-seg to the shift register from last time, write a program and see how it goes, hint that there's more to be done here
+
+// TODO: add a note that this experiment builds on the previous one, so they should make sure they complete that one before they move on to this one
+
 <!-- seven segment -->
 ```{r child = '../../shared/seven-segment.md'}
 ```
@@ -18,9 +22,16 @@ We've just learned about shift registers, now let's apply that knowledge to cont
 
 Using the shift register and a few additional GPIOs from the Omega, we will control what's displayed on all four digits of the 7-segment display.
 
+// TODO: spice up this sentence, sounds so boring
+// TODO: make sure to point out that we need to use the shift register to make up for the fact we have a limited amount of GPIOs on the Omega
+
+// TODO: include a block diagram of the system
+
 #### What You'll Need
 
-* 1x Omega2 pluged into Expansion Dock
+// TODO: make this match the rest of the 'What You'll Need' sections
+
+* 1x Omega2 plugged into Expansion Dock
 * 1x 7-Segment Display
 * 1x Shift Register
 * Resistors
@@ -32,11 +43,14 @@ Using the shift register and a few additional GPIOs from the Omega, we will cont
 #### Hooking up the Components
 
 <!-- TODO: write out critical instructions -->
-<!-- TODO: consider explaing the need for resistors (common gnd) -->
+<!-- TODO: consider explaing the need for resistors -->
 
-First things first, if you've done the previous experiment, keep the shift register wired up just like you had it. If you didn't, [check it out](#STK07-building-the-circuit) and wire the Shift Register to the Expansion Dock and Breadboard exactly the same way. For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
+First things first, if you've done the previous experiment, keep the shift register wired up just like you had it. If you skipped the previous experiment, we recommend you check it out
+If you didn't, [check it out](#STK07-building-the-circuit) and wire the Shift Register to the Expansion Dock and Breadboard exactly the same way. For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
 
 <!-- TODO: IMAGE diagram of shift register/dock/breadboard wiring -->
+
+> TODO: a note about why common ground is important (all components need to have the same baseline for logical low)
 
 
 When you have the shift register wired up, it's time to connect it to the 7-segment display. First, we recommend you set up the resistors across the center first, and do all the wiring in one go.
@@ -56,7 +70,9 @@ We've included a diagram below for reference instead of instructions, as this on
 
 We'll be developing a program that takes input from command line arguments when it's launched and displays them on the 7-segment display.
 
-To accomplish this, we will write a new class that uses the shift register class we wrote for the previous experiment and introduces it's own variables and functions.
+// TODO: include a block diagram of the code and a description of what we're going to be doing from a high level
+
+To accomplish this, we will write a new class that uses and builds upon the shift register class from the previous experiment.
 
 <!-- // [notes on the code]
 // create a class that uses the shift reg class but specifically to control the 7seg display
@@ -76,7 +92,7 @@ To accomplish this, we will write a new class that uses the shift register class
 <!-- TODO: code verification -->
 <!-- TODO: copies of the code are in sevenSeg code/python -->
 
-Now let's create a class named `sevenSegDisplay.py`.
+Now let's create a file named `sevenSegDisplay.py`.
 
 ``` python
 import registerClass
@@ -125,7 +141,7 @@ class sevenSegment:
     		self.digitPin[i] = onionGpio.OnionGpio(dPin[i])
 ```
 
-Once that's out of the way, create `STK08-seven-seg-display` and paste the following in it:
+Now that we have a class to control the 7-seg display, let's write a program to use the class and control the display! Create `STK08-seven-seg-display` and paste the following in it:
 
 ``` python
 import registerClass
@@ -156,6 +172,9 @@ def __main__():
         	sevenDisplay.showDigit(i,inputHexString[i])
 ```
 
+// TODO: need to describe what we're doing: changing the scan, setting a value, then changing the scan, setting a value, etc
+
+
 To see it in action, make sure you have `registerClass.py`, `sevenSegDisplay.py` and `STK08-seven-seg-display.py` in your `/root/` directory.
 
 Then run the following:
@@ -167,10 +186,78 @@ python /root/STK08-seven-seg-display.py
 
 #### What to Expect
 
+// TODO: this section was 100% phoned-in, rewrite this part with some life and not sentence fragments
 The Python code above should ask you for a hex string, then print the digits one by one on to the 7 segment display. Infinite loops here as well, and you can exit with `Ctrl-C`
+
+// TODO: gif: add a gif of what happens
+// TODO: include a description of what is expected behaviour
 
 Now you may be wondering if what you saw is expected behaviour - yes. However you probably guessed that it really should be displaying them all at once.
 
+// NOTE: moved the bash script to the bottom
+
+
+
+
+### A Closer Look at the Code
+
+// TODO: let's describe why the Python implementation was slow, and then after this H3 section, describe what is to be done differently and then show the bash implementation
+
+To display numbers on the 7-Segment display, we mapped the outputs to binary using a **dictionary**. We put a class inside a class to better encapsulate the operation of the physical components. However the end result was limited by the software we used: we wanted and expected thed 7-segment display to light up all at once, but our script couldn't make it happen fast enough. In fact there's no way in Python to get our inteded behaviour without basically calling the shell commands used in the script through Python.
+
+
+#### Software Limitations
+
+// NOTE: this is good, but it's not really a software limitation, it's more of a library specific thing
+// * the library needs to:
+//  1. take control of the gpio (export the GPIO)
+//  2. set the direction to output
+//  3. set the output value
+//  4. release the gpio (unexport the gpio)
+// * each of the above actions requires a file write, so for each segment we set, there are 4 file writes
+// TODO: update this section to mention the above (and to go inline with the fact that we haven't yet introduced the bash script)
+
+
+In this experiment, software and hardware come together to produce behaviour we didn't intend. The code runs as well as it possibly can, and the hardware does its best to operate from the signals its given, but it ultimately doesn't make the result workable. The root cause is the way the libraries are programmed. The GPIOs are operated by reading and writing to files, and the `onionGpio` module operates this in a very safe and consistent way through our C library - meaning it's quite slow.
+
+
+
+
+#### Classes using Classes
+
+// TODO: fix this SEVEN_SEG_CLASS_NAME placeholder
+
+Despite this particular experiment's outcomes, encapsulation is still good practice. The way we implemented the `SEVEN_SEG_CLASS_NAME` and `ShiftRegister` classes is a good demonstration of why.
+
+The `SEVEN_SEG_CLASS_NAME` class makes use of code that already exists, and builds upon that to fulfill a niche functionality. Here, we instantiate the `ShiftRegister` class within the `SEVEN_SEG_CLASS_NAME` class - this means `SEVEN_SEG_CLASS_NAME` can make use of all the functionality of the internal `ShiftRegister` object without being a shift-register.
+
+Logically separating the devices like this makes it easier in complicated projects to think about the pieces working together, instead of what each individual line of code does. Our script can then call on the seven seg functions to display things without needing to bother with the intricasies of the shift register. Vice versa, we can use the shift register to do other things by directly instantiating an object from `ShiftRegister`.
+
+// TODO: need to adjust the above paragraph - it makes good points but they should be better organized to showcase the two ideas below:
+// * code-reusability: we wrote an independent class for the shift register and now we're just using it like a lego block to build something new. can just focus on the new code we need for the 7seg.
+// * abstraction: the shift register class allows us to use the shift register without needing to know the nitty-gritty of how it works. in this case we just need it to set certain outputs, we use the function to make that happen in one line and don't need to worry about how it happens. this type of thing makes it easier to think about how the different pieces of the project work together
+
+#### Dictionary
+
+// TODO: i like the parallel to real dictionaries but the fact that the key indexes a value needs to be more clear.
+
+// TODO: umm, dictionaries can totally be changed after they're created...
+
+Also known as 'hash tables', though not strictly the same. Dictionaries work in programming much the same way as in real life. By keying a definition to a name or title, you can look it up. Python has a built-in dictionary data type, which we make use of here to map out letters and numbers to the shift. Dictionaries are **immutable** - they cannot be changed after they are created.
+
+// TODO: note that the below was the original
+We use a dictionary here as a translation between string characters and the shift register representation of it. We can simply insert `digitMap[<character>]` to the shift register display function and let the `ShiftRegister` object sort out the rest without needing to copy-paste the binary code.
+// TODO: this is re-written:
+We use a dictionary here as a translation between characters and the value that needs to be written to the 7-segment display in order to display that character. When we insert `digitMap[1]` to the shift register display function, the function is actually getting the value indexed by `1` in the `digitMap` dictionary, so the function will get `00111111`, the value it needs to properly show a `1` on the display, and the code will still be very human readable.
+// TODO: need to explain the concepts we're introducing here very clearly, this would be very confusing to a beginner, if you're unsure of how something works, please ask before writting
+
+
+### A Better Way?
+
+// TODO: reiterate that our Python implementation didn't produce a nice result, include a brief recap as to why,
+// TODO: say what we're going to be doing differently:
+//  * using bash (need a few sentences about bash, how its basically a bunch of command line utilities and therefore it runs really fast)
+//  * we've changed how we're going to be accessing/controlling the GPIOs
 If you'd like to see how that looks, we've provided a shell script below that does this properly.
 
 
@@ -324,35 +411,11 @@ To run it, copy the code to `/root/STK08-seven-seg-display.sh` then run the foll
 sh /root/STK08-seven-seg-display.sh [hex number]
 ```
 
-Trust us when we say these two scripts are intended to be doing the same thing. If you're wondering why? Read on!
 
+// TODO: include a section describing the above code
 
-### A Closer Look at the Code
+// TODO: include a note saying that this type of code necessitates a deeper understanding of how the hardware and software interact
 
-To display numbers on the 7-Segment display, we mapped the outputs to binary using a **dictionary**. We put a class inside a class to better encapsulate the operation of the physical components. However the end result was limited by the software we used: we wanted and expected thed 7-segment display to light up all at once, but our script couldn't make it happen fast enough. In fact there's no way in Python to get our inteded behaviour without basically calling the shell commands used in the script through Python.
-
-
-#### Software Limitations
-
-In this experiment, software and hardware come together to produce behaviour we didn't intend. The code runs as well as it possibly can, and the hardware does its best to operate from the signals its given, but it ultimately doesn't make the result workable. The root cause is the way the libraries are programmed. The GPIOs are operated by reading and writing to files, and the `onionGpio` module operates this in a very safe and consistent way through our C library - meaning it's quite slow.
-
-The reason why the shell scripted works is because it skips a bunch of unnecessary safety steps in writing to the GPIO outputs. If your code is trying to push the boundaries of the hardware, it necessitates a deeper understanding of the hardware.
-
-
-#### Classes using Classes
-
-Despite this particular experiment's outcomes, encapsulation is still good practice. The way we implemented the `SEVEN_SEG_CLASS_NAME` and `ShiftRegister` classes is a good demonstration of why.
-
-The `SEVEN_SEG_CLASS_NAME` class makes use of code that already exists, and builds upon that to fulfill a niche functionality. Here, we instantiate the `ShiftRegister` class within the `SEVEN_SEG_CLASS_NAME` class - this means `SEVEN_SEG_CLASS_NAME` can make use of all the functionality of the internal `ShiftRegister` object without being a shift-register.
-
-Logically separating the devices like this makes it easier in complicated projects to think about the pieces working together, instead of what each individual line of code does. Our script can then call on the seven seg functions to display things without needing to bother with the intricasies of the shift register. Vice versa, we can use the shift register to do other things by directly instantiating an object from `ShiftRegister`.
-
-
-#### Dictionary
-
-Also known as 'hash tables', though not strictly the same. Dictionaries work in programming much the same way as in real life. By keying a definition to a name or title, you can look it up. Python has a built-in dictionary data type, which we make use of here to map out letters and numbers to the shift. Dictionaries are **immutable** - they cannot be changed after they are created.
-
-We use a dictionary here as a translation between string characters and the shift register representation of it. We can simply insert `digitMap[<character>]` to the shift register display function and let the `ShiftRegister` object sort out the rest without needing to copy-paste the binary code.
 
 
 
