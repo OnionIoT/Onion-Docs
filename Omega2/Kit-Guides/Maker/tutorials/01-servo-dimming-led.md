@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 1
 ---
 
-## Dimming LEDs with the PWM Expansion {#MAK01-servo-dimming-led}
+## Dimming LEDs with the PWM Expansion {#maker-kit-servo-dimming-led}
 
 <!-- // TODO: need to capitalize Python EVERYWHERE -->
 
@@ -153,7 +153,6 @@ if __name__ == '__main__':
     main()
 ```
 
-<!-- // TODO: the above main loop has the variable `i` increase without bounds, and does mapping in the function it's passed to. fix this later -->
 
 #### What to Expect
 
@@ -162,6 +161,7 @@ if __name__ == '__main__':
 You should see a wave like effect across the LEDs when they are placed beside each other in order from 0 to 15.
 
 This code uses an infinite loop, so you'll have to terminate the script with `Ctrl-C`.
+
 
 ### A Closer Look at the Code
 
@@ -228,4 +228,4 @@ Before we initialize the oscillator, we can check if it's already on with `pwmEx
 
 You'll notice a lot of mathematical operations going on with the math module in Python. Combined, this allows the brightness of the LEDs to vary sinusoidally. Python's built in mathematical operations are pretty powerful, but it does have some pitfalls which we'll go over next tutorial.
 
-Next time, we [control servos](#MAK02-servo-controlling-servo).
+Next time, we [control servos](#maker-kit-servo-controlling-servo).

@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 5
 ---
 
-## Changing the Display's Behavior {#MAK05-oled-change-settings}
+## Changing the Display's Behavior {#maker-kit-oled-change-settings}
 
 This tutorial will show how to change how the OLED displays based on text-based user input. We'll be scrolling the display contents as well as dimming and inverting the display, let's jump in.
 
@@ -137,4 +137,4 @@ If you want to learn more about user input, the [displaying images on the OLED](
 
 A user interface is how software communicate to users. Here, the user interface is the list of commands we output and the prompt we print afterwards (`>>`). These come together to communicate how the software can be operated. Having you UI communicate clearly and effectively is important not only if you want to share your work, but also for future-you! When you make a cool project and come back to it later, you could have forgotten how to use it - having a clear UI can let you know how to make your project work even if you don't remember at all.
 
-Next time, we [draw some lines](#MAK06-oled-displaying-images).
+Next time, we [draw some lines](#maker-kit-oled-displaying-images).

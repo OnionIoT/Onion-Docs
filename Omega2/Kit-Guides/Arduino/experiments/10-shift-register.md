@@ -1,5 +1,4 @@
-
-## Using a Shift Register to Control a Bunch of LEDs
+## Using a Shift Register to Control a Bunch of LEDs {#arduino-kit-shift-register}
 
 <!-- // intro on using a shift register to increase the number of available digital outputs
 // explanation of controlling a bunch of LEDs using only a few microcontroller pins -->
@@ -54,7 +53,7 @@ The IC should be plugged in across the channel of your breadboard (the slot runn
 
 ![shift-register-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shift-register-diagram.jpg)
 
-Lets take a look at how the 16 pins of the 74HC595 shift register chip are defined.  We'll be referring to each pin by the numbers provided in the diagram above. When plugged in with the letters being right-side up, the bottow row of pins are pin 1 to 8 going from left to right. The top row of pins are pin 9 to 16 going from right to left. 
+Lets take a look at how the 16 pins of the 74HC595 shift register chip are defined.  We'll be referring to each pin by the numbers provided in the diagram above. When plugged in with the letters being right-side up, the bottow row of pins are pin 1 to 8 going from left to right. The top row of pins are pin 9 to 16 going from right to left.
 
 >Note: Your IC will have a semi-circle indentation that indicates "up". Make sure that you plug it in properly.
 
@@ -73,7 +72,7 @@ Lets take a look at how the 16 pins of the 74HC595 shift register chip are defin
 
  <!-- TODO: Insert picture of this stage -->
 
-3. Connecting your Arduino Dock 
+3. Connecting your Arduino Dock
 
   * Connect digital pin 4 to pin 14 on the shift register
   * Connect digital pin 5 to pin 12 on the shift register
@@ -98,7 +97,7 @@ int dataPin = 4;    // the pin number connected to the input data pin (14 of the
 byte storageByte = 0x01;  // the byte (8 bits) to be stored in the shift register
                           // initalized it as 00000001 representing the first LED on
 
-void setup() 
+void setup()
 {
   // initialize all the shift register pins as output
   pinMode(latchPin, OUTPUT);
@@ -116,7 +115,7 @@ void updateShiftRegister()
   digitalWrite(latchPin, HIGH);   // set the latch pin HIGH again
 }
 
-void loop() 
+void loop()
 {
   // send 00000001 to the shift register, set the latch LOW and light the first LED
   updateShiftRegister();
@@ -128,7 +127,7 @@ void loop()
     storageByte = storageByte << 1;   // shift 1 bit to the left, the left most bit disappears and the right most bit is replaced by 0
                                       // i.e. 00000001 to 00000010
     updateShiftRegister();      // send the 8 bits to the shift register and set latch LOW
-    
+
   }
 
   // shift 1 bit to the right 7 times, each time set the only corresponding LED on
@@ -140,7 +139,7 @@ void loop()
     updateShiftRegister();      // send the 8 bits to the shift register and set latch LOW
   }
 }
-``` 
+```
 
 #### What to Expect
 
@@ -152,19 +151,19 @@ The eight LEDs will light up in the knight rider KITT pattern. The first LEDs wi
 
 We will use only three Arduino Dock pins to control eight LEDs by using the shift register. Lets begin by declaring the three pin variables (`latchPin`, `clockPin` and `dataPin`) and initializing the three pins as output in `setup()`. For each time we want to light up a different LED, we use the `updateShiftRegister()` function. In this function, we send the 8 bits from the ATmega to the shift register:
 
-``` 
+```
 shiftOut(dataPin, clockPin, LSBFIRST, storageByte);  
-``` 
+```
 
 We set the latch `LOW` so that the 8 bits stored in the shift register will control the 8 output pins of the shift register:
 
-``` 
-digitalWrite(latchPin, LOW); 
-``` 
+```
+digitalWrite(latchPin, LOW);
+```
 
 We must set the latch back high again after or else the output won't be set in the correct order.
 
-After we turn on the first LED by sending `00000001`, we use a `for` loop to shift the `1` bit from the least significant bit `00000001` the 
+After we turn on the first LED by sending `00000001`, we use a `for` loop to shift the `1` bit from the least significant bit `00000001` the
 most significant bit `10000000`. We shift one bit at a time for seven times, each time using the bitwise shift left operation:
 
 ```

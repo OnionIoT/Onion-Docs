@@ -1,4 +1,4 @@
-## Reading a Push Button
+## Reading a Push Button {#arduino-kit-reading-a-push-button}
 
 <!-- // description of what this experiment will accomplish and what we'll learn -->
 
@@ -39,7 +39,7 @@ Prepare the following components from your kit:
     * 1x 5.1kΩ
     * 1x 51kΩ
 * 1x 100nF Capacitor
-* 6x LED color of your choice! 
+* 6x LED color of your choice!
 * 1x Tactile button
 
 #### Hooking up the Components
@@ -54,9 +54,9 @@ Prepare the following components from your kit:
     * Connect cathodes of the LEDs to the negative (-) power rail on the breadboard each through a different 200Ω current limiting resistor.
 2. Plug the push button onto the breadboard and setup its debounce circuit as show below:
     ![push-button-breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/push-button-breadboard.jpg)
-    
+
     <!-- // TODO: photo of button and debouncer circuit with LEDs only-->
-    
+
     * Connect one end of the switch to the 51kΩ resistor, and the other end of that resistor to 5V on Arduino Dock.
     * Connect the other end of the switch to negative (-) power rail .
     * Connect one end of the 5.1kΩ resistor to the same point where the switch and 51kΩ resistor are connected
@@ -90,10 +90,10 @@ byte byteOfLEDs = B01000000;    // byte of LEDs representing which LEDs are on. 
 
 void setup() {
   Serial.begin(9600);           // initialize serial communication with the Omega
-  
+
   // initialize the interrupt pin and set it to call setLED function only when the button is pressed (FALLING edge trigger)
   attachInterrupt(digitalPinToInterrupt(interruptPin), setLED, FALLING);
-  
+
   // loop for initializing the LED GPIOs as output
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
     pinMode(ledPins[thisPin], OUTPUT);
@@ -109,7 +109,7 @@ void setLED() {
   if (byteOfLEDs == B00111111){
       currentLED = 0;
       byteOfLEDs = B01000000;
-     // loop for turn off GPIOs one-by-one going left to right 
+     // loop for turn off GPIOs one-by-one going left to right
      for (int thisPin = 0; thisPin < pinCount; thisPin++) {
          digitalWrite(ledPins[thisPin], LOW);
      }
@@ -137,13 +137,13 @@ In addition, if we use the `cat` command on our Omega like previous tutorial, we
 
 #### A Closer Look at the Code
 
-In this code, we implemented an more efficient method of read inputs called interrupt, where as in the previous tutorial we used the method of polling. Notice we use two `for` loops: one for setting all LED pins to output and another to turn all the LEDs off without any delay. 
+In this code, we implemented an more efficient method of read inputs called interrupt, where as in the previous tutorial we used the method of polling. Notice we use two `for` loops: one for setting all LED pins to output and another to turn all the LEDs off without any delay.
 
 ##### Interrupt implementation
 
 Interrupts are are a more effecient way of reading input. Instead of continously reading the input (polling), we only read it when there's a change or when it is at a certain state (`HIGH` or `LOW`).  A `CHANGE` could be defined as the `RISING` (`LOW` to `HIGH`) and/or `FALLING` (`HIGH` to `LOW`) edge of the input signal. Interrupts reduces the need of extra computational process and saves a lot time.
- 
-In the first line of the `setup()` we attach a interupt to a pin using the build-in Arduino function `attachInterrupt()`. This function takes in three parameters. The first parameter is the pin number of a digital pin coverted to an interrupt pin using another build-in function digitalPinToInterrupt(pin). 
+
+In the first line of the `setup()` we attach a interupt to a pin using the build-in Arduino function `attachInterrupt()`. This function takes in three parameters. The first parameter is the pin number of a digital pin coverted to an interrupt pin using another build-in function digitalPinToInterrupt(pin).
 
 The second parameter is the interrupt service routine (ISR). The ISR is a special kind of function which is called when the interrupt triggers. In our example, it's the `setLED()` function which turns on LED or turn all LEDs off if all the LEDs are lit. An ISR function have a few limitations. It must be short and fast, which means time delay should not be used. In addition, ISR does not have parameters and should not return any output value.
 

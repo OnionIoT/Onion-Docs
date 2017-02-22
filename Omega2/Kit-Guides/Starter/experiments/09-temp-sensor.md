@@ -8,6 +8,8 @@ order: 9
 
 ## Reading a One-Wire Temperature Sensor {#starter-kit-08-reading-a-one-wire-temp-sensor}
 
+// TODO: choose a way to write One-Wire and stick to it through the whole article, it helps to mention that One-Wire is often referred to as: (list all of the variations 1-Wire, 1W, W1, etc)
+
 <!-- // in this experiment we will:
 //  * introduce the one-wire bus protocol
 //  * read the ambient temperature using a sensor
@@ -15,9 +17,14 @@ order: 9
 
 Let's now learn about and use the **1-Wire bus protocol** to read the ambient temperature using a temperature sensor. We'll also learn how to **read from and write to files**.
 
+// TODO: add intro to the script: how we'll first register a 1W bus master, and then read from the sensor, etc
+
 <!-- one wire -->
 ```{r child = '../../shared/one-wire.md'}
 ```
+
+// TODO: need a section on 1W & the Omega, describing how the Omega needs to register a 1w bus master in order to be able to communicate with the 1w sensor,
+//  see the docs https://docs.onion.io/omega2-docs/communicating-with-1w-devices.html#the-omega-one-wire for an example but do not just copy the text, adapt it to this article and the beginner audience, also avoid all mentions of I2C, SPI, UART, etc
 
 ### Building the Circuit
 
@@ -38,6 +45,8 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
+// TODO: add a graphic showing the legs of the temparature sensor (just lift it from the datasheet), describe each of the legs
+
 1. Find the flat side of the temperature sensor. This is the **front** side.
 1. With the front of the sensor facing to the left side of the breadboard, insert the three pins into column `e` in 3 consecutive rows, eg. 13, 14, and 15.
 1. Turn the breadboard so that the front of the sensor is facing you.
@@ -47,13 +56,20 @@ Prepare the following components from your kit:
     * Right - `Vcc`. Connect this to the Omega's `3.3V`.
 1. Connect the 5.1kΩ resistor across the `DATA` and `Vcc` pins.
 
+> TODO: add a note about pull-up resistors
+
 Your circuit should look like this:
 
 <!-- TODO: photo -->
 
 ### Writing the Code
 
-First, let's create a base class for any generic 1-Wire device. Create a file called `oneWire.py` and paste the following code in it:
+First, let's create a base class for any generic 1-Wire device.
+// TODO: a sentence or two describing what the 1W class will implement
+
+Create a file called `oneWire.py` and paste the following code in it:
+
+// TODO: was this code tested?
 
 ``` python
 import os
@@ -75,6 +91,7 @@ def insertKernelModule(gpio):
 def checkFilesystem():
     return os.path.isdir(oneWireDir)
 
+# TODO: add a comment describing the operation of this function, doesn't look like it's right to me
 def setupOneWire(gpio):
     for i in range (2):
         if checkFilesystem():
@@ -158,6 +175,7 @@ class OneWire:
         return message
 ```
 
+// TODO: describe what we hope to accomplish with this code
 Let's create a file called `temperatureSensor.py` to hold our code:
 
 ``` python
@@ -207,6 +225,7 @@ class TemperatureSensor:
 ```
 
 Now let's write the script for the main routine. Create a file called `STK08-temp-sensor.py` and paste the following in it.
+// TODO: short description of
 
 ``` python
 # import modules and classes
@@ -240,12 +259,14 @@ if __name__ == '__main__':
     __main__()
 ```
 
-Run the `STK08-temp-sensor.py` script and watch the terminal for output. Try pinching the sensor with your fingers and seeing how it reacts!
+Run the `STK08-temp-sensor.py` script and watch the terminal for output.
 
 #### What to Expect
 
 <!-- // run the program, get a print-out on the command line of the current temperature -->
-You should see the Omega printing the temperature in degrees Celsius measured by the sensor once every second.
+You should see the Omega printing the temperature in degrees Celsius measured by the sensor once every second. Try pinching the sensor with your fingers and seeing how it reacts!
+
+// TODO: include a screenshort of the printout, or a gif or something
 
 #### A Closer Look at the Code
 
@@ -258,7 +279,7 @@ The Omega's hardware such as the serial ports, I2C, and SPI bus are exposed as f
 When working with a file from within a program, you must go through the following steps:
 
 * **Open** the file for reading, writing, or both at the same time
-* **Read** from or **wriet** to the file
+* **Read** from or **write** to the file
 * **Close** it when you're done
 
 This applies to all programs that interact with the filesystem, not just Python.
@@ -271,6 +292,10 @@ with open(self.slaveFilePath) as slave:
 ```
 
 This simple 2-line block reads from the slave's system file at `/sys/devices/w1_bus_master1/<address>/w1_slave"`, which triggers the Omega to physically send a request to the 1-Wire sensor and return the data to our program. The file is then automatically closed once the program exits that block.
+
+// TODO: need to separate the explanation of reading and writing to the filesystem, and the explanation of sysfs (using the filesystem to interface with hardware)
+// 1. change the above section to just talk about opening, reading, and writing filesystem
+// 2. add a new section talking about sysfs, doesn't have to be long, just describe that there are 'virtual' files in the filesystem which you can read and write that use the kernel to interact with actual device hardware (see https://docs.onion.io/omega2-docs/communicating-with-i2c-devices.html#the-omega-i2c for an example). if you mention the kernel, give a one sentence description of it
 
 ##### Scanning a Bus
 
@@ -296,5 +321,9 @@ oneWire.scanOneAddress()
 ```
 
 The device's address will then be printed on the screen.
+
+
+// TODO: add a section that explains what `if __name__ == '__main__':` does
+
 
 Next: [Controlling an LED Screen](#starter-kit-controlling-an-lcd-screen)

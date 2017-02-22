@@ -1,4 +1,4 @@
-## Using a Buzzer
+## Using a Buzzer {#arduino-kit-using-a-buzzer}
 
 In this tutorial, we will use a push button and a buzzer. If the push button is pressed the buzzer will buzz until the button is released. We learn to do this two ways: polling the input and using a interrupt.
 
@@ -43,10 +43,10 @@ Prepare the following components from your kit:
 
 1. Connect the negative end of the buzzer (the pin WITHOUT a plus sign) to ground (GND).
 1. Connect the positive end (+) of the buzzer to the pin 9 through an 100 ohm current limiting resistor.
-1. Connect the push button with debounce ciruit to pin 2: 
-    * Set up the push button with debounce circuit similar to tutorial 4, don't connect to Arduino Dock yet. 
+1. Connect the push button with debounce ciruit to pin 2:
+    * Set up the push button with debounce circuit similar to tutorial 4, don't connect to Arduino Dock yet.
     * Connect the point in the debounce circuit between the 5kohm resistor and the capacitor to pin 2 of the Arduino Dock.
-    * Connect positive (+) power rail to 5V and negative (-) power rail to ground (GND) on the Arduino Dock. 
+    * Connect positive (+) power rail to 5V and negative (-) power rail to ground (GND) on the Arduino Dock.
 
 ### Writing the Code
 
@@ -66,10 +66,10 @@ void setup() {
 
 void loop() {
    int state = digitalRead(pollingPin);   // read the state of the push button
-   digitalWrite(buzzerPin, !state);    // ring the buzzer (buzzer HIGH) when the button is pressed (button LOW) 
+   digitalWrite(buzzerPin, !state);    // ring the buzzer (buzzer HIGH) when the button is pressed (button LOW)
                                          // not buzz (buzzer LOW) when the button is released (button HIGH)
                                        // buzzer state is opposite of the button state
-   delay(10); 
+   delay(10);
 }
 ```
 
@@ -115,7 +115,7 @@ void setup() {
 
   // initialize the LED pin as output
   pinMode(LEDPin, OUTPUT);
-  
+
   // initialize the interrupt pin, calling the changeState function every time there is button press or release
   attachInterrupt(digitalPinToInterrupt(interruptPin), changeState, CHANGE);
 }
