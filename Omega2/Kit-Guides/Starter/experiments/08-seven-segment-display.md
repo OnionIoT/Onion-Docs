@@ -6,9 +6,9 @@ devices: [ Omega , Omega2 ]
 order: 8
 ---
 
-## Controlling a 7-Segment Display
+## Controlling a 7-Segment Display {#starter-kit-07-seven-segment-display}
 
-We've just learned about shift registers, now let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world.
+We've just learned about shift registers, now let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world. We'll construct a circuit that connects the Omega to the shift register and the shift register to the 7-segment display. The Omega will send serial signals to the shift register, and those signals will be transformed into numbers and letters by the 7-segment display.
 
 // TODO: add a description of what we're going to do in this experiment: wire up the 7-seg to the shift register from last time, write a program and see how it goes, hint that there's more to be done here
 
@@ -34,36 +34,40 @@ Using the shift register and a few additional GPIOs from the Omega, we will cont
 * 1x Omega2 plugged into Expansion Dock
 * 1x 7-Segment Display
 * 1x Shift Register
-* Resistors
-    * 4x 330Ω
+* 4x 330Ω Resistors
 * Jumpers
     * 12x M-F
     * 13x M-M
 
 #### Hooking up the Components
 
-<!-- TODO: write out critical instructions -->
-<!-- TODO: consider explaing the need for resistors -->
 
-First things first, if you've done the previous experiment, keep the shift register wired up just like you had it. If you skipped the previous experiment, we recommend you check it out
-If you didn't, [check it out](#STK07-building-the-circuit) and wire the Shift Register to the Expansion Dock and Breadboard exactly the same way. For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
+// TODO: pls fix up this sentence, i changed it but it needs to be nice-ified
+
+First things first, if you've done the previous experiment, keep the shift register wired up just like you had it. If you skipped the previous experiment, we recommend you check it out before moving on to this experiment since we build on what we've done!
+ For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
 
 <!-- TODO: IMAGE diagram of shift register/dock/breadboard wiring -->
 
 > TODO: a note about why common ground is important (all components need to have the same baseline for logical low)
 
+1. Connecting your Shift Register
 
+  - Start by plugging in your shift register across the channel so that the each pin has its own row.
+  - Connect pin 16 and pin 10 to the positive rail (Vcc)
+  - Connect pin 8 and pin 13 to the negative rail (Ground)
+
+// TODO: add explanation of why we need the resistors
 When you have the shift register wired up, it's time to connect it to the 7-segment display. First, we recommend you set up the resistors across the center first, and do all the wiring in one go.
 
-For each resistor:
-
-1. Pick a column.
-1. Connect one end of the resistor to row `g`
-1. Connect the other end to row `d`
-
-We've included a diagram below for reference instead of instructions, as this one has a lot of wiring to do. All ends connecting to the 7-segment display require F jumper heads.
+We've included a diagram below for reference instead of instructions, as this one has a lot of wiring to do and they end up going every which way. Note that all ends connecting to the 7-segment display require F jumper heads - that's where your M-F jumpers will be used.
 
 <!-- TODO: IMAGE wiring diagram of 7-seg to shift register and dock -->
+
+Once you've connected the 7-segment display to the Omega and shift register, it's all done!
+
+``` {r child = '../../shared/wiring-precautions.md'}
+```
 
 
 ### Writing the Code
@@ -89,10 +93,8 @@ To accomplish this, we will write a new class that uses and builds upon the shif
 
 -->
 
-<!-- TODO: code verification -->
-<!-- TODO: copies of the code are in sevenSeg code/python -->
+Now let's create a class named `STK07-sevenSegDisplay.py`.
 
-Now let's create a file named `sevenSegDisplay.py`.
 
 ``` python
 import registerClass
@@ -143,6 +145,7 @@ class sevenSegment:
 
 Now that we have a class to control the 7-seg display, let's write a program to use the class and control the display! Create `STK08-seven-seg-display` and paste the following in it:
 
+
 ``` python
 import registerClass
 from sevenSegDisplay import sevenSegment
@@ -180,11 +183,11 @@ To see it in action, make sure you have `registerClass.py`, `sevenSegDisplay.py`
 Then run the following:
 
 ``` bash
-python /root/STK08-seven-seg-display.py
+python /root/STK07-seven-seg-display.py
 ```
 
 
-#### What to Expect
+### What to Expect
 
 // TODO: this section was 100% phoned-in, rewrite this part with some life and not sentence fragments
 The Python code above should ask you for a hex string, then print the digits one by one on to the 7 segment display. Infinite loops here as well, and you can exit with `Ctrl-C`
@@ -265,6 +268,7 @@ If you'd like to see how that looks, we've provided a shell script below that do
 #!/bin/sh
 
 input=$1
+len=${#input}
 
 pref1="$(echo $input | sed -e 's/^\(.\).*/\1/')"
 pref2="$(echo $input | sed -e 's/^.\(.\).*/\1/')"
@@ -274,7 +278,7 @@ chr3="$(echo $input | sed -e 's/^....\(.\).*/\1/')"
 chr4="$(echo $input | sed -e 's/^.....\(.\).*/\1/')"
 # TODO: add a check for chr5; if chr5 is not blank, exit (4 digits only)
 
-if ! [[ "$pref1" == "0" && "$pref2" == "x" ]]; then
+if  [[ "$len" -ge "7" || "$pref1" != "0" || "$pref2" != "x" ]]; then
     echo "Please input a hex number in the following format: 0x12ab"
     exit
 fi
@@ -405,10 +409,10 @@ echo 1 >/sys/class/gpio/gpio18/value
 done
 ```
 
-To run it, copy the code to `/root/STK08-seven-seg-display.sh` then run the following with a hex number as the first argument:
+To run it, copy the code to `/root/STK07-seven-seg-display.sh` then run the following with a hex number as the first argument:
 
 ```
-sh /root/STK08-seven-seg-display.sh [hex number]
+sh /root/STK07-seven-seg-display.sh [hex number]
 ```
 
 
@@ -419,4 +423,4 @@ sh /root/STK08-seven-seg-display.sh [hex number]
 
 
 
-Next: [Reading a One-Wire Temperature Sensor](#starter-kit-reading-one-wire-temperature-sensor)
+Next: [Reading a One-Wire Temperature Sensor](#starter-kit-temp-sensor)

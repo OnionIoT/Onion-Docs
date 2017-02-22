@@ -35,8 +35,7 @@ If you've taken apart your temperature sensor circuit, wire it back up according
 
 Then grab the following from your kit:
 
-* Jumper wires
-    * 4x M-F
+* 4x Jumper wires (M-F)
 
 #### Hooking up the Components
 
@@ -56,7 +55,7 @@ Then grab the following from your kit:
 | SDA     | SDA            |
 | SCL     | SCL            |
 
-<!-- TODO: photo -->
+<!-- TODO: IMAGE photo -->
 
 ### Writing the Code
 
@@ -149,7 +148,7 @@ class Lcd:
         self.line2= "";
         self.line3= "";
         self.line4= "";
-        
+
         # use the Onion I2C module to handle reading/writing
         self.lcd_device = i2cLib.i2cDevice(self.address)
 
@@ -197,7 +196,7 @@ class Lcd:
 
         for char in string:
             self.lcd_write(ord(char), Rs)
-    
+
     # print an array of strings        
     def lcd_display_string_array(self, strings):
         for i in range(min(len(strings), 4)):
@@ -207,24 +206,24 @@ class Lcd:
     def lcd_clear(self):
         self.lcd_write(LCD_CLEARDISPLAY)
         self.lcd_write(LCD_RETURNHOME)
-      
+
     def refresh(self):
         self.lcd_display_string(self.line1,1)
         self.lcd_display_string(self.line2,2)
         self.lcd_display_string(self.line3,3)
         self.lcd_display_string(self.line4,4)
-    
+
     #def backlight
     def backlightOn(self):
         self.lcdbacklight = LCD_BACKLIGHT
         self.refresh()
-       
+
     def backlightOff(self):
         self.lcdbacklight = LCD_NOBACKLIGHT
         self.refresh()
 ```
 
-Now let's write the main routine for the experiment. Create a file called `STK10-temperatureLCD.py` in `/root`. Paste the code below in it:
+Now let's write the main routine for the experiment. Create a file called `STK09-temperatureLCD.py` in `/root`. Paste the code below in it:
 
 ``` python
 import lcdDriver
@@ -243,11 +242,11 @@ def __main__():
     if not oneWire.setupOneWire(str(oneWireGpio)):
         print "Kernel module could not be inserted. Please reboot and try again."
         return -1
-        
+
     # get the address of the temperature sensor
     # it should be the only device connected in this experiment
     sensorAddress = oneWire.scanOneAddress()
-    
+
     sensor = TemperatureSensor("oneWire", { "address": sensorAddress, "gpio": oneWireGpio })
     if not sensor.ready:
         print "Sensor was not set up correctly. Please make sure that your sensor is firmly connected to the GPIO specified above and try again."
@@ -256,7 +255,7 @@ def __main__():
     # setup LCD
     lcd = lcdDriver.Lcd(lcdAddress)
     lcd.backlightOn()    
-    
+
     value = sensor.readValue()
     lcd.lcd_display_string_array([
         "Temperature:",
@@ -267,41 +266,40 @@ if __name__ == '__main__':
     __main__()
 ```
 
-#### What to Expect
+### What to Expect
 
 Calling the script will update the LCD screen with a fresh temperature reading.
 
-<!-- TODO: gif -->
+<!-- TODO: IMAGE gif -->
 
 However, wouldn't it be nice if something could run the script for us every minute to actually update the LCD?
 
-#### A Closer Look at the Code
+### A Closer Look at the Code
 
 Here we've introduced the **Onion I2C module**, and we've also shown that you can use **multiple different objects** in the same script.
 
-##### The Onion I2C Module
+#### The Onion I2C Module
 
 <!-- // introduce the onion i2c module, written by Onion to facilitate the easy use of the i2c bus
 // give a brief overview of the functions that we used and point them to the documentation reference (need to include docs.onion.io link, not markdown tag) -->
 
-We wrote this module to make it easy for you to use the I2C bus. 
+We wrote this module to make it easy for you to use the I2C bus. I2C based electronics are designed to operate with a minimum of instructions and very specific signalling between host and client. Our I2C modules does all the signalling and contact establishing for you so you only need to worry about sending the correct data and reading the correct registers. For a detailed look on how it works, we've written up a software reference to our [I2C Python Module](#i2c-python-module).
 
-##### Multiple Different Objects
+In the code, we specifically use two main functions of the library: the **constructor** and `i2cDevice.write_cmd()`. The constructor creates an I2C device object with the given address. The `write_cmd()` function then writes the given command (in bytes) to the address. The LCD display requires specific commands in order to activate its different write modes which the lcdDriver class wraps up nicely, making our final execution script quite compact.
+
+#### Multiple Different Objects
 
 <!-- // small blurb about how the main program uses two objects of different classes to accomplish its purpose - make a note that this is an incredibly common programming method/technique -->
 
-Here we're using two objects of different classes to accomplish our goal, `TemperatureSensor` and `Lcd`. If we had other devices we wanted to include in this experiment, we can simply write more class definitions and load them using the `import` statement.
+Here we're using two objects of different classes to accomplish our goal, `TemperatureSensor` and `Lcd`. If we had other devices we wanted to include in this experiment, we can write more class definitions and load them using the `import` statement.
 
 This is an incredibly common programming technique and is at the heart of Object Oriented Programming!
 
-#### Going Further: Automating the Script
-
-<!-- // introduce cron
-// show example of how to setup cron to run the script we wrote once every minute -->
+<!-- TODO: fix cron, this doesn't work -->
+<!-- ### Going Further: Automating the Script
 
 We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
 
-<!-- TODO: fix cron, this doesn't work -->
 
 First, create a file in `/root` called `runTemperatureSensorScript.sh` and write the following in it:
 
@@ -330,4 +328,4 @@ Finally, run the following command to restart cron so it can start running your 
 /etc/init.d/cron restart
 ```
 
-Your LCD should now update once a minute, and you're free to use your Omega for other things in the meantime!
+Your LCD should now update once a minute, and you're free to use your Omega for other things in the meantime! -->

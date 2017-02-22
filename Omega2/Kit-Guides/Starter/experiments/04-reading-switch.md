@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 4
 ---
 
-## Reading a Switch
+## Reading a Switch {#starter-kit-reading-switch}
 
 <!-- // intro to this experiment:
 //  * so far, we've been using a program to control GPIOs, lets have some physical, user input controlling our software
@@ -15,6 +15,8 @@ order: 4
 So far, we've been using a program to control GPIOs. Let's try using physical user input to control our software!
 
 We'll be using a **slide switch** as an input to control whether an LED should be turned on or off.
+
+First, we'll make a simple circuit to figure out how the switch works, then we'll use the switch to control the LED through the Omega!
 
 // TODO: append a sentence along the lines of: First we'll make a simple circuit to illustrate how the switch works, and then we'll move on to building a circuit where the switch is connected to your Omega.
 
@@ -40,7 +42,7 @@ We'll be using a **slide switch** as an input to control whether an LED should b
 
 // TODO: this is an awful intro. mention that this is an example circuit that we're making to show off how switches work. briefly describe what we'll be building
 
-We'll be building the following circuit.
+The first circuit we build will have the LED directly controlled by the switch to demonstrate how the switch works. The Omega will be used as a source of voltage only, and won't really do anything to affect the operation of the circuit.
 
 <!-- // TODO: circuit diagram, see paper notes -->
 
@@ -48,45 +50,41 @@ We'll be building the following circuit.
 
 Prepare the following components from your kit:
 
-* Omega plugged into Expansion Dock
-* Breadboard
-* Jumper wires
-* SPDT switch
+* 1x Omega plugged into Expansion Dock
+* 1x Breadboard
+* 1x SPDT switch
 * 1x 200Ω Resistor
-* Any LED color of your choice!
+* 4x Jumper wires (M-M)
+* 1x Any LED color of your choice!
 
 #### Hooking up the Components
 
 <!-- // step by step guide of how to hook up the components
 //  * how to connect one side of the switch to gnd and one to vcc
 //  * connect the switchable part to the led -->
-Before putting the circuit together, make sure the Omega2 is powered OFF for safety.
 
-1. Connect the Expansion Dock's 3.3V pin to one of the "+" columns on the breadboard.
-    * We'll call this column **Vcc**.
-1. Connect the Expansion Dock's GND pin to one of the "-" columns.
-    * We'll call this column **ground**.
-1. Connect the slide switch to the breadboard along any of the columns.
-1. Connect the switch's top pin to Vcc.
+1. Connect the switch's top pin to one of the "+" columns on the breadboard.
+    * We'll call this column **`Vcc` rail**.
     * We'll call this pin the **pull-up fork**.
-1. Connect the switch's bottom pin to ground.
+1. Connect the switch's bottom pin to one of the "-" columns.
+    * We'll call this column **`GND` rail**.
     * We'll call this pin the **pull-down fork**.
-1. Connect the LED's anode to ground, and the cathode to one end of a (// TODO: resistor value) resistor.
-1. Connect the other end of that resistor to the middle of the slide switch.
+1. Connect the slide switch to the breadboard along any of the columns.
+1. Connect the LED's anode to `GND`
+1. Connect the LED's cathode to one end of a 200Ω resistor through the breadboard.
+1. Connect the other end of the resistor to the middle of the slide switch.
+1. Connect the Expansion Dock's `GND` pin to the `GND` rail.
+1. Connect the Expansion Dock's '3.3V' pin to the `Vcc` rail.
 
 Your circuit should look like something like this:
 
 <!-- // TODO: photo -->
 
-If your circuit matches, go ahead and turn the Omega2 on!
+```{r child ='../../shared/wiring-precautions.md'}
+```
 
-// TODO: about this section, i don't like that we keep the omega off for safety, people might get the wrong impression and think that this is actually dangerous.
-//  Let's change it:
-//  * we first build the circuit, then connect the ground, and then connect Vcc
-//    - make a note that this is how you should usually connect circuits, gnd first and then vcc
-//  * make sure to mention that we're just using the omega as a power supply
 
-#### What to Expect
+### What to Expect
 
 <!-- // the switch controls if there is power flowing to the LED:
 //  when the switch is set to the pull-up fork, the LED will be on
@@ -94,14 +92,13 @@ If your circuit matches, go ahead and turn the Omega2 on!
 
 // this is a simple circuit but we wanted to illustrate how the switch works, let's move on to including our Omega in this circuit -->
 
-The slide switch physically controls if electricity flows or does not flow to the LED.
+The slide switch physically controls the electricity flowing to the LED.
 
 * When the switch is set to the pull-up fork, the LED receives power and lights up.
 * When the switch is set to the pull-down fork, the LED does not receive power and turns off.
 
-This is a pretty simple circuit, but we wanted to illustrate how this switch works. Let's move on to including our Omega in this setup!
+This is circuit is quite direct - it demonstrates that this switch works and how it does so. In fact, the only reason we have the Omega connected is to supply power to the LED. Let's move on to including our Omega and get some logic in this setup!
 
-// TODO: note that the 'pretty' in the sentence above used to be 'very', let's avoid words that can sound even remotely condescending
 
 ### Building the Experiment Circuit
 
@@ -109,11 +106,7 @@ This is a pretty simple circuit, but we wanted to illustrate how this switch wor
 // spdt switch (with pull-up and pull-down sides) connected to gpio input
 // regular led circuit connected to gpio setup as output -->
 
-// TODO: this intro is bad:
-//  * doesn't go with the tense of the rest of the article
-//  * when describing the program, say that we will be getting input from the switch and using that to turn the LED on or off - really drive home the point that we're reading input
-
-In the next circuit, the Omega2 connects to the slide switch and LED. We'll write a program that turns the LED on or off depending on how you set the switch.
+Now let's try letting the Omega reading the signal the switch sends and use that to turn on the LED. We'll rewire the circuit to have the Omega connecting the switch and the LED. Once we finished wiring the circuit, we'll write a program that turns the LED on or off through reading the switch position.
 
 <!-- // TODO: photo -->
 
@@ -127,7 +120,7 @@ In the next circuit, the Omega2 connects to the slide switch and LED. We'll writ
 <!-- // step by step guide of how to hook up the components
 //  jack the switch setup from the above section - adjust so taht it leads to a gpio
 //  jack the LED setup from the previous articles -->
-Turn the Omega off before changing your circuit. Then, do the following:
+If you had the
 
 1. Remove the LED and its resistor from the breadboard.
 1. Connect GPIO 0 on the Expansion Dock to the button pin using a jumper wire from the Expansion Dock to the breadboard.
@@ -138,15 +131,12 @@ Turn the Omega off before changing your circuit. Then, do the following:
 
 Your circuit should look like this:
 
-<!-- // TODO: photo -->
+<!-- // TODO: IMAGE photo -->
 
-If your circuit matches, power your Omega back on!
-
-// TODO: again, don't like turning the omega off... that's ridiculous
 
 ### Writing the Code
 
-Let's make a new file called `readSwitch.py` to hold our code:
+Let's make a new file called `STK04-readSwitch.py` to hold our code:
 
 <!-- // code should poll a gpio, based on the input value, set a different gpio to output the read value
 // implementation:
@@ -182,23 +172,23 @@ while 1:
 
 Let's run the code:
 ```
-python readSwitch.py
+python SKT04-readSwitch.py
 ```
 
 Now try flipping the switch on and off. What happens?
 
-#### What to Expect
+### What to Expect
 
 <!-- // the switch controls whether the LED is on or off. yes the same thing was achieved with the far simpler circuit, but is meant to illustrate how a physical input can control something virtual -->
 
-This circuit does pretty much the same thing as the first circuit, albeit with a much slower reaction to the switch input. This is meant as a simple example of a physical input affecting something virtual (like a program), which can in turn affect the physical world or interact with other virtual entities.
+This circuit does pretty much the same thing as the first circuit, albeit with a much slower reaction to the switch input. This demostrates a physical input affecting something virtual (like our script); the virtual entity can interpret the signal then proceed to act on the physical world or interact with other virtual entities.
 
-#### A Closer Look at the Code
+### A Closer Look at the Code
 
-// TODO: need an intro for this section
+In this experiment, we continuously read a sensor (our switch) to update the LED as soon as we detect the corresponding change from the sensor. This is the most classic way of digitally controlling a device - most commonly known as **polling**.
 
 <!-- // small overview of anything new we did -->
-##### Polling
+#### Polling
 
 <!-- // explain polling is the process of repeatedly checking an input
 //  * a delay was added since we don't want to burn up the cpu constantly checking the same thing - remember the CPU runs incredibly fast
@@ -212,15 +202,15 @@ This circuit does pretty much the same thing as the first circuit, albeit with a
 
 Polling is the process of repeatedly checking an input.
 
-When flipping the switch, you may have noticed a delay of 2 seconds before the LED reacted. This delay was added so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast!
-
-// TODO: erm... again, we don't want to alarm people, 'burn up the CPU' sounds horrifying if I'm a newbie, change it to something like 'unnecessarily overload the CPU'
+When flipping the switch, you may have noticed a delay of 2 seconds before the LED reacted. This delay was added so that the CPU has some time to rest between every check on the LED. We will needlessly tax the CPU by constantly checking the same thing - remember that it runs really fast!
 
 The delay length is set by the `time.sleep(2)` line. Try changing the number to something shorter, like 0.5 or 0.1, and seeing what happens.
 
-Some of the issues during polling are as follows:
+Polling is not without its issues:
 
 * You can't do anything else in the program.
 * You need to find a polling speed that balances the time delay and stress on the CPU.
 
 If only there were a better way of doing this!
+
+<!-- TODO: lead-in for 05 -->

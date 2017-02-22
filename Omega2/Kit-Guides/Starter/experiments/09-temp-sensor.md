@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 9
 ---
 
-## Reading a One-Wire Temperature Sensor {#starter-kit-reading-one-wire-temperature-sensor}
+## Reading a One-Wire Temperature Sensor {#starter-kit-08-reading-a-one-wire-temp-sensor}
 
 <!-- // in this experiment we will:
 //  * introduce the one-wire bus protocol
@@ -21,7 +21,7 @@ Let's now learn about and use the **1-Wire bus protocol** to read the ambient te
 
 ### Building the Circuit
 
-We'll be building a very simple circuit to connect the 1-Wire temperature sensor to the Omega. As the name implies, only one data line is needed for communication between any and all devices on the bus! 
+We'll be building a very simple circuit to connect the 1-Wire temperature sensor to the Omega. As the name implies, only one data line is needed for communication between any and all devices on the bus!
 
 #### What You'll Need
 
@@ -40,7 +40,7 @@ Prepare the following components from your kit:
 
 1. Find the flat side of the temperature sensor. This is the **front** side.
 1. With the front of the sensor facing to the left side of the breadboard, insert the three pins into column `e` in 3 consecutive rows, eg. 13, 14, and 15.
-1. Turn the breadboard so that the front of the sensor is facing you. 
+1. Turn the breadboard so that the front of the sensor is facing you.
 1. Insert jumpers for the following connections into column `a` in the row corresponding to the pins below:
     * Left - `GND`. Connect this to the Omega's `GND` pin.
     * Middle - `DATA`. Connect this to the Omega's `GPIO19`.
@@ -71,10 +71,10 @@ paths = {
 def insertKernelModule(gpio):
     argBus = "bus0=0," + gpio + ",0"
     call(["insmod", "w1-gpio-custom", argBus])
-    
+
 def checkFilesystem():
     return os.path.isdir(oneWireDir)
-    
+
 def setupOneWire(gpio):
     for i in range (2):
         if checkFilesystem():
@@ -85,17 +85,17 @@ def setupOneWire(gpio):
     else:
         # could not set up 1wire on the gpio
         return False
-        
+
 def checkSlaves():
     # check that the kernel is detecting slaves
     with open(paths["slaveCount"]) as slaveCountFile:
         slaveCount = slaveCountFile.read().split("\n")[0]
-        
+
     if slaveCount == "0":
         # slaves not detected by kernel               
         return False
     return True
-    
+
 def checkRegistered(address):
     slaveList = scanAddresses()
     registered = False
@@ -103,12 +103,12 @@ def checkRegistered(address):
         if address in line:
             registered = True
     return registered
-    
+
 # scan addresses of all connected 1-w devices
 def scanAddresses():
     if not checkFilesystem():
         return False
-        
+
     with open(paths["slaves"]) as slaveListFile:
         slaveList = slaveListFile.read().split("\n")
         # last element is an empty string due to the split
@@ -127,7 +127,7 @@ class OneWire:
         self.address = str(address)
         self.slaveFilePath = oneWireDir + "/" + self.address + "/" + "w1_slave"
         self.setupComplete = self.__prepare()
-    
+
     # prepare the object
     def __prepare(self):
         # check if the system file exists
@@ -135,21 +135,21 @@ class OneWire:
         if not setupOneWire(self.gpio):
             print "Could not set up 1-Wire on GPIO " + self.gpio
             return False
-        
+
         # check if the kernel is recognizing slaves
         if not checkSlaves():
             print "Kernel is not recognizing slaves."
             return False
-        
+
         # check if this instance's device is properly registered
         if not checkRegistered(self.address):
             # device is not recognized by the kernel
             print "Device is not registered on the bus."
             return False                        
-        
+
         # the device has been properly set up
         return True
-        
+
     def readDevice(self): # call this to read data from the sensor
         # read from the system file
         with open(self.slaveFilePath) as slave:
@@ -169,22 +169,22 @@ class TemperatureSensor:
         self.supportedInterfaces = ["oneWire"]
         self.interface = interface
         self.ready = False
-        
+
         # if specified interface not supported
         if self.interface not in self.supportedInterfaces:
             print "Unsupported interface."
             self.listInterfaces()
             return
-            
+
         # set up a driver based on the interface type
         # you can extend this class by adding more! (eg. 1-Wire, serial, I2C, etc)
         if self.interface == "oneWire":
             self.driver = OneWire(args.get("address"), args.get("gpio", None))
             # signal ready status
             self.ready = self.driver.setupComplete
-            # match the return value to 
+            # match the return value to
             self.readValue = self.__readOneWire;
-    
+
     def listInterfaces(self):
         print "The supported interfaces are:"
         for interface in self.supportedInterfaces:
@@ -196,17 +196,17 @@ class TemperatureSensor:
         # eg. a6 01 4b 46 7f ff 0c 10 5c t=26375
         rawValue = self.driver.readDevice()
         value = rawValue[1].split()[-1].split("=")[1]
-        
+
         # convert value from string to number
         value = int(value)
-        
+
         # DS18B20 outputs in 1/1000ths of a degree C, so convert to standard units
         value /= 1000.0
         return value
     # add more __read() functions for different interface types later!
 ```
 
-Now let's write the script for the main routine. Create a file called `STK09-temp-sensor.py` and paste the following in it.
+Now let's write the script for the main routine. Create a file called `STK08-temp-sensor.py` and paste the following in it.
 
 ``` python
 # import modules and classes
@@ -222,10 +222,10 @@ def __main__():
     if not oneWire.setupOneWire(str(oneWireGpio)):
         print "Kernel module could not be inserted. Please reboot and try again."
         return -1
-    
+
     # get the address of the temperature sensor
     # it should be the only device connected in this experiment    
-    sensorAddress = oneWire.scanOneAddress() 
+    sensorAddress = oneWire.scanOneAddress()
 
     sensor = TemperatureSensor("oneWire", { "address": sensorAddress, "gpio": oneWireGpio })
     if not sensor.ready:
@@ -240,7 +240,7 @@ if __name__ == '__main__':
     __main__()
 ```
 
-Run the `STK09-temp-sensor.py` script and watch the terminal for output. Try pinching the sensor with your fingers and seeing how it reacts!
+Run the `STK08-temp-sensor.py` script and watch the terminal for output. Try pinching the sensor with your fingers and seeing how it reacts!
 
 #### What to Expect
 
@@ -274,12 +274,12 @@ This simple 2-line block reads from the slave's system file at `/sys/devices/w1_
 
 ##### Scanning a Bus
 
-You may have noticed that the the `OneWire` class is used by the `TemperatureSensor` class and should not need to be imported explicitly. However, for the purposes of this experiment, we included it in the main script to use its `scanOneAddress()` function. 
+You may have noticed that the the `OneWire` class is used by the `TemperatureSensor` class and should not need to be imported explicitly. However, for the purposes of this experiment, we included it in the main script to use its `scanOneAddress()` function.
 
 This is because every 1-Wire sensor has its own unique address. To work with a sensor from within a program, you would have to manually find the address and write it in your code as a variable. To make this process faster:
 
 1. We make sure that the sensor is the only 1-Wire device connected to the bus.
-1. We then query the bus for device addresses. 
+1. We then query the bus for device addresses.
 1. The only one that will appear is the one that corresponds to our sensor.
 
 This is all done automatically to save you time.

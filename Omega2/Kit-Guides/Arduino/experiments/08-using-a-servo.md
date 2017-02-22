@@ -1,7 +1,7 @@
-## Controlling Servos
+## Controlling Servos {#arduino-kit-using-a-servo}
 
 <!-- // intro to using pwm to control servos, this experiment will involve controlling servos using physical buttons -->
-In this tutorial, we will used two push buttons to control two servos: a sub-micro sized servo and a standard sized servo. In addition, we will learn about object oriented programming by creating our own class for servo motors. 
+In this tutorial, we will used two push buttons to control two servos: a sub-micro sized servo and a standard sized servo. In addition, we will learn about object oriented programming by creating our own class for servo motors.
 
 
 // ### What is Pulse Width Modulation?
@@ -44,13 +44,13 @@ Prepare the following components from your kit:
 // wiring the two push-button switches: can reuse the wiring push button text from previous articles -->
 
 1. Connect the two push buttons with their seperate debounce circuits same as previous tutorials.
-    * Set up two push buttons, each with their own debounce circuit similar to tutorial 4, don't connect to Arduino Dock yet. 
+    * Set up two push buttons, each with their own debounce circuit similar to tutorial 4, don't connect to Arduino Dock yet.
     * Connect the point in the first debounce circuit between the 5kohm resistor and the capacitor to pin 2 of the Arduino Dock.
     * Connect the point in the second debounce circuit between the 5kohm resistor and the capacitor to pin 3 of the Arduino Dock.
     * Connect the Vcc of both debounce circuit to the positive (+) power rail.
     * Connect the ground of both debounce circuit to the negative (-) power rail.
 1. Connect the two servo motors.
-    * The small servo has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the orange (signal) wire to pin 9. 
+    * The small servo has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the orange (signal) wire to pin 9.
     * The standard servo also has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the white (signal) wire to pin 10.
     * The Arduino Sketch will set the servo motors at 90 degree initially. After flashing the arduino sketch and wait until the servos settle on their initial position, attach your favourite servo horn on each servo at 90 degrees.
 1. Connect the breadboard power rails to Arduino Dock.
@@ -75,7 +75,7 @@ Prepare the following components from your kit:
 ``` arduino
 // import the Arduino Servo library and define it
 #include <Servo.h>
-  
+
 int incrementButton = 2;
 int decrementButton = 3;
 int currentAngle = 90;
@@ -95,10 +95,10 @@ class ServoMotor
   // constructor with same name as class, will be automatically called when a class object is declared
   // pass in the pin number, max and min pulse width and calculate the pulse width change for each degree
   ServoMotor(int pinNumber, float minPWus, float maxPWus){
-      
+
       // pass in the pin number, max and min pulse width to private variables
       minPW = minPWus;
-      maxPW = maxPWus; 
+      maxPW = maxPWus;
       pin = pinNumber;
 
       // calculate the pulse width change for each degree
@@ -107,7 +107,7 @@ class ServoMotor
 
   // function where you pass in an angle and it sets the servo motor to that angle
   void setAngle(float angle){
-      
+
     // if the angle is greater than max angle or less than min angle, print the correct error message and exit the function
     if (angle > maxAngle || angle < minAngle){
        if (angle > maxAngle){
@@ -122,10 +122,10 @@ class ServoMotor
 
     // convert the angle to pulse width in microseconds(uS) using the rate previously calculated in the constructor
     float PWus = minPW + rate * angle;
-    
+
     // initialize the servo pin using the Arduino Servo library
     servo.attach(pin);
-    
+
     // set the servo angle by sending the calculated pulse width to the servo motor using the Arduino Servo library
     servo.writeMicroseconds(PWus);
   }
@@ -134,16 +134,16 @@ class ServoMotor
 // initalize two servo objects, one for each motor attached
 ServoMotor smallServo (9, 500, 2000);     // initialize DXW90 small servo (500us to 2000us) at pin 9
 ServoMotor standardServo (10, 0, 2500);     // initialize S3003 standard servo (0us to 2500us) at pin 10
-      
+
 void setup() {    // codes to be ran once
   Serial.begin(9600);  // initializing serial communication with the Omega
-  
+
   // initialize the pins connected to the increment and decrement buttons
   pinMode(incrementButton, INPUT);
   pinMode(decrementButton, INPUT);
-  
+
   // set the initial angle of the two servos to the 90 degrees
-  smallServo.setAngle(currentAngle); 
+  smallServo.setAngle(currentAngle);
   standardServo.setAngle(currentAngle);
 }
 
@@ -193,11 +193,11 @@ In this code, we introduce a new concept: the object oriented programming (OOP).
 
 // can borrow from the starter kit - 7seg article -->
 
-In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is where object oriented programming (OPP) becomes handy. In OPP, a class is similar to a template and a object is defined based on the class template with its own specific attributes. For our example. We setup our template inside `class ServoMotor{...};`. After that we defined two objects smallServo and standardServo, each with their own specific and different attributes. 
+In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is where object oriented programming (OPP) becomes handy. In OPP, a class is similar to a template and a object is defined based on the class template with its own specific attributes. For our example. We setup our template inside `class ServoMotor{...};`. After that we defined two objects smallServo and standardServo, each with their own specific and different attributes.
 
 These attributes are defined in the constructor of the `ServoMotor` class. A constructor is function of the class that have the exact same name as the class and will be automatically called when a class object is declared. Think of the constructor as a initialization function whose main purpose is to pass in all the class parameter (attributes). Our constructor also calculates the rate of the pulse width change for each degree. Also notice there is no `void` in front of our constructor function.
 
-A class member is a variable or a function declared as a part of the class template. It can be either `private`, which can only be used within the class or a `public`, which can be called outside the class. For our `ServoMotor` class, we have seven private members (six variables and one object)declared under `private:` and two public member functions defined under `public:`. Our public member functions include the constructor `ServoMotor()` and another function `setAngle()`. 
+A class member is a variable or a function declared as a part of the class template. It can be either `private`, which can only be used within the class or a `public`, which can be called outside the class. For our `ServoMotor` class, we have seven private members (six variables and one object)declared under `private:` and two public member functions defined under `public:`. Our public member functions include the constructor `ServoMotor()` and another function `setAngle()`.
 
 To use our `ServoClass` template, we declared our two objects in the global scope similar to declaring global variables:
 

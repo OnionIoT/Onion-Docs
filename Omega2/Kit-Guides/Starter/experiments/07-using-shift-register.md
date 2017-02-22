@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 7
 ---
 
-## Using a Shift Register to Control a Bunch of LEDs {#using-shift-register-control-leds}
+## Using a Shift Register to Control a Bunch of LEDs {#starter-kit-06-using-shift-register}
 
 Shift registers are very useful tools; using a few GPIOs connected to a shift register, we can increase the number of output data pins that are available to us.
 
@@ -22,7 +22,7 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 ```{r child = '../../shared/shift-register-control.md'}
 ```
 
-### Building the Circuit {#STK07-building-the-circuit}
+### Building the Circuit {#STK06-building-the-circuit}
 
 This circuit is quite involved but we're going to split it up into 3 parts: connecting the shift register, connecting your Omega, and connecting the LEDs.
 It's going to be essentially the same thing as the second experiment but we're going to use 8 LEDs and a shift register.

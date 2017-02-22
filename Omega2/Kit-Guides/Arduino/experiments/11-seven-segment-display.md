@@ -1,5 +1,4 @@
-
-## Controlling a 7-Segment Display
+## Controlling a 7-Segment Display {#arduino-kit-seven-segment-display}
 
 For this tutorial, we will learn how to use a seven-segment display. In addition, we will learn how to send data from the Omega to the ATmega through serial (uart1) to be displayed on the seven-segment. This way we don't have to reflash the ATmega everytime we want to display something new on the seven-segment display.
 
@@ -104,8 +103,8 @@ int decimalPlace;   // decimal point place
 void setup() {     // code to be ran only once
 
   Serial.begin(9600);           // initialize serial communication with the Omega
-  
-  // loop for setting all the digit pins off (HIGH) 
+
+  // loop for setting all the digit pins off (HIGH)
   for (byte digit = 0 ; digit < numDigits ; digit++) {
     pinMode(digitPins[digit], OUTPUT);
     digitalWrite(digitPins[digit], HIGH);
@@ -119,13 +118,13 @@ void setup() {     // code to be ran only once
 }
 
 void displayDigits(){
-   // triple nested for loop for displaying all the digits and their segments based on currentDigitCode[], which is an array of 4 bytes 
+   // triple nested for loop for displaying all the digits and their segments based on currentDigitCode[], which is an array of 4 bytes
    for (byte digit = 0 ; digit < numDigits ; digit++) {  // for each digit, set the specific digit pin LOW, turn on the correct segments, set the digit pin HIGH again
      digitalWrite(digitPins[digit], LOW);
      for (byte cycle = 0 ; cycle < 2 ; cycle++) {    // add one cycle delay before displaying the next digit, required for correct display
-       for (byte segmentNum = 0 ; segmentNum < 8 ; segmentNum++) {  // set the corret segments on for one digit based on one element of the currentDigitCode[] array 
+       for (byte segmentNum = 0 ; segmentNum < 8 ; segmentNum++) {  // set the corret segments on for one digit based on one element of the currentDigitCode[] array
          digitalWrite(segmentPins[segmentNum], currentDigitCode[digit] & index);        
-         index = index << 1; 
+         index = index << 1;
        }   
      }
      digitalWrite(digitPins[digit], HIGH);
@@ -140,7 +139,7 @@ void checkDecimalPoint(){
      if (charArray[digit] == '.') {      // check for decimal point
        decimalPlace = digit-1;      // store the correct position in decimalPlace
        // remove the decimal point element from the array, move the rest of the array one element to left
-       for (byte n = digit; n < sizeof(charArray) ; n++){ 
+       for (byte n = digit; n < sizeof(charArray) ; n++){
           charArray[n] = charArray[n+1];
        }
      }
@@ -158,34 +157,34 @@ void loop() {    // codes to be continously ran
        checkDecimalPoint();
 
       // loop for matching characters from the Omega to bytes from digitCodeMap[]
-      for (byte digit = 0 ; digit < numDigits ; digit++) { 
-        
+      for (byte digit = 0 ; digit < numDigits ; digit++) {
+
         // convert a character to a integer and subtract from it the integer value of '0' according to the ASCII table       
         int charToInt = charArray [digit] - '0';
         Serial.println(charToInt);
-    
+
         // case for matching the integer value of each character the an element from the digitCodeMap[] array
         switch (charToInt){
           case 0 ... 9:   //0-9
              currentDigitCode[digit] = digitCodeMap[charToInt];
              break;
-             
+
           case 17 ... 42: // A-Z
              currentDigitCode[digit] = digitCodeMap[charToInt-7];
              break;
-             
+
           case 49 ... 74: // a-z
              currentDigitCode[digit] = digitCodeMap[charToInt-39];
              break;
-             
+
            case -2: //dot
               currentDigitCode[digit-1] = currentDigitCode[digit-1] | B10000000;
               break;
-              
+
            case -3:  //dash
               currentDigitCode[digit] = digitCodeMap[37];
               break;
-              
+
            case -48: //null
               for (byte n = digit; n < numDigits; n++) {
                   currentDigitCode[n] = digitCodeMap[36];
@@ -227,7 +226,7 @@ sevseg.begin(COMMON_CATHODE, numDigits, digitPins, segmentPins, resistorsOnSegme
 
 The first parameter is the configuration of the seven segment display, either common cathod or common anode. The second parameter defines the number of digits the display has, which is four. The third parameter is an array of pins on the Arduino Dock that is connected to the four digit pins and the fourth parameter is an array of pins that is connected to the eight segment pins. The last parameter is set true since we connected the current limiting resistors to the segment pins instead of the digit pins.
 
-Furthermore, we store the characters to be displayed inside an array of chars: 
+Furthermore, we store the characters to be displayed inside an array of chars:
 
 char charArray[5]="abcd";
 
@@ -241,18 +240,18 @@ To display all the digits correctly, we must turn all on the segments of one dig
 for (byte cycle = 0 ; cycle < 2 ; cycle++) { }
 ```
 
-The cycling of digits is required because due to the configuration of the LEDs, we can not have different characters display on all four digits at once. 
+The cycling of digits is required because due to the configuration of the LEDs, we can not have different characters display on all four digits at once.
 
 You might be wondering how exactly can we set the correct segments for one digit on based on 8 bits. First we use a index byte (initally `B00000001`) to represent which bit we are currently setting using `digitalWrite()`.
 
 ```
-digitalWrite(segmentPins[segmentNum], currentDigitCode[digit] & index); 
+digitalWrite(segmentPins[segmentNum], currentDigitCode[digit] & index);
 ```
 
 We use the bitwise AND operation `&` of the index and the character code to determine whether the bit is to be set `HIGH` or `LOW`. After we set one bit we shift the 1 bit of the the index to the left (from `B00000001` to `B00000010`)
 
 ```
-index = index << 1; 
+index = index << 1;
 ```
 
 and determine set the `digitWrite()` the next segment based on the index byte and the character code byte. We use a `for` loop to repeat 8 times for all the segments. Don't forget to set the index byte back to `B00000001` after the loops.
@@ -260,13 +259,13 @@ and determine set the `digitWrite()` the next segment based on the index byte an
 
 ##### Serial Input and Conversions
 
-In our `loop()` function we first initialize the display by displaying the characters store initially in our array `1234`. After which, the ATmega will continously check for serial (UART1) input. When we use the echo command on our Omega we send a string to the ATmega through serial. Once the ATmega detects data on the serial line, it will read the data and store it in a string variable. 
+In our `loop()` function we first initialize the display by displaying the characters store initially in our array `1234`. After which, the ATmega will continously check for serial (UART1) input. When we use the echo command on our Omega we send a string to the ATmega through serial. Once the ATmega detects data on the serial line, it will read the data and store it in a string variable.
 
 ```
-String serialString = Serial.readString(); 
+String serialString = Serial.readString();
 ```
 
-We will need to process the string we received in order to display it. We must then convert the received string into an array of char using the Arduino build-in `toCharArray()` function. We will then need to convert a character to a integer and subtract from it the integer value of '0' according to the ASCII table. After that, we need to match the integer value of each character the an element from the digitCodeMap[] array using a case statement. A case statement is essentially an easier and more structured way of writing a bunch of if statements. 
+We will need to process the string we received in order to display it. We must then convert the received string into an array of char using the Arduino build-in `toCharArray()` function. We will then need to convert a character to a integer and subtract from it the integer value of '0' according to the ASCII table. After that, we need to match the integer value of each character the an element from the digitCodeMap[] array using a case statement. A case statement is essentially an easier and more structured way of writing a bunch of if statements.
 
 For example, if we get the character 'A', we subtract '0' from it. According to their decimal value from the ASCII table, we have `65-48=17`. Then in our case statement, 17 matches the `case 17 ... 42:`, in which we subtract 17 by 7 to get the element 10 from `digitCodeMap[]`, which corresponds to the segments to be displayed for 'A'.
 

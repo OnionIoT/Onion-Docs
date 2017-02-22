@@ -1,4 +1,4 @@
-## Reading an Analog Temperature Sensor
+## Reading an Analog Temperature Sensor {#arduino-kit-reading-a-temp-sensor}
 
 <!-- // description of what this experiment will accomplish and what we'll learn -->
 In this tutorial, we will learn how to read the ambient temperature using a temperature sensor. In addition, we will learn to how to do mathematical calculations in our code.
@@ -9,7 +9,7 @@ In this tutorial, we will learn how to read the ambient temperature using a temp
 // detects the ambient air temperature
 // outputs different voltage based on the temperature -->
 
-An analog temperature will detect the ambient air temperature and outputs different voltage based on the temperature. 
+An analog temperature will detect the ambient air temperature and outputs different voltage based on the temperature.
 
 <!-- // TODO: Image of a temperature sensor -->
 
@@ -52,32 +52,32 @@ Prepare the following components from your kit:
 //the scale factor of TMP36 (temperature sensor) is 10 mV/°C with a 500 mV offset to allow for negative temperatures
 
 int sensorPin = A0; // the analog pin number connected to the TMP36
-                                           
+
 void setup()
 {
   Serial.begin(9600);  //initializing serial communication with the Omega2 for sending sensor data
 }
- 
+
 void loop()
 {
  // getting the voltage reading from the temperature sensor
  int reading = analogRead(sensorPin);  
- 
+
  // convert the analog reading (0 to 1023) to voltage (0 - 5V)
  float voltage = reading * 5.0;
- voltage /= 1024.0; 
- 
+ voltage /= 1024.0;
+
  // print out the voltage to Omega2
  Serial.print(voltage); Serial.println(" volts");
- 
+
  // convert voltage to degree Celsius including the 500mV offset adjustment
  float temperatureC = (voltage - 0.5) * 100 ;  
  Serial.print(temperatureC); Serial.println(" degrees C");
- 
+
  // convert from Celsius to Fahrenheit and print to Omega2
  float temperatureF = (temperatureC * 9.0 / 5.0) + 32.0;
  Serial.print(temperatureF); Serial.println(" degrees F");
- 
+
  delay(10000);         //waiting 10 seconds between readings since the change is gradual
 }
 ```
@@ -95,7 +95,7 @@ cat < /dev/ttyS1
 
 Let's first take a closer look at how we can communicate between the Omega and the ATmega. We initialize the serial communication between the Atmega and the Omega using `Serial.begin(9600)` where 9600 is baud rate. The baud rate is the rate (in bits/second) at which the data is being transferred over the serial port. Notice we didn't include the baud rate when we use `cat < /dev/ttyS1` to read on the Omega side. This is because the default baud rate of cat is 9600. After the serial initialization, we use the build-in Arduino function `Serial.print()` to send data from the ATmega or `Serial.println()` when you need a new line.
 
-For reading the analog signal from the temperature sensor, we use analogRead, similar to the previous tutorial when reading from the trimpot. Notice we are using a much longer delay (10 seconds) between the readings of the temperature sensor since the output from the temperature sensor changes very slowly. 
+For reading the analog signal from the temperature sensor, we use analogRead, similar to the previous tutorial when reading from the trimpot. Notice we are using a much longer delay (10 seconds) between the readings of the temperature sensor since the output from the temperature sensor changes very slowly.
 
 ##### Math Operations
 
