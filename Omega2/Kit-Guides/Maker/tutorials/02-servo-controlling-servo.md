@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 2
 ---
 
-## Controlling Servos with the PWM Expansion {#MAK02-servo-controlling-servo}
+## Controlling Servos with the PWM Expansion {#maker-kit-servo-controlling-servo}
 
 In this tutorial we will learn how to control servo motors using the PWM Expansion with Python. But first, let's briefly introduce servo motors.
 
@@ -229,4 +229,4 @@ For this reason, we can't send the same signals to the different motors and expe
 
 Due to these reasons, you should do some testing to find the numbers that work for your particular hardware. This proccess is called calibration. See if you can use the command line tools or the libraries to figure out what duty cycles correspond to what kind of movement in your own servos.
 
-Next time, we [spin a motor](#MAK03-servo-h-bridge).
+Next time, we [spin a motor](#maker-kit-servo-h-bridge).
