@@ -176,6 +176,7 @@ If you'd like to see how that looks, we've provided a shell script below that do
 #!/bin/sh
 
 input=$1
+len=${#input}
 
 pref1="$(echo $input | sed -e 's/^\(.\).*/\1/')"
 pref2="$(echo $input | sed -e 's/^.\(.\).*/\1/')"
@@ -185,7 +186,7 @@ chr3="$(echo $input | sed -e 's/^....\(.\).*/\1/')"
 chr4="$(echo $input | sed -e 's/^.....\(.\).*/\1/')"
 # TODO: add a check for chr5; if chr5 is not blank, exit (4 digits only)
 
-if ! [[ "$pref1" == "0" && "$pref2" == "x" ]]; then
+if  [[ "$len" -ge "7" || "$pref1" != "0" || "$pref2" != "x" ]]; then
     echo "Please input a hex number in the following format: 0x12ab"
     exit
 fi
