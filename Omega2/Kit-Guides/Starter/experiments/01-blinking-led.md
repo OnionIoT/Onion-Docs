@@ -21,7 +21,7 @@ Remember, when inventing and building new things, try to break the work down int
 ```{r child = '../../shared/led.md'}
 ```
 
-### Building the Circuit
+### How to Build Circuits
 
 Before we start building our experiment, let's first go over some of the building blocks when it comes to experimenting with electronics.
 
@@ -33,6 +33,10 @@ Before we start building our experiment, let's first go over some of the buildin
 <!-- Breadboard -->
 ```{r child = '../../shared/breadboard.md'}
 ```
+
+### Building the Circuit
+
+// TODO: fill this with something like 'Ok, now that we know the general tools we'll be using, let's build our very first circuit!'
 
 #### What You'll Need
 
