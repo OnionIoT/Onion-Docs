@@ -79,34 +79,12 @@ For this experiment, we'll be using our Onion I2C Python Module which greatly si
 
 >The LCD display driver code is based on user [**natbett**'s post](https://www.raspberrypi.org/forums/viewtopic.php?f=32&t=34261&p=378524) on the Raspberry Pi forums.
 
-// TODO: the wrapper around the OnionI2C object is unnecessary and will be confusing/difficult to explain.
-// The fix: change the Lcd class to use the OnionI2C class directly:
-//  * the `__init__` function will instantiate an OnionI2C object
-//  * the `lcd_strobe` and `lcd_write_four_bits` will be changed to use the OnionI2C object writing functions
 
 <!-- // TODO: include a block diagram of our software system -->
 
-// TODO: add a brief description (1-2 sentences) of what this class will implement
-First, let's create a file containing a class to work with the I2C bus. Create a file called `i2cLib.py` and paste the following code:
+First, let's create a file that has all the low level code needed to drive the LCD display. It will contain functions to write strings and characters, and utility functions to change the behaviour of the display.
 
-``` python
-from time import sleep
-from OmegaExpansion import onionI2C
-
-sleepInterval = 0.0001
-
-class i2cDevice:
-    def __init__(self, addr, port=0):
-        self.addr = addr
-        self.i2c = onionI2C.OnionI2C(port)
-
-    # write a single command
-    def write_cmd(self, cmd):
-        self.i2c.write(self.addr, [cmd])
-        sleep(sleepInterval)
-```
-
-Next, let's create a file that has all the low level code needed to drive the LCD display. Create a file called `lcdDriver.py` and paste the following in it:
+Create a file called `lcdDriver.py` and paste the following in it:
 
 ``` python
 from OmegaExpansion import onionI2C
@@ -246,14 +224,11 @@ Now let's write the main routine for the experiment. This script will create an 
 
 Create a file called `STK09-temperatureLCD.py` in `/root`. Paste the code below in it:
 
-// TODO: code changes:
-//  * encapsulate some of this stuff into their own functions: 1 function for setting up and reading the temperature sensor, another to write to the lcd, etc
-//  * lets print the current date and time to the screen as well
-
 ``` python
+import datetime
 import lcdDriver
-from temperatureSensor import TemperatureSensor
 import oneWire
+from temperatureSensor import TemperatureSensor
 
 # default address of i2c backpack is 0x3f by default
 lcdAddress = 0x3f                                       
@@ -284,14 +259,17 @@ def displayTemp(temp):
     lcd = lcdDriver.Lcd(lcdAddress)
     lcd.backlightOn()    
 
+    time = datetime.today()
+
     lcd.lcd_display_string_array([
+        "The time is:",
+        time + "\n",
         "Temperature:",
         str(temp) + " C"
     ])
 
 def __main__():
     t = getTemp()
-
     displayTemp(t)
 
 if __name__ == '__main__':
@@ -304,11 +282,11 @@ Calling the script will update the LCD screen with a fresh temperature reading.
 
 <!-- TODO: IMAGE gif of the setup with the temperature changing-->
 
-However, wouldn't it be nice if something could run the script for us every minute to actually update the LCD?
+Wouldn't it be nice if something could run the script for us every minute to actually update the LCD? We will get there in a bit, but for now, let's take a look at how the code works.
 
 ### A Closer Look at the Code
 
-Here we've introduced the **Onion I2C module**, and we've also shown that you can use **multiple different objects** in the same script.
+Here we've introduced the **Onion I2C module**. The Python module takes care of the complexities in working with I2C devices, exposing a set of easy to work with functions. In the process, we've also started to let **multiple objects** interact with each other - actually making apparent the benefits of abstraction.
 
 #### The Onion I2C Module
 
@@ -327,14 +305,13 @@ Here we're using two objects of different classes to accomplish our goal, `Tempe
 
 This is an incredibly common programming technique and is at the heart of Object Oriented Programming!
 
-// TODO: implement the using cron section
-// note, you should be able to run python files directly in cron, i've done it before
-<!-- ### Going Further: Automating the Script
+
+### Going Further: Automating the Script
 
 We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
 
 
-First, create a file in `/root` called `runTemperatureSensorScript.sh` and write the following in it:
+First, create a file in `/root` called `checkTempSensor.sh` and write the following in it:
 
 ```
 ##!/bin/sh -e
@@ -344,21 +321,27 @@ First, create a file in `/root` called `runTemperatureSensorScript.sh` and write
 Then change the file permissions so it becomes executable:
 
 ```
-chmod +x runTemperatureSensorScript.sh
+chmod +x checkTempSensor.sh
 ```
 
-Run `crontab -e` to edit the file that contains commands and schedules to run them, and add this segment at the end of the file:
+Run `crontab -e` to edit the file that contains commands and schedules to run them, and add this line to the end of the file:
 
 ```
-##
-*/1 * * * * /root/runTempSensorScript.sh
-##
+* * * * * /root/checkTempSensor.sh
 ```
+
+>To briefly explain, the asterisks (\*) mean 'for all instances'. The position of the asterisk corresponds to 'minute', 'hour', 'date', 'month', and 'year' in order from left to right. The path at the end is the script or command you want to run. This line will tell cron to run the shell script once a minute.
+
+**Note** that you'll have to [use `vi`](http://vim.wikia.com/wiki/New_to_Vim) to edit this file by default!
 
 Finally, run the following command to restart cron so it can start running your script:
 
 ```
-/etc/init.d/cron restart
+/user/sbin/crond restart
 ```
 
-Your LCD should now update once a minute, and you're free to use your Omega for other things in the meantime! -->
+Your LCD should now update once a minute, and you're free to use your Omega for other things in the meantime!
+
+#### Known Issues
+
+`crond restart` will start a new instance of cron at time of writing. If you want to be circumspect, we recommend running `pidof crond` to check how many instances are currently running. The output of `pidof` should be either nothing (no `crond` running at all) or a list of numbers. Each number is the process ID (`pid`) of a running instance of `crond`. You can call `kill <pid>` to stop the process associated with that ID.
