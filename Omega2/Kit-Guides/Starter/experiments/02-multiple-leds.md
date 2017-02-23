@@ -14,7 +14,7 @@ In this experiment, we're going to use what we learned in the first experiment a
 
 <!-- // TODO: tidy the circuit building sections up according to style guide -->
 
-### Building the Circuit
+### Building the Circuit {#starter-kit-multiple-leds-building-the-circuit}
 
 Let's dive right into building our circuit. It's going to be essentially the same thing as the first experiment, but repeated six times over!
 

@@ -1,16 +1,57 @@
 ### Shift Register
 
+A shift register is an external integrated circuit (IC) that can be used to expand the number of output pins available to us. Essentially they let you turn serial input from a single pin (one bit after the other) into multiple parallel output signals (all at once on separate lines).
 
-A shift register is an external integrated circuit (IC) that can be used to expand the number of output pins available to us. Essentially they let you take serial inputs (one bit after the other) and output them in parallel (all at once on separate data lines).
+#### Overview
 
+So how does this work? The IC is made up of two **registers**, units of memory that can hold up several binary values in order (8 for the IC in your kit). They are:
 
-So how does this work? Well, we use three pins on the Omega in order to control the shift register. One pin, the data pin, is used to send the value we want the shift register to output to *one* of its output pins. The second pin, the clock pin, is used to notify the shift register that the data pin has changed and needs to be read. The last pin, the latch pin, notifies the shift register that it's time to output the values that are currently on the shift registers data pins. All of this happens incredibly quickly so it seems to us that it happens simultaneously.
+* The **shift** register, which holds 8 values before they are written to the output pins. Values can be "shifted" through this register from one position to the next, starting at position "A" to position "H".
+* The **storage** register, which takes values from the shift register and sends them to the data output lines, labelled `QA` to `QH`. For example, a logical `1` in position "C" of the storage register would create a HIGH signal on `QC`.
 
-// TODO: the latch pin explanation is confusing!
+There are three pins on the IC that we use to control it with the Omega. Two of these pins are **clocks**, special inputs that trigger the IC to do something when they receive a signal that changes from LOW to HIGH (also known as a **pulse**).
 
-// TODO: this example isn't too clear
+| Pin | Name | Purpose |
+|-|-|-|
+| SER | Data pin | Contains the value (HIGH or LOW) that will be loaded into the 1st position ("A") of the shift register whenever we pulse the serial clock (SCLK). |
+| SRCLK | Serial clock | When pulsed, shifts each value in the shift register forwards by one position, then loads the value from the SER pin into position "A". Note that this does not change the signals on the output lines until you pulse the register clock (RCLK). |
+| RCLK | Register clock, or "latch pin" | When pulsed, updates the storage register with new values from the shift register, sending a new set of signals to the 8 output pins. This happens so quickly that they all seem to change simultaneously! |
 
-That last paragraph was a little abstract, so as an example if you were to send `1011` from the Omega to the shift register it would get 1, 0, 1, 1, on four of its data output pins. This would be sent out in parallel on separate data lines making it seem like there were additional 4 data pins connected to the Omega!
+Keep in mind that the **first** value you send the shift register will be shifted towards the **last** output pin as you send it more data. This means that you'll have to send the shift register the outputs you want in **reverse order!**
+
+#### Controlling a Shift Register
+
+So how can this let us control multiple outputs with one data pin? Well, let's say we have 8 LEDs hooked up to the data lines QA - QH, and we want to turn on the 2nd, 4th, and the 8th LEDs like so:
+
+| LED | Data Line | Desired Value |
+|-|-----------|---------------|
+|1| QA | LOW |
+|2| QB | HIGH |
+|3| QC | LOW |
+|4| QD | HIGH |
+|5| QE | LOW |
+|6| QF | LOW |
+|7| QG | LOW |
+|8| QH | HIGH |
+
+First, we'll clear out the register so all LEDs are off by writing eight 0's to the shift register, then pulsing the latch pin to write the outputs to the data lines. This is done by setting and holding SER LOW, then pulsing SRCLK 8 times, then pulsing RCLK once.
+
+Now, since the shift register shifts values from position A towards position H, we need to **reverse** the order of the 8 LEDs that we want to turn on. To turn on the 2nd, 4th, and 8th LEDs, we'll have to send the shift register the values `1, 0, 0, 0, 1, 0, 1, 0` in that order. For each of these values:
+
+1. Set SER to the specified value (HIGH or LOW).
+1. Pulse SRCLK from LOW to HIGH to shift the value of SER into the shift register.
+
+Repeat the 2 steps above until all 8 values have been shifted in. Then pulse the RCLK pin to write these values to the storage register and data lines, which turns on the LEDs!
+
+In this way, we can control up to 8 different outputs with only 3 GPIOs. This is an incredibly powerful technique that you can use to work with many components at once.
+
+#### Daisy-Chaining
+
+Shift registers can also be connected in series to each other to extend the number of data lines that can be controlled at once. Simply connect the SER pin of one shift register to the `QH'` pin on another, and connect their SRCLK and RCLK pins together. You've now just created a 16-bit shift register! This is called **daisy-chaining**.
+
+#### Detailed Specifications
+
+if you're curious about the clock cycle timings or other information about the IC, you can refer to the [datasheet for the SN74HC595 shift register](http://www.ti.com/lit/ds/symlink/sn74hc595.pdf). The clock cycle timing diagram can be found on page 8.
 
 <!-- TODO: Add an illustration of the shift register where you send 1011 on data pin, and it shows up as 1, 0, 1, 1 on the output pins -->
 

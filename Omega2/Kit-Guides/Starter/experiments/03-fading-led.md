@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 3
 ---
 
-## Dimming an LED
+## Dimming an LED {#starter-kit-fading-led}
 
 So far we've been turning LEDs fully on and fully off, but it's also possible have LEDs dimmed to somewhere between on and off. And that's what we're going to do in this experiment: we're going to use Pulse Width Modulation (PWM) to create a dimming effect on an LED.
 
@@ -28,33 +28,32 @@ We'll need the same LED circuit we used in the previous two experiments, which i
 
 * Omega2 plugged into Expansion Dock
 * 1x LEDs
-* 2x Jumper Wires
-* 1x Resistor
-    * 200Ω
+* 2x M-M Jumper Wires
+* 1x 200Ω Resistor
 * Breadboard
 
 #### Hooking up the Components
 
-In this example we'll only be fading a single LED on GPIO 0 so go ahead and build the same circuit we used in the previous two experiments:
+In this example we'll only be fading a single LED, so go ahead and build the same circuit we used in the previous two experiments:
 
-* Plug the LED into the breadboard, with the anode and cathode in different rows
-* Connect the LED's
-
-TODO: encapsulate the hooking up the components text from experiment one into a file and include it here
+```{r child = '../../shared/wiring-led.md'}
+```
 
 ### Writing the Code
 
 <!-- Going to use fast-gpio pwm to avoid any muxing nonsense-->
 
-// TODO: get rid of the two comment lines below and replace with a nice intro
-<!-- // use fast-pwm to slowly increment the duty cycle on a gpio and then halfway through start decrementing the pwm, so that you get a fading in, and then fading out
-// make it progress slowly so you can tell that its getting brighter and dimmer -->
+Let's get to writing the main code. This time, we will be using `fast-gpio`, a utility we created to quickly control GPIO signals from the command line. However, we can also call this utility from within a Python script!
+
+We'll use the PWM functionality of `fast-gpio` to slowly increase the LED's brightness by incrementing the duty cycle on its GPIO, then slowly decrease the brightness by decreasing the duty cycle. You'll be seeing the light gently fade in and out.
+
+Create a file called `STK03-fading-led.py` and paste the following code in it:
 
 ``` python
 import time
 import os
 
-ledValue  = 2
+brightnessIncrement  = 2
 dutyCycle = 0
 def pwmLed(pin, frequency, dutyCyclePercentage):
 	command = "fast-gpio pwm %d %d %d" % (pin, frequency, dutyCyclePercentage) #Assign the arguments to the correct positions in the fast-gpio command
@@ -62,22 +61,20 @@ def pwmLed(pin, frequency, dutyCyclePercentage):
 
 ## Infinite Loop Main Code
 while 1:
-	dutyCycle=dutyCycle+ledValue # Increment or decrement the duty cycle by the ledValue
+	dutyCycle=dutyCycle+brightnessIncrement # Increment or decrement the duty cycle by the brightnessIncrement
 
 	pwmLed(0, 50, dutyCycle) # Assign GPIO 0 to the pwm duty cycle value
 
 	# flip the value variable
 	if (dutyCycle <= 0) or (dutyCycle >= 100):
-		ledValue = -ledValue # Reverse direction at 0, and 100
+		brightnessIncrement = -brightnessIncrement # Reverse direction at 0, and 100
 
 	time.sleep(0.1)	# sleep for a tenth of a second
 ```
 
-
-
 <!-- TODO: FUTURE: Write using the Omega's PWM pins -->
 
-#### What to Expect
+### What to Expect
 
 <!-- // Your LED will fade in and then out, describe this and have a gif -->
 
@@ -86,43 +83,38 @@ When you run this script your LED will fade in and out. This is because we set t
 <!-- TODO: Insert gif of this -->
 
 
-#### A Closer Look at the Code
+### A Closer Look at the Code
 
 <!-- // intro to the code that was written
 //  new things introduced:
 //  * function where you pass in gpio # and duty cycle and it calls fast-gpio for you
 //  * fancy for loop -->
 
-// TODO: the onionGpio part was taken out, rewrite the below to match that
+The code this time is quite different from the previous two experiments. Instead of using Python classes and objects, we are calling a **command-line program** from within the script. We then wrapped this call in a Python **function** to make it easier to reuse. 
 
-We've used the code from Experiment 1 as a foundation for writing the code in the experiment. We will still instantiate the GPIO and set the direction to output, but afterwards we no longer use onionGpio. Instead we use `fast-gpio` for its software based PWM function. In our infinite loop we increment the duty cycle by the ledValue, and at 100% we reverse the value and decrement to 0.
+In our infinite loop, we increment the duty cycle by the `brightnessIncrement`, and at 100% we reverse the value and decrement to 0.
 
-// TODO: this is a new section
-##### Making OS Calls
+#### Making OS Calls
 
-// TODO: include some background on fast-gpio, talk about how we use os.system to call a command line tool from within python
+`fast-gpio` works by setting GPIO registers directly on the processor and is a very fast process. It is fast enough that it can be used to generate PWM signals (this is known as software PWM).
 
-In order to use `fast-gpio` we need to use the `os` module. This module allows us to send command-line arguments in Python using `os.system(command)`.
+In order to use `fast-gpio`, we need to use the `os` module. This module allows us to send command-line arguments in Python using `os.system(command)`, where `command` is a string containing the arguments you would normally type in the terminal. This is known as a **system call**.
 
-##### Functions
+<!-- TODO: should this be subprocess.call instead? see https://docs.python.org/2/library/subprocess.html#replacing-os-system -->
+
+#### Functions
 
 <!-- // explanation of why it was useful to package the fast-gpio os call into a function:
 //  * useful to have a readable & simple python interface for setting the pwm duty cycle
 //  * will be used a whole bunch
 //  * cleaner looking code and good practice -->
 
-// TODO: this section should talk about how it's nice that we wrapped the ugly system call in a nice python interface, ie expand on whats written here
-
-We then put this into it's own function so that we have a much simpler and easier to read Python interface for setting the PWM duty cycle. This function takes in the following arguments:
+The system call to `fast-gpio` is powerful, but it has a lot of syntax like the `%d` placeholders that we don't want to be typing over and over again. So, we wrapped this unwieldy call into its own **function** in order to have a readable and much nicer Python interface for setting the PWM duty cycle. This function takes in the following arguments:
 
 * GPIO pin number
 * Frequency
 * Duty cycle percentage
 
-By doing this we make it really easy to reuse for other pins, frequencies, and duty cycle values.
+By doing this we make it really easy to reuse for other pins, frequencies, and duty cycle values. 
 
-It's good practice to break your code into small problems, and writing single functions to solve each problem.
-
-<!-- #### Fancy For Loops
-
-// have a for loop that increments the PWM and then halfway through starts decrementing the PWM - when you reach halfway, multiply the value by which you increment by -1 :) -->
+Whenever you have problems that require identical commands to solve, it's good practice to write your commands once in single functions that can be called wherever they are needed.

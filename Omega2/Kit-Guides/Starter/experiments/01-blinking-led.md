@@ -44,9 +44,8 @@ Prepare the following components from your kit:
 
 * Omega plugged into Expansion Dock
 * Breadboard
-* Jumper wires (Male-to-Male)
-* Resistors
-    * 1x 200Ω
+* M-M Jumper Wires
+* 1x 200Ω Resistor
 * Any LED color of your choice!
 
 #### Hooking up the Components
@@ -55,14 +54,16 @@ OK here we go, let's put together our circuit! We're going to be connecting an L
 
 <!-- // TODO: FRITZING: fritzing circuit diagram of the experiment -->
 
-1. Plug in the LED into the breadboard, make sure you plug the anode and cathode into different rows and that you know which is plugged where.
-2. Let's choose `GPIO0` on the Omega2 to drive our LED, so let's run a jumper wire to the row of the LED's anode.
-3. Now connect one end of a 200Ω resistor to the the cathode row, and the other end to an empty row.
-4. The final step is using a jumper wire to connect the current-limiting resistor to a Ground pin on the Omega2.
+```{r child = '../../shared/s.md'}
+```
 
 Your circuit should now look like this:
 
-// TODO: image of circuit
+<!-- // TODO: image of circuit -->
+
+<!-- Breadboard -->
+```{r child = '../../shared/wiring-precautions.md'}
+```
 
 > A note on components with and without **polarity**:
 >
@@ -81,7 +82,7 @@ Now we get to write the code that will make our circuit actually do something! T
 
 <!-- // TODO: rework this when -->
 
-Let's make a new file `blink.py` to hold our code:
+Let's make a new file `STK01-blink.py` to hold our code:
 ``` python
 import onionGpio
 import time
@@ -104,36 +105,38 @@ while 1:
 ```
 
 Let's run the code:
+
 ```
-python blink.py
+python STK01-blink.py
 ```
 
-#### What to Expect
+### What to Expect
 
 Your LED should be blinking; it should turn on for half a second, and then turn off for half a second, repeating until you exit the program.
 
 <!-- // TODO: GIF: Showing this experiment with the LED blinking -->
 
-> To exit a program like this one: press `Ctrl+C` (`Cmd+C` for Mac users)
+> To exit a program like this one: press `Ctrl-C` (`Cmd-C` for Mac users)
 
-#### A Closer Look at the Code
+### A Closer Look at the Code
 
 While this is a small program, there are quite a few things going on, let's take a closer look.
 
-##### Importing a Module
+#### Importing a Module
 
 The very first line in the code imports a Python source code module. In this case, the module was made by the Onion team for controlling the Omega's GPIOs. The module contains a class that implements functions for everything you can do with a GPIO on an Omega.
 
-<!-- // TODO: add a note about the time module
- -->
-##### Object Oriented Programming - Instantiating an Object
+#### Object Oriented Programming - Instantiating an Object
 
 Then, the very next thing we do is **instatiate** an object of the `OnionGpio` class from the `onionGpio` module we just included above. Make sure to note that we passed an argument to the **constructor** of the `OnionGpio` class, this argument defines which of the Omega's GPIOs we are going to be using, `GPIO0` in this case.
 
 We also take care to assign the instantiated object to a variable so that we can access it to actually interact with the GPIO pin.
 
+#### The `time` Module
 
-##### While Loop
+This module is used for anything involving measuring time, but also contains the very important `sleep()` function. This function, as you have seen, pauses execution of the Python script for a specified number of seconds. It can accept decimal numbers too!
+
+#### While Loop
 
 Loops are incredibly common in literally every type and form of programming. The type of loop we're using here is called a *while* loop, since it will execute the code contained within it's body **while** the loop condition holds true. In this case, the loop condition is `1` which will always evaluate to true, so we have in effect made an **infinite loop**.
 
