@@ -45,7 +45,7 @@ Everything from the [temperature sensor experiment](#starter-kit-temp-sensor):
 
 Then grab the following from your kit:
 
-* 1x LCD Screen 
+* 1x LCD Screen
 * 4x Jumper wires (M-F)
 
 #### Hooking up the Components
@@ -75,9 +75,7 @@ Then grab the following from your kit:
 //  * writes the time and temperature to the display once a minute
 //    * use the onion i2c module to write to the display -->
 
-// TODO: it isn't convenient that the I2C python MODULE exposes functionality and it's not some functionality. remember, these users are likely to be beginners so they might get a completely wrong idea about the i2c python module... change it to say somthing like 'which provides convenient functions for interacting with I2C devices'
-For this experiment, we'll be using our Onion I2C Python library which conveniently exposes some I2C functionality. If you're curious, you can see how it works in our [I2C Python module reference](#i2c-python-module).
-// TODO: the above link needs to be changed to https://docs.onion.io/blahblah, can't use #tags to link to docs articles since they are built separately
+For this experiment, we'll be using our Onion I2C Python Module which greatly simplifies interacting with I2C devices. If you're curious, you can see how it works in our [I2C Python module reference](https://docs.onion.io/omega2-docs/i2c-python-module.html).
 
 >The LCD display driver code is based on user [**natbett**'s post](https://www.raspberrypi.org/forums/viewtopic.php?f=32&t=34261&p=378524) on the Raspberry Pi forums.
 
@@ -111,7 +109,7 @@ class i2cDevice:
 Next, let's create a file that has all the low level code needed to drive the LCD display. Create a file called `lcdDriver.py` and paste the following in it:
 
 ``` python
-import i2cLib
+from OmegaExpansion import onionI2C
 from time import sleep
 
 # commands
@@ -162,7 +160,7 @@ Rs = 0b00000001 # Register select bit
 
 class Lcd:
     #initializes objects and lcd
-    def __init__(self,address):
+    def __init__(self,address,port=0):
         self.address = address
         self.lcdbacklight = LCD_BACKLIGHT #default status
         self.line1= "";
@@ -171,7 +169,7 @@ class Lcd:
         self.line4= "";
 
         # use the Onion I2C module to handle reading/writing
-        self.lcd_device = i2cLib.i2cDevice(self.address)
+        self.lcd_device = onionI2C.OnionI2C(port)
 
         self.lcd_write(0x03)
         self.lcd_write(0x03)
@@ -186,13 +184,13 @@ class Lcd:
 
     # clocks EN to latch command
     def lcd_strobe(self, data):
-        self.lcd_device.write_cmd(data | En | self.lcdbacklight)
+        self.lcd_device.write(self.address, data | En | self.lcdbacklight)
         sleep(.0005)
-        self.lcd_device.write_cmd(((data & ~ En) | self.lcdbacklight))
+        self.lcd_device.write(self.address, ((data & ~ En) | self.lcdbacklight))
         sleep(.0001)
 
     def lcd_write_four_bits(self, data):
-        self.lcd_device.write_cmd(data | self.lcdbacklight)
+        self.lcd_device.write(self.address, data | self.lcdbacklight)
         self.lcd_strobe(data)
 
     # write a command to lcd
@@ -244,8 +242,9 @@ class Lcd:
         self.refresh()
 ```
 
-// TODO: add a brief description of what this will accmplish
-Now let's write the main routine for the experiment. Create a file called `STK09-temperatureLCD.py` in `/root`. Paste the code below in it:
+Now let's write the main routine for the experiment. This script will create an `Lcd` object, and a `TemperatureSensor` object. It gets the sensor data from the `TemperatureSensor`, then sends that data to the `Lcd` object to display. It does this once and exactly once, so you can call it whenever for a quick update.
+
+Create a file called `STK09-temperatureLCD.py` in `/root`. Paste the code below in it:
 
 // TODO: code changes:
 //  * encapsulate some of this stuff into their own functions: 1 function for setting up and reading the temperature sensor, another to write to the lcd, etc
@@ -263,7 +262,7 @@ lcdAddress = 0x3f
 oneWireGpio = 19 # set the GPIO that we've connected the sensor to
 pollingInterval = 1 # seconds
 
-def __main__():
+def getTemp():
     # check if 1-Wire was setup in the kernel
     if not oneWire.setupOneWire(str(oneWireGpio)):
         print "Kernel module could not be inserted. Please reboot and try again."
@@ -278,15 +277,22 @@ def __main__():
         print "Sensor was not set up correctly. Please make sure that your sensor is firmly connected to the GPIO specified above and try again."
         return -1
 
+    return sensor.readValue()
+
+def displayTemp(temp):
     # setup LCD
     lcd = lcdDriver.Lcd(lcdAddress)
     lcd.backlightOn()    
 
-    value = sensor.readValue()
     lcd.lcd_display_string_array([
         "Temperature:",
-        str(value) + " C"
+        str(temp) + " C"
     ])
+
+def __main__():
+    t = getTemp()
+
+    displayTemp(t)
 
 if __name__ == '__main__':
     __main__()
