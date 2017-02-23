@@ -6,6 +6,8 @@ In this experiment, we're going to use what we learned in the first experiment a
 
 ### Building the Circuit
 
+// TODO: all numbers less than 10 should be spelled out: change 6 -> six
+
 Similar to the previously experiment, we need our breadboard and jumper wires. However, now we will use 6 LEDs along with 6 current limiting resistors. We will makes the LEDs turn on one-by-one going left to right, and then turn them off one-by-one again going left to right.
 
 #### What You'll Need
@@ -16,11 +18,12 @@ Prepare the following components from your kit:
 * USB Micro-B cable for power
 * Breadboard
 * Jumper wires
-* Resistors
-  * 6x 200Ω
+* 6x 200Ω Resistors
 * 6x LED color of your choice!
 
 #### Hooking up the Components
+
+// TODO: expand on this, take a look at the starter kit multiple leds experiment for an example, can borrow heavily from there
 
 <!-- // look to the multiple leds article in the starter kit for ideas of what needs to be covered
 // make sure the physical order of the LEDs is kept when increasing the gpio number -->
@@ -34,8 +37,12 @@ Prepare the following components from your kit:
 
 ### Writing the Code
 
+// TODO: write an introduction to the code
+
 <!-- // write an arduino sketch that makes the LEDs turn on one-by-one going left to right, and then turn off, again going left to right
 // look to the multiple leds article in the starter kit for details -->
+
+// TODO: see if you can programmatically find the length of the array without having to rely on the pinCount variable, imagine the case where an additional pin is added but the pinCount isn't updated...
 
 ``` arduino
 int timer = 100;           // time delay between each LED in ms
@@ -74,12 +81,15 @@ Your line-up of LEDs will be essentially chasing it's tail: the left-most LED wi
 
 #### A Closer Look at the Code
 
-// talk about the topics we introduced here
+// TODO: add a little more life to this intro, talk about how it's different from the first experiment, etc
+
 In this code, we introduced some new concepts: arrays and `for` loops. Let's take a look.
 
 ##### Arrays
 
 <!-- // talk about arrays, how we use an array to hold the gpio numbers in order -->
+
+// TODO: all this info is correct but it doesn't read nicely, please rewrite this so that it actually flows
 
 The second line the code, we defined the ledPins[] variable, which is new to us: it's creating an array. An array variable is a list of variables, with the ability to access each individual variable. A single variable in an array is referred to as an element. The ledPins array is meant to hold the GPIO pin numbers that control our LEDs. So this array will hold a bunch of integers, and we're **populating** the array as soon as we declare it.
 
