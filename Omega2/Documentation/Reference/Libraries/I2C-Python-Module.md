@@ -69,7 +69,7 @@ The example code programs the Relay Expansion directly.
 | [Write a List of Bytes without Specifying an Address](#i2c-py-write-addressless) | `write(devAddr, values)` |
 
 
-### Initialization - `onionI2C.OnionI2C()` {#i2c-py-constructor}
+### Initialization - onionI2C.OnionI2C() {#i2c-py-constructor}
 
 The object needs to be initialized before it can be used for reading and writing:
 ``` python
@@ -88,7 +88,7 @@ If your use case requires a different adapter, add an integer argument to the co
 
 #### Reading from an I2C Slave
 
-### Reading Bytes - `readBytes()` {#i2c-py-read-bytes}
+### Reading Bytes - readBytes() {#i2c-py-read-bytes}
 
 This function reads a specified number of bytes from a specific device on the I2C bus, and returns them in a list:
 ``` python
@@ -123,7 +123,7 @@ All writing functions share the same schema for return values:
 * For a successful write, `0` will be returned
 * An unsuccessful write will return `1`
 
-### Write a Single Byte - `writeByte()` {#i2c-py-write-byte}
+### Write a Single Byte - writeByte() {#i2c-py-write-byte}
 
 This function will write a single byte to a specific device on the I2C bus:
 ``` python
@@ -151,7 +151,7 @@ Write `0xbe` to address `0xaa` on a device with an address of` 0x33`:
 status  = i2c.writeByte(0x33, 0xaa, 0xbe)
 ```
 
-### Write a List of Bytes - `writeBytes()` {#i2c-py-write-byte-list}
+### Write a List of Bytes - writeBytes() {#i2c-py-write-byte-list}
 
 This function will write a list of bytes to an address on a specific device on the I2C bus:
 ``` python
@@ -185,7 +185,7 @@ Write `0x01, 0x03, 0x05` to address `0x55` on a device with an address of `0x24`
 status  = i2c.writeBytes(0x24, 0x55, [0x01, 0x03, 0x05])
 ```
 
-### Write a List of Bytes without Specifying an Address - `write()` {#i2c-py-write-addressless}
+### Write a List of Bytes without Specifying an Address - write() {#i2c-py-write-addressless}
 
 This function will write a list of bytes to a specific device on the I2C bus:
 ``` python
