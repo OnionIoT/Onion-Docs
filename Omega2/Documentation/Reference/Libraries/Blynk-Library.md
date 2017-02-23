@@ -11,7 +11,7 @@ The Blynk library for the Omega works with [NodeJS](#installing-and-using-nodejs
 
 Blynk is a platform dedicated to create apps that interface IoT devices with mobile phones - the Omega/2/2+ amongst them. It provides an app that allows you to make beautiful apps of your own for your IoT network.
 
-For further reading on the library's functionality refer to the [documentation](https://www.npmjs.com/package/blynk-library) or check out [blynk.cc](blynk.cc).
+For further reading on the library's functionality refer to the [documentation](https://www.npmjs.com/package/blynk-library) or check out [Blynk's website](https://www.blynk.cc).
 
 
 ### The Blynk Library {#blynk-description}
