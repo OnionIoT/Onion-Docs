@@ -16,7 +16,7 @@ So far, we've been using a program to control GPIOs. Let's try using physical us
 
 We'll be using a **slide switch** as an input to control whether an LED should be turned on or off.
 
-First, we'll make a simple circuit to figure out how the switch works, then we'll use the switch to control the LED through the Omega!
+First, we'll make a simple circuit to figure out how the switch works, then we'll move on to building another circuit where the switch is connected to your Omega instead!
 
 // TODO: append a sentence along the lines of: First we'll make a simple circuit to illustrate how the switch works, and then we'll move on to building a circuit where the switch is connected to your Omega.
 

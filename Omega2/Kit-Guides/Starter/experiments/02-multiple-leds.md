@@ -16,7 +16,7 @@ In this experiment, we're going to use what we learned in the first experiment a
 
 ### Building the Circuit {#starter-kit-multiple-leds-building-the-circuit}
 
-Let's dive right into building our circuit. It's going to be essentially the same thing as the first experiment, but repeated six times over!
+Let's dive right into building our circuit. It's going to be essentially the same thing as the first experiment, [but repeated six times over!](#starter-kit-blinking-led-hooking-up-the-components)!
 
 The GPIOs that are going to be used in this experiment are:
 
@@ -56,7 +56,7 @@ To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on
 
 Now that you have all six LEDs plugged in, let's connect a jumper wire from the `-` power rail on the breadboard to a Ground pin on the Omega. Since the power rail is connected vertically, what we've done is **connect all of the LED cathodes to the Ground on the Omega using just one pin on the Expansion Dock!**
 
-Like previously mentioned, it's just six copies of our first experiment together.
+Like previously mentioned, it's just six copies of our first experiment connected to multiple GPIOs.
 
 The circuit diagram for our first experiment looks like this:
 <!-- // TODO: CIRCUIT DIAGRAM: circuit showing this experiment -->
@@ -107,6 +107,7 @@ while 1:
 ```
 
 And run the code:
+
 ```
 python STK02-lineUp.py
 ```

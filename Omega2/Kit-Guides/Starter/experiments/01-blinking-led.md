@@ -44,13 +44,13 @@ Prepare the following components from your kit:
 * 1x 200Ω Resistor
 * Any LED color of your choice!
 
-#### Hooking up the Components
+#### Hooking up the Components {#starter-kit-blinking-led-hooking-up-the-components}
 
 OK here we go, let's put together our circuit! We're going to be connecting an LED's anode to a GPIO on the Omega2, and cathode to Ground through a current limiting resistor.
 
 <!-- // TODO: FRITZING: fritzing circuit diagram of the experiment -->
 
-```{r child = '../../shared/s.md'}
+```{r child = '../../shared/wiring-led.md'}
 ```
 
 Your circuit should now look like this:
@@ -63,7 +63,7 @@ Your circuit should now look like this:
 
 > A note on components with and without **polarity**:
 >
-> You'll notice that we were careful to make sure which end of the LED we connected to incoming current and which we connected to ground. This is because LEDs are polarized, so they will only when current is flowing in the correct direction, that is, when they're plugged in the correct way.
+> You'll notice that we were careful to make sure which end of the LED we connected to incoming current and which we connected to ground. This is because LEDs are **polarized**, so they will only when current is flowing in the correct direction, that is, when they're plugged in the correct way.
 >
 > With the resistor, either way will work since resistors are symmetric components, meaning they don't care which way current flows through them, they'll work either way.
 
@@ -76,9 +76,11 @@ The circuit diagram for our first experiment looks like this:
 
 Now we get to write the code that will make our circuit actually do something! That something will be blinking our LED!
 
-<!-- // TODO: rework this when -->
+<!-- // TODO: rework this when 
+// when what? miiiike D: -->
 
 Let's make a new file `STK01-blink.py` to hold our code:
+
 ``` python
 import onionGpio
 import time

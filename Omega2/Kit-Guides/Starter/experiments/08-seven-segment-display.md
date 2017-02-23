@@ -6,13 +6,11 @@ devices: [ Omega , Omega2 ]
 order: 8
 ---
 
-## Controlling a 7-Segment Display {#starter-kit-07-seven-segment-display}
+## Controlling a 7-Segment Display {#starter-kit-seven-segment-display}
 
-We've just learned about shift registers, now let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world. We'll construct a circuit that connects the Omega to the shift register and the shift register to the 7-segment display. The Omega will send serial signals to the shift register, and those signals will be transformed into numbers and letters by the 7-segment display.
+We've just learned about shift registers; now, let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world. We'll connect the 7-segment display to the shift register that we wired up last time. We'll write a program to send serial signals to the shift register which will be transformed into numbers and letters on the 7-segment display. We'll then observe the output and see if there's anything interesting we notice.
 
-// TODO: add a description of what we're going to do in this experiment: wire up the 7-seg to the shift register from last time, write a program and see how it goes, hint that there's more to be done here
-
-// TODO: add a note that this experiment builds on the previous one, so they should make sure they complete that one before they move on to this one
+**Note:** This experiment builds on the previous one, so you should make sure you complete it before moving onto this one!
 
 <!-- seven segment -->
 ```{r child = '../../shared/seven-segment.md'}
@@ -25,11 +23,9 @@ Using the shift register and a few additional GPIOs from the Omega, we will cont
 // TODO: spice up this sentence, sounds so boring
 // TODO: make sure to point out that we need to use the shift register to make up for the fact we have a limited amount of GPIOs on the Omega
 
-// TODO: include a block diagram of the system
+<!-- // TODO: include a block diagram of the system -->
 
 #### What You'll Need
-
-// TODO: make this match the rest of the 'What You'll Need' sections
 
 * 1x Omega2 plugged into Expansion Dock
 * 1x 7-Segment Display
@@ -42,14 +38,18 @@ Using the shift register and a few additional GPIOs from the Omega, we will cont
 #### Hooking up the Components
 
 
-// TODO: pls fix up this sentence, i changed it but it needs to be nice-ified
+<!-- // TODO: pls fix up this sentence, i changed it but it needs to be nice-ified -->
 
-First things first, if you've done the previous experiment, keep the shift register wired up just like you had it. If you skipped the previous experiment, we recommend you check it out before moving on to this experiment since we build on what we've done!
- For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
+First things first, we'll be building on our previous experiment. 
+
+* If you've done the previous experiment, keep the shift register wired up just like you had it.
+* If you skipped it, [**we strongly recommend you check it out**](#starter-kit-using-shift-register) before moving on to this one!
+
+For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
 
 <!-- TODO: IMAGE diagram of shift register/dock/breadboard wiring -->
 
-> TODO: a note about why common ground is important (all components need to have the same baseline for logical low)
+> It's important that all components have a common ground (no pun intended). Signals are measured as the **difference** in voltage between the signal pin and ground, so all of the components need to be measuring from the same baseline.
 
 1. Connecting your Shift Register
 
@@ -57,8 +57,9 @@ First things first, if you've done the previous experiment, keep the shift regis
   - Connect pin 16 and pin 10 to the positive rail (Vcc)
   - Connect pin 8 and pin 13 to the negative rail (Ground)
 
-// TODO: add explanation of why we need the resistors
-When you have the shift register wired up, it's time to connect it to the 7-segment display. First, we recommend you set up the resistors across the center first, and do all the wiring in one go.
+When you have the shift register wired up, it's time to connect it to the 7-segment display. First, we'll have to add current-limiting resistors since the display is a set of multiple LEDs. We recommend you set up the resistors across the center first, and do all the wiring in one go.
+
+1. Connecting the 7-Segment Display
 
 We've included a diagram below for reference instead of instructions, as this one has a lot of wiring to do and they end up going every which way. Note that all ends connecting to the 7-segment display require F jumper heads - that's where your M-F jumpers will be used.
 
@@ -69,12 +70,11 @@ Once you've connected the 7-segment display to the Omega and shift register, it'
 ``` {r child = '../../shared/wiring-precautions.md'}
 ```
 
-
 ### Writing the Code
 
 We'll be developing a program that takes input from command line arguments when it's launched and displays them on the 7-segment display.
 
-// TODO: include a block diagram of the code and a description of what we're going to be doing from a high level
+<!-- // TODO: include a block diagram of the code and a description of what we're going to be doing from a high level -->
 
 To accomplish this, we will write a new class that uses and builds upon the shift register class from the previous experiment.
 
@@ -93,7 +93,7 @@ To accomplish this, we will write a new class that uses and builds upon the shif
 
 -->
 
-Now let's create a class named `STK07-sevenSegDisplay.py`.
+Now let's create a class named `sevenSegDisplay.py`.
 
 
 ``` python
@@ -143,7 +143,7 @@ class sevenSegment:
     		self.digitPin[i] = onionGpio.OnionGpio(dPin[i])
 ```
 
-Now that we have a class to control the 7-seg display, let's write a program to use the class and control the display! Create `STK08-seven-seg-display` and paste the following in it:
+Now that we have a class to control the 7-seg display, let's write a program to use the class and control the display! Create a file called `STK07-seven-seg-display.py` and paste the following in it:
 
 
 ``` python
@@ -175,6 +175,13 @@ def __main__():
         	sevenDisplay.showDigit(i,inputHexString[i])
 ```
 
+The for loop here is doing something really neat with only one line of code:
+
+* The `showDigit()` function is called with each digit number and digit character to be displayed.
+* When `showDigit()` is called, the 
+we write out 8 values to the shift register that correspond to the LEDs to display the passed character.
+* 
+
 // TODO: need to describe what we're doing: changing the scan, setting a value, then changing the scan, setting a value, etc
 
 
@@ -186,21 +193,14 @@ Then run the following:
 python /root/STK07-seven-seg-display.py
 ```
 
-
 ### What to Expect
 
 // TODO: this section was 100% phoned-in, rewrite this part with some life and not sentence fragments
 The Python code above should ask you for a hex string, then print the digits one by one on to the 7 segment display. Infinite loops here as well, and you can exit with `Ctrl-C`
 
-// TODO: gif: add a gif of what happens
-// TODO: include a description of what is expected behaviour
+<!-- // TODO: gif: add a gif of what happens -->
 
-Now you may be wondering if what you saw is expected behaviour - yes. However you probably guessed that it really should be displaying them all at once.
-
-// NOTE: moved the bash script to the bottom
-
-
-
+Now you may be wondering if what you saw is expected behaviour - yes. The digits on the 7-seg will be flickering slowly enough for you to notice. However, you probably guessed that it really should be displaying them all at once.
 
 ### A Closer Look at the Code
 
