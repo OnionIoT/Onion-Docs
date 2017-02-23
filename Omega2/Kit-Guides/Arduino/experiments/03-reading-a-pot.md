@@ -1,20 +1,29 @@
+// TODO: general arduino dock: fix tenses and pluralization
+
 ## Reading an Potentiometer {#arduino-kit-reading-a-pot}
 
 <!-- // this experiment will use a potentiometer to control brightness of an LED -->
 
-So far, we've been using a program to control output pins. Let's try using physical user input to control our software! This experiment will use a potentiometer (trimpot) to control brightness of an LED. Before we begin, let's take a look at the trimpot and one way to change the brightness of the LED.
+So far, we've been using a program to control output pins. Let's try using physical user input to control our software! This experiment will use a potentiometer (trimpot) to control brightness of an LED. Before we begin, let's take a look at the trimpot and one way to change the brightness of an LED.
+
+
+### Variable Resistor
+
+// TODO: write a small intro to variable resistors, how they're resistors whose resistance value can be changed
 
 ### Potentiometer
 
 <!-- // description that a pot is essentially a variable resistor, we can tell -->
 
-The trimpot (trimmer potentiometer) is essentially two variable resistors (R1 and R2) connected in series. The total resistance of the two variable resistors (R1 + R2) will always be the same as the value of the trimpot, in our case 10KΩ. However, we can turn the knob on the trimpot to decrease the resistance of one resistor and at the same time increase the resistance of the other resistor. If we turn the knob to either end, one resistor will be 0Ω will the other one will be 10KΩ.
+The trimmer potentiometer, also known as a trimpot, is essentially two variable resistors (R1 and R2) connected in series. The total resistance of the two variable resistors (R1 + R2) will always be the same as the value of the trimpot, in our case 10KΩ. However, we can turn the knob on the trimpot to decrease the resistance of one resistor and at the same time increase the resistance of the other resistor. If we turn the knob to either end, one resistor will be 0Ω will the other one will be 10KΩ.
 
 <!-- // TODO: Image of a trimpot -->
 
 One variable resistor is between the left and middle pin of the trimpot while the other one is between the middle and right pin of the trimpot. If we connect the trimpot as a voltage divider as shown below, we will be able to vary the output voltage from 0V to the input voltage (5V) by simply turning the knob!
 
 <!-- // TODO: add schematic and equation of voltage divider. -->
+
+// TODO: find a good description of voltage dividers and insert a blurb and the link
 
 ### Dimming an LED
 
@@ -23,7 +32,7 @@ One variable resistor is between the left and middle pin of the trimpot while th
 // the microcontroller is able to output an analog signal, meaning we can control how much voltage is going to the led, directly controlling its brightness
 // add a note saying that the analog signal is actually pwm, but don't go into heavy detail -->
 
-So far we've been turning LEDs fully on and fully off, but it's also possible have LEDs dimmed to somewhere between on and off. And that's what we're going to do in this experiment: we're going to use Pulse Width Modulation (PWM) to create a dimming effect on an LED.
+So far we've been turning LEDs fully on and fully off, but it's also possible have LEDs dimmed to somewhere between on and off. This is accomplished by turning the LED on and off many times in a second, the brightness of the LED depends on how long the LED is allowed to remain on. That's precisely what we're going to do in this experiment: we're going to use Pulse Width Modulation (PWM) to create a dimming effect on an LED.
 
 <!-- PWM Signals -->
 ```{r child = '../../shared/pwm.md'}
@@ -53,20 +62,20 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-<!-- // details on how to connect everything -->
+We will be building the following circuit:
+// TODO: include a circuit diagram
 
 1. First plug the potentiometer on the breadboard with each of the three pins in a different row.
 2. Connect the middle pin of the trimpot to the analog pin (`A0` defined in code) on the Arduino dock using a jumper wire.
 3. Connect one of the remaining pin to `GND` and the other one to `5V` (the polarity does not matter).
 4. Connect the anode of LED to a PWM pin (`~9` defined in code) on the Arduino Dock. Connect the cathode to the ground through the 200Ω current limiting resistor.
 
+Your circuit should look something like:
 <!-- // TODO: photo -->
 
 ### Writing the Code
 
-<!-- // write a sketch that polls the input voltage from the trimpot circuit
-// uses that reading to set the output strength (pwm duty cycle) for the led circuit
-// ensure that everything is written cleanly, using functions for each separate action, don't want the setup function to be full of all sorts of different code -->
+// TODO: add an introduction to this section
 
 ``` arduino
 int potPin = A0;    // analog pin for reading the potentiometer value
@@ -110,7 +119,7 @@ void loop() {
 When the code has been flashed on the ATmega, we will be able to adjust the brightness of the LED by turning the knob of the trimpot. This is because we can use the trimpot to set duty cycle to increase up to 100% (fade in to 100%), and then we begin to decrease the duty cycle down to 0% (fade out to 0%). In addition, we can use the following command line on our Omega to read the serial output of the ATmega:
 
 ```
-cat < /dev/ttyS1
+cat /dev/ttyS1
 ```
 
 It will print a digital value (0 to 1023), which has been converted from the analog output of the potentiometer. This value should also correspond to the brightness of the LED.
@@ -120,24 +129,24 @@ It will print a digital value (0 to 1023), which has been converted from the ana
 #### A Closer Look at the Code
 <!-- // anything new that we introduced -->
 
-In this code we introduced several new concepts: analog read and analog (PWM) write; whereas previously we are using digital write. In addition, we will introduce a concept called polling. Let's take a look.
+In this code we introduced several new concepts: analog read and analog (PWM) write; whereas previously we were using digital write. In addition, we will introduce a concept called polling. Let's take a look.
 
 ##### Analog Read
-First we start by looking at the `readPotValue()` function, in which we use analogRead to get the output value of the potentiometer. The output of the potentiometer circuit is basically the output voltage of a voltage divider circuit. Since the input voltage is 5V, the output voltage will vary from 0V to 5V depending on the position of trimpot knob. The Arduino build-in function analogRead will convert that voltage (0-5V) to a digital value (0 to 1023). Lets store this value in the variable potValue for later use.
+First we start by looking at the `readPotValue()` function, in which we use `analogRead` to get the output value of the potentiometer. The output of the potentiometer circuit is basically the output voltage of a voltage divider circuit. Since the input voltage is 5V, the output voltage will vary from 0V to 5V depending on the position of trimpot knob. The Arduino build-in function analogRead will convert that voltage (0-5V) to a digital value between 0 and 1023. Let's store this value in the variable potValue for later use.
 
-For analogRead to work we should use an analog pin (A0 - A6) on the Arduino Dock. Moreover, analogRead takes in only one parameter, the pin number. Also notice that we do not need to set the pinMode of the pin reading the potentiometer to INPUT. This is because as mention earlier, the GPIOs are INPUT by default.
+For `analogRead` to work we need to use one of the analog pins (A0 - A6) on the Arduino Dock. Moreover, analogRead takes in only one parameter, the pin number. Also notice that we do not need to set the pinMode of the pin reading the potentiometer to INPUT. This is because as mention earlier, the GPIOs are INPUT by default.
 
 ##### Analog (PWM) Write
-Similar to previous tutorials, we set a pin output for light the LED. However this time, we will use a PWM (~) pin and instead of digitalWrite, we'll use analogWrite. The name analogWrite might be confusing at first since we are using a digial PWM pin to light the LED. However, PWM is actually a form of digital-to-analog conversion.
+Similar to previous tutorials, we set a pin output for light the LED. However this time, we will use a PWM (~) pin and instead of `digitalWrite`, we'll use `analogWrite`. The name `analogWrite` might be confusing at first since we are using a digital PWM pin to power the LED. However, PWM is actually a form of digital-to-analog conversion. // TODO: expand on this
 
-The Arduino build-in function analogWrite takes in two parameters: the pin number and a value representing the PWM duty cycle between 0 (always off) and 255 (always on). Notice this range (0 to 255) is about one fourth the range of the output from the analogRead (0 to 1023). So let's take our variable potValue from before and divide by four to set the brightness of the LED.
+The Arduino build-in function `analogWrite` takes in two parameters: the pin number and a value representing the PWM duty cycle between 0 (always off) and 255 (always on). Notice this range (0 to 255) is about one fourth the range of the output from the analogRead (0 to 1023). So let's take our variable `potValue` from before and divide by four to set the brightness of the LED.
 
 ##### Polling
 <!-- // see the 'reading a switch' article in the starter kit for an idea of what to write -->
 
 Polling is the process of repeatedly checking an input.
 
-You may notice in the code there is a 0.1s delay in the `readPotValue()` function between reading the trimpot and the setting the LED. This delay was added for stability so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast!
+You may notice in the code there is a 0.1s delay in the `readPotValue()` function between reading the trimpot and the setting the LED. This delay was added for stability so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast! // TODO: let's change this to say, instead of 'burn up the CPU', 'We don't want to unnecessarily tax the microprocesser by making it constantly check the same thing as fast as it can - remember that it runs really fast!''
 
 Some of the issues during polling are as follows:
 
