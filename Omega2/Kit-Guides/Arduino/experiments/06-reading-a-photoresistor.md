@@ -86,7 +86,7 @@ The ATmega will print the output voltage of the voltage divider, the resistance 
 ```
 cat /dev/ttyS1
 ```
-If we cover the photoresistor with our hand, we should see on our Omega terminal that the light intensity (lux) value decrease significantly. The resistance of the photoresistor is inverse proportional to the light intensity (lux).
+If you cover the photoresistor with your hand, you'll see on your Omega's command line that the light intensity (lux) value will decrease significantly. You'll also see how the resistance of the photoresistor is inverse proportional to the light intensity (lux).
 
 #### A Closer Look at the Code
 
@@ -98,7 +98,7 @@ We also use `Serial.print()` to send the values at all the stages of the calcuat
 
 ##### Output on serial
 
-// TODO: dive in a little more on this explanation
+// TODO: dive in a little more on this explanation, give a decent explanation and then link to the temp sensor experiment where we go in depth about serial communication
 We can obtain the output of the ATmega on our Omega through serial as explained in the previous tutorial.
 
 ```
