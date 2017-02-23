@@ -96,7 +96,7 @@ An error message will be printed that will give more information on the reason b
 
 
 
-#### Functions
+### Functions
 
 | Function | Prototype |
 |---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
@@ -143,7 +143,7 @@ int status 	= oledDriverInit();
 <!-- SUB-HEADING -->
 <!-- Settings Functions -->
 
-#### Functions to Adjust Settings
+### Functions to Adjust Settings
 
 There is a series of functions that adjust various settings on the OLED Display. The adjustable settings are:
 * [Screen on/off](#oled-c-set-display-power)

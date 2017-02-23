@@ -48,7 +48,7 @@ The main example is the [`gpio-test.py` script](https://github.com/OnionIoT/onio
 
 <!-- Functions -->
 
-#### Functions
+### Functions
 
 | Function | Prototype |
 |---------------------------------------------------------|-----------------------------------|

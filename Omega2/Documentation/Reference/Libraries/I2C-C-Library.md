@@ -75,7 +75,7 @@ A few reasons why the function might not be successful:
 
 An error message will be printed that will give more information on the reason behind the failure.
 
-#### Functions
+### Functions
 
 | Function | Prototype |
 |---------------------------------------------------|--------------------------------------------------------------------------------------|

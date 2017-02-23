@@ -58,7 +58,7 @@ An example of how the `onionI2C` library is used can be found in the [`i2c-exp-d
 
 The example code programs the Relay Expansion directly.
 
-#### Functions
+### Functions
 
 | Function | Prototype |
 |----------------------------------------------------------------------------------|-------------------------------------|

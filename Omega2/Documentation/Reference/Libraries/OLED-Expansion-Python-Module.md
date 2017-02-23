@@ -89,7 +89,7 @@ If the function operation is successful, the return value will be `0`.
 If the function operation is not successful, the function will return `1`.
 
 
-#### Functions
+### Functions
 
 | Function | Prototype |
 |----------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
