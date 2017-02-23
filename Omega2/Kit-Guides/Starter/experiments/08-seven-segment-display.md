@@ -101,7 +101,11 @@ import registerClass
 import onionGpio
 import time
 
-class sevenSegment:
+# seven segment class
+class SevenSegment:
+    # class attribute
+    # dictionary mapping each alphanumeric character to the binary values that should be sent to the shift register
+    
     digitMap = {
     "0": "00111111",
     "1": "00000110",
@@ -133,8 +137,8 @@ class sevenSegment:
 
 	def showDigit(self, d, character):
 		self.digitPin[d].setValue(0)
-		self.shiftReg.outputBits(self.digitMap[character])
-		self.digit[d].setValue(1)
+		self.shiftReg.outputBits(SevenSegment.digitMap[character])
+		self.digitPin[d].setValue(1)
 
 
 	def clear(self):
@@ -143,16 +147,15 @@ class sevenSegment:
     		self.digitPin[i] = onionGpio.OnionGpio(dPin[i])
 ```
 
-Now that we have a class to control the 7-seg display, let's write a program to use the class and control the display! Create a file called `STK07-seven-seg-display.py` and paste the following in it:
-
+Now that we have a class to control the 7-seg display, let's write our main script! Create a file called `STK07-seven-seg-display.py` and paste the following in it:
 
 ``` python
 import registerClass
-from sevenSegDisplay import sevenSegment
+from sevenSegDisplay import SevenSegment
 import time
 
-sevenDisplay = sevenSegment(11,18,19,0)
-sevenDisplay.setup()
+# instantiate 7-segment object
+sevenDisplay = SevenSegment(11,18,19,0)
 
 def __main__():
     # if script was called with no arguments
@@ -175,28 +178,34 @@ def __main__():
         	sevenDisplay.showDigit(i,inputHexString[i])
 ```
 
+In our while loop, we're doing the following:
+
+1. 
+
 The for loop here is doing something really neat with only one line of code:
 
-* The `showDigit()` function is called with each digit number and digit character to be displayed.
-* When `showDigit()` is called, the 
-we write out 8 values to the shift register that correspond to the LEDs to display the passed character.
-* 
+* The `showDigit()` function is called with a digit number `i` and digit `characterinputHexString[i]` to be displayed.
+* In this function, the scan pin for the current digit is enabled and is ready to light up.
+* We then send to the shift register the binary values corresponding to the segments for the current digit.
 
-// TODO: need to describe what we're doing: changing the scan, setting a value, then changing the scan, setting a value, etc
-
+We then cycle through all of the digits and repeat the steps above for each one. 
 
 To see it in action, make sure you have `registerClass.py`, `sevenSegDisplay.py` and `STK08-seven-seg-display.py` in your `/root/` directory.
 
-Then run the following:
+Let's choose a hexadecimal number to display on the 7-seg. Come up with a string in this format: `0x12ab`, where the four digits 12ab can be any number from 0 to 9 or any lowercase letter from a to f. Then run the following command, replacing `YOURHEXNUMBERHERE` with your string:
 
 ``` bash
-python /root/STK07-seven-seg-display.py
+python /root/STK07-seven-seg-display.py YOURHEXNUMBERHERE
 ```
+
+This numbering system is known as **hexadecimal** or base 16, where each digit can have a value from 0 - 15. This is different from our everyday decimal or base 10 system, where each digit can have a value from 0-9. Hexadecimal ("hex") is very useful in expressing binary numbers with few digits: for example, the binary number `0b11000000` (192 in decimal), can be expressed in hex as `0xC0`!
 
 ### What to Expect
 
 // TODO: this section was 100% phoned-in, rewrite this part with some life and not sentence fragments
 The Python code above should ask you for a hex string, then print the digits one by one on to the 7 segment display. Infinite loops here as well, and you can exit with `Ctrl-C`
+
+When running the main script, it should ask you for a 
 
 <!-- // TODO: gif: add a gif of what happens -->
 
@@ -223,16 +232,11 @@ To display numbers on the 7-Segment display, we mapped the outputs to binary usi
 
 In this experiment, software and hardware come together to produce behaviour we didn't intend. The code runs as well as it possibly can, and the hardware does its best to operate from the signals its given, but it ultimately doesn't make the result workable. The root cause is the way the libraries are programmed. The GPIOs are operated by reading and writing to files, and the `onionGpio` module operates this in a very safe and consistent way through our C library - meaning it's quite slow.
 
-
-
-
 #### Classes using Classes
 
-// TODO: fix this SEVEN_SEG_CLASS_NAME placeholder
+Despite this particular experiment's outcomes, encapsulation is still good practice. The way we implemented the `SevenSegment` and `ShiftRegister` classes is a good demonstration of why.
 
-Despite this particular experiment's outcomes, encapsulation is still good practice. The way we implemented the `SEVEN_SEG_CLASS_NAME` and `ShiftRegister` classes is a good demonstration of why.
-
-The `SEVEN_SEG_CLASS_NAME` class makes use of code that already exists, and builds upon that to fulfill a niche functionality. Here, we instantiate the `ShiftRegister` class within the `SEVEN_SEG_CLASS_NAME` class - this means `SEVEN_SEG_CLASS_NAME` can make use of all the functionality of the internal `ShiftRegister` object without being a shift-register.
+The `SevenSegment` class makes use of code that already exists, and builds upon that to fulfill a niche functionality. Here, we instantiate the `ShiftRegister` class within the `SevenSegment` class - this means `SevenSegment` can make use of all the functionality of the internal `ShiftRegister` object without being a shift-register.
 
 Logically separating the devices like this makes it easier in complicated projects to think about the pieces working together, instead of what each individual line of code does. Our script can then call on the seven seg functions to display things without needing to bother with the intricasies of the shift register. Vice versa, we can use the shift register to do other things by directly instantiating an object from `ShiftRegister`.
 
@@ -246,7 +250,7 @@ Logically separating the devices like this makes it easier in complicated projec
 
 // TODO: umm, dictionaries can totally be changed after they're created...
 
-Also known as 'hash tables', though not strictly the same. Dictionaries work in programming much the same way as in real life. By keying a definition to a name or title, you can look it up. Python has a built-in dictionary data type, which we make use of here to map out letters and numbers to the shift. Dictionaries are **immutable** - they cannot be changed after they are created.
+Also known as 'hash tables', though not strictly the same. Dictionaries work in programming much the same way as in real life. By keying a definition to a name or title, you can look it up. Python has a built-in dictionary data type, which we make use of here to map out letters and numbers to the shift. Dictionaries are **mutable**, meaning they can be changed after they are created.
 
 // TODO: note that the below was the original
 We use a dictionary here as a translation between string characters and the shift register representation of it. We can simply insert `digitMap[<character>]` to the shift register display function and let the `ShiftRegister` object sort out the rest without needing to copy-paste the binary code.
