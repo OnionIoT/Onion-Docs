@@ -347,7 +347,7 @@ oledExp.setTextColumns();
 
 It sets the start pixel to 0 and the end pixel to 125. This allows for the 21 text characters per line This function should be run, before setting the cursor for writing text.
 
-### Set Columns for Images {#oled-node-set-image-column}
+### Set Columns for Images {#oled-node-set-image-columns}
 
 Also, a function exists to define the column addressing to cover the entire screen:
 ``` javascript

@@ -75,7 +75,7 @@ If the function operation is not successful, the function will return `1`.
 
 <!-- Functions -->
 
-#### Functions
+### Functions
 
 | Function | Prototype |
 |---------------------------------------------------------|------------------------------------|
@@ -87,7 +87,7 @@ If the function operation is not successful, the function will return `1`.
 
 <!-- Python: Init Function -->
 
-### Initialization Function - `driverInit()` {#relay-py-init-function}
+### Initialization Function - driverInit() {#relay-py-init-function}
 
 To perform the initialization sequence on the Relay Expansion:
 ``` python
@@ -96,11 +96,11 @@ relayExp.driverInit(addr)
 
 After this step is completed, the functions to set the relay states can be used with success.
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the [I2C Device Address section](#i2c-device-address).
 
-**Examples**
+#### Examples
 
 Initialize a Relay Expansion with all switches set to 0, meaning the I2C device address will be 0x27:
 ``` c
@@ -115,7 +115,7 @@ status 	= relayExp.driverInit(4)
 
 <!-- Python: Check Init Function -->
 
-### Check for Initialization - `checkInit()` {#relay-py-check-init}
+### Check for Initialization - checkInit() {#relay-py-check-init}
 
 Performs several reads to determine if the Relay Expansion requires the initialization sequence to be programmed before the relay states can be changed:
 ``` python
@@ -129,12 +129,12 @@ The **return value** of the function indicates the Initialization Status:
 | 0            | Not Initialized       |
 | 1            | Initialized           |
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the [I2C Device Address section](#i2c-device-address).
 
 
-**Example**
+#### Example
 
 Check if a Relay Expansion (with switches set to Off-On-On) is initialized:
 ``` python
@@ -150,14 +150,14 @@ else:
 
 <!-- Python: Set Relay State -->
 
-### Set Relay State - `setChannel()` {#relay-py-set-channel}
+### Set Relay State - setChannel() {#relay-py-set-channel}
 
 Use this function to change the state of the relay:
 ``` python
 relayExp.setChannel(addr, channel, state)
 ```
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the [I2C Device Address section](#i2c-device-address).
 
@@ -167,7 +167,7 @@ The `state` argument allows the user to select if the relay will be turned on or
 * 0 turn the relay OFF
 * 1 turn the relay ON
 
-**Example**
+#### Example
 
 Set channel 0 to On (all switches are On):
 ``` python
@@ -177,7 +177,7 @@ status 	= relayExp.setChannel(0, 0, 1)
 
 <!-- Python: Set Relay State for Both Relays -->
 
-### Set State for both Relays - `setAllChannels()` {#relay-py-set-all-channels}
+### Set State for both Relays - setAllChannels() {#relay-py-set-all-channels}
 
 In the event that both relays need to be turned on or off at the same time:
 ``` python
@@ -187,7 +187,7 @@ relayExp.setAllChannels(addr, state)
 This is performed with a single register write so both relays should react at the same time.
 
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the [I2C Device Address section](#i2c-device-address).
 
@@ -196,7 +196,7 @@ The `state` argument allows the user to select if the relays will be turned on o
 * 1 turn the relays ON
 
 
-**Example**
+#### Example
 
 Turn both channels off (all switches are On):
 ``` python
@@ -212,7 +212,7 @@ status 	= relayExp.setAllChannels(0, 1)
 
 <!-- Python: Read Relay State -->
 
-### Read Relay State - `readChannel()` {#relay-py-read-channel}
+### Read Relay State - readChannel() {#relay-py-read-channel}
 
 Use this function to read the state of a specific relay:
 
@@ -221,19 +221,19 @@ state = relayExp.readChannel(addr, channel)
 ```
 
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the [I2C Device Address section](#i2c-device-address).
 
 The `channel` argument selects the relay in question. See the [diagram above](#the-python-module_the-channels) for info on which channel corresponds to which relay.
 
-**Return Value**
+#### Return Value
 
 The return value indicates the state of the relay channel in question:
 * `0` indicating the relay is OFF
 * `1` indicating the relay is ON
 
-**Example**
+#### Example
 
 Read the state of channel 0 (all switches are Off):
 ``` python

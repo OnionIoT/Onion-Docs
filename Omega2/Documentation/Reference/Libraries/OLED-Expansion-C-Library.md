@@ -131,7 +131,7 @@ int	oledDriverInit ();
 ```
 
 
-**Examples**
+#### Examples
 
 Initialize the OLED Expansion:
 ``` c
@@ -146,27 +146,30 @@ int status 	= oledDriverInit();
 #### Functions to Adjust Settings
 
 There is a series of functions that adjust various settings on the OLED Display. The adjustable settings are:
-* Screen on/off
-* Colour inversion
-* Setting screen brightness
-* Setting the memory mode
+* [Screen on/off](#oled-c-set-display-power)
+* [Colour inversion](#oled-c-set-display-mode)
+* [Setting screen brightness](#oled-c-set-brightness)
+* [Dim the display](#oled-c-set-dim)
+* [Setting the memory mode](#oled-c-set-memory-mode)
 * Defining the width of each page
-* Setting the cursor position
+    * [Manually](#oled-c-set-column-addressing)
+    * [For rendering text](#oled-c-set-text-columns)
+    * [For rendering images](#oled-c-set-image-columns)
 
 
 <!-- Screen on/off -->
 
-### Turn the Screen On and Off  - `int oledSetDisplayPower (int)` {#oled-c-display-power}
+### Turn the Screen On and Off  - int oledSetDisplayPower (int) {#oled-c-display-power}
 
 The screen can be turned on and off while still preserving the displayed contents:
 
 ``` c
 int oledSetDisplayPower	(int bPowerOn);
-```
+
 
 Note: turning on a screen that is already on, or turning off a screen that is already off will have no effect.
 
-**Arguments**
+#### Arguments
 
 The `bPowerOn` argument is detemines whether to turn the display on or off
 
@@ -176,7 +179,7 @@ The `bPowerOn` argument is detemines whether to turn the display on or off
 | 1       | Turn the screen **on**    |
 
 
-**Examples**
+#### Examples
 
 Turn the screen off:
 ``` c
@@ -192,7 +195,7 @@ status = oledSetDisplayPower(1);
 
 <!-- Invert Display Colours -->
 
-### Invert Display Colours - `int oledSetDisplayMode (int)` {#oled-c-display-mode}
+### Invert Display Colours - int oledSetDisplayMode (int) {#oled-c-display-mode}
 
 The screen driver has the ability to invert the display colours, meaning that black becomes white and vice versa:
 
@@ -200,7 +203,7 @@ The screen driver has the ability to invert the display colours, meaning that bl
 int oledSetDisplayMode (int bInvert);
 ```
 
-**Arguments**
+#### Arguments
 
 The `bInvert` argument is detemines whether to invert the colours or not
 
@@ -209,7 +212,7 @@ The `bInvert` argument is detemines whether to invert the colours or not
 | 0       | Normal colour settings    |
 | 1       | Inverted colour settings  |
 
-**Examples**
+#### Examples
 
 Invert the colours:
 ``` c
@@ -225,7 +228,7 @@ status = oledSetDisplayMode(0);
 
 <!-- Set Brightness -->
 
-### Set the Display Brightness - `int oledSetBrightness (int)` {#oled-c-set-brightness}
+### Set the Display Brightness - int oledSetBrightness (int) {#oled-c-set-brightness}
 
 The brightness of the display can be adjusted in a granularity of 256 steps:
 
@@ -235,12 +238,12 @@ int oledSetBrightness (int brightness);
 
 The default brightness after initialization is 207.
 
-**Arguments**
+#### Arguments
 
 The `brightness` argument is detemines the display brightness with a range of **0 to 255**, with 255 being the brightest setting and 0 being the dimmest.
 
 
-**Examples**
+#### Examples
 
 Set to maximum brightness:
 ``` c
@@ -261,7 +264,7 @@ status = oledSetBrightness(127);
 
 <!-- Dim the display -->
 
-### Dim the Display - `int oledSetDim (int)` {#oled-c-set-dim}
+### Dim the Display - int oledSetDim (int) {#oled-c-set-dim}
 
 This function implements a 'dim' and a 'normal' setting for the display:
 
@@ -272,7 +275,7 @@ int oledSetDim (int dim);
 While the brightness adjustment function described just above implements the same feature, this function simplifies the procedure with two very disctinct settings.
 
 
-**Arguments**
+#### Arguments
 
 The `dim` argument is detemines whether to enable the dim setting
 
@@ -281,7 +284,7 @@ The `dim` argument is detemines whether to enable the dim setting
 | 0       | Normal brightness: 207          |
 | 1       | Dimmed screen: 0                |
 
-**Examples**
+#### Examples
 
 Dim the display:
 ``` c
@@ -297,7 +300,7 @@ status = oledSetDim(0);
 
 <!-- Set the memory mode -->
 
-### Set Memory Mode - `int oledSetMemoryMode (int)` {#oled-c-set-memory-mode}
+### Set Memory Mode - int oledSetMemoryMode (int) {#oled-c-set-memory-mode}
 
 Implements the ability to select the display's memory mode:
 
@@ -308,21 +311,21 @@ int oledSetMemoryMode (int mode);
 The memory mode affects how the cursor is automatically advanced when the display memory is written to with text or images.
 
 
-**Horizontal Addressing Mode**
+#### Horizontal Addressing Mode
 
 ![Horizontal Addressing](http://i.imgur.com/sU0WyZY.png)
 
 After each write, the column cursor advances horizontally to the right along the page, once the end of the page is reached, the page cursor is advanced onto the next page.
 
 
-**Vertical Addressing Mode**
+#### Vertical Addressing Mode
 
 ![Vertical Addressing](http://i.imgur.com/Dv1smND.png)
 
 After each write, the page cursor advances vertically downward through the pages, once the last page is reached, the column cursor is advanced to the next pixel column
 
 
-**Page Addressing Mode**
+#### Page Addressing Mode
 
 ![Page Addressing](http://i.imgur.com/oW4giq6.png)
 
@@ -331,7 +334,7 @@ The column cursor advances horizontally to the right along each page, once the e
 By default, **Horizontal Addressing** is used.
 
 
-**Arguments**
+#### Arguments
 
 The `mode` argument detemines which memory mode is active, it is recommended to use the `eOledExpMemoryMode` enumerated type:
 
@@ -341,7 +344,7 @@ The `mode` argument detemines which memory mode is active, it is recommended to 
 | Vertical Addressing Mode   | `OLED_EXP_MEM_VERTICAL_ADDR_MODE`   |
 | Page Addressing Mode       | `OLED_EXP_MEM_PAGE_ADDR_MODE`       |
 
-**Examples**
+#### Examples
 
 Set to page addressing mode:
 ``` c
@@ -352,7 +355,7 @@ status = oledSetMemoryMode(OLED_EXP_MEM_PAGE_ADDR_MODE);
 
 <!-- Set Column Addressing -->
 
-### Set Column Addressing - `int oledSetColumnAddressing (int, int)` {#oled-c-set-column-addressing}
+### Set Column Addressing - int oledSetColumnAddressing (int, int) {#oled-c-set-column-addressing}
 
 This function is used to define where each page starts and ends horizontally:
 
@@ -366,7 +369,7 @@ For example, when writing text, the `oledWrite` function will set the columns to
 
 Note: the column cursor is not preserved after a column addressing change.
 
-**Arguments**
+#### Arguments
 
 The `startPixel` argument sets the starting column for each page.
 
@@ -375,7 +378,7 @@ The `endPixel` argument sets the end column for each page.
 Both arguments must be between **0 and 127** and startPixel must be **less than** endPixel.
 
 
-**Examples**
+#### Examples
 
 Set the column addressing to display text:
 ``` c
@@ -396,7 +399,7 @@ status = oledSetColumnAddressing(63, 95);
 
 <!-- Set Column Addressing: Text Columns -->
 
-### Set Columns for Text - `int oledSetTextColumns ()` {#oled-c-set-text-columns}
+### Set Columns for Text - int oledSetTextColumns () {#oled-c-set-text-columns}
 
 A function exists to define the column addressing specifically for text:
 
@@ -409,7 +412,7 @@ It sets the start pixel to 0 and the end pixel to 125. This allows for 21 text c
 
 <!-- Set Column Addressing: Image Columns -->
 
-### Set Columns for Images - `int oledSetImageColumns ()` {#oled-c-set-image-columns}
+### Set Columns for Images - int oledSetImageColumns () {#oled-c-set-image-columns}
 
 Also, a function exists to define the column addressing to cover the entire screen:
 
@@ -425,18 +428,18 @@ It sets the start pixel to 0 and the end pixel to 127. This enables the use of t
 
 <!-- Set Cursor Position -->
 
-##### Set Cursor Position
+### Set Cursor Position
 
 Any data written to the screen gets written to the current position of the cursor. This position can be adjusted.
 
 Two methods exist:
-* Specifying the page row and character column
-* Specifying the page row and pixel column
+* [Specifying the page row and character column](#oled-c-set-cursor)
+* [Specifying the page row and pixel column](#oled-c-set-cursor-by-pixel)
 
 
 <!-- Set Cursor Position: By Character Column -->
 
-### Set Cursor Position by Character Column - `int oledSetCursor (int, int)` {#oled-c-set-cursor}
+### Set Cursor Position by Character Column - int oledSetCursor (int, int) {#oled-c-set-cursor}
 
 This function is used to position the cursor on a specific page and character column. After this call, the next bytes written to the screen will be displayed at the new position of the cursor:
 
@@ -447,14 +450,14 @@ int oledSetCursor (int row, int column);
 Note: since the column cursor is not preserved after a column addressing change, the column addressing **needs be set to 0-125 using the `oledSetTextColumns()` function to properly display text before the cursor position is programmed.**
 
 
-**Arguments**
+#### Arguments
 
 The `row` argument sets the page for the cursor, so the range is **0 to 7**
 
 The `column` argument sets the character column position of the cursor, the range is **0 to 20**
 
 
-**Examples**
+#### Examples
 
 Set the cursor to the start of the last page:
 ``` c
@@ -482,7 +485,7 @@ status	|= oledWrite("hi there");
 
 <!-- Set Cursor Position: By Pixel -->
 
-### Set Cursor Position by Pixel - `int oledSetCursorByPixel (int, int)` {#oled-c-set-cursor-by-pixel}
+### Set Cursor Position by Pixel - int oledSetCursorByPixel (int, int) {#oled-c-set-cursor-by-pixel}
 
 This function is used to position the cursor on a specific page and pixel row. This gives more fine grain control than setting by character column.
 
@@ -495,14 +498,14 @@ int oledSetCursorByPixel (int row, int pixel);
 It allows for cursor positions that are not aligned with the 21 possible character columns.
 
 
-**Arguments**
+#### Arguments
 
 The `row` argument sets the page for the cursor, so the range is **0 to 7**
 
 The `pixel` argument sets the horizontal pixel position of the cursor, the range is **0 to 127**
 
 
-**Examples**
+#### Examples
 
 Set the cursor to the start of the last page:
 ``` c
@@ -531,7 +534,7 @@ status	|= oledWrite("hi there");
 
 <!-- Clearing Function -->
 
-### Clear the Screen - `int oledClear ()` {#oled-c-clear}
+### Clear the Screen - int oledClear () {#oled-c-clear}
 
 To clear the screen and move the cursor to the starting position at the top-left of the screen:
 
@@ -543,14 +546,18 @@ int oledClear ();
 <!-- SUB-HEADING -->
 <!-- Writing Text -->
 
-#### Writing Text to the Display
+### Writing Text to the Display
 
 Listed below are the functions that write bytes, characters, strings, or images to the display.
+
+* [Writing a single byte](#oled-c-write-byte)
+* [Writing a character](#oled-c-write-char)
+* [Writing a string](#oled-c-write-str)
 
 
 <!-- Write Byte -->
 
-### Write a Single Byte - `int oledWriteByte (int)` {#oled-c-write-byte}
+### Write a Single Byte - int oledWriteByte (int) {#oled-c-write-byte}
 
 Write a single byte, eight vertical pixels, to the current position of the cursor:
 
@@ -558,7 +565,7 @@ Write a single byte, eight vertical pixels, to the current position of the curso
 int oledWriteByte (int byte);
 ```
 
-**Arguments**
+#### Arguments
 
 The `byte` argument holds the eight bits that will be written to the screen. The Least Significant Bit (LSB) in the byte corresponds to the top-most pixel in the column, the Most Significant Bit (MSB) corresponds to the bottom-most pixel in the column.
 
@@ -567,7 +574,7 @@ The `byte` argument holds the eight bits that will be written to the screen. The
 After the byte is set, the cursor will automatically move to the next page column.
 
 
-**Examples**
+#### Examples
 
 Draw the following pattern:
 
@@ -585,7 +592,7 @@ status |= oledWriteByte(0x3f);		// 0x3f = 0b 0011 1111
 
 <!-- Write Character -->
 
-### Write a Single Character - `int oledWriteChar (char)` {#oled-c-write-char}
+### Write a Single Character - int oledWriteChar (char) {#oled-c-write-char}
 
 Write a single character to the current position of the cursor:
 
@@ -593,14 +600,14 @@ Write a single character to the current position of the cursor:
 int oledWriteChar (char c);
 ```
 
-**Arguments**
+#### Arguments
 
 The `c` argument is the character that is to be written to the screen.
 
 Make sure to check the `asciiTable` dynamic array found in `oled-exp.h`, it defines the bitmap pattern of each allowed character. Any characters not found in the table will be ignored.
 
 
-**Examples**
+#### Examples
 
 Write an 'O'
 ``` c
@@ -618,7 +625,7 @@ status |= oledWriteChar(')');
 
 <!-- Write String -->
 
-### Write a String - `int oledWrite (char*)` {#oled-c-write-str}
+### Write a String - int oledWrite (char*) {#oled-c-write-str}
 
 Write an entire string of characters, starting at the current position of the cursor:
 
@@ -633,12 +640,12 @@ The newline functionality is implemented by using a global variable to keep trac
 Note: the column addressing will be set to 0-125 to properly display text during this call, at the end of the function it will be reset back to 0-127.
 
 
-**Arguments**
+#### Arguments
 
 The `msg` argument is the string to be written to the display. Any characters not found in the `asciiTable` array will be ignored.
 
 
-**Examples**
+#### Examples
 
 Write 'Onion Omega':
 ``` c
@@ -656,14 +663,19 @@ status =  oledWrite("Onion Omega\nInventing the Future\n\nToday");
 <!-- SUB-HEADING -->
 <!-- Displaying Images -->
 
-#### Drawing Images on the Display
+### Drawing Images on the Display
 
 The OLED Screen can also be used to display images. The Console can be used to convert existing images into a format that is compatible with the OLED Expansion and save the output to an Omega. Functions in the C library can read the image data and display it on the OLED Expansion. Alternatively, a buffer can be created programatically and displayed on the OLED.
+
+The functions that interact with images are:
+
+* [Read image from file](#oled-c-read-lcd-file)
+* [Write image data to display](#oled-c-draw)
 
 
 <!-- Displaying Images: Creating Image Files -->
 
-##### Creating Image Files
+#### Creating Image Files
 
 The Console OLED App can be used to create OLED Expansion compatible image files. Navigate to the Image tab of the OLED App:
 
@@ -678,45 +690,42 @@ After the image name and location are selected, click the Save to Omega button.
 
 <!-- Displaying Images: OLED Image File Details -->
 
-##### OLED Image File Details
+#### OLED Image File Details
 
 The OLED image files store the image data as 1024 bytes represented in hexadecimal. Each byte represents eight vertical pixels, with the first 128 bytes representing the columns in Page 0, the following 128 bytes representing the columns in Page 1, and so on.
 
 If this is unclear, see the [Understanding the Display Section](#programming-flow_understanding-the-display) for details on how the display is addressed.
 
 
-<!-- Displaying Images: Displaying Images from a File -->
 
-##### Displaying Images from a File
-
-### Read Image Data - `int oledReadLcdFile	(char*, uint8_t*)` {#oled-c-read-lcd-file}
+### Read Image Data - int oledReadLcdFile (char*, uint8_t*) {#oled-c-read-lcd-file}
 
 First, the data from the file needs to be loaded into a buffer:
 ``` c
 int oledReadLcdFile	(char* file, uint8_t *buffer);
 ```
 
-**Arguments**
+#### Arguments
 
 The `file` argument is the path to the OLED image file.
 
 The `buffer` argument is a pointer to the memory that will hold the image data. It needs to be able to hold 1024 bytes (1 byte for each column in a page).
 
-### Write Image Data to the Display - `int oledDraw (uint8_t *buffer, int bytes)` {#oled-c-draw}
+### Write Image Data to the Display - int oledDraw (uint8_t \*buffer, int bytes) {#oled-c-draw}
 
 Then, write the data from the buffer to the display:
 ``` c
 int oledDraw (uint8_t *buffer, int bytes);
 ```
 
-**Arguments**
+#### Arguments
 
 The `buffer` argument is the pointer to memory that holds the image data.
 
 The `bytes` is the number of bytes to be written. This will usually be 1024 bytes, this can be represented with macros: `OLED_EXP_WIDTH*OLED_EXP_HEIGHT/8`.
 
 
-**Example**
+#### Example
 
 Read an image file located at `/root/image.lcd` and draw it on the OLED display:
 ``` c
@@ -763,15 +772,18 @@ status	= oledDraw(buffer, OLED_EXP_WIDTH*OLED_EXP_HEIGHT/8);
 <!-- SUB-HEADING -->
 <!-- Scrolling the Display -->
 
-#### Scrolling the Display Contents
+### Scrolling the Display Contents
 
 The OLED can scroll the contents of the screen horizontally or upwards at a 45 degree angle. The displayed content will wrap around when it reaches the edge of the display.
 
+* [Scroll horizontally](#oled-c-horizontal-scroll)
+* [Scroll diagonally](#oled-c-diagonal-scroll)
+* [Stop scrolling](#oled-c-scroll-stop)
 
 
 <!-- Horizontal scrolling -->
 
-### Horizontal Scrolling - `int oledScroll 	(int, int, int, int)` {#oled-c-horizontal-scroll}
+### Horizontal Scrolling - int oledScroll (int, int, int, int) {#oled-c-horizontal-scroll}
 
 Scroll all or part of the screen horizontally:
 
@@ -779,7 +791,7 @@ Scroll all or part of the screen horizontally:
 int oledScroll 	(int direction, int scrollSpeed, int startPage, int stopPage);
 ```
 
-**Arguments**
+#### Arguments
 
 The `direction` argument indicates whether to scroll to the left or right:
 
@@ -801,7 +813,7 @@ The `scrollSpeed` argument determines the number of "frames" between each scroll
 The `startPage` argument defines at which page to start scrolling, and `stopPage` defines at which page to start the scroll. The range for both is **0 to 7**, and startPage must be less than stopPage.
 
 
-**Examples**
+#### Examples
 
 <!-- LAZAR: Add gifs to all examples -->
 
@@ -829,7 +841,7 @@ status = oledScroll (1, OLED_EXP_SCROLL_SPEED_25_FRAMES, 1, 5);
 
 <!-- Diagonal scrolling -->
 
-### Diagonal Scrolling - `int oledScrollDiagonal (int, int, int, int, int, int, int)` {#oled-c-diagonal-scroll}
+### Diagonal Scrolling - int oledScrollDiagonal (int, int, int, int, int, int, int) {#oled-c-diagonal-scroll}
 
 Scroll all or part of the screen diagonally upwards:
 
@@ -837,7 +849,7 @@ Scroll all or part of the screen diagonally upwards:
 int oledScrollDiagonal 	(int direction, int scrollSpeed, int fixedRows, int scrollRows, int verticalOffset, int startPage, int stopPage);
 ```
 
-**Arguments**
+#### Arguments
 
 The `direction` argument indicates whether to scroll upwards to the left or right:
 
@@ -865,7 +877,7 @@ The `verticalOffset` argument defines the number of vertical rows to scroll by e
 The `startPage` argument defines at which page to start scrolling, and `stopPage` defines at which page to start the scroll. The range for both is **0 to 7**, and startPage must be **less than** stopPage.
 
 
-**Examples**
+#### Examples
 
 <!-- LAZAR: Add gifs to all examples -->
 
@@ -927,7 +939,7 @@ status = oledScrollDiagonal (	1,
 
 <!-- Stop scrolling -->
 
-### Stop Scrolling - `int oledScrollStop ()` {#oled-c-scroll-stop}
+### Stop Scrolling - int oledScrollStop () {#oled-c-scroll-stop}
 
 Disables all active scrolling:
 
@@ -935,7 +947,7 @@ Disables all active scrolling:
 int oledScrollStop ();
 ```
 
-**Examples**
+#### Examples
 
 Scroll the entire screen to the left, then stop it:
 ``` c

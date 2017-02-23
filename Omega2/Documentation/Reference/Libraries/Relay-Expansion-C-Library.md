@@ -98,7 +98,7 @@ typedef enum e_RelayDriverChannels {
 
 <!-- Functions -->
 
-#### Functions
+### Functions
 
 | Function | Prototype |
 |--------------------------------------------------------|------------------------------------------------------------|
@@ -111,19 +111,19 @@ typedef enum e_RelayDriverChannels {
 
 <!-- Init Function -->
 
-### Initialization Function - `int relayDriverInit (int)` {#relay-c-init-function}
+### Initialization Function - int relayDriverInit (int) {#relay-c-init-function}
 
 This function programs the initialization sequence on the Relay Expansion, after this step is completed, the functions to set the relay states can be used with success:
 ``` c
 int relayDriverInit (int addr);
 ```
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the [I2C Device Address section](#i2c-device-address).
 
 
-**Examples**
+#### Examples
 
 Initialize a Relay Expansion with all switches set to 0, meaning the I2C device address will be 0x27:
 ``` c
@@ -145,7 +145,7 @@ int status 	= relayDriverInit(4);
 
 <!-- Check Init Function -->
 
-### Check for Initialization - `int relayCheckInit (int, int*)` {#relay-c-check-init}
+### Check for Initialization - int relayCheckInit (int, int*) {#relay-c-check-init}
 
 This function performs several reads to determine if the Relay Expansion requires the initialization sequence to be programmed before the relay states can be changed.
 
@@ -153,7 +153,7 @@ This function performs several reads to determine if the Relay Expansion require
 int relayCheckInit (int addr, int *bInitialized);
 ```
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the [I2C Device Address section](#i2c-device-address).
 
@@ -166,7 +166,7 @@ The value follows the table below:
 | Initialized           | 1            |
 
 
-**Example**
+#### Example
 
 Check if a Relay Expansion (with all switches set to On) is initialized:
 ```c
@@ -184,7 +184,7 @@ else {
 
 <!-- Set Relay State Function -->
 
-### Set Relay State - `int relaySetChannel	(int, int, int)` {#relay-c-set-channel}
+### Set Relay State - int relaySetChannel	(int, int, int) {#relay-c-set-channel}
 
 Finally the fun stuff! Use this function to change the state of the relay:
 
@@ -192,7 +192,7 @@ Finally the fun stuff! Use this function to change the state of the relay:
 int relaySetChannel	(int addr, int channel, int state);
 ```
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the [I2C Device Address section](#i2c-device-address).
 
@@ -202,7 +202,7 @@ The `state` argument allows the user to select if the relay will be turned on or
 * 0 turn the relay OFF
 * 1 turn the relay ON
 
-**Example**
+#### Example
 
 Turn Relay0 **on** and Relay1 **off** (all switches are Off)
 ``` c
@@ -213,7 +213,7 @@ status 	|= relaySetChannel (7, 1, 0);
 
 <!-- Set State for Both Relays Function -->
 
-### Set State for both Relays - `int relaySetAllChannels (int, int)` {#relay-c-set-all-channels}
+### Set State for both Relays - int relaySetAllChannels (int, int) {#relay-c-set-all-channels}
 
 In the event that both relays need to be turned on or off at the same time:
 
@@ -224,7 +224,7 @@ int relaySetAllChannels	(int addr, int state);
 This is performed with a single register write so both relays should react at the same time.
 
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the [I2C Device Address section](#i2c-device-address).
 
@@ -232,7 +232,7 @@ The `state` argument allows the user to select if the relays will be turned on o
 * 0 turn the relays OFF
 * 1 turn the relays ON
 
-**Example**
+#### Example
 
 All switches are in Off position, turn both relays on, then turn Relay0 off, then send a command to turn both off:
 ``` c
@@ -243,7 +243,7 @@ status 	|= relaySetAllChannels (7, 0);
 
 <!-- Read Relay State -->
 
-### Read Relay State - `int relayReadChannel (int, int, int*)` {#relay-c-read-channel}
+### Read Relay State - int relayReadChannel (int, int, int*) {#relay-c-read-channel}
 
 Use this function to read the state of a specific relay:
 
@@ -251,7 +251,7 @@ Use this function to read the state of a specific relay:
 int relayReadChannel (int addr, int channel, int *state);
 ```
 
-**Arguments**
+#### Arguments
 
 The `addr` argument is described above in the [I2C Device Address section](#i2c-device-address).
 
@@ -264,7 +264,7 @@ The `state` argument is to be passed by reference and once the function executes
 * `0` indicating the relay is OFF
 * `1` indicating the relay is ON
 
-**Example**
+#### Example
 
 Read the state of Relay 0 with all switches in Off position:
 ``` c

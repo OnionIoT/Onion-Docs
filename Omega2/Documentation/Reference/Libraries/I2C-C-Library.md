@@ -88,7 +88,7 @@ An error message will be printed that will give more information on the reason b
 
 Functions that perform reads from devices on the I2C bus
 
-### Read a Single Byte - `int i2c_readByte (int, int, int, int)` {#i2c-c-read-byte}
+### Read a Single Byte - int i2c_readByte (int, int, int, int) {#i2c-c-read-byte}
 
 The `i2c_readByte` function will read one byte from a register address on a specified device on the I2C bus.
 
@@ -119,7 +119,7 @@ int 	status, rdByte;
 status 	= i2c_write(0, 0x5a, 0x01, &rdByte);
 ```
 
-### Read Multiple Bytes - `int i2c_read(int, int, int, uint8_t*, int)` {#i2c-c-read-multiple-bytes}
+### Read Multiple Bytes - int i2c_read(int, int, int, uint8_t*, int) {#i2c-c-read-multiple-bytes}
 
 The `i2c_read` function will read a specified number of bytes from a register address on a device on the I2C bus.
 
@@ -175,7 +175,7 @@ status 			= i2c_read(0, 0x48, 0x00, buffer, 2);
 
 Functions that perform writes to devices on the I2C bus.
 
-### Write Buffer to Address - `int i2c_writeBuffer (int, int, int, uint8_t*, int)` {#i2c-c-write-buffer}
+### Write Buffer to Address - int i2c_writeBuffer (int, int, int, uint8_t*, int) {#i2c-c-write-buffer}
 
 
 The `i2c_writeBuffer` function will write a specified number of bytes from a previously populated pointer or array to a register address on an I2C device.
@@ -238,7 +238,7 @@ buffer[3] 	= 0xff;
 status 		= i2c_writeBuffer(0, 0x30, 0x54, buffer, 4);
 ```
 
-### Directly Write to Address - `int i2c_writeBytes (int, int, int, int, int)` {#i2c-c-write-direct}
+### Directly Write to Address - int i2c_writeBytes (int, int, int, int, int) {#i2c-c-write-direct}
 
 The `i2c_writeBytes` function will write a specified number of bytes from an integer variable to an address on an I2C device. Sometimes it's a little quicker to pass in an integer rather than create a buffer like the `i2c_writeBuffer` function above requires. Note that the Least Significant Byte (LSB) of the integer will be written first and that the maximum number of bytes is 4 (since an int holds 32 bits on the Omega).
 

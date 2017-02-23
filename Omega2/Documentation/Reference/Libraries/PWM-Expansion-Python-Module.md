@@ -68,7 +68,7 @@ If the function operation is not successful, the function will return `1`.
 
 <!-- Python Functions -->
 
-#### Functions
+### Functions
 
 | Function | Prototype |
 |---------------------------------------------------|-------------------------------------|
@@ -80,7 +80,7 @@ If the function operation is not successful, the function will return `1`.
 
 <!-- Python: Init Function -->
 
-### Initialization Function - `driverInit()` {#pwm-py-init-function}
+### Initialization Function - driverInit() {#pwm-py-init-function}
 
 This function programs the initialization sequence on the Servo Expansion, after this step is completed, the functions to generate PWM signals or change the signal frequency can be used with success:
 
@@ -88,7 +88,7 @@ This function programs the initialization sequence on the Servo Expansion, after
 pwmExp.driverInit()
 ```
 
-**Examples**
+#### Examples
 
 Initialize the PWM Expansion:
 ``` c
@@ -98,7 +98,7 @@ status 	= pwmExp.driverInit();
 
 <!-- Python: Check Init Function -->
 
-### Check for Initialization - `checkInit()` {#pwm-py-check-init}
+### Check for Initialization - checkInit() {#pwm-py-check-init}
 
 This function performs several reads to determine if the Servo Expansion has been initialized and the oscillator is running:
 
@@ -113,7 +113,7 @@ The **return value** of the function indicates the Initialization Status:
 | 0            | Not Initialized       |
 | 1            | Initialized           |
 
-**Example**
+#### Example
 
 Check if the PWM Expansion is initialized:
 ``` python
@@ -129,14 +129,14 @@ else:
 
 <!-- Python: Generate PWM Signal Function -->
 
-### Generate a PWM Signal - `setupDriver()` {#pwm-py-setup-driver}
+### Generate a PWM Signal - setupDriver() {#pwm-py-setup-driver}
 
 This function is used to generate a PWM singal on a specified channel:
 ``` python
 pwmExp.setupDriver(channel, duty, delay)
 ```
 
-**Arguments**
+#### Arguments
 
 The `channel` argument determines on which channel to generate the PWM signal.
 * 0 to 15 will select a specific channel
@@ -148,7 +148,7 @@ The `duty` argument specifies duty cycle percentage for the PWM signal. Accepted
 The `delay` argument specifies the percentage delay before the PWM signal goes high. Accepted values are **0 to 100** with decimal values being allowed. *In normal use with servos this should be set to 0.*
 
 
-**Example**
+#### Example
 
 Set channel 7 to 6.55% duty cycle:
 ``` python
@@ -168,7 +168,7 @@ status = pwmExp.setupDriver(-1, 66.66, 9)
 
 <!-- Python: Set Signal Frequency -->
 
-### Set PWM Signal Frequency - `setFrequency()` {#pwm-py-set-frequency}
+### Set PWM Signal Frequency - setFrequency() {#pwm-py-set-frequency}
 
 The oscillator can be reprogrammed to generate a variety of different frequencies:
 ``` python
@@ -179,12 +179,12 @@ This will change the frequency of the PWM signals generated on all of the channe
 The oscillator can generate frequencies between **24 Hz and 1526 Hz,** the default value is **50 Hz.**
 
 
-**Arguments**
+#### Arguments
 
 The `freq` argument is a floating point number that specifies the frequency. The function will accept any input but the programmed frequency will be clamped between 24 Hz and 1526 Hz.
 
 
-**Example**
+#### Example
 
 Change the frequency to 60 Hz:
 ``` python
@@ -199,7 +199,7 @@ status = pwmExp.setFrequency(92.23)
 
 <!-- Python: Disable Oscillator -->
 
-### Disabling the Oscillator - `disableChip()` {#pwm-py-disable-chip}
+### Disabling the Oscillator - disableChip() {#pwm-py-disable-chip}
 
 The oscillator can also be disabled, automatically stopping all PWM signal generation:
 ``` python
@@ -210,7 +210,7 @@ This might be useful for disabling PWM signal-driven devices while not powering 
 **The initialization function will have to be run before new PWM signals can be generated.**
 
 
-**Example**
+#### Example
 
 Disable the oscillator:
 ``` python

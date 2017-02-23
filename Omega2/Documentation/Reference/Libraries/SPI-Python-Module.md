@@ -98,7 +98,7 @@ The object needs to be initialized before it can be used for reading and writing
 spi  = onionSpi.OnionSpi(busNumber, deviceId)
 ```
 
-**Arguments**
+#### Arguments
 
 The constructor requires the bus number and device ID of the SPI device adapter that is to be used. These numbers correspond to the device adapter itself: `/dev/spidevX.Y` where `X` is the device number and `Y` is the bus number.
 
@@ -186,7 +186,7 @@ print 'Mode Bits: 0x%x, CS-High: %d'%(spi.modeBits, spi.csHigh)
 ```
 
 
-#### Functions
+### Functions
 
 | Function | Prototype |
 |------------------------------------------------------------|----------------------------|
@@ -195,20 +195,23 @@ print 'Mode Bits: 0x%x, CS-High: %d'%(spi.modeBits, spi.csHigh)
 | [Setup SPI Device](#spi-py-setup-device) | `setupDevice()` |
 | [Reading Function](#spi-py-read-bytes) | `readBytes(addr, size)` |
 | [Write Bytes](#spi-py-write-bytes) | `writeBytes(addr, values)` |
-| [Write Bytes without an Address](#spi-py-write-addressles) | `write(values)` |
+| [Write Bytes without an Address](#spi-py-write-addressless) | `write(values)` |
 
 
 <!-- SUB-HEADING -->
 <!-- Python: Setup Functions -->
 
-#### Setup Functions
+### Setup Functions
 
 The following functions are used to register the SPI device adapter and setup any SPI protocol options as required.
 
+* [Check if device is registered](#spi-py-check-device)
+* [Register SPI Device](#spi-py-register-device)
+* [Setup SPI Device](#spi-py-setup-device)
 
 <!-- Python: Check if Device is Registered -->
 
-### Check if Device is Registered - `checkDevice()` {#spi-py-check-device}
+### Check if Device is Registered - checkDevice() {#spi-py-check-device}
 
 To check if a device adapter with the bus number and device ID that were specified in the object constructor is already registered with the system:
 
@@ -216,7 +219,7 @@ To check if a device adapter with the bus number and device ID that were specifi
 return = spi.checkDevice()
 ```
 
-**Return Values**
+#### Return Values
 
 The function will return `0` if the device adapter is already mapped.
 
@@ -225,7 +228,7 @@ The return value will be `1` if the device adapter is NOT mapped/
 
 <!-- Python: Register Device -->
 
-### Register Device - `registerDevice()` {#spi-py-register-device}
+### Register Device - registerDevice() {#spi-py-register-device}
 
 This function will register an SPI device with the bus number, device ID, and other SPI parameters as specified in the object variable members:
 
@@ -248,7 +251,7 @@ The function uses the following information to register the device:
 * The GPIO for the CS line
 
 
-**Example**
+#### Example
 
 A short example showing how to register an SPI device adapter:
 ``` python
@@ -265,7 +268,7 @@ spi.registerDevice()
 
 <!-- Python: Setup SPI Device -->
 
-### Setup SPI Device - `setupDevice()` {#spi-py-setup-device}
+### Setup SPI Device - setupDevice() {#spi-py-setup-device}
 
 This function will setup additional SPI parameters on the device adapter
 ``` python
@@ -287,7 +290,7 @@ Once a device is registered, data can be read from and written to the device via
 
 <!-- Python: Reading Functions -->
 
-### Reading Function - `readBytes()` {#spi-py-read-bytes}
+### Reading Function - readBytes() {#spi-py-read-bytes}
 
 This function reads a specified number of bytes from a specified address on an SPI device:
 ``` python
@@ -297,14 +300,14 @@ values 	= spi.readBytes(addr, size)
 The read bytes are returned in the form of a list, even if there is only one byte.
 
 
-**Arguments**
+#### Arguments
 
 The `addr` argument specifies from which address on the SPI device to read.
 
 The `size` argument specifies the number of bytes to read.
 
 
-**Examples**
+#### Examples
 
 Read a byte from address 0x33:
 ``` python
@@ -333,20 +336,20 @@ The `OnionSpi` class has two functions that can be used to write data via SPI:
 
 <!-- Python: Write Bytes -->
 
-### Write Bytes - `writeBytes()` {#spi-py-write-bytes}
+### Write Bytes - writeBytes() {#spi-py-write-bytes}
 
 This function will write a list of bytes to a specified address on an SPI device
 ``` python
 return 	= spi.writeBytes(addr, values)
 ```
 
-**Arguments**
+#### Arguments
 
 The `addr` argument specifies to which address on the SPI device to write.
 
 The `values` argument is a list of values to be written. Even if there is only a single byte, it should be in list form.
 
-**Examples**
+#### Examples
 
 Write 0x23 to address 0x91:
 ``` python
@@ -362,7 +365,7 @@ ret 	= spi.writeBytes(0x96, vals)
 
 <!-- Python: Write Bytes without an Address -->
 
-### Write Bytes without an Address - `write()` {#spi-py-write-addressles}
+### Write Bytes without an Address - write() {#spi-py-write-addressless}
 
 This function will just write a list of bytes to an SPI device (without specifying an address):
 ``` python
@@ -370,12 +373,12 @@ return 	= spi.write(values)
 ```
 
 
-**Arguments**
+#### Arguments
 
 The `values` argument is a list of values to be written. Even if there is only a single byte, it should be in list form.
 
 
-**Examples**
+#### Examples
 
 Write 0x08, 0x34, 0x02, 0x07:
 ``` python

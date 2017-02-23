@@ -157,7 +157,7 @@ params.modeBits |= SPI_LSB_FIRST;
 
 Then run the `spiSetupDevice()` function to set the options in the adapter device. More information on this function in the sections below.
 
-#### Functions
+### Functions
 
 | Function | Prototype |
 |---------------------------------------------------------|-----------------------------------------------------------------------------------------------|
@@ -173,13 +173,19 @@ Then run the `spiSetupDevice()` function to set the options in the adapter devic
 <!-- SUB-HEADING -->
 <!-- Setup Functions -->
 
-#### Setup Functions
+### Setup Functions
 
 The following functions serve to initialize the `spiParams` structure and do any SPI adapter setup required to actually perform transfers.
 
+* [Initialize the structure](#spi-c-param-init)
+* [Check if device is mapped](#spi-c-check-device)
+* [Register SPI Device](#spi-c-register-device)
+* [Setup SPI Device](#spi-c-setup-device)
+
+
 <!-- Initialize the Parameter Structure -->
 
-### Initialize the Parameter Structure - `spiParamInit(spiParams*)` {#spi-c-param-init}
+### Initialize the Parameter Structure - spiParamInit(spiParams*) {#spi-c-param-init}
 
 There is a function to initialize the `spiParams` structure with acceptable default values:
 ``` c
@@ -206,14 +212,14 @@ Sets the SPI lines to the following GPIOs:
 | CS/SS      | 7          |
 
 
-**Arguments**
+#### Arguments
 
 The `params` argument should be the structure you want to initialize passed by reference.
 
 
 <!-- Check if SPI Device is Mapped -->
 
-### Check if SPI Device is Mapped - `int spiCheckDevice(int, int, int)` {#spi-c-check-device}
+### Check if SPI Device is Mapped - int spiCheckDevice(int, int, int) {#spi-c-check-device}
 
 Performs a check to see if an SPI device with the specified bus number and device ID is mapped:
 
@@ -221,13 +227,13 @@ Performs a check to see if an SPI device with the specified bus number and devic
 int spiCheckDevice (int busNum, int devId, int printSeverity);
 ```
 
-**Return Value**
+#### Return Value
 
 If the SPI device adapter is found, the function returns `EXIT_SUCCESS`, a macro mapped to `0`
 
 If the SPI device adapter is **not found**, the function returns `EXIT_SUCCESS`
 
-**Arguments**
+#### Arguments
 
 The `busNum` and `devId` specify the bus number and device ID of the adapter, respectively.
 
@@ -235,7 +241,7 @@ The print severity refers to the Onion Debug Library verbosity level. For now se
 **More info on this to come.**
 
 
-**Examples**
+#### Examples
 
 To check if a device on bus 1 with device ID 2 is registered, and print out a message based on the result:
 ``` c
@@ -253,7 +259,7 @@ else {
 
 <!-- Register SPI Device -->
 
-### Register SPI Device - `int spiRegisterDevice (spiParams*)` {#spi-c-register-device}
+### Register SPI Device - int spiRegisterDevice (spiParams*) {#spi-c-register-device}
 
 This function will register an SPI device with the bus number, device ID, and other SPI parameters as specified in the parameter structure:
 
@@ -277,7 +283,7 @@ The function uses the following information to register the device:
 * The GPIO for the CS line
 
 
-**Example**
+#### Example
 
 A short example showing how to register an SPI device adapter:
 ``` c
@@ -302,7 +308,7 @@ status 	= spiRegisterDevice(&params);
 
 <!-- Setup SPI Device -->
 
-### Setup SPI Device - `int spiSetupDevice (spiParams*)` {#spi-c-setup-device}
+### Setup SPI Device - int spiSetupDevice (spiParams*) {#spi-c-setup-device}
 
 This function will setup additional SPI parameters on the device adapter
 
@@ -320,21 +326,25 @@ It will setup the following SPI parameters:
 <!-- SUB-HEADING -->
 <!-- Communication Functions -->
 
-#### Communication Functions
+### Communication Functions
 
 Once a device adapter is registered, the functions below can be used to read from and write data to the device via SPI.
+
+* [Transferring Data](#spi-c-transfer-data)
+* [Reading Data](#spi-c-read-data)
+* [Writing Data](#spi-c-writing-data)
 
 
 <!-- Transfer Data Function -->
 
-### Transferring Data - `int spiTransfer (spiParams*, uint8_t*, uint8_t*, int)` {#spi-c-transfer-data}
+### Transferring Data - int spiTransfer (spiParams*, uint8_t*, uint8_t*, int) {#spi-c-transfer-data}
 
 This is the function that implements all data transfers using the SPI protocol:
 ``` c
 int spiTransfer	(struct spiParams *params, uint8_t *txBuffer, uint8_t *rxBuffer, int bytes);
 ```
 
-**Arguments**
+#### Arguments
 
 The `params` spiParams structure holds all of the relevant SPI information.
 
@@ -494,7 +504,7 @@ The `spiTransfer()` is all that's required to perform reads and writes using SPI
 
 <!-- Additional Functions: spiRead -->
 
-### Reading Data - `int spiRead(spiParams*, int, uint8_t*, int)` {#spi-c-read-data}
+### Reading Data - int spiRead(spiParams*, int, uint8_t*, int) {#spi-c-read-data}
 
 This function can be used to perform a register read:
 
@@ -504,7 +514,7 @@ int spiRead(struct spiParams *params, int addr, uint8_t *rdBuffer, int bytes);
 
 It can read a specified number of bytes from a specified address. The limitation is that the address can only be a single byte. Use `spiTransfer()` if your use-case requires more than 8-bits for the address.
 
-**Arguments**
+#### Arguments
 
 The `params` spiParams structure holds all of the relevant SPI information.
 
@@ -554,7 +564,7 @@ In essence, this simplifies the use of the `spiTransfer()` for read scenarios.
 
 <!-- Additional Functions: spiWrite -->
 
-### Writing Data - `int spiWrite(spiParams*, int, uint8_t*, int)` {#spi-c-writing-data}
+### Writing Data - int spiWrite(spiParams*, int, uint8_t*, int) {#spi-c-writing-data}
 
 This function can be used to perform a register write:
 
@@ -564,7 +574,7 @@ int spiWrite(struct spiParams *params, int addr, uint8_t *wrBuffer, int bytes);
 
 It will write a specified number of bytes to a specified address. The limitation is that the address can only be a single byte. Use `spiTransfer()` if your use-case requires more than 8-bits for the address.
 
-**Arguments**
+#### Arguments
 
 The `params` spiParams structure holds all of the relevant SPI information.
 
@@ -611,4 +621,4 @@ void SpiWriteValue2(int addr, int value)
 ```
 
 This function simplifies the use of `spiTransfer()` for scenarios where SPI is used to write to a register.
-*Note that this function has not been tested as thoroughly as the `spiTransfer()` function.*
+**Note** that this function has not been tested as thoroughly as the `spiTransfer()` function.

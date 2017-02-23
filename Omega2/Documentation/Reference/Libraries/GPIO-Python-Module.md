@@ -61,7 +61,7 @@ The main example is the [`gpio-test.py` script](https://github.com/OnionIoT/onio
 
 <!-- Functions: Constructor -->
 
-### Constructor - `onionGpio.OnionGpio()` {#gpio-py-constructor}
+### Constructor - onionGpio.OnionGpio() {#gpio-py-constructor}
 
 The object needs to be initialized before it can be used, hence, the constructor:
 ``` python
@@ -91,7 +91,7 @@ The GPIOs on the Omega can be set to the input or output direction. When in the 
 
 <!-- Functions: GPIO Direction: Read the Direction -->
 
-### Reading the Current Direction - `getDirection()` {#gpio-py-get-direction}
+### Reading the Current Direction - getDirection() {#gpio-py-get-direction}
 
 In some instances, it will be useful to find out the current direction of the GPIO:
 ``` python
@@ -107,7 +107,7 @@ The function will return the following:
 
 <!-- Functions: GPIO Direction: Set the Direction -->
 
-### Setting the Direction - `setInputDirection()` {#gpio-py-set-input-direction}
+### Setting the Direction - setInputDirection() {#gpio-py-set-input-direction}
 
 The direction of the GPIO can be set to **input**:
 ``` python
@@ -165,7 +165,7 @@ The good part, finally! Now we will be reading and setting a GPIO's value.
 
 <!-- Functions: GPIO Value: Reading -->
 
-### Reading the Value - `getValue()` {#gpio-py-get-value}
+### Reading the Value - getValue() {#gpio-py-get-value}
 
 Reading the current value of the GPIO:
 ``` python
@@ -228,7 +228,7 @@ print ' initial value: %d'%(int(value))
 
 <!-- Functions: GPIO Value: Setting -->
 
-### Setting the Value - `setValue()` {#gpio-py-set-value}
+### Setting the Value - setValue() {#gpio-py-set-value}
 
 And what we've all been waiting for, setting the value of a GPIO:
 ``` python
