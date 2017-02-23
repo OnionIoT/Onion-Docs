@@ -1,6 +1,6 @@
 ### Push Button Switches
 
-A push button is a momentary switch, so unlike a slide switch where the change in the switch state will be permanent, the change in a push button's state will only last while the button is being pressed.
+A push button is a momentary switch, so unlike a slide switch where the change in the switch state (on or off) will be permanent, the change in a push button's state will only last while the button is being pressed. That's where it gets the name *momentary* switch, since the change in state is only momentary while the button is actually being pressed.
 
 // TODO: Image of a push button switch
 

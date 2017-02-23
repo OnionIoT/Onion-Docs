@@ -1,8 +1,12 @@
+// TODO: general arduino dock: fix tenses and pluralization
+
 ## Reading a Push Button {#arduino-kit-reading-a-push-button}
 
 <!-- // description of what this experiment will accomplish and what we'll learn -->
 
-So far, our program have being continously running and performing actions. In this tutorial, we will tell our program to only perform an action when we need it to! We will again be using physical user input to control our software. However this time instead of using a trimpot as input, we will be using a push button. In addition, we will learn about bitwise operation.
+// TODO: try to see if this intro can be worded better
+
+So far, our programs have been continuously running and performing actions. In this tutorial, we will tell our program to only perform an action when we need it to! This will involve writing interrupt code that listen for an event and then trigger certain code to be run when the event happens. We will again be using physical user input to control our software. However this time instead of using a trimpot as input, we will be using a push button. Along the way, we're also going to learn about bitwise operations.
 
 <!-- Push Button -->
 ```{r child = '../../shared/switches-push-button.md'}
@@ -11,6 +15,9 @@ So far, our program have being continously running and performing actions. In th
 <!-- Debouncing a Push Button -->
 ```{r child = '../../shared/switches-debouncing.md'}
 ```
+
+// LAZAR: bookmark
+
 ### Interrupts
 
 <!-- // description of what an interrupt is in the context of computer hardware:
@@ -129,11 +136,13 @@ void setLED() {
 
 #### What to Expect
 
-When the button is pressed, the left most LED should turns on. For each additional button press, another led will turn on, going from left to right. When all leds are on and the button is pressed, all the LEDs will turn off at once. Additional button presses will repeat the previous actions.
+When the button is pressed, the left most LED should turn on. For each additional button press, another led will turn on, going from left to right. When all leds are on and the button is pressed, all the LEDs will turn off at once. Additional button presses will repeat the previous actions.
+
+<!-- // TODO: gif -->
 
 In addition, if we use the `cat` command on our Omega like previous tutorial, we will see a bitwise representation of our actual LEDs.
 
-<!-- // TODO: gif -->
+// TODO: screenshot of the cat command showing the bitwise operations
 
 #### A Closer Look at the Code
 
