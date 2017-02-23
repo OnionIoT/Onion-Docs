@@ -21,7 +21,7 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 
 ### Building the Circuit {#starter-kit-using-shift-register-building-the-circuit}
 
-This circuit is quite involved but we're going to split it up into 3 parts: 
+This circuit is quite involved but we're going to split it up into 3 parts:
 
 1. Connecting the shift register
 1. Connecting the LEDs
@@ -77,7 +77,7 @@ Now, there are a lot of connections you'll need to make in order to power the IC
   - Connect the jumper wires from the LEDs to the output pins on the shift register. In order from first to last these are pin 15 (QA), followed by pin 1 (QB) to pin7 (QH)
 
   <!-- TODO: IMAGE picture of this stage -->
-  
+
 3. Connecting your Omega
 
   - Connect GPIO 1 to pin 14 on the shift register
@@ -131,7 +131,7 @@ class shiftRegister:
 		self.rclk.setOutputDirection(0)
 
 		self.clear()
-    
+
 	#Sets the serial pin to the correct value and then pulses the serial clock to shift it in
 	def inputBit(self, inputValue):
 		self.ser.setValue(inputValue)
@@ -156,7 +156,8 @@ Now let's write the main script. Create a file in the same directory called `STK
 from registerClass import shiftRegister
 import signal
 
-shiftRegister = shiftRegister(1,2,3) #Data pin is GPIO 1, serial clock pin is GPIO 2, Latch pin is GPIO 3
+# Data pin is GPIO 1, serial clock pin is GPIO 2, Latch pin is GPIO 3
+shiftRegister = shiftRegister(1,2,3)
 
 # Signal interrupt handler to safely exit when Ctrl-C is pressed
 def signal_handler(signal, frame):
@@ -166,18 +167,19 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 
-# TODO: comments
-value = 192
+# We use a binary number instead of a string is so we can change the output
+# around by bitshfting instead of string operations.
+value = 0b11000000
 interrupted = False
-while 1:
 
+while True:
 	for x in range(0, 12):
-		binValue = "{0:08b}".format(value) # Transforms the value into a binary number (192 = 11000000)
+		binValue = format(value, '08b') # Transforms value into a 8-bit binary number, otherwise
 		shiftRegister.outputBits(binValue) # Sends the 8 bit value to be output by the shift register
 		if x < 6:
-			value >>= 1 #Shifts the value right by one (11000000 -> 01100000)
+			value >>= 1 # Shifts all digits right by one (11000000 -> 01100000)
 		else:
-			value <<= 1 #Shifts the value left by one (01100000 -> 11000000)
+			value <<= 1 # Shifts all digits left by one (01100000 -> 11000000)
 	if interrupted:
 		shiftRegister.clear()
 		break
@@ -213,11 +215,13 @@ You can terminate the code by pressing `Ctrl-C` or `Cmd-C` on Mac OS.
 
 <!-- // an overview of the code -->
 
-We've introduced some new and important concepts in this experiment. 
+We've introduced some new and important concepts in this experiment.
 
 We've created and imported **modules**, files containing code that can be called and reused in other scripts without having to re-type it all. We've also introduced **classes** which are blueprints for Python objects. Python objects are collections of data that are meant to help you wrap up low-level grunt-work code into simpler, more usable functions and variables.
 
 Modules and classes are a crucial part of writing clean and maintainable software. It's best practice to write your code to make use of modules or classes and avoid retyping the same code over and over again so you can update or make fixes much more easily.
+
+During the code, we used **bitshifting** as an optimization to avoid slow String operations.
 
 Finally, we introduced **safely exiting from an infinite loop**, to ensure that the Omega's GPIOs are properly freed from the Python script once you want to end the program.
 
@@ -266,6 +270,14 @@ You'll also notice that we include `self` in our Python class functions. This is
 //    - can call functions from the object, etc
 //    - if we had two shift registers, we could have two objects to run the two different ones
 //  - talk about how class functions can use other class functions -->
+
+#### Bitshifting
+
+You'll notice we do some funky operations with the `value` variable. The operations we use (`>>=` and `<<=`) are akin to the increment operator `+=`. It performs a operation (a bitshift!) and then reassigns the variable it operated on with the result.
+
+Bitshifting is a pretty low level operation that moves the bits of a variable left or right in its allocated memory space. Our variable starts off as `0b11000000`, by bitshifting right, we simply move the two `1`s right one place (to `0b00110000`). Bitshifting is an exceedingly cheap and simple operation for computers to do, so it's almost always faster than an alternative approach.
+
+>While it's usually a good deal faster, bitshifting isn't always the most readable code - since the purpose of the shift is almost never clear. Remember to comment your code so you and others can understand why it's there!
 
 #### Exiting Infinite Loops
 

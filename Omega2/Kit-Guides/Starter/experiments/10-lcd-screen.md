@@ -13,10 +13,10 @@ order: 10
 //  * writing to an lcd screen
 //    * using the i2c protocol -->
 
-In this experiment, we will be building on the previous experiment by adding an LCD screen to display the measured temperature.
+In this experiment, we will be building on the previous experiment by adding an LCD screen and writing a script to display the temperature sensor data on it. If you start thinking about how to run this in the background, we have something planned for that too!
 
-// TODO: add to this intro, talk about the script we're going to write, what we'll accomplish by the end of the experiment, and tease the automation portion
-// TODO: recommend that they do the previous experiment first!
+**Note**: We will be building heavily from the [temperature sensor experiment](#starter-kit-temp-sensor). If you haven't done it, we highly recommend doing so, or at least giving the article a read through.
+
 
 <!-- lcd -->
 ```{r child = '../../shared/lcd.md'}
@@ -34,11 +34,18 @@ We'll be using the same temperature sensor circuit from the previous experiment,
 
 #### What You'll Need
 
-If you've taken apart your temperature sensor circuit, wire it back up according to the instructions in the [previous experiment](#starter-kit-reading-one-wire-temperature-sensor).
-// TODO: change this to 'Everything from the Temperature Sensor experiment' and then list all of those materials
+Everything from the [temperature sensor experiment](#starter-kit-temp-sensor):
+
+* 1x Omega plugged into Expansion Dock
+* 1x Breadboard
+* 3x Jumper wires (M-M)
+* 1x 5.1kΩ (yellow-purple-red) Resistor
+* 1x 1-Wire temperature sensor
+    * Should read "Dallas 18B20" on the part
 
 Then grab the following from your kit:
 
+* 1x LCD Screen 
 * 4x Jumper wires (M-F)
 
 #### Hooking up the Components
@@ -79,7 +86,7 @@ For this experiment, we'll be using our Onion I2C Python library which convenien
 //  * the `__init__` function will instantiate an OnionI2C object
 //  * the `lcd_strobe` and `lcd_write_four_bits` will be changed to use the OnionI2C object writing functions
 
-// TODO: include a block diagram of our software system
+<!-- // TODO: include a block diagram of our software system -->
 
 // TODO: add a brief description (1-2 sentences) of what this class will implement
 First, let's create a file containing a class to work with the I2C bus. Create a file called `i2cLib.py` and paste the following code:

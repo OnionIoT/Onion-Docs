@@ -8,19 +8,21 @@ order: 2
 
 ## Controlling Servos with the PWM Expansion {#maker-kit-servo-controlling-servo}
 
-In this tutorial we will learn how to control servo motors using the PWM Expansion with Python. But first, let's briefly introduce servo motors.
+In this tutorial we will learn how to control servo motors using the PWM Expansion with Python. First, let's get to know our servos.
 
 <!-- servo -->
-```{r child = '../../shared/servos.md'}
+``` {r child = '../../shared/servos.md'}
 ```
+
+For our experiment, we'll demonstrate how servos can be controlled through PWM signals. We'll connect them to the expansion, then write some code to make them rotate.
 
 ### Building the Circuit
 
-This circuit is relatively simple, as the motor and the PWM Expansion are both plug and play. Do note that if you haven't already, it is highly recommended that you read over the [PWM Expansion](#pwm-expansion) article in our documentation for safety instructions.
+For this experiment, we'll be wiring a circuit that allows us to control the motors directly through the PWM expansion. This circuit is relatively simple because the motor and the PWM Expansion are both plug and play. If you haven't already, it is highly recommended that you read over the [PWM Expansion](#pwm-expansion) article in our documentation for safety tips.
 
 #### What You'll Need
 
-Grab the following from your kit:
+Gather the following from your kit:
 
 * 1x Omega2 plugged into Expansion Dock
 * 1x PWM Expansion plugged into Expansion Dock above
@@ -28,33 +30,20 @@ Grab the following from your kit:
     * 1x Standard Size
     * 1x Micro Size
 
+
 #### Hooking up the Components
 
-<!-- // TODO: update this whole article to use both of the included servos -->
-
-<!-- // - talk about how to connect a servo to the pwm expansion
-// - make sure to mention that an external power supply is required for more servos and larger loads
-// can totally rip off large chunks of the pwm expansion hardware article from the documentation
-//  * should isolate that text from the pwm hw article into markdown files that can be included here -->
 
 1. Plug the PWM Expansion into your Expansion Dock.
 1. Plug the power cord of the Standard Size servo motor into the `S0` channel of the PWM Expansion
 	* make sure the white white wire from the motor is connected to the pin with the white base on the Expansion!
-1. Repeat the step above to connect the Micro Servo into channel `S1`.
+1. Repeat the step above with the Micro Servo connecting to channel `S1`.
 
 **Note 1:** If you're driving a large load on your servo, you should provide an external power supply to the PWM Expansion to avoid drawing too much current through the Omega!
 
-**Note 2/follow up:** When the Servo Expansion is plugged in as the bottom of the Expansion stack, the pins on the underside of the board may be short circuited by contact with the USB receptacle directly underneath when pressure is applied to the top of the Expansion. We recommend inserting a thin plastic sheet between the expansion and the omega to break this short. For more information, see the [PWM Expansion](#pwm-expansion) article.
+**Note 2/follow up:** When the Servo Expansion is plugged in as the bottom of the Expansion stack, the pins on the underside of the board may be short circuited by contact with the USB receptacle directly underneath when pressure is applied to the top of the Expansion. We recommend inserting a thin plastic sheet between the expansion and the dock to break this short. For more information, see the [PWM Expansion](#pwm-expansion) article.
 
-#### Writing the Code
-
-<!-- // * create a class that uses the omegapwm class from the previous example to drive a servo
-//    * essentially create the servo class (from the file above), can skip the getSettings, setupMinAngle, and setupMaxAngle functions for the purposes of this example
-//    * make sure the class follows the angle described in the servo section above ie 0˚->180˚ as opposed to -90-˚>90˚
-// * the program should be something along the lines of setting the servo to 0˚, 45˚, 90˚, 135˚, 180˚, and then back down by 45˚ steps, have a noticeable but not annoyingly long delay between the steps
-//  * have it run in an infinite loop
-
-// TODO: implement this servo class in a separate file, include the file from the previous exp -->
+### Writing the Code
 
 Let's write another class to represent a servo motor based on the class we wrote in the first experiment. Create a file called `motors.py` and paste the following code in it:
 
@@ -148,7 +137,7 @@ if __name__ == '__main__':
 	main()
 ```
 
-#### What to Expect
+### What to Expect
 
 <!--
 // TODO: IMAGE gif of a servo connected to the omega doing this
@@ -173,22 +162,23 @@ pwm-exp -s
 // * brought back the idea of using a class within a class (link back to the first time this was introduced in the 7seg article)
 // * brought back the infinite loop-->
 
-For this tutorial:
+In this experiment, we encountered some classic ways to control devices with software. More techniques exist, but they're almost all based off these three things:
+
 * Infinite loops - a way to repeat actions over and over again
 * Python math - integers, floats, and conversions
 * Timing - simple delay
 
 #### Infinite Loops
-As you may know by now, infinite loops in Python (and many other languages) can be simply implemented with a loop that always evaluates true:
+As you may know by now, infinite loops in Python (and many other languages) can be implemented with a loop that always evaluates true:
 
 ``` python
 while(True):
 	#Code To Be Repeated Forever Goes Here
 ```
 
-The reason to use an infinite loop is so we can create programs that will always run. Practically, thermostats, digital clocks, and even computers all rely on infinite loops to work. During the an infinite loop, conditions and states can be evaluated over and over again and actions that rely on the state being at some value executed. For example, a thermostat would evaluate the temperature of the room over and over again, and when it detects the temperature to be lower than some number, it turns on the heat, and if it's higher than some number, it should turn off the heat accordingly.
+The reason anyone would use an infinite loop is so we can create programs that will always run. Practically, thermostats, digital clocks, and even computers all rely on infinite loops to work. During the an infinite loop, conditions and states can be evaluated over and over again. After the conditions are checked, actions that require those conditions are performed. For example, a thermostat would evaluate the temperature of the room over and over again. When it detects the temperature to be lower than some number, it turns on the heat; and if it's higher than some number, it should turn off the heat accordingly.
 
-In this example, the loop does a simple progression of commands, but the concept remains the same.
+In this example the loop doesn't check anything, only progressing through the commands one-by-one. Be prepared for that to change in the upcoming tutorials though!
 
 #### Math in Python
 
@@ -212,13 +202,15 @@ print 5/3 + 8/3
 # will print "3"
 ```
 
-You can see in the first two examples how the decimal part is dropped from the answer, and in the last two you can see that this error can carry forward(!!!).
+You can see in the first two examples that the decimal part is dropped from the answer. In the last two you can see this error can carrying forward and end up making a significant difference!
 
-Due to the way decimal and integer numbers are handled by computers, this also applies to most other programming languages as well. Be careful!
+Due to the way decimal and integer numbers are handled by computers, this applies to many other programming languages as well. Be careful!
 
 #### Timing
 
-The time Python library is used here to provide a way to delay the signals transmitted to the servo. Without the `time.sleep()` function calls, the code would be executed as fast as the Omega can possibly handle, which is pretty much faster than the servo motor can handle. The Omega2 runs at over 500MHz while the servo receives commands from 50~1kHz, which is over 50,000 times faster than the servo can react! So we use the `time.sleep()` function to give the command some time to take effect on the servo.
+The Python `time` library is used here to provide a way to delay the signals transmitted to the servo. Without the `time.sleep()` function calls, the code would be executed as fast as the Omega can possibly handle, which is pretty much faster than the servo motor can handle.
+
+The Omega2 runs at over 500MHz while the servo receives commands from 50~1kHz, which is over 50,000 times faster than the servo can react! So we use the `time.sleep()` function to give the command some time to take effect on the servo.
 
 
 ### Hardware Calibration
@@ -228,5 +220,7 @@ In reality, there's always going to be differences in the hardware we use even i
 For this reason, we can't send the same signals to the different motors and expect them to behave exactly the same. The minimum and maximum pulses we used to instantiate our servo objects - `500`, `2000`, `500`, `2500` - are values we've found to work with servos in our lab.
 
 Due to these reasons, you should do some testing to find the numbers that work for your particular hardware. This proccess is called calibration. See if you can use the command line tools or the libraries to figure out what duty cycles correspond to what kind of movement in your own servos.
+
+>Manufaturers almost always provide data sheets to let you know what the limits of your hardware is, they're definitely the best place to start when calibrating.
 
 Next time, we [spin a motor](#maker-kit-servo-h-bridge).

@@ -30,38 +30,39 @@ Grab the following from your kit:
 * 1x Omega plugged into Expansion Dock
 * 1x Breadboard
 * 1x PWM Expansion plugged into the Expansion Dock
-* LEDs
-    * 16x any color
-* Jumper Wires
+* 16x LEDs of any color
+* 16x 200Ω Resistors
+* Jumper wires
     * 16x M-F
-* Resistors
-    * 16x 200Ω
+    * 1x  M-M
 
 #### Hooking up the Components
 
-<!-- // TODO: adjust how the LEDs are wired up: servo exp -> breadboard w/ M-F jumper -> LED -> resistor -> GND -->
-
 Each LED will be connected to the board in the same way, so we'll cover wiring a single LED first. Then you can repeat this process for all 16 and you should be good to go.
 
-1. Find the anode of the LED and the signal pin of any channel. We'll start at channel 0 (`S0` on the PWM Expansion).
+1. Find the anode and the cathode of your LED, make note of which one is where, then plug the LED across the channel of your breadboard on any row you wish (on columns `e` and `f`)
+    * The most reliable way to find the anode/cathode isn't the length of the pins, it's by examining the [diode](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/LED%2C_5mm%2C_green_%28en%29.svg/432px-LED%2C_5mm%2C_green_%28en%29.svg.png) inside the plastic head.
+1. Take a 200Ω resistor and use it to bridge the LED's cathode row with the column next to it (labelled `-`).
+    * We'll call the `-`labelled column the **`GND` rail**.
+1. Now connect the `GND` rail to the `GND` header on your PWM Expansion with one M-M jumper
+1. Find the signal pin of any channel. We'll start at channel 0 (`S0` on the PWM Expansion).
     * The signal pin is marked by a white plastic base. For channel `S0`, it should be clearly labelled as `SIGNAL` to the left side. We'll call this the `SIG` pin.
 1. Connect the `SIG` pin to a pin in column `a` in one of the rows on the left side of the breadboard using a M-F jumper wire. (eg. `1a`)
     * We'll start at row 1 for the first one, and so on.
-1. Stick the cathode of the LED into the same row as the `SIG` jumper wire (eg. `1e`), and the anode into the pin on the other side of the middle gap in the same row (eg. `1f`).
-1. Take a 200 Ohm resistor and connect it to the LED's cathode and to the `-` column on the right side.
-    * We'll call the `-` column the `GND` connection.
-1. Your circuit should now look like this: <!-- // TODO: IMAGE picture and/or circuit diagram -->
 
-After you've wired up all the LEDs on the board, connect the breadboard's `GND` column to one of the `GND` pins on the PWM Expansion using a M-F jumper wire.
+If your circuit now looks like this:
 
-Now we're all set!
+<!-- // TODO: IMAGE picture and/or circuit diagram -->
+
+Then we're all set!
 
 Here's a photo of our finished circuit:
 <!-- // TODO: IMAGE photo of finished circuit -->
 
-**Note**: The reason we can connect the LED to the `SIG` pin safely here is because the `SIG` pin is providing 5V from the board. **If you decided to connect a DC supply to the barrel jack that supplies more than 5V, you'd need to change the resistor value to match the DC supply voltage.**
-<!-- // - use M-F jumper wires to connect from the servo expansion
-// - make sure to use 5V from the pwm expansion channel header -->
+**Note**: If you decided to connect a DC supply to the barrel jack that supplies **something other than 5V**, you need to change the resistor to match the DC supply voltage. For 12V supplies, connecting a second 200Ω resistor in series works well.
+
+>If you have a different supply, you just need to divide the voltage output of your supply by 5V and multiply that number by 200Ω to get the new resistance value. If it's a weird number, take the closest resistor you have, or add them in series to get the resistance you need.
+
 
 ### Writing the Code
 
@@ -154,7 +155,7 @@ if __name__ == '__main__':
 ```
 
 
-#### What to Expect
+### What to Expect
 
 <!-- // TODO: IMAGE add gif/video of LEDs working -->
 
@@ -186,7 +187,9 @@ Additionally, this code has a lot of mathematical operators, if you're confused,
 
 #### Creating a class
 
-As a refresher, in Object Oriented Programming, classes are essentially blueprints or an abstraction. An **object** is a set of data created from the class blueprint with its own unique properties. For example, for a class created as "four sided polygon", an object created from this class may be "square". Creating an objects is called **instantiation**, and objects created from the same class are called **instances** of said class.
+As a refresher, in Object Oriented Programming, classes are essentially blueprints or an abstraction. An **object** is a set of data created from the class blueprint with its own unique properties. For example, for a class created as "four sided polygon", an object created from this class may be "square" or a "rectangle". Creating an object from a class is called **instantiation**, and objects created from the same class are called **instances** of said class.
+
+<!-- TODO: link properly to shift register article when lazar's finished -->
 
 To see another example of another example of classes in Python, check out the [shift register](#shift-register-creating-classes) article where we first introduced them.
 
@@ -216,13 +219,13 @@ Instantiating an `OmegaPwm` object requires a channel number and frequency. Note
 
 If you look at the constructor (the `__init__` function), you will notice the line:
 
-```
+``` python
 pwmExp.driverInit()
 ```
 
 This line initializes the PWM expansion for usage. This starts the oscillator on the PWM expansion which actually produces the signals sent through the pins. Without this line, the oscillator will be off and the expansion won't respond!
 
-Before we initialize the oscillator, we can check if it's already on with `pwmExp.driverInit()`. By checking the return value we can avoid initializing it twice. For the PWM expansion in particular, initilizing it twice doens't really matter much. However initlization for other hardware devices may take quite a while, so it's a pretty good habit to get into to save you some time.
+Before we initialize the oscillator, we can check if it's already on with `pwmExp.checkInit()`. By checking the return value we can avoid initializing it twice. For the PWM expansion in particular, initilizing it twice doens't really matter much. However initlization for other hardware devices may take quite a while, so it's a pretty good habit to get into to save you some time.
 
 ### What's Math?
 
