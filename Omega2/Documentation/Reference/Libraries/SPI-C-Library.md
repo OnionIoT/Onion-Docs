@@ -31,7 +31,7 @@ The four signals are:
 | MISO       | Master In, Slave Out - Data sent from the Slave to the Master |
 | CS/SS      | Chip Select/Slave Select                                      |
 
-The fact that it is a *synchronous* data bus means that one of the lines is a clock, used to synchronize the bits being sent on the data lines.
+The fact that it is a **synchronous** data bus means that one of the lines is a clock, used to synchronize the bits being sent on the data lines.
 
 The protocol is based on the Master-Slave architecture, so the Master will generate the System Clock and the Slave Select signals. In systems with multiple slaves, there will be multiple Slave Select signals.
 
@@ -185,7 +185,7 @@ The following functions serve to initialize the `spiParams` structure and do any
 
 <!-- Initialize the Parameter Structure -->
 
-### Initialize the Parameter Structure - spiParamInit(spiParams*) {#spi-c-param-init}
+### Initialize the Parameter Structure - spiParamInit(spiParams\*) {#spi-c-param-init}
 
 There is a function to initialize the `spiParams` structure with acceptable default values:
 ``` c
@@ -259,7 +259,7 @@ else {
 
 <!-- Register SPI Device -->
 
-### Register SPI Device - int spiRegisterDevice (spiParams*) {#spi-c-register-device}
+### Register SPI Device - int spiRegisterDevice (spiParams\*) {#spi-c-register-device}
 
 This function will register an SPI device with the bus number, device ID, and other SPI parameters as specified in the parameter structure:
 
@@ -308,7 +308,7 @@ status 	= spiRegisterDevice(&params);
 
 <!-- Setup SPI Device -->
 
-### Setup SPI Device - int spiSetupDevice (spiParams*) {#spi-c-setup-device}
+### Setup SPI Device - int spiSetupDevice (spiParams\*) {#spi-c-setup-device}
 
 This function will setup additional SPI parameters on the device adapter
 
@@ -337,7 +337,7 @@ Once a device adapter is registered, the functions below can be used to read fro
 
 <!-- Transfer Data Function -->
 
-### Transferring Data - int spiTransfer (spiParams*, uint8_t*, uint8_t*, int) {#spi-c-transfer-data}
+### Transferring Data - int spiTransfer (spiParams\*, uint8_t\*, uint8_t\*, int) {#spi-c-transfer-data}
 
 This is the function that implements all data transfers using the SPI protocol:
 ``` c
@@ -504,7 +504,7 @@ The `spiTransfer()` is all that's required to perform reads and writes using SPI
 
 <!-- Additional Functions: spiRead -->
 
-### Reading Data - int spiRead(spiParams*, int, uint8_t*, int) {#spi-c-read-data}
+### Reading Data - int spiRead(spiParams\*, int, uint8_t\*, int) {#spi-c-read-data}
 
 This function can be used to perform a register read:
 
@@ -564,7 +564,7 @@ In essence, this simplifies the use of the `spiTransfer()` for read scenarios.
 
 <!-- Additional Functions: spiWrite -->
 
-### Writing Data - int spiWrite(spiParams*, int, uint8_t*, int) {#spi-c-writing-data}
+### Writing Data - int spiWrite(spiParams\*, int, uint8_t\*, int) {#spi-c-writing-data}
 
 This function can be used to perform a register write:
 

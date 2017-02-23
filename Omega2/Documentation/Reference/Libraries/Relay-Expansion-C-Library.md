@@ -145,7 +145,7 @@ int status 	= relayDriverInit(4);
 
 <!-- Check Init Function -->
 
-### Check for Initialization - int relayCheckInit (int, int*) {#relay-c-check-init}
+### Check for Initialization - int relayCheckInit (int, int\*) {#relay-c-check-init}
 
 This function performs several reads to determine if the Relay Expansion requires the initialization sequence to be programmed before the relay states can be changed.
 
@@ -243,7 +243,7 @@ status 	|= relaySetAllChannels (7, 0);
 
 <!-- Read Relay State -->
 
-### Read Relay State - int relayReadChannel (int, int, int*) {#relay-c-read-channel}
+### Read Relay State - int relayReadChannel (int, int, int\*) {#relay-c-read-channel}
 
 Use this function to read the state of a specific relay:
 

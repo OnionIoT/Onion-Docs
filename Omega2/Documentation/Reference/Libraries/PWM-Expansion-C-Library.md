@@ -115,7 +115,7 @@ int status 	= pwmDriverInit();
 
 <!-- Check Init Function -->
 
-### Check for Initialization - int pwmCheckInit (int*) {#pwm-c-check-init}
+### Check for Initialization - int pwmCheckInit (int\*) {#pwm-c-check-init}
 
 This function performs several reads to determine if the Servo Expansion has been initialized and the oscillator is running.
 

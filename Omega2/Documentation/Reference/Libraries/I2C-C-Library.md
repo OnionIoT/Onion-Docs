@@ -119,7 +119,7 @@ int 	status, rdByte;
 status 	= i2c_write(0, 0x5a, 0x01, &rdByte);
 ```
 
-### Read Multiple Bytes - int i2c_read(int, int, int, uint8_t*, int) {#i2c-c-read-multiple-bytes}
+### Read Multiple Bytes - int i2c_read(int, int, int, uint8_t\*, int) {#i2c-c-read-multiple-bytes}
 
 The `i2c_read` function will read a specified number of bytes from a register address on a device on the I2C bus.
 
@@ -175,7 +175,7 @@ status 			= i2c_read(0, 0x48, 0x00, buffer, 2);
 
 Functions that perform writes to devices on the I2C bus.
 
-### Write Buffer to Address - int i2c_writeBuffer (int, int, int, uint8_t*, int) {#i2c-c-write-buffer}
+### Write Buffer to Address - int i2c_writeBuffer (int, int, int, uint8_t\*, int) {#i2c-c-write-buffer}
 
 
 The `i2c_writeBuffer` function will write a specified number of bytes from a previously populated pointer or array to a register address on an I2C device.

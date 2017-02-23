@@ -123,7 +123,7 @@ An error message will be printed that will give more information on the reason b
 
 <!-- Init Function -->
 
-### Initialization Function - `int oledDriverInit ()` {#oled-c-init-function}
+### Initialization Function - int oledDriverInit () {#oled-c-init-function}
 
 This function programs the initialization sequence on the OLED Expansion, after this step is completed, the other various OLED functions can be used with success:
 ``` c
@@ -625,7 +625,7 @@ status |= oledWriteChar(')');
 
 <!-- Write String -->
 
-### Write a String - int oledWrite (char*) {#oled-c-write-str}
+### Write a String - int oledWrite (char\*) {#oled-c-write-str}
 
 Write an entire string of characters, starting at the current position of the cursor:
 
@@ -698,7 +698,7 @@ If this is unclear, see the [Understanding the Display Section](#programming-flo
 
 
 
-### Read Image Data - int oledReadLcdFile (char*, uint8_t*) {#oled-c-read-lcd-file}
+### Read Image Data - int oledReadLcdFile (char\*, uint8_t\*) {#oled-c-read-lcd-file}
 
 First, the data from the file needs to be loaded into a buffer:
 ``` c
