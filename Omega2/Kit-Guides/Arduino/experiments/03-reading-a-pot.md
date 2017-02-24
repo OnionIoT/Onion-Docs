@@ -146,7 +146,8 @@ The Arduino build-in function `analogWrite` takes in two parameters: the pin num
 
 Polling is the process of repeatedly checking an input.
 
-You may notice in the code there is a 0.1s delay in the `readPotValue()` function between reading the trimpot and the setting the LED. This delay was added for stability so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast! // TODO: let's change this to say, instead of 'burn up the CPU', 'We don't want to unnecessarily tax the microprocesser by making it constantly check the same thing as fast as it can - remember that it runs really fast!''
+You may notice in the code there is a 0.1s delay in the `readPotValue()` function between reading the trimpot and the setting the LED. This delay was added for stability so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast!
+// TODO: let's change this to say, instead of 'burn up the CPU', 'We don't want to unnecessarily tax the microprocesser by making it constantly check the same thing as fast as it can - remember that it runs really fast!'
 
 Some of the issues during polling are as follows:
 

@@ -23,9 +23,13 @@ So far, our programs have been continuously running and performing actions. In t
 //  - trigger for an action
 //  - requires an interrupt service routine (ISR) -->
 
-An interrupt is a signal sent to a microprocessor or microcontroller through hardware or software that is an immediate trigger for a defined action. After the microprocessor has received the interrupt signal, it will stop what it is currently doing and will execute a function called the interrupt service routine (ISR). Once the ISR completes, the program will go back to executing what it was doing before the interrupt was received. When an interrupt is defined, the ISR must also be chosen.
+An interrupt is a signal sent to a microprocessor or microcontroller through hardware or software that is an immediate trigger for a defined action. After the microprocessor has received the interrupt signal, it will stop what it is currently doing and will execute a function called the interrupt service routine (ISR). Once the ISR completes, the program will go back to executing what it was doing before the interrupt was received. When an interrupt is defined, both the trigger and the ISR need to be defined. For the interrupt trigger, first the source must be selected (in this case selection of the hardware pin to observe), and then the action to actually fire the interrupt. The possible trigger actions are:
 
-This is a powerful tool since we can use interrupts in our programs to perform an action only when a certain trigger, like a button input changing, is detected, while allowing the rest of the program to behave normally.
+* Rising - a change from logical low to logical high
+* Falling - a change from logical high to logical low
+* Both - any change in the signal
+
+This is a powerful tool since we can use interrupts in our programs to perform an action only when a certain trigger is detected (like a button being pressed), while allowing the rest of the program to behave normally.
 
 
 ### Building the Circuit
@@ -135,6 +139,8 @@ In addition, if we use the `cat` command on our Omega like previous tutorial, we
 // TODO: screenshot of the cat command showing the bitwise operations
 
 #### A Closer Look at the Code
+
+// LAZAR to read all the text below
 
 In this code, we implemented an more efficient method of read inputs called interrupt, where as in the previous tutorial we used the method of polling. Notice we use two `for` loops: one for setting all LED pins to output and another to turn all the LEDs off without any delay.
 
