@@ -31,7 +31,7 @@ The OLED Expansion is a complete circuit. So for this tutorial, we just need to 
 1x Omega2 plugged into the Expansion Dock
 1x OLED Expansion plugged into Expansion Dock
 
-#### Writing the Code
+### Writing the Code
 
 Copy the code below into a file named `MAK06-drawingLines.py`, and run it on your Omega to see it in action.
 
@@ -162,7 +162,7 @@ if __name__ == '__main__':
     main()
 ```
 
-#### What to Expect
+### What to Expect
 
 This program will ask you to submit a bunch of numbers and draw a line based on them. You control the line's orientation (either vertical or horizontal) and the length based on your inputs.
 
