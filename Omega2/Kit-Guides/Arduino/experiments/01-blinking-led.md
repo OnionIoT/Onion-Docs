@@ -109,7 +109,7 @@ For example if we defined `ledPin` inside the `setup()` function :
 ```arduino
 int blinkTime = 1000;       // duration to keep the LED on/off in ms
 
-void setup() {			// codes to be ran once
+void setup() {			// code to be run once at the start of the program
 	int ledPin = 4;             // LED on pin 4
     pinMode(ledPin, OUTPUT);
 }

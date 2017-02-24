@@ -265,7 +265,7 @@ In our `loop()` function we first initialize the display by displaying the chara
 String serialString = Serial.readString();
 ```
 
-We will need to process the string we received in order to display it. We must then convert the received string into an array of char using the Arduino build-in `toCharArray()` function. We will then need to convert a character to a integer and subtract from it the integer value of '0' according to the ASCII table. After that, we need to match the integer value of each character the an element from the digitCodeMap[] array using a case statement. A case statement is essentially an easier and more structured way of writing a bunch of if statements.
+We will need to process the string we received in order to display it. We must then convert the received string into an array of char using the Arduino built-in `toCharArray()` function. We will then need to convert a character to a integer and subtract from it the integer value of '0' according to the ASCII table. After that, we need to match the integer value of each character the an element from the digitCodeMap[] array using a case statement. A case statement is essentially an easier and more structured way of writing a bunch of if statements.
 
 For example, if we get the character 'A', we subtract '0' from it. According to their decimal value from the ASCII table, we have `65-48=17`. Then in our case statement, 17 matches the `case 17 ... 42:`, in which we subtract 17 by 7 to get the element 10 from `digitCodeMap[]`, which corresponds to the segments to be displayed for 'A'.
 

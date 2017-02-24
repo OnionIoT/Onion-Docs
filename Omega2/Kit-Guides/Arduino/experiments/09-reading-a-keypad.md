@@ -1,6 +1,6 @@
 ## Reading a Key-Pad {#arduino-kit-reading-a-keypad}
 
-In this experiment, we will be reading input from a keypad and treating it as a password, if the correct password is entered, an LED will light up. This will be useful in many scenarios, such as ATMs or building access systems. In addition, we will also learn how to use Arduino libraries which are not build-in.
+In this experiment, we will be reading input from a keypad and treating it as a password, if the correct password is entered, an LED will light up. This will be useful in many scenarios, such as ATMs or building access systems. In addition, we will also learn how to use Arduino libraries which are not built-in.
 
 
 ### Keypad

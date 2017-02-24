@@ -1,6 +1,6 @@
 ## Using a Buzzer {#arduino-kit-using-a-buzzer}
 
-// TODO: ayayay this intro is so boring, please spice it up
+// TODO: ay-ay-ay this intro is so boring, please spice it up
 
 In this tutorial, we will use a push button and a buzzer. If the push button is pressed the buzzer will buzz until the button is released. We'll cover two ways to do this: polling the input and using a interrupt.
 
@@ -158,7 +158,7 @@ In this code, we initalize the interrupt by the following line:
 attachInterrupt(digitalPinToInterrupt(interruptPin), changeState, CHANGE);
 ```
 
-// TODO:
+// TODO: complete the two links to previous experiments
 
 This will attach the built-in Arduino interrupt to an interrupt pin (2 or 3). It will call on the interrupt service routine (ISR) function `changeState()` whenever there is a `CHANGE` in the push button input. The keyword `CHANGE`, as described in [push button experiment](TODO: add this link), represents either `FALLING` edge (`HIGH` to `LOW`) or RISING edge (`LOW` to `HIGH`). This means if there the button is pressed or released, the `changeState()` function will be called. The task of the ISR `changeState()` is to simply write the opposite state of the push button to the buzzer. Notice we use the keyword `volatile` before `int` when declaring the `state` variable in line 4. Although the variable `state` is global and can be used in the ISR, to make sure the variable is updated correctly between the main program and the ISR, we declare them as `volatile`.
 

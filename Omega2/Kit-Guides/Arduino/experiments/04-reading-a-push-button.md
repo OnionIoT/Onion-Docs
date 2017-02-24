@@ -151,7 +151,7 @@ In this code, we implemented an more efficient method of read inputs called inte
 
 Interrupts are are a more effecient way of reading input. Instead of continously reading the input (polling), we only read it when there's a change or when it is at a certain state (`HIGH` or `LOW`).  A `CHANGE` could be defined as the `RISING` (`LOW` to `HIGH`) and/or `FALLING` (`HIGH` to `LOW`) edge of the input signal. Interrupts reduces the need of extra computational process and saves a lot time.
 
-In the first line of the `setup()` we attach a interupt to a pin using the build-in Arduino function `attachInterrupt()`. This function takes in three parameters. The first parameter is the pin number of a digital pin coverted to an interrupt pin using another build-in function digitalPinToInterrupt(pin).
+In the first line of the `setup()` we attach a interupt to a pin using the built-in Arduino function `attachInterrupt()`. This function takes in three parameters. The first parameter is the pin number of a digital pin coverted to an interrupt pin using another built-in function digitalPinToInterrupt(pin).
 
 The second parameter is the interrupt service routine (ISR). The ISR is a special kind of function which is called when the interrupt triggers. In our example, it's the `setLED()` function which turns on LED or turn all LEDs off if all the LEDs are lit. An ISR function have a few limitations. It must be short and fast, which means time delay should not be used. In addition, ISR does not have parameters and should not return any output value.
 

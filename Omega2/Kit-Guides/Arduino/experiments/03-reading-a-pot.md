@@ -30,6 +30,10 @@ If you're curious to learn more about voltage dividers, Sparkfun has written a f
 
 So far we've been turning LEDs fully on and fully off, but it's also possible have LEDs dimmed to somewhere between on and off. This is accomplished by turning the LED on and off many times in a second, the brightness of the LED depends on how long the LED is allowed to remain on. That's precisely what we're going to do in this experiment: we're going to use Pulse Width Modulation (PWM) to create a dimming effect on an LED.
 
+
+// TODO: don't think we need the pwm duty cycle and period sections here, let's split them up
+// TODO: need to make sure wherever pwm is included, we also add in the new file that contains just the duty cycle and period sections
+
 <!-- PWM Signals -->
 ```{r child = '../../shared/pwm.md'}
 ```
@@ -81,7 +85,7 @@ int potPin = A0;    // analog pin for reading the potentiometer value
 int ledPin = 9;     // pwm pin for setting LED brightness
 int potValue = 0;   // potentiometer output as a value between 0 and 1023
 
-void setup() {			// codes to be ran once
+void setup() {			// code to be run once at the start of the program
   Serial.begin(9600);     // initializing serial communication for sending potentiometer value to the Omega
   pinMode(ledPin, OUTPUT);
 }
@@ -131,14 +135,14 @@ It will print a digital value (0 to 1023), which has been converted from the ana
 In this code we introduced several new concepts: analog read and analog (PWM) write; whereas previously we were using digital write. In addition, we will introduce a concept called polling. Let's take a look.
 
 #### Analog Read
-First we start by looking at the `readPotValue()` function, in which we use `analogRead` to get the output value of the potentiometer. The output of the potentiometer circuit is basically the output voltage of a voltage divider circuit. Since the input voltage is 5V, the output voltage will vary from 0V to 5V depending on the position of trimpot knob. The Arduino build-in function analogRead will convert that voltage (0-5V) to a digital value between 0 and 1023. Let's store this value in the variable potValue for later use.
+First we start by looking at the `readPotValue()` function, in which we use `analogRead` to get the output value of the potentiometer. The output of the potentiometer circuit is basically the output voltage of a voltage divider circuit. Since the input voltage is 5V, the output voltage will vary from 0V to 5V depending on the position of trimpot knob. The Arduino built-in function analogRead will convert that voltage (0-5V) to a digital value between 0 and 1023. Let's store this value in the variable potValue for later use.
 
 For `analogRead` to work we need to use one of the analog pins (A0 - A6) on the Arduino Dock. Moreover, analogRead takes in only one parameter, the pin number. Also notice that we do not need to set the pinMode of the pin reading the potentiometer to INPUT. This is because as mention earlier, the GPIOs are INPUT by default.
 
 #### Analog (PWM) Write
 Similar to previous tutorials, we set a pin output for light the LED. However this time, we will use a PWM (~) pin and instead of `digitalWrite`, we'll use `analogWrite`. The name `analogWrite` might be confusing at first since we're using PWM to power the LED. However, PWM is actually a form of digital-to-analog conversion. On the Arduino Dock, the output pins can really only output either 'HIGH' or 'LOW' as a voltage level. Analog output requires us to be able to output a wide range of voltages, but this is quite difficult and needs expensive components. So instead, we can do a form of analog output by pulsing the signal and using the percentage of time the signal is 'HIGH' as the analog output. This is the essense of PWM.
 
-The Arduino build-in function `analogWrite` takes in two parameters: the pin number and a value representing the PWM duty cycle between 0 (always off) and 255 (always on). Notice this range (0 to 255) is about one fourth the range of the output from the analogRead (0 to 1023). So to do a quick conversion, we can take our variable `potValue` from before and divide by four to set the brightness of the LED.
+The Arduino built-in function `analogWrite` takes in two parameters: the pin number and a value representing the PWM duty cycle between 0 (always off) and 255 (always on). Notice this range (0 to 255) is about one fourth the range of the output from the analogRead (0 to 1023). So to do a quick conversion, we can take our variable `potValue` from before and divide by four to set the brightness of the LED.
 
 #### Polling
 
