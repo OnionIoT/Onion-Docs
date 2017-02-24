@@ -30,9 +30,8 @@ This is a powerful tool since we can use interrupts in our programs to perform a
 
 ### Building the Circuit
 
-// TODO: add a link to the multiple LEDs tutorial
+For this experiment we will start with the circuit from the [multiple LEDs tutorial](#arduino-kit-multiple-leds) and add a push-button along with it's debouncing circuit. The push-button will be connected to a ATmega pin which is capable of triggering external interrupts (only pin 2 or 3 for ATmega328). The push button will be used as input (either pressed or not pressed) and the LEDs will animate the the button presses
 
-For this experiment we will start with the circuit from the multiple LEDs tutorial and add a push-button along with it's debouncing circuit. The push-button will be connected to a ATmega pin which is capable of triggering external interrupts (only pin 2 or 3 for ATmega328). The push button will be used as input (either pressed or not pressed) and the LEDs will animate the the button presses
 
 #### What You'll Need
 
@@ -41,7 +40,7 @@ Prepare the following components from your kit:
 * Omega plugged into Arduino Dock
 * USB Micro-B cable for power
 * Breadboard
-* Jumper wires
+* Jumper wires (M-M)
 * Resistors
     * 6x 200Ω
     * 1x 5.1kΩ
@@ -52,25 +51,30 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-// TODO: add an intro
-// TODO: re-order this part as discussed: circuit first, gnd, circuit -> omega connections, power
+
+
+First, let's setup the circuit:
 
 1. Connect the LEDS and resistors the same way as in the multiple LED tutorial.
     * Plug in six LEDs onto the breadboard in parallel, each across the middle channel of the breadboard.
-    * Connect the six anodes of LEDs (left to right) to six digital pins (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector).
     * Connect cathodes of the LEDs to the negative (-) power rail on the breadboard each through a different 200Ω current limiting resistor.
 2. Plug the push button onto the breadboard and setup its debounce circuit as show below:
     ![push-button-breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/push-button-breadboard.jpg)
 
-    <!-- // TODO: photo of button and debouncer circuit with LEDs only-->
+    <!-- // TODO: photo of button and debouncer circuit with LEDs only LINK ABOVE IS NOT FINAL -->
 
     * Connect one end of the switch to the 51kΩ resistor
     * Connect the other end of the switch to negative (-) power rail .
     * Connect one end of the 5.1kΩ resistor to the same point where the switch and 51kΩ resistor are connected
     * Connect the other end of the 5.1kΩ resistor to one end of the 100nF capacitor.
     * Connect the other end of the capacitor to the negative (-) power rail.
-3. Connect the negative (-) power rail to ground (GND).
-4. Connect the point in the debounce circuit between the 5.1kΩ resistor and the capacitor to pin 2 of the Arduino Dock.
+
+
+Now let's connect the circuit to the Dock:
+
+1. Connect the six anodes of LEDs (left to right) to six digital pins (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector).
+1. Connect the negative (-) power rail to ground (GND).
+1. Connect the point in the debounce circuit between the 5.1kΩ resistor and the capacitor to pin 2 of the Arduino Dock.
 1. Finally, connect the other end of the 51kΩ resistor to 5V on Arduino Dock.
 
 <!-- // TODO: photo of assembled circuit with Arduino-->
