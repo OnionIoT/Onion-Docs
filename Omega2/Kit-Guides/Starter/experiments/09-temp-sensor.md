@@ -8,8 +8,6 @@ order: 9
 
 ## Reading a One-Wire Temperature Sensor {#starter-kit-reading-a-one-wire-temp-sensor}
 
-// TODO: choose a way to write One-Wire and stick to it through the whole article, it helps to mention that One-Wire is often referred to as: (list all of the variations 1-Wire, 1-Wire, W1, etc)
-
 <!-- // in this experiment we will:
 //  * introduce the one-wire bus protocol
 //  * read the ambient temperature using a sensor
@@ -64,11 +62,11 @@ Prepare the following components from your kit:
     * Right - `Vcc`. Connect this to the Omega's `3.3V`.
 1. Connect the 5.1kΩ resistor across the `DATA` and `Vcc` pins.
 
->The reason we have this resistor is to make sure the max voltage of the `DATA` pin is equal to the voltage provided by `Vcc`. If it isn't properly referenced, a `HIGH` from the `DATA` line might appear to be `LOW`, making the data untrustworthy!
+>The reason we nhave this resistor is to make sure the max voltage of the `DATA` pin is equal to the voltage provided by `Vcc`. If it isn't properly referenced, a `HIGH` from the `DATA` line might appear to be `LOW`, making the data untrustworthy!
 
 Your circuit should look like this:
 
-<!-- TODO: IMAGE photo -->
+<!-- TODO: IMAGE photo of completed circuit -->
 
 ### Writing the Code
 
@@ -76,7 +74,7 @@ First, let's create a base class for any generic 1-Wire device. This class will 
 
 Create a file called `oneWire.py` and paste the following code in it:
 
-// TODO: was this code tested?
+<!-- // TODO: was this code tested? -->
 
 ``` python
 import os

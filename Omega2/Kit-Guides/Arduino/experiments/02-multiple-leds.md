@@ -1,16 +1,12 @@
-// TODO: general arduino dock: fix tenses and pluralization
-
 ## Controlling Many LEDs {#arduino-kit-multiple-leds}
 
-"We've blinked one LED sure, but what about a second LED?"
+"Alright, we've blinked one LED, should we try a second?"
 
-In this experiment, we're going to use what we learned in the first experiment and wire up a bunch of LEDs. Then we're gonna make some visual effects.
+In this experiment, we're going to use what we learned in the first experiment and wire up a bunch of LEDs. Then we're going to get them to blink in a cool pattern with code!
 
 ### Building the Circuit
 
-// TODO: all numbers less than 10 should be spelled out: change 6 -> six
-
-Similar to the previously experiment, we need our breadboard and jumper wires. However, now we will use 6 LEDs along with 6 current limiting resistors. We will makes the LEDs turn on one-by-one going left to right, and then turn them off one-by-one again going left to right.
+Similar to the previously experiment, we need our breadboard and jumper wires. However, now we will use six LEDs along with six current limiting resistors. We will makes the LEDs turn on one-by-one going left to right, and then turn them off one-by-one again going left to right.
 
 #### What You'll Need
 
@@ -27,13 +23,23 @@ Prepare the following components from your kit:
 
 // TODO: expand on this, take a look at the starter kit multiple leds experiment for an example, can borrow heavily from there
 
+While the individual LEDs will be connected in exactly the same way as in the first experiment, we're going to be using the rails on the breadboard to make the wiring a little simpler. Here rails aren't of the train variety - they're the four vertically connected columns on each side of the breadboard. You'll see in a second why they're super handy.
 
-1. Plug in six LEDs onto the breadboard in parallel, each across the middle channel of the breadboard.
-2. Connect the six anodes of LEDs (left to right) to six digital pins (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector).
-3. Connect cathodes of the LEDs to negative rail marked '-' on the breadboard each through a different 200Ω current limiting resistor.
-4. Connect a jumper wire from the `-` negative rail on the breadboard to a ground (GND) pin on the Arduino Dock.
+First, grab six LEDs and let's do the following for each one:
 
-<!-- // TODO: photo -->
+1. Plug in the LED into the breadboard, making sure to plug the anode and cathode into different rows.
+2. Connect one end of a 200Ω resistor to the cathode row, and the other end into the column marked `-`
+    * This column will be use very often with more complicated projects, now and in the future, we'll call it the `GND` rail.
+
+>You can probably guess that the column labelled `+` will be used to share a power supply, you'll encounter it as the `Vcc` rail often in the future!
+
+To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Arduino Dock. We'll be using six digital pins (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector).
+
+Now that you have all six LEDs plugged in, let's connect a jumper wire from the `GND` rail on the breadboard to a Ground pin on the Omega - those will be labelled `GND`. Since the power rail is connected vertically, what we've done is connect **all** of the LED cathodes to the Ground using just **one pin** on the Arduino dock
+
+Once your done, the circuit should look something like this:
+
+<!-- // TODO: IMAGE completed circuit-->
 
 ### Writing the Code
 
@@ -42,84 +48,101 @@ Prepare the following components from your kit:
 <!-- // write an arduino sketch that makes the LEDs turn on one-by-one going left to right, and then turn off, again going left to right
 // look to the multiple leds article in the starter kit for details -->
 
-// TODO: see if you can programmatically find the length of the array without having to rely on the pinCount variable, imagine the case where an additional pin is added but the pinCount isn't updated...
+Now let's operate the LEDs with some programming. We'll write an Arduino sketch that turns the LEDs on one-by-one, then turns them off in the same order.
 
-``` arduino
-int timer = 100;           // time delay between each LED in ms
-int ledPins[] = {9, 8, 7, 6, 5, 4};       // an array of GPIO numbers with LED attached
-int pinCount = 6;           // number of GPIOs used
+Let's save the code below as `SKA02-multipleLeds.ino`:
 
-void setup() {      // codes to be ran once
-  // loop for initializing the GPIOs
+``` c
+int timer = 100;                        // time delay between each LED in ms
+int ledPins[] = {9, 8, 7, 6, 5, 4};     // an array of GPIO pin numbers where
+                                        // LEDs are attached
+
+int pinCount = sizeof(ledPins)/sizeof(int);
+// Above, sizeof() checks for the size of the input and returns it as the number
+// of bytes the input takes up.
+// ledPins is an array of integers, so we divide the result by the sizeof(int)
+// to get the number of pins we have automatically.
+
+void setup() {
+  // loop that initializes the GPIOs
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
     pinMode(ledPins[thisPin], OUTPUT);
   }
 }
 
-void loop() {     // code to be ran continously
-  // loop for turn on GPIOs one-by-one going left to right
+void loop() {
+  // This loop turns on the GPIOs one-by-one going left to right
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
-    // turn the pin on:
     digitalWrite(ledPins[thisPin], HIGH);
     delay(timer);
   }
 
-  // loop for turn off GPIOs one-by-one going left to right
+  // This loop turns the GPIOs off instead - in the same order
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
-    // turn the pin on:
     digitalWrite(ledPins[thisPin], LOW);
     delay(timer);
   }
 }
 ```
 
-#### What to Expect
+### What to Expect
 
 Your line-up of LEDs will be essentially chasing it's tail: the left-most LED will turn on, and then the next one, and the next and so on. When all of them turn on, the left-most one will turn off, and the rest will follow suit.
 
 <!-- // TODO: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another -->
 
-#### A Closer Look at the Code
+### A Closer Look at the Code
 
 // TODO: add a little more life to this intro, talk about how it's different from the first experiment, etc
 
-In this code, we introduced some new concepts: arrays and `for` loops. Let's take a look.
+In this code, we get getto see the difference adding more LEDs make. Turns out not too much! We use a couple of new concepts to do more things with very similar code - we declared the pins as an **array**, and used **for-loops** to do the same thing over and over again. Let's take a look.
 
-##### Arrays
+#### Arrays
 
 <!-- // talk about arrays, how we use an array to hold the gpio numbers in order -->
 
-// TODO: all this info is correct but it doesn't read nicely, please rewrite this so that it actually flows
+In the second line of our code, we defined the `ledPins[]` variable. It looks a little different from the variables we've encountered up to now. The pair of square brackets (`[]`) here tells the computer to make `ledPins` an **array**.
 
-The second line the code, we defined the ledPins[] variable, which is new to us: it's creating an array. An array variable is a list of variables, with the ability to access each individual variable. A single variable in an array is referred to as an element. The `ledPins` array is meant to hold the GPIO pin numbers that control our LEDs. So this array will hold a bunch of integers, and we're **populating** the array as soon as we declare it.
+So far, we've interacted with `int` variables - representing an integer number in memory. Later, we'll deal with `char` variables to represent characters. But an array isn't really the same as those two. An array is a **list of variables**, with the ability to access each individual variable - they can be of any type. A single variable in an array is referred to as an element.
 
-An important thing to remember is that the the **first** element is element `0` and **second** element is element `1`, and so on. The last element is numbered one less than the length of the array.
+The `ledPins` array is meant to hold the GPIO pin numbers that control our LEDs. So the `ledPins` array will hold a bunch of integers as declared first thing in that line. In addition to that, we're **populating** the array as soon as we declare it by assigning it a value of `{9, 8, 7, 6, 5, 4}` with the equals sign.
 
-In addition, notice the square brackets `[]` of the array variable `ledPins[]`, it will have different use for when declaring the array and when actually using the array. When declaring the array, we can specify the length of the array; however, the length will automatically be set according to the  if no number is specified. When using the array, we can use the square brackets to specify which element of the array we wil be using. For example, `ledPin[0]` will call the first element of the array, which is 9.
+An important thing to remember is that the the **first** element is element `0` and **second** element is element `1`, and so on. The last element is numbered one less than the length of the array. This is almost universally the case in programming, so you'll get used to it if you keep coding!
 
-Arrays are a very common data structure used in programming and you'll soon see why.
+The square brackets `[]` mean slightly different things when declaring the array versus when actually using the array. When declaring the array, it acts as a signal saing 'this variable is an array'. When using the array, we use the square brackets to specify which element of the array we wil be using. For example, `ledPin[0]` will call the first element of the array, which is 9.
 
-##### For Loop
+When declaring an array in Arduino (which uses C), it's very good practice to choose one of the three options below:
+    * Declare the size of the array - `int ledPins[6]`
+    * Or assign it a value - `int ledPins[] = {9, 8, ..., 4}`
+    * Both at the same time
 
-Loops are incredibly common in literally every type and form of programming. We already saw an example of it in the previous tutorial where we talked about the `loop()` function. However, we can create our own loop within the Arduino `loop()` function so that we can specify the conditions for our loop. As a bit of background, loops are programming constructs that repeat execution of a code block a specified number of times. What makes them truly useful is that for each iteration of the loop, the variable that keeps track of loop iterations can be used to index an array, as you'll see, loops are very helpful when working with arrays.
+>We won't cover what happens when you don't, as that's a very large tangent. If you want to know more about why, look up 'dynamic memory allocation' and 'malloc()'.
 
-For our example, we want three loops: one for setting all pins as output pins, one for turn on all the LEDs and one to turn off all the LEDs. For each loop, we want to perform an action at the current pin and increment the pin number by one, and repeat for all the pins. The type of loop we're using here is called a `for` loop. It fits very well with going through an array. We will use the `for` to go through all elements (pins) of the array and light up the LED at each pin.
+#### For Loop
+
+As a bit of background, loops are programming constructs that repeatedly run a block code until some condition is no longer met. Loops are incredibly common in literally every type and form of programming. We already saw an example of it in the previous tutorial where we talked about the `loop()` function. Naturally, we can create our own loops with custom conditions.
 
 
-The `for` loop is separated into two parts: the first part defines the number of times the loop will repeat and the second part is the loop body, the code that will be repeated.
+For our program, we need to perform 3 actions on each pin. First, we set the mode to output, then we turn it on, and finally we turn it off. Let's say we want to turn all the pins off: without looping, we'll have to write `digitalWrite(ledPins[0], HIGH);` once for each LED we're running, that's six times for this circuit!
 
-The `for` loop has three parts in the header brackets () separated by semi-colons:
+Instead of doing that, we can use what we know about the LED array to make a loop. Enter, the **for-loop**:
 
+This is what the header of a for-loop looks like
 ```
 for (int thisPin = 0; thisPin < pinCount; thisPin++) {
 ```
 
-The first part declares a counter variable indicating the number for the current iteration. We initialize it as 0 to fit the array element number.  // TODO: fix this last sentence
+The `for` in the beginning is a **keyword**, it signifies the beginning of a loop. The brackets `()` enclose the setup of the loop. In the case of the for-loop, there's three parts to the setup separated by semi-colons.
 
-The second part specifies a condition, which if became **false**, will end the loop. For our case, we want to continue the loop until the loop counter is at the last element of the array. We use a variable called pinCount to specify the length of the array which we manually set as 6 at the beginning. Instead of pinCount variable, we can also use sizeof(ledPins) to the same effect. The build-in Arduino function `sizeof()`, if used with an array, will give you the total number of elements in it.
+The first part (`int thisPin = 0;`) declares a counter variable storing the number of iteraitons so far. We initialize it as `0` because our array begins at `0` (you might see where this is going already).
 
-The third part indicates whether the loop counter increments or decrements after each iteration and by how much does it increment or decrement. For our example, we want to increment our counter by 1 as to go through all the elements of the array once.
+The second part (`thisPin < pinCount`) is the condition statement. Note that it isn't a stopping condition! It is a **continue** condition, meaning the loop stops if and only if the condition becomes **false** (or evaluates to 0). For our case, we want to run the loop until the counter is at the last element of the array. This is why the condition compares the current iteration number with the total number of pins we have. We declared a variable called `pinCount` at the start so we have it handy for exactly this purpose.
 
-Since we have two separate `for` loops, the first loop will go through all its iterations before the second loop start to run through its iterations. Notice how our first and second `for` loops are exactly the same except that each iteration of the first loop will turn the current LED on and each iteration of the second loop will turn the current LED off. This is because the **bodies** of the two loops are different.
+The third part (`thisPin++`) is code that runs after each iteration. In our code, we want to increment our counter by one every cycle so we go through all the elements of the array one-by-one
 
-If you're wondering why we make the program sleep for a second during each loop iteration, it's because computers execute program code **really** fast. Try increasing, decreasing, or getting rid of the sleep instruction all-together and rerunning the program. See what happens with our LEDs.
+For each pin, we need to do three things. So reasonably, we use three loops: one for setting all pins as output pins, one for turn on all the LEDs, and one to turn off all the LEDs. We put these loops in sequence so they run one after the other. In `setup()` all the pins are set to output with one loop. In `loop()` the two for loops run one after the other, turning all the LEDs on, and then all of them off.
+
+
+### Gotta go Fast
+
+If you're wondering why we make the program sleep for a second during each loop iteration, it's because computers execute program code **really** fast. Try increasing, decreasing, or getting rid of the sleep instruction altogether and rerunning the program. See what happens with our LEDs.

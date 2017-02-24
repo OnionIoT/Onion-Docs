@@ -1,24 +1,17 @@
 ## Controlling Servos {#arduino-kit-using-a-servo}
 
 <!-- // intro to using pwm to control servos, this experiment will involve controlling servos using physical buttons -->
-In this tutorial, we will used two push buttons to control two servos: a sub-micro sized servo and a standard sized servo. In addition, we will learn about object oriented programming by creating our own class for servo motors.
-
-
-// ### What is Pulse Width Modulation?
+In this tutorial, we will use two push buttons to control two servos: a sub-micro sized servo and a standard sized servo. In addition, we will learn about object oriented programming by creating our own class for servo motors.
 
 <!-- pwm -->
 ```{r child = '../../shared/pwm.md'}
 ```
-
-// ### Servo-Motors
 
 <!-- servo -->
 ```{r child = '../../shared/servos.md'}
 ```
 
 ### Building the Circuit
-
-// simple circuit with both the small and regular servo attached - when one button is pressed, they both turn to one direction, when the other button is pressed, they both turn to the other direction
 
 For the circuit, we will need a small (sub-micro size) servo motor (MicroServo DXW90) and a standard size servo motor (Futaba S3003). In addition, we will need two push buttons, each with their own debounce circuits setup on a breadboard. When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction.
 
@@ -40,8 +33,9 @@ Prepare the following components from your kit:
 
 #### Hooking Up the Components
 
-<!-- // wiring the servos: vcc, gnd, and a separate signal wire for each servo
-// wiring the two push-button switches: can reuse the wiring push button text from previous articles -->
+// TODO: add an intro
+// TODO: add a circuit diagram of the circuit we will be building
+
 
 1. Connect the two push buttons with their seperate debounce circuits same as previous tutorials.
     * Set up two push buttons, each with their own debounce circuit similar to tutorial 4, don't connect to Arduino Dock yet.
@@ -57,20 +51,11 @@ Prepare the following components from your kit:
     * Connect the negative power rail to ground (GND).
     * Connect the positive power rail to 5V. Don't worry if the servo rotates a bit when you power it on.
 
+// TODO: add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look'
+
 ### Writing the Code
 
-<!-- // introduce the use of classes in arduino sketches: create a class to control servos
-//  - need to pass in the signal pin number & minimum and maximum pulse widths in the constructor
-//    -> do this in the setup() function
-//    -> the constructor should calculate the pulse width change for each degree - should be a class member
-//  - function where you pass in an angle and it programs the duty cycle for the pin of the servo
-//  implementation details:
-//    - will need to define the class at the beginning of the sketch
-//    - have two global objects of the class
-//    - instantiate the two global objects in the setup function
-//    - will be available for use once the setup function is run -->
-<!-- // set the servos to 90˚ in the setup function
-// have polling code to increment/decrement the angle of both of the servos while a button is pressed -->
+// TODO: intro to the code, in broad strokes talk about what we hope to accomplish
 
 ``` arduino
 // import the Arduino Servo library and define it
@@ -83,71 +68,70 @@ int currentAngle = 90;
 // class to control servo motors
 class ServoMotor
 {
-  private:      // variables or functions that can only be used within the ServoMotor class
-  Servo servo;    // Servo object from the Arduino Servo library
-  float rate;    // rate of pulse width change per degree
-  float minPW, maxPW;   // min and max pulse width in microseconds (uS)
-  int minAngle = 0;
-  int maxAngle = 180;
-  int pin;
+	private:      // variables or functions that can only be used within the ServoMotor class
+	Servo servo;    // Servo object from the Arduino Servo library
+	float rate;    // rate of pulse width change per degree
+	float minPW, maxPW;   // min and max pulse width in microseconds (uS)
+	int minAngle = 0;
+	int maxAngle = 180;
+	int pin;
 
-  public:     //  variables or functions which can be called outside in the main program
-  // constructor with same name as class, will be automatically called when a class object is declared
-  // pass in the pin number, max and min pulse width and calculate the pulse width change for each degree
-  ServoMotor(int pinNumber, float minPWus, float maxPWus){
+	public:     //  variables or functions which can be called outside in the main program
+	// constructor with same name as class, will be automatically called when a class object is declared
+	// pass in the pin number, max and min pulse width and calculate the pulse width change for each degree
+	ServoMotor(int pinNumber, float minPWus, float maxPWus){
 
-      // pass in the pin number, max and min pulse width to private variables
-      minPW = minPWus;
-      maxPW = maxPWus;
-      pin = pinNumber;
+		// pass in the pin number, max and min pulse width to private variables
+		minPW = minPWus;
+		maxPW = maxPWus;
+		pin = pinNumber;
 
-      // calculate the pulse width change for each degree
-      rate = (maxPWus - minPWus)/(maxAngle - minAngle);
-  }
+		// calculate the pulse width change for each degree
+		rate = (maxPWus - minPWus)/(maxAngle - minAngle);
+	}
 
-  // function where you pass in an angle and it sets the servo motor to that angle
-  void setAngle(float angle){
+	// function where you pass in an angle and it sets the servo motor to that angle
+	void setAngle(float angle){
 
-    // if the angle is greater than max angle or less than min angle, print the correct error message and exit the function
-    if (angle > maxAngle || angle < minAngle){
-       if (angle > maxAngle){
-          Serial.println("Servo angle over maximum. Please press decrease button");
-          return;
-       }
-       else{
-          Serial.println("Servo angle lower than minimum. Please press increase button");
-          return;
-       }
-    }
+		// if the angle is greater than max angle or less than min angle, print the correct error message and exit the function
+		if (angle > maxAngle){
+			Serial.println("Servo angle over maximum. Please press decrease button");
+			return;
+		}
+		else{
+			Serial.println("Servo angle lower than minimum. Please press increase button");
+			return;
+		}
 
-    // convert the angle to pulse width in microseconds(uS) using the rate previously calculated in the constructor
-    float PWus = minPW + rate * angle;
+		// convert the angle to pulse width in microseconds(uS) using the rate previously calculated in the constructor
+		float PWus = minPW + rate * angle;
 
-    // initialize the servo pin using the Arduino Servo library
-    servo.attach(pin);
+		// TODO: LAZAR: look into this, can potentially move this to the constructor
+		// initialize the servo pin using the Arduino Servo library
+		servo.attach(pin);
 
-    // set the servo angle by sending the calculated pulse width to the servo motor using the Arduino Servo library
-    servo.writeMicroseconds(PWus);
-  }
+		// set the servo angle by sending the calculated pulse width to the servo motor using the Arduino Servo library
+		servo.writeMicroseconds(PWus);
+	}
 };
 
-// initalize two servo objects, one for each motor attached
+// instantiate two servo objects, one for each motor attached
 ServoMotor smallServo (9, 500, 2000);     // initialize DXW90 small servo (500us to 2000us) at pin 9
 ServoMotor standardServo (10, 0, 2500);     // initialize S3003 standard servo (0us to 2500us) at pin 10
 
-void setup() {    // codes to be ran once
-  Serial.begin(9600);  // initializing serial communication with the Omega
+void setup() {    // codes to be run once
+	Serial.begin(9600);  // initializing serial communication with the Omega
 
-  // initialize the pins connected to the increment and decrement buttons
-  pinMode(incrementButton, INPUT);
-  pinMode(decrementButton, INPUT);
+	// initialize the pins connected to the increment and decrement buttons
+	pinMode(incrementButton, INPUT);
+	pinMode(decrementButton, INPUT);
 
-  // set the initial angle of the two servos to the 90 degrees
-  smallServo.setAngle(currentAngle);
-  standardServo.setAngle(currentAngle);
+	// set the initial angle of the two servos to 90 degrees
+	smallServo.setAngle(currentAngle);
+	standardServo.setAngle(currentAngle);
 }
 
-void loop() {   // codes to be ran continously
+void loop() {   // code to be run continuously
     // read the state of the two push buttons (1 - not pressed, 0 - pressed) at the pins defined at the start of code
     int increment = digitalRead(incrementButton);
     int decrement = digitalRead(decrementButton);
@@ -167,7 +151,7 @@ void loop() {   // codes to be ran continously
         smallServo.setAngle(currentAngle);
         standardServo.setAngle(currentAngle);
     }        
-    delay(200);  // if either button is pressed and hold down, either increase or decrease the angle 5 degrees every 0.2 second
+    delay(200);  // if either button is pressed and held down, either increase or decrease the angle 5 degrees every 0.2 second
 }
 ```
 
@@ -175,25 +159,24 @@ void loop() {   // codes to be ran continously
 
 <!-- // description of how both servos will turn in a particular direction while a button is depressed, the buttons control the direction of rotation -->
 
-When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction. If either button is pressed and hold down, either increase or decrease the angle 5 degrees every 0.2 second.
+When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction. If either button is pressed and held down,
+the servos' shaft position will either increase or decrease by 5 degrees every 0.2 seconds.
 
 #### A Closer Look at the Code
 
 <!-- // introduced object oriented programming for the first time in this code -->
 
-In this code, we introduce a new concept: the object oriented programming (OOP). We will take a look at some of the key elements of OOP: classes, objects, constructors and class members.
+In this code, we introduce a very important, new concept: Object Oriented Programming (OOP). We will take a look at some of the key elements of OOP: classes, objects, constructors and class members.
 
 
 ##### Object Oriented Programming
 
-<!-- // talk about how we're using two servos, they operate in the same way but some parameters are slightly different. So we wrote a class that can be used to control both servos independently.
-// this is accomplished by instantiating two objects of the class - talk about the constructors and how we input the pertinent values
+In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is where object oriented programming (OOP) comes in handy.
 
-// talk about constructors and class members
+// TODO: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions)
+// TODO: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it!
 
-// can borrow from the starter kit - 7seg article -->
-
-In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is where object oriented programming (OPP) becomes handy. In OPP, a class is similar to a template and a object is defined based on the class template with its own specific attributes. For our example. We setup our template inside `class ServoMotor{...};`. After that we defined two objects smallServo and standardServo, each with their own specific and different attributes.
+In OOP, a class is similar to a template and a object is defined based on the class template with its own specific attributes. For our example. We setup our template inside `class ServoMotor{...};`. After that we defined two objects smallServo and standardServo, each with their own specific and different attributes.
 
 These attributes are defined in the constructor of the `ServoMotor` class. A constructor is function of the class that have the exact same name as the class and will be automatically called when a class object is declared. Think of the constructor as a initialization function whose main purpose is to pass in all the class parameter (attributes). Our constructor also calculates the rate of the pulse width change for each degree. Also notice there is no `void` in front of our constructor function.
 
@@ -206,7 +189,7 @@ ServoMotor smallServo (9, 500, 2000);
 ServoMotor standardServo (10, 0, 2500);
 ```
 
-However, our `ServoMotor` objects can only be defined after our `ServoMotor` class has being defined. In addition, We can call `setAngle()` in our main program:
+However, our `ServoMotor` objects can only be defined after our `ServoMotor` class has been defined. In addition, We can call `setAngle()` on either of the two objects in our main program:
 
 ```
 smallServo.setAngle(90);
