@@ -25,11 +25,13 @@ The scrolling setting allows you to move the content across the screen in a wrap
 
 ### Building the Circuit
 
-Plug your Omega2 and the OLED Expansion into the Expansion Dock like in the previous tutorial.
+Plug your Omega2 and the OLED Expansion into the Expansion Dock like in the previous tutorial and let's get started!
 
 ### Writing the Code
 
-Create a file called `MAK05-oledChangeSettings.py` and paste the following code in it:
+The code we'll write for this experiment is going to go a bit more in depth into the workings of the OLED screen. We'll take a look at all the utility functions of the `oledExp` class and how they interact with eachother organically. We'll be fiddling with the brightness, inverting the display, and scrolling the contents.
+
+To make it happen, create a file called `MAK05-oledChangeSettings.py` and paste the following code in it:
 
 ``` python
 from OmegaExpansion import oledExp
@@ -98,11 +100,15 @@ if __name__ == '__main__':
 	main()
 ```
 
+Save it to the root of your Omega, and run `python /root/MAK05-oledChangeSettings.py` to see it in action.
+
 ### What to Expect
 
 When you run the program, the different possible commands that can be entered will be printed out on the command line. The commands will interactively change the display settings. For example, to dim the display, enter `dimDisplay`.
 
 To stop the program enter `Ctrl+C`
+
+Here it is running on our setup:
 
 <!-- // TODO: IMAGE Add gif -->
 

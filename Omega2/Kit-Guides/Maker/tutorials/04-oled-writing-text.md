@@ -7,12 +7,13 @@ order: 4
 ---
 ## Writing Text to the OLED Display {#maker-kit-oled-writing-text}
 
-In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python library.
+In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python library. By the end, you'll be able to boot it up, and write whatever you wish!
 
 
 ### The OLED Display
 
 The OLED Expansion has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages.
+
 ![display](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-column-rows.png)
 
 Each page consists of 8 horizontal pixel rows. When a byte is written to the display, the Least Significant Byte (LSB) corresponds to the top-most pixel of the page in the current column. The Most Significant Byte (MSB) corresponds to the bottom-most pixel of the page in the current column.
@@ -31,6 +32,8 @@ This tutorial does not require you to use a breadboard as the OLED Expansion is 
 * 1x OLED Expansion plugged into Expansion Dock above
 
 ### Writing the Code
+
+The code we'll be writing is fairly simple, we'll be calling on the `oledExp` class from the `OmegaExpansion` Python Module and using the built in functions to print a bunch of stuff.
 
 Create a file called `MAK04-oledWriteText.py` and paste the following code in it:
 

@@ -33,7 +33,9 @@ The OLED Expansion is a complete circuit. So for this tutorial, we just need to 
 
 ### Writing the Code
 
-Copy the code below into a file named `MAK06-drawingLines.py`, and run it on your Omega to see it in action.
+Today's code will start to dip into low level graphics programming! On some level, all digital screens operate much the same way: turning pixels on and off. But the devil is always in the details. For our OLED screen, we can draw directly to the screen by moving the **cursor** and writing a byte. However this programm will actually write to a **buffer** first, then draw the entire screen in one go, we'll explain in detail in a bit.
+
+First, lets get to coding: copy the code below into a file named `MAK06-drawingLines.py`, and run it on your Omega to see it in action.
 
 <!-- TODO: fix the code to be less ugly, functionalise user input retreival -->
 
@@ -106,8 +108,6 @@ def main():
 
     # creating a buffer
     b = buffer()
-
-    // TODO: create a function for user input, replace all of these repeated While (True) code blocks
 
     while (True):
         # Obtain the orientation of the line
@@ -191,12 +191,15 @@ In the script provided, we create a `buffer` class which handles all the drawing
 
 In the main function, we call an infinite loop to continuously populate the buffer with new lines as dictated by the orientation, which row or column it is located in, and length - this happens in lines 64 to 138. At the end of the loop, we call `b.writeByteToBuffer` to update the buffer with the new line we wish to draw, and `b.drawToScreen` to actually make it appear. The lines drawn previously are actually held within the buffer `b`, and since `oledExp.clear()` is never called until the end, the buffer will remember all the previously drawn lines and display them when the `b.drawToScreen` is called.
 
+The reason we use a buffer is because actually drawing to the screen is computationally expensive, so we populate the buffer with as much correct information as possible (the entire line) and then draw it all in one go to maximize efficiency. The same process happens in your computer when playing games, the buffer gets filled and edited by the game code iteratively: drawing a tree first, then filling in your character, and so on. When update time comes, the entire buffer is sent to the screen and displayed.
+
 #### Dynamic Errors
 
 You'll probably notice there's a *lot* of error checking and user direction in this script. This is because the program asks for many different types of input. To make it worse, previous input will change the way future input is interpreted. There's no new concepts regarding input and output here, but as a taste, this is how complicated even 'simple' commandline tools can become.
 
 ### Flexibility versus Cost
 
-The OLED screen we use is pretty different from the ones you have on the lastest smartphones and tablets. It isn't design to be addressable through exact pixel co-ordinates (as you already know). This is because it is designed to be operated by the I2C protocol, which reads and writes bytes only. For ease of manufacture, and to keep the cost under control, the screen accepts directions byte-by-byte. There's a great way to draw pixel by pixel using a pixel-based buffer and translating it to bytes. If you want to go further, try implementing it and change the script to draw single-pixel horizontal lines!
+The OLED screen we use is pretty different from the ones you have on the lastest smartphones and tablets. It isn't designed to be addressable through exact pixel co-ordinates (as you already know). This is because it is designed to be operated by the I2C protocol, which reads and writes bytes only. For ease of manufacture, and to keep the cost under control, the screen accepts directions byte-by-byte. To make the code simple to understand, we followed suit, and drew only bytes - that's why the horizontal lines are eight pixels wide. There's definitely way to draw pixel by pixel using a pixel-based buffer and translating it to bytes. If you want to go further, try implementing it!
+
 
 Next time, we [make some noise](#maker-kit-relay-controlling-circuits).
