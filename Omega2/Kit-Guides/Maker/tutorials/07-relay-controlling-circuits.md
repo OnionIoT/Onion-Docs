@@ -87,7 +87,7 @@ Here's a picture of our completed circuit.
 <!-- // TODO: IMAGE of completed circuit -->
 
 
-#### Writing the Code
+### Writing the Code
 
 
 Create a file called `MAK07-relayCircuit.py` and paste the following code in it:
@@ -149,7 +149,7 @@ if __name__ == "__main__":
 
 ```
 
-#### What to Expect
+### What to Expect
 
 <!-- TODO: IMAGE or gif of project working -->
 

@@ -58,7 +58,7 @@ Now that you have all six LEDs plugged in, let's connect a jumper wire from the 
 
 Like previously mentioned, it's just six copies of our first experiment connected to multiple GPIOs.
 
-The circuit diagram for our first experiment looks like this:
+For reference, the circuit diagram for our first experiment looks like this:
 <!-- // TODO: CIRCUIT DIAGRAM: circuit showing this experiment -->
 
 Your circuit should look something like this:

@@ -30,10 +30,6 @@ If you're curious to learn more about voltage dividers, Sparkfun has written a f
 
 So far we've been turning LEDs fully on and fully off, but it's also possible have LEDs dimmed to somewhere between on and off. This is accomplished by turning the LED on and off many times in a second, the brightness of the LED depends on how long the LED is allowed to remain on. That's precisely what we're going to do in this experiment: we're going to use Pulse Width Modulation (PWM) to create a dimming effect on an LED.
 
-
-// TODO: don't think we need the pwm duty cycle and period sections here, let's split them up
-// TODO: need to make sure wherever pwm is included, we also add in the new file that contains just the duty cycle and period sections
-
 <!-- PWM Signals -->
 ```{r child = '../../shared/pwm.md'}
 ```
@@ -56,7 +52,7 @@ Prepare the following components from your kit:
 * USB Micro-B cable for power
 * Breadboard
 * Jumper wires
-* 1x 10KΩ Trimpot
+* 1x 10KΩ Trimmer Potentiometer
 * 1x 200Ω Resistor
 * 1x LED color of your choice!
 
@@ -65,10 +61,20 @@ Prepare the following components from your kit:
 We will be building the following circuit:
 <!-- // TODO: include a circuit diagram -->
 
+First, let's set up the circuit:
+
 1. First plug the potentiometer on the breadboard with each of the three pins in a different row.
-2. Connect the middle pin of the trimpot to the analog pin (`A0` defined in code) on the Arduino dock using a jumper wire.
-3. Connect one of the remaining pin to `GND` and the other one to `5V` (the polarity does not matter).
-4. Connect the anode of LED to a PWM pin (`~9` defined in code) on the Arduino Dock. Connect the cathode to the ground through the 200Ω current limiting resistor.
+1. Connect the left pin of the trimpot to the `GND` rail.
+1. Then plug the LED across two different rows, make sure to note where the cathode and anode are!
+1. Now connect the cathode to the 200Ω resistor, the other end of the resistor goes into the `GND` rail.
+
+Now the circuit is all set up, let's connect it to the Arduino Dock.
+
+1. With the connections to `GND` rail in place, let's connect the rail to `GND` on the Arduino dock.
+1. Connect the middle pin of the trimpot to the analog pin (we'll be using `A0`) on the Arduino dock using a jumper wire.
+1. Connect the anode of LED to a PWM pin (`~9` defined in code) on the Arduino Dock.
+1. Lastly, we'll connect the right pin of the trimpot to `5V` on the Arduino Dock.
+
 
 If all goes well, your circuit should look something like this:
 

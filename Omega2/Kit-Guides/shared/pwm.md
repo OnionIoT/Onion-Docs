@@ -1,42 +1,7 @@
 ### Pulse Width Modulation
 
-Pulse Width Modulation (PWM) is a technique of producing varying analog signals from a digital source. In essence, it involves turning a digital signal on and off at regular intervals, creating an easy method to control how much power gets supplied to a component. In our case that component will be an LED and the less power we provide, the dimmer the light the LED will produce.
+Pulse Width Modulation (PWM) is a technique of producing varying analog signals from a digital source. Analog signals vary within a range by definition - not just a binary state as digital output would be. PWM is the simplest technique to deliver this kind of signal. It works by pulsing a digital signal and using the percentage of time the signal is 'HIGH' as the analog output. This means the average voltage output can be dynamically changed even if the voltage at any given instant is still only 'HIGH' or 'LOW'. There are some limitations to this method, but it's very cheap to produce and has solid performance within its operating range.
+
+>For the curious, PWM actually converts a binary **voltage** signal into an analog **current** signal.
 
 <!-- // TODO: GRAPHIC showing 3 or 4 pwm signals with different duty cycles -->
-
-#### Duty Cycle
-
-In this context, the Duty Cycle indicates what percentage of the time a signal is ON (at logical high - high voltage).
-
-![pwm signal duty cycle](http://www.bristolwatch.com/picaxe/images/io43.gif)
-
-Consider a PWM signal with a 25% duty cycle: it will be **on** for 25% of the time and **off** for 75% of the time.
-
-Figuring out the duty cycle is a piece of cake, let's go over the main components:
-
-* The Time On, T<sub>on</sub>, is the amount of time the signal is **on** (also known as the *pulse width*)
-* The Time Off, T<sub>off</sub>, is the amount of time the signal is **off**
-* The total cycle time, T<sub>cycle</sub>, is the sum of T<sub>on</sub> and T<sub>off</sub>
-
-The duty cycle can be calculated as follows:
-
-$$DutyCycle = {\frac{T_{on}}{T_{on}+T_{off}}}\times100\%$$
-
-#### Period
-
-Indicates the amount of time (usually in milliseconds) for each part of the cycle.
-The Time On, T<sub>on</sub> in the diagram above is the time the signal is high. This is also known as pulse width.
-Similarly, Time Off, or T<sub>off</sub> is the time the signal is low.
-
-The Cycle time corresponds to the overall period of the PWM, or T<sub>on</sub> + T<sub>off</sub>.
-
-The **frequency** is the inverse of period:
-
-$$Frequency = {\frac{1}{Period}}$$
-
-For example, a PWM signal with a total cycle time of 20ms has a frequency of 50 Hz. All this means is that the signal will complete 50 full cycles in a second.
-
-<!-- TODO: this Application section is unclear/would be confusing to a beginner -->
-<!-- #### Application
-
-The power of PWM signals is that they allow you to deliver a continuous range of voltages between the digital Hi and Low values. -->

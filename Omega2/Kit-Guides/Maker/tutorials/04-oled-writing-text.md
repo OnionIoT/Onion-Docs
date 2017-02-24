@@ -30,7 +30,7 @@ This tutorial does not require you to use a breadboard as the OLED Expansion is 
 * 1x Omega2 plugged into Expansion Dock
 * 1x OLED Expansion plugged into Expansion Dock above
 
-#### Writing the Code
+### Writing the Code
 
 Create a file called `MAK04-oledWriteText.py` and paste the following code in it:
 
@@ -78,7 +78,7 @@ if __name__ == '__main__':
 	main()
 ```
 
-#### What to Expect
+### What to Expect
 
 <!-- // TODO: IMAGE add gif of the results -->
 

@@ -21,8 +21,6 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-// TODO: expand on this, take a look at the starter kit multiple leds experiment for an example, can borrow heavily from there
-
 While the individual LEDs will be connected in exactly the same way as in the first experiment, we're going to be using the rails on the breadboard to make the wiring a little simpler. Here rails aren't of the train variety - they're the four vertically connected columns on each side of the breadboard. You'll see in a second why they're super handy.
 
 First, grab six LEDs and let's do the following for each one:
@@ -33,9 +31,9 @@ First, grab six LEDs and let's do the following for each one:
 
 >You can probably guess that the column labelled `+` will be used to share a power supply, you'll encounter it as the `Vcc` rail often in the future!
 
-To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Arduino Dock. We'll be using six digital pins (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector).
-
 Now that you have all six LEDs plugged in, let's connect a jumper wire from the `GND` rail on the breadboard to a Ground pin on the Omega - those will be labelled `GND`. Since the power rail is connected vertically, what we've done is connect **all** of the LED cathodes to the Ground using just **one pin** on the Arduino dock
+
+To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Arduino Dock. We'll be using six digital pins (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector).
 
 Once your done, the circuit should look something like this:
 
@@ -43,7 +41,6 @@ Once your done, the circuit should look something like this:
 
 ### Writing the Code
 
-// TODO: write an introduction to the code
 
 <!-- // write an arduino sketch that makes the LEDs turn on one-by-one going left to right, and then turn off, again going left to right
 // look to the multiple leds article in the starter kit for details -->
@@ -93,7 +90,6 @@ Your line-up of LEDs will be essentially chasing it's tail: the left-most LED wi
 
 ### A Closer Look at the Code
 
-// TODO: add a little more life to this intro, talk about how it's different from the first experiment, etc
 
 In this code, we get getto see the difference adding more LEDs make. Turns out not too much! We use a couple of new concepts to do more things with very similar code - we declared the pins as an **array**, and used **for-loops** to do the same thing over and over again. Let's take a look.
 

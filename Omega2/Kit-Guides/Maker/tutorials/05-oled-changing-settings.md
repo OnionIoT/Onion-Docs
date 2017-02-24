@@ -27,7 +27,7 @@ The scrolling setting allows you to move the content across the screen in a wrap
 
 Plug your Omega2 and the OLED Expansion into the Expansion Dock like in the previous tutorial.
 
-#### Writing the Code
+### Writing the Code
 
 Create a file called `MAK05-oledChangeSettings.py` and paste the following code in it:
 
@@ -98,7 +98,7 @@ if __name__ == '__main__':
 	main()
 ```
 
-#### What to Expect
+### What to Expect
 
 When you run the program, the different possible commands that can be entered will be printed out on the command line. The commands will interactively change the display settings. For example, to dim the display, enter `dimDisplay`.
 
