@@ -38,8 +38,6 @@ Using the shift register and a few additional GPIOs from the Omega, we will cont
 #### Hooking up the Components
 
 
-<!-- // TODO: pls fix up this sentence, i changed it but it needs to be nice-ified -->
-
 First things first, we'll be building on our previous experiment. 
 
 * If you've done the previous experiment, keep the shift register wired up just like you had it.
@@ -65,7 +63,9 @@ We've included a diagram below for reference instead of instructions, as this on
 
 <!-- TODO: IMAGE wiring diagram of 7-seg to shift register and dock -->
 
-Once you've connected the 7-segment display to the Omega and shift register, it's all done!
+Once you've connected the 7-segment display to the Omega and shift register, it's all done! Your circuit should look like this:
+
+<!-- TODO: photo of completed circuit -->
 
 ``` {r child = '../../shared/wiring-precautions.md'}
 ```
@@ -104,8 +104,7 @@ import time
 # seven segment class
 class SevenSegment:
     # class attribute
-    # dictionary mapping each alphanumeric character to the binary values that should be sent to the shift register
-    
+    # dictionary mapping each alphanumeric character to the bytestring that should be sent to the shift register
     digitMap = {
     "0": "00111111",
     "1": "00000110",
@@ -153,38 +152,66 @@ Now that we have a class to control the 7-seg display, let's write our main scri
 import registerClass
 from sevenSegDisplay import SevenSegment
 import time
+import sys
 
 # instantiate 7-segment object
 sevenDisplay = SevenSegment(11,18,19,0)
 
+errorMsgs = {
+    "missingArguments": "Please input a hex number, eg. 0x12ab",
+    "tooManyArguments": "Too many arguments. Please input only one hex number.",
+    "tooShort": "Hex number is too short. Please include 4 digits after the 0x.",
+    "tooLong": "Hex number is too long. Please include only 4 digits after the 0x.",
+    "notHexNumber": "Input string is not a valid hex number. "
+}
+
 def __main__():
     # if script was called with no arguments
     if len(sys.argv) == 1:
-        print "Please input a hex string, eg. 0x12ab"
+        print errorMsgs["missingArguments"]
         return -1
 
     # if script was called with too many arguments
     elif len(sys.argv) > 2:
-        print "Too many arguments. Please input only one hex number."
+        print errorMsgs["tooManyArguments"]
         return -1
 
     # read the hex string from the argument
+    # extract the digits following the 0x
+    # convert any uppercase letters to lowercase
     inputHexString = sys.argv[1]
+    inputHexString = inputHexString.split("x")[1]
+    inputHexString = inputHexString.lower()
     inputLen = len(inputHexString)
 
-    # attempt to print out the hex string
+    # validate the string's length
+    if inputLen < 4:
+        print errorMsgs["tooShort"]
+        return -1
+    elif inputLen > 4:
+        print errorMsgs["tooLong"]
+        return -1
+    
+    # check if valid hex digits (09, a-f)
+    try:
+        int(inputHexString, 16)
+    except ValueError:
+        print errorMsgs["notHexNumber"]
+        return -1
+
+    # attempt to display out the hex string
     while True:
         for i in range(inputLen):
-        	sevenDisplay.showDigit(i,inputHexString[i])
+        	sevenDisplay.showDigit(i,str(inputHexString[i]))
+
+# for running from the command line
+if __name__ == '__main__':
+    __main__()
 ```
-
-In our while loop, we're doing the following:
-
-1. 
 
 The for loop here is doing something really neat with only one line of code:
 
-* The `showDigit()` function is called with a digit number `i` and digit `characterinputHexString[i]` to be displayed.
+* The `showDigit()` function is called with a digit number `i` and digit character `inputHexString[i]` to be displayed.
 * In this function, the scan pin for the current digit is enabled and is ready to light up.
 * We then send to the shift register the binary values corresponding to the segments for the current digit.
 
@@ -192,101 +219,133 @@ We then cycle through all of the digits and repeat the steps above for each one.
 
 To see it in action, make sure you have `registerClass.py`, `sevenSegDisplay.py` and `STK08-seven-seg-display.py` in your `/root/` directory.
 
-Let's choose a hexadecimal number to display on the 7-seg. Come up with a string in this format: `0x12ab`, where the four digits 12ab can be any number from 0 to 9 or any lowercase letter from a to f. Then run the following command, replacing `YOURHEXNUMBERHERE` with your string:
+Let's choose a hexadecimal number to display on the 7-seg. Come up with a string that looks like this: `0x12ab`, where the four digits **12ab** can be any number from 0 to 9 OR a letter from A to F. Then run the following command in the terminal, replacing `YOURHEXNUMBERHERE` with your string:
 
 ``` bash
 python /root/STK07-seven-seg-display.py YOURHEXNUMBERHERE
 ```
 
-This numbering system is known as **hexadecimal** or base 16, where each digit can have a value from 0 - 15. This is different from our everyday decimal or base 10 system, where each digit can have a value from 0-9. Hexadecimal ("hex") is very useful in expressing binary numbers with few digits: for example, the binary number `0b11000000` (192 in decimal), can be expressed in hex as `0xC0`!
+This numbering system is known as **hexadecimal** or base 16, where each digit can have a value from 0 - 15; the numbers 10 to 15 are represented by the letters A to F respectively. This is different from our everyday decimal (base 10) system where each digit can have a value from 0-9. Hexadecimal ("hex" for short) is very useful in expressing binary numbers with few digits. For example, the eight-digit binary number `0b11000000` (192 in decimal) can be expressed in two digits in hex as `0xC0`!
 
 ### What to Expect
 
-// TODO: this section was 100% phoned-in, rewrite this part with some life and not sentence fragments
-The Python code above should ask you for a hex string, then print the digits one by one on to the 7 segment display. Infinite loops here as well, and you can exit with `Ctrl-C`
+If run correctly, the code above should print the digits one by one on the 7-segment display. If the hex number was not entered in correctly, it will print an error message and exit.
 
-When running the main script, it should ask you for a 
+The code runs in an infinite loop which you can exit with `Ctrl-C` (`Cmd-C` for Mac users).
 
 <!-- // TODO: gif: add a gif of what happens -->
 
-Now you may be wondering if what you saw is expected behaviour - yes. The digits on the 7-seg will be flickering slowly enough for you to notice. However, you probably guessed that it really should be displaying them all at once.
+Wow, what's up with that?
+
+You may be wondering if what you saw is expected behaviour - the answer is **yes**. The digits on the 7-seg will be flickering slowly enough for you to notice. However, you probably guessed that it really should be displaying them all at once.
 
 ### A Closer Look at the Code
 
-// TODO: let's describe why the Python implementation was slow, and then after this H3 section, describe what is to be done differently and then show the bash implementation
+This code couldn't exactly do what we needed it to, but there are still some important concepts shown here.
 
-To display numbers on the 7-Segment display, we mapped the outputs to binary using a **dictionary**. We put a class inside a class to better encapsulate the operation of the physical components. However the end result was limited by the software we used: we wanted and expected thed 7-segment display to light up all at once, but our script couldn't make it happen fast enough. In fact there's no way in Python to get our inteded behaviour without basically calling the shell commands used in the script through Python.
+To display numbers on the 7-seg, we mapped the characters to binary bytestrings using a **dictionary**. We also **included a class within another class** to better abstract the operation of the physical components. 
 
+However, the end result was limited by the software we used: we wanted and expected the 7-segment display to light up all at once, but our script couldn't make it happen fast enough. This is because the underlying `onionGpio` class is written so that it accesses the filesystem multiple times for each GPIO write, and the Omega cannot run these commands fast enough.
 
 #### Software Limitations
 
-// NOTE: this is good, but it's not really a software limitation, it's more of a library specific thing
-// * the library needs to:
-//  1. take control of the gpio (export the GPIO)
-//  2. set the direction to output
-//  3. set the output value
-//  4. release the gpio (unexport the gpio)
-// * each of the above actions requires a file write, so for each segment we set, there are 4 file writes
-// TODO: update this section to mention the above (and to go inline with the fact that we haven't yet introduced the bash script)
+In this experiment, the software and hardware interact to produce behaviour we didn't intend. The code runs as well as it possibly can, and the hardware does its best to operate from the signals its given, but ultimately the result is not workable. The root cause is the way the `onionGpio` library is programmed. 
 
+The GPIOs are operated by reading and writing to files. Every time we call `onionGpio.setValue()` on a GPIO, the library does the following:
 
-In this experiment, software and hardware come together to produce behaviour we didn't intend. The code runs as well as it possibly can, and the hardware does its best to operate from the signals its given, but it ultimately doesn't make the result workable. The root cause is the way the libraries are programmed. The GPIOs are operated by reading and writing to files, and the `onionGpio` module operates this in a very safe and consistent way through our C library - meaning it's quite slow.
+1. Takes control of or "exports" the GPIO in the filesystem
+1. Sets the GPIO's direction to output
+1. Sets the GPIO's output value
+1. Releases or "unexports" the GPIO for future use
+
+The `onionGpio` module does this in a very safe and consistent way via our C library. However, this also means that it's quite slow and not fast enough for our display.
 
 #### Classes using Classes
 
-Despite this particular experiment's outcomes, encapsulation is still good practice. The way we implemented the `SevenSegment` and `ShiftRegister` classes is a good demonstration of why.
+You'll notice that we declare an object of the `ShiftRegister` class within the `SevenSegment` class. This is a good example of the following concepts:
 
-The `SevenSegment` class makes use of code that already exists, and builds upon that to fulfill a niche functionality. Here, we instantiate the `ShiftRegister` class within the `SevenSegment` class - this means `SevenSegment` can make use of all the functionality of the internal `ShiftRegister` object without being a shift-register.
+* **Code reusability:** Earlier we wrote an independent class for the shift register, but now we're using it like a Lego block to build something new. This lets us focus on new code for the 7-seg. We can do this for any other device that requires a shift register without writing another copy of the class.
+* **Abstraction:** The `ShiftRegister` class gives us full control over a shift register device. However, when we're working with a 7-seg, we don't really care about the shift register anymore. At most, we should only have to tell the `ShiftRegister` object which GPIOs to use and it would take care of the rest while we work on translating text input into which LED segments to light up.
 
-Logically separating the devices like this makes it easier in complicated projects to think about the pieces working together, instead of what each individual line of code does. Our script can then call on the seven seg functions to display things without needing to bother with the intricasies of the shift register. Vice versa, we can use the shift register to do other things by directly instantiating an object from `ShiftRegister`.
-
-// TODO: need to adjust the above paragraph - it makes good points but they should be better organized to showcase the two ideas below:
-// * code-reusability: we wrote an independent class for the shift register and now we're just using it like a lego block to build something new. can just focus on the new code we need for the 7seg.
-// * abstraction: the shift register class allows us to use the shift register without needing to know the nitty-gritty of how it works. in this case we just need it to set certain outputs, we use the function to make that happen in one line and don't need to worry about how it happens. this type of thing makes it easier to think about how the different pieces of the project work together
+These ideas makes it easier to think about how different pieces of a project work together. This helps us focus on designing systems and logic rather than getting bogged down in the details.
 
 #### Dictionary
 
-// TODO: i like the parallel to real dictionaries but the fact that the key indexes a value needs to be more clear.
+So far we've been working with lists, which are collections of one or more data values in order. The values in lists are indexed by numbers, for example `students[3]`. However, there are times when we're more interested in giving these values meaningful names than working with them in order. Enter the **dictionary!**
 
-// TODO: umm, dictionaries can totally be changed after they're created...
+Dictionaries are data structures that contain **key-value pairs**. A key is a name or label, and the value is some data that you want to associate with that key; it could even be another dictionary! Dictionaries are indexed by their keys, for example `students["Bobby Tables"]`. 
 
-Also known as 'hash tables', though not strictly the same. Dictionaries work in programming much the same way as in real life. By keying a definition to a name or title, you can look it up. Python has a built-in dictionary data type, which we make use of here to map out letters and numbers to the shift. Dictionaries are **mutable**, meaning they can be changed after they are created.
+Let's look at the `digitMap` dictionary used to store the bytestrings for each character in the `SevenSegment` class:
 
-// TODO: note that the below was the original
-We use a dictionary here as a translation between string characters and the shift register representation of it. We can simply insert `digitMap[<character>]` to the shift register display function and let the `ShiftRegister` object sort out the rest without needing to copy-paste the binary code.
-// TODO: this is re-written:
-We use a dictionary here as a translation between characters and the value that needs to be written to the 7-segment display in order to display that character. When we insert `digitMap[1]` to the shift register display function, the function is actually getting the value indexed by `1` in the `digitMap` dictionary, so the function will get `00111111`, the value it needs to properly show a `1` on the display, and the code will still be very human readable.
-// TODO: need to explain the concepts we're introducing here very clearly, this would be very confusing to a beginner, if you're unsure of how something works, please ask before writting
+``` python
+digitMap = {
+    "0": "00111111",
+    "1": "00000110",
+    "2": "01011011",
+    "3": "01001111",
+    "4": "01100110",
+    # and so on
+}
+```
 
+Instead of creating individual variables for each and every character, we can use the dictionary to act as a translator between characters and the values that need to be written to the shift register. if we wanted to display the character `1`, we send the required bytestring to the shift register by calling `digitMap["1"]` instead of typing `00000110`; the same goes for any other character. 
+
+We can use this to keep our code neat and short. By using the values of other variables as keys, we can turn this:
+
+``` python
+if character == "a":
+    shiftReg.outputBits("01110111")
+elif character == "b":
+    shiftReg.outputBits("01111100")
+# and so on
+```
+
+Into this:
+
+``` python
+shiftReg.outputBits(SevenSegment.digitMap[character])
+```
+
+>In Python, dictionary keys can be strings, integers, or tuples. In the digitMap dictionary, we use strings to make it easy to work with other functions that send strings, for example from command line arguments in our main script.
+
+Dictionaries work similarly in programming as they do in real life: You can find a definition (value) by looking up a name or title (key). Dictionaries are also **mutable**, meaning that you can add new key-value pairs, or modify existing ones!
+
+Dictionaries have similar concepts in other programming languages, such as `Objects` in JavaScript and `structs` in C.
 
 ### A Better Way?
 
-// TODO: reiterate that our Python implementation didn't produce a nice result, include a brief recap as to why,
-// TODO: say what we're going to be doing differently:
-//  * using bash (need a few sentences about bash, how its basically a bunch of command line utilities and therefore it runs really fast)
-//  * we've changed how we're going to be accessing/controlling the GPIOs
-If you'd like to see how that looks, we've provided a shell script below that does this properly.
+Our Python implementation couldn't perform as fast as we needed it due to how the `onionGpio` library performs multiple file writes when working with the GPIOs. However, we have another tool up our sleeve: **ash**!
 
+ash, or the Almquist Shell, is a lightweight Unix shell. One of its variants, BusyBox ash, is included in the Omega's firmware and can be run by calling `sh`. This tool is used for running **shell scripts**, which are collections of terminal commands structured like a program.
+
+We've changed how we're going to be accessing and controlling the GPIOs by working with the filesystem directly. If you'd like to see how that looks, we've provided a shell script below that does this properly.
+
+Create a file called `STK07-ash-seven-segment-display.sh` and paste the following in it:
 
 ``` bash
 #!/bin/sh
 
+# read the command line argument
 input=$1
+# get the length of the input string
 len=${#input}
 
+# variables for each character in the input string
 pref1="$(echo $input | sed -e 's/^\(.\).*/\1/')"
 pref2="$(echo $input | sed -e 's/^.\(.\).*/\1/')"
 chr1="$(echo $input | sed -e 's/^..\(.\).*/\1/')"
 chr2="$(echo $input | sed -e 's/^...\(.\).*/\1/')"
 chr3="$(echo $input | sed -e 's/^....\(.\).*/\1/')"
 chr4="$(echo $input | sed -e 's/^.....\(.\).*/\1/')"
-# TODO: add a check for chr5; if chr5 is not blank, exit (4 digits only)
 
+# check if the input string is formatted correctly
 if  [[ "$len" -ge "7" || "$pref1" != "0" || "$pref2" != "x" ]]; then
     echo "Please input a hex number in the following format: 0x12ab"
     exit
 fi
 
+# digit mapping
+# there is no dictionary-type data structure in ash, so must write these by hand
 mapDigit(){
     if [ "$1" == "0" ]; then
         echo "0 0 1 1 1 1 1 1"
@@ -326,6 +385,7 @@ mapDigit(){
     fi
 }
 
+# map the digits in the input string to their bytestrings
 dig1=$(mapDigit $chr1)
 dig2=$(mapDigit $chr2)
 dig3=$(mapDigit $chr3)
@@ -333,8 +393,8 @@ dig4=$(mapDigit $chr4)
 
 # setup shift register pins
 echo 1 >/sys/class/gpio/export # data
-echo 3 >/sys/class/gpio/export # latch
 echo 2 >/sys/class/gpio/export # clock
+echo 3 >/sys/class/gpio/export # latch
 
 # setup digit pins
 # all directions are from left
@@ -388,14 +448,16 @@ initDigPins (){
 	echo 1 >/sys/class/gpio/gpio11/value
 }
 
+# initialize the digit pins
 initDigPins
 
-
-# play around with this to see how the gpio#s correspond to the digits
+# loop forever
 while true; do
 
+# turn one digit on and write to the shift register
 echo 0 >/sys/class/gpio/gpio0/value
 setOneDig $dig3
+# then turn it off and prepare to switch to the next digit
 echo 1 >/sys/class/gpio/gpio0/value
 
 # enable the digit
@@ -413,18 +475,34 @@ echo 1 >/sys/class/gpio/gpio18/value
 done
 ```
 
-To run it, copy the code to `/root/STK07-seven-seg-display.sh` then run the following with a hex number as the first argument:
+Now run this script in the same way as the Python script before, except replace `python` with `sh`:
 
 ```
-sh /root/STK07-seven-seg-display.sh [hex number]
+sh /root/STK07-ash-seven-seg-display.sh YOURHEXNUMBERHERE
 ```
 
+#### What to Expect
 
-// TODO: include a section describing the above code
+You should now see the characters display without flickering, much better than last time!
 
-// TODO: include a note saying that this type of code necessitates a deeper understanding of how the hardware and software interact
+<!-- TODO: gif -->
 
+#### A Closer Look at the Shell Script
 
+This shell script looks a lot different from our Python code! The biggest difference is that there are **no lists nor dictionaries** in ash, and that we only **export the GPIOs once**.
 
+##### No Lists Nor Dictionaries
+
+In our Python script, we were able to access each individual character of the input hex string by simply treating the string as a list and iterating over each character, as in `inputHexString[i]`. However, ash doesn't support lists and so we have to load each character into its own variable, `chr1` to `chr4`. This is done using the `sed` command; for a full reference of this powerful tool, check out this [online tutorial](http://www.grymoire.com/Unix/Sed.html).
+
+The same goes for our digit map. Since we can't simply call `digitMap[character]`, we wrote a function `mapDigit()` that takes a character as an argument and returns the corresponding bytestring if found.
+
+##### Exporting the GPIOs Once
+
+Since we know that the GPIOs are all supposed to be outputs only, we can export them only once at the beginning and not have to worry about freeing them up for other purposes later.
+
+The rest of the script is similar to the Python implementation where we repeatedly change the scan pin and send different values to the shift register. This is faster because we only now have to access the filesystem **once** to set the GPIOs each time!
+
+>Writing this type of code requires a deeper understanding of how the hardware and software interact. If you're curious, you can take a look at some examples in our [Developing Using the Command Line Guide](#developing-using-the-command-line).
 
 Next: [Reading a One-Wire Temperature Sensor](#starter-kit-temp-sensor)

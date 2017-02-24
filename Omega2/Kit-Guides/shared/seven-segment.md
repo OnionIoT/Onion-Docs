@@ -11,3 +11,5 @@ Now, if you're controlling a 7-segment display that has more than one digit, eac
 This isn't really useful, so each digit has its own **scan** pin that groups segments for each digit together. This pin then controls whether the digit's LEDs can be turned on or not.
 
 To control the segments on a single-digit 7-seg display, you need at least seven GPIOs. And in order to control multiple digits at once, we need one additional GPIO for each scan pin. This can really add up, so we can use a shift register to increase the number of output pins available to us. This is usually how 7-segs are incorporated into a project in order to minimize the number of pins used on the controller.
+
+7-segment displays are sometimes called "7-segs" for short.
