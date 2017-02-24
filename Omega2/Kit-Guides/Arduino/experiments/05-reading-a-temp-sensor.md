@@ -21,8 +21,9 @@ The resolution of the measurement also depends on how the microcontroller interp
 
 ### Building the Circuit
 
-// TODO: spice up this sentence a bit, so dry rn
-For this experiment we will be using the TMP36 temperature sensor to measure the temperature in Celsius and Fahrenheit. We will connect the temperature sensor to an analog pin of the ATmega.
+<!-- // TODO: spice up this sentence a bit, so dry rn -->
+
+For this experiment we will be using the TMP36 temperature sensor to perform its sole intended job - measuring temperature. We will connect the temperature sensor to an analog pin of the ATmega, and see if we can get a reading.
 
 #### What You'll Need
 
@@ -36,17 +37,25 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-// TODO: add an intro
-// TODO: add a circuit diagram of the circuit we will be building
+<!-- // TODO: add an intro -->
+<!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
+Not a lot of components need interaction in this experiment, so the build should be pretty straightforward:
 
 1. Plug the TMP36 onto the breadboard.
-2. When facing the flat side of the device, connect the left pin to 5V, the middle pin to analog pin A0, and the right pin to ground (GND).
+2. When facing the flat side of the device, connect the right pin to ground (`GND`), the middle pin to analog pin `A0`, and the left pin to `5V`.
 
-// TODO: add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look'
+<!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
 
 ### Writing the Code
 
-// TODO: add an intro to the code
+<!-- // TODO: add an intro to the code -->
+
+This program will do three things:
+1. Read the sensor's temperature.
+2. Convert the data to Celcius and Fahrenheit.
+3. Print it out so we can decide what to wear!
+
+To get it done, copy the code below to your IDE, and flash to your Arduino Dock.
 
 ``` c++
 //the scale factor of TMP36 (temperature sensor) is 10 mV/°C with a 500 mV offset to allow for negative temperatures
@@ -64,7 +73,7 @@ void loop()
  int reading = analogRead(sensorPin);  
 
  // convert the analog reading (0 to 1023) to voltage (0 - 5V)
- float voltage = reading * 5.0;
+ float voltage = (float)reading * 5.0;
  voltage /= 1024.0;
 
  // print out the voltage to Omega2
@@ -82,42 +91,79 @@ void loop()
 }
 ```
 
-#### What to Expect
+Once you flash the code, you'll be able to see the output through the Omega's terminal - details below!
 
-<!-- // make the omega connect to the microcontroller using uart1 (link to the article), read the temperature data -->
-The ATmega will read the output of the temperature sensor and convert it to degrees celsius and fahrenheit. Then, it will send the voltage output of the temperature sensor and the converted degrees to the Omega through serial communication using UART1. We can use the following command line on our Omega to read the serial output of the ATmega:
+### What to Expect
+
+We can use the following command line on our Omega to read the serial output of the ATmega:
 
 ```
 cat /dev/ttyS1
 ```
 
-#### A Closer Look at the Code
+<!-- // make the omega connect to the microcontroller using uart1 (link to the article), read the temperature data -->
+
+The ATmega will read the output of the temperature sensor and convert it to degrees celsius and fahrenheit. Then, it will send the voltage output of the temperature sensor and the converted degrees to the Omega through serial communication using UART1.
+
+
+### A Closer Look at the Code
 
 A few new things were introduced here, primarily the math operations and you may have noticed that we used the `float` variable type as well. We'll also go into some detail about serial communication between the ATmega microcontroller and the Omega.
 
-##### Serial Communication
+#### Serial Communication
 
-// TODO: add to this, mention how the Arduino Dock directly connects the Omega's UART1 serial port with the ATmega's serial port (there is a logic level shifter in between), talk about how this provides a great means of communication between the two devices. Only then dive into the specifics outlined below
+<!-- // TODO: add to this, mention how the Arduino Dock directly connects the Omega's UART1 serial port with the ATmega's serial port (there is a logic level shifter in between), talk about how this provides a great means of communication between the two devices. Only then dive into the specifics outlined below -->
 
-Let's first take a closer look at how we can communicate between the Omega and the ATmega. We initialize the serial communication between the Atmega and the Omega using `Serial.begin(9600)` where 9600 is baud rate. The baud rate is the rate (in bits/second) at which the data is being transferred over the serial port. Notice we didn't include the baud rate when we use `cat /dev/ttyS1` to read on the Omega side. This is because the default baud rate of cat is 9600. After the serial initialization, we use the built-in Arduino function `Serial.print()` to send data from the ATmega or `Serial.println()` when you need a new line.
+Serial communication, at the lowest level, is transmitting data using a single connection. The simplest example of this is morse code. The serial connections between our devices in this experiment are doing much more complicated things much faster, so we won't get into the details. Suffice to say there's always two parts to good serial communication - one party needs to set up to listen, while the other talks.
 
-For reading the analog signal from the temperature sensor, we use analogRead, similar to the previous tutorial when reading from the trimpot. Notice we are using a much longer delay (10 seconds) between the readings of the temperature sensor since the output from the temperature sensor changes very slowly.
+A more immediate example is the communicaiton between the sensor and the Dock. Here, the sensor will always be talking, so we set the Arduino Dock to listen. To listen, we use `analogRead()` - just like when we read the trimpot.
 
-##### Number Variable Types
+>We're using a much longer delay here since the output from the temperature sensor changes quite slowly.  Thus constantly calling a read isn't useful and only taxes the CPU needlessly.
 
-// TODO: write a section about the difference between int and floats, make sure to talk about how casting is required when performing math operations between floats and intensity
-// ie describe how you'll get different results between:
+Now let's take a closer look at how the Omega and the ATmega communicates. The Arduino dock has a serial communication line, and we've plugged that directly into the Omega's [UART1 ](https://docs.onion.io/omega2-docs/uart1.html)port when it's seated in the dock.  We initialize the serial communication between the Atmega and the Omega using `Serial.begin(9600)`. After the serial initialization, we use the built-in Arduino function `Serial.print()` to send data from the ATmega or `Serial.println()` when you need a new line. To listen in from the Omega side, the serial is connected to the UART1 port, which is mounted as a file, specifically `/dev/ttyS1`. Calling the `cat` command will start outputting the contents of the file to the command line - listening to the Serial talk from the ATmega!
+
+If you've used the ATmega's Serial connection before, you probaly see how convenient this is. Normally, you'd have to send the serial data through USB or some other port to a laptop or computer. With the Arduino Dock, you can simply plop your Omega + Dock somewhere and read the serial output over ssh - or even through the Onion Cloud!
+
+> The `9600` sent to initializethe serial is the baud rate. The baud rate is the rate (in bits/second) at which the data is being transferred over the serial port. Notice we didn't include the baud rate when we use `cat /dev/ttyS1` to read on the Omega side - this is because the default baud rate of cat is 9600.
+
+#### Number Variable Types
+
+<!-- // TODO: write a section about the difference between int and floats, make sure to talk about how casting is required when performing math operations between floats and intensity INTENSE -->
+
+<!-- // ie describe how you'll get different results between:
 //  * float var = someIntegerNumber / 5
 //  and
 //  * float var = someIntegerNumber / 5.0
-// use this to introduce the topic of casting, potentially change the code above
+// use this to introduce the topic of casting, potentially change the code above -->
 
-##### Math Operations
+Math can be just as tricky for computers! By nature, computers can only count whole numbers - it's pretty much all they do, really. However for applications that require precision or decimal points, they're not so great. In fact doing decimal point (or **float**) operations using counting numbers (**integers**) will get you serious errors if you need the correct results!
 
-// TODO: fix up the english here, the content is good but maybe create separation between the sentences that describe the calculation of each value (voltage, deg celsius, deg fahrenheit)
+The `float` type exists to allow accurate decimal math.
 
-The temperature sensor, when powered by 5V will output a voltage between (0V to 5V) to its middle pin, depending on what the temperature is. Analog read will take that voltage and converted it to a digital value (0 to 1023). So first we need to convert the digital value back to a voltage value between 0V and 5V. We can do that by mulitplying the digital value by 5 and divide by 1023. Notice the variable for the storing the digital value (0 to 1023) is an integer `int`; however, however the variable for storing the voltage is a `float`. This is because float variables will allow us to have decimal places.
+The internals of the `float` and `int` type aren't compatible though, so if you try to do something like:
+
+```c
+float var = 12/5;
+int   var = 12/5;
+float var = 12/5.0;
+float var = 12.0/5.0;
+```
+
+you'll get `2`, `2`, `2.4`, and `2.4` respectively. As you can imagine, gets very confusing very quickly. What's going on is the compiler is **casting** or not casting the numbers according to some hidden rules.
+
+In a nutshell, cast (or typecast) tells the compiler to convert one type into another. Generally, when you want accuracy, you want to operate with the most accurate types you have. So here, we want to cast our `int`s into `float`s first. We do this with `(float)reading` - the `(float)` in front signifies `reading` to be cast into a float. It's not actually needed to explicitly do the cast in code, as the compiler will cast automatically when you work with mixed types. But it's very good practice because it makes the code clear and readable.
+
+
+#### Math Operations
+
+<!-- // TODO: fix up the english here, the content is good but maybe create separation between the sentences that describe the calculation of each value (voltage, deg celsius, deg fahrenheit) -->
+
+When powered, the temperature sensor will output a varying voltage depending on what the temperature is. Analog read will take that voltage and converted it to a digital value (0 to 1023).
 
 From the TMP36 datasheet, temperature sensor has a scale factor of 10 mV/°C with a offset of 500mV to account for negative temperatures. This means, for example, the sensor will output 0.5V at 0°C, 0.51V at 1°C and 0.49V at -1°C. Using the the scale factor and offset, we can convert the voltage input to temperature in degree celsius. This is done by subtracting the voltage by 0.5 and multiplying by 100.
 
-We can convert the degree celsius value to degree fahrenheit by multiplying by (9/5) and adding 32.
+Before we can get our temperature with the calculation above, we need to convert the digital value back to a voltage value between 0V and 5V.
+
+We do this by mulitplying the digital value by 5 and divide by 1023. This is where casting and the `float` type comes in handy! We cast the `reading` to float, and then do the divsion so we can get our decimal places without loss of accuracy. The multiplication on the float will get us another float, so we keep the accuracy we wanted. Awesome!
+
+After we have our temperature calculated, we can easily convert it to Fahrenheit by multiplying by (9/5) and adding 32. 
