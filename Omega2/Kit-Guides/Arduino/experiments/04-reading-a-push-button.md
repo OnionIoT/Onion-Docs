@@ -1,12 +1,8 @@
-// TODO: general arduino dock: fix tenses and pluralization
-
 ## Reading a Push Button {#arduino-kit-reading-a-push-button}
 
 <!-- // description of what this experiment will accomplish and what we'll learn -->
 
-// TODO: try to see if this intro can be worded better
-
-So far, our programs have been continuously running and performing actions. In this tutorial, we will tell our program to only perform an action when we need it to! This will involve writing interrupt code that listen for an event and then trigger certain code to be run when the event happens. We will again be using physical user input to control our software. However this time instead of using a trimpot as input, we will be using a push button. Along the way, we're also going to learn about bitwise operations.
+So far, our programs have been looping continously without stopping . In this tutorial, we get it to stop and listen for once! We'll be writing code that will patiently listen for an event, and perform an action only when it happens. We will still be using physical input to control our software, however this time instead of a trimpot we will be using a push button. Along the way, we're also going to learn about bitwise operations.
 
 <!-- Push Button -->
 ```{r child = '../../shared/switches-push-button.md'}
@@ -68,13 +64,14 @@ Prepare the following components from your kit:
 
     <!-- // TODO: photo of button and debouncer circuit with LEDs only-->
 
-    * Connect one end of the switch to the 51kΩ resistor, and the other end of that resistor to 5V on Arduino Dock.
+    * Connect one end of the switch to the 51kΩ resistor
     * Connect the other end of the switch to negative (-) power rail .
     * Connect one end of the 5.1kΩ resistor to the same point where the switch and 51kΩ resistor are connected
     * Connect the other end of the 5.1kΩ resistor to one end of the 100nF capacitor.
     * Connect the other end of the capacitor to the negative (-) power rail.
 3. Connect the negative (-) power rail to ground (GND).
 4. Connect the point in the debounce circuit between the 5.1kΩ resistor and the capacitor to pin 2 of the Arduino Dock.
+1. Finally, connect the other end of the 51kΩ resistor to 5V on Arduino Dock.
 
 <!-- // TODO: photo of assembled circuit with Arduino-->
 
@@ -82,7 +79,11 @@ Prepare the following components from your kit:
 
 // TODO: Lazar to re-write this code
 
-``` c++
+The program for this experiment won't loop at all! Instead it'll setup a interrupt, and perform actions only when the interrupt is activated.
+
+Copy the code below and flash it to give it a spin.
+
+``` c
 int interruptPin = 2;       // the pin number connected to the push button interrupt
 int ledPins[] = {9, 8, 7, 6, 5, 4};       // an array of GPIO numbers with LED attached
 int pinCount = 6;           // number of GPIOs used
@@ -128,7 +129,9 @@ void setLED() {
 }
 ```
 
-#### What to Expect
+You know the drill, `SKA04-readingPushButton.ino`.
+
+### What to Expect
 
 When the button is pressed, the left most LED should turn on. For each additional button press, another led will turn on, going from left to right. When all leds are on and the button is pressed, all the LEDs will turn off at once. Additional button presses will repeat the previous actions.
 
@@ -136,15 +139,15 @@ When the button is pressed, the left most LED should turn on. For each additiona
 
 In addition, if we use the `cat` command on our Omega like previous tutorial, we will see a bitwise representation of our actual LEDs.
 
-// TODO: screenshot of the cat command showing the bitwise operations
+<!-- // TODO: screenshot of the cat command showing the bitwise operations -->
 
-#### A Closer Look at the Code
+### A Closer Look at the Code
 
 // LAZAR to read all the text below
 
 In this code, we implemented an more efficient method of read inputs called interrupt, where as in the previous tutorial we used the method of polling. Notice we use two `for` loops: one for setting all LED pins to output and another to turn all the LEDs off without any delay.
 
-##### Interrupt implementation
+#### Interrupt implementation
 
 Interrupts are are a more effecient way of reading input. Instead of continously reading the input (polling), we only read it when there's a change or when it is at a certain state (`HIGH` or `LOW`).  A `CHANGE` could be defined as the `RISING` (`LOW` to `HIGH`) and/or `FALLING` (`HIGH` to `LOW`) edge of the input signal. Interrupts reduces the need of extra computational process and saves a lot time.
 
@@ -154,7 +157,7 @@ The second parameter is the interrupt service routine (ISR). The ISR is a specia
 
 The last parameter of `attachInterrupt()` function is the condition in which the interrupt triggers, either HIGH, LOW, RISING, FALLING or CHANGE as described earlier in this section. For our case, we use FALLING since the debounce circuit inverts the state of the button: HIGH when not press and LOW when pressed. So whenever the button is pressed, the ISR function `setLED()` will be called. The release of the button would fit as the RISING condition and does not matter in our case.
 
-##### Bitwise operations
+#### Bitwise operations
 
 In this code we also added a byte variable `byteOfLEDs` to demonstrate how bitwise operation works. For in-depth reference, visit:
 
