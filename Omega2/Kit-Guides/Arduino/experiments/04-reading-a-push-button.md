@@ -12,7 +12,6 @@ So far, our programs have been looping continously without stopping . In this tu
 ```{r child = '../../shared/switches-debouncing.md'}
 ```
 
-// LAZAR: bookmark
 
 ### Interrupts
 
@@ -20,14 +19,16 @@ So far, our programs have been looping continously without stopping . In this tu
 //  - trigger for an action
 //  - requires an interrupt service routine (ISR) -->
 
-We can use a interrupt to our program to only perform an action when we need it to. An interrupt is a signal send to the microprocessor through hardware or software as a immediate trigger for an action. After the microprocessor has received the interrupt signal, it will immediately call a function called the interrupt service routine (ISR).
+An interrupt is a signal sent to a microprocessor or microcontroller through hardware or software that is an immediate trigger for a defined action. After the microprocessor has received the interrupt signal, it will stop what it is currently doing and will execute a function called the interrupt service routine (ISR). Once the ISR completes, the program will go back to executing what it was doing before the interrupt was received. When an interrupt is defined, the ISR must also be chosen.
+
+This is a powerful tool since we can use interrupts in our programs to perform an action only when a certain trigger, like a button input changing, is detected, while allowing the rest of the program to behave normally.
+
 
 ### Building the Circuit
 
-<!-- // push button connected as input
-// 5-8 leds connected -->
+// TODO: add a link to the multiple LEDs tutorial
 
-For this experiment we will be using the same components from the multiple LEDs tutorial (six LEDs, six 200Ω resistors, breadboard and jumper wires). In addition, we will connect a push-button along with its debounce ciruit to a ATmega pin which is capable of using external interrupts (only pin 2 or 3 for ATmega328). The push button will be used as input (either pressed or not pressed) and the LEDs will show the desired state of the output pins.
+For this experiment we will start with the circuit from the multiple LEDs tutorial and add a push-button along with it's debouncing circuit. The push-button will be connected to a ATmega pin which is capable of triggering external interrupts (only pin 2 or 3 for ATmega328). The push button will be used as input (either pressed or not pressed) and the LEDs will animate the the button presses
 
 #### What You'll Need
 
@@ -47,9 +48,8 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-<!-- //  * reiterate on the LED circuit, say we can repeat it
-//  * wiring of a push-button
-//    * needs to be wired to atmega gpio 2 or 3 so we can use it as an interrupt trigger -->
+// TODO: add an intro
+// TODO: re-order this part as discussed: circuit first, gnd, circuit -> omega connections, power
 
 1. Connect the LEDS and resistors the same way as in the multiple LED tutorial.
     * Plug in six LEDs onto the breadboard in parallel, each across the middle channel of the breadboard.
@@ -73,17 +73,7 @@ Prepare the following components from your kit:
 
 ### Writing the Code
 
-<!-- // desired action:
-//  * when the button is pressed an led turns on
-//  * for each additional button press, another led will turn on
-//  * when all leds are on and the button is pressed, turn all of the leds off
-
-// find a clever implementation for this, maybe for each button press shift in a 1 to a uint variable, when it reaches the max number of leds, have it reset to 0 - this part should be done in the ISR
-// each led is controlled by a specific bit in the uint variable, use bitwise operations to figure it out - this part will happen in the loop function
-
-// implementation:
-//  * write a function to implement the above
-//  * register that function as an interrupt service routine for the push button connected gpio -->
+// TODO: Lazar to re-write this code
 
 The program for this experiment won't loop at all! Instead it'll setup a interrupt, and perform actions only when the interrupt is activated.
 

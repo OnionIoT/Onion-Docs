@@ -80,8 +80,6 @@ The circuit diagram for our first experiment looks like this:
 
 Now we get to write the code that will make our circuit actually do something! That something will be blinking our LED!
 
-<!-- // TODO: rework this when 
-// when what? miiiike D: -->
 
 Let's make a new file `STK01-blink.py` to hold our code:
 
