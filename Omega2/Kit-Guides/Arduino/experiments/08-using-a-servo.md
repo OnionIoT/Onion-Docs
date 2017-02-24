@@ -1,10 +1,13 @@
 ## Controlling Servos {#arduino-kit-using-a-servo}
 
 <!-- // intro to using pwm to control servos, this experiment will involve controlling servos using physical buttons -->
-In this tutorial, we will use two push buttons to control two servos: a sub-micro sized servo and a standard sized servo. In addition, we will learn about object oriented programming by creating our own class for servo motors.
+In this tutorial, we will use two push buttons to control two servos: a sub-micro sized servo and a standard sized servo. In addition, we will learn about object oriented programming by creating our own class for servo motors. Nearly all servo motors accept PWM as input, so we'll be going a bit deeper down that rabbit hole here.
 
 <!-- pwm -->
 ```{r child = '../../shared/pwm.md'}
+```
+
+```{r child = '../../shared/pwm-details.md'}
 ```
 
 <!-- servo -->

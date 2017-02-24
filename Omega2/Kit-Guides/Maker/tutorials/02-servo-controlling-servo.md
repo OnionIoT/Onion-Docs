@@ -14,7 +14,14 @@ In this tutorial we will learn how to control servo motors using the PWM Expansi
 ``` {r child = '../../shared/servos.md'}
 ```
 
-For our experiment, we'll demonstrate how servos can be controlled through PWM signals. We'll connect them to the expansion, then write some code to make them rotate.
+For our experiment, we'll demonstrate how servos can be controlled through PWM signals. We'll connect them to the expansion, then write some code to make them rotate. We touched on PWM very briefly before, but to operate servos, we'll have to go a bit deeper.
+
+<!-- pwm -->
+``` {r child = '../../shared/pwm.md'}
+```
+``` {r child = '../../shared/pwm-details.md'}
+```
+
 
 ### Building the Circuit
 

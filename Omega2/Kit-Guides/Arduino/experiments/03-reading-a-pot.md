@@ -30,10 +30,6 @@ If you're curious to learn more about voltage dividers, Sparkfun has written a f
 
 So far we've been turning LEDs fully on and fully off, but it's also possible have LEDs dimmed to somewhere between on and off. This is accomplished by turning the LED on and off many times in a second, the brightness of the LED depends on how long the LED is allowed to remain on. That's precisely what we're going to do in this experiment: we're going to use Pulse Width Modulation (PWM) to create a dimming effect on an LED.
 
-
-// TODO: don't think we need the pwm duty cycle and period sections here, let's split them up
-// TODO: need to make sure wherever pwm is included, we also add in the new file that contains just the duty cycle and period sections
-
 <!-- PWM Signals -->
 ```{r child = '../../shared/pwm.md'}
 ```
