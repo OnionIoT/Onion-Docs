@@ -37,7 +37,7 @@ The GPIOs that are going to be used in this experiment are:
 
 These have been highlighted in the image below:
 
-<!-- TODO: add image of expansion dock with correct pins highlighted -->
+<!-- TODO: IMAGE of expansion dock with correct pins highlighted -->
 
 #### What You'll Need
 
@@ -246,13 +246,13 @@ In order to keep things simple, we will be creating module files in the same dir
 
 <!-- // TODO: mention how we've used the onionGpio class before, now we're going one step further and creating our own class -->
 
-Classes are a way to create a template for creating objects in our code. So far, we've been using the `onionGpio` class that we at Onion developed to make your development experience easier. This class includes clean, easy-to-use functions such as `setValue()` that hide away boring and time-consuming system calls from you, the up-and-coming programmer who wants to get to the fun stuff!
+Classes are a way to create a template for creating objects in our code. So far, we've been using the `onionGpio` class that we at Onion made to make your development experience easier. This class includes clean, easy-to-use functions such as `setValue()` that hide away boring and time-consuming system calls from you, the up-and-coming programmer who wants to get to the fun stuff!
 
-Here, we've gone once step further by creating our own class called `shiftRegister` that also uses the `onionGpio` class in order to create our shift register objects. This is because in this case, we're more interested in **the data** we send to the shift register than controlling the shift register's GPIOs!
+Here, we've gone one step further by creating our own class called `shiftRegister` that also uses the `onionGpio` class in order to create our shift register objects. This is because in this case, we're more interested in **the data** we send to the shift register than controlling the shift register's GPIOs!
 
 An **object** is a set of data created from the class blueprint with its own unique properties. For example, a class blueprint for a "four sided polygon" can be used to create objects such as a "square" or a "rectangle". Creating an object from a class is called **instantiation**, and objects created from a class are called **instances**.
 
-The class we created is a code template that represents having a shift register on our circuit. If we wanted to connect another shift register to our circuit, we can control it as easily as the first by creating a new `shiftRegister` object.
+The class we created is a code template that represents having a shift register on our circuit. If we wanted to connect another shift register to our circuit, we can control it as easily as the first by creating another `shiftRegister` object.
 
 After creating our class object, we get access to the functions defined by the class. We can call these functions through our instantiated object like in this example:
 
@@ -280,6 +280,21 @@ You'll also notice that we include `self` in our Python class functions. This is
 //    - can call functions from the object, etc
 //    - if we had two shift registers, we could have two objects to run the two different ones
 //  - talk about how class functions can use other class functions -->
+
+#### Binary Numbers
+
+Binary numbers are numbers whose digits can only be **0 or 1**. Similar to how the decimal or base 10 system where each digit is a power of ten, each digit (or **bit**) in binary is a power of 2. Take a look at some of the conversions from binary to decimal below:
+
+| Binary | Decimal |
+|---:|---------|
+| 1      | 1       |
+| 10     | 2       |
+| 100    | 4       |
+| 1000   | 8       |
+
+When writing binary numbers in code, they're typically prefixed with a `0b`, like `0b11010`. When assigning integers such as 42 to variables, the computer actually stores them as binary numbers (`42` = `0b101010`); you can then work with them in either binary, decimal, or even a different base if you wish! 
+
+A **byte** is an 8-bit binary number, for example `0b11000000`. A **bytestring** is a string representation that we can perform string operations on, such as reading each bit one at a time.
 
 #### Bitshifting
 

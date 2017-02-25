@@ -265,15 +265,15 @@ The `onionGpio` module does this in a very safe and consistent way via our C lib
 You'll notice that we declare an object of the `ShiftRegister` class within the `SevenSegment` class. This is a good example of the following concepts:
 
 * **Code reusability:** Earlier we wrote an independent class for the shift register, but now we're using it like a Lego block to build something new. This lets us focus on new code for the 7-seg. We can do this for any other device that requires a shift register without writing another copy of the class.
-* **Abstraction:** The `ShiftRegister` class gives us full control over a shift register device. However, when we're working with a 7-seg, we don't really care about the shift register anymore. At most, we should only have to tell the `ShiftRegister` object which GPIOs to use and it would take care of the rest while we work on translating text input into which LED segments to light up.
+* **Abstraction:** The `ShiftRegister` class gives us full control over a shift register device. However, when we're working with a 7-seg, we don't really care about the shift register anymore. At most, we should only have to tell the `ShiftRegister` object which GPIOs to use and it would take care of the rest; we can then work on translating text input into which LED segments to light up.
 
 These ideas makes it easier to think about how different pieces of a project work together. This helps us focus on designing systems and logic rather than getting bogged down in the details.
 
 #### Dictionary
 
-So far we've been working with lists, which are collections of one or more data values in order. The values in lists are indexed by numbers, for example `students[3]`. However, there are times when we're more interested in giving these values meaningful names than working with them in order. Enter the **dictionary!**
+So far we've been working with lists, which are collections of one or more data values in order. The values in lists are indexed by numbers, for example `students[3]`. However, there are times when we're more interested in working with these values by using meaningful names than working with them in order. Enter the **dictionary!**
 
-Dictionaries are data structures that contain **key-value pairs**. A key is a name or label, and the value is some data that you want to associate with that key; it could even be another dictionary! Dictionaries are indexed by their keys, for example `students["Bobby Tables"]`. 
+Dictionaries are data structures that contain **key-value pairs**. A key is a name or label, and the value is some data that you want to associate with that key; it could even be another dictionary! Dictionaries are indexed by their keys, for example `students["Robert Tables"]`. 
 
 Let's look at the `digitMap` dictionary used to store the bytestrings for each character in the `SevenSegment` class:
 

@@ -299,7 +299,7 @@ In the code, we specifically use two main functions of the library: the **constr
 
 #### Multiple Different Objects
 
-<!-- // small blurb about how the main program uses two objects of different classes to accomplish its purpose - make a note that this is an incredibly common programming method/technique -->
+<!-- // TODO: small blurb about how the main program uses two objects of different classes to accomplish its purpose - make a note that this is an incredibly common programming method/technique -->
 
 Here we're using two objects of different classes to accomplish our goal, `TemperatureSensor` and `Lcd`. If we had other devices we wanted to include in this experiment, we can write more class definitions and load them using the `import` statement.
 
@@ -307,6 +307,8 @@ This is an incredibly common programming technique and is at the heart of Object
 
 
 ### Going Further: Automating the Script
+
+<!-- TODO: has this been tested? last time I did it using the omega1 instructions and it didn't work (Gabe) -->
 
 We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
 
