@@ -100,7 +100,7 @@ In our infinite loop, we increment the duty cycle by the `brightnessIncrement`, 
 
 In order to use `fast-gpio`, we need to use the `os` module. This module allows us to send command-line arguments in Python using `os.system(command)`, where `command` is a string containing the arguments you would normally type in the terminal. This is known as a **system call**.
 
-<!-- TODO: should this be subprocess.call instead? see https://docs.python.org/2/library/subprocess.html#replacing-os-system -->
+<!-- TODO: should this be subprocess.call instead? see https://docs.python.org/2/library/subprocess.html#replacing-os-system; will test later (Gabe) -->
 
 #### Functions
 

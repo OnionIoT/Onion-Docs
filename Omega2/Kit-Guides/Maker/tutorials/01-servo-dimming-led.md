@@ -187,7 +187,7 @@ Additionally, this code has a lot of mathematical operators, if you're confused,
 
 #### Creating a class
 
-As a refresher, in Object Oriented Programming, classes are essentially blueprints or an abstraction. An **object** is a set of data created from the class blueprint with its own unique properties. For example, for a class created as "four sided polygon", an object created from this class may be "square" or a "rectangle". Creating an object from a class is called **instantiation**, and objects created from the same class are called **instances** of said class.
+As a refresher, in Object Oriented Programming, classes are essentially blueprints or an abstraction. An **object** is a set of data created from the class blueprint with its own unique properties. For example, a class blueprint for a "four sided polygon" can be used to create objects such as a "square" or a "rectangle". Creating an object from a class is called **instantiation**, and objects created from a class are called **instances**.
 
 <!-- TODO: link properly to shift register article when lazar's finished -->
 

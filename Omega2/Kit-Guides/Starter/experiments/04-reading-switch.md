@@ -108,10 +108,10 @@ Now let's try letting the Omega reading the signal the switch sends and use that
 This circuit will keep the switch, but route the output of the switch to the Omega instead, and have it controll the LED through a GPIO.
 
 1. Remove the LED and its resistor from the breadboard.
-1. Connect GPIO 0 on the Expansion Dock to the button pin using a jumper wire from the Expansion Dock to the breadboard.
+1. Connect `GPIO0` on the Expansion Dock to the button pin using a jumper wire from the Expansion Dock to the breadboard.
 1. Place the LED back on the breadboard by doing the following:
-    1. Connect the cathode to GPIO 1 using a jumper wire from the breadboard to the Expansion Dock.
-    1. Connect the anode to one end of the (// TODO: resistor value) resistor.    
+    1. Connect the cathode to `GPIO1` using a jumper wire from the breadboard to the Expansion Dock.
+    1. Connect the anode to one end of the 200Ω resistor.    
 1. Connect the other end of that resistor to ground.
 
 Your circuit should look like this:

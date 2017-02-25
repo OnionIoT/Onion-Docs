@@ -36,7 +36,9 @@ Before we start building our experiment, let's first go over some of the buildin
 
 ### Building the Circuit
 
-// TODO: fill this with something like 'Ok, now that we know the general tools we'll be using, let's build our very first circuit!'
+<!-- // TODO: fill this with something like 'Ok, now that we know the general tools we'll be using, let's build our very first circuit!' -->
+
+Now that we've gotten familiar with the tools we'll be using, let's build our very first circuit!
 
 #### What You'll Need
 

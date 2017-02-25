@@ -140,7 +140,6 @@ class shiftRegister:
 
 	#Splits the input values into individual values and inputs them. The pulses the latch pin to show the output.
 	def outputBits(self, inputValues):
-		inputValues = str(inputValues) # Converts the binary value into a string (11000000 -> "11000000")
 		mylist = list(inputValues) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
 		for x in mylist:
 			x = int(x) # Transforms the character back into an int ("1" -> 1)
@@ -159,7 +158,7 @@ import signal
 # Data pin is GPIO 1, serial clock pin is GPIO 2, Latch pin is GPIO 3
 shiftRegister = shiftRegister(1,2,3)
 
-# Signal interrupt handler to safely exit when Ctrl-C is pressed
+# Signal interrupt handler to exit after the animation has finished when Ctrl-C is pressed
 def signal_handler(signal, frame):
     global interrupted
     interrupted = True
@@ -167,21 +166,29 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 
-# We use a binary number instead of a string is so we can change the output
+# To create the animation on the LEDs through the shift register,
+# we use a binary number instead of a string. We can move the lights
 # around by bitshfting instead of string operations.
 value = 0b11000000
 interrupted = False
 
 while True:
+    # this animation has 12 different frames, so we'll loop through each one
 	for x in range(0, 12):
-		binValue = format(value, '08b') # Transforms value into a 8-bit binary number, otherwise
-		shiftRegister.outputBits(binValue) # Sends the 8 bit value to be output by the shift register
-		if x < 6:
+        # we need to transform the binary value into a string only when sending it to the shift register
+		bytestring = format(value, '08b') 
+		shiftRegister.outputBits(bytestring)
+		# now we are free to manipulate the binary number using bitshifts
+        
+        # if in the first half (6 frames) of the animation, move the LEDs to the right
+        if x < 6:
 			value >>= 1 # Shifts all digits right by one (11000000 -> 01100000)
-		else:
+		# else we must be in the second half, so move the LEDs to the left
+        else:
 			value <<= 1 # Shifts all digits left by one (01100000 -> 11000000)
-	if interrupted:
-		shiftRegister.clear()
+	# interrupt (Ctrl-C) handler
+    if interrupted:
+		shiftRegister.clear() # turn off the LEDs
 		break
 ```
 
@@ -227,11 +234,13 @@ Finally, we introduced **safely exiting from an infinite loop**, to ensure that 
 
 #### Creating and Importing Modules
 
-<!-- // describe how the import process works, make sure to note how the directory structure has to fit -->
+<!-- // TODO: describe how the import process works, make sure to note how the directory structure has to fit -->
 
 A **module** is a file containing Python definitions and statements. This can be used to split your project into multiple files for easier maintenance. The `registerClass.py` file is an example of a self-made module that we've imported. Some modules are built in to Python; some examples are `time` which you may have used before, and `signal` which is used in our main program.
 
-An important concept of modules is that if you update a module, any program that calls them will get the new changes!
+Some modules are built into the Python system and can be imported by name no matter what directory your script is in, such as `time` or `sys`. However, if you create your own module file, you can import it by name only if it is in the **same directory** as the script that calls it. Otherwise you will need to use a slightly different command where you must provide the filepath to the module file. 
+
+In order to keep things simple, we will be creating module files in the same directories as the main scripts for all of these experiments.
 
 #### Creating and Using Classes {#starter-kit-using-shift-register-creating-classes}
 
@@ -241,24 +250,25 @@ Classes are a way to create a template for creating objects in our code. So far,
 
 Here, we've gone once step further by creating our own class called `shiftRegister` that also uses the `onionGpio` class in order to create our shift register objects. This is because in this case, we're more interested in **the data** we send to the shift register than controlling the shift register's GPIOs!
 
-The class we created is a code template that represents having a shift register on our circuit. If we wanted to we could connect another shift register to our circuit, and easily create a new object using our `shiftRegister` class.
+An **object** is a set of data created from the class blueprint with its own unique properties. For example, a class blueprint for a "four sided polygon" can be used to create objects such as a "square" or a "rectangle". Creating an object from a class is called **instantiation**, and objects created from a class are called **instances**.
+
+The class we created is a code template that represents having a shift register on our circuit. If we wanted to connect another shift register to our circuit, we can control it as easily as the first by creating a new `shiftRegister` object.
 
 After creating our class object, we get access to the functions defined by the class. We can call these functions through our instantiated object like in this example:
 
 ``` python
-shiftRegister.outputBits(binValue)
+shiftRegister.outputBits(bytestring)
 ```
 
 This function is defined in the `shiftRegister` class file:
 
 ``` python
 def outputBits(self, inputValues):
-  inputValues = str(inputValues) # Converts the binary value into a string (11000000 -> "11000000")
-  mylist = list(inputValues) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
-  for x in mylist:
-    x = int(x) # Transforms the character back into an int ("1" -> 1)
-    self.inputBit(x)
-  self.latch()
+    mylist = list(inputValues) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
+    for x in mylist:
+        x = int(x) # Transforms the character back into an int ("1" -> 1)
+        self.inputBit(x)
+    self.latch()
 ```
 
 You'll also notice that we include `self` in our Python class functions. This is necessary so that we are always working with variables or functions pertaining to the current object. This is called **explicit self** in Python.
@@ -273,15 +283,27 @@ You'll also notice that we include `self` in our Python class functions. This is
 
 #### Bitshifting
 
-You'll notice we do some funky operations with the `value` variable. The operations we use (`>>=` and `<<=`) are akin to the increment operator `+=`. It performs a operation (a bitshift!) and then reassigns the variable it operated on with the result.
+You'll notice we do some funky operations with the `value` variable like so:
 
-Bitshifting is a pretty low level operation that moves the bits of a variable left or right in its allocated memory space. Our variable starts off as `0b11000000`, by bitshifting right, we simply move the two `1`s right one place (to `0b00110000`). Bitshifting is an exceedingly cheap and simple operation for computers to do, so it's almost always faster than an alternative approach.
+``` python
+value >>= 1 # Shifts all digits right by one (11000000 -> 01100000)
+...
+value <<= 1 # Shifts all digits left by one (01100000 -> 11000000)
+```
 
->While it's usually a good deal faster, bitshifting isn't always the most readable code - since the purpose of the shift is almost never clear. Remember to comment your code so you and others can understand why it's there!
+Th `>>` operation by itself is known as the  **bitshift** operator.
+
+Bitshifting is a pretty low level operation that moves the bits of a binary value left or right. In our script, our shift register command starts off as the number `0b11000000`. For example, to bitshift one digit to the right, we move both of the two `1`s right one place to get `0b00110000`. Bitshifting is a fast operation for computers to do, and is easier than trying to convert the number into a binary string and moving the characters around by hand.
+
+The added `=` sign means the same thing as in the increment operator `+=`. It performs the bitshift operation on the variable and updates it without you having to explicitly reassign it.
+
+On a side note, when we bitshift a number to the left or right, we're actually **multiplying or dividing it by 2** respectively! This is like multiplying or dividing by 10 in the decimal system where the digits shift left and right.
+
+>While it's usually a good deal faster, bitshifting isn't always the most readable code - since the purpose of the shift is not often clear. Remember to comment your code so you and others can understand why it's there!
 
 #### Exiting Infinite Loops
 
-When using GPIOs it is important that you exit your code properly so that your GPIOs are properly freed and you don't get locked out of using them. This can be quite difficult when we create an infinite loop so we've included a solution to that.
+When using GPIOs, it's important that you exit your code properly to free the GPIOs back to the filesystem for use by other programs. This can be quite difficult when we create an infinite loop so we've included a solution to that.
 
 When inspecting our main program we see a function defined as `signal_handler`. We also see an signal listener in the form of:
 
@@ -289,16 +311,18 @@ When inspecting our main program we see a function defined as `signal_handler`. 
 signal.signal(signal.SIGINT, signal_handler)
 ```
 
-This listener is waiting for an interrupt from the user in order to run the signal handler code. So when you enter `Ctrl-C` or `Cmd-C` you are sending a *Keyboard Interrupt* which is then handled by the function, in order to exit the program in a safe way. This way your code will always finish a cycle before exiting, thus making sure that your GPIOs are properly freed. // TODO: what do you mean by a cycle in this last sentence? clarify!
+This listener is waiting for an interrupt from the user in order to run the signal handler code. When you enter `Ctrl-C` or `Cmd-C` you are sending a **keyboard interrupt** which is then handled by the interrupt **handler** function in order to exit the program in a safe way. This way your code will always finish the current left-right animation before exiting, thus making sure that your GPIOs are properly freed by the time the program exits. 
+<!-- // TODO: what do you mean by a cycle in this last sentence? clarify! -->
 
-// TODO: nowhere did we explain this part of the main program:
+<!-- // TODO: nowhere did we explain this part of the main program:
 ```
 for x in range(0, 12):
-  binValue = "{0:08b}".format(value) # Transforms the value into a binary number (192 = 11000000)
-  shiftRegister.outputBits(binValue) # Sends the 8 bit value to be output by the shift register
+  bytestring = "{0:08b}".format(value) # Transforms the value into a binary number (192 = 11000000)
+  shiftRegister.outputBits(bytestring) # Sends the 8 bit value to be output by the shift register
   if x < 6:
     value >>= 1 #Shifts the value right by one (11000000 -> 01100000)
   else:
     value <<= 1 #Shifts the value left by one (01100000 -> 11000000)
 ```
-// TODO: please add a section (AND COMMENTS IN THE CODE) describing what this will accomplish
+// TODO: please add a section (AND COMMENTS IN THE CODE) describing what this will accomplish 
+Gabe: addressed, see above sections-->

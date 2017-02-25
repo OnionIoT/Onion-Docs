@@ -15,7 +15,7 @@ order: 5
 
 For this experiment, we'll build on what we did with the slide switch. This time, let's use the button as the trigger instead of constantly polling the switch! 
 
-We'll be making a circuit with an LED controlled by a **push button**. When the button is pressed, the LED will turn on for 10 seconds, then turn off.
+We'll be making a circuit with an LED controlled by a **push button**. When the button is pressed, the LED will turn on for 10 seconds, then turn off. Then we'll modify the circuit to connect the push button to **the Omega** and control it via software instead.
 
 ### Push Buttons
 
@@ -46,26 +46,23 @@ Prepare the following components from your kit:
 * Breadboard
 * Jumper wires
 * Tactile button
-* Resistors
-    * 1x 200Ω <!-- LED resistor -->
+* 1x 200Ω Resistor <!-- LED resistor -->
 * Any LED color of your choice!
 
 #### Hooking up the Components
 
 <!-- // explain how to connect a push-button switch to an led -->
-
-Before putting the circuit together, make sure the Omega2 is powered OFF for safety. 
-
-1. Connect the Expansion Dock's 3.3V pin to one of the "+" columns on the breadboard.
-    * We'll call this column **Vcc**.
-1. Connect the Expansion Dock's GND pin to one of the "-" columns.
-    * We'll call this column **ground**.
+    
 1. Connect the push button to the breadboard as shown below:
     * ![push-button-breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/push-button-breadboard.jpg)
     <!-- // TODO: photo showing how the legs are oriented across the breadboard-->
-1. Connect one side of the switch to Vcc.
+1. Connect one side of the switch to one of the "+" columns on the breadboard.
+    * We'll call this column **Vcc**.
 1. Connect the LED's cathode to the other side of the button, and the anode to one end of the 200Ω resistor.
-1. Connect the other end of that resistor to ground.
+1. Connect the other end of that resistor to one of the "-" columns.
+    * We'll call this column **ground**.
+1. Connect the Expansion Dock's GND pin to ground on the breadboard.
+1. Connect the Expansion Dock's 3.3V pin to Vcc.
 
 Your circuit should look like this.
 
@@ -75,9 +72,9 @@ Your circuit should look like this.
 
 If your circuit matches, go ahead and turn the Omega2 on!
 
-#### What to Expect
+### What to Expect
 
-When you push and hold the button, the LED should turn off. When you release the button, the LED should turn on.
+When you push and hold the button, the LED should turn on. When you release the button, the LED should turn off.
 
 <!-- // push and hold the button, the led is on
 // release it and the led turns off
@@ -92,6 +89,8 @@ When you push and hold the button, the LED should turn off. When you release the
 
 Now we'll build a circuit with a button and inverting debouncer circuit connected to a GPIO, and an LED connected to another GPIO that is driven by software.
 
+**Note:** We'll be using our previous switch circuit as a basis for what we're about to do next.
+
 #### What You'll Need
 
 You'll need to pull a few more components from your Kit. Prepare the following:
@@ -100,24 +99,22 @@ You'll need to pull a few more components from your Kit. Prepare the following:
     * 1x 50kΩ
     * 1x 5kΩ <!-- debounce resistors -->
 * 1x 100nF capacitor
-
-* Use the same components as in the first circuit above.
-* You may need a few more jumper wires handy.
+* More M-M jumper wires
 
 #### Hooking Up the Components
 
-Turn the Omega off before changing your circuit. Then, do the following:
-
-1. Connect one end of the switch to the 50kΩ resistor, and the other end of that resistor to Vcc.
-1. Connect the switch's bottom pin to ground.
-1. Connect one end of the 5kΩ resistor to the same point where the switch and 50kΩ resistor are connected, and the other end to an empty row on the breadboard.
-    * We'll call this the **button pin**.
-1. Connect one end of the capacitor to ground, and the other to the button pin.
-1. Connect `GPIO0` on the Expansion Dock to the button pin using a jumper wire from the Expansion Dock to the breadboard.
+1. Remove the push button, the LED, and the 200Ω resistor from the breadboard. Also unplug the Vcc rail from the Omega.
+1. Put the push button in a new location, not connected to anything. Then connect one side of the switch to the ground rail.
+1. Then connect one end of both the 5kΩ and 50kΩ resistors to the other side of the switch.
+1. Connect the other end of the 50kΩ resistor to the Vcc rail.
+1. Connect the other end of the 5kΩ resistor to an empty row. Then connect one end of the capacitor to the same row, and the other end to ground.
+    * We'll call the row where the resistor and the capacitor are connected the **button line**.
+1. Connect GPIO0 on the Expansion Dock to the button line with a M-M jumper wire.
 1. Place the LED back on the breadboard by doing the following:
-    1. Connect the cathode to GPIO 1 using a jumper wire from the breadboard to the Expansion Dock.
+    1. Connect the cathode to GPIO1 using a jumper wire from the breadboard to the Expansion Dock.
     1. Connect the anode to one end of the 200Ω resistor.    
 1. Connect the other end of that resistor to ground.
+1. Finally, connect the breadboard's ground and Vcc rails to the Omega's ground and 3.3V pins on the Expansion Dock.
 
 Your circuit should look like this:
 
@@ -130,8 +127,6 @@ If your circuit matches, power your Omega back on!
 ### Writing the Code
 
 Let's go about writing our code, but first let's cover an important topic first.
-
-#### Edge Detection
 
 <!-- edge detection -->
 ```{r child = '../../shared/gpio-edge-detection.md'}
@@ -148,7 +143,7 @@ Let's go about writing our code, but first let's cover an important topic first.
 <!-- // write a program that uses edge detection to turn an led on, sleep for 10 seconds and then turn it off
 note: the mechanism for edge detection hasn't been ironed out yet -->
 
-Let's create a file called `debounceSwitch.py` to hold our code:
+Create a file called `STK05-debounce-switch.py` and paste the following in it:
 
 <!-- LAZAR: work in progress -->
 
@@ -191,14 +186,15 @@ while 1:
         time.sleep(pollingInterval)            # sleep until we poll again
 ```
 
-#### What to Expect
+### What to Expect
 
 <!-- // hit the button, the light turns on, stays on for 10 seconds, turns off 
 // ^ swapped for inverting debouncer -->
 
 Let's run the code:
+
 ```
-python debounceSwitch.py
+python STK05-debounce-switch.py
 ```
 
 Now try pushing the button on and off. What happens?

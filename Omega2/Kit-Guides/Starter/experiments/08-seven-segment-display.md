@@ -202,7 +202,7 @@ def __main__():
     # attempt to display out the hex string
     while True:
         for i in range(inputLen):
-        	sevenDisplay.showDigit(i,str(inputHexString[i]))
+        	sevenDisplay.showDigit(i,inputHexString[i])
 
 # for running from the command line
 if __name__ == '__main__':
@@ -217,7 +217,7 @@ The for loop here is doing something really neat with only one line of code:
 
 We then cycle through all of the digits and repeat the steps above for each one. 
 
-To see it in action, make sure you have `registerClass.py`, `sevenSegDisplay.py` and `STK08-seven-seg-display.py` in your `/root/` directory.
+To see it in action, make sure you have `registerClass.py`, `sevenSegDisplay.py` and `STK07-seven-seg-display.py` in your `/root/` directory.
 
 Let's choose a hexadecimal number to display on the 7-seg. Come up with a string that looks like this: `0x12ab`, where the four digits **12ab** can be any number from 0 to 9 OR a letter from A to F. Then run the following command in the terminal, replacing `YOURHEXNUMBERHERE` with your string:
 

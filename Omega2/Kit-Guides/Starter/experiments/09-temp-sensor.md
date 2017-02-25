@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 9
 ---
 
-## Reading a One-Wire Temperature Sensor {#starter-kit-reading-a-one-wire-temp-sensor}
+## Reading a 1-Wire Temperature Sensor {#starter-kit-reading-a-one-wire-temp-sensor}
 
 <!-- // in this experiment we will:
 //  * introduce the one-wire bus protocol
@@ -15,30 +15,30 @@ order: 9
 
 Let's now learn about and use the **1-Wire bus protocol** to read the ambient temperature using a temperature sensor. To do that, we'll first build a circuit using the 1-Wire temperature sensor. After it's built, we'll control this circuit with a script.
 
+<!-- // TODO: need a section on 1-Wire & the Omega, describing how the Omega needs to register a 1w bus master in order to be able to communicate with the 1w sensor,
+//  see the docs https://docs.onion.io/omega2-docs/communicating-with-1w-devices.html#the-omega-one-wire for an example but do not just copy the text, adapt it to this article and the beginner audience, also avoid all mentions of I2C, SPI, UART, etc -->
 
 <!-- one wire -->
 ```{r child = '../../shared/one-wire.md'}
 ```
 
-There's no dedicated 1-Wire controller in the Omega. Thus to make 1-Wire work with the Omega, we must first label a GPIO as a '1-Wire master bus'. This will be the main contact point between the Omega and any 1-Wire devices. Once we have the master bus set up , we can then scan for the sensor through it and read from the sensor as needed.
+To make 1-Wire work with the Omega, we must first label a GPIO as a '1-Wire master bus'. This will be the main contact point between the Omega and any 1-Wire devices. Once we have the master bus set up , we can then scan for the sensor through it and read from the sensor as needed.
 
 Due to the lack of a dedicated controller, we'll have to send some low level instructions directly to the bus. This will be a good opportunity to learn about the process of **reading and writing files**.
 
-#### DS18B20 Temperature Sensor
+### DS18B20 Temperature Sensor
 
 This sensor is a 1-Wire digital output sensor with high accuracy. The pin layouts can be found in the diagram below for easy reference, we'll go through how to connect it in the next section.
 
-![TMP36 Temperature Sensor Pin Layou](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/DS18B20-pin-layout.png)
+![TMP36 Temperature Sensor Pin Layout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/DS18B20-pin-layout.png)
 
-**Note**: this is the **Bottom View** of the sensor!
+**Note**: We will treat the flat side as the front, so this is the **bottom view** of the sensor.
 
-<!-- // TODO: need a section on 1-Wire & the Omega, describing how the Omega needs to register a 1w bus master in order to be able to communicate with the 1w sensor,
-//  see the docs https://docs.onion.io/omega2-docs/communicating-with-1w-devices.html#the-omega-one-wire for an example but do not just copy the text, adapt it to this article and the beginner audience, also avoid all mentions of I2C, SPI, UART, etc -->
+
 
 ### Building the Circuit
 
-We'll be building a very simple circuit to connect the 1-Wire temperature sensor to the Omega. As the name implies, only one data line is needed for communication between any and all devices on the bus!
-
+We'll be building a circuit to connect the 1-Wire temperature sensor to the Omega. As the name implies, only one data line is needed for communication between any and all devices on the bus!
 
 #### What You'll Need
 
@@ -47,7 +47,7 @@ Prepare the following components from your kit:
 * Omega plugged into Expansion Dock
 * Breadboard
 * 3x Jumper wires (M-M)
-* 1x 5.1kΩ Resistor (yellow-purple-red)
+* 1x 5.1kΩ Resistor
 * 1-Wire temperature sensor
     * Should read "Dallas 18B20" on the part
 
@@ -57,12 +57,13 @@ Prepare the following components from your kit:
 1. With the front of the sensor facing to the left side of the breadboard, insert the three pins into column `e` in 3 consecutive rows, eg. 13, 14, and 15.
 1. Turn the breadboard so that the front of the sensor is facing you.
 1. Insert jumpers for the following connections into column `a` in the row corresponding to the pins below:
-    * Middle - `DATA` or `DQ`. Connect this to the Omega's `GPIO19`.
     * Left - `GND`. Connect this to the Omega's `GND` pin.
-    * Right - `Vcc`. Connect this to the Omega's `3.3V`.
+    * Middle - `DATA` or `DQ`. Connect this to the Omega's `GPIO19`.
+    * Right - `Vcc`. Connect one end of a M-M jumper pin here, we'll connect this to power later.
 1. Connect the 5.1kΩ resistor across the `DATA` and `Vcc` pins.
+1. Connect the sensor's `Vcc` pin to the Omega's `3.3V` pin.
 
->The reason we nhave this resistor is to make sure the max voltage of the `DATA` pin is equal to the voltage provided by `Vcc`. If it isn't properly referenced, a `HIGH` from the `DATA` line might appear to be `LOW`, making the data untrustworthy!
+>The reason we have this resistor is to make sure the max voltage of the `DATA` pin is equal to the voltage provided by `Vcc`. If it isn't properly referenced, a `HIGH` from the `DATA` line might appear to be `LOW`, making the data untrustworthy!
 
 Your circuit should look like this:
 
@@ -73,8 +74,6 @@ Your circuit should look like this:
 First, let's create a base class for any generic 1-Wire device. This class will handle all the file reading and writing needed to interface with 1-Wire devices. Creating an object of this class will associate a GPIO pin with a 1-Wire bus, and the object will act as a clean interface between code and the low level 1-Wire functions. This is exactly how libraries are written!
 
 Create a file called `oneWire.py` and paste the following code in it:
-
-<!-- // TODO: was this code tested? -->
 
 ``` python
 import os
@@ -88,28 +87,34 @@ paths = {
     "slaves": oneWireDir + "/w1_master_slaves"        
 }
 
-# insert the kernel module
+# insert the 1-Wire kernel module
+# it's also called a "module", but it's actually software for the Omega's firmware!
 def insertKernelModule(gpio):
     argBus = "bus0=0," + gpio + ",0"
     call(["insmod", "w1-gpio-custom", argBus])
 
+# check the filesystem to see if 1-Wire is properly setup
 def checkFilesystem():
     return os.path.isdir(oneWireDir)
 
-# TODO: add a comment describing the operation of this function, doesn't look like it's right to me
+# function to setup the 1-Wire bus
 def setupOneWire(gpio):
+    # check and retry up to 2 times if the 1-Wire bus has not been set up
     for i in range (2):
         if checkFilesystem():
-            return True
+            return True # exits if the bus is setup
+            # no else statement is needed after this return statement
+            
+        # tries to insert the module if it's not setup
         insertKernelModule(gpio)
         # wait for a bit, then check again
         sleep(setupDelay)
     else:
-        # could not set up 1wire on the gpio
+        # could not set up 1-Wire on the gpio
         return False
 
+# check that the kernel is detecting slaves
 def checkSlaves():
-    # check that the kernel is detecting slaves
     with open(paths["slaveCount"]) as slaveCountFile:
         slaveCount = slaveCountFile.read().split("\n")[0]
 
@@ -117,7 +122,8 @@ def checkSlaves():
         # slaves not detected by kernel               
         return False
     return True
-
+    
+# check if a given address is registered on the bus
 def checkRegistered(address):
     slaveList = scanAddresses()
     registered = False
@@ -180,7 +186,7 @@ class OneWire:
         return message
 ```
 
-Let's create a file called `temperatureSensor.py` to hold some more code. This file will implement a `TemperatureSensor` class. Objects of this class will represent a single DS18B20 sensor in code. Inside the class, a `OneWire` object is used to operate the sensor. Functions of the `TemperatureSensor` object will send the appropriate signals, along with getting and formatting the data from the sensor. This way the operating script can focus on the logic of what to do with the data.
+Let's create a file called `temperatureSensor.py` to hold some more code. This file will implement a `TemperatureSensor` class. Objects of this class will represent a single DS18B20 sensor in code. Like in our previous experiments, we'll instantiate a `OneWire` object inside the `TemperatureSensor` class. The class functions will then send it the signals that we want and retrieve response data from the sensor without us having to worry about the underlying 1-Wire functions. This way we can focus on the logic of what to do with the data.
 
 ``` python
 from oneWire import OneWire
@@ -199,7 +205,7 @@ class TemperatureSensor:
             return
 
         # set up a driver based on the interface type
-        # you can extend this class by adding more! (eg. 1-Wire, serial, I2C, etc)
+        # you can extend this class by adding more drivers! (eg. serial, I2C, etc)
         if self.interface == "oneWire":
             self.driver = OneWire(args.get("address"), args.get("gpio", None))
             # signal ready status
@@ -217,6 +223,8 @@ class TemperatureSensor:
         # device typically prints 2 lines, the 2nd line has the temperature sensor at the end
         # eg. a6 01 4b 46 7f ff 0c 10 5c t=26375
         rawValue = self.driver.readDevice()
+        
+        # grab the 2nd line, then read the last entry in the line, then get everything after the "=" sign
         value = rawValue[1].split()[-1].split("=")[1]
 
         # convert value from string to number
@@ -228,7 +236,7 @@ class TemperatureSensor:
     # add more __read() functions for different interface types later!
 ```
 
-Now let's write the script for the main routine. Create a file called `STK08-temp-sensor.py` and paste the following in it. This script will use the two classes we've created to continuously check the sensor, and display the data to the console. Through abstracting out the details into two other classes, this script can be short and sweet.
+Now let's write the script for the main routine. Create a file called `STK08-temp-sensor.py` and paste the following in it. This script will use the two classes we've created to continuously check the sensor and display the data to the console. Through abstracting out the details into two other classes, this script can be short and sweet.
 
 ``` python
 # import modules and classes
@@ -236,7 +244,7 @@ from temperatureSensor import TemperatureSensor
 import oneWire
 
 # setup onewire and polling interval
-oneWireGpio = 19 # set the GPIO that we've connected the sensor to
+oneWireGpio = 19 # set the sensor GPIO
 pollingInterval = 1 # seconds
 
 def __main__():
@@ -345,11 +353,14 @@ When a Python file is imported as a module, any code in the lowest level of inde
 What if there's some important functions that you want to run by executing the module directly, but not when it's imported?
 
 Enter:
+
 ```
 if __name__ == '__main__':
 ```
 
 Every file in python has a hidden `__name__` variable. When the file is imported, the value of `__name__` the filename is.
+
+<!-- TODO: what did he mean by this? -->
 
 
 Next: [Controlling an LED Screen](#starter-kit-controlling-an-lcd-screen)
