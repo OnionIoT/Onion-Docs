@@ -84,11 +84,13 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 
 <!-- // TODO: IMAGE of connected rails on a breadboard -->
 
-3. Grab your H-bridge, pick a location on your breadboard and plug the H-bridge across the channel in the middle of your breadboard. It should be sitting across with one side in column E and the other in column F, with the **half-circle cutout** pointing toward the closer edge of the breadboard. We picked rows 5 to 12 in our breadboard.
+Now let's set up our Circuit:
+
+1. Grab your H-bridge, pick a location on your breadboard and plug the H-bridge across the channel in the middle of your breadboard. It should be sitting across with one side in column E and the other in column F, with the **half-circle cutout** pointing toward the closer edge of the breadboard. We picked rows 5 to 12 in our breadboard.
 
 <!-- // TODO: IMAGE of H-bridge across channel with pins labelled -->
 
-4. Take note of which number each pin is from the diagram above - if you're lost, always look for the little half circle cutout on the chip denoting the 'top' of the H-bridge to orient it correctly.
+1. Take note of which number each pin is from the diagram above - if you're lost, always look for the little half circle cutout on the chip denoting the 'top' of the H-bridge to orient it correctly.
 	* **This is important, you can damage the H-bridge if it's not wired correctly!**
 1. Wire pins `4`, `5`, `12`, and `13` to the `GND` rail on their respective sides using four M-M jumpers. Use short wires here if you have them handy.
 
@@ -99,22 +101,31 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 1. Next, we'll set up the switches - we'll use them to send digital signals to control the PWM, and in turn the motor.
 	* Pick three sets of three rows (we used row 25 to 33)
 	* Plug your switches into the rows, three rows per switch
-1. Using 3 M-M jumpers, connect the center row of each switch to GPIO6, GPIO7, and GPIO8. Make sure you remember which is which, since these will control your motor later!
 1. With 6 M-M jumpers, connect the leftmost row of each switch to `GND` rail, and the rightmost row of each switch to `Vcc` rail. If you have short wires ready, you should use them here.
+
+<!-- TODO: IMAGE of fully wired H-bridge, short wires, pins labelled -->
+
+Circuit is done! So let's connect the whole thing to your Omega:
+
+1. We'll ground the circuit by connecting the `GND` rail to the `GND` pin on channel `S0` on the PWM expansion with one M-F jumper.
+1. Using 3 M-M jumpers, connect the center row of each switch to GPIO6, GPIO7, and GPIO8. Make sure you remember which is which, since these will control your motor later!
 1. Take one M-M jumper and connect `pin 1` on the IC (row 5 on our board) to `pin 1` on the expansion headers.
 1. Using two M-F jumpers,
 	* Connect pin `2` (`1A`, or row 6 on our board) to channel `S0`.
 	* Connect pin `7` (`2A`, or row 11) to channel `S1`.
-	* Your board should now look something like ours (below), make sure the pins on the IC and the channels on the PWM match properly, otherwise the code we'll run won't work!
-
-<!-- TODO: IMAGE of fully wired H-bridge, short wires, pins labelled -->
-
-1. We'll ground the circuit by connecting the `GND` rail to the `GND` pin on channel `S0` on the PWM expansion with one M-F jumper.
 1. Last but not least, we'll set power to the Vcc rail by connecting the dangling end of the Vcc (red) jumper to the `VCC` pin of channel `S0` of the PWM expansion.
 
-There is a reason we use the `GND` and `Vcc` pins on the **PWM expansion** instead on the header pins from the dock. If it's connected to the header pins, the motor will feedback voltage to the expansion dock. This can cause a boot-loop or other unpredictable behaviour with the omega. The PWM expansion's `Vcc`/`GND` pins have circuit breaking diodes in place to prevent this.
+Here's what it looks like when it's all wired up:
 
->Power is usually wired in last to keep your chips and components safe from accidental shorts when you're wiring.
+<!-- TODO: IMAGE assembled circuit -->
+
+<!-- wiring precautions -->
+```{r child = '../../shared/wiring-precautions.md'}
+```
+
+>There is a reason we use the `GND` and `Vcc` pins on the **PWM expansion** instead on the header pins from the dock. If it's connected to the header pins, the motor will feedback voltage to the expansion dock. This can cause a boot-loop or other unpredictable behaviour with the omega. The PWM expansion's `Vcc`/`GND` pins have circuit breaking diodes in place to prevent this.
+
+
 
 ### Writing the Code
 
@@ -129,8 +140,9 @@ There is a reason we use the `GND` and `Vcc` pins on the **PWM expansion** inste
 // duty cycle: 0 -> 30 -> 40 -> 50
 -->
 
-Let's add a class blueprint for a DC motor controlled by an H-bridge to our motors file we made in the previous tutorial. Open the `motors.py` file and add this:
+Let's add a class blueprint for a DC motor controlled by an H-bridge to our `motors.py` file we made in the previous tutorial. This class blueprint will specifically drive a DC motor hooked up to an H-bridge. It builds on the abstractions in the `OmegaPwm` class and takes care of the details in operating the motor.
 
+Open it up and add this:
 
 ``` python
 class hBridgeMotor:
@@ -196,7 +208,9 @@ class hBridgeMotor:
 		return ret
 ```
 
-Next, let's write the code for the experiment. Create a file called `MAK03-hBridgeExperiment.py` and paste the following code in it:
+Next, let's write the code for the experiment. This code will get the motor to actually do stuff using the hBridgeMotor class we've made above. The script will ask you to enter some numbers, and drives the motor based on your input!
+
+Create a file called `MAK03-hBridgeExperiment.py` and paste the following code in it:
 
 ``` python
 from omegaMotors import hBridgeMotor
@@ -251,7 +265,6 @@ if __name__ == '__main__':
 ```
 
 ### What to Expect
-<!-- TODO: IMAGE or gif of project working -->
 When run, the script starts the PWM oscillator, and then sets the output to be enabled (channel 0 to 100% duty). Then the script will ask you for a set of 3 digits, the first one sets the direction of the motor, the next two digits set the speed. The program will repeated ask for input, and adjust the speed and direction accordingly.
 
 | Position        | Code | Result                        |
@@ -263,13 +276,15 @@ When run, the script starts the PWM oscillator, and then sets the output to be e
 |                 | 10   | 40% speed                     |
 |                 | 11   | 50% speed                     |
 
+Here it is in action:
+
+<!-- TODO: IMAGE or gif of project working -->
+
 As you've probably seen before, we use an infinite loop here, and you can break it by hitting `Ctrl-C`.
 
 **Note**: We recommend setting the motor to `000` before breaking the loop to avoid damaging the motor. As a reminder, you can simply call `pwm-exp -s` to stop the motor in the terminal or ssh.
 
 ### A Closer Look at the Code
-
-// TODO: remove and replace with whatever you introduce above - tuples probably won't work in this situation
 
 In this tutorial, we put together knowledge from the previous tutorials to control a DC motor with Python. We're now **receiving user input** interactively, allowing us to change the output in real-time. On top of that we we used a **lookup table** to track and translate the input from the user into the output sent to the controller.
 

@@ -174,6 +174,8 @@ In this code, we introduce a very important, new concept: Object Oriented Progra
 
 ##### Object Oriented Programming
 
+// TODO: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read
+
 In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is where object oriented programming (OOP) comes in handy.
 
 // TODO: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions)

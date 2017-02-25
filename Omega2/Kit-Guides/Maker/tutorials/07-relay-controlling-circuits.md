@@ -10,7 +10,9 @@ order: 7
 In this tutorial, we'll use a switch with the Omega Relay expansion to turn a buzzer on or off. Along the way, we'll be looking into why relays are useful, and go into more detail regarding pitfalls when interacting with hardware.
 
 <!-- // TODO: can modify or replace this warning with the one from our store (should keep same friendly tone) -->
-**Note:** this Expansion allows you to switch power sources of a **much higher voltage** than the board - and possibly your body - is able to handle. We urge you to read up the specifications of the [Relay Expansion](#relay-expansion) in our hardware overview documentation to understand the capabilities and limits of the Relay Expansion. We cannot accept responsibility for damages you may incur, and outside of this experiment we recommend you use this Expansion only if you are comfortable working **safely** with whatever you may be switching.
+**Note:** this Expansion allows you to switch power sources of a **much higher voltage** than the board - and possibly your body - is able to handle. This experiment is designed to be very safe. However for future, we urge you to read up the specifications of the [Relay Expansion](#relay-expansion) in our hardware overview documentation to understand the capabilities and limits of the Relay Expansion.
+
+**We at Onion cannot accept any responsibility for any damages caused by improper use of the Relay Expansion.**
 
 ### Circuit Isolation
 
@@ -21,7 +23,7 @@ In this tutorial, we'll use a switch with the Omega Relay expansion to turn a bu
 
 Omega boards and components are not designed to handle much more than 5V circuit and 12V supply. Attempting to directly control 120V appliances like lights, heaters, garage doors will almost certainly fry your Omega. So how can you turn on your lights?
 
-Enter the **relay**! A relay is a mechanical switch that is triggered electronically. This physically separates the circuit that triggers the switch and the circuit that the switch actually switches. The relay expansion is designed to isolate the Omega and the dock from high power circuits while allowing it to be controlled by the Omega.
+Enter the **relay**! A relay is a mechanical switch that is triggered electronically. This physically separates the circuit that triggers the switch and the circuit that the switch actually switches. The relay expansion is designed to isolate the Omega and the dock from high power circuits while still allowing them to be controlled by the Omega.
 
 
 ### Building the Circuit
@@ -34,61 +36,59 @@ The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole me
 
 #### What You'll Need
 
+Grab the components listed from your kit, and let's get wiring!
+
+* 1x Omega plugged into the Expansion Dock
 * 1x Relay Expansion
-* 1x Expansion/Power/Arduino Dock
 * 1x Buzzer
 * 1x SPDT (or three-way) switch
 * 1x Breadboard
-* Jumper wires
-	* 5x M-M
+* 5x Jumper wires (M-M)
 
 #### Hooking up the Components
 
-<!-- // detailed explanation of connecting wires to the screw terminals
+The circuit for this
 
-// wiring up the buzzer so that the connection is interrupted by the relay -->
+1. First we'll have to find a place on the breadboard to place the buzzer, we chose row 1 and mounted the buzzer across the middle channel.
+	* Taking note where the cathode (+) and where the anode (-) is, we'll have to make sure the right wires go in the right terminal.
+1. Connect the anode of the buzzer to the `GND` rail on your breadboard with a jumper. The cathode will be getting signal, so we'll deal with that later
+1. Next the SPDT switch needs to go into the breadboard, with each pin plugged into a different row. We chose row 5-7.
+1. Connect row 5 to the `GND` rail, and leave the other rows for now.
 
-1. First we'll have to find a place on the breadboard to place the buzzer, we chose row 1 and mounted the buzzer across the middle channel
-	* Taking note where the cathode (+) and where the anode (-) is, we'll have to make sure the right wires go in the right terminal later
+The circuit should look something like this:
 
-1. Next the switch needs to go into the breadboard, with each pin plugged into a different row. We chose row 5-8.
+<!-- // TODO: IMAGE of breadboard with switch and buzzer in, grounded to exp dock -->
 
-<!-- // TODO: IMAGE of breadboard with switch and buzzer in -->
 
-1. Now to set up the relay connections. We'll be using channel 0, with all switches on the relay set to `OFF`. We've included a diagram below to help out.
-	* Turn the screw on the `IN` terminal counterclockwise until the metal clamp inside is sitting a bit less than halfway in the bottom of the housing, not too much or the screw might pop out.
-	* If you're unsure, close the terminal all the way by turning the screw clockwise until you can't anymore, then open it.
-	* Grab a male-to-male jumper wire (we prefer red or orange, as this will be connected to power) and insert it into the terminal
-	* Turn the screw clockwise until the wire is tightly clamped.
-	* Repeat for the `OUT` terminal.
+Now the circuit is ready, we need to set up the relay connections. We'll be using channel 0, with all switches on the relay set to `OFF`. We've included a diagram below to help out.
 
-1. Take the jumper connected to the `IN` terminal, and plug that into the `5V` pin on the Dock.
-	* Or if you have a power supply, the positive terminal of it.
+<!-- // TODO: IMAGE diagram of the relay switch numbering -->
 
-1. Take the jumper connected to the `OUT` terminal and plug that into the row the positive terminal of your buzzer is plugged into. We used the socket in row 1 column C.
+1. To set up the relay, turn the screw on the `IN` terminal counterclockwise until the metal clamp inside is sitting a bit less than halfway in the bottom of the housing, not too much or the screw might pop out.
+    * If you're unsure, close the terminal all the way by turning the screw clockwise until you can't anymore, then open it.
+1. Grab a male-to-male jumper wire (we prefer red or orange, as this will be connected to power) and insert one end into the `IN` terminal
+1. Turn the screw clockwise until the wire is tightly clamped.
+1. Repeat for the `OUT` terminal.
 
-1. Grab a jumper wire (preferably black) and connect one end to the `GND` pin on the Dock, and the other to the same row as the negative terminal of your buzzer. Row 1, column H for us.
+Once the relay is set up, let's connect our circuit to it:
 
-<!-- // TODO: IMAGE diagram of the buzzer+relay configuration -->
+1. First, grab a jumper wire (preferably black) and connect one end to the `GND` pin on the Dock, and the other to the `GND` rail on the breadboard.
+1. Connect the middle row of the SPDT switch (row 6) to GPIO0 on the dock using a M-M jumper.
+1. Take the jumper connected to the `OUT` terminal and plug that into the row the cathode of your buzzer is plugged into. We have it plugged into row 1 column C.
+1. Take the jumper connected to the `IN` terminal, and plug that into the `5V` pin on the Dock - this line will deliver power to the buzzer when the relay is turned on.
+1. Grab a red or orange jumper and plug one end into the `3.3V` pin on the dock.
+1. Plug the other end into remaining empty pin of the switch. We plugged it into row 7 - this will be the 'HIGH' position of the switch.
 
-5. Now the buzzer can be turned off and on via commands to the Relay Expansion. Next we'll connect the switch, the final result should look something like this:
-
-<!-- // TODO: IMAGE diagram of the switch configuration -->
-
-6. Grab a red or orange jumper and plug one end into the `3.3V` pin on the dock.
-
-1. Plug the other end into the same row as the middle pin of the switch. We plugged it into row 6
-
-1. Next connect one of the two free pins on the switch to pin `0` on the dock using the last jumper wire.
-
-We're all done!
+With that, we're all done!
 
 Here's a picture of our completed circuit.
+
 <!-- // TODO: IMAGE of completed circuit -->
 
 
 ### Writing the Code
 
+The code we'll be using is a bit more complicated than you may think. We leverage the `relayExp` class from the `OmegaExpansion` Python Module to simplify the operation of the Relay Expansion. For this expriment, we don't just check the SPDT, and set the buzzer accordingly. Instead we read the relay switch first, make sure the state is different from the switch state, and then switch the Relay if needed. We'll cover why we do this below - but before we do, let's get to the action!
 
 Create a file called `MAK07-relayCircuit.py` and paste the following code in it:
 
