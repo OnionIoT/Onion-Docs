@@ -1,7 +1,7 @@
 ## Reading an Analog Temperature Sensor {#arduino-kit-reading-a-temp-sensor}
 
 <!-- // description of what this experiment will accomplish and what we'll learn -->
-In this tutorial, we will learn how to read the ambient temperature using a temperature sensor. In addition, we will learn to how to do mathematical calculations in our code and how our
+In this tutorial, we will learn how to read the ambient temperature using a temperature sensor. In addition, we will learn to how to do mathematical calculations in our code and how to convert between types.
 
 // LAZAR
 
@@ -37,23 +37,26 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-<!-- // TODO: add an intro -->
+<!-- // TODO: add an intro (done) -->
 <!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
+
 Not a lot of components need interaction in this experiment, so the build should be pretty straightforward:
 
 1. Plug the TMP36 onto the breadboard.
 2. When facing the flat side of the device, connect the right pin to ground (`GND`), the middle pin to analog pin `A0`, and the left pin to `5V`.
 
+Once that's all done, it should look like this:
+
 <!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
 
 ### Writing the Code
 
-<!-- // TODO: add an intro to the code -->
+<!-- // TODO: add an intro to the code (d) -->
 
 This program will do three things:
 1. Read the sensor's temperature.
 2. Convert the data to Celcius and Fahrenheit.
-3. Print it out so we can decide what to wear!
+3. Print it out to the command line so we can check that it's working!
 
 To get it done, copy the code below to your IDE, and flash to your Arduino Dock.
 
@@ -91,7 +94,7 @@ void loop()
 }
 ```
 
-Once you flash the code, you'll be able to see the output through the Omega's terminal - details below!
+Once you flash the code, you'll be able to see the output through the Omega's terminal - details on how to do this below!
 
 ### What to Expect
 
@@ -103,32 +106,17 @@ cat /dev/ttyS1
 
 <!-- // make the omega connect to the microcontroller using uart1 (link to the article), read the temperature data -->
 
-The ATmega will read the output of the temperature sensor and convert it to degrees celsius and fahrenheit. Then, it will send the voltage output of the temperature sensor and the converted degrees to the Omega through serial communication using UART1.
+The ATmega will read the output of the temperature sensor and convert it to degrees Celsius and Fahrenheit. Then, it will send the voltage output of the temperature sensor and the converted degrees to the Omega through serial communication using UART1 - where we pick it up by calling the command above.
 
 
 ### A Closer Look at the Code
 
-A few new things were introduced here, primarily the math operations and you may have noticed that we used the `float` variable type as well. We'll also go into some detail about serial communication between the ATmega microcontroller and the Omega.
+A few new things were introduced here. **Math operations** abound in our code to convert the dat a from the sensor to a number in degrees - we will go over how that all happens step-by-step. Even more than all that math done in the code, you may be wondering 'what's a `float`?' Don't worry, we got you covered there too. As a capper, we'll also discuss how **serial communication** works in general, and specifically between the ATmega microcontroller and the Omega.
 
-#### Serial Communication
-
-<!-- // TODO: add to this, mention how the Arduino Dock directly connects the Omega's UART1 serial port with the ATmega's serial port (there is a logic level shifter in between), talk about how this provides a great means of communication between the two devices. Only then dive into the specifics outlined below -->
-
-Serial communication, at the lowest level, is transmitting data using a single connection. The simplest example of this is morse code. The serial connections between our devices in this experiment are doing much more complicated things much faster, so we won't get into the details. Suffice to say there's always two parts to good serial communication - one party needs to set up to listen, while the other talks.
-
-A more immediate example is the communicaiton between the sensor and the Dock. Here, the sensor will always be talking, so we set the Arduino Dock to listen. To listen, we use `analogRead()` - just like when we read the trimpot.
-
->We're using a much longer delay here since the output from the temperature sensor changes quite slowly.  Thus constantly calling a read isn't useful and only taxes the CPU needlessly.
-
-Now let's take a closer look at how the Omega and the ATmega communicates. The Arduino dock has a serial communication line, and we've plugged that directly into the Omega's [UART1 ](https://docs.onion.io/omega2-docs/uart1.html)port when it's seated in the dock.  We initialize the serial communication between the Atmega and the Omega using `Serial.begin(9600)`. After the serial initialization, we use the built-in Arduino function `Serial.print()` to send data from the ATmega or `Serial.println()` when you need a new line. To listen in from the Omega side, the serial is connected to the UART1 port, which is mounted as a file, specifically `/dev/ttyS1`. Calling the `cat` command will start outputting the contents of the file to the command line - listening to the Serial talk from the ATmega!
-
-If you've used the ATmega's Serial connection before, you probaly see how convenient this is. Normally, you'd have to send the serial data through USB or some other port to a laptop or computer. With the Arduino Dock, you can simply plop your Omega + Dock somewhere and read the serial output over ssh - or even through the Onion Cloud!
-
-> The `9600` sent to initializethe serial is the baud rate. The baud rate is the rate (in bits/second) at which the data is being transferred over the serial port. Notice we didn't include the baud rate when we use `cat /dev/ttyS1` to read on the Omega side - this is because the default baud rate of cat is 9600.
 
 #### Number Variable Types
 
-<!-- // TODO: write a section about the difference between int and floats, make sure to talk about how casting is required when performing math operations between floats and intensity INTENSE -->
+<!-- // TODO: write a section about the difference between int and floats, make sure to talk about how casting is required when performing math operations between floats and intensity INTENSE (d)-->
 
 <!-- // ie describe how you'll get different results between:
 //  * float var = someIntegerNumber / 5
@@ -156,14 +144,32 @@ In a nutshell, cast (or typecast) tells the compiler to convert one type into an
 
 #### Math Operations
 
-<!-- // TODO: fix up the english here, the content is good but maybe create separation between the sentences that describe the calculation of each value (voltage, deg celsius, deg fahrenheit) -->
+<!-- // TODO: fix up the english here, the content is good but maybe create separation between the sentences that describe the calculation of each value (voltage, deg celsius, deg fahrenheit) (d) -->
 
-When powered, the temperature sensor will output a varying voltage depending on what the temperature is. Analog read will take that voltage and converted it to a digital value (0 to 1023).
+When powered, the temperature sensor will output a varying voltage depending on what the sensor is detecting. Analog read will take that voltage and convert it to a digital value (0 to 1023).
 
-From the TMP36 datasheet, temperature sensor has a scale factor of 10 mV/°C with a offset of 500mV to account for negative temperatures. This means, for example, the sensor will output 0.5V at 0°C, 0.51V at 1°C and 0.49V at -1°C. Using the the scale factor and offset, we can convert the voltage input to temperature in degree celsius. This is done by subtracting the voltage by 0.5 and multiplying by 100.
+From the TMP36 datasheet, temperature sensor has a scale factor of 10 mV/°C with a offset of 500mV to account for negative temperatures. To exmaple with some concrete examples: the sensor will output 0.5V at 0°C, 0.51V at 1°C and 0.49V at -1°C. Using the the scale factor and offset, we can convert the voltage input to temperature in degree celsius. This is done by subtracting the voltage by 0.5 and multiplying by 100.
 
 Before we can get our temperature with the calculation above, we need to convert the digital value back to a voltage value between 0V and 5V.
 
 We do this by mulitplying the digital value by 5 and divide by 1023. This is where casting and the `float` type comes in handy! We cast the `reading` to float, and then do the divsion so we can get our decimal places without loss of accuracy. The multiplication on the float will get us another float, so we keep the accuracy we wanted. Awesome!
 
 After we have our temperature calculated, we can easily convert it to Fahrenheit by multiplying by (9/5) and adding 32. 
+
+
+#### Serial Communication
+
+<!-- // TODO: add to this, mention how the Arduino Dock directly connects the Omega's UART1 serial port with the ATmega's serial port (there is a logic level shifter in between), talk about how this provides a great means of communication between the two devices. Only then dive into the specifics outlined below (d) -->
+
+Serial communication, at the lowest level, is transmitting data using a single connection. The simplest example of this is morse code. The serial connections between our devices in this experiment are doing much more complicated things much faster, so we won't get into the details. Suffice to say there's always two parts to good serial communication - one party needs to set up to listen, while the other talks.
+
+A more immediate example is the communicaiton between the sensor and the Dock. Here, the sensor will always be talking, so we set the Arduino Dock to listen. To listen, we use `analogRead()` - just like when we read the trimpot.
+
+>We're using a much longer delay here since the output from the temperature sensor changes quite slowly.  Thus constantly calling a read isn't useful and only taxes the CPU needlessly.
+
+Now let's take a closer look at how the Omega and the ATmega communicates. The Arduino dock has a serial communication line, and we've plugged that directly into the Omega's [UART1](https://docs.onion.io/omega2-docs/uart1.html) port when it's seated in the dock. To set up the ATmega to talk, we initialize the serial pin with `Serial.begin(9600)`. After the initialization, we can use the built-in Arduino functions `Serial.print()` or `Serial.println()` to send word from the ATmega. To listen in from the Omega side, the serial is connected to the UART1 port, which is mounted as a file, specifically `/dev/ttyS1`. Calling the `cat` command will start outputting the contents of the file to the command line - listening to the Serial talk from the ATmega!
+
+If you've used the ATmega's Serial connection before, you probaly see how convenient this is. Normally, you'd have to send the serial data through USB or some other port to a laptop or computer. With the Arduino Dock, you can simply plop your Omega + Dock somewhere and read the serial output over ssh - or even through the Onion Cloud!
+
+> The `9600` sent to initializethe serial is the baud rate. The baud rate is the rate (in bits/second) at which the data is being transferred over the serial port. Notice we didn't include the baud rate when we use `cat /dev/ttyS1` to read on the Omega side - this is because the default baud rate of cat is 9600.
+

@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 9
 ---
 
-## Reading a 1-Wire Temperature Sensor {#starter-kit-reading-a-one-wire-temp-sensor}
+## Reading a 1-Wire Temperature Sensor {#starter-kit-temp-sensor}
 
 <!-- // in this experiment we will:
 //  * introduce the one-wire bus protocol
@@ -247,7 +247,7 @@ import oneWire
 oneWireGpio = 19 # set the sensor GPIO
 pollingInterval = 1 # seconds
 
-def __main__():
+def main():
     # check if 1-Wire is setup in the kernel
     if not oneWire.setupOneWire(str(oneWireGpio)):
         print "Kernel module could not be inserted. Please reboot and try again."
@@ -267,7 +267,7 @@ def __main__():
     print "T = " + str(value) + " C"
 
 if __name__ == '__main__':
-    __main__()
+    main()
 ```
 
 Run the `STK08-temp-sensor.py` script and watch the terminal for output.
@@ -317,7 +317,7 @@ with open(self.slaveFilePath) as slave:
     message = slave.read().split("\n")
 ```
 
-This simple 2-line block reads from the slave's system file at `/sys/devices/w1_bus_master1/<address>/w1_slave"`, which triggers the Omega to physically send a request to the 1-Wire sensor and return the data to our program. The file is then automatically closed once the program exits that block. Here, the `slave` object is a python File Object and we read it just as we would a regular file!
+This simple 2-line block reads from the slave's system file at `/sys/devices/w1_bus_master1/<address>/w1_slave"`, which triggers the Omega to physically send a request to the 1-Wire sensor and return the data to our program. The file is then automatically closed once the program exits that block. Here, the `slave` object is a Python File Object and we read it just as we would a regular file!
 
 
 #### Scanning a Bus
@@ -348,17 +348,32 @@ The device's address will then be printed on the screen.
 
 #### Python Modules and the `__main__` Function
 
-When a Python file is imported as a module, any code in the lowest level of indentation will be run. This means if you want to write a Python module that stays silent until the functions are called (as good practice dicates), you can't let code that would 'do things' be inserted at the lowest level.
+When a Python file is imported as a module, any code in the lowest level of indentation will be executed. This means if you want to write a Python module that stays silent until the functions are called (as good practice dicates), you can't let code that would 'do things' be inserted at the lowest level.
 
 What if there's some important functions that you want to run by executing the module directly, but not when it's imported?
 
-Enter:
+Enter the `__name__` variable!
 
+Loosely speaking, every file in Python has a hidden `__name__` variable. When the file is imported, the value of `__name__` is set to the name of the module. For example if you're file is called `file.py`, `__name__` will be `'file'`. However if the file is run by calling `python file.py`, Python will set the `__name__` variable to `'__main__'`.
+
+Using this behaviour we can make sure importing a module is silent, while any code we want executed when we run the file will still be executed. We do this by sticking whatever code we wish to execute by running the file in a function, and checking the `__name__` variable to decide whether to call that function or not.
+
+You can see this happening in two places in our code. First we define the `main()` function, and put all the code we would like to be run inside it:
+
+``` python
+def main():
+	# reading and writing to the sensor
 ```
+
+After that, we check the `__name__` variable to run the code only when it's executed:
+
+``` python
 if __name__ == '__main__':
+    main()
 ```
 
-Every file in python has a hidden `__name__` variable. When the file is imported, the value of `__name__` the filename is.
+That's it! Now `STK08-tempSensor.py` can be imported as a module without running its code immediately on import.
+
 
 <!-- TODO: what did he mean by this? -->
 

@@ -30,7 +30,7 @@ In this experiment, we will be building on the previous experiment by adding an 
 
 <!-- // start from the temperature sensor circuit
 // straight-forward addition: I2C SCL+SDA, Vcc (3.3V), GND -->
-We'll be using the same temperature sensor circuit from the previous experiment, but we'll also be connecting the I2C display to the Omega.
+To get this experiment up and running, we'll be using the same temperature sensor circuit from the previous experiment, but we'll also be connecting the I2C display to the Omega so we can display the temperature on it. The code we write will tie the two together, but the build will borrow heavily from the [previous experiment](#starter-kit-temp-sensor).
 
 #### What You'll Need
 
@@ -43,7 +43,7 @@ Everything from the [temperature sensor experiment](#starter-kit-temp-sensor):
 * 1x 1-Wire temperature sensor
     * Should read "Dallas 18B20" on the part
 
-Then grab the following from your kit:
+Additionally, grab the following from your kit:
 
 * 1x LCD Screen
 * 4x Jumper wires (M-F)
@@ -56,8 +56,9 @@ Then grab the following from your kit:
 // [experiment with the i2c screen and see if it needs the resistors]
 // Gabe: the community member's tutorial has the screen hooked straight to the GPIOs, no pullups, but requires 5V power -->
 
-1. If you've taken apart your temperature sensor circuit, wire it back up according to the instructions in the [previous experiment](#starter-kit-reading-one-wire-temperature-sensor).
-1. Connect the pins from the I2C display to the Expansion Dock according to this table:
+The main sensor circuit is exactly the same as the [previous experiment](#starter-kit-temp-sensor). If you've already taken it apart, no worries, just wire it back up exactly as before and you'll be ready for the next step!
+
+Once you have the temperature sensor circuit up and ready, connect the pins from the I2C display to the Expansion Dock according to this table:
 
 | Display Pin | Expansion Dock |
 |---------|----------------|
@@ -66,7 +67,10 @@ Then grab the following from your kit:
 | SDA     | SDA            |
 | SCL     | SCL            |
 
-<!-- TODO: IMAGE photo -->
+
+All done! If everything goes well, it should look something like this:
+
+<!-- TODO: IMAGE assembled circuit -->
 
 ### Writing the Code
 
@@ -222,7 +226,7 @@ class Lcd:
 
 Now let's write the main routine for the experiment. This script will create an `Lcd` object, and a `TemperatureSensor` object. It gets the sensor data from the `TemperatureSensor`, then sends that data to the `Lcd` object to display. It does this once and exactly once, so you can call it whenever for a quick update.
 
-Create a file called `STK09-temperatureLCD.py` in `/root`. Paste the code below in it:
+Create a file called `STK09-temperatureLCD.py` and paste the code below into it. Copy the file to `/root` on your Omega, run it with Python, and you should get a reading!
 
 ``` python
 import datetime
@@ -303,12 +307,19 @@ In the code, we specifically use two main functions of the library: the **constr
 
 Here we're using two objects of different classes to accomplish our goal, `TemperatureSensor` and `Lcd`. If we had other devices we wanted to include in this experiment, we can write more class definitions and load them using the `import` statement.
 
-This is an incredibly common programming technique and is at the heart of Object Oriented Programming!
+This is an incredibly common programming technique and is at the heart of Object Oriented Programming! It helps us capture and understand interactions between complex pieces through simplifying them in a human-readable way.
+
+It's much easier to think about getting a reading from your `sensor` object, then to deal with the complexities of sending serial data to and from a 1-Wire device and all the conversion you need to do from that data. Instead, we get a line like `return sensor.readValue()` which we can immediately understand.
+
+>Although it's a powerful tool, too much abstraction can create its own problems. Ultimately, writing smart, self-documenting code comes from lots of practise and communication between you and the people you share your work with!
 
 
 ### Going Further: Automating the Script
 
-<!-- TODO: has this been tested? last time I did it using the omega1 instructions and it didn't work (Gabe) -->
+<!-- TODO: has this been tested? last time I did it using the omega1 instructions and it didn't work (Gabe) 
+
+May have worked differently on the omega1? The current iteration of instructions works on Omega2 firmware 149. It will successfully call a properly written shell script on the minute, every minute. If you're testing with `echo`, note that it dumps into /dev/null or some other black hole, pipe it into a file to see it working properly. (James)
+-->
 
 We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
 
@@ -332,7 +343,7 @@ Run `crontab -e` to edit the file that contains commands and schedules to run th
 * * * * * /root/checkTempSensor.sh
 ```
 
->To briefly explain, the asterisks (\*) mean 'for all instances'. The position of the asterisk corresponds to 'minute', 'hour', 'date', 'month', and 'year' in order from left to right. The path at the end is the script or command you want to run. This line will tell cron to run the shell script once a minute.
+>To briefly explain, the asterisks (\*) mean 'for all instances'. The position of the asterisk corresponds to 'minute', 'hour', 'date', 'month', and 'year' in order from left to right. The path at the end is the script or command you want to run. Basically, this line tells cron to run the `checkTempSensor.sh` script once a minute.
 
 **Note** that you'll have to [use `vi`](http://vim.wikia.com/wiki/New_to_Vim) to edit this file by default!
 
@@ -346,4 +357,4 @@ Your LCD should now update once a minute, and you're free to use your Omega for 
 
 #### Known Issues
 
-`crond restart` will start a new instance of cron at time of writing. If you want to be circumspect, we recommend running `pidof crond` to check how many instances are currently running. The output of `pidof` should be either nothing (no `crond` running at all) or a list of numbers. Each number is the process ID (`pid`) of a running instance of `crond`. You can call `kill <pid>` to stop the process associated with that ID.
+At the time of writing this guide, `crond restart` will start a new instance of cron. If you want to be circumspect, we recommend running `pidof crond` to check how many instances are currently running. The output of `pidof` should be either nothing (no `crond` running at all) or a list of numbers. Each number is the process ID (`pid`) of a running instance of `crond`. You can call `kill <pid>` to stop the process associated with that ID.
