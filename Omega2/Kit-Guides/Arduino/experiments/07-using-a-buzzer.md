@@ -91,7 +91,7 @@ When the button is pressed, the buzzer will buzz until the button is released. P
 
 <!-- // TODO: link to the polling and interrupt articles -->
 
-We will approach the simple task of pressing button to make the buzzer buzz in two different ways. The first method, covered here, is constantly polling the push button input. The second method is to implement a hardware interrupt. Check out the experiments on [polling](#arduino-kit-reading-a-pot) and [interrupts](#arduino-kit-reading-a-push-button) if you want to go in a bit more detail on either of the methods. Now, let's look at the difference between polling and interrupt based input, starting with the code above that implements polling.
+We will approach the simple task of pressing button to make the buzzer buzz in two different ways. The first method, covered here, is constantly polling the push button input. The second method is to get the button to interrupt the program. Check out the experiments on [polling](#arduino-kit-reading-a-pot) and [interrupts](#arduino-kit-reading-a-push-button) if you want to go in a bit more detail on either of the methods. For now, let's start by examining the code above that implements polling.
 
 #### Polling a Value
 
@@ -102,9 +102,9 @@ In the first method, we poll the input of the push button at a regular interval 
 
 <!-- // TODO: expand on how polling is taxing on the processor (but don't make it sound dangerous)-->
 
-Polling has some issues with waste. The idea behind it is check continuously until an event happens. However, up until the event does happen, all that checking doesn't do anything useful! In fact, it's common practise to add a delay to the polling loop to avoid wasting CPU cycles. 
+Polling has some issues with waste. The idea is to just check the input continuously until an event happens. The problem is that up until the event does happen, all that checking doesn't do anything useful! To avoid wasting CPU cycles like this, it's common practice to add a delay to the polling loop to avoid wasting CPU cycles.
 
-Of course the downside is that this delay will make your program less responsive. Not only that, if the delay is too long, a short button press might actually be missed! In addition to the fact that we might not successfully capture all inputs, we're also locked in to just checking the state of that button - our program can't do anything else! 
+Of course the downside is that this delay will make your program less responsive. Not only that, if the delay is too long, a short button press might actually be missed! In addition to the fact that we might not successfully capture all inputs, we're also locked in to just checking the state of that button - our program can't do anything else!
 
 There must be a better way!
 
@@ -115,7 +115,7 @@ There must be a better way!
 // to implement the same functionality as we have above, we'll need to set an action - the interrupt - that will trigger a response - the interrupt service routine.
 // in our case, the interrupt action will be a change in the signal coming from the push button (both rising and falling edges), and we will write a function that we will register as the interrupt service routine, ie it will run when the interrupt is triggered - nothing of interest happens in the loop() function -->
 
-An alternative to polling is using interrupt-based inputs. In this approach, instead of continuously reading the button input state and writing the buzzer output state, we only write the output buzzer state when there's a change in the button input state (either a press or release). This is actually a much better method because there is little to no chance of missing any button presses, and it allows us to do other things in our program. In this case, we're just adding a blinking LED to illustrate the point.
+An alternative to polling is using interrupt-based inputs. In this approach, we set up code so that when the button changes state, an 'interrupt' will be fired off and the appropriate change to the buzzer will be made. This is actually a much better method because there is little to no chance of missing any button presses. Even better, it allows us to do other things because the burden of checking has been lifted. In this case, we're just adding a blinking LED to illustrate the point.
 
 <!-- // new code:
 // have an interrupt routine programmed to the button input, when an edge is detected, flip the value that controls the buzzer and write it to the output connected to the buzzer

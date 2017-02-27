@@ -36,12 +36,13 @@ Prepare the following components from your kit:
 
 #### Hooking Up the Components
 
-// TODO: add an intro
-// TODO: add a circuit diagram of the circuit we will be building
+<!-- // TODO: add an intro -->
+<!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
 
+Now that you got everything, let's build!
 
 1. Connect the two push buttons with their seperate debounce circuits same as previous tutorials.
-    * Set up two push buttons, each with their own debounce circuit similar to tutorial 4, don't connect to Arduino Dock yet.
+    * Set up two push buttons, each with their own debounce circuit similar to [tutorial 4](#arduino-kit-reading-a-push-button), don't connect to Arduino Dock yet.
     * Connect the point in the first debounce circuit between the 5kohm resistor and the capacitor to pin 2 of the Arduino Dock.
     * Connect the point in the second debounce circuit between the 5kohm resistor and the capacitor to pin 3 of the Arduino Dock.
     * Connect the Vcc of both debounce circuit to the positive (+) power rail.
@@ -54,14 +55,21 @@ Prepare the following components from your kit:
     * Connect the negative power rail to ground (GND).
     * Connect the positive power rail to 5V. Don't worry if the servo rotates a bit when you power it on.
 
-// TODO: add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look'
+<!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
 
 ### Writing the Code
 
-// TODO: intro to the code, in broad strokes talk about what we hope to accomplish
+<!-- // TODO: intro to the code, in broad strokes talk about what we hope to accomplish -->
 
-``` arduino
+Now that the circuit is wired, it's time to write the code that makes it go!
+
+In order to drive the servo, we'll create a servo class conforming to the limits of our motors in the sketch by leveraging the functions provided by the `Servo.h` Arduino Library. This allows us to reuse the code for the future, in addition to making our `setup()` and `loop()` functions much more readable.
+
+To get your servos turning, copy the code below into `SKA08-usingServo.ino` and flash it to your Arduino Dock.
+
+``` c++
 // import the Arduino Servo library and define it
+
 #include <Servo.h>
 
 int incrementButton = 2;
@@ -71,15 +79,16 @@ int currentAngle = 90;
 // class to control servo motors
 class ServoMotor
 {
-	private:      // variables or functions that can only be used within the ServoMotor class
-	Servo servo;    // Servo object from the Arduino Servo library
-	float rate;    // rate of pulse width change per degree
-	float minPW, maxPW;   // min and max pulse width in microseconds (uS)
+	private:               // variables or functions that can only be used within the ServoMotor class
+	Servo servo;           // Servo object from the Arduino Servo library
+	float rate;            // rate of pulse width change per degree
+	float minPW, maxPW;    // min and max pulse width in microseconds (uS)
 	int minAngle = 0;
 	int maxAngle = 180;
 	int pin;
 
-	public:     //  variables or functions which can be called outside in the main program
+	public:     //  variables or functions which can be called outside in the main program TODO: clarify this section
+
 	// constructor with same name as class, will be automatically called when a class object is declared
 	// pass in the pin number, max and min pulse width and calculate the pulse width change for each degree
 	ServoMotor(int pinNumber, float minPWus, float maxPWus){
@@ -158,21 +167,23 @@ void loop() {   // code to be run continuously
 }
 ```
 
-#### What to Expect
+### What to Expect
 
 <!-- // description of how both servos will turn in a particular direction while a button is depressed, the buttons control the direction of rotation -->
 
 When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction. If either button is pressed and held down,
 the servos' shaft position will either increase or decrease by 5 degrees every 0.2 seconds.
 
-#### A Closer Look at the Code
+<!-- TODO: IMAGE video of the servos turning -->
+
+### A Closer Look at the Code
 
 <!-- // introduced object oriented programming for the first time in this code -->
 
 In this code, we introduce a very important, new concept: Object Oriented Programming (OOP). We will take a look at some of the key elements of OOP: classes, objects, constructors and class members.
 
 
-##### Object Oriented Programming
+#### Object Oriented Programming
 
 // TODO: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read
 

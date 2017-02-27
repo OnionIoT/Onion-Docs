@@ -154,16 +154,16 @@ Before we can get our temperature with the calculation above, we need to convert
 
 We do this by mulitplying the digital value by 5 and divide by 1023. This is where casting and the `float` type comes in handy! We cast the `reading` to float, and then do the divsion so we can get our decimal places without loss of accuracy. The multiplication on the float will get us another float, so we keep the accuracy we wanted. Awesome!
 
-After we have our temperature calculated, we can easily convert it to Fahrenheit by multiplying by (9/5) and adding 32. 
+After we have our temperature calculated, we can easily convert it to Fahrenheit by multiplying by (9/5) and adding 32.
 
 
 #### Serial Communication
 
 <!-- // TODO: add to this, mention how the Arduino Dock directly connects the Omega's UART1 serial port with the ATmega's serial port (there is a logic level shifter in between), talk about how this provides a great means of communication between the two devices. Only then dive into the specifics outlined below (d) -->
 
-In this one and some of our previous experiments, we've called the serial interface between the ATmega and the Omega with `cat /dev/ttyS1`.
+In this one and some of our previous experiments, we've called the serial interface between the ATmega and the Omega with `cat /dev/ttyS1`. If you've used the ATmega's Serial connection before, you probaly see how convenient this setup can be.
 
-If you've used the ATmega's Serial connection before, you probaly see how convenient this setup can be. Normally, you'd have to send the serial data through USB or some other port to a laptop or computer and read it with a dedicated serial monitor. With the Arduino Dock, you can simply set your Omega + Dock somewhere and read the serial output over ssh - or even through the Onion Cloud!
+Normally, you'd have to send the serial data through USB or some other port to a laptop or computer and read it with a dedicated serial monitor. With the Arduino Dock, you can simply set your Omega + Dock somewhere and read the serial output over ssh - or even through the Onion Cloud!
 
 Serial communication, at the lowest level, is transmitting data using a single connection. The simplest example of this is morse code. The serial connections between our devices in this experiment are doing much more complicated things much faster, so we won't get into the details. Suffice to say there's always two parts to good serial communication - one party needs to set up to listen, while the other talks.
 
@@ -175,10 +175,9 @@ A more immediate example is the communicaiton between the sensor and the Dock. H
 
 ##### ATmega to Omega
 
-Now let's take a closer look at how the Omega and the ATmega communicate. The Arduino dock has a serial communication line, and we've plugged that directly into the Omega's [UART1](https://docs.onion.io/omega2-docs/uart1.html) port when the Omega's seated in the dock. 
+Now let's take a closer look at how the Omega and the ATmega communicate. The Arduino dock has a serial communication line, and we've plugged that directly into the Omega's [UART1](https://docs.onion.io/omega2-docs/uart1.html) port when the Omega's seated in the dock.
 
 To set up the ATmega to talk, we initialize the serial pin with `Serial.begin(9600)`. After the initialization, we can use the built-in Arduino functions `Serial.print()` or `Serial.println()` to send word from the ATmega. To listen in from the Omega side, the serial is connected to the UART1 port, which is mounted as a file, specifically `/dev/ttyS1`. Calling the `cat` command will start outputting the contents of the file to the command line - listening to the Serial talk from the ATmega!
 
 
 > The `9600` sent to initializethe serial is the baud rate. The baud rate is the rate (in bits/second) at which the data is being transferred over the serial port. Notice we didn't include the baud rate when we use `cat /dev/ttyS1` to read on the Omega side - this is because the default baud rate of cat is 9600.
-
