@@ -3,7 +3,7 @@
 <!-- // description of what this experiment will accomplish and what we'll learn -->
 In this tutorial, we will learn how to read the ambient temperature using a temperature sensor. In addition, we will learn to how to do mathematical calculations in our code and how to convert between types.
 
-// LAZAR
+<!-- // LAZAR -->
 
 ### Analog Temperature Sensor
 <!-- // should be its own markdown file
@@ -15,7 +15,7 @@ An analog temperature will detect the ambient air temperature and outputs differ
 
 <!-- // TODO: Image of a temperature sensor -->
 
-Typically, temperature sensors include a voltage offset to account for negative temperatures. In addition, there will be a limit to the sensor's operating temperature, in our case the TMP36 will withstand a temperature range from -40°C to 125°C. Another important parameter of the temperature sensor is its scale factor, which is 10 mV/°C for the TMP36. The resolution of a sensor is the smallest change that it can detect.
+The TMP36 is a bog standard temperature sensor with a few important specs: voltage offset, operating range, scale factor, and resolution. Typically, temperature sensors include a voltage offset to account for negative temperatures. This means 0°C won't correspond to 0V, and in the case of the TMP36, 500mV corresponds to 0°C. The sensor's operating temperature is the range in which it'll record accurate data, in our case the TMP36 will withstand a temperature range from -40°C to 125°C. Another important parameter of the temperature sensor is its scale factor, which is 10 mV/°C for the TMP36. The resolution of a sensor is the smallest change that it can detect - it actually ends up being a combination of the sensor's innate resolution and the resolution of the reading device.
 
 The resolution of the measurement also depends on how the microcontroller interprets analog input. In our case, the ATmega's `analogRead()` function has a 10-bit resolution (1024 steps), allowing for the smallest detectable change to be 4.88mV, assuming the input voltage is 5V.
 
@@ -23,7 +23,7 @@ The resolution of the measurement also depends on how the microcontroller interp
 
 <!-- // TODO: spice up this sentence a bit, so dry rn -->
 
-For this experiment we will be using the TMP36 temperature sensor to perform its sole intended job - measuring temperature. We will connect the temperature sensor to an analog pin of the ATmega, and see if we can get a reading.
+For this experiment we will be using the TMP36 temperature sensor to perform its sole intended job - measuring temperature. To do so, our circuit will connect the temperature sensor to an analog pin of the ATmega, and reference it to `Vcc` and `GND` so we can make sure the data is accurate.
 
 #### What You'll Need
 
@@ -60,7 +60,7 @@ This program will do three things:
 
 To get it done, copy the code below to your IDE, and flash to your Arduino Dock.
 
-``` c++
+``` c
 //the scale factor of TMP36 (temperature sensor) is 10 mV/°C with a 500 mV offset to allow for negative temperatures
 
 int sensorPin = A0; // the analog pin number connected to the TMP36
@@ -161,15 +161,24 @@ After we have our temperature calculated, we can easily convert it to Fahrenheit
 
 <!-- // TODO: add to this, mention how the Arduino Dock directly connects the Omega's UART1 serial port with the ATmega's serial port (there is a logic level shifter in between), talk about how this provides a great means of communication between the two devices. Only then dive into the specifics outlined below (d) -->
 
+In this one and some of our previous experiments, we've called the serial interface between the ATmega and the Omega with `cat /dev/ttyS1`.
+
+If you've used the ATmega's Serial connection before, you probaly see how convenient this setup can be. Normally, you'd have to send the serial data through USB or some other port to a laptop or computer and read it with a dedicated serial monitor. With the Arduino Dock, you can simply set your Omega + Dock somewhere and read the serial output over ssh - or even through the Onion Cloud!
+
 Serial communication, at the lowest level, is transmitting data using a single connection. The simplest example of this is morse code. The serial connections between our devices in this experiment are doing much more complicated things much faster, so we won't get into the details. Suffice to say there's always two parts to good serial communication - one party needs to set up to listen, while the other talks.
+
+##### Sensor to Arduino Dock
 
 A more immediate example is the communicaiton between the sensor and the Dock. Here, the sensor will always be talking, so we set the Arduino Dock to listen. To listen, we use `analogRead()` - just like when we read the trimpot.
 
 >We're using a much longer delay here since the output from the temperature sensor changes quite slowly.  Thus constantly calling a read isn't useful and only taxes the CPU needlessly.
 
-Now let's take a closer look at how the Omega and the ATmega communicates. The Arduino dock has a serial communication line, and we've plugged that directly into the Omega's [UART1](https://docs.onion.io/omega2-docs/uart1.html) port when it's seated in the dock. To set up the ATmega to talk, we initialize the serial pin with `Serial.begin(9600)`. After the initialization, we can use the built-in Arduino functions `Serial.print()` or `Serial.println()` to send word from the ATmega. To listen in from the Omega side, the serial is connected to the UART1 port, which is mounted as a file, specifically `/dev/ttyS1`. Calling the `cat` command will start outputting the contents of the file to the command line - listening to the Serial talk from the ATmega!
+##### ATmega to Omega
 
-If you've used the ATmega's Serial connection before, you probaly see how convenient this is. Normally, you'd have to send the serial data through USB or some other port to a laptop or computer. With the Arduino Dock, you can simply plop your Omega + Dock somewhere and read the serial output over ssh - or even through the Onion Cloud!
+Now let's take a closer look at how the Omega and the ATmega communicate. The Arduino dock has a serial communication line, and we've plugged that directly into the Omega's [UART1](https://docs.onion.io/omega2-docs/uart1.html) port when the Omega's seated in the dock. 
+
+To set up the ATmega to talk, we initialize the serial pin with `Serial.begin(9600)`. After the initialization, we can use the built-in Arduino functions `Serial.print()` or `Serial.println()` to send word from the ATmega. To listen in from the Omega side, the serial is connected to the UART1 port, which is mounted as a file, specifically `/dev/ttyS1`. Calling the `cat` command will start outputting the contents of the file to the command line - listening to the Serial talk from the ATmega!
+
 
 > The `9600` sent to initializethe serial is the baud rate. The baud rate is the rate (in bits/second) at which the data is being transferred over the serial port. Notice we didn't include the baud rate when we use `cat /dev/ttyS1` to read on the Omega side - this is because the default baud rate of cat is 9600.
 

@@ -53,6 +53,8 @@ The circuit is super straight-forward, just need to connect the LED to a GPIO, m
 2. Connect the anode of the LED (the longer leg) to pin 4 on the Arduino Dock.
 3. Connect the cathode of the LED (the shorter leg) to one end of the resistor and the other end of the resistor to ground (GND).
 
+It should look something like this when it's all set up:
+
 <!-- // TODO: IMAGE of finished circuit -->
 
 ### Writing the Code
@@ -71,6 +73,8 @@ int ledPin = 4;        // We set a variable for the LED pin number as good
 void setup() {			
     pinMode(ledPin, OUTPUT);
 }
+
+
 // The code in here will run continuously until we turn off the Arduino
 void loop() {			
     digitalWrite(ledPin, HIGH); // turn the LED on
@@ -102,11 +106,11 @@ After we set the pin to output, we will use `digitalWrite` to set the pin either
 
 #### Variable Scope
 
-For this code, we declared our two variable (`ledPin` and `blinkTime`) at the beginning of the code, outside of any function brackets `{}`. This means the variable is globally defined and can be used anywhere in the sketch. However, if we define a variable inside a function, we will only be able to use it inside that function. This is a concept known as **scope**.
+For this code, we declared our two variable (`ledPin` and `blinkTime`) at the beginning of the code outside of any function brackets `{}`. This means the variable is globally defined and can be used anywhere in the sketch. However, if we define a variable inside a function, we will only be able to use it inside that function. This is a concept known as **scope**.
 
-For example if we defined `ledPin` inside the `setup()` function :
+For example let's say we defined `ledPin` inside the `setup()` function like so:
 
-```arduino
+```c
 int blinkTime = 1000;       // duration to keep the LED on/off in ms
 
 void setup() {			// code to be run once at the start of the program
@@ -118,4 +122,5 @@ void loop(){
 	...
 }
 ```
+
 Then if we were to try to use `ledPin` in `loop()`, we will get a scope error when the code is compiled. The scope of a variable defines which part of the code it can be used.

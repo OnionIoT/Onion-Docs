@@ -3,18 +3,18 @@
 <!-- // description of what this experiment will accomplish and what we'll learn -->
 In this tutorial, we will use a photoresistor to detect the ambient light intensity. In order to be able to actually detect the light intensity, we'll need a voltage divider in our circuit. We'll also be sending data from the ATmega to the Omega through the serial port. Let's dive in!
 
-### Photoresistor
-// TODO: move this to its own markdown file
 
-A photoresistor has a variable resistance based on the intensity of the light hitting it. However, its light intensity measured in a unit called lux is inversely proportional to its resistance: the resistance will decrease when the environment has more light, and increase when there is less light. The photoresistor is made out of a semiconductor with high resistance and can go up to megohms when the environment is dark.
-
-<!-- // TODO: Image of a photoresistor -->
+<!-- // TODO: move this to its own markdown file -->
+```{r child = '../../shared/photoresistor.md'}
+```
 
 ### Building the Circuit
 
 For this circuit we will need use a photoresistor and a 10K resistor to make a voltage divider on a breadboard. We will be using jumper wires for the connections.
 
-<!-- // TODO: diagram and equation for a voltage divider -->
+<!-- // TODO: IMAGE diagram and equation for a voltage divider -->
+
+$$ V_{out} = \frac{R_2}{R_1+R_2} \cdot V_{in} $$
 
 Using the equation for the voltage divider, we will be able to determine the resistance of the photoresistor and then calculate the light intensity.
 
@@ -31,20 +31,28 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-// TODO: add an intro
-// TODO: add a circuit diagram of the circuit we will be building
+<!-- // TODO: add an intro -->
+<!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
 
-1. Connect one end of the photoresistor to 5V and the other end to the 10K resistor (the polarity does not matter).
-1. Connect the other end of the 10K resistor to GND.
+Once you have the components ready, follow these steps:
+
+1. Connect one end of the photoresistor to `5V` and the other end to the 10K resistor (the polarity does not matter).
+1. Connect the other end of the 10K resistor to `GND`.
 1. Connect the middle point between the photoresistor and resistor to the A0 analog pin on the Arduino Dock
 
-// TODO: add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look'
+All done! Here's what our finished circuit looks like:
+
+<!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look'-->
 
 ### Writing the Code
 
-// TODO: intro to the code
+<!-- // TODO: intro to the code-->
 
-``` arduino
+For this experiment, the code doesn't activate anything, it will simply calculate and print out the resistance and the light intensity level to the console.
+
+If you're ready, copy the code below to `SKA06-photoresistor.ino` and flash it to start reading the light levels!
+
+``` c
 int lightPin = A0;  //the pin number connected to the photoresistor
 int R1 = 10000;   // resistor value between photoresistor and GND
 
@@ -76,7 +84,13 @@ void loop()
 }
 ```
 
-#### What to Expect
+Once again, you can read the serial communication from the ATmega by calling:
+
+```
+cat /dev/ttyS1
+```
+
+### What to Expect
 
 <!-- // make the omega connect to the microcontroller using uart1 (link to the article), read the light intensity data
 // have the user cover the photoresistor with their hand and observe the change in value, have them shine a light at it -->
@@ -86,21 +100,47 @@ The ATmega will print the output voltage of the voltage divider, the resistance 
 ```
 cat /dev/ttyS1
 ```
-If you cover the photoresistor with your hand, you'll see on your Omega's command line that the light intensity (lux) value will decrease significantly. You'll also see how the resistance of the photoresistor is inverse proportional to the light intensity (lux).
 
-#### A Closer Look at the Code
+If you cover the photoresistor with your hand, you'll see on your Omega's command line that the light intensity (lux) value will decrease significantly. You'll also see how the resistance of the photoresistor is inverse proportional to the light intensity.
 
-// TODO: change this text so that it doesn't talk about the previous experiment
+### A Closer Look at the Code
 
-This code is very similar to the previous tutorial. We use analogRead to obtain a digital value (0 to 1023) of analog voltage level at the output of the voltage divider. We first convert the digital value (0 to 1023) to the the output voltage level (0 to 5V) same as previous tutorial. We can then calculate the resistance of the photoresistor based on voltage level and the voltage divider formula. Lastly we convert the photoresistor resistance to light intensity using the formula for a typical photoresistor: light intentisty (lux) is equal to 500 divide by the photoresistor resistance (kΩ).
+<!-- // TODO: change this text so that it doesn't talk about the previous experiment -->
 
-We also use `Serial.print()` to send the values at all the stages of the calcuation to the Omega for better understanding the calculation process.
+The code we use is fairly straight forward: we use analogRead to obtain a digital value (0 to 1023), then we convert that data to both voltage and light intensity.
 
-##### Output on serial
+During the calculations, we use `Serial.print()` to send the values at all the stages to the Omega for better understanding the calculation process.
 
-// TODO: dive in a little more on this explanation, give a decent explanation and then link to the temp sensor experiment where we go in depth about serial communication
-We can obtain the output of the ATmega on our Omega through serial as explained in the previous tutorial.
+We'll briefly touch on **communicating with serial** in case you missed the last experiment, and we'll go over **output formatting** in C.
+
+#### Output on serial
+
+<!-- // TODO: dive in a little more on this explanation, give a decent explanation and then link to the temp sensor experiment where we go in depth about serial communication -->
+
+[Last time](#arduino-kit-reading-a-temp-sensor), we covered how serial communication works in general, and specifically how it works between the ATmega and the Omega. In case you missed it, serial communication is simply communication where only a single channel is used. Because of that limitation, one party must be set up to listen while the other talks. With the Arduino Dock, we've hooked up the serial output of the ATmega chip directly to a UART pin on the Omega, which means that everything is set up for the Omega to listen to the ATmega!
+
+#### Output Formatting
+
+Arduino's core is actually C code so many functions from the library borrow C conventions and habits, and `print()` is no exception. If you've worked with Python or Javascript, you'll notice that you can print and join strings on the fly.
+
+For example:
+
+```python
+var number = 12
+
+print ("Number is " + number)
+```
+
+The above is completely valid in Python, and will print out `Number is 12` complete with a new line. To get the same kind of results with Arduino code, we resort to some fiddling to place new line characters and other parts of the string in the appropriate order. 
+
+To copy our C example from above in Arduino, we can do:
 
 ```
-cat /dev/ttyS1
+int number = 12;
+
+Serial.print("Number is "); 
+Serial.println(number);
 ```
+
+Which is a bit more convoluted, but works just as well with the functions we have access to.
+
