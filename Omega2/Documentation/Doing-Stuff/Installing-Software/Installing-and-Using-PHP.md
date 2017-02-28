@@ -128,9 +128,10 @@ Now open your web browser and go to http://omega-ABCD.local/php/
 chmod -R 755 /www/php
 ```
 
-### A More In-Depth Example
-
 <!-- TODO: this example isn't well documented  -->
+
+<!-- ### A More In-Depth Example
+
 This example runs a very simple PHP app through the onion web interface enabling you to fiddle with the RGB LED, and a Relay Expansion. This example works best if you have a Relay Expansion and an Expansion Dock. The webpage should display properly regardless of your setup - it just might throw some errors your way when you try to interact with it.
 
 
@@ -167,7 +168,7 @@ http://omega-ABCD.local/php/php_onion/HowToUse.php
 
 It should look something like this:
 
-![PHP example and the Onion Omega](https://dl.dropboxusercontent.com/u/12816733/onion-omega-php-example-1.png)
+![PHP example and the Onion Omega](https://dl.dropboxusercontent.com/u/12816733/onion-omega-php-example-1.png) -->
 
 ### Going Further
 
