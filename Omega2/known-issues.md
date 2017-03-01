@@ -14,17 +14,17 @@ This page lists all of the currently identified issues in the Omega OS. The issu
     * Status: **Fixed** in b143
 * ~~Cannot successfully register a 1-Wire master in the filesystem~~
     * Status: **Fixed** in b151
-* The `fast-gpio` program always crashes
+* ~~The `fast-gpio` program always crashes~~
     * Root Cause: the firmware does not expose the `/dev/mem` device which allows access to the memory map
-    * Status: Investigating
+    * Status: **Fixed** in b160
 * WiFi Issues
     * No automatic support for TKIP-encrypted WiFi networks
         * See [this post](https://community.onion.io/topic/1149/omega2-fails-to-connect-to-wifi/25) on the Onion Community for an interim, manual fix
-        * Status: expect a fix in February
+        * Status: expect a fix in March
     * No support for enterprise WiFi that requires a username and password
-        * Status: expect a fix in February
+        * Status: expect a fix in March
     * No automatic support for WiFi channels 13 and 14
-        * Status: expect a fix in February
+        * Status: expect a fix in March
 
 
 ### Console Issue Listing
