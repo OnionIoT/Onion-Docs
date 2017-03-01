@@ -12,7 +12,7 @@ In this tutorial, we will use a photoresistor to detect the ambient light intens
 
 For this circuit we will need use a photoresistor and a 10K resistor to make a voltage divider on a breadboard. We will be using jumper wires for the connections.
 
-<!-- // TODO: IMAGE diagram and equation for a voltage divider -->
+<!-- // TODO: IMAGE diagram for a voltage divider -->
 
 $$ V_{out} = \frac{R_2}{R_1+R_2} \cdot V_{in} $$
 
@@ -31,7 +31,7 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-<!-- // TODO: add an intro -->
+<!-- // TODO: add an intro (d) -->
 <!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
 
 Once you have the components ready, follow these steps:
@@ -46,7 +46,7 @@ All done! Here's what our finished circuit looks like:
 
 ### Writing the Code
 
-<!-- // TODO: intro to the code-->
+<!-- // TODO: intro to the code (d) -->
 
 For this experiment, the code doesn't activate anything, it will simply calculate and print out the resistance and the light intensity level to the console.
 
@@ -105,7 +105,7 @@ If you cover the photoresistor with your hand, you'll see on your Omega's comman
 
 ### A Closer Look at the Code
 
-<!-- // TODO: change this text so that it doesn't talk about the previous experiment -->
+<!-- // TODO: change this text so that it doesn't talk about the previous experiment (d) -->
 
 The code we use is fairly straight forward: we use analogRead to obtain a digital value (0 to 1023), then we convert that data to both voltage and light intensity.
 
@@ -115,7 +115,7 @@ We'll briefly touch on **communicating with serial** in case you missed the last
 
 #### Output on serial
 
-<!-- // TODO: dive in a little more on this explanation, give a decent explanation and then link to the temp sensor experiment where we go in depth about serial communication -->
+<!-- // TODO: dive in a little more on this explanation, give a decent explanation and then link to the temp sensor experiment where we go in depth about serial communication (d)-->
 
 [Last time](#arduino-kit-reading-a-temp-sensor), we covered how serial communication works in general, and specifically how it works between the ATmega and the Omega. In case you missed it, serial communication is simply communication where only a single channel is used. Because of that limitation, one party must be set up to listen while the other talks. With the Arduino Dock, we've hooked up the serial output of the ATmega chip directly to a UART pin on the Omega, which means that everything is set up for the Omega to listen to the ATmega!
 
@@ -131,16 +131,15 @@ var number = 12
 print ("Number is " + number)
 ```
 
-The above is completely valid in Python, and will print out `Number is 12` complete with a new line. To get the same kind of results with Arduino code, we resort to some fiddling to place new line characters and other parts of the string in the appropriate order. 
+The above is completely valid in Python, and will print out `Number is 12` complete with a new line. To get the same kind of results with Arduino code, we resort to some fiddling to place new line characters and other parts of the string in the appropriate order.
 
 To copy our C example from above in Arduino, we can do:
 
 ```
 int number = 12;
 
-Serial.print("Number is "); 
+Serial.print("Number is ");
 Serial.println(number);
 ```
 
 Which is a bit more convoluted, but works just as well with the functions we have access to.
-

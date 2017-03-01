@@ -1,6 +1,7 @@
 ## Controlling Servos {#arduino-kit-using-a-servo}
 
 <!-- // intro to using pwm to control servos, this experiment will involve controlling servos using physical buttons -->
+
 In this tutorial, we will use two push buttons to control two servos: a sub-micro sized servo and a standard sized servo. In addition, we will learn about object oriented programming by creating our own class for servo motors. Nearly all servo motors accept PWM as input, so we'll be going a bit deeper down that rabbit hole here.
 
 <!-- pwm -->
@@ -36,24 +37,26 @@ Prepare the following components from your kit:
 
 #### Hooking Up the Components
 
-<!-- // TODO: add an intro -->
+<!-- // TODO: add an intro (d)-->
 <!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
 
 Now that you got everything, let's build!
 
-1. Connect the two push buttons with their seperate debounce circuits same as previous tutorials.
-    * Set up two push buttons, each with their own debounce circuit similar to [tutorial 4](#arduino-kit-reading-a-push-button), don't connect to Arduino Dock yet.
-    * Connect the point in the first debounce circuit between the 5kohm resistor and the capacitor to pin 2 of the Arduino Dock.
-    * Connect the point in the second debounce circuit between the 5kohm resistor and the capacitor to pin 3 of the Arduino Dock.
-    * Connect the Vcc of both debounce circuit to the positive (+) power rail.
-    * Connect the ground of both debounce circuit to the negative (-) power rail.
-1. Connect the two servo motors.
-    * The small servo has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the orange (signal) wire to pin 9.
-    * The standard servo also has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the white (signal) wire to pin 10.
-    * The Arduino Sketch will set the servo motors at 90 degree initially. After flashing the arduino sketch and wait until the servos settle on their initial position, attach your favourite servo horn on each servo at 90 degrees.
-1. Connect the breadboard power rails to Arduino Dock.
-    * Connect the negative power rail to ground (GND).
-    * Connect the positive power rail to 5V. Don't worry if the servo rotates a bit when you power it on.
+Let's first set up the two push buttons with their seperate debounce circuits same as previous tutorials:
+1. Set up two push buttons, each with their own debounce circuit similar to [tutorial 4](#arduino-kit-reading-a-push-button), don't connect to Arduino Dock yet.
+1. Connect the point in the first debounce circuit between the 5kohm resistor and the capacitor to pin 2 of the Arduino Dock.
+1. Connect the point in the second debounce circuit between the 5kohm resistor and the capacitor to pin 3 of the Arduino Dock.
+1. Connect the Vcc of both debounce circuit to the positive (+) power rail.
+1. Connect the ground of both debounce circuit to the negative (-) power rail.
+
+Now that the buttons are set up, we'll connect the two servo motors:
+1. The small servo has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the orange (signal) wire to pin 9.
+1. The standard servo also has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the white (signal) wire to pin 10.
+1. The Arduino Sketch will set the servo motors at 90 degree initially. After flashing the arduino sketch and wait until the servos settle on their initial position, attach your favourite servo horn on each servo at 90 degrees.
+
+Once our circuit is out of the way, we'll connect the power:
+1. Connect the negative power rail to ground (GND).
+1. Connect the positive power rail to 5V. Don't worry if the servo rotates a bit when you power it on - this is expected.
 
 <!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
 
@@ -87,10 +90,13 @@ class ServoMotor
 	int maxAngle = 180;
 	int pin;
 
-	public:     //  variables or functions which can be called outside in the main program TODO: clarify this section
+	public:     //  variables or functions which can be called outside in the main program
 
-	// constructor with same name as class, will be automatically called when a class object is declared
-	// pass in the pin number, max and min pulse width and calculate the pulse width change for each degree
+	// ServoMotor() - constructor for a class with the same name
+    // - will be automatically called when a class object is declared
+	// - to use, pass in the pin number, max and min pulse width for the motor
+    // - the class has functions to use given input to rotate the motor by
+    //   arbitrary degrees
 	ServoMotor(int pinNumber, float minPWus, float maxPWus){
 
 		// pass in the pin number, max and min pulse width to private variables
@@ -185,18 +191,29 @@ In this code, we introduce a very important, new concept: Object Oriented Progra
 
 #### Object Oriented Programming
 
-// TODO: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read
+<!-- // TODO: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read -->
 
-In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is where object oriented programming (OOP) comes in handy.
+In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is exactly the kind of scenario that spurred the creation of Object Oriented Programming. Ultimately, the goal of OOP is to model programmatic interactions as objects interacting with each other.
 
-// TODO: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions)
-// TODO: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it!
+To that end, we create **objects** with attributes (what it is) and methods that act on the attributes (how it behaves). Objects are constructed out of templates called **classes** in which we define what attributes the object will have, and the functions that will interact with them.
 
-In OOP, a class is similar to a template and a object is defined based on the class template with its own specific attributes. For our example. We setup our template inside `class ServoMotor{...};`. After that we defined two objects smallServo and standardServo, each with their own specific and different attributes.
+<!-- // TODO: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions) -->
+<!-- // TODO: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it! -->
+
+##### Classes and Objects
+
+Let's take it back to our code above. First we setup our class inside `class ServoMotor{...};`. All the code inside defines what an object of `ServoMotor` would encompass. Once we've defined our class, we create objects from it - `smallServo` and `standardServo` each with their own specific attributes. This happens from these two lines:
+
+```c++
+ServoMotor smallServo (9, 500, 2000);     // initialize DXW90 small servo (500us to 2000us) at pin 9
+ServoMotor standardServo (10, 0, 2500);     // initialize S3003 standard servo (0us to 2500us) at pin 10
+```
+
+To generalize, objects are created from classes, and they are created when we call a function to create them.
 
 These attributes are defined in the constructor of the `ServoMotor` class. A constructor is function of the class that have the exact same name as the class and will be automatically called when a class object is declared. Think of the constructor as a initialization function whose main purpose is to pass in all the class parameter (attributes). Our constructor also calculates the rate of the pulse width change for each degree. Also notice there is no `void` in front of our constructor function.
 
-A class member is a variable or a function declared as a part of the class template. It can be either `private`, which can only be used within the class or a `public`, which can be called outside the class. For our `ServoMotor` class, we have seven private members (six variables and one object)declared under `private:` and two public member functions defined under `public:`. Our public member functions include the constructor `ServoMotor()` and another function `setAngle()`.
+A class member is a variable or a function declared as a part of the class template. It can be either `private`, which can only be used within the class or a `public`, which can be called outside the class. For our `ServoMotor` class, we have seven private members (six variables and one object) declared under `private:` and two public member functions defined under `public:`. Our public member functions include the constructor `ServoMotor()` and another function `setAngle()`.
 
 To use our `ServoClass` template, we declared our two objects in the global scope similar to declaring global variables:
 

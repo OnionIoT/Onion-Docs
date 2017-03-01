@@ -36,7 +36,7 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-<!-- // TODO: add an intro -->
+<!-- // TODO: add an intro (d)-->
 <!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
 
 Once you have all the components ready, it's time to build!
@@ -50,11 +50,13 @@ Once you have all the components ready, it's time to build!
 
 And you're done! For reference your circuit should look a little like this:
 
-<!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
+<!-- // TODO: IMAGE add a photo of the completed circuit -->
+
+<!-- TODO and a blurb about 'this is more or less how your circuit should look' (d) -->
 
 ### Writing the Polling-based Code
 
-<!-- // TODO: intro to the code, in broad strokes talk about what we hope to accomplish -->
+<!-- // TODO: intro to the code, in broad strokes talk about what we hope to accomplish (d) -->
 
 This program will continuously check an input pin to see if anything changes, and then fire the buzzer whenever it does see the appropriate change.
 
@@ -89,7 +91,7 @@ When the button is pressed, the buzzer will buzz until the button is released. P
 
 ### A Closer Look at the Code
 
-<!-- // TODO: link to the polling and interrupt articles -->
+<!-- // TODO: link to the polling and interrupt articles (d) -->
 
 We will approach the simple task of pressing button to make the buzzer buzz in two different ways. The first method, covered here, is constantly polling the push button input. The second method is to get the button to interrupt the program. Check out the experiments on [polling](#arduino-kit-reading-a-pot) and [interrupts](#arduino-kit-reading-a-push-button) if you want to go in a bit more detail on either of the methods. For now, let's start by examining the code above that implements polling.
 
@@ -115,7 +117,7 @@ There must be a better way!
 // to implement the same functionality as we have above, we'll need to set an action - the interrupt - that will trigger a response - the interrupt service routine.
 // in our case, the interrupt action will be a change in the signal coming from the push button (both rising and falling edges), and we will write a function that we will register as the interrupt service routine, ie it will run when the interrupt is triggered - nothing of interest happens in the loop() function -->
 
-An alternative to polling is using interrupt-based inputs. In this approach, we set up code so that when the button changes state, an 'interrupt' will be fired off and the appropriate change to the buzzer will be made. This is actually a much better method because there is little to no chance of missing any button presses. Even better, it allows us to do other things because the burden of checking has been lifted. In this case, we're just adding a blinking LED to illustrate the point.
+An alternative to polling is using interrupt-based inputs. In this approach, we set up code so that when the button changes state, an 'interrupt' will be fired off and the appropriate change to the buzzer will be made. This is actually a much better method because there is little to no chance of missing any button presses. Even better, it allows us to do other things because the burden of checking has been lifted. To illustrate the point, we'll toss in a blinking LED that operates alongside the interrupt code.
 
 <!-- // new code:
 // have an interrupt routine programmed to the button input, when an edge is detected, flip the value that controls the buzzer and write it to the output connected to the buzzer
@@ -173,9 +175,9 @@ attachInterrupt(digitalPinToInterrupt(interruptPin), changeState, CHANGE);
 
 This will attach the built-in Arduino interrupt to an interrupt pin (2 or 3). It will call on the interrupt service routine (ISR) function `changeState()` whenever there is a `CHANGE` in the push button input. The keyword `CHANGE`, as described in [push button experiment](#arduino-kit-reading-a-push-button), represents either `FALLING` edge (`HIGH` to `LOW`) or RISING edge (`LOW` to `HIGH`). This means if there the button is pressed or released, the `changeState()` function will be called. The task of the ISR `changeState()` is to simply write the opposite state of the push button to the buzzer. Notice we use the keyword `volatile` before `int` when declaring the `state` variable in line 4. Although the variable `state` is global and can be used in the ISR, to make sure the variable is updated correctly between the main program and the ISR, we declare them as `volatile`.
 
-<!-- // TODO: go into a bit more detail about the volatile keyword -->
-
->For the curious, `volatile` means a variable will be directly modified by something other than the 'main body' of the program, and should be loaded from RAM instead of a CPU register - as that is generally where the 'reference' value of a variable is stored. Interrupts don't exactly operate within the main program body, which is why we used `volatile` here to make sure the value of `state` is properly read.
-
 
 In addition, we added the standard LED blinking code to our `loop()` similar to the [blinking LED experiment](#arduio-kit-blinking-led). However, now we use pin 13 which will blink the blue LED on the Arduino Dock.
+
+<!-- // TODO: go into a bit more detail about the volatile keyword (d) -->
+
+>For the curious, `volatile` means a variable will be directly modified by something other than the 'main body' of the program, and should be loaded from RAM instead of a CPU register - as that is generally where the 'reference' value of a variable is stored. Interrupts don't exactly operate within the main program body, which is why we used `volatile` here to make sure the value of `state` is properly read.
