@@ -200,20 +200,74 @@ To that end, we create **objects** with attributes (what it is) and methods that
 <!-- // TODO: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions) -->
 <!-- // TODO: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it! -->
 
-##### Classes and Objects
+#### Classes
 
-Let's take it back to our code above. First we setup our class inside `class ServoMotor{...};`. All the code inside defines what an object of `ServoMotor` would encompass. Once we've defined our class, we create objects from it - `smallServo` and `standardServo` each with their own specific attributes. This happens from these two lines:
+So if classes are templates, what exactly do they do?
+
+Let's take it back to our code above. First thing you'll notice relating to our class is probably:
+
+```c++
+class ServoMotor
+{
+    ...
+};
+```
+
+This is our class definition! All the code inside defines what an object of `ServoMotor` would encompass. It's got attribles, and methods, and `public`s, and `private`s. One interesting thing about the class is that none of the attributes inside a class actually exist in memory. That is until we make an object out of it.
+
+
+>Most object oriented languages allow functions inside classes to be executed
+
+#### Objects
+
+Where in our code do we create objects? Right here:
 
 ```c++
 ServoMotor smallServo (9, 500, 2000);     // initialize DXW90 small servo (500us to 2000us) at pin 9
 ServoMotor standardServo (10, 0, 2500);     // initialize S3003 standard servo (0us to 2500us) at pin 10
 ```
 
-To generalize, objects are created from classes, and they are created when we call a function to create them.
+The syntax to create objects from a class is very similar to creating variables of a certain type. In fact that's one way to think about classes and objects - types and variables with fancier internals.
 
-These attributes are defined in the constructor of the `ServoMotor` class. A constructor is function of the class that have the exact same name as the class and will be automatically called when a class object is declared. Think of the constructor as a initialization function whose main purpose is to pass in all the class parameter (attributes). Our constructor also calculates the rate of the pulse width change for each degree. Also notice there is no `void` in front of our constructor function.
+Unlike variables, we work with objects by calling the methods (functions) defined by the class. The variables inside objects are not normally manipulated from 'outside' the object.
 
-A class member is a variable or a function declared as a part of the class template. It can be either `private`, which can only be used within the class or a `public`, which can be called outside the class. For our `ServoMotor` class, we have seven private members (six variables and one object) declared under `private:` and two public member functions defined under `public:`. Our public member functions include the constructor `ServoMotor()` and another function `setAngle()`.
+Let's look back to the objects and classes to variables and types analogy. If objects are like variables of a class, then why do we have brackets and pass in arguments like a function?
+
+This is because the attributes of an object are fancier than `int`s or `char`s - objects can have other objects as variables. So in order to provide the flexibility needed, a function is called to create an object by setting up all the things needed for it to work as expected. The syntax in the snippet above is actually short-hand for a two-step process:
+
+* Call a function to create an object and set up the internals, returning a reference to the created object.
+* Give that reference a name (`smallServo` and `standardServo` above)
+
+Then if you want an object, what function should you call?
+
+#### Constructors
+
+Let's take a look at this snippet:
+
+```c++
+	ServoMotor(int pinNumber, float minPWus, float maxPWus){
+
+		// pass in the pin number, max and min pulse width to private variables
+		minPW = minPWus;
+		maxPW = maxPWus;
+		pin = pinNumber;
+
+		// calculate the pulse width change for each degree
+		rate = (maxPWus - minPWus)/(maxAngle - minAngle);
+	}
+```
+
+This is the constructor of `ServoMotor` class. Whenever the code demands that a `ServoMotor` object be created,
+
+More formally, a constructor is function of the class that have the exact same name as the class and will be automatically called when a class object is declared.
+
+#### Class Members
+
+You'll occasionally hear people refer to 'members' of a class. A class member is a variable or a function declared as a part of the class template.
+
+In most object oriented languages, class members have access rights - either `private` or `public`. A `private` member can only be used within the class. While a `public` member can be called outside the class. For our `ServoMotor` class, we have seven private members (six variables and one object) declared under `private:` and two public member functions defined under `public:`. Our public member functions include the constructor `ServoMotor()` and another function `setAngle()`.
+
+#### Putting it Together
 
 To use our `ServoClass` template, we declared our two objects in the global scope similar to declaring global variables:
 
@@ -231,4 +285,6 @@ standardServo.setAngle(90);
 
 This is because `setAngle()` member function is defined under `public:`.
 
-Furthermore, notice we have seven `private` member variables but we only use passed in three parameters (`pinNumer`,  `minPWus`, `maxPWus`) to three private member variable (`pin`, `minPW`, `maxPW`) in our constructor. This is because the three parameters are the only different parameters between different servo objects. The `rate` variable is calculated from the three parameters. The minimum and maximum servo angle (`minAngle` and `maxAngle`) are set to `0` degree and `180` degree for all servo objects. Lastly, we can even use an `Servo` object from the Arduino Servo library within our own `ServoMotor` class! Just remember to include the library: `#include <Servo.h>`.
+Furthermore, notice we have seven `private` member variables but we only use passed in three parameters (`pinNumer`,  `minPWus`, `maxPWus`) to three private member variable (`pin`, `minPW`, `maxPW`) in our constructor. This is because the three parameters are the only different parameters between different servo objects. The `rate` variable is calculated from the three parameters. The minimum and maximum servo angle (`minAngle` and `maxAngle`) are set to `0` degree and `180` degree for all `ServoMotor` objects.
+
+Lastly, we use a `Servo` object from the Arduino Servo library within our own `ServoMotor` class to interface with our Arduino Dock pins directly, so we don't have to directly handle the PWM driver of the Arduino Dock!
