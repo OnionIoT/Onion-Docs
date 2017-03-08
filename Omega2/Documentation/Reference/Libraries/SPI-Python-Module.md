@@ -154,12 +154,12 @@ When the object is first initialized, all of the member variables are initialize
 
 Sets the SPI lines to the following GPIOs:
 
-| SPI Signal | Omega Gpio |
-|------------|------------|
-| SCK        | 6          |
-| MOSI       | 18         |
-| MISO       | 1          |
-| CS/SS      | 7          |
+| SPI Signal | Omega Gpio | Omega2 GPIO |
+|------------|:----------:|:-----------:|
+| SCK/CLK    |      6     |      7      |
+| MOSI       |     18     |      8      |
+| MISO       |      1     |      9      |
+| CS/SS      |      7     |      6      |
 
 
 <!-- Python: Object Member Variables: Examples -->

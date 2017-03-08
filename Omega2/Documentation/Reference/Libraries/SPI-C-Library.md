@@ -188,7 +188,7 @@ The following functions serve to initialize the `spiParams` structure and do any
 ### Initialize the Parameter Structure - spiParamInit(spiParams\*) {#spi-c-param-init}
 
 There is a function to initialize the `spiParams` structure with acceptable default values:
-``` c
+```c
 void spiParamInit (struct spiParams *params);
 ```
 
@@ -204,12 +204,12 @@ The default settings:
 
 Sets the SPI lines to the following GPIOs:
 
-| SPI Signal | Omega Gpio |
-|------------|------------|
-| SCK        | 6          |
-| MOSI       | 18         |
-| MISO       | 1          |
-| CS/SS      | 7          |
+| SPI Signal | Omega Gpio | Omega2 GPIO |
+|------------|:----------:|:-----------:|
+| SCK/CLK    |      6     |      7      |
+| MOSI       |     18     |      8      |
+| MISO       |      1     |      9      |
+| CS/SS      |      7     |      6      |
 
 
 #### Arguments
