@@ -8,7 +8,7 @@ order: 1
 
 ## Dimming LEDs with the PWM Expansion {#maker-kit-servo-dimming-led}
 
-<!-- // TODO: need to capitalize Python EVERYWHERE -->
+<!-- // DONE: need to capitalize Python EVERYWHERE -->
 
 In this tutorial, we will be learning how to use the PWM Expansion with Python and animating 16 LEDs along the way. We'll be wiring the LEDs to the PWM expansion through the breadboard, then we'll write some code to light up the LEDs for a mini light show.
 
@@ -189,7 +189,7 @@ Additionally, this code has a lot of mathematical operators, if you're confused,
 
 As a refresher, in Object Oriented Programming, classes are essentially blueprints or an abstraction. An **object** is a set of data created from the class blueprint with its own unique properties. For example, a class blueprint for a "four sided polygon" can be used to create objects such as a "square" or a "rectangle". Creating an object from a class is called **instantiation**, and objects created from a class are called **instances**.
 
-<!-- TODO: link properly to shift register article when lazar's finished -->
+<!-- DONE: link properly to shift register article when lazar's finished -->
 
 To see another example of another example of classes in Python, check out the [shift register](#shift-register-creating-classes) article where we first introduced them.
 

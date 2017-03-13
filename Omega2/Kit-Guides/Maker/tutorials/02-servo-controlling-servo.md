@@ -193,7 +193,7 @@ In this code example, you can find integer numbers with decimal points (eg. `3.0
 
 If we dropped the decimal point (simply using `3`), we'd be doing **integer math**. In this case, Python will literally **drop the decimal part** of any calculation. This is desired behaviour in some cases, such as when counting objects or iterating through loops. But this behaviour can be the source of numerous errors if you need to do precise calculations!
 
-To see the difference for yourself, start the interactive Python interpreter on the command line by simply typing `python`, then run each of the `print` commands below:
+To see the difference for yourself, we'll add some fractions together but we'll write them in what *should* be equivalent forms. Start the interactive Python interpreter on the command line by simply typing `python`, then run each of the `print` commands below:
 
 ``` python
 # simple examples of floating point vs integer math
