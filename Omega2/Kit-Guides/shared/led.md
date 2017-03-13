@@ -8,6 +8,8 @@ If you look closely, you'll see that every LED has a longer leg and a shorter le
 
 ![LED with labels](https://upload.wikimedia.org/wikipedia/commons/f/f9/LED%2C_5mm%2C_green_%28en%29.svg)
 
+// TODO: this image is really good but doesn't show the difference between the cathode and anode. Need something like: https://cdn.sparkfun.com/assets/learn_tutorials/2/7/5/LED_drawing_01.png (pls don't just jack this image)
+
 Just like a regular light bulb, an LED can burn out if it's supplied with too much current. LEDs in electronics are almost always used in series with a current limiting resistor that, you guessed it, will put a limit on how much current can pass through the LED.
 
 > For more information on how a resistor can limit current, we recommend checking out this [Sparkfun tutorial on Ohm's law](https://learn.sparkfun.com/tutorials/voltage-current-resistance-and-ohms-law)
