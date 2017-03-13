@@ -1,18 +1,11 @@
 ## Reading a Key-Pad {#arduino-kit-reading-a-keypad}
 
-In this experiment, we will be reading input from a keypad and treating it as a password, if the correct password is entered, an LED will light up. This will be useful in many scenarios, such as ATMs or building access systems. In addition, we will also learn how to use Arduino libraries which are not built-in.
+In this experiment, we will make a circuit that can read input from a keypad. To make it more interesting, we'll treat the input as a password such that if the correct password is entered, an LED will light up. The way we will build our circuit and accept input is very similar to the way computer keyboards work! When writing the code, we will also learn how to use Arduino libraries which are not built-in.
 
+<!-- // TODO: should be in it's own separate markdown file -->
+```{r child = '../shared/keypad.md'}
+```
 
-### Keypad
-// TODO: should be in it's own separate markdown file
-
-
-A keypad allows the user to press a button and the attached computer system will be able to tell which digit was pressed. If keypads were to use a pin for every button, there would be way too many data pins to connect! Instead, keypads only have pins for each horizontal row and pins for each vertical column. In our case we only need 7 (4 rows and 3 columns) instead of 15.
-
-// TODO: graphic of a keypad
-
-// TODO: potentially reword the next paragraph for clarity
-However, since the pins are not directly mapped to the buttons, our computer system will have to decode the signals coming from the keypad. When a button is pressed, the corresponding row and column pins will become logical high. Our code will have to define the location of each button based on its row and column intersection.
 
 ### Building the Circuit
 
@@ -20,7 +13,7 @@ However, since the pins are not directly mapped to the buttons, our computer sys
 //  - single LED connected to the microcontroller output
 //  - keypad input connected to the microcontroller -->
 
-For this experiment, we will be using the keypad to allow the user to input a password. If the password matches with the password set in the Arduino sketch, the blue LED on the Arduino Dock will light up for 3 seconds. For the circuit, we will only need a keypad, and since we'll be using the on-board blue LED, there is no need to a connect external LED.
+For the circuit, we will only need a keypad and some jumpers. We'll be using the on-board blue LED instead of connecting our own to keep it simple.
 
 #### What You'll Need
 
@@ -33,11 +26,13 @@ Prepare the following components from your kit:
 
 #### Hooking Up the Components
 
-// TODO: add an intro, mention: 'The keypad as seven pins: four pins for the rows and three pins for the columns.''
+<!-- // TODO: add an intro, mention: 'The keypad as seven pins: four pins for the rows and three pins for the columns.'' -->
+
+Once you have the components ready to go, we can begin putting it together. Keep in mind the keypad has seven pins, one for each row and column - not one pin per button.
 
 1. Connect all the seven keypad pins to the digital pins (8, 7, 6, 5, 4, 3, 2) on the Arduino Dock in order from left to right, i.e. the left most keypad pin to arduino header pin 8.
 
-// TODO: add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look'
+<!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
 
 ### Writing the Code
 
@@ -53,35 +48,40 @@ Prepare the following components from your kit:
 //  - if the input does not match, reset the index variable to 0
 //  - once the index variable reaches sizeof(password array), we consider to password to have been typed in, and we can turn on the LED (using the action function) -->
 
-This code will use a Keypad library which is probably not included in your the Ardiuno IDE by default. There are two ways of getting ahold of the library and including it in our code. In the first way we can install it directly from the Arduino IDE:
+This code will use a Keypad library which is probably not included in your the Ardiuno IDE by default. There are two ways of getting ahold of the library and including it in our code. In the first way we can install it directly through the Arduino IDE:
 
 1. On the Arduino IDE, click `Sketch > Include Library > Manage Libraries`. The Library Manager will show up; type `keypad` in the search bar and install the first search result.
 
 The other way is to manually install a library.
 
 1. Download the Keypad library from a source: http://playground.arduino.cc/Code/Keypad#Download
-2. Move the unzipped Keypad file folder to the Arduino library folder: on Windows, its located at C:/Program Files (x86)/Arduino/libraries
-// TODO: add locations for OS X and Linux (can look this up online)
+2. Move the unzipped Keypad file folder to the Arduino library folder: on Windows, its located at `C:\Program Files (x86)\Arduino\libraries`
+    * Linux - `~/Arduino/Libraries`
+    * MacOS - `~/Documents/Arduino/libraries`
+3. Restart your IDE, and it should be useable in your sketches!
+
+<!-- // TODO: add locations for OS X and Linux (can look this up online) -->
 
 To use the library we need to add the following line at the top of our code:
+
 ```
 #include <Keypad.h>
 ```
 
 // TODO: verify this code works
 
-``` arduino
+```c++
 // include the Keypad library
 #include <Keypad.h>
 
-const byte ROWS = 4; //four rows
-const byte COLS = 3; //three columns
-char keys[ROWS][COLS] = {
+const byte ROWS = 4;	 //four rows
+const byte COLS = 3;	 //three columns
+char keys[ROWS][COLS] = {    // a 4x3 array of all the keys as chars
   {'1','2','3'},
   {'4','5','6'},
   {'7','8','9'},
   {'*','0','#'}
-};        // a 4x3 array of all the keys as chars
+};
 
 byte rowPins[ROWS] = {8, 7, 6, 5};     //connect to the row pinouts of the keypad
 byte colPins[COLS] = {4, 3, 2};     //connect to the column pinouts of the keypad
@@ -106,7 +106,7 @@ void loop(){
   int i = 0;      // index for the number of keys entered after #
   if (key != NO_KEY){   // wait until a key has been pressed
     // print the key and ask to press #
-    Serial.println(key);    
+    Serial.println(key);   
     Serial.println("Please press # to enter the password");
 
     // if # is pressed ask for the password
@@ -153,37 +153,37 @@ void passwordSuccess(){
 ```
 
 
-#### What to Expect
+### What to Expect
 
-// TODO: PHOTO - GIF: include a gif of this
+<!-- // TODO: PHOTO - GIF: include a gif of this -->
 
 We will be using the keypad for a password-protected system. After the user presses the `#` key, they will be prompted via serial to enter a password. If the entered password matches with the password set in by `char password[]`, which is by default `4321`, the blue LED on the Arduino Dock will light up for 3 seconds. If the wrong password has been entered, it will ask the user to press the `#` key again to retry.
 
 
 
 
-#### A Closer Look at the Code
+### A Closer Look at the Code
 
-// TODO: fill in the link
+<!-- // TODO: fill in the link -->
 
-This code uses the Arduino Keypad library. Remember the `ServoMotor` class we wrote in the [previous tutorial](//TODO: fill in this link)? Well a library usually contains the definition of a class and then the implementation of the methods (functions) of that class. To use the class, we include the library's header file in our code, and then we are free to create a `Keypad` object in our code. We've creatively name the object `keypad`.
+This code uses the Arduino Keypad library. Remember the `ServoMotor` class we wrote in the [previous tutorial](#arduino-kit-using-a-servo)? Well a library usually contains the definition of a class and then the implementation of the methods (functions) of that class. To use the class, we include the library's header file in our code, and then we are free to create a `Keypad` object in our code. We've creatively name the object `keypad`.
 
 ```
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 ```
 
-Try commenting out the `#include 'Keypad.h'` line, you'll see that the compiler will complain, saying that it doesn't know what a Keypad is! This file is in the Arduino Keypad library and it defines the `Keypad` class. However, before we instantiate our `Keypad` object, we need  to declare the variables which needed to be passed into the Keypad object. This includes a two-dimensional array `keys[][]`.
+Try commenting out the `#include <Keypad.h>` line, you'll see that the compiler will complain, saying that it doesn't know what a Keypad is! This file is in the Arduino Keypad library and it defines the `Keypad` class. However, before we instantiate our `Keypad` object, we need  to declare the variables which needed to be passed into the Keypad object. This includes a two-dimensional array `keys[][]`.
 
-##### Two-Dimensional Arrays
+#### Two-Dimensional Arrays
 
-// TODO: clean up this paragraph, it's going in the right direction but doesn't include enough details:
-//	* expand on what is meant by a single row of variables
-//	* expand on the 2d array is similar to a table bit
-//	* talk about how 2d arrays need to be indexed in both dimensions
+<!-- // TODO: clean up this paragraph, it's going in the right direction but doesn't include enough details: -->
+<!-- //	* expand on what is meant by a single row of variables -->
+<!-- //	* expand on the 2d array is similar to a table bit -->
+<!-- //	* talk about how 2d arrays need to be indexed in both dimensions -->
 
-In previous experiments, we've used arrays. However, the arrays we used before were one-dimensional (1d), meaning they are made of one row of variables. However, in this code, we are using a two-dimension (2d) array made up of many rows of variables similar to a table. Using a 2d array for storing the keys of a keypad is much more convenient and easier to visualize. Since the array is `3x4`, we can easily see the position of each key in terms of its row and column:
+We're no strangers to arrays by now, so this time we can dive a bit deeper into their capabilities. At the lowest level, arrays are actually represented as a number - the location of the start of the array. This means that arrays can store other arrays just as well as regular numbers. In practise, this means we can create arrays that work like tables. Using this kind of two-dimensional (2D) array, we can map the keypad directly to an array without jumping any calculation hoops. To get a better visual, let's take a look at the code:
 
-```
+```c++
 const byte ROWS = 4; //four rows
 const byte COLS = 3; //three columns
 char keys[ROWS][COLS] = {
@@ -194,7 +194,17 @@ char keys[ROWS][COLS] = {
 };        // a 4x3 array of all the keys as chars
 ```
 
-// TODO: include some examples of accessing the array: like keys[2][3] = 6, give a few
+Our keypad does not have a pin for each button, instead it has a pin for each row and column. The signals our code obtains is the row and column number of the button being pressed. To best mirror that in code, the 2D array `keys[][]` does pretty much the same thing. Each button is represented by an element of the array, and each element can be accessed by a unique pair of numbers - the indices of `keys`.
+
+In this example, the 2D array is passed into a `keypad` object and the object will do the translation internally. We simply have to call the `getKey()` function to have the keypad return the value of the button that was pressed.
+
+Internally, the `keypad.getKey()` function does something like this:
+
+* Read in the data from the keypad.
+* Convert the input data into a row value and a column value.
+* Return the value of the array that the row/column values specify.
+
+<!-- // TODO: include some examples of accessing the array: like keys[2][3] = 6, give a few -->
 
 ### Going Further
 

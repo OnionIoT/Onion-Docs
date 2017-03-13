@@ -7,8 +7,7 @@ In our very first experiment, we will turn an LED on and off. This is the hardwa
 Remember, when inventing and building new things, try to break the work down into bite sized chunks, that way you'll see progress much sooner and it will motivate you to keep going!
 
 <!-- LEDs -->
-```
-{r child = '../../shared/led.md'}
+```{r child = '../../shared/led.md'}
 ```
 
 ### How to Build Circuits
