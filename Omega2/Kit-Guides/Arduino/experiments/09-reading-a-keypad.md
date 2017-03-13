@@ -3,7 +3,7 @@
 In this experiment, we will make a circuit that can read input from a keypad. To make it more interesting, we'll treat the input as a password such that if the correct password is entered, an LED will light up. The way we will build our circuit and accept input is very similar to the way computer keyboards work! When writing the code, we will also learn how to use Arduino libraries which are not built-in.
 
 <!-- // TODO: should be in it's own separate markdown file -->
-```{r child = '../shared/keypad.md'}
+```{r child = '../../shared/keypad.md'}
 ```
 
 
