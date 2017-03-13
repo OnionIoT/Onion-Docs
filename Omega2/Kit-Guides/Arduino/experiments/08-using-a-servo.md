@@ -216,7 +216,7 @@ class ServoMotor
 This is our class definition! All the code inside defines what an object of `ServoMotor` would encompass. It's got attributes, methods, `public`'s, and `private`'s. One interesting thing about the class is that no attribute inside a class actually exist in memory. That is until we make an object out of it.
 
 
->Most object oriented languages allow functions inside classes to be executed
+>Most object oriented languages allow functions inside classes to be executed without an object under certain conditions.
 
 #### Objects
 
