@@ -4,7 +4,6 @@ The `onionGpio` Python module provides a Python object, `OnionGpio` that allows 
 
 
 
-
 <!-- Python: Programming Flow -->
 
 ### Programming Flow
@@ -54,7 +53,8 @@ The main example is the [`gpio-test.py` script](https://github.com/OnionIoT/onio
 |---------------------------------------------------------|-----------------------------------|
 | [Constructor](#gpio-py-constructor)                     | `onionGpio.OnionGpio(gpioNumber)` |
 | [Reading the Current Direction](#gpio-py-get-direction) | `getDirection()`                  |
-| [Setting the Direction](#gpio-py-set-input-direction)   | `setInputDirection()`             |
+| [Setting Pin to Input](#gpio-py-set-input-direction)    | `setInputDirection()`             |
+| [Setting Pin to Output](#gpio-py-set-output-direction)  | `setOutputDirection(defaultValue)`             |
 | [Reading the Value](#gpio-py-get-value)                 | `getValue()`                      |
 | [Setting the Value](#gpio-py-set-value)                 | `setValue(value)`                      |
 
@@ -70,12 +70,12 @@ gpioObject 	= onionGpio.OnionGpio(gpioNumber)
 
 After this call, the object can be used freely.
 
-**Arguments**
+#### Arguments
 
 The `gpioNumber` argument is an integer that indicates the GPIO that is to be controlled by this object.
 
 
-**Example**
+#### Example
 
 To initialize an OnionGpio object to control GPIO14:
 ``` python
@@ -98,7 +98,7 @@ In some instances, it will be useful to find out the current direction of the GP
 direction 	= gpioObject.getDirection()
 ```
 
-**Return Value**
+#### Return Value
 
 The function will return the following:
 * `in` if the Input direction is selected
@@ -107,38 +107,57 @@ The function will return the following:
 
 <!-- Functions: GPIO Direction: Set the Direction -->
 
-### Setting the Direction - setInputDirection() {#gpio-py-set-input-direction}
+### Setting the Direction
+Before using a pin, it's best to make sure it is set to operate in the correct direction:
 
-The direction of the GPIO can be set to **input**:
+* [Set Pin to Input](#gpio-py-set-input-direction) - `setInputDirection()`
+* [Set Pin to Output](#gpio-py-set-output-direction) - `setOutputDirection()`
+
+### Set Pin to Input- setInputDirection() {#gpio-py-set-input-direction}
+
+The direction of the GPIO can be set to **input**, to read values from the pin:
+
 ``` python
 status 	= gpioObject.setInputDirection()
 ```
 
+#### Return Value
+
+The function will return the following:
+* `0` if the operation is successful
+* `-1` if the operation is NOT successful
+
+#### Examples
+
+Set your GPIO to input:
+``` python
+status = gpio14.setInputDirection()
+```
+
+
+### Set Pin to Output - setOutputDirection() {#gpio-py-set-output-direction}
+
 Or **output**:
+
 ``` python
 status 	= gpioObject.setOutputDirection(defaultValue)
 ```
 
-**Return Value**
+#### Return Value
 
 The function will return the following:
 * `0` if the operation is successful
 * `-1` if the operation is NOT successful
 
 
-**Arguments**
+#### Arguments
 
 The `setOutputDirection()` function has an **optional** integer argument that, when defined, will set the initial value of the GPIO to ensure glitch-free operation.
 
 If the optional argument is not set, the GPIO will just be set to output and the initial value will most likely be LOW. However, glitch-free operation cannot be guaranteed.
 
 
-**Examples**
-
-Set your GPIO to input:
-``` python
-status = gpio14.setInputDirection()
-```
+#### Examples
 
 Set the GPIO to output:
 ``` python
@@ -163,6 +182,10 @@ status = gpio14.setOutputDirection(1)
 
 The good part, finally! Now we will be reading and setting a GPIO's value.
 
+* [Reading the Value](#gpio-py-get-value) - `getValue()`
+* [Setting the Value](#gpio-py-set-value) - `setValue()`
+ 
+
 <!-- Functions: GPIO Value: Reading -->
 
 ### Reading the Value - getValue() {#gpio-py-get-value}
@@ -177,12 +200,12 @@ Note that the value of the GPIO can be read in both **Input** and **Output** mod
 The difference is that in input mode, the GPIO can be driven high or low based on external signals, and that is the value that will be read. In output mode, the value that will be read is what the GPIO is currently outputting.
 
 
-**Return Value**
+#### Return Value
 
 The function will return the current value of the GPIO: either `0` or `1`
 
 
-**Examples**
+#### Examples
 
 Set the GPIO to input and then read and print the value every second:
 ``` python
@@ -238,19 +261,19 @@ status 	= gpioObject.setValue(value)
 Note that this will only work the the GPIO is programmed to the **Output** direction!
 
 
-**Arguments**
+#### Arguments
 
 The `value` argument is the value to set the GPIO. Set it to `0` to make the GPIO output a digital 0 (LOW), or set to `1` to output a digital 1 (HIGH).
 
 
-**Return Value**
+#### Return Value
 
 The function will return the following:
 * `0` if the operation is successful
 * `-1` if the operation is NOT successful
 
 
-**Example**
+#### Example
 
 Set a GPIO to output, and alternate the output between LOW and HIGH every 5 seconds:
 ``` python
