@@ -80,11 +80,11 @@ Now, there are a lot of connections you'll need to make in order to power the IC
 
 3. Connecting your Omega
 
+  - Connect the Ground header to the negative rail on the breadboard  	// TODO: what is meant by Ground header?
   - Connect GPIO 1 to pin 14 on the shift register
   - Connect GPIO 2 to pin 11 on the shift register
   - Connect GPIO 3 to pin 12 on the shift register
-  - Connect the Ground header to the negative rail on the breadboard
-  - Connect the 3.3V header to the positive rail on the breadboard
+  - Connect the 3.3V header to the positive rail on the breadboard 	// TODO: what is meant by 3.3V header?
 
   <!-- TODO: IMAGE picture of this stage -->
 
@@ -176,10 +176,10 @@ while True:
     # this animation has 12 different frames, so we'll loop through each one
 	for x in range(0, 12):
         # we need to transform the binary value into a string only when sending it to the shift register
-		bytestring = format(value, '08b') 
+		bytestring = format(value, '08b')
 		shiftRegister.outputBits(bytestring)
 		# now we are free to manipulate the binary number using bitshifts
-        
+
         # if in the first half (6 frames) of the animation, move the LEDs to the right
         if x < 6:
 			value >>= 1 # Shifts all digits right by one (11000000 -> 01100000)
@@ -238,7 +238,7 @@ Finally, we introduced **safely exiting from an infinite loop**, to ensure that 
 
 A **module** is a file containing Python definitions and statements. This can be used to split your project into multiple files for easier maintenance. The `registerClass.py` file is an example of a self-made module that we've imported. Some modules are built in to Python; some examples are `time` which you may have used before, and `signal` which is used in our main program.
 
-Some modules are built into the Python system and can be imported by name no matter what directory your script is in, such as `time` or `sys`. However, if you create your own module file, you can import it by name only if it is in the **same directory** as the script that calls it. Otherwise you will need to use a slightly different command where you must provide the filepath to the module file. 
+Some modules are built into the Python system and can be imported by name no matter what directory your script is in, such as `time` or `sys`. However, if you create your own module file, you can import it by name only if it is in the **same directory** as the script that calls it. Otherwise you will need to use a slightly different command where you must provide the filepath to the module file.
 
 In order to keep things simple, we will be creating module files in the same directories as the main scripts for all of these experiments.
 
@@ -292,7 +292,7 @@ Binary numbers are numbers whose digits can only be **0 or 1**. Similar to how t
 | 100    | 4       |
 | 1000   | 8       |
 
-When writing binary numbers in code, they're typically prefixed with a `0b`, like `0b11010`. When assigning integers such as 42 to variables, the computer actually stores them as binary numbers (`42` = `0b101010`); you can then work with them in either binary, decimal, or even a different base if you wish! 
+When writing binary numbers in code, they're typically prefixed with a `0b`, like `0b11010`. When assigning integers such as 42 to variables, the computer actually stores them as binary numbers (`42` = `0b101010`); you can then work with them in either binary, decimal, or even a different base if you wish!
 
 A **byte** is an 8-bit binary number, for example `0b11000000`. A **bytestring** is a string representation that we can perform string operations on, such as reading each bit one at a time.
 
@@ -326,7 +326,7 @@ When inspecting our main program we see a function defined as `signal_handler`. 
 signal.signal(signal.SIGINT, signal_handler)
 ```
 
-This listener is waiting for an interrupt from the user in order to run the signal handler code. When you enter `Ctrl-C` or `Cmd-C` you are sending a **keyboard interrupt** which is then handled by the interrupt **handler** function in order to exit the program in a safe way. This way your code will always finish the current left-right animation before exiting, thus making sure that your GPIOs are properly freed by the time the program exits. 
+This listener is waiting for an interrupt from the user in order to run the signal handler code. When you enter `Ctrl-C` or `Cmd-C` you are sending a **keyboard interrupt** which is then handled by the interrupt **handler** function in order to exit the program in a safe way. This way your code will always finish the current left-right animation before exiting, thus making sure that your GPIOs are properly freed by the time the program exits.
 <!-- // TODO: what do you mean by a cycle in this last sentence? clarify! -->
 
 <!-- // TODO: nowhere did we explain this part of the main program:
@@ -339,5 +339,5 @@ for x in range(0, 12):
   else:
     value <<= 1 #Shifts the value left by one (01100000 -> 11000000)
 ```
-// TODO: please add a section (AND COMMENTS IN THE CODE) describing what this will accomplish 
+// TODO: please add a section (AND COMMENTS IN THE CODE) describing what this will accomplish
 Gabe: addressed, see above sections-->

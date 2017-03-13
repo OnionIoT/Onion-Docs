@@ -14,7 +14,7 @@ It's important to remember that servos only hold their position while receiving 
 
 #### Typical Pulse Width Values
 
-For must servos providing a 1.5 ms pulse width, will place the shaft in the neutral position. Anything greater or less will move the shaft clockwise or counterclockwise. Typical servos can only move 90˚ in either direction from the neutral position. Note that the minimum and maximum shaft positions correspond to minimum and maximum pulse widths, these can vary between servos, so make sure to look at your servo's datasheet.
+For most servos, providing a 1.5 ms pulse width will place the shaft in the neutral position. Anything greater or less will move the shaft clockwise or counterclockwise. Typical servos can only move 90˚ in either direction from the neutral position. Note that the minimum and maximum shaft positions correspond to minimum and maximum pulse widths, these can vary between servos, so make sure to look at your servo's datasheet.
 
 The recommended PWM frequency for servos is typically in the range of 40-200 kHz, with most servos using 50 Hz.
 

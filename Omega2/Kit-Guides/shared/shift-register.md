@@ -1,6 +1,10 @@
 ### Shift Register
 
+// TODO: photo of the shift register IC
+
 A shift register is an external integrated circuit (IC) that can be used to expand the number of output pins available to us. Essentially they let you turn serial input from a single pin (one bit after the other) into multiple parallel output signals (all at once on separate lines).
+
+// TODO: graphic: block diagram of serial data coming in, parallel data coming out
 
 #### Overview
 
@@ -9,11 +13,11 @@ So how does this work? The IC is made up of two **registers**, units of memory t
 * The **shift** register, which holds 8 values before they are written to the output pins. Values can be "shifted" through this register from one position to the next, starting at position "A" to position "H".
 * The **storage** register, which takes values from the shift register and sends them to the data output lines, labelled `QA` to `QH`. For example, a logical `1` in position "C" of the storage register would create a HIGH signal on `QC`.
 
-There are three pins on the IC that we use to control it with the Omega. Two of these pins are **clocks**, special inputs that trigger the IC to do something when they receive a signal that changes from LOW to HIGH (also known as a **pulse**).
+There are three pins on the IC that we use to control it with the Omega. Two of these pins are **clocks**, special inputs that trigger the IC to do something when they receive a signal that changes from LOW to HIGH (also known as a **pulse** or a **rising edge**).
 
 | Pin | Name | Purpose |
 |-|-|-|
-| SER | Data pin | Contains the value (HIGH or LOW) that will be loaded into the 1st position ("A") of the shift register whenever we pulse the serial clock (SCLK). |
+| SER | Data pin | Contains the value (HIGH or LOW) that will be loaded into the 1st position ("A") of the shift register whenever we pulse the serial clock (SCLK //TODO: SCLK or SRCLK, be consistent!). //TODO: make it super clear that this is the serial data input|
 | SRCLK | Serial clock | When pulsed, shifts each value in the shift register forwards by one position, then loads the value from the SER pin into position "A". Note that this does not change the signals on the output lines until you pulse the register clock (RCLK). |
 | RCLK | Register clock, or "latch pin" | When pulsed, updates the storage register with new values from the shift register, sending a new set of signals to the 8 output pins. This happens so quickly that they all seem to change simultaneously! |
 
@@ -45,6 +49,8 @@ Repeat the 2 steps above until all 8 values have been shifted in. Then pulse the
 
 In this way, we can control up to 8 different outputs with only 3 GPIOs. This is an incredibly powerful technique that you can use to work with many components at once.
 
+// TODO: graphic: can resuse the graphic mentioned in the TODO above
+
 #### Daisy-Chaining
 
 Shift registers can also be connected in series to each other to extend the number of data lines that can be controlled at once. Simply connect the SER pin of one shift register to the `QH'` pin on another, and connect their SRCLK and RCLK pins together. You've now just created a 16-bit shift register! This is called **daisy-chaining**.
@@ -53,7 +59,6 @@ Shift registers can also be connected in series to each other to extend the numb
 
 if you're curious about the clock cycle timings or other information about the IC, you can refer to the [datasheet for the SN74HC595 shift register](http://www.ti.com/lit/ds/symlink/sn74hc595.pdf). The clock cycle timing diagram can be found on page 8.
 
-<!-- TODO: Add an illustration of the shift register where you send 1011 on data pin, and it shows up as 1, 0, 1, 1 on the output pins -->
 
 
 <!-- // explanation of a shift register, an external integrated circuit (ic) that takes serial input and provide the data in parallel

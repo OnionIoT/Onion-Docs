@@ -11,12 +11,10 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 <!-- Shift Register -->
 ```{r child = '../../shared/shift-register.md'}
 ```
+
+<!-- TODO: is this section needed anymore? -->
 <!-- Controlling shift register -->
-```{r child = '../../shared/shift-register-control.md'}
-
-// TODO: insert shift register shared content
-
-// TODO: insert controlling shift register shared content
+<!-- ```{r child = '../../shared/shift-register-control.md'} -->
 
 
 ### Building the Circuit
@@ -24,7 +22,7 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 <!-- // wire up the microcontroller outputs to the shift register
 // have all shift register outputs connected to an LED circuit -->
 
-For this experiment we will use the send a byte (8 bits) signal from the ATmega to the shift register. When the latch pin of the shift register is set LOW, the shift register will use the stored 8 bits to set its 8 output pins accordingly. We will attach one LED to each of the 8 output pin to check if their state (1 or 0).
+For this experiment we will use the send a byte (8 bits) serially from the ATmega to the shift register. When the latch pin of the shift register is set LOW, the shift register will use the stored 8 bits to set its 8 output pins accordingly. We will attach one LED to each of the 8 output pin to check if their state (1 or 0).	// TODO: what? this makes no sense, an led to check the state of an output pin? And then below we also make the eight LEDs light up? fix this section pls
 
 We will also make the eight LEDs light up in the knight rider KITT pattern using only three ATmega pins! For this circuit, we will need the 74HC595 shift register and 8 LEDS with 8 current limiting resistors (200 ohms).
 
@@ -55,7 +53,9 @@ The IC should be plugged in across the channel of your breadboard (the slot runn
 
 Lets take a look at how the 16 pins of the 74HC595 shift register chip are defined.  We'll be referring to each pin by the numbers provided in the diagram above. When plugged in with the letters being right-side up, the bottow row of pins are pin 1 to 8 going from left to right. The top row of pins are pin 9 to 16 going from right to left.
 
->Note: Your IC will have a semi-circle indentation that indicates "up". Make sure that you plug it in properly.
+>Note: Your IC will have a semi-circle indentation that indicates "up". Make sure that you plug it in properly so you know which pins are where.
+
+// TODO: add a little blurb here: 'The Procedure:' or something along those lines, something to make it make sense with the tenses used in the list items
 
 1. Connecting your shift register to the breadboard
 
@@ -67,18 +67,18 @@ Lets take a look at how the 16 pins of the 74HC595 shift register chip are defin
 
 2. Connecting your LEDs
 
-  * Connect the anodes of the 8 LED each to one of the 8 output pins of the 74HC595 (pin 15 and pin 1 to 7). Place the LEDs left to right in the following pin order: 15, 1, 2, 3, .. 7.
-  * Attach the eight current limiting resistors from cathodes of LEDs to the negative rail (Ground) on the breadboard.
+  * Connect the anodes of the 8 LED each to one of the 8 output pins of the 74HC595 (pin 15 and pin 1 to 7). Place the LEDs left to right in the following pin order: 15, 1, 2, 3, .. 7. // TODO: if it's just 8 pins and it's crucial to the experiment, list them all out
+  * Attach the eight current limiting resistors from cathodes of the LEDs to the negative rail (Ground) on the breadboard.
 
  <!-- TODO: Insert picture of this stage -->
 
 3. Connecting your Arduino Dock
 
-  * Connect digital pin 4 to pin 14 on the shift register
-  * Connect digital pin 5 to pin 12 on the shift register
-  * Connect digital pin 6 to pin 11 on the shift register
-  * Connect the Ground header to the negative rail on the breadboard
-  * Connect the 5V header to the positive rail on the breadboard
+  * Connect the Ground header to the negative rail on the breadboard	// TODO: what is meant by Ground header?
+  * Connect Arduino Dock digital pin 4 to pin 14 on the shift register
+  * Connect Arduino Dock digital pin 5 to pin 12 on the shift register
+  * Connect Arduino Dock digital pin 6 to pin 11 on the shift register
+  * Connect the 5V header to the positive rail on the breadboard	// TODO: what is meant by 5V header?
 
   <!-- TODO: Insert picture of this stage -->
 
@@ -145,11 +145,19 @@ void loop()
 
 <!-- // explain that the animation will be Knight Rider Kitt style: maybe throw in a gif for nostalgia
 //  - it will run all the way left and then all the way right over and over again -->
-The eight LEDs will light up in the knight rider KITT pattern. The first LEDs will turn on, then the next will turn on and the previous one will turn off. This will repeat for all the LEDs in a loop from left to right and then from right to left. Only one LED should be lit at once.
+The eight LEDs will light up like KITT from Knight Rider. The first LEDs will turn on, then the next will turn on and the previous one will turn off. This will repeat for all the LEDs in a loop from left to right and then from right to left. Only one LED should be lit up at a time.
+
+// TODO: GIF of experiment
+
+See, just like KITT:
+
+// TODO: GIF of KITT
 
 #### A Closer Look at the Code
 
-We will use only three Arduino Dock pins to control eight LEDs by using the shift register. Lets begin by declaring the three pin variables (`latchPin`, `clockPin` and `dataPin`) and initializing the three pins as output in `setup()`. For each time we want to light up a different LED, we use the `updateShiftRegister()` function. In this function, we send the 8 bits from the ATmega to the shift register:
+We are only using three Arduino Dock pins to control eight LEDs by taking advantage of the shift register. Lets begin by declaring the three pin variables (`latchPin`, `clockPin` and `dataPin`) and initializing the three pins as output in `setup()`.
+
+Each time we want to light up a different LED (change the output of the Shift Register), we use the `updateShiftRegister()` function. In this function, we send the 8 bits from the ATmega to the shift register:
 
 ```
 shiftOut(dataPin, clockPin, LSBFIRST, storageByte);  
@@ -162,6 +170,8 @@ digitalWrite(latchPin, LOW);
 ```
 
 We must set the latch back high again after or else the output won't be set in the correct order.
+
+// TODO: at this point, we need to make it clear that we WERE talking about the inner workings of the `updateShiftRegister` function. and that FROM NOW ON, we're talking about the operation of the loop function, and how it creates the KITT effect
 
 After we turn on the first LED by sending `00000001`, we use a `for` loop to shift the `1` bit from the least significant bit `00000001` the
 most significant bit `10000000`. We shift one bit at a time for seven times, each time using the bitwise shift left operation:
@@ -177,3 +187,4 @@ storageByte = storageByte >> 1;
 ```
 
 We must `updateShiftRegister()` after each bit shift and each time include a slight delay for the CPU to process and for our eyes to see whats going on.
+// TODO: expand on this sentence, this was lazy
