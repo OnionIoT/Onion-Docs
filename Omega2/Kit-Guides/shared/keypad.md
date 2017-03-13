@@ -6,5 +6,5 @@ A keypad allows the user to press a button and the attached computer system will
 
 <!-- // TODO: IMAGE graphic of a keypad -->
 
-// TODO: potentially reword the next paragraph for clarity
-However, since the pins are not directly mapped to the buttons, our computer system will have to decode the signals coming from the keypad. When a button is pressed, the corresponding row and column pins will become logical high. Our code will have to define the location of each button based on its row and column intersection.
+<!-- // DONE: potentially reword the next paragraph for clarity -->
+However, since the pins are not directly mapped to the buttons, our computer system will have to decode the signals coming from the keypad. When a button is pressed, the corresponding row and column pins will become logical high. So we will have to translate the row and column signal into the value of the button just like how chess positions are recorded.

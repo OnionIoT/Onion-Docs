@@ -9,9 +9,9 @@ In this experiment, we will make a circuit that can read input from a keypad. To
 
 ### Building the Circuit
 
-// TODO: let's change it so that we use an external led, makes it feel more dramatic
+<!-- // DONE: let's change it so that we use an external led, makes it feel more dramatic -->
 
-For the circuit, we will only need a keypad and some jumpers. We'll be using the on-board blue LED instead of connecting our own to keep it simple.
+For the circuit, we will need a keypad and some jumpers along with an LED to light up.
 
 #### What You'll Need
 
@@ -19,10 +19,13 @@ Prepare the following components from your kit:
 
 * Omega plugged into Arduino Dock
 * USB Micro-B cable for power
-* 7x male-to-male Jumper wires
+* 1x Breadboard
+* 9x male-to-male Jumper wires
+* 1x 200Ω Resistor
+* 1x LED of any colour
 * 1x Keypad
 
-// TODO: add in our external LED
+<!-- // DONE: add in our external LED -->
 
 #### Hooking Up the Components
 
@@ -31,8 +34,12 @@ Prepare the following components from your kit:
 Once you have the components ready to go, we can begin putting it together. Keep in mind the keypad has seven pins, one for each row and column - not one pin per button.
 
 1. Connect all the seven keypad pins to the digital pins (8, 7, 6, 5, 4, 3, 2) on the Arduino Dock in order from left to right, i.e. the left most keypad pin to arduino header pin 8.
+1. Plug the LED in across the center of the breadboard, between whichever rows you wish.
+1. Plug the resistor between the `GND` rail and the row connected to the cathode of the LED.
+1. Connect the `GND` rail to the `GND` pin of the Arduino Dock with a M-M jumper
+1. Use the last jumper to hook up the cathode row of the LED to pin `13` of the Arduino Dock.
 
-// TODO: add info about wiring up the LED
+<!-- // DONE: add info about wiring up the LED -->
 
 <!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
 
@@ -91,7 +98,7 @@ char password[] = {'4', '3', '2', '1'};   // array of chars as password
 int ledPin = 13;    // LED pin number to be lit when password is correct
 
 // initializing keypad as an object from the Keypad library
-Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
+Keypad keypadObject = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
 void setup(){
   Serial.begin(9600);   // initializing serial communication with the Omega
@@ -103,7 +110,7 @@ void loop(){
   // set LED off
   digitalWrite (13, LOW);
 
-  char key = keypad.getKey();   // read the key entered as a char
+  char key = keypadObject.getKey();   // read the key entered as a char
   int keyCheck = 0;   // index for the number of correct keys entered after #
   int i = 0;      // index for the number of keys entered after #
   if (key != NO_KEY){   // wait until a key has been pressed
@@ -117,7 +124,7 @@ void loop(){
 
         // using a loop, let the user enter the same number of keys as the password length, whether correct or not
         while (i != sizeof (password)){
-          key = keypad.getKey();    // read the key entered as a char
+          key = keypadObject.getKey();    // read the key entered as a char
           if (key != NO_KEY){   // wait until a key has been pressed
           Serial.println(key);   
 
@@ -168,17 +175,31 @@ We will be using the keypad to create a password protected system. After the use
 
 <!-- // DONE: fill in the link -->
 
-This code uses the Arduino Keypad library. Remember the `ServoMotor` class we wrote in the [previous tutorial](#arduino-kit-using-a-servo)? Well a library usually contains the definition of a class and then the implementation of the methods (functions) of that class. To use the class, we include the library's header file in our code, and then we are free to create a `Keypad` object in our code.
+This code uses the Arduino Keypad library. Remember the `ServoMotor` class we wrote in the [previous tutorial](#arduino-kit-using-a-servo)? Well a library usually contains the definition of a class and then the implementation of the methods (functions) of that class. To use the class, we include the library's header file in our code, and then we are free to create a `keypadObject` object in our code.
 
-// TODO: change this object's name everywhere to keypadObject
+<!-- // DONE: change this object's name everywhere to keypadObject -->
 
-We've creatively name the object `keypad`.
+We've creatively named the object `keypadObject`.
 
 ```
-Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
+Keypad keypadObject = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 ```
 
-Try commenting out the `#include <Keypad.h>` line, you'll see that the compiler will complain, saying that it doesn't know what a Keypad is! This file is in the Arduino Keypad library and it defines the `Keypad` class. However, before we instantiate our `Keypad` object, we need  to declare the variables which needed to be passed into the Keypad object. This includes a two-dimensional array `keys[][]`.
+Try commenting out the `#include <Keypad.h>` line, you'll see that the compiler will complain, saying that it doesn't know what a Keypad is! This file is in the Arduino Keypad library and it defines the `Keypad` class. However, before we instantiate our `keypadObject` object, we need  to declare the variables which needed to be passed into the Keypad object. This includes a two-dimensional array `keys[][]`.
+
+
+#### Arrays By the Numbers
+
+We're no strangers to arrays by now, so this time we can dive a bit deeper into their capabilities. At the lowest level, arrays are actually represented as a hex number that represents a location in computer memory - the location of the start of the array. This means that arrays can store other arrays just as well as regular numbers. 
+
+<!-- DONE: expand on this mind-expanding statement.  -->
+
+To explain, first thing to know is arrays are continous in memory. This means that each element of an array sequentially follows the previous, always. By knowing the size of each element and the head address, an array can be very easily manipulated. So to save space and needless computation, the start of the array is passed around as a handle to manipulate the whole thing. 
+
+In modern computers, addresses are almost always represented as an `int` or hex number.
+
+As you can imagine, this means that an array of arrays works just as an array of `int`'s would. 
+
 
 #### Two-Dimensional Arrays
 
@@ -187,7 +208,9 @@ Try commenting out the `#include <Keypad.h>` line, you'll see that the compiler 
 <!-- //	* expand on the 2d array is similar to a table bit -->
 <!-- //	* talk about how 2d arrays need to be indexed in both dimensions -->
 
-We're no strangers to arrays by now, so this time we can dive a bit deeper into their capabilities. At the lowest level, arrays are actually represented as a hex number that represents a location in computer memory - the location of the start of the array. This means that arrays can store other arrays just as well as regular numbers (TODO: expand on this mind-expanding statement). In practise, this means we can create arrays that work like tables. Using this kind of two-dimensional (2D) array, we can map the keypad directly to an array without jumping any calculation hoops. To get a better visual, let's take a look at the code:
+More often than not, arrays of arrays are referred to as 'higher dimensional arrays' based on how many levels of arrays are used. Usually, it's two, leading to two-dimensional arrays.
+
+Two-dimensional arrays can be thought of as tables - with a fixed number of rows and columns, and each cell being a single element. Using a 2D array like a table, we can map the keypad directly to an array without jumping any calculation hoops. To get a better visual, let's take a look at the code:
 
 ```c++
 const byte ROWS = 4; //four rows
@@ -200,19 +223,21 @@ char keys[ROWS][COLS] = {
 };        // a 4x3 array of all the keys as chars
 ```
 
-Our keypad does not have a pin for each button, instead it has a pin for each row and column. The signals our code obtains is the row and column number of the button being pressed. To best mirror that in code, the 2D array `keys[][]` does pretty much the same thing. Each button is represented by an element of the array, and each element can be accessed by a unique pair of numbers - the indices of `keys`.
+Our keypad does not have a pin for each button, instead it has a pin for each row and column. The signals our code obtains is the row and column number of the button being pressed. 
 
-In this example, the 2D array is passed into a `keypad` object and the object will do the translation internally. We simply have to call the `getKey()` function to have the keypad return the value of the button that was pressed.
+To best mirror that in code, the 2D array `keys[][]` does pretty much the same thing. Each button is represented by an element of the array, and each element can be accessed by a unique pair of numbers - the indices of `keys`.
 
-Internally, the `keypad.getKey()` function does something like this:
-
-* Read in the data from the keypad.
-* Convert the input data into a row value and a column value.
-* Return the value of the button that the row/column values specify.
-
-
+In this example, the 2D array is passed into a `keypadObject` object and the object will do the translation internally. We simply have to call the `getKey()` function to have the keypad return the value of the button that was pressed.
 
 <!-- // DONE: include some examples of accessing the array: like keys[2][3] = 6, give a few -->
+Internally, calling the `keypadObject.getKey()` function when a button has been pressed does something like this:
+
+* Read in the data from the keypad. Let's say we pressed down button '6', and send `HIGH` to pin `6` and `3`.
+* Convert the input data into a row value and a column value. This will take `6` and `3` and convert them to `1` and `2` respectively.
+* Return the value of the button that the row/column values specify. It looks into the `keys` array and returns the element at `[1][2]` - `'6'` specifically.
+
+By formatting the 2D array properly, we can extract the value of the button press without a single calculation.
+
 
 ### Going Further
 
