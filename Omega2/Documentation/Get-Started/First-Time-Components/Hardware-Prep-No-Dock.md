@@ -2,9 +2,9 @@
 
 ## Powering the Omega with No Dock {#hardware-prep-no-dock}
 
-We strongly recommend getting a Dock for your Omega to get the best experience and most performance, functionality, and stability from your new device. 
+We strongly recommend getting a Dock for your Omega to get the best experience and most performance, functionality, and stability from your new device.
 
-However, if you only have an Omega and no Dock, this article will show you how to safely power your Omega using a regulator on a breadboard. 
+However, if you only have an Omega and no Dock, this article will show you how to safely power your Omega using a regulator on a breadboard. **The following is the only procedure recommended by Onion. Onion is not responsible for damage caused to your device when attempting to provide power with any alternative methods or components.**
 
 *You can safely skip this section if you have a Dock.*
 
@@ -17,7 +17,7 @@ Unpack the Omega from its box
 
 **Providing Power**
 
-The Omega needs to be powered by 3.3V DC, and without a Dock, we can't use a MicroUSB to provide the power. So we'll need to build a *regulator* circuit that can be supplied with a wide range of input, but still provide the Omega with the precise 3.3V that is needs.
+The Omega needs to be powered by 3.3V DC and requires 500mA to be safe. Without a Dock, we can't use a MicroUSB to provide the power. So we'll need to build a *regulator* circuit that can be supplied with a wide range of input, but still provide the Omega with the precise 3.3V that is needs.
 
 <!-- // TODO: add affiliate amazon links to all of these items -->
 
