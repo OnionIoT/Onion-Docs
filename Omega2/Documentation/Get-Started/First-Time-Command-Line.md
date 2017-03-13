@@ -54,15 +54,6 @@ Enter `wifisetup` in a terminal and you'll see the following output:
 >
 >To learn more about configuring the Omega's WiFi connection, see [our guide to using the command line to connect to WiFi](#connecting-to-wifi-networks-command-line).
 
-### Installing the Console from the Command Line
-
-After you do the wifi setup, you're still going to be stuck with the configuration wizard.  To disable the wizard and use the Console instead, from the command line enter:
-
-    uci set onion.console.setup=1
-    uci set onion.console.install=2
-    uci commit onion
-
-Then reboot the unit via the switch.
 
 ### Update the Omega's Firmware
 
@@ -83,6 +74,21 @@ At the end of the installation process, the Omega will automatically reboot. It 
 Start using your fresh Omega and check out the [Using the Omega section](#doing stuff) for ideas on what the Omega can do!
 <!-- Start using your fresh Omega, check out the [Tutorials section](./Tutorials/Contents) or the [Project guides](./Projects/Contents) for ideas on what to do next! -->
 <!-- TODO: fix the links above when the content is available -->
+
+
+### Installing the Console
+
+Now that your Omega is all setup and ready to go, you'll want to install the Console so you can get the most from your Omega. Run the following commands:
+
+```
+uci set onion.console.setup=1
+uci set onion.console.install=2
+uci commit onion
+```
+
+On the Omega's next reboot, the Console will be installed automatically. Check out our series on [Using the Console](#connecting-to-wifi-using-console) for more on how to use the Console.
+<!-- TODO: LAZAR: update this link -->
+
 
 ### This Didn't Work!
 
