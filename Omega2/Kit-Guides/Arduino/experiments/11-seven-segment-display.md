@@ -52,6 +52,8 @@ We will need to connect all 12 pins of the seven-segment display to 12 digital p
 <!-- // write a sketch that takes input from the Serial (ie the Omega) and writes it to the 7 seg display
 //  * ensure proper input validation is done so that only  hex numbers can be written to the display -->
 
+// TODO: LAZAR to revise code
+
 ``` arduino
 // array of bytes, each byte represents how a different character will be displayed on the 7-seg
 static const byte digitCodeMap[] = {  

@@ -7,7 +7,8 @@ In our very first experiment, we will turn an LED on and off. This is the hardwa
 Remember, when inventing and building new things, try to break the work down into bite sized chunks, that way you'll see progress much sooner and it will motivate you to keep going!
 
 <!-- LEDs -->
-```{r child = '../../shared/led.md'}
+```
+{r child = '../../shared/led.md'}
 ```
 
 ### How to Build Circuits
@@ -22,7 +23,7 @@ Before we start building our experiment, let's first go over some of the buildin
 ```{r child = '../../shared/breadboard.md'}
 ```
 
-Last thing before we build - getting to know the Arduino Dock. The double-row headers beside the Omega and the three male pins near the OMEGA_RESET are pins connected to the **Omega**. The rest of the headers are connected to the **ATmega** and have the same layout as that of an Arduino UNO. We will be using the ATmega pins mostly throughout these tutorials, with the Omega used to flash the chip and connect to the internet!
+Last thing before we build - getting to know the Arduino Dock. The double-row headers beside the Omega and the three male pins near the OMEGA_RESET are pins connected to the **Omega**. The rest of the headers are connected to the **ATmega** Micro-Controller and have the same layout as that of an Arduino UNO. We will be using the ATmega pins mostly throughout these tutorials, with the Omega used to flash the chip and connect to the internet!
 
 
 ### Building the Circuit
