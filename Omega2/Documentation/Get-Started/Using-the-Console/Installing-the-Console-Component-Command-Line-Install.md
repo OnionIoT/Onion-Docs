@@ -1,4 +1,4 @@
-The Console can also be installed using the command line.
+The Console can be installed using the Omega's command line.
 
 >For information on how to access the Omega's command line, follow this [guide to connecting to the Omega's Terminal](#connecting-to-the-omega-terminal)
 

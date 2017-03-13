@@ -4,9 +4,12 @@
 
 We strongly recommend getting a Dock for your Omega to get the best experience and most performance, functionality, and stability from your new device.
 
-However, if you only have an Omega and no Dock, this article will show you how to safely power your Omega using a regulator on a breadboard. **The following is the only procedure recommended by Onion. Onion is not responsible for damage caused to your device when attempting to provide power with any alternative methods or components.**
+However, if you only have an Omega and no Dock, this article will show you how to safely power your Omega using a regulator on a breadboard.
 
 *You can safely skip this section if you have a Dock.*
+
+**The following is the only procedure recommended by Onion. Onion is not responsible for damage caused to your device when attempting to provide power with any alternative methods or components.**
+
 
 **Unpack**
 

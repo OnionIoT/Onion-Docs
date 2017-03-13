@@ -1,4 +1,4 @@
-Now, you can access the Console by navigating to `http://omega-ABCD.local/`, where `ABCD` is your Omega's unique identifier, in a browser.
+You can reach the Omega's Console in your browser by navigating to `http://omega-ABCD.local/`, where `ABCD` is your Omega's unique identifier.
 
 > If you don't know how to find your Omega's unique identifier you can take a look at our brief [guide to finding your Omega's name](#omega-name)
 
