@@ -37,9 +37,7 @@ password: onioneer
 ```{r child = './Installing-the-Console-Component-Command-Line-Install.md'}
 ```
 
-<!-- accessing the console -->
-```{r child = './Accessing-the-Console-Component.md'}
-```
+Now you'll be able to [access the Omega's Console using your browser](#access-the-console)!
 
 
 #### Behind the Scenes

@@ -86,8 +86,7 @@ uci set onion.console.install=2
 uci commit onion
 ```
 
-On the Omega's next reboot, the Console will be installed automatically. Check out our series on [Using the Console](#connecting-to-wifi-using-console) for more on how to use the Console.
-<!-- TODO: LAZAR: update this link -->
+On the Omega's next reboot, the Console will be installed automatically. Check out our series on [Using the Console](#accessing-the-console) for more on how to use the Console.
 
 
 ### This Didn't Work!

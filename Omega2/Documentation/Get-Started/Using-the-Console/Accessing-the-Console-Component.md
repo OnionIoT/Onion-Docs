@@ -1,4 +1,4 @@
-Now, you can access the console by going to `http://omega-ABCD.local/` where `ABCD` is your Omega's unique identifier.
+Now, you can access the Console by navigating to `http://omega-ABCD.local/`, where `ABCD` is your Omega's unique identifier, in a browser.
 
 > If you don't know how to find your Omega's unique identifier you can take a look at our brief [guide to finding your Omega's name](#omega-name)
 
@@ -11,3 +11,9 @@ The default login info is:
 username: root
 password: onioneer
 ```
+
+> Your computer and Omega have to be on the same network in order for you to get to the Console!
+
+If the above method doesn't work, try connecting your computer to your Omega's WiFi Access Point (named Omega-ABCD by default), and then trying to load `http://omega-ABCD.local/` again.
+
+If this doesn't work, you can navigate to the Omega's IP Address, `http://192.168.3.1`.
