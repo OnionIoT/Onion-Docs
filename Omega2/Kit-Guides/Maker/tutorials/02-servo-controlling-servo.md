@@ -6,9 +6,14 @@ devices: [ Omega , Omega2 ]
 order: 2
 ---
 
-## Controlling Servos with the PWM Expansion {#maker-kit-servo-controlling-servo}
+## Controlling Servos {#maker-kit-servo-controlling-servo}
+
+// TODO: you can do better on this intro, let's make these people stoked!
 
 In this tutorial we will learn how to control servo motors using the PWM Expansion with Python. First, let's get to know our servos.
+
+// TODO: makes more sense to have the PWM description first and then the servo description. update the last sentence above to flow with the article
+
 
 <!-- servo -->
 ``` {r child = '../../shared/servos.md'}
@@ -23,6 +28,7 @@ For our experiment, we'll demonstrate how servos can be controlled through PWM s
 ```
 
 
+// TODO: LAZAR bookmark
 ### Building the Circuit
 
 For this experiment, we'll be wiring a circuit that allows us to control the motors directly through the PWM expansion. This circuit is relatively simple because the motor and the PWM Expansion are both plug and play. If you haven't already, it is highly recommended that you read over the [PWM Expansion](#pwm-expansion) article in our documentation for safety tips.

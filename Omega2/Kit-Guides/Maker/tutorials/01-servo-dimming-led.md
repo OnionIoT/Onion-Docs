@@ -6,9 +6,9 @@ devices: [ Omega , Omega2 ]
 order: 1
 ---
 
-// TODO: give this a read-through, some typos here
+// TODO: give this a read-through before diving into editing, some typos and gramatical errors need to be fixed
 
-## Dimming LEDs with the PWM Expansion {#maker-kit-servo-dimming-led}
+## Dimming LEDs {#maker-kit-servo-dimming-led}
 
 <!-- // TODO: need to capitalize Python EVERYWHERE -->
 
