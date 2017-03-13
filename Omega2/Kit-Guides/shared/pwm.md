@@ -4,4 +4,6 @@ Pulse Width Modulation (PWM) is a technique of producing varying analog signals 
 
 >For the curious, PWM actually converts a binary **voltage** signal into an analog **current** signal.
 
+// TODO: not sure what is meant by an analog current signal... please explain a little more or include a link to a place that explains this concept nicely
+
 <!-- // TODO: GRAPHIC showing 3 or 4 pwm signals with different duty cycles -->
