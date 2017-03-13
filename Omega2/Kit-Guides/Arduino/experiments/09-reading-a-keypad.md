@@ -2,8 +2,8 @@
 
 In this experiment, we will make a circuit that can read input from a keypad. To make it more interesting, we'll treat the input as a password such that if the correct password is entered, an LED will light up. The way we will build our circuit and accept input is very similar to the way computer keyboards work! When writing the code, we will also learn how to use Arduino libraries that are not preloaded by default.
 
-<!-- // TODO: should be in it's own separate markdown file -->
-```{r child = '../../shared/keypad.md'}
+<!-- // DONE: should be in it's own separate markdown file -->
+```{r child = '../shared/keypad.md'}
 ```
 
 
@@ -26,7 +26,7 @@ Prepare the following components from your kit:
 
 #### Hooking Up the Components
 
-<!-- // TODO: add an intro, mention: 'The keypad as seven pins: four pins for the rows and three pins for the columns.'' -->
+<!-- // DONE: add an intro, mention: 'The keypad as seven pins: four pins for the rows and three pins for the columns.'' -->
 
 Once you have the components ready to go, we can begin putting it together. Keep in mind the keypad has seven pins, one for each row and column - not one pin per button.
 
@@ -52,7 +52,7 @@ Once you have the components ready to go, we can begin putting it together. Keep
 
 This code will use a Keypad library which is probably not included in  the Ardiuno IDE by default. There are two ways of getting ahold of the library and including it in our code. In the first way we can install it directly through the Arduino IDE:
 
-1. On the Arduino IDE, click `Sketch > Include Library > Manage Libraries`. The Library Manager will show up; type `keypad` in the search bar and install the first search result.
+On the Arduino IDE, click `Sketch > Include Library > Manage Libraries`. The Library Manager will show up; type `keypad` in the search bar and install the one titled 'Keypad'.
 
 The other way is to manually install a library.
 
@@ -62,7 +62,7 @@ The other way is to manually install a library.
     * MacOS - `~/Documents/Arduino/libraries`
 3. Restart your IDE, and it should be useable in your sketches!
 
-<!-- // TODO: add locations for OS X and Linux (can look this up online) -->
+<!-- // DONE: add locations for OS X and Linux (can look this up online) -->
 
 To use the library we need to add the following line at the top of our code:
 
@@ -70,7 +70,7 @@ To use the library we need to add the following line at the top of our code:
 #include <Keypad.h>
 ```
 
-// TODO: verify this code works
+<!-- // DONE: verify this code works -->
 
 ```c++
 // include the Keypad library
@@ -166,7 +166,7 @@ We will be using the keypad to create a password protected system. After the use
 
 ### A Closer Look at the Code
 
-<!-- // TODO: fill in the link -->
+<!-- // DONE: fill in the link -->
 
 This code uses the Arduino Keypad library. Remember the `ServoMotor` class we wrote in the [previous tutorial](#arduino-kit-using-a-servo)? Well a library usually contains the definition of a class and then the implementation of the methods (functions) of that class. To use the class, we include the library's header file in our code, and then we are free to create a `Keypad` object in our code.
 
@@ -182,7 +182,7 @@ Try commenting out the `#include <Keypad.h>` line, you'll see that the compiler 
 
 #### Two-Dimensional Arrays
 
-<!-- // TODO: clean up this paragraph, it's written well and going in the right direction but doesn't include enough details: -->
+<!-- // DONE: clean up this paragraph, it's going in the right direction but doesn't include enough details: -->
 <!-- //	* expand on what is meant by a single row of variables -->
 <!-- //	* expand on the 2d array is similar to a table bit -->
 <!-- //	* talk about how 2d arrays need to be indexed in both dimensions -->
@@ -208,9 +208,11 @@ Internally, the `keypad.getKey()` function does something like this:
 
 * Read in the data from the keypad.
 * Convert the input data into a row value and a column value.
-* Return the value of the array that the row/column values specify.
+* Return the value of the button that the row/column values specify.
 
-<!-- // TODO: include some examples of accessing the array: like keys[2][3] = 6, give a few -->
+
+
+<!-- // DONE: include some examples of accessing the array: like keys[2][3] = 6, give a few -->
 
 ### Going Further
 

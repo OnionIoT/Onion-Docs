@@ -37,7 +37,7 @@ Prepare the following components from your kit:
 
 #### Hooking Up the Components
 
-<!-- // TODO: add an intro (d)-->
+<!-- // DONE: add an intro (d)-->
 <!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
 
 Now that you got everything, let's build!
@@ -62,7 +62,7 @@ Once our circuit is out of the way, we'll connect the power:
 
 ### Writing the Code
 
-<!-- // TODO: intro to the code, in broad strokes talk about what we hope to accomplish -->
+<!-- // DONE: intro to the code, in broad strokes talk about what we hope to accomplish -->
 
 Now that the circuit is wired, it's time to write the code that makes it go!
 
@@ -191,14 +191,14 @@ In this code, we introduce a very important, new concept: Object Oriented Progra
 
 #### Object Oriented Programming
 
-<!-- // TODO: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read -->
+<!-- // DONE: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read -->
 
 In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is exactly the kind of scenario that spurred the creation of Object Oriented Programming. Ultimately, the goal of OOP is to model programmatic interactions as objects interacting with each other.
 
 To that end, we create **objects** with attributes (what it is) and methods that act on the attributes (how it behaves). Objects are constructed out of templates called **classes** in which we define what attributes the object will have, and the functions that will interact with them.
 
-<!-- // TODO: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions) -->
-<!-- // TODO: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it! -->
+<!-- // DONE: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions) -->
+<!-- // DONE: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it! -->
 
 #### Classes
 
@@ -213,7 +213,7 @@ class ServoMotor
 };
 ```
 
-This is our class definition! All the code inside defines what an object of `ServoMotor` would encompass. It's got attribles, and methods, and `public`s, and `private`s. One interesting thing about the class is that none of the attributes inside a class actually exist in memory. That is until we make an object out of it.
+This is our class definition! All the code inside defines what an object of `ServoMotor` would encompass. It's got attributes, methods, `public`'s, and `private`'s. One interesting thing about the class is that no attribute inside a class actually exist in memory. That is until we make an object out of it.
 
 
 >Most object oriented languages allow functions inside classes to be executed
