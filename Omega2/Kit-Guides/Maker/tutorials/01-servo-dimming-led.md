@@ -119,6 +119,8 @@ class OmegaPwm:
 
 Now let's write the script for the experiment. Create a file called `MAK01-pwmLed.py` and throw the following code in it. Then run it and keep an eye on your LEDs:
 
+// TODO: the code is good, just need comments to describe what we're actually doing!
+
 ``` python
 from omegaPwm import OmegaPwm
 import math
@@ -140,7 +142,9 @@ def main():
     # Construct pwmLED object array
     ledObjectArray = []
     for i in range(16):
+		# instantiate an object tied to the i channel 	// TODO: fix up this comment
         obj = OmegaPwm(i, PWM_FREQUENCY)
+		# add the object into our array of objects
         ledObjectArray.append(obj)
 
     phaseIncrement = (2 * math.pi)/16
