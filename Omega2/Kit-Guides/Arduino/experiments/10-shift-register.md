@@ -11,12 +11,10 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 <!-- Shift Register -->
 ```{r child = '../../shared/shift-register.md'}
 ```
+
+<!-- TODO: is this section needed anymore? -->
 <!-- Controlling shift register -->
-```{r child = '../../shared/shift-register-control.md'}
-
-// TODO: insert shift register shared content
-
-// TODO: insert controlling shift register shared content
+<!-- ```{r child = '../../shared/shift-register-control.md'} -->
 
 
 ### Building the Circuit
@@ -74,11 +72,11 @@ Lets take a look at how the 16 pins of the 74HC595 shift register chip are defin
 
 3. Connecting your Arduino Dock
 
-  * Connect digital pin 4 to pin 14 on the shift register
-  * Connect digital pin 5 to pin 12 on the shift register
-  * Connect digital pin 6 to pin 11 on the shift register
-  * Connect the Ground header to the negative rail on the breadboard
-  * Connect the 5V header to the positive rail on the breadboard
+  * Connect the Ground header to the negative rail on the breadboard	// TODO: what is meant by Ground header?
+  * Connect Arduino Dock digital pin 4 to pin 14 on the shift register
+  * Connect Arduino Dock digital pin 5 to pin 12 on the shift register
+  * Connect Arduino Dock digital pin 6 to pin 11 on the shift register
+  * Connect the 5V header to the positive rail on the breadboard	// TODO: what is meant by 5V header?
 
   <!-- TODO: Insert picture of this stage -->
 
