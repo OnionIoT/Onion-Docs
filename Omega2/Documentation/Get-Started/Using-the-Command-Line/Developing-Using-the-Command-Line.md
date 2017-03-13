@@ -42,7 +42,8 @@ echo morse > /sys/class/leds/omega2\:amber\:system/trigger
 
 >If you're using an Omega2+, the LED will be named `omega2p:amber:system` as opposed to `omega2:amber:system` so you will have to pipe the above command to `/sys/class/leds/omega2p\:amber\:system/trigger`
 
-To paste into the Terminal app, use `ctrl+shift+v` or `cmd+shift+v` on a MAC
+
+Depending on which Terminal app you're using, the keyboard shortcut to paste might not be the straight-forward `Ctrl+v` or `Cmd+v` on a Mac. Some Windows terminal programs use `Ctrl+Shift+v` as the paste shortcut!
 
 You can verify that it worked by using `cat` to look at the virtual file:
 
