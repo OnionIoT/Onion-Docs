@@ -15,7 +15,7 @@ An H-Bridge is a circuit that allows voltages to be applied across a load in eit
 
 ![Hbridge](https://en.wikipedia.org/wiki/H_bridge#/media/File:H_bridge.svg)
 
-// TODO: talk about how the h-bridge structure allows us to switch the polarity of the voltage accorss the load
+// TODO: talk about how the h-bridge structure allows us to switch the polarity of the voltage across the load
 
 // DONE: changed usage to a list
 
