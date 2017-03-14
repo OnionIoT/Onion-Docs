@@ -41,6 +41,7 @@ You can safely stack other Expansions on top of it. **However, be mindful of wir
 
 >Note: You may only have one PWM Expansion stacked onto an Omega at a time.
 
+<!-- TODO: add side-view photos for each -->
 
 ![expansion-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-expansion-dock.jpg)
 
@@ -98,7 +99,7 @@ The Omega supplies enough power to move only one or two servos under light load.
 
 The DC voltage supplied through the barrel jack will be provided on the Vcc (and GND) pins. The PWM voltage will also be stepped up to this voltage. We've safely tested up to 12V, so try not to go beyond that or you risk damaging your Expansion. To get more power at this stage, look for power supplies with higher current ratings rather than higher voltages.
 
-Note that the Omega cannot be powered through this connector and still requires its own power supply.
+Note that the Omega cannot be powered through this connector and still requires its own power supply since the DC Barrel Jack is isolated from the Dock's 5V power supply. This was done to allow the servos to be powered by power supplies that provide more than 5V while preventing damage to the Omega and Dock.
 
 >**Note**: on the Arduino Dock, the barrel jack's bottom tabs have been found to make contact with the metal case of the Omega2 and Omega2+ creating a **short circuit**. We recommend inserting a thin plastic layer between the top of the Omega and the bottom of the PWM Expansion to break this short. If the DC connector is shorted, it may cause damage to any components connected to the PWM Expansion.
 
