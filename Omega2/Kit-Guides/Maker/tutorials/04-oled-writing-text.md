@@ -7,10 +7,13 @@ order: 4
 ---
 ## Writing Text to the OLED Display {#maker-kit-oled-writing-text}
 
-In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python library. By the end, you'll be able to boot it up, and write whatever you wish!
+In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python module for the OLED Expansion. By the end, you'll be able to boot it up, and write whatever you wish!
 
 
 ### The OLED Display
+
+// TODO: come back to this when merged with master branch
+//	-> can reuse this text in all of the OLED articles (Hardware Overview, C Library, Python Module, Node Module)
 
 The OLED Expansion has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages.
 
@@ -33,6 +36,8 @@ This tutorial does not require you to use a breadboard as the OLED Expansion is 
 
 ### Writing the Code
 
+// TODO: avoid saying things like 'fairly simple', will make beginners feel bad when they struggle
+
 The code we'll be writing is fairly simple, we'll be calling on the `oledExp` class from the `OmegaExpansion` Python Module and using the built in functions to print a bunch of stuff.
 
 Create a file called `MAK04-oledWriteText.py` and paste the following code in it:
@@ -50,10 +55,13 @@ quoteArray = ['Banging your head against a wall burns 150 calories an hour.',
 'If you lift a kangaroos tail off the ground it cannot hop.']
 
 def main():
+	# TODO: comment briefly describing the actions that follow
 	dateTimeObj = datetime.datetime.now()
 	hour = dateTimeObj.hour
 	minute = str(dateTimeObj.minute)
 	sec = dateTimeObj.second
+
+	# TODO: comment briefly describing the actions that follow
 	if(hour/12 == 0):
 		day = "AM"
 		hour = str(hour % 12)
@@ -61,19 +69,28 @@ def main():
 		day = "PM"
 		hour = str(hour % 12)
 	dateTimeStr = hour+":"+minute+" "+day
+
+	# TODO: comment briefly describing the actions that follow
 	if(dateTimeObj.hour < 12):
 		greeting = "Good Morning"
 	elif(17 > dateTimeObj.hour >= 12):
 		greeting = "Good Afternoon"
 	else:
 		greeting = "Good Evening"
+
 	# Initialize the display
 	oledExp.driverInit()
+
+	# TODO: comment briefly describing the actions that follow
 	oledExp.setTextColumns()
 	oledExp.setCursor(0,13)
 	oledExp.write(dateTimeStr)
+
+	# TODO: comment briefly describing the actions that follow
 	oledExp.setCursor(2,0)
 	oledExp.write(greeting)
+
+	# TODO: comment briefly describing the actions that follow
 	oledExp.setCursor(4,0)
 	oledExp.write(quoteArray[sec%5])
 
@@ -83,9 +100,9 @@ if __name__ == '__main__':
 
 ### What to Expect
 
-<!-- // TODO: IMAGE add gif of the results -->
-
 After running the Python code, you should see the current current time on the right side of the top row, a greeting on the third row and a random fact on the fifth row.
+
+<!-- // TODO: IMAGE add gif of the results -->
 
 ### A Closer Look at the Code
 
@@ -101,10 +118,14 @@ When we check the time in real life, it's likely because we want to make a decis
 
 Random numbers are an integral part of many pieces of software. They are used to generate unique IDs, testing, statistics, and even games (dice rolls, card shuffles are all random!). Here we generate a random number in two steps. First, we get the time in seconds. Next we take the remainder of the current time (in seconds) divided by 5. The resultant number is relatively unordered, and we use that to select which quote we show.
 
-This is a very rudimentary  way of generating a random number, and it is not actually truly random! This kind of number is often called a 'pseudo-random' number.
+This is a very rudimentary  way of generating a random number, and it is not actually truly random! This kind of random number is often called a 'pseudo-random' number.
 
 ### Pseudo-Random vs. True Random
 
-Securing messages on the internet is currently the biggest way random numbers are used right now. Almost all methods of sending and receiving secure messages need truly random numbers. As an extremely simplified explaination, If the numbers used are generated from an algorithm (like the one above), the secure message can be decoded by coyping the algorithm and predicting the random number output. Cyber-security is a much much larger topic than we can cover here. If you are interested, there's a great deal of resources available online from much more qualified sources.
+// TODO: avoid using 'extremely simplified', again, can make beginners feel bad
+
+Securing messages on the internet is currently the biggest way random numbers are used right now. Almost all methods of sending and receiving secure messages need truly random numbers. As an extremely simplified explanation, if the numbers used are generated from an algorithm (like the one above), the secure message can be decoded by copying the algorithm and predicting the random number output. Cyber-security is a much much larger topic than we can cover here. If you are interested, there's a great deal of resources available online from much more qualified sources.
+
+// TODO: any time you mention that resources are available online, link to at least one of them
 
 Next time, we [fiddle with the screen](#maker-kit-oled-change-settings).

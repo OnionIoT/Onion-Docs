@@ -8,6 +8,11 @@ order: 1
 
 // TODO: give this a read-through before diving into editing, some typos and gramatical errors need to be fixed
 
+// TODO: always capitalize Onion products: PWM Expansion, Expansion Dock, on the Dock, etc
+
+// TODO: Expansion Dock GPIOs should be referred to as Omega GPIOx, can include 'on the Expansion Header' to make it clear
+// TODO: the 5V, 3.3V, and GND pins should be referred to as 5V, 3.3V, and GND pins on the Expansion Header
+
 ## Dimming LEDs {#maker-kit-servo-dimming-led}
 
 <!-- // DONE: need to capitalize Python EVERYWHERE -->
