@@ -7,8 +7,7 @@ In our very first experiment, we will turn an LED on and off. This is the hardwa
 Remember, when inventing and building new things, try to break the work down into bite sized chunks, that way you'll see progress much sooner and it will motivate you to keep going!
 
 <!-- LEDs -->
-```
-{r child = '../../shared/led.md'}
+```{r child = '../../shared/led.md'}
 ```
 
 ### How to Build Circuits
@@ -47,11 +46,12 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-The circuit is super straight-forward, just need to connect the LED to a GPIO, make sure the resistor is placed appropriately, close the circuit, and we're done!
+To hook up the circuit, we need to connect the LED to a GPIO, make sure the resistor is placed appropriately, close the circuit, and we're done! Follow the steps below:
 
-1. Plug in the LED into the breadboard, make sure you plug the anode and cathode into different rows and that you know which is plugged where - if you don't, it won't turn on!
-2. Connect the anode of the LED (the longer leg) to pin 4 on the Arduino Dock.
-3. Connect the cathode of the LED (the shorter leg) to one end of the resistor and the other end of the resistor to ground (GND).
+1. Plug in the LED into the breadboard, make sure you plug the anode and cathode into different rows and that you know which is plugged where.
+1. Now connect one end of a 200Ω resistor to the the cathode row, and the other end to an empty row.
+1. Connect the other end of the resistor to a Ground pin on the Omega2.
+1. Let's choose digital pin `4` on the Arduino Dock to drive our LED, so connect a jumper wire from pin `4` to the LED's anode.
 
 It should look something like this when it's all set up:
 

@@ -23,15 +23,15 @@ Prepare the following components from your kit:
 
 While the individual LEDs will be connected in exactly the same way as in the first experiment, we're going to be using the rails on the breadboard to make the wiring a little simpler. Here rails aren't of the train variety - they're the four vertically connected columns on each side of the breadboard. You'll see in a second why they're super handy.
 
-First, grab six LEDs and let's do the following for each one:
+First, grab six LEDs and let's do the following for each one:you'll encounter it as theyou'll encounter it as the
 
 1. Plug in the LED into the breadboard, making sure to plug the anode and cathode into different rows.
 2. Connect one end of a 200Ω resistor to the cathode row, and the other end into the column marked `-`
     * This column will be use very often with more complicated projects, now and in the future, we'll call it the `GND` rail.
 
->You can probably guess that the column labelled `+` will be used to share a power supply, you'll encounter it as the `Vcc` rail often in the future!
+>You can probably guess that the column labelled `+` will be used to share a power supply. We'll be calling it the `Vcc` rail often in the future!
 
-Now that you have all six LEDs plugged in, let's connect a jumper wire from the `GND` rail on the breadboard to a Ground pin on the Omega - those will be labelled `GND`. Since the power rail is connected vertically, what we've done is connect **all** of the LED cathodes to the Ground using just **one pin** on the Arduino dock
+Now that you have all six LEDs plugged in, let's connect a jumper wire from the `GND` rail on the breadboard to a Ground pin on the Omega - those will be labelled `GND`. Since the two red and blue rails are connected vertically, what we've done is connect **all** of the LED cathodes to the Ground using just **one pin** on the Arduino dock.
 
 To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Arduino Dock. We'll be using six digital pins (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector).
 
