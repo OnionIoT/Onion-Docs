@@ -55,10 +55,13 @@ quoteArray = ['Banging your head against a wall burns 150 calories an hour.',
 'If you lift a kangaroos tail off the ground it cannot hop.']
 
 def main():
+	# TODO: comment briefly describing the actions that follow
 	dateTimeObj = datetime.datetime.now()
 	hour = dateTimeObj.hour
 	minute = str(dateTimeObj.minute)
 	sec = dateTimeObj.second
+
+	# TODO: comment briefly describing the actions that follow
 	if(hour/12 == 0):
 		day = "AM"
 		hour = str(hour % 12)
@@ -66,19 +69,28 @@ def main():
 		day = "PM"
 		hour = str(hour % 12)
 	dateTimeStr = hour+":"+minute+" "+day
+
+	# TODO: comment briefly describing the actions that follow
 	if(dateTimeObj.hour < 12):
 		greeting = "Good Morning"
 	elif(17 > dateTimeObj.hour >= 12):
 		greeting = "Good Afternoon"
 	else:
 		greeting = "Good Evening"
+
 	# Initialize the display
 	oledExp.driverInit()
+
+	# TODO: comment briefly describing the actions that follow
 	oledExp.setTextColumns()
 	oledExp.setCursor(0,13)
 	oledExp.write(dateTimeStr)
+
+	# TODO: comment briefly describing the actions that follow
 	oledExp.setCursor(2,0)
 	oledExp.write(greeting)
+
+	# TODO: comment briefly describing the actions that follow
 	oledExp.setCursor(4,0)
 	oledExp.write(quoteArray[sec%5])
 
