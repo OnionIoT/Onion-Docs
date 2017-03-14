@@ -4,7 +4,10 @@ Now let's talk about Light Emitting Diodes, or as they're more commonly known, L
 
 // TODO: IMAGE: good image of an LED
 
-If you look closely, you'll see that every LED has a longer leg and a shorter leg. Don't worry, they didn't make a mistake at the factory, remember, LEDs are diodes so we need to know the direction in which to apply current. The longer leg is the positive side, it's called the `anode` and it should always be connected to the current source. The shorter leg is the negative side, called the `cathode`, where the current exits the LED. Always connect this side to ground.
+If you look closely, you'll see that every LED has a longer leg and a shorter leg. This is because LEDs are diodes and we need to know in which direction it will allow current to flow. 
+
+* The longer leg is the positive side, called the **anode**. It should always be connected to the current **source**. 
+* The shorter leg is the negative side, called the **cathode**, where the current **exits** the LED. Always connect this side towards the ground connection.
 
 ![LED with labels](https://upload.wikimedia.org/wikipedia/commons/f/f9/LED%2C_5mm%2C_green_%28en%29.svg)
 
