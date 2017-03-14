@@ -60,18 +60,12 @@ Prepare the following components from your kit:
 //  * how to connect one side of the switch to gnd and one to vcc
 //  * connect the switchable part to the led -->
 
-1. Connect the switch's top pin to one of the "+" columns on the breadboard.
-    * We'll call this column **`Vcc` rail**.
-    * We'll call this pin the **pull-up fork**.
-1. Connect the switch's bottom pin to one of the "-" columns.
+1. Plug in the switch vertically across three rows.
+1. Connect the LED's anode to the switch's middle pin, and the cathode to an empty row.
+1. Connect one end of a 200Ω resistor to the LED's cathode, and the other end into one of the "-" columns.
     * We'll call this column **`GND` rail**.
-    * We'll call this pin the **pull-down fork**.
-1. Connect the slide switch to the breadboard along any of the columns.
-1. Connect the LED's anode to `GND`
-1. Connect the LED's cathode to one end of a 200Ω resistor through the breadboard.
-1. Connect the other end of the resistor to the middle of the slide switch - this point is where the switch will output the switched state.
 1. Connect the Expansion Dock's `GND` pin to the `GND` rail.
-1. Connect the Expansion Dock's '3.3V' pin to the `Vcc` rail.
+1. Connect the Expansion Dock's '3.3V' pin to the switch's top pin.
 
 Your circuit should look like something like this:
 
@@ -105,13 +99,14 @@ Now let's try letting the Omega reading the signal the switch sends and use that
 
 #### Hooking up the Components
 
-This circuit will keep the switch, but route the output of the switch to the Omega instead, and have it controll the LED through a GPIO.
+This circuit will keep the switch, but route the output of the switch to the Omega instead, and have it control the LED through a GPIO.
 
-1. Remove the LED and its resistor from the breadboard.
-1. Connect `GPIO0` on the Expansion Dock to the button pin using a jumper wire from the Expansion Dock to the breadboard.
-1. Place the LED back on the breadboard by doing the following:
-    1. Connect the cathode to `GPIO1` using a jumper wire from the breadboard to the Expansion Dock.
-    1. Connect the anode to one end of the 200Ω resistor.    
+1. Remove the LED and resistor from the breadboard. Keep the switch and other wires in place.
+1. Connect `GPIO0` on the Expansion Dock to the switch's middle pin.
+1. Connect the switch's bottom pin to the `GND` rail.
+1. Place the LED back on the breadboard across two empty rows, then do the following:
+    1. Connect the anode to `GPIO1` using a jumper wire from the breadboard to the Expansion Dock.
+    1. Connect the cathode to one end of the 200Ω resistor.
 1. Connect the other end of that resistor to ground.
 
 Your circuit should look like this:
