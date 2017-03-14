@@ -63,6 +63,9 @@ The ublox chip used on the GPS expansion is the **ublox NEO-6M**. This chip tran
 
 For more on the ublox chip, see the [ublox chip datasheet][1].
 
+<!-- ### u.FL Connector -->
+<!-- TODO: write this section: the u.fl connector allows you to use an alternative GPS antenna. Simply unplug the existing antenna and plug in the new one. -->
+
 ### USB Connector
 
 <!-- // means of powering the Expansion and communicating with the Omega -->
