@@ -10,7 +10,7 @@ order: 1
 
 ## Dimming LEDs {#maker-kit-servo-dimming-led}
 
-<!-- // TODO: need to capitalize Python EVERYWHERE -->
+<!-- // DONE: need to capitalize Python EVERYWHERE -->
 
 // TODO: this first sentence is pretty awkward even though we're doing something pretty awesome
 
@@ -204,7 +204,7 @@ Additionally, this code has a lot of mathematical operators, if you're confused,
 
 As a refresher, in Object Oriented Programming, classes are essentially blueprints or an abstraction. An **object** is a set of data created from the class blueprint with its own unique properties. For example, a class blueprint for a "four sided polygon" can be used to create objects such as a "square" or a "rectangle". Creating an object from a class is called **instantiation**, and objects created from a class are called **instances**.
 
-<!-- TODO: link properly to shift register article when lazar's finished -->
+<!-- DONE: link properly to shift register article when lazar's finished -->
 
 To see another example of another example of classes in Python, check out the [shift register](#shift-register-creating-classes) article where we first introduced them.
 

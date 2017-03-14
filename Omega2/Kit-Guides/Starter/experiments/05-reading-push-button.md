@@ -78,18 +78,13 @@ When you push and hold the button, the LED should turn on. When you release the 
 
 <!-- // push and hold the button, the led is on
 // release it and the led turns off
-// the drawback of this circuit is that the switch just controls if there is current flowing to the LED or not
-// adding -->
-<!-- * // ^ all logic swapped for inverting debouncer -->
-<!-- * // TODO: regardless of whether the debouncer is inverting or not, there is so much resistance on the way to the LED that it will barely light up (microamps) -->
+// the drawback of this circuit is that the switch just controls if there is current flowing to the LED or not -->
 
 ### Building the Real Circuit
 
 <!-- // circuit 2: button with debouncing circuit connected to GPIO,  LED connected to GPIO -->
 
-Now we'll build a circuit with a button and inverting debouncer circuit connected to a GPIO, and an LED connected to another GPIO that is driven by software.
-
-**Note:** We'll be using our previous switch circuit as a basis for what we're about to do next.
+Now we'll build a circuit with a button and **inverting** debouncer circuit connected to a GPIO, and an LED connected to another GPIO that is driven by software. The "inverting" part means that when the button is pressed, the circuit sends the GPIO a `LOW` signal, and when the button is released, the circuit sends a `HIGH` signal.
 
 #### What You'll Need
 

@@ -6,24 +6,20 @@ In this tutorial, we will learn how to read the ambient temperature using a temp
 <!-- // LAZAR -->
 
 ### Analog Temperature Sensor
-<!-- // should be its own markdown file
+<!-- // DONE: should be its own markdown file
 
 // detects the ambient air temperature
 // outputs different voltage based on the temperature -->
 
-An analog temperature will detect the ambient air temperature and outputs different voltage based on the temperature.
-
-<!-- // TODO: Image of a temperature sensor -->
-
-The TMP36 is a bog standard temperature sensor with a few important specs: voltage offset, operating range, scale factor, and resolution. Typically, temperature sensors include a voltage offset to account for negative temperatures. This means 0°C won't correspond to 0V, and in the case of the TMP36, 500mV corresponds to 0°C. The sensor's operating temperature is the range in which it'll record accurate data, in our case the TMP36 will withstand a temperature range from -40°C to 125°C. Another important parameter of the temperature sensor is its scale factor, which is 10 mV/°C for the TMP36. The resolution of a sensor is the smallest change that it can detect - it actually ends up being a combination of the sensor's innate resolution and the resolution of the reading device.
-
-The resolution of the measurement also depends on how the microcontroller interprets analog input. In our case, the ATmega's `analogRead()` function has a 10-bit resolution (1024 steps), allowing for the smallest detectable change to be 4.88mV, assuming the input voltage is 5V.
+<!-- Analog Temperature Sensor -->
+```{r child = '../../shared/analog-temperature-sensor.md'}
+```
 
 ### Building the Circuit
 
-<!-- // TODO: spice up this sentence a bit, so dry rn -->
+<!-- // DONE: spice up this sentence a bit, so dry rn -->
 
-For this experiment we will be using the TMP36 temperature sensor to perform its sole intended job - measuring temperature. To do so, our circuit will connect the temperature sensor to an analog pin of the ATmega, and reference it to `Vcc` and `GND` so we can make sure the data is accurate.
+For this experiment, we'll be using the TMP36 sensor to measure the ambient temperature. We'll be connecting the temperature sensor to an analog pin of the ATmega, and we'll reference it to `Vcc` and `GND` so we can make sure the data is accurate.
 
 #### What You'll Need
 
@@ -37,7 +33,7 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-<!-- // TODO: add an intro (done) -->
+<!-- // DONE: add an intro -->
 <!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
 
 Not a lot of components need interaction in this experiment, so the build should be pretty straightforward:
@@ -51,7 +47,7 @@ Once that's all done, it should look like this:
 
 ### Writing the Code
 
-<!-- // TODO: add an intro to the code (d) -->
+<!-- // DONE: add an intro to the code -->
 
 This program will do three things:
 1. Read the sensor's temperature.
@@ -67,30 +63,30 @@ int sensorPin = A0; // the analog pin number connected to the TMP36
 
 void setup()
 {
-  Serial.begin(9600);  //initializing serial communication with the Omega2 for sending sensor data
+    Serial.begin(9600);  //initializing serial communication with the Omega2 for sending sensor data
 }
 
 void loop()
 {
- // getting the voltage reading from the temperature sensor
- int reading = analogRead(sensorPin);  
+    // getting the voltage reading from the temperature sensor
+    int reading = analogRead(sensorPin);  
 
- // convert the analog reading (0 to 1023) to voltage (0 - 5V)
- float voltage = (float)reading * 5.0;
- voltage /= 1024.0;
+    // convert the analog reading (0 to 1023) to voltage (0 - 5V)
+    float voltage = (float)reading * 5.0;
+    voltage /= 1024.0;
 
- // print out the voltage to Omega2
- Serial.print(voltage); Serial.println(" volts");
+    // print out the voltage to Omega2
+    Serial.print(voltage); Serial.println(" volts");
 
- // convert voltage to degree Celsius including the 500mV offset adjustment
- float temperatureC = (voltage - 0.5) * 100 ;  
- Serial.print(temperatureC); Serial.println(" degrees C");
+    // convert voltage to degree Celsius including the 500mV offset adjustment
+    float temperatureC = (voltage - 0.5) * 100;  
+    Serial.print(temperatureC); Serial.println(" degrees C");
 
- // convert from Celsius to Fahrenheit and print to Omega2
- float temperatureF = (temperatureC * 9.0 / 5.0) + 32.0;
- Serial.print(temperatureF); Serial.println(" degrees F");
+    // convert from Celsius to Fahrenheit and print to Omega2
+    float temperatureF = (temperatureC * 9.0 / 5.0) + 32.0;
+    Serial.print(temperatureF); Serial.println(" degrees F");
 
- delay(10000);         //waiting 10 seconds between readings since the change is gradual
+    delay(10000);         //waiting 10 seconds between readings since the change is gradual
 }
 ```
 
@@ -111,12 +107,12 @@ The ATmega will read the output of the temperature sensor and convert it to degr
 
 ### A Closer Look at the Code
 
-A few new things were introduced here. **Math operations** abound in our code to convert the dat a from the sensor to a number in degrees - we will go over how that all happens step-by-step. Even more than all that math done in the code, you may be wondering 'what's a `float`?' Don't worry, we got you covered there too. As a capper, we'll also discuss how **serial communication** works in general, and specifically between the ATmega microcontroller and the Omega.
+A few new things were introduced here. We used **math operations** to convert a voltage signal from the sensor to a number in degrees. We also used **serial communication** to send data from the ATmega microcontroller to the Omega.
 
 
 #### Number Variable Types
 
-<!-- // TODO: write a section about the difference between int and floats, make sure to talk about how casting is required when performing math operations between floats and intensity INTENSE (d)-->
+<!-- // DONE: write a section about the difference between int and floats, make sure to talk about how casting is required when performing math operations between floats and intensity INTENSE -->
 
 <!-- // ie describe how you'll get different results between:
 //  * float var = someIntegerNumber / 5
@@ -124,7 +120,7 @@ A few new things were introduced here. **Math operations** abound in our code to
 //  * float var = someIntegerNumber / 5.0
 // use this to introduce the topic of casting, potentially change the code above -->
 
-Math can be just as tricky for computers! By nature, computers can only count whole numbers - it's pretty much all they do, really. However for applications that require precision or decimal points, they're not so great. In fact doing decimal point (or **float**) operations using counting numbers (**integers**) will get you serious errors if you need the correct results!
+Math can be just as tricky for computers! By nature, computers can only count whole numbers - it's pretty much all they do, really. However for applications that require precision or decimal points, they're not so great. In fact doing decimal point (**float**) operations using counting numbers (**integers**) will get you serious errors if you need the correct results!
 
 The `float` type exists to allow accurate decimal math.
 
@@ -144,11 +140,11 @@ In a nutshell, cast (or typecast) tells the compiler to convert one type into an
 
 #### Math Operations
 
-<!-- // TODO: fix up the english here, the content is good but maybe create separation between the sentences that describe the calculation of each value (voltage, deg celsius, deg fahrenheit) (d) -->
+<!-- // DONE: fix up the english here, the content is good but maybe create separation between the sentences that describe the calculation of each value (voltage, deg celsius, deg fahrenheit) -->
 
 When powered, the temperature sensor will output a varying voltage depending on what the sensor is detecting. Analog read will take that voltage and convert it to a digital value (0 to 1023).
 
-From the TMP36 datasheet, temperature sensor has a scale factor of 10 mV/°C with a offset of 500mV to account for negative temperatures. To exmaple with some concrete examples: the sensor will output 0.5V at 0°C, 0.51V at 1°C and 0.49V at -1°C. Using the the scale factor and offset, we can convert the voltage input to temperature in degree celsius. This is done by subtracting the voltage by 0.5 and multiplying by 100.
+From the TMP36 datasheet, the temperature sensor has a scale factor of 10 mV/°C with a offset of 500mV to account for negative temperatures. To exmaple with some concrete examples: the sensor will output 0.5V at 0°C, 0.51V at 1°C and 0.49V at -1°C. Using the the scale factor and offset, we can convert the voltage input to temperature in degree celsius. This is done by subtracting the voltage by 0.5 and multiplying by 100.
 
 Before we can get our temperature with the calculation above, we need to convert the digital value back to a voltage value between 0V and 5V.
 
@@ -159,17 +155,17 @@ After we have our temperature calculated, we can easily convert it to Fahrenheit
 
 #### Serial Communication
 
-<!-- // TODO: add to this, mention how the Arduino Dock directly connects the Omega's UART1 serial port with the ATmega's serial port (there is a logic level shifter in between), talk about how this provides a great means of communication between the two devices. Only then dive into the specifics outlined below (d) -->
+<!-- // DONE: add to this, mention how the Arduino Dock directly connects the Omega's UART1 serial port with the ATmega's serial port (there is a logic level shifter in between), talk about how this provides a great means of communication between the two devices. Only then dive into the specifics outlined below -->
 
 In this one and some of our previous experiments, we've called the serial interface between the ATmega and the Omega with `cat /dev/ttyS1`. If you've used the ATmega's Serial connection before, you probaly see how convenient this setup can be.
 
 Normally, you'd have to send the serial data through USB or some other port to a laptop or computer and read it with a dedicated serial monitor. With the Arduino Dock, you can simply set your Omega + Dock somewhere and read the serial output over ssh - or even through the Onion Cloud!
 
-Serial communication, at the lowest level, is transmitting data using a single connection. The simplest example of this is morse code. The serial connections between our devices in this experiment are doing much more complicated things much faster, so we won't get into the details. Suffice to say there's always two parts to good serial communication - one party needs to set up to listen, while the other talks.
+Serial communication, at the lowest level, is transmitting data using one data line for each party. The simplest example of this is Morse code. The serial connections between our devices in this experiment are doing much more complicated things much faster, so we won't get into the details. Suffice to say there's always two parts to good serial communication - one party needs to set up to listen, while the other talks.
 
 ##### Sensor to Arduino Dock
 
-A more immediate example is the communicaiton between the sensor and the Dock. Here, the sensor will always be talking, so we set the Arduino Dock to listen. To listen, we use `analogRead()` - just like when we read the trimpot.
+A more immediate example is the communication between the sensor and the Dock. Here, the sensor will always be talking, so we set the Arduino Dock to listen. To listen, we use `analogRead()` - just like when we read the trimpot.
 
 >We're using a much longer delay here since the output from the temperature sensor changes quite slowly.  Thus constantly calling a read isn't useful and only taxes the CPU needlessly.
 
