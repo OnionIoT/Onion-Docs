@@ -8,6 +8,11 @@ order: 2
 
 // TODO: many places are sloppy. pls reread articles after finishing them and look for typos, spelling errors, and grammar issues
 
+// TODO: always capitalize Onion products: PWM Expansion, Expansion Dock, on the Dock, etc
+
+// TODO: Expansion Dock GPIOs should be referred to as Omega GPIOx, can include 'on the Expansion Header' to make it clear
+// TODO: the 5V, 3.3V, and GND pins should be referred to as 5V, 3.3V, and GND pins on the Expansion Header
+
 ## Controlling Servos {#maker-kit-servo-controlling-servo}
 
 // TODO: you can do better on this intro, let's make these people stoked!
@@ -249,7 +254,9 @@ The Python `time` library is used here to provide a way to delay the signals tra
 The Omega2 runs at over 500MHz while the servo receives commands from 50~1kHz, which is over 50,000 times faster than the servo can react! So we use the `time.sleep()` function to give the command some time to take effect on the servo.
 
 
+
 ### Hardware Calibration
+// TODO: is this section h3 on purpose?
 
 // TODO: make sure to point out that we're calibrating mechanical hardware, not the Onion hardware.
 
