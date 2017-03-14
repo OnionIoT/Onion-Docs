@@ -59,9 +59,7 @@ The screen is a 0.96″ OLED (organic light-emitting diode) screen and so the di
 
 ### Understanding the Display
 
-<!-- // see the following section: https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-C-Library#programming-flow_understanding-the-display -->
-
-<!-- // include it and expand on it/make it sound nice -->
+<!-- // TODO: separate this into it's own markdown file -->
 
 The OLED display is addressable by 128 columns and 8 rows (referred to as pages), as seen in the picture below:
 
