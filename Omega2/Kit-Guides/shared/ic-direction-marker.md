@@ -4,4 +4,6 @@ Integrated circuits (ICs) such as shift registers and H-bridges can come in **du
 
 <!-- TODO: photo or image of example -->
 
-Before you plug in an IC, make sure that this marker is towards the top of the breadboard. Make sure it's connected properly!
+Diagrams that show which pin does what (known as "pinout diagrams") will also typically show this marker so that you can always tell which pin is which.
+
+Before you plug in an IC, make sure that this marker is towards the top of the breadboard. Otherwise, your IC may be damaged as the pins will be connected to places they shouldn't be!
