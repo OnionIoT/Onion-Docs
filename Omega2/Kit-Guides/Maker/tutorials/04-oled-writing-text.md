@@ -5,6 +5,9 @@ columns: two
 devices: [ Omega , Omega2 ]
 order: 4
 ---
+
+// TODO: be consistent, always capitalize OLED, OLED Expansion, Python
+
 ## Writing Text to the OLED Display {#maker-kit-oled-writing-text}
 
 In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python module for the OLED Expansion. By the end, you'll be able to boot it up, and write whatever you wish!
@@ -23,7 +26,7 @@ Each page consists of 8 horizontal pixel rows. When a byte is written to the dis
 
 ![display](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-not-colored-in.png)
 
-The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed later. When writing text to the display, each character is 6 columns wide and 1 page long. This means that 8 lines of text each 21 characters long, can be written to the oled display.
+The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed later. When writing text to the display, each character is 6 columns wide and 1 page long. This means that 8 lines of text each 21 characters long, can be written to the OLED display.
 
 ### Building the Circuit
 
