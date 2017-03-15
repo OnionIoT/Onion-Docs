@@ -43,18 +43,18 @@ We'll be building a circuit on your breadboard using the following components:
 
 #### Hooking up the Components
 
-While the individual LEDs will be connected in exactly the same way as in the first experiment, we're going to be using the power rail on the breadboard to make the wiring a little simpler. You'll see what I mean in a second.
+While the individual LEDs will be connected in exactly the same way as in the first experiment, we're going to be using the negative rail on the breadboard to make the wiring a little simpler.
 
 Grab six LEDs and let's do the following for each one:
 
-1. Plug in the LED into the breadboard, making sure to plug the anode and cathode into different rows.
-2. Connect one end of a 200Ω resistor to the cathode row, and the other end into the power rail marked `-`
+1. Plug in the LED across the breadboard, with the cathode on the left side of the gap and the anode on the right.
+2. Connect one end of a 200Ω resistor to the cathode row, and the other end to the negative rail marked `-` on the left side of the board.
 
 <!-- // TODO: FRITZING: fritzing diagram of the experiment -->
 
-To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Omega using jumper wires. We'll be using GPIOs 0, 1, 2, 3, 18, and 19 to control our six LEDs. To make our lives easy when writing the code to control the circuit, wire the left-most LED to GPIO0, the next one to GPIO1, and so on, with the right-most LED connected to GPIO19.
+To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Omega using jumper wires. We'll be using GPIOs 0, 1, 2, 3, 18, and 19 to control our six LEDs. To make our lives easy when writing the code to control the circuit, wire the top LED to GPIO0, the next one to GPIO1, and so on, with the bottom LED connected to GPIO19.
 
-Now that you have all six LEDs plugged in, let's connect a jumper wire from the `-` power rail on the breadboard to a Ground pin on the Omega. Since the power rail is connected vertically, what we've done is **connect all of the LED cathodes to the Ground on the Omega using just one pin on the Expansion Dock!**
+Now that you have all six LEDs plugged in, let's connect a jumper wire from the `-` negative rail on the breadboard to a Ground pin on the Omega. Since this blue rail is connected vertically, we've just connected **all of the LED cathodes to the Ground on the Omega using just one pin on the Expansion Dock!**
 
 Like previously mentioned, it's just six copies of our first experiment connected to multiple GPIOs.
 

@@ -12,7 +12,7 @@ Shift registers are very useful tools; using a few GPIOs connected to a shift re
 
 In this experiment, we'll be using a shift register to control eight LEDs, but we'll only be using three GPIOs on the Omega.
 
-<!-- // TODO: update this number if required -->
+<!-- // DONE: update this number if required -->
 
 
 <!-- Shift Register -->
@@ -52,45 +52,61 @@ We'll be building a circuit on your breadboard using the following components:
 
 #### Hooking up the Components
 
-
-The IC should be plugged in across the channel of your breadboard (the slot running down the middle separating the `abcde` columns from the `fghij` columns). If you don't do this, you will short-circuit the pins across your IC. You may need to bend the pins just a bit in order to get it to fit.
-
-Don't worry so much; as you'll find out, electronics are actually pretty tough and won't be hurt by a little bit of manual pin bending.
-
-Now, there are a lot of connections you'll need to make in order to power the IC and use it with the Omega, so we'll go through it step by step. We'll be referring to each pin by the numbers provided in the diagram above.
+Before we get to working with our fancy chip, we need to learn how to properly orient them on the breadboard so we don't plug them in upside-down!
 
 <!-- IC direction marker -->
 ```{r child = '../../shared/ic-direction-marker.md'}
 ```
 
-1. Connecting your Shift Register
+When plugging in any IC into a breadboard, it should be plugged in across the gap in the middle. If you don't do this, you will short-circuit the pins of your IC (remember that the rows on each side are all shorted). 
 
-  - Start by plugging in your shift register across the channel so that the each pin has its own row.
-  - Connect pin 16 and pin 10 to the positive rail (Vcc)
-  - Connect pin 8 and pin 13 to the negative rail (Ground)
+You may need to bend the pins just a bit in order to get it to fit. Don't worry about it so much; electronics are actually pretty tough and won't be hurt by a little bit of manual pin bending.
 
-  <!-- TODO: IMAGE picture of this stage -->
+There are several wiring connections you'll need to hook up, so we'll go through it step by step. We'll be referring to each pin by the numbers provided in the pinout diagram above.
 
-3. Connecting your LEDs
+##### Connecting your Shift Register
 
-  - Connect 8 LEDs the same way we did in experiment 2, (cathode in ground, anode connected to resistor)
-  - Connect the jumper wires from the LEDs to the output pins on the shift register. In order from first to last these are pin 15 (QA), followed by pin 1 (QB) to pin7 (QH)
-
-  <!-- TODO: IMAGE picture of this stage -->
-
-3. Connecting your Omega
-
-  - Connect the Ground header to the negative rail on the breadboard  	// TODO: what is meant by Ground header?
-  - Connect GPIO 1 to pin 14 on the shift register
-  - Connect GPIO 2 to pin 11 on the shift register
-  - Connect GPIO 3 to pin 12 on the shift register
-  - Connect the 3.3V header to the positive rail on the breadboard 	// TODO: what is meant by 3.3V header?
+1. Make sure the little "indent" on the chip is pointing towards the top of the breadboard.
+1. Plug in the chip at the top of the breadboard across the gap so that the pins sit in rows 1 through 8.
+1. Connect `Vcc` (pin 16) and `SRCLR` (pin 10) to the `+` (Vcc) rail.
+1. Connect `GND` (pin 8) and <span style="text-decoration: overline;">`OE`</span> (pin 13) to the `-`  (ground) rail.
 
   <!-- TODO: IMAGE picture of this stage -->
 
-And there you have it, it's all wired up and ready to run. Now let's take a look at the code we're going to use to control our shift register.
+##### Connecting your LEDs
 
-<!-- //  * talk about how the IC should be plugged in across the channel of the breadboard (have this note in a markdown file so it can be easily reused)
+1. Connect 8 LEDs the same way we did in experiment 2, starting at row 16 on the breadboard and going down.
+1. When connecting them, do it the other way around: with the cathodes on the **right** side and the anodes on the **left** side. This will make our wiring easier later.
+1. Connect the jumper wires from the shift register's data lines according to the following table:
+
+| Pin Name | Pin # | LED # |
+|-|-|-|
+| QA | 15 | 1 |
+| QB | 1  | 2 |
+| QC | 2  | 3 |
+| QD | 3  | 4 |
+| QE | 4  | 5 |
+| QF | 5  | 6 |
+| QG | 6  | 7 |
+| QH | 7  | 8 |
+
+The wire for QA starts on the right side of the chip and goes to the 1st LED, while the wires for the other 7 start on the left side and should go straight down the breadboard. 
+
+  <!-- TODO: IMAGE picture of this stage -->
+
+##### Connecting your Omega to the Shift Register
+
+1. Connect the GND pin on the Expansion Dock to the Vcc rail.
+1. Connect GPIO1 to `SER` (pin 14).
+1. Connect GPIO2 to `SRCLK` (pin 11).
+1. Connect GPIO3 to `RCLK` (pin 12).
+1. Connect the 3.3V pin on the Expansion Dock to the ground rail.
+
+  <!-- TODO: IMAGE picture of this stage -->
+
+And there you have it, it's all wired up and ready to run! Now let's take a look at the code we're going to write.
+
+<!-- //  DONE: * talk about how the IC should be plugged in across the channel of the breadboard (have this note in a markdown file so it can be easily reused)
 
 //  * explain all of the wiring from omega->shift reg
 //    * explain each of the lines running from the Omega and what they do - according to the names from the controlling a shift register section
@@ -98,7 +114,7 @@ And there you have it, it's all wired up and ready to run. Now let's take a look
 
 ### Writing the Code
 
-We're going to split our code into two files; one for our main program, and one for our shift register. We'll start with the shift register file. Create a file in your root directory named `registerClass.py` and copy the code below into its contents:
+Our code will be split into two files; one for our main program, and one for our shift register. We'll start with the shift register file. Create a file in your root directory named `registerClass.py` and copy the code below into its contents:
 
 ``` python
 import onionGpio
@@ -147,7 +163,7 @@ class shiftRegister:
 		self.latch()
 ```
 
-This file contains a single class that allows us to write a really clean main program. The main component here is the `__init__` function which initializes the class object.
+This file contains a single class that allows us to use and reuse it wherever we like. The main component here is the `__init__` function which initializes the class object.
 
 Now let's write the main script. Create a file in the same directory called `STK06-using-shift-register.py` and paste the following code in it:
 
@@ -192,7 +208,7 @@ while True:
 		break
 ```
 
-The main program imports the class we wrote and creates an object `shiftRegister` using the class. We then use that object to control our LEDs through the shift register.
+The main program loads the class we wrote and creates a `shiftRegister` object. We then use that object to control our LEDs through the shift register.
 
 
 <!-- // create a class to abstract away all of the shift register operations
@@ -224,7 +240,7 @@ You can terminate the code by pressing `Ctrl-C` or `Cmd-C` on Mac OS.
 
 We've introduced some new and important concepts in this experiment.
 
-We've created and imported **modules**, files containing code that can be called and reused in other scripts without having to re-type it all. We've also introduced **classes** which are blueprints for Python objects. Python objects are collections of data that are meant to help you wrap up low-level grunt-work code into simpler, more usable functions and variables.
+We've created and imported **modules**, files containing code that can be loaded and reused in other scripts without us having to re-type them again. We've also introduced **classes** which are blueprints for Python objects. Python objects are collections of data that are meant to help you wrap up low-level grunt-work code into simpler, more usable functions and variables.
 
 Modules and classes are a crucial part of writing clean and maintainable software. It's best practice to write your code to make use of modules or classes and avoid retyping the same code over and over again so you can update or make fixes much more easily.
 
@@ -234,7 +250,7 @@ Finally, we introduced **safely exiting from an infinite loop**, to ensure that 
 
 #### Creating and Importing Modules
 
-<!-- // TODO: describe how the import process works, make sure to note how the directory structure has to fit -->
+<!-- // DONE: describe how the import process works, make sure to note how the directory structure has to fit -->
 
 A **module** is a file containing Python definitions and statements. This can be used to split your project into multiple files for easier maintenance. The `registerClass.py` file is an example of a self-made module that we've imported. Some modules are built in to Python; some examples are `time` which you may have used before, and `signal` which is used in our main program.
 
@@ -244,7 +260,7 @@ In order to keep things simple, we will be creating module files in the same dir
 
 #### Creating and Using Classes {#starter-kit-using-shift-register-creating-classes}
 
-<!-- // TODO: mention how we've used the onionGpio class before, now we're going one step further and creating our own class -->
+<!-- // DONE: mention how we've used the onionGpio class before, now we're going one step further and creating our own class -->
 
 Classes are a way to create a template for creating objects in our code. So far, we've been using the `onionGpio` class that we at Onion made to make your development experience easier. This class includes clean, easy-to-use functions such as `setValue()` that hide away boring and time-consuming system calls from you, the up-and-coming programmer who wants to get to the fun stuff!
 
@@ -327,9 +343,8 @@ signal.signal(signal.SIGINT, signal_handler)
 ```
 
 This listener is waiting for an interrupt from the user in order to run the signal handler code. When you enter `Ctrl-C` or `Cmd-C` you are sending a **keyboard interrupt** which is then handled by the interrupt **handler** function in order to exit the program in a safe way. This way your code will always finish the current left-right animation before exiting, thus making sure that your GPIOs are properly freed by the time the program exits.
-<!-- // TODO: what do you mean by a cycle in this last sentence? clarify! -->
 
-<!-- // TODO: nowhere did we explain this part of the main program:
+<!-- // nowhere did we explain this part of the main program:
 ```
 for x in range(0, 12):
   bytestring = "{0:08b}".format(value) # Transforms the value into a binary number (192 = 11000000)
@@ -339,5 +354,5 @@ for x in range(0, 12):
   else:
     value <<= 1 #Shifts the value left by one (01100000 -> 11000000)
 ```
-// TODO: please add a section (AND COMMENTS IN THE CODE) describing what this will accomplish
+// DONE: please add a section (AND COMMENTS IN THE CODE) describing what this will accomplish
 Gabe: addressed, see above sections-->

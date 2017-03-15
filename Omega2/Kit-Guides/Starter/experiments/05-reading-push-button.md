@@ -57,8 +57,8 @@ Prepare the following components from your kit:
     * The button should only be able to fit in one orientation.
     * The pins should look like they are bending "around" the gap.    
 1. Connect the LED's anode to the other side of the button, and the cathode to one end of the 200Ω resistor.
-1. Connect the other end of the resistor to one of the "-" columns.
-    * We'll call this column **ground**.
+1. Connect the other end of the resistor to one of the "-" rails.
+    * We'll call this rail **ground**.
 1. Connect the Expansion Dock's GND pin to ground on the breadboard.
 1. Connect the other side of the switch to the 3.3V pin on the Expansion Dock.
 
@@ -98,8 +98,8 @@ You'll need to pull a few more components from your Kit. Prepare the following:
 
 1. Remove all of the components and wires except the push button from the breadboard.
 1. Connect one of the bottom pins of the switch to the ground rail.
-1. Connect one end of the 51kΩ resistor to the top pin of the switch, and connect the other to the column marked "+".
-    * We'll call this column **Vcc**.
+1. Connect one end of the 51kΩ resistor to the top pin of the switch, and connect the other to the rail marked `+`.
+    * We'll call this rail **Vcc**.
 1. Connect one end of the 5.1kΩ resistor to the same switch pin as the 51kΩ resistor, and the other end to an empty row.
 1. Connect one end of the capacitor to the empty end of the 5.1kΩ resistor from the previous step, and the other to ground.
     * We'll call this row where the resistor and the capacitor are connected the **button line**.
