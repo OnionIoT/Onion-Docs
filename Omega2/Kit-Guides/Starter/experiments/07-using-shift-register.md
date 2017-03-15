@@ -55,7 +55,7 @@ We'll be building a circuit on your breadboard using the following components:
 
 The IC should be plugged in across the channel of your breadboard (the slot running down the middle separating the `abcde` columns from the `fghij` columns). If you don't do this, you will short-circuit the pins across your IC. You may need to bend the pins just a bit in order to get it to fit.
 
-Don't worry so much; as you'll find out, electronics are actually pretty tough and won't be hurt by a little bit of manual pin bending.
+Don't worry so much; electronics are actually pretty tough and won't be hurt by a little bit of manual pin bending.
 
 Now, there are a lot of connections you'll need to make in order to power the IC and use it with the Omega, so we'll go through it step by step. We'll be referring to each pin by the numbers provided in the diagram above.
 
@@ -65,13 +65,13 @@ Now, there are a lot of connections you'll need to make in order to power the IC
 
 1. Connecting your Shift Register
 
-  - Start by plugging in your shift register across the channel so that the each pin has its own row.
-  - Connect pin 16 and pin 10 to the positive rail (Vcc)
-  - Connect pin 8 and pin 13 to the negative rail (Ground)
+  * Start by plugging in your shift register across the channel so that the each pin has its own row.
+  * Connect pin 16 and pin 10 to the "+" rail (Vcc)
+  * Connect pin 8 and pin 13 to the "-" rail (Ground)
 
   <!-- TODO: IMAGE picture of this stage -->
 
-3. Connecting your LEDs
+2. Connecting your LEDs
 
   - Connect 8 LEDs the same way we did in experiment 2, (cathode in ground, anode connected to resistor)
   - Connect the jumper wires from the LEDs to the output pins on the shift register. In order from first to last these are pin 15 (QA), followed by pin 1 (QB) to pin7 (QH)
@@ -80,11 +80,11 @@ Now, there are a lot of connections you'll need to make in order to power the IC
 
 3. Connecting your Omega
 
-  - Connect the Ground header to the negative rail on the breadboard  	// TODO: what is meant by Ground header?
-  - Connect GPIO 1 to pin 14 on the shift register
-  - Connect GPIO 2 to pin 11 on the shift register
-  - Connect GPIO 3 to pin 12 on the shift register
-  - Connect the 3.3V header to the positive rail on the breadboard 	// TODO: what is meant by 3.3V header?
+  * Connect the Ground header to the negative rail on the breadboard  	// TODO: what is meant by Ground header?
+  * Connect GPIO 1 to pin 14 on the shift register
+  * Connect GPIO 2 to pin 11 on the shift register
+  * Connect GPIO 3 to pin 12 on the shift register
+  * Connect the 3.3V header to the positive rail on the breadboard 	// TODO: what is meant by 3.3V header?
 
   <!-- TODO: IMAGE picture of this stage -->
 

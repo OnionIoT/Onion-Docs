@@ -6,6 +6,8 @@ A shift register is an external integrated circuit (IC) that can be used to expa
 
 // TODO: graphic: block diagram of serial data coming in, parallel data coming out
 
+The shift register used in your kit is the popular 74HC595. It has 8 output lines which allows you to manipulate and use bytes for output in your code.
+
 #### Overview
 
 So how does this work? The IC is made up of two **registers**, units of memory that can hold up several binary values in order (8 for the IC in your kit). They are:
@@ -13,19 +15,27 @@ So how does this work? The IC is made up of two **registers**, units of memory t
 * The **shift** register, which holds 8 values before they are written to the output pins. Values can be "shifted" through this register from one position to the next, starting at position "A" to position "H".
 * The **storage** register, which takes values from the shift register and sends them to the data output lines, labelled `QA` to `QH`. For example, a logical `1` in position "C" of the storage register would create a HIGH signal on `QC`.
 
-There are three pins on the IC that we use to control it with the Omega. Two of these pins are **clocks**, special inputs that trigger the IC to do something when they receive a signal that changes from LOW to HIGH (also known as a **pulse** or a **rising edge**).
+There are three pins on the IC that we use to control it with the Omega. Two of these pins are **clocks**: special inputs that trigger the IC to do something when they receive a signal that changes from LOW to HIGH (also known as a **pulse** or a **rising edge**).
 
 | Pin | Name | Purpose |
 |-|-|-|
-| SER | Data pin | Contains the value (HIGH or LOW) that will be loaded into the 1st position ("A") of the shift register whenever we pulse the serial clock (SCLK //TODO: SCLK or SRCLK, be consistent!). //TODO: make it super clear that this is the serial data input|
+| SER |  Serial data pin | This is the serial data input line. When we pulse the serial clock (SRCLK), the signal on this line is stored in the 1st position ("A") of the shift register.
 | SRCLK | Serial clock | When pulsed, shifts each value in the shift register forwards by one position, then loads the value from the SER pin into position "A". Note that this does not change the signals on the output lines until you pulse the register clock (RCLK). |
 | RCLK | Register clock, or "latch pin" | When pulsed, updates the storage register with new values from the shift register, sending a new set of signals to the 8 output pins. This happens so quickly that they all seem to change simultaneously! |
 
-Keep in mind that the **first** value you send the shift register will be shifted towards the **last** output pin as you send it more data. This means that you'll have to send the shift register the outputs you want in **reverse order!**
+Keep in mind that the **first** value you send the shift register will be shifted towards the **last** output pin as you send it more data. For example, when sending 8 bits, bit `1` will appear on output `H`, bit `2` on `G`, and so on. This means that you'll have to send the shift register the outputs you want in **reverse order!**
+
+#### Pinout Diagram
+
+The pinout diagram for the 74HC595 is shown below:
+
+![595-pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/595-shift-register-pinout.png)
+
+On the right side of the chip, you can see the three control pins described above, as well as the first output (QA). On the left side, you can see the other 7 outputs (QB - QH).
 
 #### Controlling a Shift Register
 
-So how can this let us control multiple outputs with one data pin? Well, let's say we have 8 LEDs hooked up to the data lines QA - QH, and we want to turn on the 2nd, 4th, and the 8th LEDs like so:
+So how can this let us control multiple outputs with one data pin? Well, let's say we have 8 LEDs hooked up to the data lines, and we want to turn on the 2nd, 4th, and the 8th LEDs like so:
 
 | LED | Data Line | Desired Value |
 |-|-----------|---------------|
@@ -40,7 +50,7 @@ So how can this let us control multiple outputs with one data pin? Well, let's s
 
 First, we'll clear out the register so all LEDs are off by writing eight 0's to the shift register, then pulsing the latch pin to write the outputs to the data lines. This is done by setting and holding SER LOW, then pulsing SRCLK 8 times, then pulsing RCLK once.
 
-Now, since the shift register shifts values from position A towards position H, we need to **reverse** the order of the 8 LEDs that we want to turn on. To turn on the 2nd, 4th, and 8th LEDs, we'll have to send the shift register the values `1, 0, 0, 0, 1, 0, 1, 0` in that order. For each of these values:
+Earlier we mentioned that the shift register shifts bits from position A towards position H, so we'll need to reverse the order of the 8 LEDs that we want to turn on. To turn on the 2nd, 4th, and 8th LEDs, we'll send the shift register the values `1, 0, 0, 0, 1, 0, 1, 0` in that order. For each of these values:
 
 1. Set SER to the specified value (HIGH or LOW).
 1. Pulse SRCLK from LOW to HIGH to shift the value of SER into the shift register.
@@ -53,7 +63,11 @@ In this way, we can control up to 8 different outputs with only 3 GPIOs. This is
 
 #### Daisy-Chaining
 
-Shift registers can also be connected in series to each other to extend the number of data lines that can be controlled at once. Simply connect the SER pin of one shift register to the `QH'` pin on another, and connect their SRCLK and RCLK pins together. You've now just created a 16-bit shift register! This is called **daisy-chaining**.
+Shift registers can also be connected in series to each other to extend the number of data lines that can be controlled at once. 
+
+Simply connect the SER pin of one shift register to the `QH'` pin on another, and connect their SRCLK and RCLK pins together. That way, when you pulse SRCLK, the 2nd chip will read from the last output of the 1st, and when you pulse RCLK, both chips will update their output lines.
+
+You've now just created a 16-bit shift register! This is known as **daisy-chaining**.
 
 #### Detailed Specifications
 
