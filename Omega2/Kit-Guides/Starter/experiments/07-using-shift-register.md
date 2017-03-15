@@ -12,7 +12,7 @@ Shift registers are very useful tools; using a few GPIOs connected to a shift re
 
 In this experiment, we'll be using a shift register to control eight LEDs, but we'll only be using three GPIOs on the Omega.
 
-<!-- // TODO: update this number if required -->
+<!-- // DONE: update this number if required -->
 
 
 <!-- Shift Register -->
@@ -68,8 +68,8 @@ There are several wiring connections you'll need to hook up, so we'll go through
 
 1. Make sure the little "indent" on the chip is pointing towards the top of the breadboard.
 1. Plug in the chip at the top of the breadboard across the gap so that the pins sit in rows 1 through 8.
-1. Connect pins 16 and 10 to the `+` rail. (Vcc)
-1. Connect pins 8 and 13 to the `-` rail. (ground)
+1. Connect `Vcc` (pin 16) and `SRCLR` (pin 10) to the `+` (Vcc) rail.
+1. Connect `GND` (pin 8) and <span style="text-decoration: overline;">`OE`</span> (pin 13) to the `-`  (ground) rail.
 
   <!-- TODO: IMAGE picture of this stage -->
 
@@ -94,13 +94,13 @@ The wire for QA starts on the right side of the chip and goes to the 1st LED, wh
 
   <!-- TODO: IMAGE picture of this stage -->
 
-##### Connecting your Omega
+##### Connecting your Omega to the Shift Register
 
-1. Connect the GND pin on the Expansion Dock to the `-` rail.
-1. Connect GPIO1 to pin 14 on the shift register.
-1. Connect GPIO2 to pin 11.
-1. Connect GPIO3 to pin 12.
-1. Connect the 3.3V pin on the Expansion Dock to the `+` rail.
+1. Connect the GND pin on the Expansion Dock to the Vcc rail.
+1. Connect GPIO1 to `SER` (pin 14).
+1. Connect GPIO2 to `SRCLK` (pin 11).
+1. Connect GPIO3 to `RCLK` (pin 12).
+1. Connect the 3.3V pin on the Expansion Dock to the ground rail.
 
   <!-- TODO: IMAGE picture of this stage -->
 
@@ -250,7 +250,7 @@ Finally, we introduced **safely exiting from an infinite loop**, to ensure that 
 
 #### Creating and Importing Modules
 
-<!-- // TODO: describe how the import process works, make sure to note how the directory structure has to fit -->
+<!-- // DONE: describe how the import process works, make sure to note how the directory structure has to fit -->
 
 A **module** is a file containing Python definitions and statements. This can be used to split your project into multiple files for easier maintenance. The `registerClass.py` file is an example of a self-made module that we've imported. Some modules are built in to Python; some examples are `time` which you may have used before, and `signal` which is used in our main program.
 
@@ -260,7 +260,7 @@ In order to keep things simple, we will be creating module files in the same dir
 
 #### Creating and Using Classes {#starter-kit-using-shift-register-creating-classes}
 
-<!-- // TODO: mention how we've used the onionGpio class before, now we're going one step further and creating our own class -->
+<!-- // DONE: mention how we've used the onionGpio class before, now we're going one step further and creating our own class -->
 
 Classes are a way to create a template for creating objects in our code. So far, we've been using the `onionGpio` class that we at Onion made to make your development experience easier. This class includes clean, easy-to-use functions such as `setValue()` that hide away boring and time-consuming system calls from you, the up-and-coming programmer who wants to get to the fun stuff!
 
@@ -343,9 +343,8 @@ signal.signal(signal.SIGINT, signal_handler)
 ```
 
 This listener is waiting for an interrupt from the user in order to run the signal handler code. When you enter `Ctrl-C` or `Cmd-C` you are sending a **keyboard interrupt** which is then handled by the interrupt **handler** function in order to exit the program in a safe way. This way your code will always finish the current left-right animation before exiting, thus making sure that your GPIOs are properly freed by the time the program exits.
-<!-- // TODO: what do you mean by a cycle in this last sentence? clarify! -->
 
-<!-- // TODO: nowhere did we explain this part of the main program:
+<!-- // nowhere did we explain this part of the main program:
 ```
 for x in range(0, 12):
   bytestring = "{0:08b}".format(value) # Transforms the value into a binary number (192 = 11000000)
@@ -355,5 +354,5 @@ for x in range(0, 12):
   else:
     value <<= 1 #Shifts the value left by one (01100000 -> 11000000)
 ```
-// TODO: please add a section (AND COMMENTS IN THE CODE) describing what this will accomplish
+// DONE: please add a section (AND COMMENTS IN THE CODE) describing what this will accomplish
 Gabe: addressed, see above sections-->
