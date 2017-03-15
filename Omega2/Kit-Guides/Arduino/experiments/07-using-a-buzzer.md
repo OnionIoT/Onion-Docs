@@ -16,7 +16,7 @@ If we connect the positive end of the buzzer to a pin on our Arduino Dock, we ca
 
 ### Building the Circuit
 
-For this experiment, we will be using a push button again for the input and a buzzer for output. Pressing the button will make the buzzer, well buzz. For the circuit we will need a buzzer, an 100Ω current limiting resistor, and a push button with its debounce circuit setup on a breadboard.
+For this experiment, we will be using a push button again for the input and a buzzer for output. Pressing the button will make the buzzer buzz. For the circuit we will need a buzzer, an 100Ω current limiting resistor, and a push button with its debounce circuit setup on a breadboard.
 
 #### What You'll Need
 
@@ -25,7 +25,7 @@ Prepare the following components from your kit:
 * Omega plugged into Arduino Dock
 * USB Micro-B cable for power
 * Breadboard
-* Jumper wires
+* 6x Jumper wires (M-M)
 * Resistors
     * 1x 100Ω
     * 1x 5.1kΩ
@@ -36,17 +36,21 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-<!-- // TODO: add an intro (d)-->
+<!-- // DONE: add an intro (d)-->
 <!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
 
 Once you have all the components ready, it's time to build!
 
-1. Connect the negative end of the buzzer (the pin WITHOUT a plus sign) to ground (GND).
-1. Connect the positive end (+) of the buzzer to the pin 9 through an 100 ohm current limiting resistor.
-1. Connect the push button with debounce ciruit to pin 2:
-    * Set up the push button with debounce circuit similar to tutorial 4, don't connect to Arduino Dock yet.
-    * Connect the point in the debounce circuit between the 5kohm resistor and the capacitor to pin 2 of the Arduino Dock.
-    * Connect positive (+) power rail to 5V and negative (-) power rail to ground (GND) on the Arduino Dock.
+1. First, let's set up the push button with debounce circuit similar to [tutorial 4](#arduino-kit-04-reading-a-push-button), we'll connect this to the Arduino Dock in a bit.
+
+1. Now let's get the buzzer connected - plug the Buzzer across the channel of your breadboard.
+1. Using a jumper, connect the negative end of the buzzer (the pin WITHOUT a plus sign) to the `GND` rail.
+1. Plug in a 100Ω current limiting resistor across the (+) row of the buzzer and an empty row.
+
+1. Connect the `GND` rail to a `GND` pin on the Arduino Dock.
+1. Connect the point in the debounce circuit between the 5kΩ resistor and the capacitor to pin `2` of the Arduino Dock.
+1. Take a jumper and use it to connect the end of 100Ω resistor and pin `9` on the Arduino Dock
+1. Connect the `Vcc` (red) rail to `5V`
 
 And you're done! For reference your circuit should look a little like this:
 

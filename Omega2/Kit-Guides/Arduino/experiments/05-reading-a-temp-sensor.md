@@ -28,7 +28,7 @@ Prepare the following components from your kit:
 * Omega plugged into Arduino Dock
 * USB Micro-B cable for power
 * Breadboard
-* Jumper wires
+* 5x Jumper wires (M-M)
 * 1x TMP36 temperature sensor
 
 #### Hooking up the Components

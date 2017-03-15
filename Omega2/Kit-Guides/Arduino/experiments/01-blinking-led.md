@@ -49,8 +49,8 @@ Prepare the following components from your kit:
 To hook up the circuit, we need to connect the LED to a GPIO, make sure the resistor is placed appropriately, close the circuit, and we're done! Follow the steps below:
 
 1. Plug in the LED into the breadboard, make sure you plug the anode and cathode into different rows and that you know which is plugged where.
-1. Now connect one end of a 200Ω resistor to the the cathode row, and the other end to an empty row.
-1. Connect the other end of the resistor to a Ground pin on the Omega2.
+1. Now connect one end of a 200Ω resistor to the the cathode row, and the other end to an empty row nreaby.
+1. Grab a jumper and connect one end to the row with just the resistor in it, the other end goes to a Ground (`GND`) pin on the Arduino Dock.
 1. Let's choose digital pin `4` on the Arduino Dock to drive our LED, so connect a jumper wire from pin `4` to the LED's anode.
 
 It should look something like this when it's all set up:

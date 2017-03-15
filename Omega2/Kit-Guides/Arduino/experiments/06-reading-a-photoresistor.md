@@ -25,7 +25,7 @@ Prepare the following components from your kit:
 * Omega plugged into Arduino Dock
 * USB Micro-B cable for power
 * Breadboard
-* Jumper wires
+* 3x Jumper wires (M-M)
 * 1x Photoresistor
 * 1x 10kΩ Resistor
 

@@ -9,7 +9,7 @@
 //    * have a truth table indicating the inputs and what they mean for the motor
 //    * make sure to say that setting both inputs to 1 will likely damage your h-bridge IC -->
 
-// TODO: be consistent! always have H-Bridge
+// TODO: be consistent! always type out H-Bridge, don't vary the dash or capitalization
 
 An H-Bridge is a circuit that allows voltages to be applied across a load in either direction (//TODO: expand on this just a bit, will not be very clear to newbies). An H-Bridge is made up of four switches: two in series, and two in parallel, with the load placed in between the switches. In this configuration the circuit takes an "H" shape.
 

@@ -51,7 +51,7 @@ Prepare the following components from your kit:
 * Omega plugged into Arduino Dock
 * USB Micro-B cable for power
 * Breadboard
-* Jumper wires
+* 5x Jumper wires (M-M)
 * 1x 10KΩ Trimmer Potentiometer
 * 1x 200Ω Resistor
 * 1x LED color of your choice!
@@ -65,15 +65,15 @@ First, let's set up the circuit:
 
 1. First plug the potentiometer on the breadboard with each of the three pins in a different row.
 1. Connect the left pin of the trimpot to the `GND` rail.
-1. Then plug the LED across two different rows, make sure to note where the cathode and anode are!
-1. Now connect the cathode to the 200Ω resistor, the other end of the resistor goes into the `GND` rail.
+1. Pick two unused rows, then plug the LED across them, make sure to note where the cathode and anode are!
+1. Now connect the 200Ω resistor between the cathode row of the LED and the `GND` rail.
 
-Now the circuit is all set up, let's connect it to the Arduino Dock.
+Now that the potentiometer and LED are set up, let's connect them to the Arduino Dock so we can make them light up.
 
 1. With the connections to `GND` rail in place, let's connect the rail to `GND` on the Arduino dock.
-1. Connect the middle pin of the trimpot to the analog pin (we'll be using `A0`) on the Arduino dock using a jumper wire.
-1. Connect the anode of LED to a PWM pin (`~9` defined in code) on the Arduino Dock.
-1. Lastly, we'll connect the right pin of the trimpot to `5V` on the Arduino Dock.
+1. Using a jumper, connect the middle pin of the trimpot to the analog pin `A0` on the Arduino dock using a jumper wire.
+1. Connect the anode of LED to the PWM pin `~9` on the Arduino Dock.
+1. Lastly, we'll connect the right pin of the trimpot to `5V` on the Arduino Dock as a reference for our input voltage.
 
 
 If all goes well, your circuit should look something like this:

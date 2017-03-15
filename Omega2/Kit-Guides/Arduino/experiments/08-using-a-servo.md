@@ -44,18 +44,17 @@ Now that you got everything, let's build!
 
 Let's first set up the two push buttons with their seperate debounce circuits same as previous tutorials:
 1. Set up two push buttons, each with their own debounce circuit similar to [tutorial 4](#arduino-kit-reading-a-push-button), don't connect to Arduino Dock yet.
-1. Connect the point in the first debounce circuit between the 5kohm resistor and the capacitor to pin 2 of the Arduino Dock.
-1. Connect the point in the second debounce circuit between the 5kohm resistor and the capacitor to pin 3 of the Arduino Dock.
-1. Connect the Vcc of both debounce circuit to the positive (+) power rail.
-1. Connect the ground of both debounce circuit to the negative (-) power rail.
+1. Instead of connecting 51kΩ resistor to an empty row, we'll connect them to the `Vcc` rail.
 
 Now that the buttons are set up, we'll connect the two servo motors:
-1. The small servo has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the orange (signal) wire to pin 9.
-1. The standard servo also has 3 wires: connect the black wire to negative power rail, the red wire to positive power rail, and the white (signal) wire to pin 10.
-1. The Arduino Sketch will set the servo motors at 90 degree initially. After flashing the arduino sketch and wait until the servos settle on their initial position, attach your favourite servo horn on each servo at 90 degrees.
+1. The small servo has 3 wires: connect the brown wire to the `GND` rail, the red wire to the `Vcc` rail. We'll connect the orange (signal) wire in a bit.
+	* Repeat for the standard sized servo.
 
-Once our circuit is out of the way, we'll connect the power:
+Now that our components are set up, we'll connect them to the Arduino Dock:
 1. Connect the negative power rail to ground (GND).
+1. Connect the point in the first debounce circuit between the 5.1kΩ resistor and the capacitor to pin `2` of the Arduino Dock.
+	* Repeat for the second debounce circuit, but plug the jumper into pin `3` instead
+1. Connect the orange wire of small servo to pin `9` on the Arduino Dock, and the signal of the standard servo to pin `10`.
 1. Connect the positive power rail to 5V. Don't worry if the servo rotates a bit when you power it on - this is expected.
 
 <!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->

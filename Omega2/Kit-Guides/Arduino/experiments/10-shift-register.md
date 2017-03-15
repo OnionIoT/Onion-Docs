@@ -55,19 +55,21 @@ Lets take a look at how the 16 pins of the 74HC595 shift register chip are defin
 
 >Note: Your IC will have a semi-circle indentation that indicates "up". Make sure that you plug it in properly so you know which pins are where.
 
-// TODO: add a little blurb here: 'The Procedure:' or something along those lines, something to make it make sense with the tenses used in the list items
+<!-- // DONE: add a little blurb here: 'The Procedure:' or something along those lines, something to make it make sense with the tenses used in the list items -->
+
+Here's the steps to get there:
 
 1. Connecting your shift register to the breadboard
 
   * Start by plugging in your shift register across the channel so that the each pin has its own row.
-  * Connect pin 16 and pin 10 to the positive rail (Vcc) on the breadboard
+  * Connect pin `16` and pin `10` to the positive rail (Vcc) on the breadboard
   * Connect pin 8 and pin 13 to the negative rail (Ground) on the breadboard
 
   <!-- TODO: Insert picture of this stage -->
 
 2. Connecting your LEDs
 
-  * Connect the anodes of the 8 LED each to one of the 8 output pins of the 74HC595 (pin 15 and pin 1 to 7). Place the LEDs left to right in the following pin order: 15, 1, 2, 3, .. 7. // TODO: if it's just 8 pins and it's crucial to the experiment, list them all out
+  * Connect the anodes of the 8 LED each to one of the eight output pins of the 74HC595 (pin 15 and pin 1 to 7). Place the LEDs left to right in the following pin order: 15, 1, 2, 3, 4, 5, 6, 7. // TODO: if it's just 8 pins and it's crucial to the experiment, list them all out
   * Attach the eight current limiting resistors from cathodes of the LEDs to the negative rail (Ground) on the breadboard.
 
  <!-- TODO: Insert picture of this stage -->
