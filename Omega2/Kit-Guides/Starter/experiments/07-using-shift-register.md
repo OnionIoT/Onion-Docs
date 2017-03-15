@@ -52,45 +52,61 @@ We'll be building a circuit on your breadboard using the following components:
 
 #### Hooking up the Components
 
-
-The IC should be plugged in across the channel of your breadboard (the slot running down the middle separating the `abcde` columns from the `fghij` columns). If you don't do this, you will short-circuit the pins across your IC. You may need to bend the pins just a bit in order to get it to fit.
-
-Don't worry so much; electronics are actually pretty tough and won't be hurt by a little bit of manual pin bending.
-
-Now, there are a lot of connections you'll need to make in order to power the IC and use it with the Omega, so we'll go through it step by step. We'll be referring to each pin by the numbers provided in the diagram above.
+Before we get to working with our fancy chip, we need to learn how to properly orient them on the breadboard so we don't plug them in upside-down!
 
 <!-- IC direction marker -->
 ```{r child = '../../shared/ic-direction-marker.md'}
 ```
 
-1. Connecting your Shift Register
+When plugging in any IC into a breadboard, it should be plugged in across the gap in the middle. If you don't do this, you will short-circuit the pins of your IC (remember that the rows on each side are all shorted). 
 
-  * Start by plugging in your shift register across the channel so that the each pin has its own row.
-  * Connect pin 16 and pin 10 to the "+" rail (Vcc)
-  * Connect pin 8 and pin 13 to the "-" rail (Ground)
+You may need to bend the pins just a bit in order to get it to fit. Don't worry about it so much; electronics are actually pretty tough and won't be hurt by a little bit of manual pin bending.
 
-  <!-- TODO: IMAGE picture of this stage -->
+There are several wiring connections you'll need to hook up, so we'll go through it step by step. We'll be referring to each pin by the numbers provided in the pinout diagram above.
 
-2. Connecting your LEDs
+##### Connecting your Shift Register
 
-  - Connect 8 LEDs the same way we did in experiment 2, (cathode in ground, anode connected to resistor)
-  - Connect the jumper wires from the LEDs to the output pins on the shift register. In order from first to last these are pin 15 (QA), followed by pin 1 (QB) to pin7 (QH)
-
-  <!-- TODO: IMAGE picture of this stage -->
-
-3. Connecting your Omega
-
-  * Connect the Ground header to the negative rail on the breadboard  	// TODO: what is meant by Ground header?
-  * Connect GPIO 1 to pin 14 on the shift register
-  * Connect GPIO 2 to pin 11 on the shift register
-  * Connect GPIO 3 to pin 12 on the shift register
-  * Connect the 3.3V header to the positive rail on the breadboard 	// TODO: what is meant by 3.3V header?
+1. Make sure the little "indent" on the chip is pointing towards the top of the breadboard.
+1. Plug in the chip at the top of the breadboard across the gap so that the pins sit in rows 1 through 8.
+1. Connect pins 16 and 10 to the `+` rail. (Vcc)
+1. Connect pins 8 and 13 to the `-` rail. (ground)
 
   <!-- TODO: IMAGE picture of this stage -->
 
-And there you have it, it's all wired up and ready to run. Now let's take a look at the code we're going to use to control our shift register.
+##### Connecting your LEDs
 
-<!-- //  * talk about how the IC should be plugged in across the channel of the breadboard (have this note in a markdown file so it can be easily reused)
+1. Connect 8 LEDs the same way we did in experiment 2, starting at row 16 on the breadboard and going down.
+1. When connecting them, do it the other way around: with the cathodes on the **right** side and the anodes on the **left** side. This will make our wiring easier later.
+1. Connect the jumper wires from the shift register's data lines according to the following table:
+
+| Pin Name | Pin # | LED # |
+|-|-|-|
+| QA | 15 | 1 |
+| QB | 1  | 2 |
+| QC | 2  | 3 |
+| QD | 3  | 4 |
+| QE | 4  | 5 |
+| QF | 5  | 6 |
+| QG | 6  | 7 |
+| QH | 7  | 8 |
+
+The wire for QA starts on the right side of the chip and goes to the 1st LED, while the wires for the other 7 start on the left side and should go straight down the breadboard. 
+
+  <!-- TODO: IMAGE picture of this stage -->
+
+##### Connecting your Omega
+
+1. Connect the GND pin on the Expansion Dock to the `-` rail.
+1. Connect GPIO1 to pin 14 on the shift register.
+1. Connect GPIO2 to pin 11.
+1. Connect GPIO3 to pin 12.
+1. Connect the 3.3V pin on the Expansion Dock to the `+` rail.
+
+  <!-- TODO: IMAGE picture of this stage -->
+
+And there you have it, it's all wired up and ready to run! Now let's take a look at the code we're going to write.
+
+<!-- //  DONE: * talk about how the IC should be plugged in across the channel of the breadboard (have this note in a markdown file so it can be easily reused)
 
 //  * explain all of the wiring from omega->shift reg
 //    * explain each of the lines running from the Omega and what they do - according to the names from the controlling a shift register section
@@ -98,7 +114,7 @@ And there you have it, it's all wired up and ready to run. Now let's take a look
 
 ### Writing the Code
 
-We're going to split our code into two files; one for our main program, and one for our shift register. We'll start with the shift register file. Create a file in your root directory named `registerClass.py` and copy the code below into its contents:
+Our code will be split into two files; one for our main program, and one for our shift register. We'll start with the shift register file. Create a file in your root directory named `registerClass.py` and copy the code below into its contents:
 
 ``` python
 import onionGpio
@@ -147,7 +163,7 @@ class shiftRegister:
 		self.latch()
 ```
 
-This file contains a single class that allows us to write a really clean main program. The main component here is the `__init__` function which initializes the class object.
+This file contains a single class that allows us to use and reuse it wherever we like. The main component here is the `__init__` function which initializes the class object.
 
 Now let's write the main script. Create a file in the same directory called `STK06-using-shift-register.py` and paste the following code in it:
 
@@ -192,7 +208,7 @@ while True:
 		break
 ```
 
-The main program imports the class we wrote and creates an object `shiftRegister` using the class. We then use that object to control our LEDs through the shift register.
+The main program loads the class we wrote and creates a `shiftRegister` object. We then use that object to control our LEDs through the shift register.
 
 
 <!-- // create a class to abstract away all of the shift register operations
@@ -224,7 +240,7 @@ You can terminate the code by pressing `Ctrl-C` or `Cmd-C` on Mac OS.
 
 We've introduced some new and important concepts in this experiment.
 
-We've created and imported **modules**, files containing code that can be called and reused in other scripts without having to re-type it all. We've also introduced **classes** which are blueprints for Python objects. Python objects are collections of data that are meant to help you wrap up low-level grunt-work code into simpler, more usable functions and variables.
+We've created and imported **modules**, files containing code that can be loaded and reused in other scripts without us having to re-type them again. We've also introduced **classes** which are blueprints for Python objects. Python objects are collections of data that are meant to help you wrap up low-level grunt-work code into simpler, more usable functions and variables.
 
 Modules and classes are a crucial part of writing clean and maintainable software. It's best practice to write your code to make use of modules or classes and avoid retyping the same code over and over again so you can update or make fixes much more easily.
 
