@@ -26,8 +26,10 @@ Prepare the following components from your kit:
 * USB Micro-B cable for power
 * Breadboard
 * Jumper wires
+    * 12x Male-to-Female
+    * 6x Male-to-Male
 * 8x 1kΩ Resistors
-* 1x 7 Segment display
+* 1x Seven Segment display
 
 #### Hooking up the Components
 
@@ -38,14 +40,15 @@ The seven segment display from the kit is common cathode, which mean the cathode
 
 ![Seven-seg-pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/Seven-seg-pinout.jpg)
 
-Let's first look at how the 12 pins at the back of the seven segment display are defined. When facing the front of seven segment display with decimal points at the bottom, the bottom row of pins are numbered 1 to 6 going from left to right and the top row of pins are numbered 7 to 12 going from right to left.
+The seven segment display is not labelled, so we'll have to reference the pinout diagram to make sure the correct connections are being made. When facing the front of seven segment display with decimal points at the bottom, the bottom row of pins are numbered 1 to 6 going from left to right and the top row of pins are numbered 7 to 12 going from right to left.
 
-// TODO: do we use the shift reg here? LAZAR
+<!-- // DONE: do we use the shift reg here? LAZAR -->
+<!-- discussed with Gabe, nope. JAMES -->
 
-We will need to connect all 12 pins of the seven-segment display to 12 digital pins of the Arduino Dock (Pin 2 to 13).
+We will need to connect all 12 pins of the seven segment display to 12 digital pins of the Arduino Dock.
 
-1. Connect the digit pins (6,8,9,12) of the seven seg to the pins (2,3,4,5) the Arduino dock correspondingly.
-2. Cconnect the segment pins (1,2,3,4,5,7,10,11) of the seven seg each to a different 1K resistor then to the pins (6,7,8,9,10,11,12,13) of the Arduino dock rcorrespondingly.
+1. Connect the digit pins (`6`,`8`,`9`,`12`) of the seven seg to the GPIO pins `2`,`3`,`4`,`5` on the Arduino Dock respectively.
+2. Cconnect the segment pins (`1`,`2`,`3`,`4`,`5`,`7`,`10`,`11`) of the seven seg each to a different 1K resistor then to the pins `6`,`7`,`8`,`9`,`10`,`11`,`12`,`13` on the Arduino Dock respectively.
 
 ### Writing the Code
 

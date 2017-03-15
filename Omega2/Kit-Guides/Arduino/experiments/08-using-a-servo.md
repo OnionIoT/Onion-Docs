@@ -46,16 +46,17 @@ Let's first set up the two push buttons with their seperate debounce circuits sa
 1. Set up two push buttons, each with their own debounce circuit similar to [tutorial 4](#arduino-kit-reading-a-push-button), don't connect to Arduino Dock yet.
 1. Instead of connecting 51kΩ resistor to an empty row, we'll connect them to the `Vcc` rail.
 
-Now that the buttons are set up, we'll connect the two servo motors:
+Now that the buttons are set up, w  <!-- // DONE: add an intro (d)-->
+e'll connect the two servo motors:
 1. The small servo has 3 wires: connect the brown wire to the `GND` rail, the red wire to the `Vcc` rail. We'll connect the orange (signal) wire in a bit.
 	* Repeat for the standard sized servo.
 
 Now that our components are set up, we'll connect them to the Arduino Dock:
-1. Connect the negative power rail to ground (GND).
+1. Connect the negative power rail to a `GND` pin on the Arduino Dock.
 1. Connect the point in the first debounce circuit between the 5.1kΩ resistor and the capacitor to pin `2` of the Arduino Dock.
 	* Repeat for the second debounce circuit, but plug the jumper into pin `3` instead
 1. Connect the orange wire of small servo to pin `9` on the Arduino Dock, and the signal of the standard servo to pin `10`.
-1. Connect the positive power rail to 5V. Don't worry if the servo rotates a bit when you power it on - this is expected.
+1. Connect the positive power rail to `5V`. Don't worry if the servo rotates a bit when you power it on - this is expected.
 
 <!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
 
