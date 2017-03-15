@@ -53,16 +53,14 @@ Prepare the following components from your kit:
 
 <!-- // explain how to connect a push-button switch to an led -->
     
-1. Connect the push button to the breadboard as shown below:
-    * ![push-button-breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/push-button-breadboard.jpg)
-    <!-- // TODO: photo showing how the legs are oriented across the breadboard-->
-1. Connect one side of the switch to one of the "+" columns on the breadboard.
-    * We'll call this column **Vcc**.
-1. Connect the LED's cathode to the other side of the button, and the anode to one end of the 200Ω resistor.
-1. Connect the other end of that resistor to one of the "-" columns.
+1. Connect the push button to the middle of the breadboard across the middle gap.
+    * The button should only be able to fit in one orientation.
+    * The pins should look like they are bending "around" the gap.    
+1. Connect the LED's anode to the other side of the button, and the cathode to one end of the 200Ω resistor.
+1. Connect the other end of the resistor to one of the "-" columns.
     * We'll call this column **ground**.
 1. Connect the Expansion Dock's GND pin to ground on the breadboard.
-1. Connect the Expansion Dock's 3.3V pin to Vcc.
+1. Connect the other side of the switch to the 3.3V pin on the Expansion Dock.
 
 Your circuit should look like this.
 
@@ -91,25 +89,27 @@ Now we'll build a circuit with a button and **inverting** debouncer circuit conn
 You'll need to pull a few more components from your Kit. Prepare the following:
 
 * Resistors
-    * 1x 50kΩ
-    * 1x 5kΩ <!-- debounce resistors -->
+    * 1x 51kΩ
+    * 1x 5.1kΩ <!-- debounce resistors -->
 * 1x 100nF capacitor
 * More M-M jumper wires
 
 #### Hooking Up the Components
 
-1. Remove the push button, the LED, and the 200Ω resistor from the breadboard. Also unplug the Vcc rail from the Omega.
-1. Put the push button in a new location, not connected to anything. Then connect one side of the switch to the ground rail.
-1. Then connect one end of both the 5kΩ and 50kΩ resistors to the other side of the switch.
-1. Connect the other end of the 50kΩ resistor to the Vcc rail.
-1. Connect the other end of the 5kΩ resistor to an empty row. Then connect one end of the capacitor to the same row, and the other end to ground.
-    * We'll call the row where the resistor and the capacitor are connected the **button line**.
-1. Connect GPIO0 on the Expansion Dock to the button line with a M-M jumper wire.
+1. Remove all of the components and wires except the push button from the breadboard.
+1. Connect one of the bottom pins of the switch to the ground rail.
+1. Connect one end of the 51kΩ resistor to the top pin of the switch, and connect the other to the column marked "+".
+    * We'll call this column **Vcc**.
+1. Connect one end of the 5.1kΩ resistor to the same switch pin as the 51kΩ resistor, and the other end to an empty row.
+1. Connect one end of the capacitor to the empty end of the 5.1kΩ resistor from the previous step, and the other to ground.
+    * We'll call this row where the resistor and the capacitor are connected the **button line**.
+1. Connect the button line to `GPIO0` on the Expansion Dock with a M-M jumper wire.
 1. Place the LED back on the breadboard by doing the following:
-    1. Connect the cathode to GPIO1 using a jumper wire from the breadboard to the Expansion Dock.
-    1. Connect the anode to one end of the 200Ω resistor.    
+    1. Connect the anode to `GPIO1` using a jumper wire from the breadboard to the Expansion Dock.
+    1. Connect the cathode to one end of the 200Ω resistor.
 1. Connect the other end of that resistor to ground.
-1. Finally, connect the breadboard's ground and Vcc rails to the Omega's ground and 3.3V pins on the Expansion Dock.
+1. Connect the breadboard's ground to the ground pin on the Expansion Dock.
+1. Finally, connect the breadboard's Vcc to the 3.3V pin on the Expansion Dock.
 
 Your circuit should look like this:
 
