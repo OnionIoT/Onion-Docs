@@ -66,10 +66,12 @@ Now, there are a lot of connections you'll need to make in order to power the IC
 1. Connecting your Shift Register
 
   * Start by plugging in your shift register across the channel so that the each pin has its own row.
-  * Connect pin 16 and pin 10 to the "+" rail (Vcc)
-  * Connect pin 8 and pin 13 to the "-" rail (Ground)
+  * Connect pin 16 and pin 10 to the "+" rail (Vcc)	// TODO: i would prefer this to be: Connect Vcc (pin 16) and SRCLR (pin 10) to the "+" rail (Vcc)
+  * Connect pin 8 and pin 13 to the "-" rail (Ground) // TODO: i would prefer this to be: Connect GND (pin 8) and OE (pin 13) to the "-" rail (Ground)
 
   <!-- TODO: IMAGE picture of this stage -->
+
+// TODO: let's refer to IC pins as: <PIN-NAME> (pin <PIN-NUMBER>)
 
 2. Connecting your LEDs
 
