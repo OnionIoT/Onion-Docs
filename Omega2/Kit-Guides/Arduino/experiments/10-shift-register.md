@@ -60,27 +60,29 @@ Lets take a look at how the 16 pins of the 74HC595 shift register chip are defin
 Here's the steps to get there:
 
 1. Connecting your shift register to the breadboard
-
   * Start by plugging in your shift register across the channel so that the each pin has its own row.
-  * Connect pin `16` and pin `10` to the positive rail (Vcc) on the breadboard
-  * Connect pin 8 and pin 13 to the negative rail (Ground) on the breadboard
+  * Connect the supply voltage pin (`Vcc`) and the master reset pin (`MR`) on the IC to the `Vcc` rail on the breadboard
+  * Connect the `GND` pin and output enable pin (`OE`) to the `GND` rail on the breadboard
 
   <!-- TODO: Insert picture of this stage -->
 
 2. Connecting your LEDs
+    * Connect the anodes of the eight LED each to one of the eight output pins of the 74HC595 - pin `15` and pin `1` to `7`, corresponding to `Q0` to `Q7`. Place the LEDs left to right in the following pin order: `Q0`, `Q1`, `Q2`, `Q3`, `Q4`, `Q5`, `Q6`, `Q7`. 
 
-  * Connect the anodes of the 8 LED each to one of the eight output pins of the 74HC595 (pin 15 and pin 1 to 7). Place the LEDs left to right in the following pin order: 15, 1, 2, 3, 4, 5, 6, 7. // TODO: if it's just 8 pins and it's crucial to the experiment, list them all out
-  * Attach the eight current limiting resistors from cathodes of the LEDs to the negative rail (Ground) on the breadboard.
+<!-- // DONE: if it's just 8 pins and it's crucial to the experiment, list them all out -->
+
+  * Attach eight 100Ω current limiting resistors from cathodes of the LEDs to the `GND` rail on the breadboard.
 
  <!-- TODO: Insert picture of this stage -->
 
 3. Connecting your Arduino Dock
-
   * Connect the Ground header to the negative rail on the breadboard	// TODO: what is meant by Ground header?
-  * Connect Arduino Dock digital pin 4 to pin 14 on the shift register
-  * Connect Arduino Dock digital pin 5 to pin 12 on the shift register
-  * Connect Arduino Dock digital pin 6 to pin 11 on the shift register
-  * Connect the 5V header to the positive rail on the breadboard	// TODO: what is meant by 5V header?
+  * Connect Arduino Dock digital pin 4 to `DS` on the shift register - this is where our input is sent.
+  * Connect Arduino Dock digital pin 5 to `STCP` on the shift register.
+  * Connect Arduino Dock digital pin 6 to `SHCP` on the shift register.
+  * Connect the `Vcc` rail to a `5V` pin on the Arduino Dock
+  
+  <!-- // TODO: what is meant by 5V header? -->
 
   <!-- TODO: Insert picture of this stage -->
 
