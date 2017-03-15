@@ -43,7 +43,7 @@ Grab the components listed from your kit, and let's get wiring!
 * 1x Buzzer
 * 1x SPDT (or three-way) switch
 * 1x Breadboard
-* 5x Jumper wires (M-M)
+* 7x Jumper wires (M-M)
 
 #### Hooking up the Components
 
@@ -51,7 +51,7 @@ The circuit for this
 
 1. First we'll have to find a place on the breadboard to place the buzzer, we chose row 1 and mounted the buzzer across the middle channel.
 	* Taking note where the cathode (+) and where the anode (-) is, we'll have to make sure the right wires go in the right terminal.
-1. Connect the anode of the buzzer to the `GND` rail on your breadboard with a jumper. The cathode will be getting signal, so we'll deal with that later
+1. Connect the anode of the buzzer to the `GND` rail on your breadboard with a jumper. The cathode will be getting signal, so we'll deal with that later.
 1. Next the SPDT switch needs to go into the breadboard, with each pin plugged into a different row. We chose row 5-7.
 1. Connect row 5 to the `GND` rail, and leave the other rows for now.
 

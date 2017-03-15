@@ -20,7 +20,7 @@ Prepare the following components from your kit:
 * Omega plugged into Arduino Dock
 * USB Micro-B cable for power
 * 1x Breadboard
-* 9x male-to-male Jumper wires
+* 15x male-to-male Jumper wires
 * 1x 200Ω Resistor
 * 1x LED of any colour
 * 1x Keypad
@@ -33,7 +33,7 @@ Prepare the following components from your kit:
 
 Once you have the components ready to go, we can begin putting it together. Keep in mind the keypad has seven pins, one for each row and column - not one pin per button.
 
-1. Connect all the seven keypad pins to the digital pins (8, 7, 6, 5, 4, 3, 2) on the Arduino Dock in order from left to right, i.e. the left most keypad pin to arduino header pin 8.
+1. Connect all the seven keypad pins to the digital pins (`8`, `7`, `6`, `5`, `4`, `3`, `2`) on the Arduino Dock in order from left to right, i.e. the left most keypad pin to pin `8` on the Arduino Dock.
 1. Plug the LED in across the center of the breadboard, between whichever rows you wish.
 1. Plug the resistor between the `GND` rail and the row connected to the cathode of the LED.
 1. Connect the `GND` rail to the `GND` pin of the Arduino Dock with a M-M jumper

@@ -53,9 +53,9 @@ Each LED will be connected to the board in the same way, so we'll cover wiring a
 
 1. Find the anode and the cathode of your LED, make note of which one is where, then plug the LED across the channel of your breadboard on any row you wish (on columns `e` and `f`)
     * The most reliable way to find the anode/cathode isn't the length of the pins, it's by examining the [diode](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/LED%2C_5mm%2C_green_%28en%29.svg/432px-LED%2C_5mm%2C_green_%28en%29.svg.png) inside the plastic head.
-1. Take a 200Ω resistor and use it to bridge the LED's cathode row with the column next to it (labelled `-`).
+1. Take a 200Ω resistor and use it to connect the row you've plugged the LED's into with the column labelled `-` right next to it.
     * We'll call the `-`labelled column the **`GND` rail**.
-1. Now connect the `GND` rail to the `GND` header (TODO: let's call it 'a `GND` pin everywhere), this might be confusing) on your PWM Expansion with one M-M jumper
+1. Now connect the `GND` rail to the `GND` pin on channel `S0` of your PWM Expansion with one M-M jumper
 1. Find the signal pin of any channel. We'll start at channel 0 (`S0` on the PWM Expansion).
     * The signal pin is marked by a white plastic base. For channel `S0`, it should be clearly labelled as `SIGNAL` to the left side. We'll call this the `SIG` pin.
 1. Connect the `SIG` pin to a pin in column `a` in one of the rows on the left side of the breadboard using a M-F jumper wire. (eg. `1a`)
@@ -68,10 +68,7 @@ If your circuit now looks like this:
 Then we're all set!
 
 
-// TODO: why do we need an external DC supply? would this make more sense to be introduced when using servos?
-**Note**: If you decided to connect a DC supply to the barrel jack that supplies **something other than 5V**, you need to change the resistor to match the DC supply voltage. For 12V supplies, connecting a second 200Ω resistor in series works well.
-
->If you have a different supply, you just need to divide the voltage output of your supply by 5V and multiply that number by 200Ω to get the new resistance value. If it's a weird number, take the closest resistor you have, or add them in series to get the resistance you need.
+<!-- // DONE: why do we need an external DC supply? would this make more sense to be introduced when using servos? -->
 
 
 ### Writing the Code

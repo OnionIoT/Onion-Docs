@@ -37,8 +37,8 @@ For this tutorial, we’ll be controlling a motor using the PWM expansion. To do
 //	* controlling a DC motor's speed using PWM
 //	* how the H-bridge provides the capability of choosing the direction
 //	* how we're going to be pulsing (applying a PWM signal to) an H-bridge input to control the speed of our motor
-The way a PWM signal operates a motor is by switching the power supply on and off really quickly. Normally this can be done sending the PWM signal to a transistor, and have the transistor switch ther power supply, but an H-bridge adds functionality to this control by allowing the direction of the current to be easily changed. In the H-bridge diagram above, the PWM expansion will be sending signals to open and close the four switches on the H-bridge. In our circuit, we'll be using an H-bridge integrated circuit (IC) chip so we don't need to wire the internals ourselves, and to prevent short circuits that could arise if we directly controlled those switches.
-// TODO: NOTE: IC stands for Integrated Circuit!
+The way a PWM signal operates a motor is by switching the power supply on and off really quickly. Normally this can be done sending the PWM signal to a transistor, and have the transistor switch ther power supply, but an H-bridge adds functionality to this control by allowing the direction of the current to be easily changed. In the H-bridge diagram above, the PWM expansion will be sending signals to open and close the four switches on the H-bridge. In our circuit, we'll be using an H-bridge integrated circuit (**IC**) chip so we don't need to wire the internals ourselves, and to prevent short circuits that could arise if we directly controlled those switches.
+<!-- // DONE: NOTE: IC stands for Integrated Circuit! -->
 
 If you want to start building right away, skip ahead to the [next section](#controlling-a-dc-motor-with-an-h-bridge-building-the-circuit). If you'd like to know how the signals from our code will control the motor, read on!
 
@@ -66,16 +66,17 @@ The `1,2EN` pin simply turns the H-bridge on or off. If `1,2EN` sees a 'high', t
 
 // TODO: this first sentence is a little convoluted
 //	* should be Omega -> PWM Expansion -> H-Bridge -> DC motor
-// TODO: include a block diagram of the system
-// TODO: include a circuit diagram
+<!-- // TODO: include a block diagram of the system -->
+<!-- // TODO: include a circuit diagram -->
 
 This circuit will connect the Omega to a DC motor through the PWM expansion, and then through an H-bridge. The PWM will signal how fast the motor should turn. (The H-bridge acts as a switch - turning the supply voltage on or off according to the PWM signal.
-This build can get a bit messy, if you want to make sure your board cleans up nicely, we recommend using short wires (Male-to-Male) for connecting `GND` and `Vcc` points from the components to the rails. If you're not sure how that would work, just swap 12 male-to-male jumpers for 12 shorter wires when gathering components, we'll let you know in the instructions whenever you can use shorter wires.
 
-// TODO: let's not overcomplicate by telling them to use shorter wires since they don't have shorter wires.
-// * just state that in our pictures we've used shorter wires to better illustrate the connections that need to be made.
-// * Tell them that this is just for illustration purposes and using longer wires won't make a difference
-// * also, take out the parts of how this build can get messy. just say that there's a lot of connections that need to be made
+In the pictures, you'll see some shorter wires, these we used instead of jumpers to give you a better picture of what's going on.
+
+<!-- // DONE: let's not overcomplicate by telling them to use shorter wires since they don't have shorter wires. -->
+<!-- // * just state that in our pictures we've used shorter wires to better illustrate the connections that need to be made. -->
+<!-- // * Tell them that this is just for illustration purposes and using longer wires won't make a difference -->
+<!-- // * also, take out the parts of how this build can get messy. just say that there's a lot of connections that need to be made -->
 
 To more easily see the rotations of the motor, we taped a piece of paper to the motor axle.
 
@@ -84,24 +85,20 @@ To more easily see the rotations of the motor, we taped a piece of paper to the 
 
 #### What You'll Need
 
-// TODO: don't mention that 'we need stuff that isn't in the Kit', that makes us look bad. instead recommend they grab a rubber band to hold the motor steady or something along those lines
+<!-- // DONE: don't mention that 'we need stuff that isn't in the Kit', that makes us look bad. instead recommend they grab a rubber band to hold the motor steady or something along those lines -->
 
-You may need some stuff that isn't in the kit for this build. Altogether, this is what you'll be using to make the circuit:
+You may need a couple of rubber bands and a block to hold down the DC Motor when it's running. Altogether, this is what you'll be using to make the circuit:
 
 * 1x Omega2 plugged into Expansion Dock
 * 1x PWM Expansion plugged into Expansion Dock above
 * 1x DC Motor
 * 1x H-bridge (has "SN754410" on top of the chip)
 * 1x Breadboard
-* 1x Something solid to mount the motor on \*
-* 1x Method of strapping the motor down \*
 * 3x SPDT switches
 * Jumper wires
 	* 4x M-F
 	* 18x M-M
 
-// TODO: as mentioned above, don't mention that 'we need stuff that isn't in the Kit'
-\* - These are optional because they don't come with the kit. Nonetheless we recommend tying the motor down as it does not like to stay put when it's running.
 
 #### Hooking up the Components
 
@@ -123,43 +120,44 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 
 Now let's set up our Circuit:
 
-1. Grab your H-bridge, pick a location on your breadboard and plug the H-bridge across the channel in the middle of your breadboard. It should be sitting across with one side in column E and the other in column F, with the **half-circle cutout** pointing toward the closer edge of the breadboard. We picked rows 5 to 12 in our breadboard.
+1. Grab your H-bridge, pick a location on your breadboard and plug the H-bridge across the channel in the middle of your breadboard. It should be sitting across with one side in column E and the other in column F, with the **half-circle cutout** pointing toward the end of the breadboard. We picked rows 5 to 12 in our breadboard.
 
 <!-- // TODO: IMAGE of H-bridge across channel with pins labelled -->
 
-// TODO: when talking about IC pins, I would rather refer to them by the NAME of the pin, so 'wire 3A to GND' as opposed to 'pin 5 to GND'
-//	the goal is to teach them what's going on, rather then have them follow wiring instructions
+<!-- // DONE: when talking about IC pins, I would rather refer to them by the NAME of the pin, so 'wire 3A to GND' as opposed to 'pin 5 to GND' -->
+<!-- //	the goal is to teach them what's going on, rather then have them follow wiring instructions -->
 
 1. Take note of which number each pin is from the diagram above - if you're lost, always look for the little half circle cutout on the chip denoting the 'top' of the H-bridge to orient it correctly.
 	* **This is important, you can damage the H-bridge if it's not wired correctly!**
-1. Wire pins `4`, `5`, `12`, and `13` to the `GND` rail on their respective sides using four M-M jumpers. Use short wires here if you have them handy.
+1. Let's connect first connect all the ground connections - pins `4`, `5`, `12`, and `13` on the IC are are all grounding pins, so let's connect those to the `GND` rail on their respective sides using four M-M jumpers. We used short wires here to make sure you can see what's going on.
 
-// TODO: mention that we used short wires here to better illustrate the connections
+<!-- // DONE: mention that we used short wires here to better illustrate the connections -->
 
 1. Now it's time to connect the motor to the H-bridge, the motor should have two wires with male pin connectors, one red and one black. They'll be connected to the pins on the H-bridge through the breadboard.
-    * Connect the red wire to pin `3` of the H-bridge (row 7 on our breadboard).
-    * Connect the black wire to pin  `7` of the H-bridge (row 10 on our board).
+    * Connect the white wire to `1Y` of the H-bridge (row 7 on our breadboard).
+    * Connect the black wire to `2Y` of the H-bridge (row 10 on our board).
 
-// TODO: won't we be using the switches as digital inputs to our program, which will then decide what to send to the PWM Expansion, which then controls the H-Bridge, and finally causes the motor to turn
+<!-- // DONE: won't we be using the switches as digital inputs to our program, which will then decide what to send to the PWM Expansion, which then controls the H-Bridge, and finally causes the motor to turn -->
 
-1. Next, we'll set up the switches - we'll use them to send digital signals to control the PWM, and in turn the motor.
-	* Pick three sets of three rows (we used row 25 to 33)
-	* Plug your switches into the rows, three rows per switch
-1. With 6 M-M jumpers, connect the leftmost row of each switch to `GND` rail, and the rightmost row of each switch to `Vcc` rail. If you have short wires ready, you should use them here.
+1. Next, we'll set up the switches - we'll use them to control what digital signals are sent to the PWM Expansion, and in turn the motor through the H-bridge:
+	* Pick three sets of three rows (we used row 14 to 24)
+	* Plug your switches into the rows, three rows per switch - each switch needs a half-row of clearance between the next switch if you want to put them side-by-side.
+1. With 6 M-M jumpers, connect the leftmost row of each switch to `GND` rail, and the rightmost row of each switch to `Vcc` rail. 
 
 <!-- TODO: IMAGE of fully wired H-bridge, short wires, pins labelled -->
 
 // TODO: this sentence should be more like 'The H-Bridge circuit is done! Now let's connect it to the PWM Expansion so it can be controlled by the Omega'
 
-Circuit is done! So let's connect the whole thing to your Omega:
+Now that all the components connected, let's connect the whole thing to your Omega so it can control the motor:
 
 1. We'll ground the circuit by connecting the `GND` rail to the `GND` pin on channel `S0` on the PWM expansion with one M-F jumper.
 1. Using 3 M-M jumpers, connect the center row of each switch to GPIO6, GPIO7, and GPIO8. Make sure you remember which is which, since these will control your motor later!
-1. Take one M-M jumper and connect `pin 1` on the IC (row 5 on our board) to `pin 1` on the expansion headers.	// TODO: do you mean GPIO1 on the Expansion Header?
+1. Take one M-M jumper and connect `1,2EN` on the IC (row 5 on our board) to the `Vcc` rail.
+<!-- // DONE: do you mean GPIO1 on the Expansion Header? -->
 1. Using two M-F jumpers,
-	* Connect pin `2` (`1A`, or row 6 on our board) to channel `S0`.
-	* Connect pin `7` (`2A`, or row 11) to channel `S1`.
-1. Last but not least, we'll set power to the Vcc rail by connecting the dangling end of the Vcc (red) jumper to the `VCC` pin of channel `S0` of the PWM expansion.
+	* Connect `1A`, or row 6 on our board, to channel `S0`.
+	* Connect `2A`, or row 11, to channel `S1`.
+1. Last but not least, we'll set power to the Vcc rail by connecting the dangling end of the Vcc (red) jumper to the `Vcc` pin of channel `S0` of the PWM expansion.
 
 Here's what it looks like when it's all wired up:
 

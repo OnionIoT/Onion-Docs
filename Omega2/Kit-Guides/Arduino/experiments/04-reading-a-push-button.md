@@ -40,7 +40,7 @@ Prepare the following components from your kit:
 * Omega plugged into Arduino Dock
 * USB Micro-B cable for power
 * Breadboard
-* Jumper wires (M-M)
+* 10x Jumper wires (M-M)
 * Resistors
     * 6x 200Ω
     * 1x 5.1kΩ
@@ -53,29 +53,31 @@ Prepare the following components from your kit:
 
 
 
-First, let's setup the circuit:
+First, let's setup the debouncing circuit:
 
 1. Connect the LEDS and resistors the same way as in the multiple LED tutorial.
-    * Plug in six LEDs onto the breadboard in parallel, each across the middle channel of the breadboard.
+    * Plug in six LEDs onto the breadboard just as in [Experiment 02](#arduino-kit-02-multiple-leds), each across the middle channel of the breadboard.
     * Connect cathodes of the LEDs to the negative (-) power rail on the breadboard each through a different 200Ω current limiting resistor.
-2. Plug the push button onto the breadboard and setup its debounce circuit as show below:
+2. Plug the push button onto the breadboard with the channel on the bottom of the button perpendicular to the channel on the breadboard. The circuit looks something like this:
+
     ![push-button-breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/push-button-breadboard.jpg)
 
     <!-- // TODO: photo of button and debouncer circuit with LEDs only LINK ABOVE IS NOT FINAL -->
 
-    * Connect one end of the switch to the 51kΩ resistor
-    * Connect the other end of the switch to negative (-) power rail .
-    * Connect one end of the 5.1kΩ resistor to the same point where the switch and 51kΩ resistor are connected
-    * Connect the other end of the 5.1kΩ resistor to one end of the 100nF capacitor.
-    * Connect the other end of the capacitor to the negative (-) power rail.
+    * Connect one end of the 51kΩ resistor to one side of the switch. This can be either pin, but make sure you remember which side is which
+    * Connect the other end of the 51kΩ resistor to an empty row, this will be where we connect our voltage reference.
+    * Connect the end of the switch that is currently empty to the `GND` rail, again, either pin will do.
+    * Plug one end of the 5.1kΩ resistor to the same row where the switch and 51kΩ resistor are connected
+    * Plug the other end of the 5.1kΩ resistor to an empty row.
+    * Using the 100nF capacitor, connect the row where the 5.1kΩ resistor terminates to the `GND` rail.
 
 
 Now let's connect the circuit to the Dock:
 
-1. Connect the six anodes of LEDs (left to right) to six digital pins (9, 8, 7, 6, 5, 4) on the Arduino Dock (near the jack barrel connector).
-1. Connect the negative (-) power rail to ground (GND).
-1. Connect the point in the debounce circuit between the 5.1kΩ resistor and the capacitor to pin 2 of the Arduino Dock.
-1. Finally, connect the other end of the 51kΩ resistor to 5V on Arduino Dock.
+1. Connect the `GND` rail to a `GND` pin on the Arduino Dock.
+1. Connect the six anodes of LEDs (left to right) to six digital pins (`9`, `8`, `7`, `6`, `5`, `4`) on the Arduino Dock (near the jack barrel connector).
+1. From the debounce circuit, connect the row containing the 5.1kΩ resistor and the capacitor to GPIO pin `2` of the Arduino Dock.
+1. Finally, use a jumper wire to connect the other end of the 51kΩ resistor to `5V` on Arduino Dock.
 
 <!-- // TODO: photo of assembled circuit with Arduino-->
 

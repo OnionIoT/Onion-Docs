@@ -13,6 +13,6 @@ Unlike the SPDT switches with levers, the push button switches in your Kit are t
 
 For example, the buttons on TV remotes are all momentary push button type switches, so expect the same type of functionality (changing settings) with push buttons in our experiments and projects.
 
-You may be wondering, "If there are four pins, how come this switch doesn't have two switch contacts?" This is because the button is made of two pairs of connected pins that split each end into two separate connections. The photo below shows which pins are connected, so take note that your circuit properly switches when it's supposed to:
+You may be wondering, "If there are four pins, how come this switch doesn't have two switch contacts?" This is because the button is made of two pairs of connected pins that split each end into two connections. The photo below shows which pins are connected, so take note that your circuit properly switches when it's supposed to:
 
 // TODO: photo or graphic of connected pins on SPST push button

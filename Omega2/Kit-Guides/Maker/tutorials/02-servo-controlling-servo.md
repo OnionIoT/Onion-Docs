@@ -58,14 +58,13 @@ Gather the following from your kit:
 
 1. Plug the PWM Expansion into your Expansion Dock.
 1. Plug the power cord of the Standard Size servo motor into the `S0` channel of the PWM Expansion
-	* make sure the white white wire from the motor is connected to the pin with the white base on the Expansion!
+	* make sure the orange wire from the motor is connected to the pin with the white base on the Expansion!
 1. Repeat the step above with the Micro Servo connecting to channel `S1`.
 
 // TODO: let's make a 'Going Further' section at the end of the guide and move this point down there. The issue is not that you would draw too much current from the Dock (note it's drawing current from the regulator circuit, not the Omega), the issue is that the Dock just can't supply enough current for servos under high loads. So if you want to do dope things with servos (robot arms, rovers, etc), you'll need an external power supply. This section should also talk about how the Omega cannot be powered by this external power supply since the dc barrel jack supply is isolated. See https://github.com/OnionIoT/Onion-Docs/blob/master/Omega2/Documentation/Hardware-Overview/Expansions/PWM-Expansion.md for details
 **Note 1:** If you're driving a large load on your servo, you should provide an external power supply to the PWM Expansion to avoid drawing too much current through the Omega!
 
-// TODO: mmmm this is super unlikely/hard to do and I don't wanna scare the users. In the off chance that it does happen, it's all good since only the GND row will make contact, and the USB receptacle is grounded anyway. no harm, no foul.
-**Note 2/follow up:** When the Servo Expansion is plugged in as the bottom of the Expansion stack, the pins on the underside of the board may be short circuited by contact with the USB receptacle directly underneath when pressure is applied to the top of the Expansion. We recommend inserting a thin plastic sheet between the expansion and the dock to break this short. For more information, see the [PWM Expansion](#pwm-expansion) article.
+<!-- // DONE (killed it): mmmm this is super unlikely/hard to do and I don't wanna scare the users. In the off chance that it does happen, it's all good since only the GND row will make contact, and the USB receptacle is grounded anyway. no harm, no foul. -->
 
 ### Writing the Code
 
