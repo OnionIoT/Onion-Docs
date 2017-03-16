@@ -40,24 +40,23 @@ Using the shift register and a few additional GPIOs from the Omega, we will cont
 
 First things first, we'll be building on our previous experiment. 
 
-* If you've done the previous experiment, keep the shift register wired up just like you had it.
+* If you've done the previous experiment, keep the shift register connected to the Omega just like you had it.
 * If you skipped it, [**we strongly recommend you check it out**](#starter-kit-using-shift-register) before moving on to this one!
 
 For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
 
 <!-- TODO: IMAGE diagram of shift register/dock/breadboard wiring -->
 
-> It's important that all components have a common ground (no pun intended). Signals are measured as the **difference** in voltage between the signal pin and ground, so all of the components need to be measuring from the same baseline.
+> It's important that all components have a common ground connection. Signals are measured as the **difference** in voltage between the signal pin and ground, so all of the components need to be measuring from the same baseline.
 
-1. Connecting your Shift Register
+##### Connecting your Shift Register
 
-  - Start by plugging in your shift register across the channel so that the each pin has its own row.
-  - Connect pin 16 and pin 10 to the positive rail (Vcc)
-  - Connect pin 8 and pin 13 to the negative rail (Ground)
+```{r child = '../../shared/shift-register-wiring-instructions.md'}
+```
 
 When you have the shift register wired up, it's time to connect it to the 7-segment display. First, we'll have to add current-limiting resistors since the display is a set of multiple LEDs. We recommend you set up the resistors across the center first, and do all the wiring in one go.
 
-1. Connecting the 7-Segment Display
+##### Connecting the 7-Segment Display
 
 We've included a diagram below for reference instead of instructions, as this one has a lot of wiring to do and they end up going every which way. Note that all ends connecting to the 7-segment display require F jumper heads - that's where your M-F jumpers will be used.
 
@@ -126,24 +125,26 @@ class SevenSegment:
     "-": "01000000"
     }
 
-	#Initializes the GPIO objects based on the pin numbers
-	def __init__(self, dPin):
-		self.shiftReg = registerClass.shiftRegister(1,2,3)
+    #Initializes the GPIO objects based on the pin numbers
+    def __init__(self, dPin):
+        self.shiftReg = registerClass.shiftRegister(1,2,3)
+        self.digitPin = []
+        
         for i in range (0,4):
-    		self.digitPin[i] = onionGpio.OnionGpio(dPin[i])
-    		self.digitPin[i].setOutputDirection(1)
+            self.digitPin[i] = onionGpio.OnionGpio(dPin[i])
+            self.digitPin[i].setOutputDirection(1)
 
 
-	def showDigit(self, d, character):
-		self.digitPin[d].setValue(0)
-		self.shiftReg.outputBits(SevenSegment.digitMap[character])
-		self.digitPin[d].setValue(1)
+    def showDigit(self, d, character):
+        self.digitPin[d].setValue(0)
+        self.shiftReg.outputBits(SevenSegment.digitMap[character])
+        self.digitPin[d].setValue(1)
 
 
-	def clear(self):
-		self.shiftReg.clear();
+    def clear(self):
+        self.shiftReg.clear();
         for i in range (0,4):
-    		self.digitPin[i] = onionGpio.OnionGpio(dPin[i])
+            self.digitPin[i] = onionGpio.OnionGpio(dPin[i])
 ```
 
 Now that we have a class to control the 7-seg display, let's write our main script! Create a file called `STK07-seven-seg-display.py` and paste the following in it:
@@ -155,7 +156,7 @@ import time
 import sys
 
 # instantiate 7-segment object
-sevenDisplay = SevenSegment(11,18,19,0)
+sevenDisplay = SevenSegment([11,18,19,0])
 
 errorMsgs = {
     "missingArguments": "Please input a hex number, eg. 0x12ab",
@@ -202,7 +203,7 @@ def __main__():
     # attempt to display out the hex string
     while True:
         for i in range(inputLen):
-        	sevenDisplay.showDigit(i,inputHexString[i])
+            sevenDisplay.showDigit(i,inputHexString[i])
 
 # for running from the command line
 if __name__ == '__main__':
@@ -415,37 +416,37 @@ echo out >/sys/class/gpio/gpio0/direction
 
 # write out values from the SR's buffer to the outputs
 latchSR (){
-	echo 1 >/sys/class/gpio/gpio3/value
-	echo 0 >/sys/class/gpio/gpio3/value
+    echo 1 >/sys/class/gpio/gpio3/value
+    echo 0 >/sys/class/gpio/gpio3/value
 }
 
 # pulse the SR clock and shift in one bit from the data line
 pulseClock (){
-	echo 1 >/sys/class/gpio/gpio2/value
-	echo 0 >/sys/class/gpio/gpio2/value
+    echo 1 >/sys/class/gpio/gpio2/value
+    echo 0 >/sys/class/gpio/gpio2/value
 }
 
 # set one digit
 setOneDig(){
 
-	echo out >/sys/class/gpio/gpio1/direction
+    echo out >/sys/class/gpio/gpio1/direction
 
-	for i in $1 $2 $3 $4 $5 $6 $7 $8
-	do
-		#echo  
-		echo $i >/sys/class/gpio/gpio1/value
-		pulseClock
-	done
+    for i in $1 $2 $3 $4 $5 $6 $7 $8
+    do
+        #echo  
+        echo $i >/sys/class/gpio/gpio1/value
+        pulseClock
+    done
 
-	latchSR
+    latchSR
 }
 
 # turn off all the pins (enable pins are active LOW)
 initDigPins (){
-	echo 1 >/sys/class/gpio/gpio0/value
-	echo 1 >/sys/class/gpio/gpio18/value
-	echo 1 >/sys/class/gpio/gpio19/value
-	echo 1 >/sys/class/gpio/gpio11/value
+    echo 1 >/sys/class/gpio/gpio0/value
+    echo 1 >/sys/class/gpio/gpio18/value
+    echo 1 >/sys/class/gpio/gpio19/value
+    echo 1 >/sys/class/gpio/gpio11/value
 }
 
 # initialize the digit pins
