@@ -67,6 +67,7 @@ Once you have the temperature sensor circuit up and ready, connect the pins from
 | SDA     | SDA            |
 | SCL     | SCL            |
 
+Note that this time, we're using the 5V pin instead of the 3.3V source that we've been using previously. This is because the display requires a higher voltage to run.
 
 All done! If everything goes well, it should look something like this:
 
@@ -303,7 +304,7 @@ In the code, we specifically use two main functions of the library: the **constr
 
 #### Multiple Different Objects
 
-<!-- // TODO: small blurb about how the main program uses two objects of different classes to accomplish its purpose - make a note that this is an incredibly common programming method/technique -->
+<!-- // DONE: small blurb about how the main program uses two objects of different classes to accomplish its purpose - make a note that this is an incredibly common programming method/technique -->
 
 Here we're using two objects of different classes to accomplish our goal, `TemperatureSensor` and `Lcd`. If we had other devices we wanted to include in this experiment, we can write more class definitions and load them using the `import` statement.
 

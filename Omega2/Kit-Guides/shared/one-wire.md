@@ -7,5 +7,3 @@ It follows a master-slave architecture with each bus allowing for one master, in
 ![one-wire-serial-number](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/one-wire-serial-number.jpg)
 
 The protocol may also be found written as One Wire, One-Wire, or sometimes 1W. For consistency, we'll be using 1-Wire in this and other guides. In code, we'll use oneWire or OneWire because **variable names cannot start with numbers** in Python (and several other programming languages as well).
-
-To make 1-Wire work with the Omega, we must first label a GPIO as a 1-Wire **master bus**. This will be the main contact point between the Omega and any 1-Wire devices. Once we have the master bus set up, we can then scan for the sensor through it and read from the sensor as needed.

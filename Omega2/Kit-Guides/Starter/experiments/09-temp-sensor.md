@@ -1,5 +1,5 @@
 ---
-title: Reading an I2C Sensor
+title: Reading a 1-Wire Temperature Sensor
 layout: guide.hbs
 columns: two
 devices: [ Omega , Omega2 ]
@@ -22,9 +22,9 @@ Let's now learn about and use the **1-Wire bus protocol** to read the ambient te
 ```{r child = '../../shared/one-wire.md'}
 ```
 
-To make 1-Wire work with the Omega, we must first label a GPIO as a '1-Wire master bus'. This will be the main contact point between the Omega and any 1-Wire devices. Once we have the master bus set up , we can then scan for the sensor through it and read from the sensor as needed.
+To make 1-Wire work with the Omega, we must first label a GPIO as a 1-Wire **master bus**. This will be the main contact point between the Omega and any 1-Wire devices. Once we have the master bus set up, we can then scan for the sensor through it and read from the sensor as needed.
 
-Due to the lack of a dedicated controller, we'll have to send some low level instructions directly to the bus. This will be a good opportunity to learn about the process of **reading and writing files**.
+The Omega does not have a dedicated controller for this protocol, we'll have to send some low level instructions directly to the bus. This will be a good opportunity to learn about the process of **reading and writing files**.
 
 ### DS18B20 Temperature Sensor
 
@@ -32,8 +32,9 @@ This sensor is a 1-Wire digital output sensor with high accuracy. The pin layout
 
 ![TMP36 Temperature Sensor Pin Layout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/DS18B20-pin-layout.png)
 
-**Note**: We will treat the flat side as the front, so this is the **bottom view** of the sensor.
+The `Vdd` and `GND` pins are for power and ground, and the `DQ` pin is the data line (both input and output).
 
+**Note**: We will treat the **flat** side as the front.
 
 
 ### Building the Circuit
@@ -53,17 +54,13 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-1. Find the flat side of the temperature sensor. This is the **front** side.
-1. With the front of the sensor facing to the left side of the breadboard, insert the three pins into column `e` in 3 consecutive rows, eg. 13, 14, and 15.
-1. Turn the breadboard so that the front of the sensor is facing you.
-1. Insert jumpers for the following connections into column `a` in the row corresponding to the pins below:
-    * Left - `GND`. Connect this to the Omega's `GND` pin.
-    * Middle - `DATA` or `DQ`. Connect this to the Omega's `GPIO19`.
-    * Right - `Vcc`. Connect one end of a M-M jumper pin here, we'll connect this to power later.
-1. Connect the 5.1kΩ resistor across the `DATA` and `Vcc` pins.
-1. Connect the sensor's `Vcc` pin to the Omega's `3.3V` pin.
+1. With the front of the sensor facing the middle gap of the breadboard, insert the three pins across 3 adjacent rows.
+1. Connect the 5.1kΩ resistor to both `DQ` (pin 2) and `Vdd` (pin 3).
+1. Connect `GND` (pin 1) to the Omega's `GND` pin.
+1. Connect `DQ` (pin 2) to the Omega's GPIO19.
+1. Connect `Vdd` (pin 3) to the Omega's `3.3V` pin.
 
->The reason we have this resistor is to make sure the max voltage of the `DATA` pin is equal to the voltage provided by `Vcc`. If it isn't properly referenced, a `HIGH` from the `DATA` line might appear to be `LOW`, making the data untrustworthy!
+>The reason we have this resistor is to make sure the max voltage of the `DQ` pin is equal to the voltage provided by `Vcc`. If it isn't properly referenced, a `HIGH` from the `DATA` line might appear to be `LOW`, making the data untrustworthy!
 
 Your circuit should look like this:
 

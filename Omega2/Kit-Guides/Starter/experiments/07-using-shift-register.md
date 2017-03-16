@@ -71,7 +71,7 @@ There are several wiring connections you'll need to hook up, so we'll go through
 1. Connect `Vcc` (pin 16) and `SRCLR` (pin 10) to the `+` (Vcc) rail.
 1. Connect `GND` (pin 8) and <span style="text-decoration: overline;">`OE`</span> (pin 13) to the `-`  (ground) rail.
 
-  <!-- TODO: IMAGE picture of this stage -->
+<!-- TODO: IMAGE picture of this stage -->
 
 ##### Connecting your LEDs
 
@@ -92,7 +92,7 @@ There are several wiring connections you'll need to hook up, so we'll go through
 
 The wire for QA starts on the right side of the chip and goes to the 1st LED, while the wires for the other 7 start on the left side and should go straight down the breadboard. 
 
-  <!-- TODO: IMAGE picture of this stage -->
+<!-- TODO: IMAGE picture of this stage -->
 
 ##### Connecting your Omega to the Shift Register
 
