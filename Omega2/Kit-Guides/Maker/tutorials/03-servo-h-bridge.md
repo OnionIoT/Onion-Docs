@@ -151,7 +151,7 @@ Now let's set up our Circuit:
 Now that all the components connected, let's connect the whole thing to your Omega so it can control the motor:
 
 1. We'll ground the circuit by connecting the `GND` rail to the `GND` pin on channel `S0` on the PWM expansion with one M-F jumper.
-1. Using 3 M-M jumpers, connect the center row of each switch to GPIO6, GPIO7, and GPIO8. Make sure you remember which is which, since these will control your motor later!
+1. Using 3 M-M jumpers, connect the center row of each switch to GPIO0, GPIO1, and GPIO2. Make sure you remember which is which, since these will control your motor later!
 1. Take one M-M jumper and connect `1,2EN` on the IC (row 5 on our board) to the `Vcc` rail.
 <!-- // DONE: do you mean GPIO1 on the Expansion Header? -->
 1. Using two M-F jumpers,
@@ -282,9 +282,9 @@ motor1A = 0		# TODO: this should be renamed so that it's clear that this is the 
 motor2A = 1 	# TODO: this should be renamed so that it's clear that this is the PWM Expansion Channel that is connected to H-Bridge input 2A
 
 # instantiate gpio objects for our switch inputs
-dircSignalPin = onionGpio.OnionGpio(6) 		# rename this so it's more clear that it's a gpio object, maybe something like dirSwitch
-spd1SignalPin = onionGpio.OnionGpio(7)		# rename this so it's more clear that it's a gpio object, maybe something like speed0Switch
-spd2SignalPin = onionGpio.OnionGpio(8)		# rename this so it's more clear that it's a gpio object, maybe something like speed1Switch
+dircSignalPin = onionGpio.OnionGpio(0) 		# rename this so it's more clear that it's a gpio object, maybe something like dirSwitch
+spd1SignalPin = onionGpio.OnionGpio(1)		# rename this so it's more clear that it's a gpio object, maybe something like speed0Switch
+spd2SignalPin = onionGpio.OnionGpio(2)		# rename this so it's more clear that it's a gpio object, maybe something like speed1Switch
 
 # create a dictionary of functions against which to check user input
 # this is basically a dispatch table to map function calls to different names
