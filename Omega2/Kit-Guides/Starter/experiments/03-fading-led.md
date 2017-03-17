@@ -22,12 +22,12 @@ By sending a PWM signal to an LED, we can control how bright that LED appears to
 
 We're going to be providing power to the LED just like we did in the two previous experiments. The only difference is the speed at which we turn the LED on and off, and that will be taken care of in the software!
 
+We'll make the same LED circuit we used in the [first experiment](#starter-kit-blinking-led-building-the-circuit), so wire that back up.
+
 #### What You'll Need
 
-We'll need the same LED circuit we used in the previous two experiments, which includes at minimum:
-
 * Omega2 plugged into Expansion Dock
-* 1x LEDs
+* 1x LED
 * 2x M-M Jumper Wires
 * 1x 200Ω Resistor
 * Breadboard
@@ -38,6 +38,10 @@ In this example we'll only be fading a single LED, so go ahead and build the sam
 
 ```{r child = '../../shared/wiring-led.md'}
 ```
+
+Your circuit should look like this:
+
+<!-- TODO: IMAGE: photo of completed circuit (can reuse from previous) -->
 
 ### Writing the Code
 
@@ -53,23 +57,25 @@ Create a file called `STK03-fading-led.py` and paste the following code in it:
 import time
 import os
 
+sleepTime = 0.1   # sleep for a tenth of a second
+
 brightnessIncrement  = 2
 dutyCycle = 0
 def pwmLed(pin, frequency, dutyCyclePercentage):
-	command = "fast-gpio pwm %d %d %d" % (pin, frequency, dutyCyclePercentage) #Assign the arguments to the correct positions in the fast-gpio command
-	os.system(command) # Send the command to the command line
+    command = "fast-gpio pwm %d %d %d" % (pin, frequency, dutyCyclePercentage) #Assign the arguments to the correct positions in the fast-gpio command
+    os.system(command) # Send the command to the command line
 
 ## Infinite Loop Main Code
 while 1:
-	dutyCycle=dutyCycle+brightnessIncrement # Increment or decrement the duty cycle by the brightnessIncrement
+    dutyCycle=dutyCycle+brightnessIncrement # Increment or decrement the duty cycle by the brightnessIncrement
 
-	pwmLed(0, 50, dutyCycle) # Assign GPIO 0 to the pwm duty cycle value
+    pwmLed(0, 50, dutyCycle) # Assign GPIO 0 to the pwm duty cycle value
 
-	# flip the value variable
-	if (dutyCycle <= 0) or (dutyCycle >= 100):
-		brightnessIncrement = -brightnessIncrement # Reverse direction at 0, and 100
+    # flip the value variable
+    if (dutyCycle <= 0) or (dutyCycle >= 100):
+        brightnessIncrement = -brightnessIncrement # Reverse direction at 0, and 100
 
-	time.sleep(0.1)	# sleep for a tenth of a second
+    time.sleep(sleepTime)    # sleep for a tenth of a second
 ```
 
 <!-- TODO: FUTURE: Write using the Omega's PWM pins -->
@@ -100,7 +106,7 @@ In our infinite loop, we increment the duty cycle by the `brightnessIncrement`, 
 
 In order to use `fast-gpio`, we need to use the `os` module. This module allows us to send command-line arguments in Python using `os.system(command)`, where `command` is a string containing the arguments you would normally type in the terminal. This is known as a **system call**.
 
-<!-- TODO: should this be subprocess.call instead? see https://docs.python.org/2/library/subprocess.html#replacing-os-system; will test later (Gabe) -->
+<!-- TODO: FUTURE: get this working using subprocess.call. Gabe quickly tried it but it didn't seem to work at first -->
 
 #### Functions
 
@@ -109,7 +115,7 @@ In order to use `fast-gpio`, we need to use the `os` module. This module allows 
 //  * will be used a whole bunch
 //  * cleaner looking code and good practice -->
 
-The system call to `fast-gpio` is powerful, but it has a lot of syntax like the `%d` placeholders that we don't want to be typing over and over again. So, we wrapped this unwieldy call into its own **function** in order to have a readable and much nicer Python interface for setting the PWM duty cycle. This function takes in the following arguments:
+The system call to `fast-gpio` is powerful, but it has a lot of variable placeholders such as `%d` that we don't want to be typing over and over again. So, we wrapped this unwieldy call into its own **function** in order to have a readable and much nicer Python interface for setting the PWM duty cycle. This function takes in the following arguments:
 
 * GPIO pin number
 * Frequency

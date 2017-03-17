@@ -12,7 +12,7 @@ order: 2
 
 In this experiment, we're going to use what we learned in the first experiment and wire up a bunch of LEDs. Then we're gonna make some visual effects.
 
-<!-- // TODO: tidy the circuit building sections up according to style guide -->
+<!-- // DONE: tidy the circuit building sections up according to style guide -->
 
 ### Building the Circuit {#starter-kit-multiple-leds-building-the-circuit}
 
@@ -75,35 +75,37 @@ Create a new file `STK02-lineUp.py` to hold the code:
 import onionGpio
 import time
 
-## create and populate an array to hold the GPIO pin numbers that control the LEDs
+sleepTime = 0.5                 # specify sleep duration
+
+## create and populate a list to hold the GPIO pin numbers that control the LEDs
 gpioPins = [0, 1, 6, 7, 8, 9]
-## create an empty array that will hold the GPIO objects to control the LEDs
+## create an empty list that will hold the GPIO objects to control the LEDs
 gpioObjects = []
 
 ## print which GPIOs are being used
 print 'Using GPIOs:'
 for gpioElement in gpioPins:
-	print gpioElement
+    print gpioElement
 
-## populate the gpioObjects array
+## populate the gpioObjects list
 for gpioElement in gpioPins:
-	ledObj = onionGpio.OnionGpio(gpioElement)		# instatiate a GPIO object for this gpio pin
-	ledObj.setOutputDirection(0)		# set to output direction with zero being the default value
-	gpioObjects.append(ledObj)	# add the GPIO object to our array
+    ledObj = onionGpio.OnionGpio(gpioElement)        # instatiate a GPIO object for this gpio pin
+    ledObj.setOutputDirection(0)                     # set to output direction with zero being the default value
+    gpioObjects.append(ledObj)                       # add the GPIO object to our list
 
-ledValue 	= 1
+ledValue     = 1
 
 while 1:
-	# program all of the GPIOs to the ledValue
-	for gpio in gpioObjects:
-		gpio.setValue(ledValue)
-		time.sleep(0.5)
+    # program all of the GPIOs to the ledValue
+    for gpio in gpioObjects:
+        gpio.setValue(ledValue)
+        time.sleep(sleepTime)
 
-	# flip the value variable
-	if ledValue == 1:
-		ledValue = 0
-	else:
-		ledValue = 1
+    # flip the value variable
+    if ledValue == 1:
+        ledValue = 0
+    else:
+        ledValue = 1
 ```
 
 And run the code:
@@ -124,20 +126,28 @@ This will repeat until you exit the program.
 
 This program looks pretty different from the code in the first experiment, but it does very similar things, just for six LEDs this time. Let's take a look at some of the new stuff that was introduced.
 
-#### Arrays
+#### Lists
 
-The very first line of code after importing the modules is new to us: it's creating an array. An array variable is a list of variables, with the ability to access each individual variable. A single variable in an array is referred to as an element. Arrays are a very common data structure used in programming and you'll soon see why.
+The very first line of code after importing the modules is new to us: it's creating a **list**. 
 
-The `gpioPins` array is meant to hold the GPIO pin numbers that control our LEDs. So this array will hold a bunch of integers, and we're *populating* the array as soon as we declare it.
+```{r child = '../../shared/lists.md'}
+```
 
-The `gpioObjects` array is a little different; we're going to be using it to hold six GPIO objects that will control the GPIOs to which our LEDs are connected. More on that a little later, for now, we're just creating it as an empty array.
+Back to our code! The `gpioPins` list is meant to hold the GPIO pin numbers that control our LEDs, we **populate** (fill in) it with integers.
+
+The `gpioObjects` list is a little different; we use it to hold six GPIO objects that will control the GPIOs to which our LEDs are connected. For now we will initialize it as an empty list; we will use a loop to populate it later.
 
 
 #### For Loop
 
-A `for loop` is used when you have code that needs to be repeated a known number of times, like in our example how we want to print each GPIO from our `gpioPins` array. The line that starts with `for` will define how many times the loop will be run, our example will run the loop body once for each element in the `gpioPins` array, with the value of the current element being stored in the `gpioElement` variable. The indented line directly below the `for` line makes up the body of the loop, here we are only printing the contents of the gpio variable.
+A `for` loop is used when you have code that needs to be repeated a known number of times. To loop, or **iterate** through items in a list, the generic syntax looks like this:
 
-The loop will go through the array from start to finish, with the `gpioElement` variable taking on the value of the current array element. We will see the following being printed:
+``` python
+for element in aList:                  # a statement defining how many times to repeat (or a list to iterate through) 
+    # code to run using each element in aList
+```
+
+In our example, we want to print the numbers of each GPIO that we are using. We iterate through our `gpioPins` list by assigning each member to the `gpioElement` variable, then printing each one. We should see the following output:
 
 ```
 Using GPIOs:
@@ -150,17 +160,17 @@ Using GPIOs:
 ```
 
 
-#### Arrays of Objects
+#### Lists of Objects
 
-The second `for loop` in the program is used to populate the `gpioObjects` array with objects of the `OnionGpio` class with direction set to output. The loop will run for each of the elements in the `gpioPins` array, creating an object for each physical LED we're using.
+The second `for loop` in the program is used to populate the `gpioObjects` list with objects of the `OnionGpio` class with direction set to output. The loop will run for each of the elements in the `gpioPins` list, creating an object for each physical LED we're using.
 
-By the end of the for loop, the `gpioObjects` array will contain six GPIO class objects, each set up to output signal to one of the GPIOs listed in the `gpioPins` array.
+By the end of the for loop, the `gpioObjects` list contains six GPIO class objects, each set up to drive one of the GPIOs listed in the `gpioPins` list.
 
-In our code, we use the for loop to interact with the array object by object, this is a pretty standard way of working with arrays. An array of Ojbects works very similarly to arrays of basic data types. By calling  `gpioObjects[n]`, you can interact directly with the Nth element of the array. Array operations work the same way with objects as well.
+In our code, we use the for loop to interact with the list object by object, this is a pretty standard way of working with lists. An list of Ojbects works very similarly to lists of basic data types. By calling  `gpioObjects[n]`, you can interact directly with the Nth element of the list. List operations work the same way with objects as well.
 
 
 #### For Loops Revisited
 
-The very last `for loop` in the program will use the GPIO objects to turn the LEDs on or off to create our animation. It will loop through all of GPIO class objects in the `gpioObjects` array and use them to set the associated GPIO to the value in the `ledValue` variable. The first time through it will turn our LEDs on one by one: it will first set GPIO0 to `ledValue` (which was initialized to 1), and then GPIO1, then GPIO2, GPIO3, GPIO18, and finally, GPIO19. The half second delay was added so the animation is actually visible by the human eye.
+The very last `for` loop in the program will use the GPIO objects to turn the LEDs on or off to create our animation. It will iterate through all of GPIO class objects in the `gpioObjects` list and use them to set the associated GPIO to the value in the `ledValue` variable. The first time through it will turn our LEDs on one by one: it will first set GPIO0 to `ledValue` (which was initialized to 1), and then GPIO1, then GPIO2, GPIO3, GPIO18, and finally, GPIO19. The half second delay was added so the animation is actually visible by the human eye.
 
 Similar to the previous experiment, the code that changes the LED states is in an infinite loop, so once the for loop is completed, the `ledValue` variable will be changed to hold the opposite value, and the for loop will be repeated, this time turning the LEDs off one by one. This cycle will continue, turning the LEDs on, and then off until the program is terminated.
