@@ -23,7 +23,12 @@ There are three pins on the IC that we use to control it with the Omega. Two of 
 | SRCLK | Serial clock | When pulsed, shifts each value in the shift register forwards by one position, then loads the value from the SER pin into position "A". Note that this does not change the signals on the output lines until you pulse the register clock (RCLK). |
 | RCLK | Register clock, or "latch pin" | When pulsed, updates the storage register with new values from the shift register, sending a new set of signals to the 8 output pins. This happens so quickly that they all seem to change simultaneously! |
 
-Keep in mind that the **first** value you send the shift register will be shifted towards the **last** output pin as you send it more data. For example, when sending 8 bits, bit `1` will appear on output `H`, bit `2` on `G`, and so on. This means that you'll have to send the shift register the outputs you want in **reverse order!**
+Keep in mind that the **first** value you send the shift register will be shifted towards the **last** output pin as you send it more data. For example, when sending 8 bits, bit `1` will appear on output `H`, bit `2` on `G`, and so on. This means that you should either:
+
+* Wire up your connections in reverse order, or
+* Write your code so that it sends values in reverse order
+
+In these experiments, we will be wiring outputs in reverse order.
 
 #### Pinout Diagram
 
@@ -39,14 +44,14 @@ So how can this let us control multiple outputs with one data pin? Well, let's s
 
 | LED | Data Line | Desired Value |
 |-|-----------|---------------|
-|1| QA | LOW |
-|2| QB | HIGH |
-|3| QC | LOW |
-|4| QD | HIGH |
-|5| QE | LOW |
-|6| QF | LOW |
-|7| QG | LOW |
-|8| QH | HIGH |
+|1| QH | LOW |
+|2| QG | HIGH |
+|3| QF | LOW |
+|4| QE | HIGH |
+|5| QD | LOW |
+|6| QC | LOW |
+|7| QB | LOW |
+|8| QA | HIGH |
 
 First, we'll clear out the register so all LEDs are off by writing eight 0's to the shift register, then pulsing the latch pin to write the outputs to the data lines. This is done by setting and holding SER LOW, then pulsing SRCLK 8 times, then pulsing RCLK once.
 

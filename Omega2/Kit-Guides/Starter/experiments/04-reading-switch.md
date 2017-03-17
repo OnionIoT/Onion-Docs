@@ -18,8 +18,6 @@ We'll be using a **slide switch** as an input to control whether an LED should b
 
 First, we'll make a simple circuit to figure out how the switch works. Then we'll connect the switch to your Omega, and control the LED using the Omega as the brain!
 
-
-
 <!-- gpio input -->
 ```{r child = '../../shared/gpio-input.md'}
 ```
@@ -39,7 +37,7 @@ First, we'll make a simple circuit to figure out how the switch works. Then we'l
 // circuit 1: switch controls turning an LED on and off to illustrate how the slide switch works
 // spdt switch (one side is pull-up, other side is pull-down) connected to an led -->
 
-The first circuit we build will have the LED directly controlled by the switch to demonstrate how the switch works. The Omega will be used as a source of voltage only, and won't really do anything to affect the operation of the circuit.
+The first circuit we build will have the LED directly controlled by the switch to demonstrate how the switch works. The Omega will be used only as a power source and will not control the operation of the circuit.
 
 <!-- // TODO: circuit diagram, see paper notes -->
 
@@ -62,9 +60,9 @@ Prepare the following components from your kit:
 
 1. Plug in the switch vertically across three rows.
 1. Connect the LED's anode to the switch's middle pin, and the cathode to an empty row.
-1. Connect one end of a 200Ω resistor to the LED's cathode, and the other end into one of the "-" columns.
-    * We'll call this column **`GND` rail**.
-1. Connect the Expansion Dock's `GND` pin to the `GND` rail.
+1. Connect one end of a 200Ω resistor to the LED's cathode, and the other end into one of the "-" rails.
+    * We'll call this the **ground** rail.
+1. Connect the Expansion Dock's `GND` pin to the ground rail.
 1. Connect the Expansion Dock's '3.3V' pin to the switch's top pin.
 
 Your circuit should look like something like this:
@@ -103,7 +101,7 @@ This circuit will keep the switch, but route the output of the switch to the Ome
 
 1. Remove the LED and resistor from the breadboard. Keep the switch and other wires in place.
 1. Connect `GPIO0` on the Expansion Dock to the switch's middle pin.
-1. Connect the switch's bottom pin to the `GND` rail.
+1. Connect the switch's bottom pin to the ground rail.
 1. Place the LED back on the breadboard across two empty rows, then do the following:
     1. Connect the anode to `GPIO1` using a jumper wire from the breadboard to the Expansion Dock.
     1. Connect the cathode to one end of the 200Ω resistor.
@@ -122,6 +120,8 @@ Let's make a new file called `STK04-readSwitch.py` to hold our code. This progra
 import onionGpio
 import time
 
+sleepTime = 2 # sleep for 2 seconds
+
 # set which GPIOs will be used
 switchPin     = 0      # use GPIO0
 ledPin        = 1      # use GPIO1
@@ -137,10 +137,10 @@ led.setOutputDirection(0)                # led pin is an output
 
 # periodically check the switch and turn the LED on or off
 while 1:
-	switchValue = switch.getValue()     # read the switch's value
-	led.setValue(switchValue)           # turn the LED on/off depending on the switch
+    switchValue = switch.getValue()     # read the switch's value
+    led.setValue(switchValue)           # turn the LED on/off depending on the switch
 
-	time.sleep(2)                          # sleep for 2 seconds
+    time.sleep(2)                          # sleep
 ```
 
 Let's run the code:
@@ -152,21 +152,20 @@ Now try flipping the switch on and off. What happens?
 
 ### What to Expect
 
-This circuit does pretty much the same thing as the first circuit, albeit with a much slower reaction to the switch input. This demostrates a physical input affecting something virtual (like our script); the virtual entity can interpret the signal then proceed to act on the physical world or interact with other virtual entities.
+This circuit works the same way as the first circuit, albeit with a much slower reaction to the switch input. This demonstrates a physical input affecting something virtual (like our script); the virtual entity can interpret the signal then proceed to act on the physical world or interact with other virtual entities.
 
 
 ### A Closer Look at the Code
 
-In this experiment, we continuously read a sensor (our switch) to update the LED as soon as we detect the corresponding change from the sensor. This is the most classic way of digitally controlling a device - most commonly known as **polling**.
-
+In this experiment, we continuously and repeatedly check the value of a sensor (our switch) then update the signal sent to the LED. This repeated checking is a classic way of reading a device and is called **polling**.
 
 #### Polling
 
 Polling is the process of repeatedly checking an input.
 
-When flipping the switch, you may have noticed a delay of 2 seconds before the LED reacted. This delay was added so that the CPU has some time to rest between every check on the LED. We will needlessly tax the CPU by constantly checking the same thing - remember that it runs really fast!
+When flipping the switch, you may have noticed a delay of 2 seconds before the LED reacted. This delay was added so that the CPU has some time to rest between every check on the LED. Every time the program checks the switch, it puts a small load on the CPU - remember that it runs really fast, and doing many checks very often will waste CPU power that could be used for other system processes!
 
-The delay length is set by the `time.sleep(2)` line. Try changing the number to something shorter, like 0.5 or 0.1, and seeing what happens.
+The delay length is set by the `time.sleep(sleepTime)` line. Try changing the `sleepTime` variable at the top to something shorter, like 0.5 or 0.1, and seeing what happens.
 
 Polling is not without its issues:
 
@@ -175,4 +174,5 @@ Polling is not without its issues:
 
 If only there were a better way of doing this!
 
-<!-- TODO: lead-in for 05 -->
+<!-- TODO: FUTURE: link to reading push button; edge detection is not ready yet -->
+Next we'll learn how to [use a shift register](#starter-kit-using-shift-register).

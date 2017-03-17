@@ -124,3 +124,5 @@ The system call to `fast-gpio` is powerful, but it has a lot of variable placeho
 By doing this we make it really easy to reuse for other pins, frequencies, and duty cycle values. 
 
 Whenever you have problems that require identical commands to solve, it's good practice to write your commands once in single functions that can be called wherever they are needed.
+
+Next we'll learn how to [read a switch](#starter-kit-reading-switch).

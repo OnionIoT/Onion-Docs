@@ -262,15 +262,13 @@ In order to keep things simple, we will be creating module files in the same dir
 
 <!-- // DONE: mention how we've used the onionGpio class before, now we're going one step further and creating our own class -->
 
-Classes are a way to create a template for creating objects in our code. So far, we've been using the `onionGpio` class that we at Onion made to make your development experience easier. This class includes clean, easy-to-use functions such as `setValue()` that hide away boring and time-consuming system calls from you, the up-and-coming programmer who wants to get to the fun stuff!
+As a refresher, classes are a way to create a template for creating reusable objects in our code. So far, we've been using the `onionGpio` class that we at Onion made to make your development experience easier. This class includes clean, easy-to-use functions such as `setValue()` that hide away boring and time-consuming system calls from you, the up-and-coming programmer who wants to get to the fun stuff!
 
-Here, we've gone one step further by creating our own class called `shiftRegister` that also uses the `onionGpio` class in order to create our shift register objects. This is because in this case, we're more interested in **the data** we send to the shift register than controlling the shift register's GPIOs!
+Here, we've gone one step further by creating our own class called `shiftRegister` that also uses the `onionGpio` class in order to create our shift register objects. This is because in this case, we're more interested in the **data** we send to the shift register than controlling the shift register's GPIOs!
 
-An **object** is a set of data created from the class blueprint with its own unique properties. For example, a class blueprint for a "four sided polygon" can be used to create objects such as a "square" or a "rectangle". Creating an object from a class is called **instantiation**, and objects created from a class are called **instances**.
+If we wanted to connect another shift register to our circuit, we can control it as easily as the first by creating another `shiftRegister` object.
 
-The class we created is a code template that represents having a shift register on our circuit. If we wanted to connect another shift register to our circuit, we can control it as easily as the first by creating another `shiftRegister` object.
-
-After creating our class object, we get access to the functions defined by the class. We can call these functions through our instantiated object like in this example:
+After creating an object, we get access to the functions defined by the object's class. We can call these functions through our instantiated object like in this example:
 
 ``` python
 shiftRegister.outputBits(bytestring)

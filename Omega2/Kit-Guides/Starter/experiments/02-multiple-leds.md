@@ -174,3 +174,5 @@ In our code, we use the for loop to interact with the list object by object, thi
 The very last `for` loop in the program will use the GPIO objects to turn the LEDs on or off to create our animation. It will iterate through all of GPIO class objects in the `gpioObjects` list and use them to set the associated GPIO to the value in the `ledValue` variable. The first time through it will turn our LEDs on one by one: it will first set GPIO0 to `ledValue` (which was initialized to 1), and then GPIO1, then GPIO2, GPIO3, GPIO18, and finally, GPIO19. The half second delay was added so the animation is actually visible by the human eye.
 
 Similar to the previous experiment, the code that changes the LED states is in an infinite loop, so once the for loop is completed, the `ledValue` variable will be changed to hold the opposite value, and the for loop will be repeated, this time turning the LEDs off one by one. This cycle will continue, turning the LEDs on, and then off until the program is terminated.
+
+Next we'll learn how to [fade an LED](#starter-kit-fading-led).
