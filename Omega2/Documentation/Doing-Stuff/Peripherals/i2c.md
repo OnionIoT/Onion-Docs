@@ -148,7 +148,7 @@ Install the following packages on your Omega2:
 
 ```bash
 opkg update
-opkg install git git-http python-light pyOnionI2C
+opkg install git git-http python pyOnionI2C
 ```
 
 Next, download David's library for the LCD display:
@@ -177,17 +177,38 @@ Navigate to the `src` directory:
 cd fireonion_i2c_lcd/src
 ```
 
-Run the command:
+To use library you can use command line parameters:
 
+Input
 ```bash
-python lcd.py
+python lcd.py --help
+```
+Output
+```bash
+Usage: lcd.py [options]
+
+Options:
+-h, --help show this help message and exit
+-a ADDRESS, --address=ADDRESS
+I2C Adress
+-p, --persistent -p = do not clear display before new write
+--line1=LINE1 text to line 1
+--line2=LINE2 text to line 2
+--line3=LINE3 text to line 3
+--line4=LINE4 text to line 4
+--backlight-off Turn off backlight
+```
+
+Example
+```bash
+root@Omega-1CD7:~/fires-fireonion_i2c_lcd/src# python lcd.py -a 0x3f --line1="Onion LCD LIB" --line2="--davidstein.cz--"
 ```
 
 Now you should see sample text on your LCD. You can edit `lcd.py` to change the displayed text. You can also import the whole library into your own Python project!
 
 ![i2c-lcd](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-python-lcd-output.jpg)
 
-For more details, see [David's blog post](http://davidstein.cz/2016/03/13/onion-io-i2c-lcd-16x220x4-backpack-library/).
+For more details, see [David's blog post](http://davidstein.cz/onion-omega-firei2clcd-lib/).
 
 #### I2C using C & C++
 
