@@ -69,9 +69,15 @@ Once you have the temperature sensor circuit up and ready, connect the pins from
 
 Note that this time, we're using the 5V pin instead of the 3.3V source that we've been using previously. This is because the display requires a higher voltage to run.
 
-All done! If everything goes well, it should look something like this:
+All done! If everything is connected properly, the LCD should light up with a bright green background and a row of black boxes on the top row. If it doesn't light up, check that the jumper on the back of the LCD is firmly connected to the `LED` pins hanging off the side.
+
+Your setup should look something like this:
 
 <!-- TODO: IMAGE assembled circuit -->
+
+If the display lights up but you can't see any black boxes, you may need to adjust the contrast on the display. There is a small grey screw on the back; use a Philips screwdriver to turn it and adjust it so that the boxes appear. This will define how clear the text will be on the display.
+
+<!-- TODO: IMAGE contrast adjustment screw -->
 
 ### Writing the Code
 
@@ -227,7 +233,7 @@ class Lcd:
 
 Now let's write the main routine for the experiment. This script will create an `Lcd` object, and a `TemperatureSensor` object. It gets the sensor data from the `TemperatureSensor`, then sends that data to the `Lcd` object to display. It does this once and exactly once, so you can call it whenever for a quick update.
 
-Create a file called `STK09-temperatureLCD.py` and paste the code below into it. Copy the file to `/root` on your Omega, run it with Python, and you should get a reading!
+Create a file called `STK09-temperatureLCD.py` and paste the code below into it.
 
 ``` python
 import datetime
@@ -279,6 +285,13 @@ def __main__():
 
 if __name__ == '__main__':
     __main__()
+```
+
+If you haven't already, you may need to install the Onion I2C module. Run the following:
+
+```
+opkg update
+opkg install pyOnionI2C
 ```
 
 ### What to Expect
