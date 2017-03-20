@@ -78,7 +78,7 @@ import time
 sleepTime = 0.5                 # specify sleep duration
 
 ## create and populate a list to hold the GPIO pin numbers that control the LEDs
-gpioPins = [0, 1, 6, 7, 8, 9]
+gpioPins = [0, 1, 2, 3, 18, 19]
 ## create an empty list that will hold the GPIO objects to control the LEDs
 gpioObjects = []
 
@@ -128,7 +128,7 @@ This program looks pretty different from the code in the first experiment, but i
 
 #### Lists
 
-The very first line of code after importing the modules is new to us: it's creating a **list**. 
+The very first line of code after importing the modules is new to us: it's creating a **list**.
 
 ```{r child = '../../shared/lists.md'}
 ```
@@ -143,7 +143,7 @@ The `gpioObjects` list is a little different; we use it to hold six GPIO objects
 A `for` loop is used when you have code that needs to be repeated a known number of times. To loop, or **iterate** through items in a list, the generic syntax looks like this:
 
 ``` python
-for element in aList:                  # a statement defining how many times to repeat (or a list to iterate through) 
+for element in aList:                  # a statement defining how many times to repeat (or a list to iterate through)
     # code to run using each element in aList
 ```
 
