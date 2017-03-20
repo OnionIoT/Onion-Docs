@@ -139,7 +139,6 @@ class SevenSegment:
         self.digitPin[d-1].setValue(0)
         self.shiftReg.outputBits(SevenSegment.digitMap[character])
         self.digitPin[d-1].setValue(1)
-        self.digitPin[d-1].setValue(0)
 
 
     def clear(self):
@@ -226,6 +225,29 @@ python STK07-seven-seg-display.py YOURHEXNUMBERHERE
 ```
 
 This numbering system is known as **hexadecimal** or base 16, where each digit can have a value from 0 - 15; the numbers 10 to 15 are represented by the letters A to F respectively. This is different from our everyday decimal (base 10) system where each digit can have a value from 0-9. Hexadecimal ("hex" for short) is very useful in expressing binary numbers with few digits. For example, the eight-digit binary number `0b11000000` (192 in decimal) can be expressed in two digits in hex as `0xC0`!
+
+#### Freeing Up GPIOs {#starter-kit-seven-segment-display-freeing-up-gpios}
+
+If you try to run the script and experience an error that looks like this:
+
+```
+IOError: [Errno 16] Resource busy
+```
+
+then you may have to free the GPIOs for use back into the filesystem. Create a file called `freeShiftRegGpios.sh` and paste the following in it:
+
+``` sh
+echo 1 >/sys/class/gpio/unexport
+echo 2 >/sys/class/gpio/unexport 
+echo 3 >/sys/class/gpio/unexport 
+
+echo 11 >/sys/class/gpio/unexport
+echo 18 >/sys/class/gpio/unexport 
+echo 19 >/sys/class/gpio/unexport
+echo 0 >/sys/class/gpio/unexport 
+```
+
+This **unexports** the GPIOs, making them available for use by other programs.
 
 ### What to Expect
 
