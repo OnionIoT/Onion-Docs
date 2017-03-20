@@ -66,10 +66,8 @@ There are several wiring connections you'll need to hook up, so we'll go through
 
 ##### Connecting your Shift Register
 
-1. Make sure the little "indent" on the chip is pointing towards the top of the breadboard.
-1. Plug in the chip at the top of the breadboard across the gap so that the pins sit in rows 1 through 8.
-1. Connect `Vcc` (pin 16) and `SRCLR` (pin 10) to the `+` (Vcc) rail.
-1. Connect `GND` (pin 8) and <span style="text-decoration: overline;">`OE`</span> (pin 13) to the `-`  (ground) rail.
+```{r child = '../../shared/shift-register-wiring-instructions.md'}
+```
 
 <!-- TODO: IMAGE picture of this stage -->
 
@@ -81,14 +79,14 @@ There are several wiring connections you'll need to hook up, so we'll go through
 
 | Pin Name | Pin # | LED # |
 |-|-|-|
-| QA | 15 | 1 |
-| QB | 1  | 2 |
-| QC | 2  | 3 |
-| QD | 3  | 4 |
-| QE | 4  | 5 |
-| QF | 5  | 6 |
-| QG | 6  | 7 |
-| QH | 7  | 8 |
+| QA | 15 | 8 |
+| QB | 1  | 7 |
+| QC | 2  | 6 |
+| QD | 3  | 5 |
+| QE | 4  | 4 |
+| QF | 5  | 3 |
+| QG | 6  | 2 |
+| QH | 7  | 1 |
 
 The wire for QA starts on the right side of the chip and goes to the 1st LED, while the wires for the other 7 start on the left side and should go straight down the breadboard. 
 
@@ -120,52 +118,54 @@ Our code will be split into two files; one for our main program, and one for our
 import onionGpio
 
 class shiftRegister:
-	#Initializes the GPIO objects based on the pin numbers
-	def __init__(self, dataPin, serialClock, registerClock):
-		self.ser = onionGpio.OnionGpio(dataPin)
-		self.srclk = onionGpio.OnionGpio(serialClock)
-		self.rclk = onionGpio.OnionGpio(registerClock)
+    #Initializes the GPIO objects based on the pin numbers
+    def __init__(self, dataPin, serialClock, registerClock):
+        self.ser = onionGpio.OnionGpio(dataPin)
+        self.srclk = onionGpio.OnionGpio(serialClock)
+        self.rclk = onionGpio.OnionGpio(registerClock)
         self.setup()
 
-	#Pulses the latchpin
-	def latch(self):
-		self.rclk.setValue(1)
-		self.rclk.setValue(0)
+    #Pulses the latchpin
+    def latch(self):
+        self.rclk.setValue(1)
+        self.rclk.setValue(0)
 
-	# Pulses the Serial Clock 8 times in and then latches to clear all the LEDs
-	def clear(self):
-		self.ser.setValue(0)
-		for x in range(0, 8): #Clears out all the values currently in the register
-			self.srclk.setValue(1)
-			self.srclk.setValue(0)
-		self.latch()
+    # Pulses the Serial Clock 8 times in and then latches to clear all the LEDs
+    def clear(self):
+        self.ser.setValue(0)
+        for x in range(0, 8): #Clears out all the values currently in the register
+            self.srclk.setValue(1)
+            self.srclk.setValue(0)
+        self.latch()
 
-	#Sets the GPIOs to output with an initial value of zero
-	def setup(self):
-		self.ser.setOutputDirection(0)
-		self.srclk.setOutputDirection(0)
-		self.rclk.setOutputDirection(0)
+    #Sets the GPIOs to output with an initial value of zero
+    def setup(self):
+        self.ser.setOutputDirection(0)
+        self.srclk.setOutputDirection(0)
+        self.rclk.setOutputDirection(0)
 
-		self.clear()
+        self.clear()
 
-	#Sets the serial pin to the correct value and then pulses the serial clock to shift it in
-	def inputBit(self, inputValue):
-		self.ser.setValue(inputValue)
-		self.srclk.setValue(1)
-		self.srclk.setValue(0)
+    #Sets the serial pin to the correct value and then pulses the serial clock to shift it in
+    def inputBit(self, inputValue):
+        self.ser.setValue(inputValue)
+        self.srclk.setValue(1)
+        self.srclk.setValue(0)
 
-	#Splits the input values into individual values and inputs them. The pulses the latch pin to show the output.
-	def outputBits(self, inputValues):
-		mylist = list(inputValues) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
-		for x in mylist:
-			x = int(x) # Transforms the character back into an int ("1" -> 1)
-			self.inputBit(x)
-		self.latch()
+    #Splits the input values into individual values and inputs them. The pulses the latch pin to show the output.
+    def outputBits(self, inputValues):
+        mylist = list(inputValues) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
+        for x in mylist:
+            x = int(x) # Transforms the character back into an int ("1" -> 1)
+            self.inputBit(x)
+        self.latch()
 ```
 
 This file contains a single class that allows us to use and reuse it wherever we like. The main component here is the `__init__` function which initializes the class object.
 
 Now let's write the main script. Create a file in the same directory called `STK06-using-shift-register.py` and paste the following code in it:
+
+<!-- TODO: this code doesn't actually work, it lights up one LED then shifts the light in one direction. Then it goes blank for a while then repeats again from the top -->
 
 ``` python
 from registerClass import shiftRegister
@@ -190,22 +190,22 @@ interrupted = False
 
 while True:
     # this animation has 12 different frames, so we'll loop through each one
-	for x in range(0, 12):
+    for x in range(0, 12):
         # we need to transform the binary value into a string only when sending it to the shift register
-		bytestring = format(value, '08b')
-		shiftRegister.outputBits(bytestring)
-		# now we are free to manipulate the binary number using bitshifts
+        bytestring = format(value, '08b')
+        shiftRegister.outputBits(bytestring)
+        # now we are free to manipulate the binary number using bitshifts
 
         # if in the first half (6 frames) of the animation, move the LEDs to the right
         if x < 6:
-			value >>= 1 # Shifts all digits right by one (11000000 -> 01100000)
-		# else we must be in the second half, so move the LEDs to the left
+            value >>= 1 # Shifts all digits right by one (11000000 -> 01100000)
+        # else we must be in the second half, so move the LEDs to the left
         else:
-			value <<= 1 # Shifts all digits left by one (01100000 -> 11000000)
-	# interrupt (Ctrl-C) handler
+            value <<= 1 # Shifts all digits left by one (01100000 -> 11000000)
+    # interrupt (Ctrl-C) handler
     if interrupted:
-		shiftRegister.clear() # turn off the LEDs
-		break
+        shiftRegister.clear() # turn off the LEDs
+        break
 ```
 
 The main program loads the class we wrote and creates a `shiftRegister` object. We then use that object to control our LEDs through the shift register.
@@ -262,15 +262,13 @@ In order to keep things simple, we will be creating module files in the same dir
 
 <!-- // DONE: mention how we've used the onionGpio class before, now we're going one step further and creating our own class -->
 
-Classes are a way to create a template for creating objects in our code. So far, we've been using the `onionGpio` class that we at Onion made to make your development experience easier. This class includes clean, easy-to-use functions such as `setValue()` that hide away boring and time-consuming system calls from you, the up-and-coming programmer who wants to get to the fun stuff!
+As a refresher, classes are a way to create a template for creating reusable objects in our code. So far, we've been using the `onionGpio` class that we at Onion made to make your development experience easier. This class includes clean, easy-to-use functions such as `setValue()` that hide away boring and time-consuming system calls from you, the up-and-coming programmer who wants to get to the fun stuff!
 
-Here, we've gone one step further by creating our own class called `shiftRegister` that also uses the `onionGpio` class in order to create our shift register objects. This is because in this case, we're more interested in **the data** we send to the shift register than controlling the shift register's GPIOs!
+Here, we've gone one step further by creating our own class called `shiftRegister` that also uses the `onionGpio` class in order to create our shift register objects. This is because in this case, we're more interested in the **data** we send to the shift register than controlling the shift register's GPIOs!
 
-An **object** is a set of data created from the class blueprint with its own unique properties. For example, a class blueprint for a "four sided polygon" can be used to create objects such as a "square" or a "rectangle". Creating an object from a class is called **instantiation**, and objects created from a class are called **instances**.
+If we wanted to connect another shift register to our circuit, we can control it as easily as the first by creating another `shiftRegister` object.
 
-The class we created is a code template that represents having a shift register on our circuit. If we wanted to connect another shift register to our circuit, we can control it as easily as the first by creating another `shiftRegister` object.
-
-After creating our class object, we get access to the functions defined by the class. We can call these functions through our instantiated object like in this example:
+After creating an object, we get access to the functions defined by the object's class. We can call these functions through our instantiated object like in this example:
 
 ``` python
 shiftRegister.outputBits(bytestring)

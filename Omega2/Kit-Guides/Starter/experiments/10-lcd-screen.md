@@ -236,7 +236,7 @@ import oneWire
 from temperatureSensor import TemperatureSensor
 
 # default address of i2c backpack is 0x3f by default
-lcdAddress = 0x3f                                       
+lcdAddress = 0x3f  
 
 # setup one wire temperature sensor object
 oneWireGpio = 19 # set the GPIO that we've connected the sensor to
@@ -262,7 +262,7 @@ def getTemp():
 def displayTemp(temp):
     # setup LCD
     lcd = lcdDriver.Lcd(lcdAddress)
-    lcd.backlightOn()    
+    lcd.backlightOn()
 
     time = datetime.today()
 
@@ -317,7 +317,7 @@ It's much easier to think about getting a reading from your `sensor` object, the
 
 ### Going Further: Automating the Script
 
-<!-- TODO: has this been tested? last time I did it using the omega1 instructions and it didn't work (Gabe) 
+<!-- DONE: has this been tested? last time I did it using the omega1 instructions and it didn't work (Gabe) 
 
 May have worked differently on the omega1? The current iteration of instructions works on Omega2 firmware 149. It will successfully call a properly written shell script on the minute, every minute. If you're testing with `echo`, note that it dumps into /dev/null or some other black hole, pipe it into a file to see it working properly. (James)
 -->
@@ -327,7 +327,7 @@ We can use the `cron` Linux utility to automatically run the script once every m
 
 First, create a file in `/root` called `checkTempSensor.sh` and write the following in it:
 
-```
+``` sh
 ##!/bin/sh -e
 /usr/bin/python /root/temperatureLCD.py
 ```

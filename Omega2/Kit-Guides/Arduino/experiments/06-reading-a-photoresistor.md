@@ -38,7 +38,7 @@ Once you have the components ready, follow these steps:
 
 1. Connect one end of the photoresistor to `5V` and the other end to the 10K resistor (the polarity does not matter).
 1. Connect the other end of the 10K resistor to `GND`.
-1. Connect the middle point between the photoresistor and resistor to the A0 analog pin on the Arduino Dock
+1. Connect the middle point between the photoresistor and resistor to the A0 analog pin on the Arduino Dock.
 
 All done! Here's what our finished circuit looks like:
 

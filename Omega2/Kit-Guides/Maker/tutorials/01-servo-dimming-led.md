@@ -204,7 +204,11 @@ Additionally, this code has a lot of mathematical operators, if you're confused,
 
 // TODO: bask in your glory, this paragraph is great!
 
-As a refresher, in Object Oriented Programming, classes are essentially blueprints or an abstraction. An **object** is a set of data created from the class blueprint with its own unique properties. For example, a class blueprint for a "four sided polygon" can be used to create objects such as a "square" or a "rectangle". Creating an object from a class is called **instantiation**, and objects created from a class are called **instances**.
+As a refresher, Python is an **Object Oriented** programming language.
+
+<!-- Classes and Objects -->
+```{r child = '../../shared/classes-and-objects.md'}
+```
 
 <!-- DONE: link properly to shift register article when lazar's finished -->
 

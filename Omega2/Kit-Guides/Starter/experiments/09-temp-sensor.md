@@ -15,7 +15,7 @@ order: 9
 
 Let's now learn about and use the **1-Wire bus protocol** to read the ambient temperature using a temperature sensor. To do that, we'll first build a circuit using the 1-Wire temperature sensor. After it's built, we'll control this circuit with a script.
 
-<!-- // TODO: need a section on 1-Wire & the Omega, describing how the Omega needs to register a 1w bus master in order to be able to communicate with the 1w sensor,
+<!-- // DONE: need a section on 1-Wire & the Omega, describing how the Omega needs to register a 1w bus master in order to be able to communicate with the 1w sensor,
 //  see the docs https://docs.onion.io/omega2-docs/communicating-with-1w-devices.html#the-omega-one-wire for an example but do not just copy the text, adapt it to this article and the beginner audience, also avoid all mentions of I2C, SPI, UART, etc -->
 
 <!-- one wire -->
@@ -116,7 +116,7 @@ def checkSlaves():
         slaveCount = slaveCountFile.read().split("\n")[0]
 
     if slaveCount == "0":
-        # slaves not detected by kernel               
+        # slaves not detected by kernel
         return False
     return True
     
@@ -244,7 +244,7 @@ import oneWire
 oneWireGpio = 19 # set the sensor GPIO
 pollingInterval = 1 # seconds
 
-def main():
+def __main__():
     # check if 1-Wire is setup in the kernel
     if not oneWire.setupOneWire(str(oneWireGpio)):
         print "Kernel module could not be inserted. Please reboot and try again."
@@ -264,14 +264,14 @@ def main():
     print "T = " + str(value) + " C"
 
 if __name__ == '__main__':
-    main()
+    __main__()
 ```
 
 Run the `STK08-temp-sensor.py` script and watch the terminal for output.
 
 ### What to Expect
 
-You should see the Omega printing the temperature in degrees Celsius measured by the sensor once every second. Try pinching the sensor with your fingers and seeing how it reacts!
+You should see the Omega printing the temperature in degrees Celsius measured by the sensor once every second. Try pinching the sensor with your fingers and seeing what happens!
 
 <!-- // TODO: IMAGE include a screenshort of the printout, or a gif or something -->
 
@@ -351,14 +351,14 @@ What if there's some important functions that you want to run by executing the m
 
 Enter the `__name__` variable!
 
-Loosely speaking, every file in Python has a hidden `__name__` variable. When the file is imported, the value of `__name__` is set to the name of the module. For example if you're file is called `file.py`, `__name__` will be `'file'`. However if the file is run by calling `python file.py`, Python will set the `__name__` variable to `'__main__'`.
+Loosely speaking, every file in Python has a hidden `__name__` variable. When the file is imported, the value of `__name__` is set to the name of the module. For example if your file is called `file.py`, `__name__` will be `'file'`. However if the file is run by calling `python file.py`, Python will set the `__name__` variable to `'__main__'`.
 
-Using this behaviour we can make sure importing a module is silent, while any code we want executed when we run the file will still be executed. We do this by sticking whatever code we wish to execute by running the file in a function, and checking the `__name__` variable to decide whether to call that function or not.
+Using this behaviour we can make sure importing a module is silent, while any code we want executed when we run the file will still be executed. We do this by placing whatever code we wish to execute by running the file in a function, and checking the `__name__` variable to decide whether to call that function or not.
 
-You can see this happening in two places in our code. First we define the `main()` function, and put all the code we would like to be run inside it:
+You can see this happening in two places in our code. First we define the `__main__()` function, and put all the code we would like to be run inside it:
 
 ``` python
-def main():
+def __main__():
 	# reading and writing to the sensor
 ```
 

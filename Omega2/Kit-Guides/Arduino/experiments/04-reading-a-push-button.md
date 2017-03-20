@@ -66,9 +66,9 @@ Prepare the following components from your kit:
 <!-- // TODO: photo of button and debouncer circuit with LEDs only LINK ABOVE IS NOT FINAL -->
 
 
-1. Connect the LEDS and resistors the same way as in the [multiple LED tutorial](#arduino-kit-02-multiple-leds).
+1. Connect the LEDs and resistors the same way as in the [multiple LED tutorial](#arduino-kit-02-multiple-leds).
     * Plug in six LEDs onto the breadboard, each across the middle channel of the breadboard.
-    * Connect cathodes of the LEDs to the  rail on the breadboard each through a different 200Ω current limiting resistor.
+    * Connect cathodes of the LEDs to the rail on the breadboard each through a different 200Ω current limiting resistor.
 1. Plug the push button onto the breadboard with the channel on the bottom of the button perpendicular to the channel on the breadboard. The circuit looks something like this:
 
 Now let's connect the circuit to the Dock:
