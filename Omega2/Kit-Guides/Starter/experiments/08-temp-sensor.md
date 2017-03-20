@@ -74,8 +74,8 @@ Create a file called `oneWire.py` and paste the following code in it:
 
 ``` python
 import os
-from subprocess import call
-from time import sleep
+import subprocess
+import time
 
 setupDelay = 3
 oneWireDir = "/sys/devices/w1_bus_master1"
@@ -88,7 +88,7 @@ paths = {
 # it's also called a "module", but it's actually software for the Omega's firmware!
 def insertKernelModule(gpio):
     argBus = "bus0=0," + gpio + ",0"
-    call(["insmod", "w1-gpio-custom", argBus])
+    subprocess.call(["insmod", "w1-gpio-custom", argBus])
 
 # check the filesystem to see if 1-Wire is properly setup
 def checkFilesystem():
@@ -105,7 +105,7 @@ def setupOneWire(gpio):
         # tries to insert the module if it's not setup
         insertKernelModule(gpio)
         # wait for a bit, then check again
-        sleep(setupDelay)
+        time.sleep(setupDelay)
     else:
         # could not set up 1-Wire on the gpio
         return False
@@ -237,6 +237,7 @@ Now let's write the script for the main routine. Create a file called `STK08-tem
 
 ``` python
 # import modules and classes
+import time
 from temperatureSensor import TemperatureSensor
 import oneWire
 
@@ -258,26 +259,50 @@ def __main__():
     if not sensor.ready:
         print "Sensor was not set up correctly. Please make sure that your sensor is firmly connected to the GPIO specified above and try again."
         return -1
-
-    # check and print the temperature
-    value = sensor.readValue()
-    print "T = " + str(value) + " C"
-
+    while 1:
+        # check and print the temperature
+        value = sensor.readValue()
+        print "T = " + str(value) + " C"
+        time.sleep(pollingInterval)
+        
 if __name__ == '__main__':
     __main__()
 ```
 
-Run the `STK08-temp-sensor.py` script and watch the terminal for output.
+If you just did the Seven Segment experiment, you may need to free up your GPIOs in the filesystem. Run the [unexport commands](#starter-kit-seven-segment-display-freeing-up-gpios) outlined in the previous experiment before continuing.
+
+Now run the `STK08-temp-sensor.py` script and watch the terminal for output.
 
 ### What to Expect
 
 You should see the Omega printing the temperature in degrees Celsius measured by the sensor once every second. Try pinching the sensor with your fingers and seeing what happens!
 
-<!-- // TODO: IMAGE include a screenshort of the printout, or a gif or something -->
+Your output should look something like this:
+
+```
+root@Omega-F119:~# python STK08-temp-sensor.py 
+T = 25.187 C
+T = 25.187 C
+T = 25.187 C
+T = 25.562 C        # pinching the sensor here!
+T = 27.25 C
+T = 28.75 C
+T = 29.562 C
+T = 30.187 C
+T = 30.562 C
+T = 30.812 C
+T = 31.062 C
+T = 31.187 C
+T = 31.375 C
+T = 31.937 C
+T = 32.312 C
+T = 32.562 C
+T = 32.625 C
+```
 
 ### A Closer Look at the Code
 
-Here we control a **1-Wire device through the Omega's filesystem** by reading and writing files. We also introduced the concept of **scanning a bus** for devices and device addresses. We'll also explain a bit about the `__name__ == '__main__'` business - what it does, and when should you use it.
+Here we control a **1-Wire device through the Omega's filesystem** by reading and writing files. We also introduce the concept of **scanning a bus** for devices and device addresses. We'll also explain the `__name__ == '__main__'` concept - what it does, and when should you use it.
 
 #### Hardware and the Omega's Filesystem
 
@@ -302,7 +327,7 @@ Hardware connected to the Omega's ports are represented by 'virtual' files in th
 Our 1-Wire connection is first initialized as a file through this line in `oneWire.py`:
 
 ```python
-call(["insmod", "w1-gpio-custom", argBus])
+subprocess.call(["insmod", "w1-gpio-custom", argBus])
 ```
 
 This calls a system command (`insmod`) to set a specific GPIO to act as a 1-Wire master bus. The command sets up the specified GPIO as a virtual file that we can then read and write to as a 1-Wire interface - `/sys/devices/w1_bus_master1`.
