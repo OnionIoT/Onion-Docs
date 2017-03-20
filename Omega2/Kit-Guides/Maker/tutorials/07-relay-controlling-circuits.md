@@ -23,24 +23,24 @@ In this tutorial, we'll use a switch with the Omega Relay expansion to turn a bu
 // this is useful since it allows the Omega to control other, larger, more powerful circuits
 //  expand along those lines, maybe throw in the max specs of the relays, hint that you can control house-hold appliances -->
 
-// TODO: the Omega runs on 3.3V, the Docks run on 5V and regulate down to 3.3V for the Omega, where did the 12V thing come from?
+<!-- // DONE: the Omega runs on 3.3V, the Docks run on 5V and regulate down to 3.3V for the Omega, where did the 12V thing come from? -->
 
-Omega boards and components are not designed to handle much more than 5V circuit and 12V supply. Attempting to directly control 120V appliances like lights, heaters, garage doors will almost certainly fry your Omega. So how can you control every day things with your Omega?
+The Omega is designed to handle around 3.3V and the Docks up to 5V. Attempting to directly control 120V appliances like lights, kettles, garage doors will almost certainly fry your Omega. So how can you automate these household appliances with your Omega?
 
-Enter the **relay**! A relay is a mechanical switch that is triggered electronically. This physically separates the circuit that triggers the switch and the circuit that the switch actually switches. The relay expansion is designed to isolate the Omega and the dock from high power circuits while still allowing them to be controlled by the Omega.
+Enter the **Relay Expansion**! A relay is a mechanical switch that is triggered electronically. This physically separates the circuit that switches and the circuit that the switch controls. The Relay Expansion is designed to isolate the Omega and the dock (the switching circuit) from the controlled circuits. Turning your lights on and off, 
 
-// TODO: This last sentence should be more along the lines of:
-//	The relay expansion is designed to isolate the switching circuit, in this case the Omega and Dock, from the load circuit. Allowing low power devices like the Omega to control high power circuits.
-// start from there and expand a little, make it sound nice
+<!-- // DONE: This last sentence should be more along the lines of: -->
+<!-- //	The relay expansion is designed to isolate the switching circuit, in this case the Omega and Dock, from the load circuit. Allowing low power devices like the Omega to control high power circuits. -->
+<!-- // start from there and expand a little, make it sound nice -->
 
 
 ### Safety warning
-// TODO: can modify or replace this warning with the one from our store (should keep same friendly tone - don't fear-monger, just make people informed that electricity is dangerous and can cause injury and damage
 
-The Relay Expansion allows you to switch power sources of a **much higher voltage** than the board - and possibly your body - is able to handle. This experiment is designed to be very safe. However for future, we urge you to read up the specifications of the [Relay Expansion](#relay-expansion) in our hardware overview documentation to understand the capabilities and limits of the Relay Expansion.
+<!-- // DONE: can modify or replace this warning with the one from our store (should keep same friendly tone - don't fear-monger, just make people informed that electricity is dangerous and can cause injury and damage -->
 
-// TODO: there's a better way to say this!
-**We at Onion cannot accept any responsibility for any damages caused by improper use of the Relay Expansion.**
+The Relay Expansion allows you to switch very high powered circuits. This experiment doesn't involve any high voltage circuits, but if you wish to go beyond what we'll learn here, we urge you to read up the specifications of the [Relay Expansion](#relay-expansion). Improper preparation such as insufficient insulation, wiring errors, or using wire not rated for your application could result in serious damage not limited to injury or fire. **We at Onion cannot accept any responsibility for any damages caused by improper use of the Relay Expansion.**
+
+<!-- // DONE: there's a better way to say this! -->
 
 
 ### The Relay Expansion
