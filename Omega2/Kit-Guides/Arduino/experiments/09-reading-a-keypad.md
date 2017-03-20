@@ -79,7 +79,7 @@ To use the library we need to add the following line at the top of our code:
 
 <!-- // DONE: verify this code works -->
 
-```c++
+```c
 // include the Keypad library
 #include <Keypad.h>
 

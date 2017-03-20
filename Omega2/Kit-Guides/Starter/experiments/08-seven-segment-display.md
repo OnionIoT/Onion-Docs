@@ -105,40 +105,41 @@ class SevenSegment:
     # class attribute
     # dictionary mapping each alphanumeric character to the bytestring that should be sent to the shift register
     digitMap = {
-    "0": "00111111",
-    "1": "00000110",
-    "2": "01011011",
-    "3": "01001111",
-    "4": "01100110",
-    "5": "01101101",
-    "6": "01111101",
-    "7": "00000111",
-    "8": "01111111",
-    "9": "01101111",
-    "a": "01110111",
-    "b": "01111100",
-    "c": "10011100",
-    "d": "01111010",
-    "e": "10011110",
-    "f": "10001110",
-    "off": "00000000",
-    "-": "01000000"
+        "0": "11111100",
+        "1": "01100000",
+        "2": "11011010",
+        "3": "11110010",
+        "4": "01100110",
+        "5": "10110110",
+        "6": "10111110",
+        "7": "11100000",
+        "8": "11111110",
+        "9": "11110110",
+        "a": "11101110",
+        "b": "00111110",
+        "c": "10011100",
+        "d": "01111010",
+        "e": "10011110",
+        "f": "10001110",
+        "off": "00000000",
+        "-": "00000010"
     }
 
     #Initializes the GPIO objects based on the pin numbers
-    def __init__(self, dPin):
+    def __init__(self, pinList):
         self.shiftReg = registerClass.shiftRegister(1,2,3)
         self.digitPin = []
         
         for i in range (0,4):
-            self.digitPin[i] = onionGpio.OnionGpio(dPin[i])
+            self.digitPin.append(onionGpio.OnionGpio(pinList[i]))
             self.digitPin[i].setOutputDirection(1)
 
 
     def showDigit(self, d, character):
-        self.digitPin[d].setValue(0)
+        self.digitPin[d-1].setValue(0)
         self.shiftReg.outputBits(SevenSegment.digitMap[character])
-        self.digitPin[d].setValue(1)
+        self.digitPin[d-1].setValue(1)
+        self.digitPin[d-1].setValue(0)
 
 
     def clear(self):
@@ -218,12 +219,10 @@ The for loop here is doing something really neat with only one line of code:
 
 We then cycle through all of the digits and repeat the steps above for each one. 
 
-To see it in action, make sure you have `registerClass.py`, `sevenSegDisplay.py` and `STK07-seven-seg-display.py` in your `/root/` directory.
-
 Let's choose a hexadecimal number to display on the 7-seg. Come up with a string that looks like this: `0x12ab`, where the four digits **12ab** can be any number from 0 to 9 OR a letter from A to F. Then run the following command in the terminal, replacing `YOURHEXNUMBERHERE` with your string:
 
 ``` bash
-python /root/STK07-seven-seg-display.py YOURHEXNUMBERHERE
+python STK07-seven-seg-display.py YOURHEXNUMBERHERE
 ```
 
 This numbering system is known as **hexadecimal** or base 16, where each digit can have a value from 0 - 15; the numbers 10 to 15 are represented by the letters A to F respectively. This is different from our everyday decimal (base 10) system where each digit can have a value from 0-9. Hexadecimal ("hex" for short) is very useful in expressing binary numbers with few digits. For example, the eight-digit binary number `0b11000000` (192 in decimal) can be expressed in two digits in hex as `0xC0`!
@@ -280,11 +279,10 @@ Let's look at the `digitMap` dictionary used to store the bytestrings for each c
 
 ``` python
 digitMap = {
-    "0": "00111111",
-    "1": "00000110",
-    "2": "01011011",
-    "3": "01001111",
-    "4": "01100110",
+    "0": "11111100",
+    "1": "01100000",
+    "2": "11011010",
+    "3": "11110010",
     # and so on
 }
 ```
@@ -349,37 +347,37 @@ fi
 # there is no dictionary-type data structure in ash, so must write these by hand
 mapDigit(){
     if [ "$1" == "0" ]; then
-        echo "0 0 1 1 1 1 1 1"
+        echo "1 1 1 1 1 1 0 0"
     elif [ "$1" == "1" ]; then
-        echo "0 0 0 0 0 1 1 0"
+        echo "0 1 1 0 0 0 0 0"
     elif [ "$1" == "2" ]; then
-        echo "0 1 0 1 1 0 1 1"
+        echo "1 1 0 1 1 0 1 0"
     elif [ "$1" == "3" ]; then
-        echo "0 1 0 0 1 1 1 1"
+        echo "1 1 1 1 0 0 1 0"
     elif [ "$1" == "4" ]; then
         echo "0 1 1 0 0 1 1 0"
     elif [ "$1" == "5" ]; then
-        echo "0 1 1 0 1 1 0 1"
+        echo "1 0 1 1 0 1 1 0"
     elif [ "$1" == "6" ]; then
-        echo "0 1 1 1 1 1 0 1"
+        echo "1 0 1 1 1 1 1 0"
     elif [ "$1" == "7" ]; then
-        echo "0 0 0 0 0 1 1 1"
+        echo "1 1 1 0 0 0 0 0"
     elif [ "$1" == "8" ]; then
-        echo "0 1 1 1 1 1 1 1"
+        echo "1 1 1 1 1 1 1 0"
     elif [ "$1" == "9" ]; then
-        echo "0 1 1 0 1 1 1 1"
+        echo "1 1 1 1 0 1 1 0"
     elif [[ "$1" == "a" || "$1" == "A" ]]; then
-        echo "0 1 1 1 0 1 1 1"
+        echo "1 1 1 0 1 1 1 0"
     elif [[ "$1" == "b" || "$1" == "B" ]]; then
-        echo "0 1 1 1 1 1 0 0"
+        echo "0 0 1 1 1 1 1 0"
     elif [[ "$1" == "c" || "$1" == "C" ]]; then
-        echo "0 1 0 1 1 0 0 0"
+        echo "1 0 0 1 1 1 0 0"
     elif [[ "$1" == "d" || "$1" == "D" ]]; then
-        echo "0 1 0 1 1 1 1 0"
+        echo "0 1 1 1 1 0 1 0"
     elif [[ "$1" == "e" || "$1" == "E" ]]; then
-        echo "1 0 0 1 1 1 1 0" # fix
+        echo "1 0 0 1 1 1 1 0"
     elif [[ "$1" == "f" || "$1" == "F" ]]; then
-        echo "1 0 0 0 1 1 1 0" # fix
+        echo "1 0 0 0 1 1 1 0"
     else
         echo "Invalid hex digit $1."
         exit
@@ -431,7 +429,7 @@ setOneDig(){
 
     echo out >/sys/class/gpio/gpio1/direction
 
-    for i in $1 $2 $3 $4 $5 $6 $7 $8
+    for i in $8 $7 $6 $5 $4 $3 $2 $1
     do
         #echo  
         echo $i >/sys/class/gpio/gpio1/value

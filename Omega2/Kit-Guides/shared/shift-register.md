@@ -1,10 +1,10 @@
 ### Shift Register
 
-// TODO: photo of the shift register IC
+<!-- // TODO: photo of the shift register IC -->
 
 A shift register is an external integrated circuit (IC) that can be used to expand the number of output pins available to us. Essentially they let you turn serial input from a single pin (one bit after the other) into multiple parallel output signals (all at once on separate lines).
 
-// TODO: graphic: block diagram of serial data coming in, parallel data coming out
+<!-- // TODO: graphic: block diagram of serial data coming in, parallel data coming out -->
 
 The shift register used in your kit is the popular 74HC595. It has 8 output lines which allows you to manipulate and use bytes for output in your code.
 
@@ -23,12 +23,45 @@ There are three pins on the IC that we use to control it with the Omega. Two of 
 | SRCLK | Serial clock | When pulsed, shifts each value in the shift register forwards by one position, then loads the value from the SER pin into position "A". Note that this does not change the signals on the output lines until you pulse the register clock (RCLK). |
 | RCLK | Register clock, or "latch pin" | When pulsed, updates the storage register with new values from the shift register, sending a new set of signals to the 8 output pins. This happens so quickly that they all seem to change simultaneously! |
 
-Keep in mind that the **first** value you send the shift register will be shifted towards the **last** output pin as you send it more data. For example, when sending 8 bits, bit `1` will appear on output `H`, bit `2` on `G`, and so on. This means that you should either:
+#### Bit Order
 
-* Wire up your connections in reverse order, or
-* Write your code so that it sends values in reverse order
+Keep in mind that the **first** value you send the shift register will be shifted towards the **last** output pin as you send it more data. 
 
-In these experiments, we will be wiring outputs in reverse order.
+Let's say we have the following byte `10101010` that represent the ON/OFF state of 8 LEDs in our circuit. Let's also say the 1st bit from the left corresponds to LED `A`, the 2nd to `B`, and so on. This is shown in the table below:
+
+| LED | Desired Value |
+|----|---------------|
+| A | HIGH |
+| B | LOW |
+| C | HIGH |
+| D | LOW |
+| E | HIGH |
+| F | LOW |
+| G | HIGH |
+| H | LOW |
+
+Intuitively, it seems easiest to send each bit in the number from left to right as if it were a string. In Python, this would look something like:
+
+```python
+bytestring = '10101010'
+bytestring = list(bytestring) # turns the string into a list: ["1", "0", "1", "0", ...]
+for bit in bytestring:
+    shift(bit)          # sends 1, then 0, then 1, then 0, ...
+```
+
+However, sending it this way means that the 1st bit (`A`) would actually be shifted all the way to the last output (`QH`), the 2nd bit (`B`) would be shifted to the 2nd-to-last output (`QG`), and so on until everything is reversed! This way of shifting values out is known as **most-significant bit** (MSB) first. If we used this method in our shift register class, we would have to wire everything up backwards, and this could make it confusing to assemble or debug circuits.
+
+We can get around this issue by reversing the bits in code before sending them to the shift register. We would then send the rightmost, or **least significant bit** (LSB), first. We can modify the above code into something like this:
+
+```python
+bytestring = '10101010'
+bytestring = bytestring[::-1] # use Python slice notation to get a reversed copy of the string
+bytestring = list(bytestring) # turns the string into a list: ["0", "1", "0", "1", ...]
+for bit in bytestring:
+    shift(bit)          # sends 0, then 1, then 0, then 1, ...
+```
+
+Now we can connect LED `A` to output `QA`, `B` to `QB`, until everything matches!
 
 #### Pinout Diagram
 

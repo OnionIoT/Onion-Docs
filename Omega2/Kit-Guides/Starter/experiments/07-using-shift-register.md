@@ -79,14 +79,14 @@ There are several wiring connections you'll need to hook up, so we'll go through
 
 | Pin Name | Pin # | LED # |
 |-|-|-|
-| QA | 15 | 8 |
-| QB | 1  | 7 |
-| QC | 2  | 6 |
-| QD | 3  | 5 |
-| QE | 4  | 4 |
-| QF | 5  | 3 |
-| QG | 6  | 2 |
-| QH | 7  | 1 |
+| QA | 15 | 1 |
+| QB | 1  | 2 |
+| QC | 2  | 3 |
+| QD | 3  | 4 |
+| QE | 4  | 5 |
+| QF | 5  | 6 |
+| QG | 6  | 7 |
+| QH | 7  | 8 |
 
 The wire for QA starts on the right side of the chip and goes to the 1st LED, while the wires for the other 7 start on the left side and should go straight down the breadboard. 
 
@@ -127,15 +127,17 @@ class shiftRegister:
 
     #Pulses the latchpin
     def latch(self):
+        self.rclk.setValue(0)
         self.rclk.setValue(1)
         self.rclk.setValue(0)
-
     # Pulses the Serial Clock 8 times in and then latches to clear all the LEDs
     def clear(self):
         self.ser.setValue(0)
         for x in range(0, 8): #Clears out all the values currently in the register
+            self.srclk.setValue(0)
             self.srclk.setValue(1)
             self.srclk.setValue(0)
+            
         self.latch()
 
     #Sets the GPIOs to output with an initial value of zero
@@ -149,15 +151,18 @@ class shiftRegister:
     #Sets the serial pin to the correct value and then pulses the serial clock to shift it in
     def inputBit(self, inputValue):
         self.ser.setValue(inputValue)
+        self.srclk.setValue(0)
         self.srclk.setValue(1)
         self.srclk.setValue(0)
+        
 
-    #Splits the input values into individual values and inputs them. The pulses the latch pin to show the output.
-    def outputBits(self, inputValues):
-        mylist = list(inputValues) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
-        for x in mylist:
-            x = int(x) # Transforms the character back into an int ("1" -> 1)
-            self.inputBit(x)
+    #Splits the input values into individual values and inputs them. Then pulses the latch pin to show the output.
+    def outputBits(self, inputString):
+        bitList = list(inputString) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
+        bitList = bitList[::-1]      # reverses the string to 
+        for bit in bitList:
+            bit = int(bit) # Transforms the character back into an int ("1" -> 1)
+            self.inputBit(bit)
         self.latch()
 ```
 
@@ -277,9 +282,9 @@ shiftRegister.outputBits(bytestring)
 This function is defined in the `shiftRegister` class file:
 
 ``` python
-def outputBits(self, inputValues):
-    mylist = list(inputValues) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
-    for x in mylist:
+def outputBits(self, inputString):
+    bitList = list(inputString) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
+    for x in bitList:
         x = int(x) # Transforms the character back into an int ("1" -> 1)
         self.inputBit(x)
     self.latch()
