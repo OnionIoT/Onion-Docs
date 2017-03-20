@@ -76,7 +76,7 @@ Here's the steps to get there:
  <!-- TODO: Insert picture of this stage -->
 
 3. Connecting your Arduino Dock
-  * Connect the Ground header to the negative rail on the breadboard	// TODO: what is meant by Ground header?
+  * Connect the `GND` pin on the Dock to the negative rail on the breadboard	// TODO: what is meant by Ground header?
   * Connect Arduino Dock digital pin 4 to `DS` on the shift register - this is where our input is sent.
   * Connect Arduino Dock digital pin 5 to `STCP` on the shift register.
   * Connect Arduino Dock digital pin 6 to `SHCP` on the shift register.
