@@ -109,7 +109,7 @@ You'll need to pull a few more components from your Kit. Prepare the following:
     1. Connect the cathode to one end of the 200Ω resistor.
 1. Connect the other end of that resistor to ground.
 1. Connect the breadboard's ground to the ground pin on the Expansion Dock.
-1. Finally, connect the breadboard's Vcc to the 3.3V pin on the Expansion Dock.
+1. Finally, connect the breadboard's Vcc row to the `3.3V` pin on the Expansion Dock.
 
 Your circuit should look like this:
 

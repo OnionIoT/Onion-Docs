@@ -325,7 +325,7 @@ value >>= 1 # Shifts all digits right by one (11000000 -> 01100000)
 value <<= 1 # Shifts all digits left by one (01100000 -> 11000000)
 ```
 
-Th `>>` operation by itself is known as the  **bitshift** operator.
+The `>>` operation by itself is known as the  **bitshift** operator.
 
 Bitshifting is a pretty low level operation that moves the bits of a binary value left or right. In our script, our shift register command starts off as the number `0b11000000`. For example, to bitshift one digit to the right, we move both of the two `1`s right one place to get `0b00110000`. Bitshifting is a fast operation for computers to do, and is easier than trying to convert the number into a binary string and moving the characters around by hand.
 
