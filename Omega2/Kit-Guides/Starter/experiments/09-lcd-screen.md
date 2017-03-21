@@ -93,16 +93,20 @@ For this experiment, we'll be using our Onion I2C Python Module which greatly si
 
 <!-- // TODO: include a block diagram of our software system -->
 
-First, let's create a file that has all the low level code needed to drive the LCD display. It will contain functions to write strings and characters, and utility functions to change the behaviour of the display.
+has all the low level code needed to drive the LCD display. It will contain functions to write strings and characters, and utility functions to change the behaviour of the display.
 
 Create a file called `lcdDriver.py` and paste the following in it:
 
 ``` python
 from OmegaExpansion import onionI2C
-from time import sleep
+import time
+
+# sleep durations
+writeSleep = 0.0001 # 1 millisecond
+initSleep = 0.2
 
 # commands
-LCD_CLEARDISPLAY = 0x01
+lcdClearDISPLAY = 0x01
 LCD_RETURNHOME = 0x02
 LCD_ENTRYMODESET = 0x04
 LCD_DISPLAYCONTROL = 0x08
@@ -149,83 +153,88 @@ Rs = 0b00000001 # Register select bit
 
 class Lcd:
     #initializes objects and lcd
-    def __init__(self,address,port=0):
+    def __init__(self,address, port=0):
+        # i2c device parameters
         self.address = address
+        self.i2c = onionI2C.OnionI2C(port)
+        
+        # lcd defaults
         self.lcdbacklight = LCD_BACKLIGHT #default status
         self.line1= "";
         self.line2= "";
         self.line3= "";
         self.line4= "";
+        
 
-        # use the Onion I2C module to handle reading/writing
-        self.lcd_device = onionI2C.OnionI2C(port)
+        self.lcdWrite(0x03)
+        self.lcdWrite(0x03)
+        self.lcdWrite(0x03)
+        self.lcdWrite(0x02)
 
-        self.lcd_write(0x03)
-        self.lcd_write(0x03)
-        self.lcd_write(0x03)
-        self.lcd_write(0x02)
+        self.lcdWrite(LCD_FUNCTIONSET | LCD_2LINE | LCD_5x8DOTS | LCD_4BITMODE)
+        self.lcdWrite(LCD_DISPLAYCONTROL | LCD_DISPLAYON)
+        self.lcdWrite(lcdClearDISPLAY)
+        self.lcdWrite(LCD_ENTRYMODESET | LCD_ENTRYLEFT)
+        time.sleep(initSleep)
 
-        self.lcd_write(LCD_FUNCTIONSET | LCD_2LINE | LCD_5x8DOTS | LCD_4BITMODE)
-        self.lcd_write(LCD_DISPLAYCONTROL | LCD_DISPLAYON)
-        self.lcd_write(LCD_CLEARDISPLAY)
-        self.lcd_write(LCD_ENTRYMODESET | LCD_ENTRYLEFT)
-        sleep(0.2)
+    def writeBytesToLcd(self, cmd):
+        self.i2c.write(self.address, [cmd])
+        time.sleep(writeSleep)
 
     # clocks EN to latch command
-    def lcd_strobe(self, data):
-        self.lcd_device.write(self.address, data | En | self.lcdbacklight)
-        sleep(.0005)
-        self.lcd_device.write(self.address, ((data & ~ En) | self.lcdbacklight))
-        sleep(.0001)
+    def lcdStrobe(self, data):
+        self.writeBytesToLcd(data | En | self.lcdbacklight)
+        time.sleep(.0005)
+        self.writeBytesToLcd(((data & ~ En) | self.lcdbacklight))
+        time.sleep(.0001)
 
-    def lcd_write_four_bits(self, data):
-        self.lcd_device.write(self.address, data | self.lcdbacklight)
-        self.lcd_strobe(data)
+    def lcdWriteFourBits(self, data):
+        self.writeBytesToLcd(data | self.lcdbacklight)
+        self.lcdStrobe(data)
 
     # write a command to lcd
-    def lcd_write(self, cmd, mode=0):
-        self.lcd_write_four_bits(mode | (cmd & 0xF0))
-        self.lcd_write_four_bits(mode | ((cmd << 4) & 0xF0))
+    def lcdWrite(self, cmd, mode=0):
+        self.lcdWriteFourBits(mode | (cmd & 0xF0))
+        self.lcdWriteFourBits(mode | ((cmd << 4) & 0xF0))
 
-    # write a string to the display
-    def lcd_display_string(self, string, line):
+    # put string function
+    def lcdDisplayString(self, string, line):
         if line == 1:
             self.line1 = string;
-            self.lcd_write(0x80)
+            self.lcdWrite(0x80)
         if line == 2:
             self.line2 = string;
-            self.lcd_write(0xC0)
+            self.lcdWrite(0xC0)
         if line == 3:
-            self.line1 = string;
-            self.lcd_write(0x94)
+            self.line3 = string;
+            self.lcdWrite(0x94)
         if line == 4:
             self.line4 = string;
-            self.lcd_write(0xD4)
+            self.lcdWrite(0xD4)
 
         for char in string:
-            self.lcd_write(ord(char), Rs)
+            self.lcdWrite(ord(char), Rs)
 
-    # print an array of strings        
-    def lcd_display_string_array(self, strings):
-        for i in range(min(len(strings), 4)):
-            self.lcd_display_string(strings[i], i+1)
+    def lcdDisplayStringList(self, strings):
+        for x in range(0, min(len(strings), 4)): 
+            self.lcdDisplayString(strings[x], x+1)
 
     # clear lcd and set to home
-    def lcd_clear(self):
-        self.lcd_write(LCD_CLEARDISPLAY)
-        self.lcd_write(LCD_RETURNHOME)
-
+    def lcdClear(self):
+        self.lcdWrite(lcdClearDISPLAY)
+        self.lcdWrite(LCD_RETURNHOME)
+      
     def refresh(self):
-        self.lcd_display_string(self.line1,1)
-        self.lcd_display_string(self.line2,2)
-        self.lcd_display_string(self.line3,3)
-        self.lcd_display_string(self.line4,4)
-
+        self.lcdDisplayString(self.line1,1)
+        self.lcdDisplayString(self.line2,2)
+        self.lcdDisplayString(self.line3,3)
+        self.lcdDisplayString(self.line4,4)
+    
     #def backlight
     def backlightOn(self):
         self.lcdbacklight = LCD_BACKLIGHT
         self.refresh()
-
+       
     def backlightOff(self):
         self.lcdbacklight = LCD_NOBACKLIGHT
         self.refresh()
@@ -236,7 +245,6 @@ Now let's write the main routine for the experiment. This script will create an 
 Create a file called `STK09-temperatureLCD.py` and paste the code below into it.
 
 ``` python
-import datetime
 import lcdDriver
 import oneWire
 from temperatureSensor import TemperatureSensor
@@ -270,12 +278,8 @@ def displayTemp(temp):
     lcd = lcdDriver.Lcd(lcdAddress)
     lcd.backlightOn()
 
-    time = datetime.today()
-
-    lcd.lcd_display_string_array([
-        "The time is:",
-        time + "\n",
-        "Temperature:",
+    lcd.lcdDisplayStringList([
+        "Temperature: ",
         str(temp) + " C"
     ])
 
@@ -313,7 +317,7 @@ Here we've introduced the **Onion I2C module**. The Python module takes care of 
 
 We wrote this module to make it easy for you to use the I2C bus. I2C based electronics are designed to operate with a minimum of instructions and very specific signalling between host and client. Our I2C modules does all the signalling and contact establishing for you so you only need to worry about sending the correct data and reading the correct registers. For a detailed look on how it works, we've written up a software reference to our [I2C Python Module](#i2c-python-module).
 
-In the code, we specifically use two main functions of the library: the **constructor** and `i2cDevice.write_cmd()`. The constructor creates an I2C device object with the given address. The `write_cmd()` function then writes the given command (in bytes) to the address. The LCD display requires specific commands in order to activate its different write modes which the lcdDriver class wraps up nicely, making our final execution script quite compact.
+In the code, we specifically use two main functions of the library: the **constructor** and `i2c.write()`. The constructor creates an I2C device object with the given address. The `i2c.write()` function then writes a list of bytes to the device's address (without specifying the memory location on the device). The LCD display requires specific commands in order to activate its different write modes which the lcdDriver class wraps up nicely, making our final execution script quite compact.
 
 #### Multiple Different Objects
 
@@ -322,8 +326,6 @@ In the code, we specifically use two main functions of the library: the **constr
 Here we're using two objects of different classes to accomplish our goal, `TemperatureSensor` and `Lcd`. If we had other devices we wanted to include in this experiment, we can write more class definitions and load them using the `import` statement.
 
 This is an incredibly common programming technique and is at the heart of Object Oriented Programming! It helps us capture and understand interactions between complex pieces through simplifying them in a human-readable way.
-
-It's much easier to think about getting a reading from your `sensor` object, then to deal with the complexities of sending serial data to and from a 1-Wire device and all the conversion you need to do from that data. Instead, we get a line like `return sensor.readValue()` which we can immediately understand.
 
 >Although it's a powerful tool, too much abstraction can create its own problems. Ultimately, writing smart, self-documenting code comes from lots of practise and communication between you and the people you share your work with!
 
@@ -337,15 +339,24 @@ May have worked differently on the omega1? The current iteration of instructions
 
 We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
 
+First, take note of which directory your scripts are in by running the command `pwd`. If you're developing in the `/root` folder, you will see:
 
-First, create a file in `/root` called `checkTempSensor.sh` and write the following in it:
+```
+/root
+```
+
+Keep this in mind for the next step.
+
+Then, create a shell script file in `/root` called `checkTempSensor.sh`.  and write the following in it:
 
 ``` sh
 ##!/bin/sh -e
-/usr/bin/python /root/temperatureLCD.py
+/usr/bin/python (PATH TO SCRIPTS)/STK09-temperatureLCD.py
 ```
 
-Then change the file permissions so it becomes executable:
+And replace `(PATH TO SCRIPTS)` with the output of the `pwd` command from above.
+
+Then change the file permissions of this shell script so it becomes executable:
 
 ```
 chmod +x checkTempSensor.sh
@@ -359,12 +370,12 @@ Run `crontab -e` to edit the file that contains commands and schedules to run th
 
 >To briefly explain, the asterisks (\*) mean 'for all instances'. The position of the asterisk corresponds to 'minute', 'hour', 'date', 'month', and 'year' in order from left to right. The path at the end is the script or command you want to run. Basically, this line tells cron to run the `checkTempSensor.sh` script once a minute.
 
-**Note** that you'll have to [use `vi`](http://vim.wikia.com/wiki/New_to_Vim) to edit this file by default!
+**Note** that this will load [`vim`](http://vim.wikia.com/wiki/New_to_Vim) to edit this file by default.
 
 Finally, run the following command to restart cron so it can start running your script:
 
 ```
-/user/sbin/crond restart
+/usr/sbin/crond restart
 ```
 
 Your LCD should now update once a minute, and you're free to use your Omega for other things in the meantime!
