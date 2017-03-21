@@ -332,11 +332,6 @@ This is an incredibly common programming technique and is at the heart of Object
 
 ### Going Further: Automating the Script
 
-<!-- DONE: has this been tested? last time I did it using the omega1 instructions and it didn't work (Gabe) 
-
-May have worked differently on the omega1? The current iteration of instructions works on Omega2 firmware 149. It will successfully call a properly written shell script on the minute, every minute. If you're testing with `echo`, note that it dumps into /dev/null or some other black hole, pipe it into a file to see it working properly. (James)
--->
-
 We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
 
 First, take note of which directory your scripts are in by running the command `pwd`. If you're developing in the `/root` folder, you will see:
