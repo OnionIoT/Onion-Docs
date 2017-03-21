@@ -42,13 +42,20 @@ The seven segment display from the kit is common cathode, which mean the cathode
 
 The seven segment display is not labelled, so we'll have to reference the pinout diagram to make sure the correct connections are being made. When facing the front of seven segment display with decimal points at the bottom, the bottom row of pins are numbered 1 to 6 going from left to right and the top row of pins are numbered 7 to 12 going from right to left.
 
+
 <!-- // DONE: do we use the shift reg here? LAZAR -->
 <!-- discussed with Gabe, nope. JAMES -->
 
+// TODO: fix build instructions to include images
+
 We will need to connect all 12 pins of the seven segment display to 12 digital pins of the Arduino Dock.
+
+<!-- TODO: CIRCUIT DIAGRAM -->
 
 1. Connect the digit pins (`6`,`8`,`9`,`12`) of the seven seg to the GPIO pins `2`,`3`,`4`,`5` on the Arduino Dock respectively.
 2. Cconnect the segment pins (`1`,`2`,`3`,`4`,`5`,`7`,`10`,`11`) of the seven seg each to a different 1K resistor then to the pins `6`,`7`,`8`,`9`,`10`,`11`,`12`,`13` on the Arduino Dock respectively.
+
+<!-- TODO: PHOTO assembled circuit -->
 
 ### Writing the Code
 
@@ -227,7 +234,7 @@ When the code has being flashed on the ATmega, the seven segment display should 
 echo -ne 'AAAA' > /dev/ttyS1
 ```
 
-// TODO: gif of 7seg showing 1234 and then changing to AAAA
+<!-- // TODO: gif of 7seg showing 1234 and then changing to AAAA -->
 
 We should see the characters inside the single quoation mark '' displayed on our seven segment display.  By default echo will send the data and start a new line ('/n') after the data; we use the `-ne` operator to remove the new line. We can send any number and alphabet except for 'M' and 'W'. There will only be one way to display an alphabet regardless of its case. We can also send space ' ' and dash '-'; any undisplayable characters will be displayed as blank space ' '.  
 

@@ -35,9 +35,6 @@ The GPIOs that are going to be used in this experiment are:
 * 2
 * 3
 
-These have been highlighted in the image below:
-
-<!-- TODO: IMAGE of expansion dock with correct pins highlighted -->
 
 #### What You'll Need
 
