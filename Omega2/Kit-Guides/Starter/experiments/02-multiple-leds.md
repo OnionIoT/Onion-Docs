@@ -31,6 +31,8 @@ These have been highlighted in the image below:
 
 <!-- TODO: add image of expansion dock with correct pins highlighted -->
 
+![starter-kit-02-highlighted](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/starter-kit-02-expansion-pinout-highlight.png)
+
 #### What You'll Need
 
 We'll be building a circuit on your breadboard using the following components:
@@ -63,8 +65,8 @@ For reference, the circuit diagram for our first experiment looks like this:
 
 Your circuit should look something like this:
 
-<!-- // TODO: IMAGE photo of circuit -->
-
+<!-- // DONE: IMAGE photo of circuit -->
+![starter-kit-02-assembled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/02-assembled-circuit.jpg)
 
 ### Writing the Code
 

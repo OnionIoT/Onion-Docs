@@ -75,8 +75,8 @@ Your circuit should now look like this:
 >
 > With the resistor, either way will work since resistors are symmetric components, meaning they don't care which way current flows through them, they'll work either way.
 
-
 The circuit diagram for our first experiment looks like this:
+
 <!-- // DONE: CIRCUIT DIAGRAM: circuit showing this experiment -->
 ![starter-kit-01-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/01-circuit-diagram.png)
 
@@ -133,7 +133,7 @@ This is a small program, but there are quite a few things going on. Let's take a
 
 #### Importing a Module
 
-The first line in the code imports a Python source code module. In this case, the module was made by the Onion team for controlling the Omega's GPIOs. The module contains a class that implements functions for everything you can do with a GPIO on an Omega.
+The first line in the code imports a Python source code module. In this case, the module was made by us at Onion for controlling the Omega's GPIOs. The module contains a class that implements functions for everything you can do with a GPIO on an Omega.
 
 #### Object Oriented Programming - Instantiating an Object
 
@@ -163,7 +163,9 @@ Loops are structures used to control program flow by repeating certain sections 
 
 Here we're using a **while** loop: the code inside the loop will run over and over *while* a given condition holds true. In this case, the loop condition is `1`, which is equivalent to `True` in these situations, so we have in effect made an **infinite loop**.
 
-Before program enters the loop, we set the `ledValue` variable to `1`. Inside the while loop, we assign the value of `ledValue` (1) to our LED GPIO which turns it on. Then we reverse the value using the `if-else` statement which looks at the latest value of `ledValue`: if it is `1`, it will be changed to `0` and vice versa. The program will then pause the program execution for half a second, at the `time.sleep(sleepTime)` statement. The program then returns back to the beginning of the loop and assigns the new value of `ledValue` to the GPIO, and repeats the steps we described in this paragraph until you exit the program (`Ctrl-C`).
+Before program enters the loop, we set the `ledValue` variable to `1`. Inside the while loop, we assign the value of `ledValue` (1) to our LED GPIO which turns it on. Then we reverse the value using the `if-else` statement which looks at the latest value of `ledValue`: if it is `1`, it will be changed to `0` and vice versa. The program will then pause the program execution for half a second, at the `time.sleep(sleepTime)` statement. 
+
+The program then returns back to the beginning of the loop and assigns the new value of `ledValue` to the GPIO, and repeats the steps we described in the paragraph paragraph until you exit the program (`Ctrl-C`).
 
 If you're wondering why we make the program sleep for half a second every loop cycle, it's because computers execute program code **really** fast. Try increasing, decreasing, or getting rid of the sleep instruction all-together and running the program again. See what happens with the LED.
 
