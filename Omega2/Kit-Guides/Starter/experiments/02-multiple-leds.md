@@ -79,30 +79,36 @@ Create a new file `STK02-lineUp.py` to hold the code:
 import onionGpio
 import time
 
-sleepTime = 0.5                 # specify sleep duration
+# specify sleep duration to be used in the program
+sleepTime = 0.5
 
-## create and populate a list to hold the GPIO pin numbers that control the LEDs
+# create and populate a list to hold the GPIO pin numbers that control the LEDs
 gpioPins = [0, 1, 2, 3, 18, 19]
-## create an empty list that will hold the GPIO objects to control the LEDs
+# create an empty list that will hold the GPIO objects to control the LEDs
 gpioObjects = []
 
-## print which GPIOs are being used
+# print which GPIOs are being used
 print 'Using GPIOs:'
 for gpioElement in gpioPins:
     print gpioElement
 
-## populate the gpioObjects list
+# populate the gpioObjects list
 for gpioElement in gpioPins:
-    ledObj = onionGpio.OnionGpio(gpioElement)        # instatiate a GPIO object for this gpio pin
-    ledObj.setOutputDirection(0)                     # set to output direction with zero being the default value
-    gpioObjects.append(ledObj)                       # add the GPIO object to our list
+	# instantiate a GPIO object for this gpio pin
+    ledObj = onionGpio.OnionGpio(gpioElement)        
+	# set to output direction with zero being the default value
+	ledObj.setOutputDirection(0)
+	# add the GPIO object to our list
+    gpioObjects.append(ledObj)
 
+# create a variable to hold the value of the LED
 ledValue     = 1
 
 while 1:
     # program all of the GPIOs to the ledValue
     for gpio in gpioObjects:
         gpio.setValue(ledValue)
+		# pause after each LED is turned on or off
         time.sleep(sleepTime)
 
     # flip the value variable
