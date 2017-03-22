@@ -238,12 +238,12 @@ The main program loads the class we wrote and creates a `shiftRegister` object. 
 
 What this will do is light up two of your LEDs, and then move them all the way to one side, and back again (think Kitt from Knight Rider).
 
-You can terminate the code by pressing `Ctrl-C` or `Cmd-C` on Mac OS.
-
 <!-- // explain that the animation will be Knight Rider Kitt style: maybe throw in a gif for nostalgia
 //  - it will run all the way left and then all the way right over and over again -->
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TNNeP2jR9JE" frameborder="0" allowfullscreen></iframe>
 
+You can terminate the code by pressing `Ctrl-C` or `Cmd-C` on Mac OS.
 
 ### A Closer Look at the Code
 

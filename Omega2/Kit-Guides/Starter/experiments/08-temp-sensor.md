@@ -26,13 +26,9 @@ To make 1-Wire work with the Omega, we must first label a GPIO as a 1-Wire **mas
 
 The Omega does not have a dedicated controller for this protocol, we'll have to send some low level instructions directly to the bus. This will be a good opportunity to learn about the process of **reading and writing files**.
 
-### DS18B20 Temperature Sensor
-
-This sensor is a 1-Wire digital output sensor with high accuracy. The pin layouts can be found in the diagram below for easy reference, we'll go through how to connect it in the next section.
-
-![TMP36 Temperature Sensor Pin Layout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/DS18B20-pin-layout.png)
-
-The `Vdd` and `GND` pins are for power and ground, and the `DQ` pin is the data line (both input and output).
+<!-- one wire temperature sensor -->
+```{r child = '../../shared/one-wire-temperature-sensor.md'}
+```
 
 **Note**: We will treat the **flat** side as the front.
 
@@ -40,6 +36,9 @@ The `Vdd` and `GND` pins are for power and ground, and the `DQ` pin is the data 
 ### Building the Circuit
 
 We'll be building a circuit to connect the 1-Wire temperature sensor to the Omega. As the name implies, only one data line is needed for communication between any and all devices on the bus!
+
+Here's a diagram of the circuit we'll be building:
+![Circuit diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/08-circuit-diagram.png)
 
 #### What You'll Need
 
@@ -64,7 +63,8 @@ Prepare the following components from your kit:
 
 Your circuit should look like this:
 
-<!-- TODO: IMAGE photo of completed circuit -->
+<!-- DONE: IMAGE photo of completed circuit -->
+![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/08-assembled-circuit.jpg)
 
 ### Writing the Code
 
@@ -297,7 +297,7 @@ T = 31.375 C
 T = 31.937 C
 T = 32.312 C
 T = 32.562 C
-T = 32.625 C
+T = 32.625 C        # Ctrl-C
 ```
 
 ### A Closer Look at the Code
@@ -370,9 +370,7 @@ The device's address will then be printed on the screen.
 
 #### Python Modules and the `__main__` Function
 
-When a Python file is imported as a module, any code in the lowest level of indentation will be executed. This means if you want to write a Python module that stays silent until the functions are called (as good practice dicates), you can't let code that would 'do things' be inserted at the lowest level.
-
-What if there's some important functions that you want to run by executing the module directly, but not when it's imported?
+Any Python code file can be both executed directly, or imported as a module. When a module is imported, all of the code contained within it is executed and any functions or classes are made available to the program that imports it. But what if your module had functions that you want to run by executing the module directly, but not when it's imported?
 
 Enter the `__name__` variable!
 
@@ -391,13 +389,9 @@ After that, we check the `__name__` variable to run the code only when it's exec
 
 ``` python
 if __name__ == '__main__':
-    main()
+    __main__()
 ```
 
-That's it! Now `STK08-tempSensor.py` can be imported as a module without running its code immediately on import.
-
-
-<!-- TODO: what did he mean by this? -->
-
+That's it! Now `STK08-tempSensor.py` can be imported as a module without running its code immediately on import. You can apply this technique to extend scripts that you've previously written and reuse them in later files.
 
 Next: [Controlling an LED Screen](#starter-kit-controlling-an-lcd-screen)

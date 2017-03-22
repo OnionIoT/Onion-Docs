@@ -8,9 +8,9 @@ order: 8
 
 ## Controlling a 7-Segment Display {#starter-kit-seven-segment-display}
 
-We've just learned about shift registers; now, let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world. We'll connect the 7-segment display to the shift register that we wired up last time. We'll write a program to send serial signals to the shift register which will be transformed into numbers and letters on the 7-segment display. We'll then observe the output and see if there's anything interesting we notice.
+We've just learned a lot about shift registers. Now, let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world. We'll connect the 7-segment display to the shift register that we wired up last time. We'll write a program to send serial signals to the shift register which will be transformed into numbers and letters on the 7-segment display. We'll then observe the output and see if there's anything interesting we notice.
 
-**Note:** This experiment builds on the previous one, so you should make sure you complete it before moving onto this one!
+**Note:** This experiment builds on the previous one, so you should make sure you complete it before moving on!
 
 <!-- seven segment -->
 ```{r child = '../../shared/seven-segment.md'}
@@ -18,12 +18,15 @@ We've just learned about shift registers; now, let's apply that knowledge to con
 
 ### Building the Circuit
 
-Using the shift register and a few additional GPIOs from the Omega, we will control what's displayed on all four digits of the 7-segment display.
+The Omega by itself doesn't have enough GPIOs to control all 32 LEDs (7 segments plus 1 decimal point, multiplied by 4 digits) on the 7-segment. We can make up for this by using the shift register in combination with only a handful more GPIOs!
 
-// TODO: spice up this sentence, sounds so boring
-// TODO: make sure to point out that we need to use the shift register to make up for the fact we have a limited amount of GPIOs on the Omega
+We're going to connect the 7-segment 
 
-<!-- // TODO: include a block diagram of the system -->
+<!-- // DONE: spice up this sentence, sounds so boring
+// DONE: make sure to point out that we need to use the shift register to make up for the fact we have a limited amount of GPIOs on the Omega -->
+
+<!-- // DONE: include a block diagram of the system -->
+![Block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/07-block-diagram.png)
 
 #### What You'll Need
 
@@ -43,10 +46,6 @@ First things first, we'll be building on our previous experiment.
 * If you've done the previous experiment, keep the shift register connected to the Omega just like you had it.
 * If you skipped it, [**we strongly recommend you check it out**](#starter-kit-using-shift-register) before moving on to this one!
 
-For quick reference, we've included a wiring diagram between the shift register and the Expansion Dock below.
-
-<!-- TODO: IMAGE diagram of shift register/dock/breadboard wiring -->
-
 > It's important that all components have a common ground connection. Signals are measured as the **difference** in voltage between the signal pin and ground, so all of the components need to be measuring from the same baseline.
 
 ##### Connecting your Shift Register
@@ -60,11 +59,14 @@ When you have the shift register wired up, it's time to connect it to the 7-segm
 
 We've included a diagram below for reference instead of instructions, as this one has a lot of wiring to do and they end up going every which way. Note that all ends connecting to the 7-segment display require F jumper heads - that's where your M-F jumpers will be used.
 
-<!-- TODO: IMAGE wiring diagram of 7-seg to shift register and dock -->
+<!-- DONE: IMAGE wiring diagram of 7-seg to shift register and dock -->
+![starter-kit-07-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/07-circuit-diagram.png)
 
-Once you've connected the 7-segment display to the Omega and shift register, it's all done! Your circuit should look like this:
+Once you've connected the 7-segment display to the Omega and shift register, you're all done! Your circuit should look like this:
 
-<!-- TODO: photo of completed circuit -->
+<!-- DONE: photo of completed circuit -->
+
+![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/07-assembled-circuit.jpg)
 
 ``` {r child = '../../shared/wiring-precautions.md'}
 ```
@@ -255,7 +257,8 @@ If run correctly, the code above should print the digits one by one on the 7-seg
 
 The code runs in an infinite loop which you can exit with `Ctrl-C` (`Cmd-C` for Mac users).
 
-<!-- // TODO: gif: add a gif of what happens -->
+<!-- // DONE: gif: add a gif of what happens -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9w-fZ5AKmAM" frameborder="0" allowfullscreen></iframe>
 
 Wow, what's up with that?
 
@@ -506,7 +509,8 @@ sh /root/STK07-ash-seven-seg-display.sh YOURHEXNUMBERHERE
 
 You should now see the characters display without flickering, much better than last time!
 
-<!-- TODO: gif -->
+<!-- DONE: gif -->
+![starter-kit-07-fast-script](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/07-fast-script.jpg)
 
 #### A Closer Look at the Shell Script
 

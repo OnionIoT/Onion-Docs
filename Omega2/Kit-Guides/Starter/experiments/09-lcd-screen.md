@@ -248,6 +248,7 @@ Create a file called `STK09-temperatureLCD.py` and paste the code below into it.
 import lcdDriver
 import oneWire
 from temperatureSensor import TemperatureSensor
+tempSensor = __import__("STK08-temp-sensor")
 
 # default address of i2c backpack is 0x3f by default
 lcdAddress = 0x3f  
