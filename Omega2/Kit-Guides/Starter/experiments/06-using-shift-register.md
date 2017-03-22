@@ -165,7 +165,7 @@ class shiftRegister:
     #Splits the input values into individual values and inputs them. Then pulses the latch pin to show the output.
     def outputBits(self, inputString):
         bitList = list(inputString) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
-        bitList = bitList[::-1]      # reverses the string to 
+        bitList = bitList[::-1]      # reverses the string to send LSB first
         for bit in bitList:
             bit = int(bit) # Transforms the character back into an int ("1" -> 1)
             self.inputBit(bit)
