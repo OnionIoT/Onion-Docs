@@ -1,0 +1,3 @@
+A list is an ordered list of data, and a single piece of data in a list is called an **element**. We can access list elements by specifying an index number, and list indices start at `0`. For example, calling on `myArray[2]` will return the **3rd** member in the list.
+
+Lists may be known as **arrays** in other languages. They are a very common structure used in programming and are very useful for collecting and organizing data in order.

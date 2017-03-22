@@ -8,4 +8,4 @@
 
 The LCD screen is a **16x2** display, meaning it has **2 rows** of **16 columns (characters)**. It has an LED backlight to illuminate the display even in the dark!
 
-These screens are typically controlled by many parallel data lines, usually 11 or so. However, the one included with the kits has additional circuitry that allows devices to use 4 wires and the I2C protocol to control the screen instead!
+These screens are typically controlled by many parallel data lines, usually 11 or so. However, the one in your kit has additional circuitry that implements control of the screen with the I2C protocol, so you only need to use two data lines to control the screen!

@@ -1,6 +1,6 @@
 ### I2C
 
-// mention all of the key points:
+<!-- // mention all of the key points:
 //  * two lines: data and clock
 //  * master slave architecture
 //  * each device has it's own unique two byte address
@@ -10,7 +10,7 @@
 // make sure to mention that it can be referred to as I2C, IIC, Two-wire interface (TWI)
 
 // can totally rip off large chunks of the i2c article from the documentation
-//  * should isolate that text from the i2c article into  markdown files that can be included here
+//  * should isolate that text from the i2c article into  markdown files that can be included here -->
 
 **I2C** (Inter-Integrated Circuit), sometimes called IIC or Two-Wire Interface, is a serial interface used to quickly and easily connect multiple devices to controllers and processors such as the Omega2. Examples of I2C devices include:
 

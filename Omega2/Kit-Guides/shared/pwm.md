@@ -1,25 +1,9 @@
-### PWM
+### Pulse Width Modulation
 
-PWM(Pulse Width Modulation) is a technique of producing varying analog signals from a digital source. 
+Pulse Width Modulation (PWM) is a technique of producing varying analog signals from a digital source. Analog signals vary within a range by definition - not just a binary state as digital output would be. PWM is the simplest technique to deliver this kind of signal. It works by pulsing a digital signal and using the percentage of time the signal is 'HIGH' as the analog output. This means the average voltage output can be dynamically changed even if the voltage at any given instant is still only 'HIGH' or 'LOW'. There are some limitations to this method, but it's very cheap to produce and has solid performance within its operating range.
 
-![alt text](http://www.bristolwatch.com/picaxe/images/io43.gif)
+>For the curious, PWM actually converts a binary **voltage** signal into an analog **current** signal.
 
-#### Duty Cycle
+// TODO: not sure what is meant by an analog current signal... please explain a little more or include a link to a place that explains this concept nicely
 
-Indicates what percentage of the time a signal is on or high voltage. So a PWM signal with a 25% duty cycle will be high for 25% of the time, and low 75% of the time. The duty cycle can be calculated as follows:
-
-$$DutyCycle = {\frac{T_{on}}{T_{CompleteCycle}}}\times100\%$$
-
-#### Period
-
-Indicates the amount of time (usually in milliseconds) for each part of the cycle.
-The Time On, Ton in the diagram above is the time the signal is high. This is also known as pulse width.
-Similarly, Time Off, or Toff is the time the signal is low.
-
-The Complete Cycle time corresponds to the overall period of the PWM. Changing the period will also change the frequency of the PWM signal:
-
-$$Frequency = {\frac{1}{Period}}$$
-
-#### Application
-
-The power of PWM signals is that they allow you to deliver a continous range of voltages between the digital Hi and Low values. 
+<!-- // TODO: GRAPHIC showing 3 or 4 pwm signals with different duty cycles -->
