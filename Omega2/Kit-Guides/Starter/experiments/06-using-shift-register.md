@@ -52,8 +52,8 @@ We'll be building a circuit on your breadboard using the following components:
 Before we get to working with our fancy chip, we need to learn how to properly orient them on the breadboard so we don't plug them in upside-down!
 
 <!-- IC direction marker -->
-<!-- ```{r child = '../../shared/ic-direction-marker.md'}
-``` -->
+```{r child = '../../shared/ic-direction-marker.md'}
+```
 
 When plugging in any IC into a breadboard, it should be plugged in across the gap in the middle. If you don't do this, you will short-circuit the pins of your IC (remember that the rows on each side are all shorted). 
 
@@ -94,7 +94,7 @@ The wire for QA starts on the right side of the chip and goes to the 1st LED, wh
 
 Your circuit should now look like this:
 
-<!-- TODO: IMAGE picture of this stage -->
+<!-- DONE: IMAGE picture of this stage -->
 ![Shift register with LEDs](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/06-led-shift-reg-wired.jpg)
 
 ##### Connecting your Omega to the Shift Register
@@ -105,7 +105,7 @@ Your circuit should now look like this:
 1. Connect GPIO3 to `RCLK` (pin 12).
 1. Connect the 3.3V pin on the Expansion Dock to the ground rail.
 
-<!-- TODO: IMAGE picture of this stage -->
+<!-- DONE: IMAGE picture of this stage -->
 ![Experiment circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/06-assembled-circuit.jpg)
 
 And there you have it, it's all wired up and ready to run! Now let's take a look at the code we're going to write.
@@ -242,6 +242,8 @@ You can terminate the code by pressing `Ctrl-C` or `Cmd-C` on Mac OS.
 
 <!-- // explain that the animation will be Knight Rider Kitt style: maybe throw in a gif for nostalgia
 //  - it will run all the way left and then all the way right over and over again -->
+
+
 
 ### A Closer Look at the Code
 
