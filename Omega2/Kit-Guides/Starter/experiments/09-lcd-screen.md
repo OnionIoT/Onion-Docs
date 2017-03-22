@@ -32,6 +32,10 @@ In this experiment, we will be building on the previous experiment by adding an 
 // straight-forward addition: I2C SCL+SDA, Vcc (3.3V), GND -->
 To get this experiment up and running, we'll be using the same temperature sensor circuit from the previous experiment, but we'll also be connecting the I2C display to the Omega so we can display the temperature on it. The code we write will tie the two together, but the build will borrow heavily from the [previous experiment](#starter-kit-temp-sensor).
 
+We'll be building the following circuit:
+
+![Circuit diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/09-circuit-diagram.png)
+
 #### What You'll Need
 
 Everything from the [temperature sensor experiment](#starter-kit-temp-sensor):
@@ -73,11 +77,15 @@ All done! If everything is connected properly, the LCD should light up with a br
 
 Your setup should look something like this:
 
-<!-- TODO: IMAGE assembled circuit -->
+<!-- DONE: IMAGE assembled circuit -->
+![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/09-assembled-circuit.jpg)
+
+Once you've made sure that you've wired it up correctly, you can then flip over the LCD screen so that it is facing you.
 
 If the display lights up but you can't see any black boxes, you may need to adjust the contrast on the display. There is a small grey screw on the back; use a Philips screwdriver to turn it and adjust it so that the boxes appear. This will define how clear the text will be on the display.
 
-<!-- TODO: IMAGE contrast adjustment screw -->
+<!-- DONE: IMAGE contrast adjustment screw -->
+![Contrast adjustment screw](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/09-contrast-adjustment-screw.jpg)
 
 ### Writing the Code
 
@@ -90,10 +98,12 @@ For this experiment, we'll be using our Onion I2C Python Module which greatly si
 
 >The LCD display driver code is based on user [**natbett**'s post](https://www.raspberrypi.org/forums/viewtopic.php?f=32&t=34261&p=378524) on the Raspberry Pi forums.
 
+This is the plan for how we'll implement our code:
 
-<!-- // TODO: include a block diagram of our software system -->
+<!-- // DONE: include a block diagram of our software system -->
+![Block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/09-block-diagram.jpg)
 
-has all the low level code needed to drive the LCD display. It will contain functions to write strings and characters, and utility functions to change the behaviour of the display.
+First, let's write a file with the low level code needed to drive the LCD display. It will contain functions to write strings and characters, and utility functions to change the behaviour of the display.
 
 Create a file called `lcdDriver.py` and paste the following in it:
 
@@ -248,7 +258,6 @@ Create a file called `STK09-temperatureLCD.py` and paste the code below into it.
 import lcdDriver
 import oneWire
 from temperatureSensor import TemperatureSensor
-tempSensor = __import__("STK08-temp-sensor")
 
 # default address of i2c backpack is 0x3f by default
 lcdAddress = 0x3f  
@@ -303,7 +312,8 @@ opkg install pyOnionI2C
 
 Calling the script will update the LCD screen with a fresh temperature reading.
 
-<!-- TODO: IMAGE gif of the setup with the temperature changing-->
+<!-- DONE: IMAGE gif of the setup with the temperature changing-->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bo9Ix1ZAwYg" frameborder="0" allowfullscreen></iframe>
 
 Wouldn't it be nice if something could run the script for us every minute to actually update the LCD? We will get there in a bit, but for now, let's take a look at how the code works.
 

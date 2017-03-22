@@ -63,7 +63,7 @@ Your circuit should now look like this:
 
 <!-- // DONE: image of circuit -->
 
-![starter-kit-01-assembled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/01-assembled-circuit.jpg)
+![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/01-assembled-circuit.jpg)
 
 <!-- Breadboard -->
 ```{r child = '../../shared/wiring-precautions.md'}
@@ -78,7 +78,7 @@ Your circuit should now look like this:
 The circuit diagram for our first experiment looks like this:
 
 <!-- // DONE: CIRCUIT DIAGRAM: circuit showing this experiment -->
-![starter-kit-01-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/01-circuit-diagram.png)
+![Circuit diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/01-circuit-diagram.png)
 
 ### Writing the Code
 
