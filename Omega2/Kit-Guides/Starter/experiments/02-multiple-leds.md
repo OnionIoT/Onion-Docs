@@ -31,7 +31,7 @@ These have been highlighted in the image below:
 
 <!-- TODO: add image of expansion dock with correct pins highlighted -->
 
-![starter-kit-02-highlighted](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/starter-kit-02-expansion-pinout-highlight.png)
+![starter-kit-02-highlighted](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/02-expansion-pinout-highlight.png)
 
 #### What You'll Need
 
