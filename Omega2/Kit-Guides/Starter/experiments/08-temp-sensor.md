@@ -77,13 +77,17 @@ import os
 import subprocess
 import time
 
+# specify delay duration to be used in the program
 setupDelay = 3
+
+# variables to hold filesystem paths
 oneWireDir = "/sys/devices/w1_bus_master1"
 paths = {
     "slaveCount": oneWireDir + "/w1_master_slave_count",
     "slaves": oneWireDir + "/w1_master_slaves"        
 }
 
+## a bunch of functions to be used by the OneWire class
 # insert the 1-Wire kernel module
 # it's also called a "module", but it's actually software for the Omega's firmware!
 def insertKernelModule(gpio):
@@ -101,7 +105,7 @@ def setupOneWire(gpio):
         if checkFilesystem():
             return True # exits if the bus is setup
             # no else statement is needed after this return statement
-            
+
         # tries to insert the module if it's not setup
         insertKernelModule(gpio)
         # wait for a bit, then check again
@@ -119,7 +123,7 @@ def checkSlaves():
         # slaves not detected by kernel
         return False
     return True
-    
+
 # check if a given address is registered on the bus
 def checkRegistered(address):
     slaveList = scanAddresses()
@@ -145,7 +149,7 @@ def scanOneAddress():
     addresses = scanAddresses()
     return addresses[0]
 
-# main class definition
+# class definition for one wire devices
 class OneWire:
     def __init__(self, address, gpio=19):      # use gpio 19 by default if not specified
         self.gpio = str(gpio)
@@ -175,11 +179,12 @@ class OneWire:
         # the device has been properly set up
         return True
 
-    def readDevice(self): # call this to read data from the sensor
+	# function to read data from the sensor
+    def readDevice(self):
         # read from the system file
         with open(self.slaveFilePath) as slave:
             message = slave.read().split("\n")
-        # return an array of each line printed to the terminal
+        	# return an array of each line printed to the terminal
         return message
 ```
 
@@ -220,7 +225,7 @@ class TemperatureSensor:
         # device typically prints 2 lines, the 2nd line has the temperature sensor at the end
         # eg. a6 01 4b 46 7f ff 0c 10 5c t=26375
         rawValue = self.driver.readDevice()
-        
+
         # grab the 2nd line, then read the last entry in the line, then get everything after the "=" sign
         value = rawValue[1].split()[-1].split("=")[1]
 
@@ -230,6 +235,7 @@ class TemperatureSensor:
         # DS18B20 outputs in 1/1000ths of a degree C, so convert to standard units
         value /= 1000.0
         return value
+
     # add more __read() functions for different interface types later!
 ```
 
@@ -252,19 +258,22 @@ def __main__():
         return -1
 
     # get the address of the temperature sensor
-    # it should be the only device connected in this experiment    
+    # 	it should be the only device connected in this experiment    
     sensorAddress = oneWire.scanOneAddress()
 
+	# instantiate the temperature sensor object
     sensor = TemperatureSensor("oneWire", { "address": sensorAddress, "gpio": oneWireGpio })
     if not sensor.ready:
         print "Sensor was not set up correctly. Please make sure that your sensor is firmly connected to the GPIO specified above and try again."
         return -1
+
+	# infinite loop - runs main program code continuously
     while 1:
         # check and print the temperature
         value = sensor.readValue()
         print "T = " + str(value) + " C"
         time.sleep(pollingInterval)
-        
+
 if __name__ == '__main__':
     __main__()
 ```
@@ -280,7 +289,7 @@ You should see the Omega printing the temperature in degrees Celsius measured by
 Your output should look something like this:
 
 ```
-root@Omega-F119:~# python STK08-temp-sensor.py 
+root@Omega-F119:~# python STK08-temp-sensor.py
 T = 25.187 C
 T = 25.187 C
 T = 25.187 C

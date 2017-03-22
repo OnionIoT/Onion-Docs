@@ -115,6 +115,7 @@ import time
 writeSleep = 0.0001 # 1 millisecond
 initSleep = 0.2
 
+## LCD Display commands
 # commands
 lcdClearDISPLAY = 0x01
 LCD_RETURNHOME = 0x02
@@ -167,14 +168,14 @@ class Lcd:
         # i2c device parameters
         self.address = address
         self.i2c = onionI2C.OnionI2C(port)
-        
+
         # lcd defaults
         self.lcdbacklight = LCD_BACKLIGHT #default status
         self.line1= "";
         self.line2= "";
         self.line3= "";
         self.line4= "";
-        
+
 
         self.lcdWrite(0x03)
         self.lcdWrite(0x03)
@@ -187,27 +188,31 @@ class Lcd:
         self.lcdWrite(LCD_ENTRYMODESET | LCD_ENTRYLEFT)
         time.sleep(initSleep)
 
+	# function to write byte to the screen via I2C
     def writeBytesToLcd(self, cmd):
         self.i2c.write(self.address, [cmd])
         time.sleep(writeSleep)
 
-    # clocks EN to latch command
+	# TODO: add a description of what this function actually accomplishes
+    # 	clocks EN to latch command
     def lcdStrobe(self, data):
         self.writeBytesToLcd(data | En | self.lcdbacklight)
         time.sleep(.0005)
         self.writeBytesToLcd(((data & ~ En) | self.lcdbacklight))
         time.sleep(.0001)
 
+	# TODO: add a description of what the function does, ie why we write 4 bits and then strobe
     def lcdWriteFourBits(self, data):
         self.writeBytesToLcd(data | self.lcdbacklight)
-        self.lcdStrobe(data)
+		self.lcdStrobe(data)
 
-    # write a command to lcd
+    # write an 8-bit command to lcd
     def lcdWrite(self, cmd, mode=0):
+		# TODO: add a super brief explanation about how we send the bottom 4 bits first and then the top 4 bits
         self.lcdWriteFourBits(mode | (cmd & 0xF0))
         self.lcdWriteFourBits(mode | ((cmd << 4) & 0xF0))
 
-    # put string function
+    # function to display a string on the screen
     def lcdDisplayString(self, string, line):
         if line == 1:
             self.line1 = string;
@@ -226,25 +231,27 @@ class Lcd:
             self.lcdWrite(ord(char), Rs)
 
     def lcdDisplayStringList(self, strings):
-        for x in range(0, min(len(strings), 4)): 
+        for x in range(0, min(len(strings), 4)):
             self.lcdDisplayString(strings[x], x+1)
 
     # clear lcd and set to home
     def lcdClear(self):
         self.lcdWrite(lcdClearDISPLAY)
         self.lcdWrite(LCD_RETURNHOME)
-      
+
+	# TODO: add function description
     def refresh(self):
         self.lcdDisplayString(self.line1,1)
         self.lcdDisplayString(self.line2,2)
         self.lcdDisplayString(self.line3,3)
         self.lcdDisplayString(self.line4,4)
-    
-    #def backlight
+
+    # turn on the backlight
     def backlightOn(self):
         self.lcdbacklight = LCD_BACKLIGHT
         self.refresh()
-       
+
+	# turn off the backlight
     def backlightOff(self):
         self.lcdbacklight = LCD_NOBACKLIGHT
         self.refresh()
@@ -266,6 +273,7 @@ lcdAddress = 0x3f
 oneWireGpio = 19 # set the GPIO that we've connected the sensor to
 pollingInterval = 1 # seconds
 
+# function to read the temperature from the One-Wire Temperature Sensor
 def getTemp():
     # check if 1-Wire was setup in the kernel
     if not oneWire.setupOneWire(str(oneWireGpio)):
@@ -283,6 +291,7 @@ def getTemp():
 
     return sensor.readValue()
 
+# function to display the temperature on the LCD screen
 def displayTemp(temp):
     # setup LCD
     lcd = lcdDriver.Lcd(lcdAddress)
@@ -299,13 +308,6 @@ def __main__():
 
 if __name__ == '__main__':
     __main__()
-```
-
-If you haven't already, you may need to install the Onion I2C module. Run the following:
-
-```
-opkg update
-opkg install pyOnionI2C
 ```
 
 ### What to Expect

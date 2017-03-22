@@ -24,6 +24,8 @@ We're going to be providing power to the LED just like we did in the two previou
 
 We'll make the same LED circuit we used in the [first experiment](#starter-kit-blinking-led-building-the-circuit), so wire that back up.
 
+// TODO: insert circuit diagram from exp 1
+
 #### What You'll Need
 
 * Omega2 plugged into Expansion Dock
