@@ -41,7 +41,8 @@ In this example we'll only be fading a single LED, so go ahead and build the sam
 
 Your circuit should look like this:
 
-<!-- TODO: IMAGE: photo of completed circuit (can reuse from previous) -->
+<!-- DONE: IMAGE: photo of completed circuit (can reuse from previous) -->
+![starter-kit-03-assembled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/03-assembled-circuit.jpg)
 
 ### Writing the Code
 
@@ -86,8 +87,8 @@ while 1:
 
 When you run this script your LED will fade in and out. This is because we set the duty cycle to increase up to 100% (fade in to 100%), and then we begin to decrease the duty cycle down to 0% (fade out to 0%).
 
-<!-- TODO: Insert gif of this -->
-
+<!-- DONE: Insert gif of this -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JMQf43qXPpw" frameborder="0" allowfullscreen></iframe>
 
 ### A Closer Look at the Code
 

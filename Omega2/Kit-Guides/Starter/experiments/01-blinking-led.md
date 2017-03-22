@@ -123,7 +123,7 @@ We'll be running our programs in this way in the following experiments.
 
 Your LED should be blinking. It should turn on for half a second, and then turn off for half a second, repeating until you exit the program by pressing `Ctrl-C`.
 
-<!-- // TODO: GIF: Showing this experiment with the LED blinking -->
+<!-- // DONE: GIF: Showing this experiment with the LED blinking -->
 <iframe width="560" height="315" src="https://www.youtube.com/embed/can96mc4-s4" frameborder="0" allowfullscreen></iframe>
 
 > To exit a program like this one: press `Ctrl-C` (`Cmd-C` for Mac users)

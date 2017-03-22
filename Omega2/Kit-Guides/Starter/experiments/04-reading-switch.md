@@ -39,7 +39,9 @@ First, we'll make a simple circuit to figure out how the switch works. Then we'l
 
 The first circuit we build will have the LED directly controlled by the switch to demonstrate how the switch works. The Omega will be used only as a power source and will not control the operation of the circuit.
 
-<!-- // TODO: circuit diagram, see paper notes -->
+<!-- // DONE: circuit diagram, see paper notes -->
+![starter-kit-04-diagram-01](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/04-01-circuit-diagram.png)
+
 
 #### What You'll Need
 
@@ -67,7 +69,9 @@ Prepare the following components from your kit:
 
 Your circuit should look like something like this:
 
-<!-- // TODO: photo of example circuit -->
+<!-- // DONE: photo of example circuit -->
+
+![starter-kit-04-example](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/04-example-circuit.jpg)
 
 ```{r child ='../../shared/wiring-precautions.md'}
 ```
@@ -88,7 +92,8 @@ This is circuit is quite direct - it demonstrates that this switch works and how
 
 Now let's try letting the Omega reading the signal the switch sends and use that to turn on the LED. We'll rewire the circuit to have the Omega connecting the switch and the LED. Once we finished wiring the circuit, we'll write a program that turns the LED on or off through reading the switch position.
 
-<!-- // TODO: IMAGE CIRCUIT DIAGRAM of experiment -->
+<!-- // DONE: IMAGE CIRCUIT DIAGRAM of experiment -->
+![starter-kit-04-diagram-02](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/04-02-circuit-diagram.png)
 
 #### What You'll Need
 
@@ -109,8 +114,8 @@ This circuit will keep the switch, but route the output of the switch to the Ome
 
 Your circuit should look like this:
 
-<!-- // TODO: photo of experiment circuit-->
-
+<!-- // DONE: photo of experiment circuit-->
+![starter-kit-04-experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/04-experiment-circuit.jpg)
 
 ### Writing the Code
 
@@ -144,6 +149,7 @@ while 1:
 ```
 
 Let's run the code:
+
 ```
 python SKT04-readSwitch.py
 ```
@@ -154,6 +160,8 @@ Now try flipping the switch on and off. What happens?
 
 This circuit works the same way as the first circuit, albeit with a much slower reaction to the switch input. This demonstrates a physical input affecting something virtual (like our script); the virtual entity can interpret the signal then proceed to act on the physical world or interact with other virtual entities.
 
+<!-- DONE: GIF -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZJyr4UcxJck" frameborder="0" allowfullscreen></iframe>
 
 ### A Closer Look at the Code
 

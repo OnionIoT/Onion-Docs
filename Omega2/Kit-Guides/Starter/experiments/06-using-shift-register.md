@@ -52,8 +52,8 @@ We'll be building a circuit on your breadboard using the following components:
 Before we get to working with our fancy chip, we need to learn how to properly orient them on the breadboard so we don't plug them in upside-down!
 
 <!-- IC direction marker -->
-```{r child = '../../shared/ic-direction-marker.md'}
-```
+<!-- ```{r child = '../../shared/ic-direction-marker.md'}
+``` -->
 
 When plugging in any IC into a breadboard, it should be plugged in across the gap in the middle. If you don't do this, you will short-circuit the pins of your IC (remember that the rows on each side are all shorted). 
 
@@ -66,7 +66,12 @@ There are several wiring connections you'll need to hook up, so we'll go through
 ```{r child = '../../shared/shift-register-wiring-instructions.md'}
 ```
 
-<!-- TODO: IMAGE picture of this stage -->
+Once you have completed the above steps, add some M-M jumper wires from the 8 outputs QA - QH to 8 empty rows on the breadboard.
+
+Your circuit should look something like this:
+
+<!-- DONE: IMAGE picture of this stage -->
+![Shift Register](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/06-shift-reg-wired.jpg)
 
 ##### Connecting your LEDs
 
@@ -87,7 +92,10 @@ There are several wiring connections you'll need to hook up, so we'll go through
 
 The wire for QA starts on the right side of the chip and goes to the 1st LED, while the wires for the other 7 start on the left side and should go straight down the breadboard. 
 
+Your circuit should now look like this:
+
 <!-- TODO: IMAGE picture of this stage -->
+![Shift register with LEDs](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/06-led-shift-reg-wired.jpg)
 
 ##### Connecting your Omega to the Shift Register
 
@@ -97,7 +105,8 @@ The wire for QA starts on the right side of the chip and goes to the 1st LED, wh
 1. Connect GPIO3 to `RCLK` (pin 12).
 1. Connect the 3.3V pin on the Expansion Dock to the ground rail.
 
-  <!-- TODO: IMAGE picture of this stage -->
+<!-- TODO: IMAGE picture of this stage -->
+![Experiment circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/06-assembled-circuit.jpg)
 
 And there you have it, it's all wired up and ready to run! Now let's take a look at the code we're going to write.
 
@@ -166,8 +175,6 @@ class shiftRegister:
 This file contains a single class that allows us to use and reuse it wherever we like. The main component here is the `__init__` function which initializes the class object.
 
 Now let's write the main script. Create a file in the same directory called `STK06-using-shift-register.py` and paste the following code in it:
-
-<!-- TODO: this code doesn't actually work, it lights up one LED then shifts the light in one direction. Then it goes blank for a while then repeats again from the top -->
 
 ``` python
 from registerClass import shiftRegister
