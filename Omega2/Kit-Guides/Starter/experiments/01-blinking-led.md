@@ -61,7 +61,9 @@ OK here we go, let's put together our circuit! We're going to be connecting an L
 
 Your circuit should now look like this:
 
-<!-- // TODO: image of circuit -->
+<!-- // DONE: image of circuit -->
+
+![starter-kit-01-assembled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/01-assembled-circuit.jpg)
 
 <!-- Breadboard -->
 ```{r child = '../../shared/wiring-precautions.md'}
@@ -75,8 +77,8 @@ Your circuit should now look like this:
 
 
 The circuit diagram for our first experiment looks like this:
-<!-- // TODO: CIRCUIT DIAGRAM: circuit showing this experiment -->
-
+<!-- // DONE: CIRCUIT DIAGRAM: circuit showing this experiment -->
+![starter-kit-01-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/01-circuit-diagram.png)
 
 ### Writing the Code
 
