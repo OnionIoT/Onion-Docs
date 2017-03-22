@@ -103,6 +103,7 @@ gpio0.setOutputDirection(0)
 # create a variable to hold the value of the LED
 ledValue     = 1
 
+# infinite loop - runs main program code continuously
 while 1:
 	# set the GPIO's value
     gpio0.setValue(ledValue)

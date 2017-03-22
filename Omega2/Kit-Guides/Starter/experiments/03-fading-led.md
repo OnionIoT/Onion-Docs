@@ -34,18 +34,16 @@ We'll make the same LED circuit we used in the [first experiment](#starter-kit-b
 
 #### Hooking up the Components
 
-In this example we'll only be fading a single LED, so go ahead and build the same circuit we used in the previous two experiments:
+In this example we'll only be fading a single LED, so go ahead and build the same LED circuit we used in the previous two experiments:
 
 ```{r child = '../../shared/wiring-led.md'}
 ```
 
 Your circuit should look like this:
 
-<!-- TODO: IMAGE: photo of completed circuit (can reuse from previous) -->
+// TODO: IMAGE: photo of completed circuit (can reuse from previous)
 
 ### Writing the Code
-
-<!-- Going to use fast-gpio pwm to avoid any muxing nonsense-->
 
 Let's get to writing the main code. This time, we will be using `fast-gpio`, a utility we created to quickly control GPIO signals from the command line. However, we can also call this utility from within a Python script!
 
@@ -57,25 +55,35 @@ Create a file called `STK03-fading-led.py` and paste the following code in it:
 import time
 import os
 
-sleepTime = 0.1   # sleep for a tenth of a second
+# specify sleep duration to be used in the program
+sleepTime = 0.1
 
+# define other program parameters
 brightnessIncrement  = 2
 dutyCycle = 0
+
+# create a PWM signal using the fast-gpio system utility
 def pwmLed(pin, frequency, dutyCyclePercentage):
-    command = "fast-gpio pwm %d %d %d" % (pin, frequency, dutyCyclePercentage) #Assign the arguments to the correct positions in the fast-gpio command
-    os.system(command) # Send the command to the command line
+	# create a string to hold our command line code,assign the function arguments to fast-gpio command arguments
+    command = "fast-gpio pwm %d %d %d" % (pin, frequency, dutyCyclePercentage)
+	# execute the command using the OS
+	os.system(command)
 
-## Infinite Loop Main Code
+# infinite loop - runs main program code continuously
 while 1:
-    dutyCycle=dutyCycle+brightnessIncrement # Increment or decrement the duty cycle by the brightnessIncrement
+	# Increment the duty cycle by the brightnessIncrement
+    dutyCycle=dutyCycle+brightnessIncrement
 
-    pwmLed(0, 50, dutyCycle) # Assign GPIO 0 to the pwm duty cycle value
+	# Assign GPIO 0 to the pwm duty cycle value
+    pwmLed(0, 50, dutyCycle)
 
     # flip the value variable
     if (dutyCycle <= 0) or (dutyCycle >= 100):
-        brightnessIncrement = -brightnessIncrement # Reverse direction at 0, and 100
+		# Reverse direction at 0, and 100
+        brightnessIncrement = -brightnessIncrement
 
-    time.sleep(sleepTime)    # sleep for a tenth of a second
+	# make the program pause
+    time.sleep(sleepTime)
 ```
 
 <!-- TODO: FUTURE: Write using the Omega's PWM pins -->
@@ -86,7 +94,7 @@ while 1:
 
 When you run this script your LED will fade in and out. This is because we set the duty cycle to increase up to 100% (fade in to 100%), and then we begin to decrease the duty cycle down to 0% (fade out to 0%).
 
-<!-- TODO: Insert gif of this -->
+// TODO: video of the LED fading
 
 
 ### A Closer Look at the Code
@@ -96,7 +104,7 @@ When you run this script your LED will fade in and out. This is because we set t
 //  * function where you pass in gpio # and duty cycle and it calls fast-gpio for you
 //  * fancy for loop -->
 
-The code this time is quite different from the previous two experiments. Instead of using Python classes and objects, we are calling a **command-line program** from within the script. We then wrapped this call in a Python **function** to make it easier to reuse. 
+The code this time is quite different from the previous two experiments. Instead of using Python classes and objects, we are calling a **command-line program** from within the script. We then wrapped this call in a Python **function** to make it easier to reuse.
 
 In our infinite loop, we increment the duty cycle by the `brightnessIncrement`, and at 100% we reverse the value and decrement to 0.
 
@@ -121,7 +129,7 @@ The system call to `fast-gpio` is powerful, but it has a lot of variable placeho
 * Frequency
 * Duty cycle percentage
 
-By doing this we make it really easy to reuse for other pins, frequencies, and duty cycle values. 
+By doing this we make it really easy to reuse for other pins, frequencies, and duty cycle values.
 
 Whenever you have problems that require identical commands to solve, it's good practice to write your commands once in single functions that can be called wherever they are needed.
 

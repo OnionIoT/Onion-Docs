@@ -104,6 +104,7 @@ for gpioElement in gpioPins:
 # create a variable to hold the value of the LED
 ledValue     = 1
 
+# infinite loop - runs main program code continuously
 while 1:
     # program all of the GPIOs to the ledValue
     for gpio in gpioObjects:
