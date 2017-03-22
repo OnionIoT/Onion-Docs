@@ -12,9 +12,6 @@ Shift registers are very useful tools; using a few GPIOs connected to a shift re
 
 In this experiment, we'll be using a shift register to control eight LEDs, but we'll only be using three GPIOs on the Omega.
 
-<!-- // DONE: update this number if required -->
-
-
 <!-- Shift Register -->
 ```{r child = '../../shared/shift-register.md'}
 ```
@@ -55,7 +52,7 @@ Before we get to working with our fancy chip, we need to learn how to properly o
 ```{r child = '../../shared/ic-direction-marker.md'}
 ```
 
-When plugging in any IC into a breadboard, it should be plugged in across the gap in the middle. If you don't do this, you will short-circuit the pins of your IC (remember that the rows on each side are all shorted). 
+When plugging in any IC into a breadboard, it should be plugged in across the gap in the middle. If you don't do this, you will short-circuit the pins of your IC (remember that the rows on each side are all shorted).
 
 You may need to bend the pins just a bit in order to get it to fit. Don't worry about it so much; electronics are actually pretty tough and won't be hurt by a little bit of manual pin bending.
 
@@ -90,7 +87,7 @@ Your circuit should look something like this:
 | QG | 6  | 7 |
 | QH | 7  | 8 |
 
-The wire for QA starts on the right side of the chip and goes to the 1st LED, while the wires for the other 7 start on the left side and should go straight down the breadboard. 
+The wire for QA starts on the right side of the chip and goes to the 1st LED, while the wires for the other 7 start on the left side and should go straight down the breadboard.
 
 Your circuit should now look like this:
 
@@ -123,30 +120,32 @@ Our code will be split into two files; one for our main program, and one for our
 ``` python
 import onionGpio
 
+# class to control a shift register chip
 class shiftRegister:
-    #Initializes the GPIO objects based on the pin numbers
+    # instantiates the GPIO objects based on the pin numbers
     def __init__(self, dataPin, serialClock, registerClock):
         self.ser = onionGpio.OnionGpio(dataPin)
         self.srclk = onionGpio.OnionGpio(serialClock)
         self.rclk = onionGpio.OnionGpio(registerClock)
         self.setup()
 
-    #Pulses the latchpin
+    # Pulses the latchpin - write the outputs to the data lines
     def latch(self):
         self.rclk.setValue(0)
         self.rclk.setValue(1)
         self.rclk.setValue(0)
-    # Pulses the Serial Clock 8 times in and then latches to clear all the LEDs
+
+    # Clear all the LEDS by pulsing the Serial Clock 8 times in and then the rclk once
     def clear(self):
         self.ser.setValue(0)
         for x in range(0, 8): #Clears out all the values currently in the register
             self.srclk.setValue(0)
             self.srclk.setValue(1)
             self.srclk.setValue(0)
-            
+
         self.latch()
 
-    #Sets the GPIOs to output with an initial value of zero
+    # sets the GPIOs to output with an initial value of zero
     def setup(self):
         self.ser.setOutputDirection(0)
         self.srclk.setOutputDirection(0)
@@ -154,15 +153,17 @@ class shiftRegister:
 
         self.clear()
 
-    #Sets the serial pin to the correct value and then pulses the serial clock to shift it in
+    # push a bit into the shift register
+	#	sets the serial pin to the correct value and then pulses the serial clock to shift it in
     def inputBit(self, inputValue):
         self.ser.setValue(inputValue)
         self.srclk.setValue(0)
         self.srclk.setValue(1)
         self.srclk.setValue(0)
-        
 
-    #Splits the input values into individual values and inputs them. Then pulses the latch pin to show the output.
+
+	# push a byte to the shift regiter
+	# 	splits the input values into individual values and inputs them. Then pulses the latch pin to show the output.
     def outputBits(self, inputString):
         bitList = list(inputString) # Splits the string into a list of individual characters ("11000000" -> ["1","1","0","0","0","0","0","0"])
         bitList = bitList[::-1]      # reverses the string to send LSB first
@@ -180,7 +181,8 @@ Now let's write the main script. Create a file in the same directory called `STK
 from registerClass import shiftRegister
 import signal
 
-# Data pin is GPIO 1, serial clock pin is GPIO 2, Latch pin is GPIO 3
+# instantiate a shift register object
+# 	Data pin is GPIO 1, serial clock pin is GPIO 2, Latch pin is GPIO 3
 shiftRegister = shiftRegister(1,2,3)
 
 # Signal interrupt handler to exit after the animation has finished when Ctrl-C is pressed
@@ -197,6 +199,7 @@ signal.signal(signal.SIGINT, signal_handler)
 value = 0b11000000
 interrupted = False
 
+# infinite loop - runs main program code continuously
 while True:
     # this animation has 12 different frames, so we'll loop through each one
     for x in range(0, 12):
