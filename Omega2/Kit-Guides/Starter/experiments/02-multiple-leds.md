@@ -29,7 +29,7 @@ The GPIOs that are going to be used in this experiment are:
 
 These have been highlighted in the image below:
 
-<!-- TODO: add image of expansion dock with correct pins highlighted -->
+<!-- DONE: add image of expansion dock with correct pins highlighted -->
 
 ![starter-kit-02-highlighted](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/02-expansion-pinout-highlight.png)
 
@@ -56,14 +56,16 @@ Grab six LEDs and let's do the following for each one:
 
 To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Omega using jumper wires. We'll be using GPIOs 0, 1, 2, 3, 18, and 19 to control our six LEDs. To make our lives easy when writing the code to control the circuit, wire the top LED to GPIO0, the next one to GPIO1, and so on, with the bottom LED connected to GPIO19.
 
-Now that you have all six LEDs plugged in, let's connect a jumper wire from the `-` negative rail on the breadboard to a Ground pin on the Omega. Since this blue rail is connected vertically, we've just connected **all of the LED cathodes to the Ground on the Omega using just one pin on the Expansion Dock!**
+Now that you have all six LEDs plugged in, let's connect a jumper wire from the `-` negative rail on the breadboard to a Ground pin on the Omega. Since this blue rail is connected vertically, we've just connected **all of the LED cathodes** to the Ground on the Omega using just **one pin** on the Expansion Dock!
 
 Like previously mentioned, it's just six copies of our first experiment connected to multiple GPIOs.
 
 For reference, the circuit diagram for our first experiment looks like this:
-<!-- // TODO: CIRCUIT DIAGRAM: circuit showing this experiment -->
 
-Your circuit should look something like this:
+<!-- // DONE: CIRCUIT DIAGRAM: circuit showing this experiment -->
+![starter-kit-02-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/02-circuit-diagram.png)
+
+After assembly, your circuit should look something like this:
 
 <!-- // DONE: IMAGE photo of circuit -->
 ![starter-kit-02-assembled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/02-assembled-circuit.jpg)
@@ -120,7 +122,9 @@ python STK02-lineUp.py
 
 Your line-up of LEDs will be essentially chasing its tail: the left-most LED will turn on, and then the next one, and the next and so on. When all of them turn on, the left-most one will turn off, and the rest will follow suit.
 
-<!-- // TODO: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another -->
+<!-- // DONE: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another -->
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8MbuzjuCpK0" frameborder="0" allowfullscreen></iframe>
 
 This will repeat until you exit the program.
 
@@ -145,8 +149,8 @@ The `gpioObjects` list is a little different; we use it to hold six GPIO objects
 A `for` loop is used when you have code that needs to be repeated a known number of times. To loop, or **iterate** through items in a list, the generic syntax looks like this:
 
 ``` python
-for element in aList:                  # a statement defining how many times to repeat (or a list to iterate through)
-    # code to run using each element in aList
+for element in someList:                  # a statement defining how many times to repeat (or a list to iterate through)
+    # code to run using each element in someList
 ```
 
 In our example, we want to print the numbers of each GPIO that we are using. We iterate through our `gpioPins` list by assigning each member to the `gpioElement` variable, then printing each one. We should see the following output:
