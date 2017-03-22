@@ -13,7 +13,7 @@ order: 5
 
 // we will be building an led controlled by a push button, when the button is pressed, the led will turn on, and remain on for 10 seconds, then turn off -->
 
-For this experiment, we'll build on what we did with the slide switch. This time, let's use the button as the trigger instead of constantly polling the switch! 
+For this experiment, we'll build on what we did with the slide switch. This time, let's use the button as the trigger instead of constantly polling the switch!
 
 We'll be making a circuit with an LED controlled by a **push button**. When the button is pressed, the LED will turn on for 10 seconds, then turn off. Then we'll modify the circuit to connect the push button to **the Omega** and control it via software instead.
 
@@ -36,7 +36,7 @@ We'll be making a circuit with an LED controlled by a **push button**. When the 
 
 First we'll build a circuit with a button to control an LED directly. See the diagram below:
 
-<!-- // TODO: diagram -->
+// TODO: example circuit diagram
 
 #### What You'll Need
 
@@ -52,7 +52,7 @@ Prepare the following components from your kit:
 #### Hooking up the Components
 
 <!-- // explain how to connect a push-button switch to an led -->
-    
+
 1. Connect the push button to the middle of the breadboard across the middle gap.
     * The button should only be able to fit in one orientation.
     * The pins should look like they are bending "around" the gap.    
@@ -66,13 +66,14 @@ Your circuit should look like this.
 
 ![debouncer-circuit-setup-01](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/debouncer-circuit-setup-01.jpg)
 
-<!-- // TODO: photo -->
 
 If your circuit matches, go ahead and turn the Omega2 on!
 
 ### What to Expect
 
 When you push and hold the button, the LED should turn on. When you release the button, the LED should turn off.
+
+<!-- // TODO: add a video of the example circuit in operation -->
 
 <!-- // push and hold the button, the led is on
 // release it and the led turns off
@@ -83,6 +84,8 @@ When you push and hold the button, the LED should turn on. When you release the 
 <!-- // circuit 2: button with debouncing circuit connected to GPIO,  LED connected to GPIO -->
 
 Now we'll build a circuit with a button and **inverting** debouncer circuit connected to a GPIO, and an LED connected to another GPIO that is driven by software. The "inverting" part means that when the button is pressed, the circuit sends the GPIO a `LOW` signal, and when the button is released, the circuit sends a `HIGH` signal.
+
+<!-- // TODO: need a circuit diagram -->
 
 #### What You'll Need
 
@@ -115,7 +118,7 @@ Your circuit should look like this:
 
 ![debouncer-circuit-setup-02](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/debouncer-circuit-setup-02.jpg)
 
-<!-- // TODO: photo -->
+<!-- // TODO: photo of circuit-->
 
 If your circuit matches, power your Omega back on!
 
@@ -183,7 +186,7 @@ while 1:
 
 ### What to Expect
 
-<!-- // hit the button, the light turns on, stays on for 10 seconds, turns off 
+<!-- // hit the button, the light turns on, stays on for 10 seconds, turns off
 // ^ swapped for inverting debouncer -->
 
 Let's run the code:
@@ -193,6 +196,8 @@ python STK05-debounce-switch.py
 ```
 
 Now try pushing the button on and off. What happens?
+
+<!-- TODO: add a video of the circuit in action -->
 
 #### A Closer Look at the Code
 
