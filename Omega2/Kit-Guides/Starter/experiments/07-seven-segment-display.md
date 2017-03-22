@@ -19,9 +19,10 @@ We've just learned a lot about shift registers. Now, let's apply that knowledge 
 ### Building the Circuit
 
 The 7-segment display has an LED for each of the seven segments and an LED for the decimal point. That means there are 32 LEDs in total since there are four digits on the display.
+
 The Omega by itself doesn't have enough GPIOs to control all those LEDs, but we can make up for this by using the shift register in combination with only a handful more GPIOs!
 
-We're going to connect the 7-segment	// TODO: this sentence just trails off?
+Our general plan will look like this:
 
 <!-- // DONE: spice up this sentence, sounds so boring
 // DONE: make sure to point out that we need to use the shift register to make up for the fact we have a limited amount of GPIOs on the Omega -->
@@ -41,13 +42,12 @@ We're going to connect the 7-segment	// TODO: this sentence just trails off?
 
 #### Hooking up the Components
 
-
 First things first, we'll be building on our previous experiment.
 
-* If you've done the previous experiment, keep the shift register connected to the Omega just like you had it.
+* If you've done the previous experiment, keep the shift register connected to the Omega just like you had it. However, you'll need to remove the LEDs and resistors.
 * If you skipped it, [**we strongly recommend you check it out**](#starter-kit-using-shift-register) before moving on to this one!
 
-// TODO: do we need a note saying that they should disconnect the LEDs from the shift reg outputs?
+// DONE: do we need a note saying that they should disconnect the LEDs from the shift reg outputs?
 
 > It's important that all components have a common ground connection. Signals are measured as the **difference** in voltage between the signal pin and ground, so all of the components need to be measuring from the same baseline.
 
@@ -76,9 +76,10 @@ Once you've connected the 7-segment display to the Omega and shift register, you
 
 ### Writing the Code
 
-We'll be developing a program that takes input from command line arguments when it's launched and displays them on the 7-segment display.
+We'll be developing a program that takes input from command line arguments when it's launched and displays them on the 7-segment display. The basic flow will look like this:
 
 <!-- // TODO: include a block diagram of the code and a description of what we're going to be doing from a high level -->
+![Block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/07-seven-segment-code-block-diagram.png)
 
 To accomplish this, we will write a new class that uses and builds upon the shift register class from the previous experiment.
 
@@ -108,7 +109,7 @@ import time
 # class to control a 7-segment display
 class SevenSegment:
     # class attribute
-    # 	dictionary mapping each alphanumeric character to the bytestring that should be sent to the shift register
+    # dictionary mapping each alphanumeric character to the bytestring that should be sent to the shift register
     digitMap = {
         "0": "11111100",
         "1": "01100000",
@@ -143,14 +144,15 @@ class SevenSegment:
 			# set the GPIO object to the output direction
             self.digitPin[i].setOutputDirection(1)
 
-	# TODO: add a comment describing what this function does
+    # function to display a single digit
+    # loop through this function repeatedly to display a multi-digit number
     def showDigit(self, d, character):
         self.digitPin[d-1].setValue(0)
-		# TODO: add a comment explaining what we're doing here
+        # write the bytestring that corresponds to the character we want to display
         self.shiftReg.outputBits(SevenSegment.digitMap[character])
         self.digitPin[d-1].setValue(1)
 
-	# TODO: add a comment describing what this function does
+    # clear the seven segment and turn all LEDs off
     def clear(self):
         self.shiftReg.clear();
         for i in range (0,4):
@@ -168,7 +170,7 @@ import sys
 # instantiate 7-segment object
 sevenDisplay = SevenSegment([11,18,19,0])
 
-# TODO: add a comment describing what this list holds
+# dictionary of error messages
 errorMsgs = {
     "missingArguments": "Please input a hex number, eg. 0x12ab",
     "tooManyArguments": "Too many arguments. Please input only one hex number.",
@@ -271,8 +273,8 @@ The code runs in an infinite loop which you can exit with `Ctrl-C` (`Cmd-C` for 
 
 Wow, what's up with that?
 
-// TODO: update this description to match the video - doesn't flicker anymore, just scrolls thru the digits
-You may be wondering if what you saw is expected behaviour - the answer is **yes**. The digits on the 7-seg will be flickering slowly enough for you to notice. However, you probably guessed that it really should be displaying them all at once.
+<!-- // DONE: update this description to match the video - doesn't flicker anymore, just scrolls thru the digits -->
+You may be wondering if this is normal - the answer is **yes**. The digits on the 7-seg will be turning on and off in order slowly enough for you to notice. However, you probably guessed that it really should be displaying them all at once.
 
 ### A Closer Look at the Code
 

@@ -22,9 +22,10 @@ By sending a PWM signal to an LED, we can control how bright that LED appears to
 
 We're going to be providing power to the LED just like we did in the two previous experiments. The only difference is the speed at which we turn the LED on and off, and that will be taken care of in the software!
 
-We'll make the same LED circuit we used in the [first experiment](#starter-kit-blinking-led-building-the-circuit), so wire that back up.
+We'll make the same LED circuit we used in the [first experiment](#starter-kit-blinking-led-building-the-circuit), so wire that back up. See the circuit diagram below:
 
-// TODO: insert circuit diagram from exp 1
+<!-- // DONE: insert circuit diagram from exp 1 -->
+![Circuit diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/01-circuit-diagram.png)
 
 #### What You'll Need
 

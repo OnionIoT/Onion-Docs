@@ -176,7 +176,6 @@ class Lcd:
         self.line3= "";
         self.line4= "";
 
-
         self.lcdWrite(0x03)
         self.lcdWrite(0x03)
         self.lcdWrite(0x03)
