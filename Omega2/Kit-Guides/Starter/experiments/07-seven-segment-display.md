@@ -10,7 +10,7 @@ order: 8
 
 We've just learned a lot about shift registers. Now, let's apply that knowledge to control a 7-segment Display so we can display numbers (and a few letters) in the physical world. We'll connect the 7-segment display to the shift register that we wired up last time. We'll write a program to send serial signals to the shift register which will be transformed into numbers and letters on the 7-segment display. We'll then observe the output and see if there's anything interesting we notice.
 
-**Note:** This experiment builds on the previous one, so you should make sure you complete it before moving on!
+**Note:** This experiment builds on the [previous one](#starter-kit-using-shift-register), so you should make sure you complete it before moving on!
 
 <!-- seven segment -->
 ```{r child = '../../shared/seven-segment.md'}
@@ -18,9 +18,10 @@ We've just learned a lot about shift registers. Now, let's apply that knowledge 
 
 ### Building the Circuit
 
-The Omega by itself doesn't have enough GPIOs to control all 32 LEDs (7 segments plus 1 decimal point, multiplied by 4 digits) on the 7-segment. We can make up for this by using the shift register in combination with only a handful more GPIOs!
+The 7-segment display has an LED for each of the seven segments and an LED for the decimal point. That means there are 32 LEDs in total since there are four digits on the display.
+The Omega by itself doesn't have enough GPIOs to control all those LEDs, but we can make up for this by using the shift register in combination with only a handful more GPIOs!
 
-We're going to connect the 7-segment 
+We're going to connect the 7-segment	// TODO: this sentence just trails off?
 
 <!-- // DONE: spice up this sentence, sounds so boring
 // DONE: make sure to point out that we need to use the shift register to make up for the fact we have a limited amount of GPIOs on the Omega -->
@@ -41,10 +42,12 @@ We're going to connect the 7-segment
 #### Hooking up the Components
 
 
-First things first, we'll be building on our previous experiment. 
+First things first, we'll be building on our previous experiment.
 
 * If you've done the previous experiment, keep the shift register connected to the Omega just like you had it.
 * If you skipped it, [**we strongly recommend you check it out**](#starter-kit-using-shift-register) before moving on to this one!
+
+// TODO: do we need a note saying that they should disconnect the LEDs from the shift reg outputs?
 
 > It's important that all components have a common ground connection. Signals are measured as the **difference** in voltage between the signal pin and ground, so all of the components need to be measuring from the same baseline.
 
@@ -102,10 +105,10 @@ import registerClass
 import onionGpio
 import time
 
-# seven segment class
+# class to control a 7-segment display
 class SevenSegment:
     # class attribute
-    # dictionary mapping each alphanumeric character to the bytestring that should be sent to the shift register
+    # 	dictionary mapping each alphanumeric character to the bytestring that should be sent to the shift register
     digitMap = {
         "0": "11111100",
         "1": "01100000",
@@ -127,22 +130,27 @@ class SevenSegment:
         "-": "00000010"
     }
 
-    #Initializes the GPIO objects based on the pin numbers
+    # instantiate the GPIO objects based on the pin numbers
     def __init__(self, pinList):
+		# instantiate a shift register object
         self.shiftReg = registerClass.shiftRegister(1,2,3)
         self.digitPin = []
-        
+
+		# populate the digitPin list
         for i in range (0,4):
+			# instantiate a GPIO object based on the current pinList element, and then add it to the digitPin list
             self.digitPin.append(onionGpio.OnionGpio(pinList[i]))
+			# set the GPIO object to the output direction
             self.digitPin[i].setOutputDirection(1)
 
-
+	# TODO: add a comment describing what this function does
     def showDigit(self, d, character):
         self.digitPin[d-1].setValue(0)
+		# TODO: add a comment explaining what we're doing here
         self.shiftReg.outputBits(SevenSegment.digitMap[character])
         self.digitPin[d-1].setValue(1)
 
-
+	# TODO: add a comment describing what this function does
     def clear(self):
         self.shiftReg.clear();
         for i in range (0,4):
@@ -160,6 +168,7 @@ import sys
 # instantiate 7-segment object
 sevenDisplay = SevenSegment([11,18,19,0])
 
+# TODO: add a comment describing what this list holds
 errorMsgs = {
     "missingArguments": "Please input a hex number, eg. 0x12ab",
     "tooManyArguments": "Too many arguments. Please input only one hex number.",
@@ -194,7 +203,7 @@ def __main__():
     elif inputLen > 4:
         print errorMsgs["tooLong"]
         return -1
-    
+
     # check if valid hex digits (09, a-f)
     try:
         int(inputHexString, 16)
@@ -218,7 +227,7 @@ The for loop here is doing something really neat with only one line of code:
 * In this function, the scan pin for the current digit is enabled and is ready to light up.
 * We then send to the shift register the binary values corresponding to the segments for the current digit.
 
-We then cycle through all of the digits and repeat the steps above for each one. 
+We then cycle through all of the digits and repeat the steps above for each one.
 
 Let's choose a hexadecimal number to display on the 7-seg. Come up with a string that looks like this: `0x12ab`, where the four digits **12ab** can be any number from 0 to 9 OR a letter from A to F. Then run the following command in the terminal, replacing `YOURHEXNUMBERHERE` with your string:
 
@@ -240,13 +249,13 @@ then you may have to free the GPIOs for use back into the filesystem. Create a f
 
 ``` sh
 echo 1 >/sys/class/gpio/unexport
-echo 2 >/sys/class/gpio/unexport 
-echo 3 >/sys/class/gpio/unexport 
+echo 2 >/sys/class/gpio/unexport
+echo 3 >/sys/class/gpio/unexport
 
 echo 11 >/sys/class/gpio/unexport
-echo 18 >/sys/class/gpio/unexport 
+echo 18 >/sys/class/gpio/unexport
 echo 19 >/sys/class/gpio/unexport
-echo 0 >/sys/class/gpio/unexport 
+echo 0 >/sys/class/gpio/unexport
 ```
 
 This **unexports** the GPIOs, making them available for use by other programs.
@@ -262,19 +271,20 @@ The code runs in an infinite loop which you can exit with `Ctrl-C` (`Cmd-C` for 
 
 Wow, what's up with that?
 
+// TODO: update this description to match the video - doesn't flicker anymore, just scrolls thru the digits
 You may be wondering if what you saw is expected behaviour - the answer is **yes**. The digits on the 7-seg will be flickering slowly enough for you to notice. However, you probably guessed that it really should be displaying them all at once.
 
 ### A Closer Look at the Code
 
 This code couldn't exactly do what we needed it to, but there are still some important concepts shown here.
 
-To display numbers on the 7-seg, we mapped the characters to binary bytestrings using a **dictionary**. We also **included a class within another class** to better abstract the operation of the physical components. 
+To display numbers on the 7-seg, we mapped the characters to binary bytestrings using a **dictionary**. We also **included a class within another class** to better abstract the operation of the physical components.
 
 However, the end result was limited by the software we used: we wanted and expected the 7-segment display to light up all at once, but our script couldn't make it happen fast enough. This is because the underlying `onionGpio` class is written so that it accesses the filesystem multiple times for each GPIO write, and the Omega cannot run these commands fast enough.
 
 #### Software Limitations
 
-In this experiment, the software and hardware interact to produce behaviour we didn't intend. The code runs as well as it possibly can, and the hardware does its best to operate from the signals its given, but ultimately the result is not workable. The root cause is the way the `onionGpio` library is programmed. 
+In this experiment, the software and hardware interact to produce behaviour we didn't intend. The code runs as well as it possibly can, and the hardware does its best to operate from the signals its given, but ultimately the result is not workable. The root cause is the way the `onionGpio` library is programmed.
 
 The GPIOs are operated by reading and writing to files. Every time we call `onionGpio.setValue()` on a GPIO, the library does the following:
 
@@ -298,7 +308,7 @@ These ideas makes it easier to think about how different pieces of a project wor
 
 So far we've been working with lists, which are collections of one or more data values in order. The values in lists are indexed by numbers, for example `students[3]`. However, there are times when we're more interested in working with these values by using meaningful names than working with them in order. Enter the **dictionary!**
 
-Dictionaries are data structures that contain **key-value pairs**. A key is a name or label, and the value is some data that you want to associate with that key; it could even be another dictionary! Dictionaries are indexed by their keys, for example `students["Robert Tables"]`. 
+Dictionaries are data structures that contain **key-value pairs**. A key is a name or label, and the value is some data that you want to associate with that key; it could even be another dictionary! Dictionaries are indexed by their keys, for example `students["Robert Tables"]`.
 
 Let's look at the `digitMap` dictionary used to store the bytestrings for each character in the `SevenSegment` class:
 
@@ -312,7 +322,7 @@ digitMap = {
 }
 ```
 
-Instead of creating individual variables for each and every character, we can use the dictionary to act as a translator between characters and the values that need to be written to the shift register. if we wanted to display the character `1`, we send the required bytestring to the shift register by calling `digitMap["1"]` instead of typing `00000110`; the same goes for any other character. 
+Instead of creating individual variables for each and every character, we can use the dictionary to act as a translator between characters and the values that need to be written to the shift register. if we wanted to display the character `1`, we send the required bytestring to the shift register by calling `digitMap["1"]` instead of typing `00000110`; the same goes for any other character.
 
 We can use this to keep our code neat and short. By using the values of other variables as keys, we can turn this:
 
@@ -354,7 +364,7 @@ input=$1
 # get the length of the input string
 len=${#input}
 
-# variables for each character in the input string
+# parse each character from the input string into its own variable
 pref1="$(echo $input | sed -e 's/^\(.\).*/\1/')"
 pref2="$(echo $input | sed -e 's/^.\(.\).*/\1/')"
 chr1="$(echo $input | sed -e 's/^..\(.\).*/\1/')"
@@ -369,7 +379,7 @@ if  [[ "$len" -ge "7" || "$pref1" != "0" || "$pref2" != "x" ]]; then
 fi
 
 # digit mapping
-# there is no dictionary-type data structure in ash, so must write these by hand
+# 	there is no dictionary-type data structure in ash, so must write these by hand :()
 mapDigit(){
     if [ "$1" == "0" ]; then
         echo "1 1 1 1 1 1 0 0"
@@ -437,19 +447,19 @@ echo out >/sys/class/gpio/gpio18/direction
 echo out >/sys/class/gpio/gpio19/direction
 echo out >/sys/class/gpio/gpio0/direction
 
-# write out values from the SR's buffer to the outputs
+# function to write out values from the SR's buffer to the outputs
 latchSR (){
     echo 1 >/sys/class/gpio/gpio3/value
     echo 0 >/sys/class/gpio/gpio3/value
 }
 
-# pulse the SR clock and shift in one bit from the data line
+# function to pulse the SR clock and shift in one bit from the data line
 pulseClock (){
     echo 1 >/sys/class/gpio/gpio2/value
     echo 0 >/sys/class/gpio/gpio2/value
 }
 
-# set one digit
+# function to set one digit
 setOneDig(){
 
     echo out >/sys/class/gpio/gpio1/direction
@@ -464,7 +474,7 @@ setOneDig(){
     latchSR
 }
 
-# turn off all the pins (enable pins are active LOW)
+# function to turn off all the pins (enable pins are active LOW)
 initDigPins (){
     echo 1 >/sys/class/gpio/gpio0/value
     echo 1 >/sys/class/gpio/gpio18/value
@@ -478,24 +488,24 @@ initDigPins
 # loop forever
 while true; do
 
-# turn one digit on and write to the shift register
-echo 0 >/sys/class/gpio/gpio0/value
-setOneDig $dig3
-# then turn it off and prepare to switch to the next digit
-echo 1 >/sys/class/gpio/gpio0/value
+	# turn one digit on and write to the shift register
+	echo 0 >/sys/class/gpio/gpio0/value
+	setOneDig $dig3
+	# then turn it off and prepare to switch to the next digit
+	echo 1 >/sys/class/gpio/gpio0/value
 
-# enable the digit
-echo 0 >/sys/class/gpio/gpio19/value
-setOneDig $dig1
-echo 1 >/sys/class/gpio/gpio19/value
+	# enable the digit
+	echo 0 >/sys/class/gpio/gpio19/value
+	setOneDig $dig1
+	echo 1 >/sys/class/gpio/gpio19/value
 
-echo 0 >/sys/class/gpio/gpio11/value
-setOneDig $dig2
-echo 1 >/sys/class/gpio/gpio11/value
+	echo 0 >/sys/class/gpio/gpio11/value
+	setOneDig $dig2
+	echo 1 >/sys/class/gpio/gpio11/value
 
-echo 0 >/sys/class/gpio/gpio18/value
-setOneDig $dig4
-echo 1 >/sys/class/gpio/gpio18/value
+	echo 0 >/sys/class/gpio/gpio18/value
+	setOneDig $dig4
+	echo 1 >/sys/class/gpio/gpio18/value
 done
 ```
 

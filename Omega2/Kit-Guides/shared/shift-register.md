@@ -4,7 +4,7 @@
 
 A shift register is an external integrated circuit (IC) that can be used to expand the number of output pins available to us. Essentially they let you turn serial input from a single pin (one bit after the other) into multiple parallel output signals (all at once on separate lines).
 
-// TODO: graphic: block diagram of serial data coming in, parallel data coming out
+// TODO: graphic: block diagram of serial data coming in, parallel data coming out (ensure that the data matches the Controlling a Shift Register section below)
 
 The shift register used in your kit is the popular 74HC595. It has 8 output lines which allows you to manipulate and use bytes for output in your code.
 
