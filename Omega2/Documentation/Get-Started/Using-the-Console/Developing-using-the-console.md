@@ -31,7 +31,11 @@ In order to develop programs on the console you'll need the Terminal and Editor 
 At this point you are now ready to develop code for your Omega from your browser!
 
 
-### Controlling the LED from the Terminal App
+### Controlling the LED from the Terminal App {#developing-using-the-console-terminal-app}
+
+If you haven't already, install the Terminal app by opening it on the Console and clicking the Install button.
+
+> See our article on [Installing Console Apps](#installing-apps) for a walkthrough.
 
 Open the Terminal App and log in using your username and password. The defaults are:
 
@@ -47,17 +51,18 @@ The Omega comes ready with a kernel module that can translate text to Morse code
 
 To tell the kernel that we are going to use the Morse code module, set the LED trigger condition for the Onion system LED to `morse` by using the `echo` command to write the setting into the virtual file:
 
-```
-echo morse > /sys/class/leds/onion\:amber\:system/trigger
-```
 
-> To paste into the Terminal app, use `ctrl+shift+v` or `cmd+shift+v` on a MAC
+```
+echo morse > /sys/class/leds/omega2\:amber\:system/trigger
+```
+>If you're using an Omega2+, the LED will be named `omega2p:amber:system` as opposed to `omega2:amber:system` so you will have to pipe the above command to `/sys/class/leds/omega2p\:amber\:system/trigger`
 
+To paste into the Terminal app, use `ctrl+shift+v` or `cmd+shift+v` on a MAC
 
 You can verify that it worked by using `cat` to look at the virtual file:
 
 ```
-root@Omega-2757:~# cat /sys/class/leds/onion\:amber\:system/trigger                                                              
+root@Omega-2757:~# cat /sys/class/leds/omega2\:amber\:system/trigger                                                              
 none mmc0 timer default-on netdev transient gpio heartbeat [morse] oneshot
 ```
 
@@ -66,61 +71,78 @@ The square brackets indicate that the `morse` trigger is currently selected. The
 Anyway, now we have everything set up!  We just need to tell the kernel what message to blink on the LED.  Conveniently, once the morse option is selected, the kernel creates a new virtual file for that called (unsurprisingly enough) `message`.  We can use `echo` again to put text there:
 
 ```
-echo Hello, Onion > /sys/class/leds/onion\:amber\:system/message
+echo Hello, Onion > /sys/class/leds/omega2\:amber\:system/message
 ```
 
 Now watch your LED!  If it's too fast or too slow, you can change the speed with the `delay` file that also gets created:
 
 ```
-root@Omega-12D9:~# cat /sys/class/leds/onion\:amber\:system/delay
+root@Omega-12D9:~# cat /sys/class/leds/omega2\:amber\:system/delay
 50
 ```
 
 That's pretty fast!  Let's slow it down a bit so that people like me who aren't experts can read it:
 
 ```
-root@Omega-12D9:~# echo 100 > /sys/class/leds/onion\:amber\:system/delay
+root@Omega-12D9:~# echo 100 > /sys/class/leds/omega2\:amber\:system/delay
 ```
 
 The message will keep looping forever or until you change it.  To stop it, you can either clear the message entirely:
 
 ```
-echo > /sys/class/leds/onion\:amber\:system/message
+echo > /sys/class/leds/omega2\:amber\:system/message
 ```
 
 or change the LED trigger to something else:
 
 ```
-echo default-on > /sys/class/leds/onion\:amber\:system/trigger
+echo default-on > /sys/class/leds/omega2\:amber\:system/trigger
 ```
 
 ### Writing a Shell Script in the Editor App
 
 A Unix Shell is an interpreter that reads commands from the command-line and executes them. A Shell Script is a way of coding using those basic commands to create a more complex program. Essentially, we are going to use the same basic commands from the last section to create a program that will read a message and then blink that message in morse code.
 
-<!-- // DONE: change script to be called morse.sh -->
-Create a file called `morse.sh` in the root directory using the Editor App.
+If you haven't done so already, install the Editor app by opening it on the Console and clicking the Install button.
+
+> See our article on [Installing Console Apps](#installing-apps) for a walkthrough.
+
+Open the Editor app, navigate to the `/root` directory:
+
+![navigate to root directory](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-editor-0-navigate-to-root-dir.png)
+
+Create a new file:
+
+![create new file](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-editor-1-new-file.png)
+
+Let's name it `morse.sh`:
+
+![name the new file morse.sh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-editor-2-new-morse-sh-file.png)
 
 Copy the code below, and save the file:
 
 ```bash
 #!/bin/sh
 
+# find the name of the board, to be used in the name of the LED
+. /lib/ramips.sh
+board=$(ramips_board_name)
+
+# define the function that will set the LED to blink the arguments in morse code
 _MorseMain () {
 
-	echo morse > /sys/class/leds/onion\:amber\:system/trigger
-	echo 120 > /sys/class/leds/onion\:amber\:system/delay
-	echo $* > /sys/class/leds/onion\:amber\:system/message
+	echo morse > /sys/class/leds/$board\:amber\:system/trigger
+	echo 120 > /sys/class/leds/$board\:amber\:system/delay
+	echo $* > /sys/class/leds/$board\:amber\:system/message
 }
 
 
 ##### Main Program #####
 
+# run the function and pass in all of the arguments
 _MorseMain $*
 
-
 exit
-
 ```
 
 This block diagram shows the steps the `_MorseMain` function will perform:
@@ -133,7 +155,7 @@ Your Console should look something like this now:
 
 ![developing-code-pic](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-pic-2-editor-code.png)
 
-<!-- // DONE: update this photo ^ with the new text -->
+> The Editor can also be used to upload files from your computer directly to the Omega, see the [article on transferring files to the Omega](#upload-files-with-editor-app) for details.
 
 You are now ready to convert text to morse code!
 
@@ -158,8 +180,10 @@ root@Omega-2757:~# sh /root/morse.sh Hello Onion
 Once you're done, you can set the blinking back to `default-on` with the following command:
 
 ```
-echo default-on > /sys/class/leds/onion\:amber\:system/trigger
+echo default-on > /sys/class/leds/omega2\:amber\:system/trigger
 ```
+
+>Remember, on an Omega2+, the LED will be named `omega2p:amber:system` as opposed to `omega2:amber:system` so you will have to pipe the above command to `/sys/class/leds/omega2p\:amber\:system/trigger`
 
 
 <!-- // this article will show how you can use the console to develop code for the Omega using the Omega (pls reword so this makes sense)
@@ -171,7 +195,7 @@ echo default-on > /sys/class/leds/onion\:amber\:system/trigger
 //  - walkthrough on navigating the file system and creating a new script
 //    - make sure to mention that the best place for project files is in /root (since it won't be overwritten during firmware updates)
 // - explanation of a script that controls the Omega's LED
-//    - setting the led trigger to morse code (`echo morse > /sys/class/leds/onion:amber:system/trigger`)
+//    - setting the led trigger to morse code (`echo morse > /sys/class/leds/omega2:amber:system/trigger`)
 //    - getting input from command line argument for the text to be converted to morse code
 // note that there's an article about this already, can borrow heavily
 
@@ -181,6 +205,6 @@ echo default-on > /sys/class/leds/onion\:amber\:system/trigger
 //  - navigating through the filesystem
 //    - cd and ls commands, introduce ls -l
 //    - have links to getting started with linux - check existing linux basics articles for these links
-//  - using the echo command to read the available triggers in `/sys/class/leds/onion:amber:system/trigger`
+//  - using the echo command to read the available triggers in `/sys/class/leds/omega2:amber:system/trigger`
 //  - running the script we wrote using the editor app
 // make sure to point out that the terminal app now supports copy and paste (but with weird shortcuts) -->

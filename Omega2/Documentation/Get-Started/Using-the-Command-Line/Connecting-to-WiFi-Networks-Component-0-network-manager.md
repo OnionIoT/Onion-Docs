@@ -1,0 +1,3 @@
+>**The Omega's Network Manager** <br>
+>The Omega's network manager will attempt to the networks in range that are configured on your Omega. For example, if you have three configured networks (school, home, friend's house) and you're currently at your friend's house, the network manager will immediately attempt to connect to that network. <br> <br>
+>On the other hand, if you have multiple configured networks in range the Omega will attempt to connect to the network with the highest priority. Priority is defined as most recently configured networks having the lowest priority. This means that adding a network configuration immediately assigns it as the lowest priority.

@@ -125,7 +125,8 @@ Let's make a new file called `STK04-readSwitch.py` to hold our code. This progra
 import onionGpio
 import time
 
-sleepTime = 2 # sleep for 2 seconds
+# specify sleep duration to be used in the program
+sleepTime = 2
 
 # set which GPIOs will be used
 switchPin     = 0      # use GPIO0
@@ -140,12 +141,16 @@ led           = onionGpio.OnionGpio(ledPin)
 switch.setInputDirection()               # switch pin is an input
 led.setOutputDirection(0)                # led pin is an output
 
-# periodically check the switch and turn the LED on or off
+# infinite loop - runs main program code continuously
+# 	periodically check the switch and turn the LED on or off
 while 1:
-    switchValue = switch.getValue()     # read the switch's value
-    led.setValue(switchValue)           # turn the LED on/off depending on the switch
+	# read the switch value
+    switchValue = switch.getValue()
+	# turn the LED on/off depending on the switch
+    led.setValue(switchValue)
 
-    time.sleep(2)                          # sleep
+	# make the program pause
+    time.sleep(sleepTime)
 ```
 
 Let's run the code:

@@ -4,13 +4,13 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 
 ### The Omega2 at a Glance
 
-![omega2Plus](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega-2p-pic.png)
+![omega2Plus](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-illustration.png)
 
 | Omega2+ Specs  | |
 | :-------------: | :-------------:  |
 | Processor | 580MHz MIPS CPU  |
-| 128MB Memory | 128MB Memory  |
-|  32MB Storage | 32MB Storage  |
+| Memory | 128MB Memory  |
+| Storage | 32MB Storage  |
 | USB | USB 2.0  |
 | MicroSD Slot | Yes  |
 | WiFi adapter | b/g/n Wi-Fi  |
@@ -21,41 +21,52 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 | SPI |  1   |
 | I2S | 1  |
 
+### Processor Datasheet
+
+The datasheet for the Omega2 Plus' processor can be found here: [Mediatek MT7688 Datasheet](https://labs.mediatek.com/fileMedia/download/9ef51e98-49b1-489a-b27e-391bac9f7bf3)
+
 ### The Pins
 
 ![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
 
-<!-- LATER: include section on the 50pin connector -->
+<!-- TODO: include section on the 50pin connector -->
 
 
-### The Operating system
+<!-- operating system -->
+```{r child = '../shared/Hardware-Overview-Component-90-Omega-operating-system.md'}
+```
 
-The Omega2+ runs the Linux Embedded Development Environment (LEDE) operating system, a distribution based on OpenWRT. This distribution gives the Omega2+ access to the OPKG functionality, allowing you to download packages to enhance your experience.
+### The Omega LED {#omega2p-hw-omega-led}
 
-### The Omega LED {#omega-hw-omega-led}
+<!-- omega led content -->
+```{r child = '../shared/Hardware-Overview-Component-91-Omega-omega-led-content.md'}
+```
 
-The Omega LED is a great tool for communicating information with a user. It notifies you when your Omega is off, booting, and on.
 
-The Omega LED uses GPIO44, and can be programmed to do a number of cool things. You can learn more about the LED in [the article on how to use the Omega's LED](#the-omega-led)
+<!-- reset gpio -->
+```{r child = '../shared/Hardware-Overview-Component-92-Omega-reset-gpio.md'}
+```
 
-<!-- TODO: fix this link -->
 
-### Reset GPIO
+### MicroSD Card Slot
 
-The Omega's can be reset using GPIO38. When plugged into a Dock (e.g. Expansion Dock), this GPIO gives various functionality to the reset button found on docks. For example, a quick button press triggers the reboot command, whereas holding the button for longer than 7 seconds will trigger a factory reset command.
+The MircoSD card slot can be used to expand the Omega2+'s storage capacity to ridiculous levels. If 32MiB was a problem for you, you can now hit it with a tactical warhead. To help you get started, there's a guide on [using a MicroSD card](#using-a-microsd-card).
+
+The slot can be found at the bottom of the Omega2+. To physically mount a MicroSD card, slide it into the slot, push it down until it clicks. If it pops all the way back up, just do it again, and it should stay.
+
+![MicroSD Card Slot Location](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-microsd-slot.jpg)
+
+
+<!-- wifi antenna -->
+```{r child = '../shared/Hardware-Overview-Component-92-Omega-smt-antenna.md'}
+```
+
+<!-- u.fl connector -->
+```{r child = '../shared/Hardware-Overview-Component-93-Omega-ufl-connector.md'}
+```
+
 
 <!--  leave this out for now -->
-<!--  ## MicroSD Card Slot -->
+### Mechanical drawing
 
-<!--  little explanation of the MicroSD Slot -->
-<!--  images & explanation of proper sd card insertion and removal -->
-
-<!-- batch2: ## Antenna and U.FL Connector -->
-
-<!--  Description of SMT antenna used on the Omega, mention that it's directional, have a diagram of the directionality -->
-<!--  Describe that U.FL connector can be used to connect other, bigger antennas -->
-
-<!--  leave this out for now -->
-<!-- ## Mechanical Drawing -->
-
-<!--  insert mechanical drawing image, link to repo -->
+We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-O2.PDF) of the dimensions and geometry of the Omega2+.

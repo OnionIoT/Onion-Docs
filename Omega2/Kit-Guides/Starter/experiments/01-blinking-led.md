@@ -92,23 +92,30 @@ Let's make a new file called `STK01-blink.py` to hold our code:
 import onionGpio
 import time
 
-sleepTime = 0.5                   # sleep for half a second
+# specify sleep duration to be used in the program
+sleepTime = 0.5
 
-gpio0 = onionGpio.OnionGpio(0)    # initialize a GPIO object
-gpio0.setOutputDirection(0)       # set to output direction with zero being the default value
+# instantiate a GPIO object
+gpio0 = onionGpio.OnionGpio(0)
+# set to output direction with zero (LOW) being the default value
+gpio0.setOutputDirection(0)
 
+# create a variable to hold the value of the LED
 ledValue     = 1
 
+# infinite loop - runs main program code continuously
 while 1:
-    gpio0.setValue(ledValue)      # set the GPIO's value
-    
+	# set the GPIO's value
+    gpio0.setValue(ledValue)
+
     # flip the value variable
     if ledValue == 1:
         ledValue = 0
     else:
         ledValue = 1
 
-    time.sleep(sleepTime)         # sleep 
+	# make the program pause
+    time.sleep(sleepTime)
 ```
 
 To run our Python program, enter the following in the Omega's command line:
@@ -164,7 +171,7 @@ Loops are structures used to control program flow by repeating certain sections 
 
 Here we're using a **while** loop: the code inside the loop will run over and over *while* a given condition holds true. In this case, the loop condition is `1`, which is equivalent to `True` in these situations, so we have in effect made an **infinite loop**.
 
-Before program enters the loop, we set the `ledValue` variable to `1`. Inside the while loop, we assign the value of `ledValue` (1) to our LED GPIO which turns it on. Then we reverse the value using the `if-else` statement which looks at the latest value of `ledValue`: if it is `1`, it will be changed to `0` and vice versa. The program will then pause the program execution for half a second, at the `time.sleep(sleepTime)` statement. 
+Before program enters the loop, we set the `ledValue` variable to `1`. Inside the while loop, we assign the value of `ledValue` (1) to our LED GPIO which turns it on. Then we reverse the value using the `if-else` statement which looks at the latest value of `ledValue`: if it is `1`, it will be changed to `0` and vice versa. The program will then pause the program execution for half a second, at the `time.sleep(sleepTime)` statement.
 
 The program then returns back to the beginning of the loop and assigns the new value of `ledValue` to the GPIO, and repeats the steps we described in the paragraph paragraph until you exit the program (`Ctrl-C`).
 

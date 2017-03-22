@@ -6,7 +6,7 @@ devices: [ Omega2 ]
 order: 5
 ---
 
-### Installing Additional Apps {#installing-apps}
+## Installing Additional Apps {#installing-apps}
 
 <!-- // Mention the pre-installed apps. Show how to install additional apps through the console or through the command line -->
 
@@ -32,6 +32,7 @@ Refresh the page and your app will be available for use.
 
 
 | App Name | Average Install Time |
+|--------|--------------|
 | Editor | 1-2 Minutes |
 | Terminal | 3-4 Minutes |
 | Webcam | 1-2 Minutes |

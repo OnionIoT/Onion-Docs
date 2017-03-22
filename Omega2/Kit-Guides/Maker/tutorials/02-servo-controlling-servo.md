@@ -34,7 +34,6 @@ For our experiment, we'll demonstrate how servos can be controlled through PWM s
 ``` {r child = '../../shared/pwm-details.md'}
 ```
 
-
 ### Building the Circuit
 
 // TODO: motor? maybe a typo?

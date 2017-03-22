@@ -10,13 +10,10 @@ order: 2
 
 <!-- // The Omega2 has a built-in hardware SPI controller that can be used to communicate with SPI-enabled peripherals -->
 
-The Omega supports running the SPI protocol through the GPIOs, making it handy to communicate with an SPI-enabled peripherals. To implement SPI communication, the Omega has a C library, a Python module, and a command-line tool. This article will focus on the command line program, `spi-tool`.
-
-<!-- // can largely copy the existing wiki article: https://wiki.onion.io/Tutorials/Using-SPI -->
+The Omega has a built-in hardware SPI controller allowing it to communicate with an SPI-enabled peripherals. To implement SPI communication, the Omega has a C library, a Python module, and a command-line tool. This article will focus on the command line program, `spi-tool`.
 
 ### What is SPI?
 
-<!-- // jack from the existing article -->
 The Serial Peripheral Interface (SPI) is a four-wire synchronous communication protocol, largely used to connect microprocessors or microcontrollers to sensors, memory, and other peripherals.
 
 The four signals are:
@@ -28,21 +25,43 @@ The four signals are:
 | MISO       | Master In, Slave Out - Data sent from the Slave to the Master |
 | CS/SS      | Chip Select/Slave Select                                      |
 
-The fact that it is a *synchronous* data bus means that one of the lines is a clock, used to synchronize the bits being sent on the data lines.
+SPI is a **synchronous** data bus, meaning that one of the lines is a clock, used to synchronize the bits being sent on the data lines.
 
-The protocol is based on the Master-Slave architecture, so the Master will generate the System Clock and the Slave Select signals. In systems with multiple slaves, there will be multiple Slave Select signals.
+The protocol is based on the **Master-Slave architecture**. The Master will generate the System Clock and the Slave Select signals. Each Slave requires its own Slave Select connection to the Master.
 
 For more details on SPI, check out the [Wikipedia article](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus).
 
+
+### The Omega & SPI {#omega-and-spi}
+
+The Omega2's hardware SPI bus has one Slave Select line available (`CS1`). The bus is registered to the operating system via the virtual device file `/dev/spidev32766.1`. This is made possible with `sysfs`, a pseudo-file system that holds information about the Omega's hardware in files, and lets the user control the hardware by editing the files.
+
+Here's what the numbers mean:
+
+* `32766` is the Omega2's **bus number**.
+* `1` indicates the **device ID**. This corresponds to the slave connected to the Omega2's `CS1` pin.
+
+When using this bus, you will need to specify these particular numbers. Keep these handy for the sections below!
+
+<!-- // mention that device 0 is the flash memory used by the omega -->
+On a side note, device `0` (`CS0`) is connected to the flash memory used by the Omega.
+
+#### On the Hardware
+
+The SPI pins on the Omega2 and Expansion Dock are shown below.
+
+![spi-pins-omega2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/spi-pins-omega2.jpg)
+
+![spi-pins-exp-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/spi-pins-exp-dock.jpg)
 
 ### The Command Line tool
 
 <!-- // jack from the existing article -->
 
 
-The `spi-tool` command line utility allows the user to read and write single bytes from an SPI device. In order for an SPI device to be used, it must first be registered with the system. The utility can perform that action as well; giving the SPI device a bus number and device ID. This bus number and device ID must then be used again when transferring data with the SPI device.
+The `spi-tool` command line utility allows the user to read and write single bytes from the Omega2's SPI bus. For the examples below, use the SPI device `bus number` and `device ID` listed in [the above section](#omega-and-spi).
 
-The utility is not included by default in the Omega's firmware, to install it:
+This utility is not included by default in the Omega's firmware. To install it:
 ```
 opkg update
 opkg install spi-tool
@@ -50,12 +69,12 @@ opkg install spi-tool
 
 Try running `spi-tool -h` for a print-out of the tool's usage.
 
-#### Read a Byte
+#### Read a Byte {#spi-read-a-byte}
 
 <!-- // jack from the existing article -->
 
-Now we are ready to interact with the SPI device! To read a single byte from a registered SPI device:
-```
+To read a single byte from an SPI device, specify the memory address on the device:
+```bash
 spi-tool -b <BUS NUMBER> -d <DEVICE ID> [options] read <ADDRESS>
 ```
 
@@ -64,28 +83,39 @@ This command will print the byte read from the specified address on the SPI devi
 
 **Arguments and Options**
 
-The `bus number` and `device ID` need to correspond to the values used to register the device! Additionally, any options used in the registration of the device need to be repeated in this command.
+The following arguments are required:
 
-The `address` argument indicates the address from which to read on the SPI device.
+* `<BUS NUMBER>`, `<DEVICE ID>` - specified in [this section](#omega-and-spi).
+* `address` - indicates the address from which to read on the SPI device.
 
+Some useful options you can use are:
+
+* `--frequency <Hz>` - Set max SPI frequency
+* `--delay <us>` - Set delay after the last bit transfered before optionally deselecting the device before the next transfer, in microseconds.
+* `--bpw <number>` - Set number of bits per word
+* `--cs <gpio>` - Set GPIO for SPI CS signal
+* `--3wire` - Slave In/Slave Out  signals shared
+* `--no-cs` - No chip select signal
+* `--cs-high` - Set chip select to active HIGH
+* `--lsb` - Transmit Least Significant Bit first
 
 **Examples**
 
-Read a byte from address 0x11 from device 1 on bus 0 (registered above):
+Read a byte on bus `32766`, from device `1`, from address `0x11`:
 ```
-root@Omega-ABCD:~# spi-tool -b 0 -d 1 read 0x11
+root@Omega-ABCD:~# spi-tool -b 32766 -d 1 read 0x11
 > SPI Read from addr 0x11: 0x81
 ```
 
-Read a byte from address 0x00 from device 2 on bus 1 (registered above):
+Read a byte on bus `32766`, from device `1`; chip select is *active HIGH*; from address `0x00`:
 ```
-root@Omega-ABCD:~# spi-tool -b 1 -d 2 --speed 400000 --sck 13 read 0x00
+root@Omega-ABCD:~# spi-tool -b 32766 -d 1 --cs-high read 0x00
 > SPI Read from addr 0x00: 0xf8
 ```
 
-Read a byte from address 0xaf from device 3 on bus 2 (registered above):
+Read a byte on bus `32766`, from device `1`; shared `Slave In/Slave Out` signals; from address `0xaf`:
 ```
-root@Omega-ABCD:~# spi-tool -b 2 -d 3 --speed 320000 --cs-high --3wire read 0xaf
+root@Omega-ABCD:~# spi-tool -b 32766 -d 1 --3wire read 0xaf
 > SPI Read from addr 0xaf: 0xbe
 ```
 
@@ -93,41 +123,39 @@ root@Omega-ABCD:~# spi-tool -b 2 -d 3 --speed 320000 --cs-high --3wire read 0xaf
 #### Write a Byte
 
 <!-- // jack from the existing article -->
-Along with reading, you can also use `spi-tool` to write to the SPI device:
-```
+Along with reading, you can also use `spi-tool` to write to a memory address on an SPI device:
+
+```bash
 spi-tool -b <BUS NUMBER> -d <DEVICE ID> [options] write <ADDRESS> <VALUE>
 ```
 
-
 **Arguments and Options**
 
-The `bus number` and `device ID` need to correspond to the values used to register the device! Additionally, any options used in the registration of the device need to be repeated in this command.
+* `<BUS NUMBER>`, `<DEVICE ID>` - specified in [this section](#omega-and-spi).
+* `<ADDRESS>` - indicates the address from which to read on the SPI device.
+* `<VALUE>` - the value to write.
 
-The `address` and `value` arguments indicate the address on the SPI device to be written, and the value to write, respectively.
-
-
+The options are the same as in [Read a Byte](#spi-read-a-byte).
 
 **Examples**
 
-Write 0x42 to address 0x12 to device 1 on bus 0 (registered above):
+On bus `32766`, device `1`, `write` to address `0x12` a value of `0x42`:
 ```
-root@Omega-ABCD:~# spi-tool -b 0 -d 1 write 0x12 0x42
+root@Omega-ABCD:~# spi-tool -b 32766 -d 1 write 0x12 0x42
 > SPI Write to addr 0x12: 0x42
 ```
 
-Write 0xfa to address 0x09 on device 2 on bus 1 (registered above):
+On bus `32766`, device `1`;  set chip select to *active HIGH*; `write` to address `0x09` a value of `0xfa`:
 ```
-root@Omega-ABCD:~# spi-tool -b 1 -d 2 --speed 400000 --sck 13 write 0x09 0xfa
+root@Omega-ABCD:~# spi-tool -b 32766 -d 1 --cs-high write 0x09 0xfa
 > SPI Write to addr 0x09: 0xfa
 ```
 
-Write 0x01 to address 0xbf on device 3 on bus 2 (registered above):
+On bus `32766`, device `1`; shared `Slave In/Slave Out` signals; `write` to address `0xbf` a value of `0x01`:
 ```
-root@Omega-ABCD:~# spi-tool -b 2 -d 3 --speed 320000 --cs-high --3wire write 0xbf 0x01
+root@Omega-ABCD:~# spi-tool -b 32766 -d 1 --3wire write 0xbf 0x01
 > SPI Write to addr 0xbf: 0x01
 ```
-
-
 
 ### Moving Beyond the Command Line
 
@@ -137,4 +165,4 @@ root@Omega-ABCD:~# spi-tool -b 2 -d 3 --speed 320000 --cs-high --3wire write 0xb
 
 The `spi-tool` utility allows for some basic interaction with SPI devices using the command line. With interesting projects and use-cases, you will require additional interaction with the SPI device that might not be suited to the command line.
 
-<!-- Well, you're in luck! There is an [Onion developed C library and Python module](../../Documentation/Libraries/SPI-Library) that gives you the flexibility to use SPI devices however you want! -->
+ Well, you're in luck! There is an Onion developed [C library](#spi-c-library) and [Python module](#spi-python-module) that gives you the flexibility to use SPI devices however you want!

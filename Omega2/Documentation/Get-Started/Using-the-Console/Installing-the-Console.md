@@ -12,7 +12,7 @@ order: 2
 The Console can be installed through the Setup Wizard, or through the command line.
 Follow this [guide](#first-time-setup) on setting up your Omega, if you have not already done so.
 
-#### Installing through the Setup Wizard
+### Installing Using the Setup Wizard
 
 If you have set up the Omega and didn't install the console, skip to the Software page and make sure the checkbox is checked.
 ![checkbox](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-checkmark.png)
@@ -31,43 +31,22 @@ username: root
 password: onioneer
 ```
 
-#### Installing through the Command Line
+### Installing Using the Command Line
 
-The console can also be installed using the command line using the Omega's package manager, `opkg`.
-<!-- For information on how to access the Omega's command line, follow this [guide](../Using-the-Command-Line/connecting.md) -->
-
-<!-- // note this won't be available till 3rd batch... -->
-
->You'll need to be connected to the internet in order to install the Console. If you've followed the Setup Wizard, you will be all good to go.
-
-With your terminal open, run the following commands:
-
-```
-opkg update
-opkg install onion-console-base
+<!-- command line console installation instructions -->
+```{r child = './Installing-the-Console-Component-Command-Line-Install.md'}
 ```
 
+Now you'll be able to [access the Omega's Console using your browser](#access-the-console)!
 
-You can learn more about `opkg` in our [guide to opkg](#using-opkg).
 
-After installation is complete, you'll need to restart the rpcd service to load the console configuration with the following command:
+#### Behind the Scenes
 
+<!-- console install tool explanation -->
+```{r child = './Installing-the-Console-Component-Command-Line-Install-Explanation.md'}
 ```
-/etc/init.d/rpcd restart
-```
 
-Now, you can access the console by going to `http://omega-ABCD.local/` where `ABCD` is your Omega's unique identifier.
-
-> If you don't know how to find your Omega's unique identifier you can take a look at our brief [guide to finding your Omega's name](#omega-name)
-
-Upon loading, you should see the console login page.
-![login-page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-login.png)
-
-The default login info is:
-
-```
-username: root
-password: onioneer
-```
 
 <!-- // TODO batch 3 or 4: add a section on navigating and using the console -->
+
+<!-- // TODO: find an appropriate place to mention that oupgrade shouldn't be run from the Terminal app on the console -->

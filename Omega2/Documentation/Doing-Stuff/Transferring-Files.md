@@ -9,7 +9,40 @@ order: 4
 ## Transferring Files to the Omega {#transferring-files}
 
 
-The Omega is incredibly powerful in that it is a full Linux computer. This means that it has its own filesystem, allowing you to store files directly on the Omega. It also means that you can take your files from an external device and copy them to your Omega. This tutorial will show you how you to transfer files from Windows, Mac OS X, and Linux.
+The Omega is incredibly powerful in that it is a full Linux computer. This means that it has its own filesystem, allowing you to store files directly on the Omega. It also means that you can take your files from an external device and copy them to your Omega. This tutorial will show you how you to transfer files using the Onion Console and your browser, as well as directly from Windows, Mac OS X, and Linux.
+
+
+### Using the Editor App in the Onion Console {#upload-files-with-editor-app}
+
+The Editor App in the Onion Console can be used to upload files directly to the Omega's filesystem.
+
+
+>The console is installed by default after completing the Setup Wizard, but you can read our brief guide on [installing the Onion Console](#installing-the-console) for more information.<br>
+> If you haven't installed the Editor app yet, check out our guide on [Installing Console Apps](#installing-apps)
+
+This works on all operating systems and is a great way to wirelessly upload code to your Omega.
+
+*NOTE: It is not recommended to upload files larger than 2MB using this method.*
+
+Open the Editor App in the console, and click the `Upload File` button in the top bar. Your file will be uploaded to the current directory, so you'll need to first move to the correct directory in the side bar:
+
+![upload-file-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/upload-file-with-editor-upload-button.png)
+
+>The green circle shows that my current directory is `/root`
+
+Now a prompt will open asking you to choose your file:
+
+![choose-file-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/upload-file-with-editor-choose-file.png)
+
+Click that and select the file you would like to upload. Then hit submit button:
+
+![submit-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/upload-file-with-editor-submit.png)
+
+And your file will be uploaded to the current directory:
+
+![uploaded-file](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/upload-file-with-editor-uploaded.png)
+
+And that's all there is to it! A simple and effective way to upload files from your computer to your Omega.
 
 
 ### Using Windows
