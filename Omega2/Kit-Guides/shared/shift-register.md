@@ -1,10 +1,10 @@
 ### Shift Register
 
-<!-- // TODO: photo of the shift register IC -->
+// TODO: photo of the shift register IC
 
 A shift register is an external integrated circuit (IC) that can be used to expand the number of output pins available to us. Essentially they let you turn serial input from a single pin (one bit after the other) into multiple parallel output signals (all at once on separate lines).
 
-<!-- // TODO: graphic: block diagram of serial data coming in, parallel data coming out -->
+// TODO: graphic: block diagram of serial data coming in, parallel data coming out
 
 The shift register used in your kit is the popular 74HC595. It has 8 output lines which allows you to manipulate and use bytes for output in your code.
 
@@ -25,7 +25,7 @@ There are three pins on the IC that we use to control it with the Omega. Two of 
 
 #### Bit Order
 
-Keep in mind that the **first** value you send the shift register will be shifted towards the **last** output pin as you send it more data. 
+Keep in mind that the **first** value you send the shift register will be shifted towards the **last** output pin as you send it more data.
 
 Let's say we have the following byte `10101010` that represent the ON/OFF state of 8 LEDs in our circuit. Let's also say the 1st bit from the left corresponds to LED `A`, the 2nd to `B`, and so on. This is shown in the table below:
 
@@ -97,11 +97,11 @@ Repeat the 2 steps above until all 8 values have been shifted in. Then pulse the
 
 In this way, we can control up to 8 different outputs with only 3 GPIOs. This is an incredibly powerful technique that you can use to work with many components at once.
 
-// TODO: graphic: can resuse the graphic mentioned in the TODO above
+// TODO: graphic: can resuse the block diagram graphic mentioned in the TODO above
 
 #### Daisy-Chaining
 
-Shift registers can also be connected in series to each other to extend the number of data lines that can be controlled at once. 
+Shift registers can also be connected in series to each other to extend the number of data lines that can be controlled at once.
 
 Simply connect the SER pin of one shift register to the `QH'` pin on another, and connect their SRCLK and RCLK pins together. That way, when you pulse SRCLK, the 2nd chip will read from the last output of the 1st, and when you pulse RCLK, both chips will update their output lines.
 
