@@ -192,22 +192,22 @@ class Lcd:
         self.i2c.write(self.address, [cmd])
         time.sleep(writeSleep)
 
-	# TODO: add a description of what this function actually accomplishes
-    # 	clocks EN to latch command
+    # creates an EN pulse (using I2C) to latch previously sent command
     def lcdStrobe(self, data):
         self.writeBytesToLcd(data | En | self.lcdbacklight)
         time.sleep(.0005)
         self.writeBytesToLcd(((data & ~ En) | self.lcdbacklight))
         time.sleep(.0001)
 
-	# TODO: add a description of what the function does, ie why we write 4 bits and then strobe
     def lcdWriteFourBits(self, data):
+		# write four data bits along with backlight state to the screen
         self.writeBytesToLcd(data | self.lcdbacklight)
+		# perform strobe to latch the data we just sent
 		self.lcdStrobe(data)
 
-    # write an 8-bit command to lcd
+    # function to write an 8-bit command to lcd
     def lcdWrite(self, cmd, mode=0):
-		# TODO: add a super brief explanation about how we send the bottom 4 bits first and then the top 4 bits
+		# due to how the I2C backpack expects data, we need to send the top four and bottom four bits of the command separately
         self.lcdWriteFourBits(mode | (cmd & 0xF0))
         self.lcdWriteFourBits(mode | ((cmd << 4) & 0xF0))
 
@@ -238,7 +238,7 @@ class Lcd:
         self.lcdWrite(lcdClearDISPLAY)
         self.lcdWrite(LCD_RETURNHOME)
 
-	# TODO: add function description
+	# write the current lines to the screen
     def refresh(self):
         self.lcdDisplayString(self.line1,1)
         self.lcdDisplayString(self.line2,2)

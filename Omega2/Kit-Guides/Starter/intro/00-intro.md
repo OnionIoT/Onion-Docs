@@ -45,16 +45,17 @@ Your Starter Kit contains the following items; we've labelled them here for your
 <!-- // * setup your Omega (link to #first-time-setup)
 // * install some of the software packages we'll need for our experiments (link to our software installation article)
 // * we recommend working your way linearly through the experiments as they usually build on what we've just learned -->
-Before getting started on the experiments, set up your Omega by following the guides below:
+Before getting started on the experiments, set up your Omega by following the [First Time Setup Guide](#first-time-setup).
 
-1. [First Time Setup](#first-time-setup)
-1. [Software Installation](#starter-kit-intro-installing-software)
+Then you can learn more on:
+1. [Connecting to the Omega's Command Line](#starter-kit-connecting-to-the-omega-terminal)
+1. [An introduction to using the command line](#starter-kit-the-command-line)
+1. [Installing the software we need for the experiments](#starter-kit-intro-installing-software)
 
 Once you've done those, we recommend working your way through the experiments in order as they usually build on what we've learned in each one.
 
 ### What Exactly Will I Learn?
 
-<!-- // * list of the experiments in order (obv with links), give a one-sentence description of each (should contain the main component we're working with and what we're gonna do with it) -->
 
 Here's a list of all of the experiments we're going to build with your Kit:
 
