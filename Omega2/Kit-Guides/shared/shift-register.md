@@ -1,6 +1,7 @@
 ### Shift Register
 
-// TODO: photo of the shift register IC
+<!-- // DONE: photo of the shift register IC -->
+![74HC595N Shift Register IC](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shared-shift-register.jpg)
 
 A shift register is an external integrated circuit (IC) that can be used to expand the number of output pins available to us. Essentially they let you turn serial input from a single pin (one bit after the other) into multiple parallel output signals (all at once on separate lines).
 
@@ -53,7 +54,7 @@ for bit in bytestring:
 
 The pinout diagram for the 74HC595 is shown below:
 
-![595-pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/595-shift-register-pinout.png)
+![595-pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shared-shift-register-pinout.png)
 
 On the right side of the chip, you can see the three control pins described above, as well as the first output (QA). On the left side, you can see the other 7 outputs (QB - QH).
 
