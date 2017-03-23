@@ -12,7 +12,8 @@ Unlike the SPDT switches with levers, the push button switches in your Kit are t
 * The contact is switched between being disconnected and being connected to one output ("single throw")
 
 <!-- // TODO: animation of switch being pressed, enabling flow of current in circuit, then flow stopping after button is released
-- we don't have time for this one-->
+- we don't have time for this one, photo added instead-->
+![How the push button works](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/switches-push-button-on-off.png)
 
 For example, the buttons on TV remotes are all momentary push button type switches, so expect the same type of functionality (changing settings) with push buttons in our experiments and projects.
 
