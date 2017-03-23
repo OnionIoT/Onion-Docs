@@ -2,7 +2,8 @@
 
 We'll be using jumper wires in all of our experiments and projects. They all work the same; connecting two points in a circuit together.
 
-// TODO: IMAGE: showing several different jumper wires
+<!-- // DONE: IMAGE: showing several different jumper wires -->
+![Jumpers!](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shared-jumper-wires.jpg)
 
 Jumper wires have ends that are either male or female. They both do the same thing, but the different ends make them work better in different situations. 
 

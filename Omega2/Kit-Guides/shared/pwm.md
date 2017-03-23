@@ -8,4 +8,6 @@ On the other hand, an **analog** signal can be any voltage between HIGH and LOW.
 
 There are some limitations to this method depending on how the driving circuit is built, but it's relatively simple to implement and can be accurate enough for most cases.
 
-<!-- // TODO: GRAPHIC showing 3 or 4 pwm signals with different duty cycles -->
+<!-- // DONE: GRAPHIC showing 3 or 4 pwm signals with different duty cycles -->
+
+![A few difference PWM signals, at varing duty cycles](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shared-pwm-signals.jpg)
