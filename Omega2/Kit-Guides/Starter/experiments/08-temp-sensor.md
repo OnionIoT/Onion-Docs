@@ -24,7 +24,7 @@ Let's now learn about and use the **1-Wire bus protocol** to read the ambient te
 
 To make 1-Wire work with the Omega, we must first label a GPIO as a 1-Wire **master bus**. This will be the main contact point between the Omega and any 1-Wire devices. Once we have the master bus set up, we can then scan for the sensor through it and read from the sensor as needed.
 
-The Omega does not have a dedicated controller for this protocol, we'll have to send some low level instructions directly to the bus. This will be a good opportunity to learn about the process of **reading and writing files**.
+The Omega does not have a dedicated hardware controller for this protocol, so we'll have to send some low level instructions directly to the bus. This will be a good opportunity to learn about the process of **reading and writing files**.
 
 <!-- one wire temperature sensor -->
 ```{r child = '../../shared/one-wire-temperature-sensor.md'}

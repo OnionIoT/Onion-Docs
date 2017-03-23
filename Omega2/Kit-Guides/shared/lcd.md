@@ -8,4 +8,6 @@
 
 The LCD screen is a **16x2** display, meaning it has **2 rows** of **16 columns (characters)**. It has an LED backlight to illuminate the display even in the dark!
 
+![LCD screen](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/lcd-screen.jpg)
+
 These screens are typically controlled by many parallel data lines, usually 11 or so. However, the one in your kit has additional circuitry that implements control of the screen with the I2C protocol, so you only need to use two data lines to control the screen!
