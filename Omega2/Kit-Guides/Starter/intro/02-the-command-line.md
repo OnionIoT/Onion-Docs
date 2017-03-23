@@ -94,6 +94,15 @@ For the purposes of this kit, we'll get to do the following:
 
 // include example(s)
 
+
+The `mkdir` command allows us to create empty directories. Run it like so:
+
+```
+mkdir <DIRECTORY>
+```
+
+You can use 
+
 #### Creating Files
 
 <!-- // DONE: touch command
