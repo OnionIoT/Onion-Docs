@@ -2,7 +2,7 @@ Welcome to the Guide for the Onion Omega2 Starter Kit!
 
 ![Starter Kit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/starter-kit-icon.png)
 
-### What we're Going to Learn
+### What We're Going to Learn
 
 <!-- DONE: // a listing of what this kit will teach the reader
 //	* How to put together circuits on a breadboard (essential skill for electronics prototyping)
