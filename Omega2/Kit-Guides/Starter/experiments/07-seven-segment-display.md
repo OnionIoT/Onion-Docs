@@ -47,7 +47,7 @@ First things first, we'll be building on our previous experiment.
 * If you've done the previous experiment, keep the shift register connected to the Omega just like you had it. However, you'll need to remove the LEDs and resistors.
 * If you skipped it, [**we strongly recommend you check it out**](#starter-kit-using-shift-register) before moving on to this one!
 
-// DONE: do we need a note saying that they should disconnect the LEDs from the shift reg outputs?
+<!-- // DONE: do we need a note saying that they should disconnect the LEDs from the shift reg outputs? -->
 
 > It's important that all components have a common ground connection. Signals are measured as the **difference** in voltage between the signal pin and ground, so all of the components need to be measuring from the same baseline.
 
