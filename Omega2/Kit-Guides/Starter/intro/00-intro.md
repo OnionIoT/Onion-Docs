@@ -1,5 +1,7 @@
 Welcome to the Guide for the Onion Omega2 Starter Kit!
 
+[Starter Kit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/starter-kit-icon.png)
+
 ### What we're Going to Learn
 
 <!-- DONE: // a listing of what this kit will teach the reader
@@ -22,6 +24,8 @@ We're going to learn about the following:
 * Writing Python scripts on the command line
 * Using Python to control external circuits with the Omega
 	* Programming from the ground-up
+	* Learning If statements, For loops, While Loops
+	* Writing our own functions
 	* Programming existing Python modules
 	* Object Oriented programming
 		* Using classes
@@ -34,14 +38,14 @@ We're going to learn about the following:
 
 Your Starter Kit contains the following items; we've labelled them here for your convenience.
 
-![Parts list](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starterimg/starter-kit-parts-list.png)
+![Parts list](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/starter-kit-parts-list.png)
 
 ### How to Use This Guide
 
 <!-- // * setup your Omega (link to #first-time-setup)
 // * install some of the software packages we'll need for our experiments (link to our software installation article)
 // * we recommend working your way linearly through the experiments as they usually build on what we've just learned -->
-Before getting started on the experiments, set up your Omega by following the guides below: 
+Before getting started on the experiments, set up your Omega by following the guides below:
 
 1. [First Time Setup](#first-time-setup).
 1. [Software Installation](#starter-kit-intro-installing-software)
