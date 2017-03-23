@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 7
 ---
 
-## Using a Shift Register to Control a Bunch of LEDs {#starter-kit-using-shift-register}
+## Using a Shift Register to Control Multiple LEDs {#starter-kit-using-shift-register}
 
 Shift registers are very useful tools; using a few GPIOs connected to a shift register, we can increase the number of output data pins that are available to us.
 

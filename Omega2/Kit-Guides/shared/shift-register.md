@@ -89,6 +89,8 @@ Here's the diagram from before to summarize what we've just described.
 <!-- // DONE: graphic: can resuse the block diagram graphic mentioned above -->
 ![Block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shift-register-block-diagram.png)
 
+<!-- TODO: can we modify (a copy of) this diagram to correspond to the values we shift in and expect to see coming out? -->
+
 #### Daisy-Chaining
 
 Shift registers can also be connected in series to each other to extend the number of data lines that can be controlled at once. We can do this by using the `QH'` pin, which is connected inside the shift register to the last output `QH`.

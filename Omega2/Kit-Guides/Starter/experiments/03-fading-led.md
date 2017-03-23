@@ -54,6 +54,8 @@ Let's get to writing the main code. This time, we will be using `fast-gpio`, a u
 
 We'll use the PWM functionality of `fast-gpio` to slowly increase the LED's brightness by incrementing the duty cycle on its GPIO, then slowly decrease the brightness by decreasing the duty cycle. You'll be seeing the light gently fade in and out.
 
+See the [Omega2 documentation for more info on `fast-gpio`](https://docs.onion.io/omega2-docs/using-gpios.html#fast-gpio).
+
 Create a file called `STK03-fading-led.py` and paste the following code in it:
 
 ``` python
