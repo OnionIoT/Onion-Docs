@@ -101,7 +101,7 @@ For this experiment, we'll be using our Onion I2C Python Module which greatly si
 This is the plan for how we'll implement our code:
 
 <!-- // DONE: include a block diagram of our software system -->
-![Block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/09-block-diagram.jpg)
+![Block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/09-software-block-diagram.png)
 
 First, let's write a file with the low level code needed to drive the LCD display. It will contain functions to write strings and characters, and utility functions to change the behaviour of the display.
 

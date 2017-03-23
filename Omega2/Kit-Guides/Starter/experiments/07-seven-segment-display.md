@@ -79,7 +79,7 @@ Once you've connected the 7-segment display to the Omega and shift register, you
 We'll be developing a program that takes input from command line arguments when it's launched and displays them on the 7-segment display. The basic flow will look like this:
 
 <!-- // TODO: include a block diagram of the code and a description of what we're going to be doing from a high level -->
-![Block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/07-seven-segment-code-block-diagram.png)
+![Block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/07-seven-segment-code-block-diagram.jpg)
 
 To accomplish this, we will write a new class that uses and builds upon the shift register class from the previous experiment.
 
