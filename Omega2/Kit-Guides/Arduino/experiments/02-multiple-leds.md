@@ -37,7 +37,9 @@ To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on
 
 Once your done, the circuit should look something like this:
 
-<!-- // TODO: IMAGE completed circuit-->
+<!-- // DONE: IMAGE completed circuit-->
+![A circuit with six LEDs](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/02-assembled-circuit.jpg)
+
 
 ### Writing the Code
 

@@ -4,7 +4,7 @@
 In this tutorial, we will use a photoresistor to detect the ambient light intensity. In order to be able to actually detect the light intensity, we'll need a voltage divider in our circuit. We'll also be sending data from the ATmega to the Omega through the serial port. Let's dive in!
 
 
-<!-- // TODO: move this to its own markdown file -->
+<!-- // DONE: move this to its own markdown file -->
 ```{r child = '../../shared/photoresistor.md'}
 ```
 
@@ -12,7 +12,8 @@ In this tutorial, we will use a photoresistor to detect the ambient light intens
 
 For this circuit we will need use a photoresistor and a 10K resistor to make a voltage divider on a breadboard. We will be using jumper wires for the connections.
 
-<!-- // TODO: IMAGE diagram for a voltage divider -->
+<!-- // DONE: IMAGE diagram for a voltage divider -->
+![A voltage divider](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/voltage-divider.png)
 
 $$ V_{out} = \frac{R_2}{R_1+R_2} \cdot V_{in} $$
 
@@ -31,8 +32,9 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-<!-- // TODO: add an intro (d) -->
-<!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
+<!-- // DONE: add an intro (d) -->
+<!-- // DONE: IMAGE add a circuit diagram of the circuit we will be building -->
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/06-circuit-diagram.png)
 
 Once you have the components ready, follow these steps:
 
@@ -42,11 +44,12 @@ Once you have the components ready, follow these steps:
 
 All done! Here's what our finished circuit looks like:
 
-<!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look'-->
+<!-- // DONE: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look'-->
+![The photoresistor circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/06-assembled-circuit.jpg)
 
 ### Writing the Code
 
-<!-- // TODO: intro to the code (d) -->
+<!-- // DONE: intro to the code (d) -->
 
 For this experiment, the code doesn't activate anything, it will simply calculate and print out the resistance and the light intensity level to the console.
 
@@ -105,7 +108,7 @@ If you cover the photoresistor with your hand, you'll see on your Omega's comman
 
 ### A Closer Look at the Code
 
-<!-- // TODO: change this text so that it doesn't talk about the previous experiment (d) -->
+<!-- // DONE: change this text so that it doesn't talk about the previous experiment (d) -->
 
 The code we use is fairly straight forward: we use analogRead to obtain a digital value (0 to 1023), then we convert that data to both voltage and light intensity.
 
@@ -115,7 +118,7 @@ We'll briefly touch on **communicating with serial** in case you missed the last
 
 #### Output on serial
 
-<!-- // TODO: dive in a little more on this explanation, give a decent explanation and then link to the temp sensor experiment where we go in depth about serial communication (d)-->
+<!-- // DONE: dive in a little more on this explanation, give a decent explanation and then link to the temp sensor experiment where we go in depth about serial communication (d)-->
 
 [Last time](#arduino-kit-reading-a-temp-sensor), we covered how serial communication works in general, and specifically how it works between the ATmega and the Omega. In case you missed it, serial communication is simply communication where only a single channel is used. Because of that limitation, one party must be set up to listen while the other talks. With the Arduino Dock, we've hooked up the serial output of the ATmega chip directly to a UART pin on the Omega, which means that everything is set up for the Omega to listen to the ATmega!
 

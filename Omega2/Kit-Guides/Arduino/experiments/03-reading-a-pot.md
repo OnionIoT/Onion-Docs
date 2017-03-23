@@ -13,11 +13,17 @@ We've worked with regular resistors before, and variable resistors do pretty muc
 
 The trimmer potentiometer, also known as a trimpot, is essentially two variable resistors (R1 and R2) connected in series. The total resistance of the two variable resistors (R1 + R2) will always be the same as the value of the trimpot, in our case 10KΩ. However, we can turn the knob on the trimpot to decrease the resistance of one resistor and at the same time increase the resistance of the other resistor. If we turn the knob to either end, one resistor will be 0Ω will the other one will be 10KΩ.
 
-<!-- // TODO: IMAGE of a trimpot -->
+<!-- // DONE: IMAGE of a trimpot -->
+![A 10kOhm trimmer potentiometer](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/trimpot.jpg)
 
 One variable resistor is between the left and middle pin of the trimpot while the other one is between the middle and right pin of the trimpot. If we connect the trimpot as a voltage divider as shown below, we will be able to vary the output voltage from 0V to the input voltage (5V) by simply turning the knob!
 
-<!-- // TODO: add schematic and equation of voltage divider. -->
+<!-- // DONE: add schematic and equation of voltage divider. -->
+![A resistor based voltage divider](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/voltage-divider.jpg)
+
+$$
+V_{out} = \frac{R_1}{R_1 + R_2} \cdot V_{in}
+$$
 
 If you're curious to learn more about voltage dividers, Sparkfun has written a fantastic [article](https://learn.sparkfun.com/tutorials/voltage-dividers) going in-depth on how they work!
 
@@ -59,7 +65,8 @@ Prepare the following components from your kit:
 #### Hooking up the Components
 
 We will be building the following circuit:
-<!-- // TODO: include a circuit diagram -->
+<!-- // DONE: include a circuit diagram -->
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/03-circuit-diagram.png)
 
 First, let's set up the circuit:
 
@@ -78,7 +85,8 @@ Now that the potentiometer and LED are set up, let's connect them to the Arduino
 
 If all goes well, your circuit should look something like this:
 
-<!-- // TODO: IMAGE photo -->
+<!-- // DONE: IMAGE photo -->
+![Completed trimpot dimming circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/03-assembled-circuit.jpg)
 
 ### Writing the Code
 

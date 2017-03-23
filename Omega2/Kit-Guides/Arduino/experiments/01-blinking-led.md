@@ -57,7 +57,9 @@ To hook up the circuit, we need to connect the LED to a GPIO, make sure the resi
 
 It should look something like this when it's all set up:
 
-<!-- // TODO: IMAGE of finished circuit -->
+<!-- // DONE: IMAGE of finished circuit -->
+![Blinking LED circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/01-assembled-circuit.jpg)
+
 
 
 ### Writing the Code

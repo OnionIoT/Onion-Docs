@@ -1,6 +1,6 @@
 ## Using a Buzzer {#arduino-kit-using-a-buzzer}
 
-<!-- // TODO: ay-ay-ay this intro is so boring, please spice it up (hell yeah) -->
+<!-- // DONE: ay-ay-ay this intro is so boring, please spice it up (hell yeah) -->
 
 In this experiment, we'll be sounding a buzzer from a button. Think of it as a model for your doorbell! We will build a circuit with a buzzer and a button, then we'll cover two ways to get the buzzer buzzing: polling the input and using a interrupt. In the process, we'll learn about the pros and cons of polling versus interrupts. As a required secondary superpower, we'll use a switch debouncing circuit (the same one as in [experiment 04](#arduino-kit-reading-a-push-button)) to make sure our button presses come in clear.
 
@@ -10,7 +10,8 @@ In this experiment, we'll be sounding a buzzer from a button. Think of it as a m
 
 A buzzer can be described as audio signaling device, an alternative way to describe it is an annoying sound device. It has two pins and if we connect the positive (marked with +) end to power and the other end (negative) to the ground through a current limiting resistor, it will make a (potentially annoying) buzzing sound. The buzzer which is included in our kit is electromagnetic: it uses electromagnetism to generate repetitive mechanical motion which creates the buzzing sound.
 
-<!-- // TODO: IMAGE of a buzzer -->
+<!-- // DONE: IMAGE of a buzzer -->
+![A pretty standard buzzer](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/buzzer.jpg)
 
 If we connect the positive end of the buzzer to a pin on our Arduino Dock, we can use software to control the buzzing!
 
@@ -37,7 +38,8 @@ Prepare the following components from your kit:
 #### Hooking up the Components
 
 <!-- // DONE: add an intro (d)-->
-<!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
+<!-- // DONE: IMAGE add a circuit diagram of the circuit we will be building -->
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/07-circuit-diagram.png)
 
 Once you have all the components ready, it's time to build!
 
@@ -54,13 +56,14 @@ Once you have all the components ready, it's time to build!
 
 And you're done! For reference your circuit should look a little like this:
 
-<!-- // TODO: IMAGE add a photo of the completed circuit -->
+<!-- // DONE: IMAGE add a photo of the completed circuit -->
+![The buzzer and button connected to the Arduino Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/07-assembled-circuit.jpg)
 
-<!-- TODO and a blurb about 'this is more or less how your circuit should look' (d) -->
+<!-- DONE and a blurb about 'this is more or less how your circuit should look' (d) -->
 
 ### Writing the Polling-based Code
 
-<!-- // TODO: intro to the code, in broad strokes talk about what we hope to accomplish (d) -->
+<!-- // DONE: intro to the code, in broad strokes talk about what we hope to accomplish (d) -->
 
 This program will continuously check an input pin to see if anything changes, and then fire the buzzer whenever it does see the appropriate change.
 
@@ -95,7 +98,7 @@ When the button is pressed, the buzzer will buzz until the button is released. P
 
 ### A Closer Look at the Code
 
-<!-- // TODO: link to the polling and interrupt articles (d) -->
+<!-- // DONE: link to the polling and interrupt articles (d) -->
 
 We will approach the simple task of pressing button to make the buzzer buzz in two different ways. The first method, covered here, is constantly polling the push button input. The second method is to get the button to interrupt the program. Check out the experiments on [polling](#arduino-kit-reading-a-pot) and [interrupts](#arduino-kit-reading-a-push-button) if you want to go in a bit more detail on either of the methods. For now, let's start by examining the code above that implements polling.
 
@@ -106,9 +109,9 @@ We will approach the simple task of pressing button to make the buzzer buzz in t
 
 In the first method, we poll the input of the push button at a regular interval by setting an ATmega pin as input. Remember from the previous tutorial that the push button input is inverted; therefore, we continuously read the state of the input and continuously write the opposite state `!state` of the input to the buzzer pin.
 
-<!-- // TODO: expand on how polling is taxing on the processor (but don't make it sound dangerous)-->
+<!-- // DONE: expand on how polling is taxing on the processor (but don't make it sound dangerous)-->
 
-Polling has some issues with waste. The idea is to just check the input continuously until an event happens. The problem is that up until the event does happen, all that checking doesn't do anything useful! To avoid wasting CPU cycles like this, it's common practice to add a delay to the polling loop to avoid wasting CPU cycles.
+Polling has some issues with waste. The idea is to just check the input continuously until an event happens. The problem is that up until the event does happen, all that checking doesn't do anything useful! To avoid wasting CPU cycles like this, it's common practice to add a delay to the polling loop.
 
 Of course the downside is that this delay will make your program less responsive. Not only that, if the delay is too long, a short button press might actually be missed! In addition to the fact that we might not successfully capture all inputs, we're also locked in to just checking the state of that button - our program can't do anything else!
 
@@ -175,13 +178,13 @@ In this code, we initalize the interrupt by the following line:
 attachInterrupt(digitalPinToInterrupt(interruptPin), changeState, CHANGE);
 ```
 
-<!-- // TODO: complete the two links to previous experiments -->
+<!-- // DONE: complete the two links to previous experiments -->
 
 This will attach the built-in Arduino interrupt to an interrupt pin (2 or 3). It will call on the interrupt service routine (ISR) function `changeState()` whenever there is a `CHANGE` in the push button input. The keyword `CHANGE`, as described in [push button experiment](#arduino-kit-reading-a-push-button), represents either `FALLING` edge (`HIGH` to `LOW`) or RISING edge (`LOW` to `HIGH`). This means if there the button is pressed or released, the `changeState()` function will be called. The task of the ISR `changeState()` is to simply write the opposite state of the push button to the buzzer. Notice we use the keyword `volatile` before `int` when declaring the `state` variable in line 4. Although the variable `state` is global and can be used in the ISR, to make sure the variable is updated correctly between the main program and the ISR, we declare them as `volatile`.
 
 
 In addition, we added the standard LED blinking code to our `loop()` similar to the [blinking LED experiment](#arduio-kit-blinking-led). However, now we use pin 13 which will blink the blue LED on the Arduino Dock.
 
-<!-- // TODO: go into a bit more detail about the volatile keyword (d) -->
+<!-- // DONE: go into a bit more detail about the volatile keyword (d) -->
 
 >For the curious, `volatile` means a variable will be directly modified by something other than the 'main body' of the program, and should be loaded from RAM instead of a CPU register - as that is generally where the 'reference' value of a variable is stored. Interrupts don't exactly operate within the main program body, which is why we used `volatile` here to make sure the value of `state` is properly read.

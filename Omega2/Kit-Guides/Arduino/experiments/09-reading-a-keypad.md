@@ -41,7 +41,8 @@ Once you have the components ready to go, we can begin putting it together. Keep
 
 <!-- // DONE: add info about wiring up the LED -->
 
-<!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
+<!-- // DONE: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
+![The circuit all set up](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/09-assembled-circuit.jpg)
 
 ### Writing the Code
 

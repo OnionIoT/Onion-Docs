@@ -45,7 +45,8 @@ Prepare the following components from your kit:
 //  * explain all of the wiring from microcontroller->shift reg
 //    * explain each of the lines running from the Omega and what they do - according to the names from the controlling a shift register section
 
-// TODO: add pinout of 74HC595 -->
+// DONE: add pinout of 74HC595 -->
+![The shift register with pins labelled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/74HC595-pinout.png)
 
 The IC should be plugged in across the channel of your breadboard (the slot running down the middle separating the `abcde` columns from the `fghij` columns). If you don't do this you will short out the pins across your IC. You may need to bend the pins just a bit in order to get it to fit.
 
@@ -64,7 +65,10 @@ Here's the steps to get there:
   * Connect the supply voltage pin (`Vcc`) and the master reset pin (`MR`) on the IC to the `Vcc` rail on the breadboard
   * Connect the `GND` pin and output enable pin (`OE`) to the `GND` rail on the breadboard
 
-  <!-- TODO: Insert picture of this stage -->
+  <!-- DONE: Insert picture of this stage -->
+![Shift register wired](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/10-shift-reg-wired.jpg)
+  
+>The jumpers at the top will be wired to the LEDs eventually.
 
 2. Connecting your LEDs
     * Connect the anodes of the eight LED each to one of the eight output pins of the 74HC595 - pin `15` and pin `1` to `7`, corresponding to `Q0` to `Q7`. Place the LEDs left to right in the following pin order: `Q0`, `Q1`, `Q2`, `Q3`, `Q4`, `Q5`, `Q6`, `Q7`. 
@@ -73,7 +77,8 @@ Here's the steps to get there:
 
   * Attach eight 100Ω current limiting resistors from cathodes of the LEDs to the `GND` rail on the breadboard.
 
- <!-- TODO: Insert picture of this stage -->
+ <!-- DONE: Insert picture of this stage -->
+![](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/10-led-shift-reg-wired.jpg)
 
 3. Connecting your Arduino Dock
   * Connect the `GND` pin on the Dock to the `GND` rail on the breadboard.
@@ -85,7 +90,9 @@ Here's the steps to get there:
   
   <!-- // DONE: what is meant by 5V header? -->
 
-  <!-- TODO: Insert picture of this stage -->
+  <!-- DONE: Insert picture of this stage -->
+![Circuit complete, ready to code!](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/10-assembled-circuit.jpg)
+
 
 ### Writing the Code
 
@@ -156,7 +163,8 @@ The eight LEDs will light up like KITT from Knight Rider. The first LEDs will tu
 
 See, just like KITT:
 
-<!-- // TODO: GIF of KITT -->
+<!-- // DONE: GIF of KITT -->
+![Knight Industries Two Thousand](https://media.giphy.com/media/Bo2WsocASVBm0/giphy.gif)
 
 ### A Closer Look at the Code
 
