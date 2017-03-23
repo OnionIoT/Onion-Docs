@@ -1,4 +1,4 @@
-## Installing Software
+## Installing Software {#starter-kit-intro-installing-software}
 
 // intro:
 //	* we'll need to install some additional software on the Omega to make sure that all of the code we write for our experiments will work
@@ -18,6 +18,11 @@
 // -> you'll have to look through the experiments to see which packages we need, sync up with Lazar when you're done
 
 // show the expected output
+
+* `python-light`
+* `pyOnionGpio`
+* `pyOnionI2C`
+
 
 ### Doing More with OPKG
 
