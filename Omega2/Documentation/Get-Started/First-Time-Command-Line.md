@@ -67,6 +67,7 @@ At the end of the installation process, the Omega will automatically reboot. It 
 
 > Some Omega2+ models may not reboot automatically. If your Omega2+'s LED turns off and remains off for longer than about 15 seconds, you will need to manually reboot your Omega. <br>
 > Either toggle the power switch on your Dock or disconnect the power briefly and reconnect it, and your Omega2+ will reboot and complete the upgrade. It will be ready for use when the LED stops flashing and remains solid.
+> After upgrading firmware, you will need to reconnect your Omega to WiFi by running `wifisetup` again.
 
 
 **Now you're all done!**
