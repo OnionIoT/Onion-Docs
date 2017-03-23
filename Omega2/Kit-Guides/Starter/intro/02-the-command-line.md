@@ -144,7 +144,7 @@ The prompt tells us we're still in `~`, but those are folders in `/`.
 
 // include example(s)
 
-Of course we can't stay in the same working directory forever. Luckily we're not stuck, we can move out and about with the `cd` command.
+Of course we can't stay in the same working directory forever. Luckily we're not stuck, we can move out and about with the `cd` command. It stands for **change directory**.
 
 The most frequent use of `cd` is in conjuction with a path as the argument, like so:
 
@@ -152,7 +152,7 @@ The most frequent use of `cd` is in conjuction with a path as the argument, like
 cd /root
 ```
 
-This command **c**hange the present working **d**irectory to `/root`. Earlier, we mentioned the idea of a 'path' in passing. To expand, a path (or 'absolute path')is like the full address to something in the file system. So for example, if you have a directory called `kittens` in your `/root` folder, the path of that directory is `/root/kittens`. Similarly, for a file called `kittens.jpg` in `/root/kittens`, the path would be `/root/kittens/kittens.jpg`.
+This command changes the present working directory to `/root`. Earlier, we mentioned the idea of a 'path' in passing. To expand, a path (or 'absolute path')is like the full address to something in the file system. So for example, if you have a directory called `kittens` in your `/root` folder, the path of that directory is `/root/kittens`. Similarly, for a file called `kittens.jpg` in `/root/kittens`, the path would be `/root/kittens/kittens.jpg`.
 
 Of course typing out the full path everything gets tedious, so there's lots of shortcuts that `cd` can understand in the form of 'relative paths'. There are some path aliases that change where it leads depending on the context. 
 
