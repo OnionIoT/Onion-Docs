@@ -36,20 +36,17 @@ Your Starter Kit contains the following items; we've labelled them here for your
 
 ![Parts list](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starterimg/starter-kit-parts-list.png)
 
-### How to Use this Guide
+### How to Use This Guide
 
 <!-- // * setup your Omega (link to #first-time-setup)
 // * install some of the software packages we'll need for our experiments (link to our software installation article)
 // * we recommend working your way linearly through the experiments as they usually build on what we've just learned -->
+Before getting started on the experiments, set up your Omega by following the guides below: 
 
+1. [First Time Setup](#first-time-setup).
+1. [Software Installation](#starter-kit-intro-installing-software)
 
-1. Setup your Omega by following the instructions in our [First Time Setup Guide](#first-time-setup).
-1. Install the software packages we'll need for our experiments. Install the following packages using our [Software Installation Guide](#first-time-setup):
-    * `python-light`
-    * `pyOnionGpio`
-    * `pyOnionI2C`
-
-We recommend working your way through the experiments in order as they usually build on what we've learned in each one.
+Once you've done those, we recommend working your way through the experiments in order as they usually build on what we've learned in each one.
 
 ### What Exactly Will I Learn?
 
