@@ -1,3 +1,6 @@
+// NOTE: when describing the commands, we can lift from our existing article: https://docs.onion.io/omega2-docs/exploring-the-file-system.html
+//	let's just make this more concise!
+
 ## The Command Line
 
 // intro:
