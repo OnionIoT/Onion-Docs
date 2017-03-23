@@ -4,6 +4,7 @@ In our very first experiment, we will turn an LED on and off. This is the hardwa
 
 <!-- // TODO: IMAGE insert a gif of what this experiment will accomplish, need to get people excited! -->
 
+
 Remember, when inventing and building new things, try to break the work down into bite sized chunks, that way you'll see progress much sooner and it will motivate you to keep going!
 
 <!-- LEDs -->
@@ -31,7 +32,8 @@ Now that we have an idea of what we're going to accomplish, let's get doing!
 
 Here's a diagram of the completed circuit for easy reference:
 
-<!-- // TODO: CIRCUIT DIAGRAM -->
+<!-- // DONE: CIRCUIT DIAGRAM -->
+![Circuit diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/01-circuit-diagram.png)
 
 #### What You'll Need
 
@@ -56,6 +58,7 @@ To hook up the circuit, we need to connect the LED to a GPIO, make sure the resi
 It should look something like this when it's all set up:
 
 <!-- // TODO: IMAGE of finished circuit -->
+
 
 ### Writing the Code
 
