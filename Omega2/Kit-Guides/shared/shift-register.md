@@ -20,7 +20,7 @@ So how does this work? The IC is made up of two **registers**, units of memory t
 There are three pins on the IC that we use to control it with the Omega. Two of these pins are **clocks**: special inputs that trigger the IC to do something when they receive a signal that changes from LOW to HIGH (also known as a **pulse** or a **rising edge**).
 
 | Pin | Name | Purpose |
-|-|-|-|
+|---|------|------------------------------------------------|
 | SER |  Serial data pin | This is the serial data input line. When we pulse the serial clock (SRCLK), the signal on this line is stored in the 1st position ("A") of the shift register.
 | SRCLK | Serial clock | When pulsed, shifts each value in the shift register forwards by one position, then loads the value from the SER pin into position "A". Note that this does not change the signals on the output lines until you pulse the register clock (RCLK). |
 | RCLK | Register clock, or "latch pin" | When pulsed, updates the storage register with new values from the shift register, sending a new set of signals to the 8 output pins. This happens so quickly that they all seem to change simultaneously! |
@@ -63,7 +63,7 @@ On the right side of the chip, you can see the three control pins described abov
 So how can this let us control multiple outputs with one data pin? Well, let's say we have 8 LEDs hooked up to the data lines, and we want to turn on the 2nd, 4th, and the 8th LEDs like so:
 
 | LED | Data Line | Desired Value |
-|-|-----------|---------------|
+|-|--|--|
 |1| QA | LOW |
 |2| QB | HIGH |
 |3| QC | LOW |
