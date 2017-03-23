@@ -12,7 +12,7 @@ SPDT switches are useful when it comes to choosing between two options: imagine 
 
 You don't always have use an SPDT switch to choose between two options. It can be used just like any regular on-off switch by leaving one of the pins disconnected, or **floating**. This breaks the circuit path and prevents any current from flowing, like a simple power switch.
 
-Floating pins are open to the outside world and are not connected to any other part of the circuit. They can be affected by discharges of static electricity from the air or from contact with objects; for example, your fingers! These tiny discharges can cause voltage fluctuations at the pin, and any circuit that's connected to them may mistakenly read HIGH or LOW pulses.
+**Note:** Floating pins are open to the outside world and are not connected to any other part of the circuit. They can be affected by discharges of static electricity from the air or from contact with objects; for example, your fingers! These tiny discharges can cause voltage fluctuations at the pin, and any circuit that's connected to them may mistakenly read HIGH or LOW pulses.
 
 If an SPDT switch is being used for input, it is highly recommended to make sure all pins are connected to either a HIGH, LOW, or other circuit pin.
 
