@@ -1,4 +1,4 @@
-## Creating and Writing to Files
+## Creating and Writing Files (Maybe update the title?)
 
 // this article is a description of how we're going to use `vi` to write the code we need for the experiments
 
