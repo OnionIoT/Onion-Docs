@@ -1,6 +1,6 @@
 Welcome to the Guide for the Onion Omega2 Starter Kit!
 
-[Starter Kit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/starter-kit-icon.png)
+![Starter Kit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/starter-kit-icon.png)
 
 ### What we're Going to Learn
 
