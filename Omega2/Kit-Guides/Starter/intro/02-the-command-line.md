@@ -94,22 +94,70 @@ For the purposes of this kit, we'll get to do the following:
 
 // include example(s)
 
-#### (NEED A DECENT TITLE FOR THE TOUCH COMMAND)
+#### Creating Files
 
-// touch command
+<!-- // DONE: touch command
 //	* if the file doesn't exist, it creates an empty file
 //	* if the file exists, it changes the last modified date.
 //		- have an example of this and use `ls -l` to show the before and after
 
-// include example(s)
+// include example(s) -->
+
+The `touch` command can be used to create files. The syntax looks like this:
+
+```
+touch <FILENAME>
+```
+
+* If the file doesn't exist yet, it creates an empty file.
+* If the file already exists, it updates the time it was last modified to when you ran the command.
+
+You can check the file's last modified time using `ls -l` like in the example below:
+
+``` sh
+root@Omega-ABCD:~# touch hello.txt
+root@Omega-ABCD:~# ls -l
+-rw-r--r--    1 root     root             0 Mar 23 23:38 hello.txt    # we've created our file
+root@Omega-ABCD:~# cat hello.txt
+root@Omega-ABCD:~#                    # nothing happens, the file is empty
+...
+(wait a minute or two)
+...
+root@Omega-ABCD:~# touch hello.txt    # update the time it was last modified
+root@Omega-ABCD:~# ls -l
+-rw-r--r--    1 root     root             0 Mar 23 23:41 hello.txt    # the modified time updated!
+```
+
 
 #### Deleting Files and Directories
 
-// rm command
+<!-- // DONE: rm command
 // 	* show how to delete a file
 //		- talk about the `rm -f` option to not get asked if you're sure you want to perform the delete
 // 	* show how to delete a directory, `rm -rf`
 //		- briefly explain why we need the recursive `-r` flag
-//		- mention `rmdir` as an alternative
 
-// include example(s)
+// include example(s) -->
+
+Delete a file using the `rm` command like so:
+
+```
+rm <FILENAME>
+```
+
+To delete a directory and all of the files inside it, run:
+
+```
+rm -rf <DIRECTORY>
+```
+
+These two options are explained below:
+
+* `-r` - **recursive** mode
+    * This means to go into a directory and delete all of the files inside.
+    * If it finds more directories, it enters them and deletes their contents as well.
+    * This is required when deleting directories, otherwise it will return an error.
+* `-f` - **force**
+    * When deleting files inside a directory, you'll be asked for confirmation to delete each file. 
+    * Use this option to skip this and delete the files right away.
+    
