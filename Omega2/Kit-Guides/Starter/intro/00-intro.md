@@ -18,8 +18,10 @@ We're going to learn about the following:
 * How to put together circuits on a breadboard  
     * This is an essential skill for electronics prototyping!
 * Get comfortable reading circuit diagrams
+* Using the Omega's command line interface
+* Writing Python scripts on the command line
 * Using Python to control external circuits with the Omega
-	* Programming from the ground-up 
+	* Programming from the ground-up
 	* Programming existing Python modules
 	* Object Oriented programming
 		* Using classes
