@@ -84,22 +84,22 @@ We repeat the 2 steps above (for example, by using a loop) until all 8 values ha
 
 In this way, we can control up to 8 different outputs with only 3 GPIOs. This is an incredibly powerful technique that you can use to work with many components at once.
 
+Here's the diagram from before to summarize what we've just described.
+
 <!-- // DONE: graphic: can resuse the block diagram graphic mentioned above -->
 ![Block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shift-register-block-diagram.png)
 
 #### Daisy-Chaining
 
-Shift registers can also be connected in series to each other to extend the number of data lines that can be controlled at once.
+Shift registers can also be connected in series to each other to extend the number of data lines that can be controlled at once. We can do this by using the `QH'` pin, which is connected inside the shift register to the last output `QH`.
 
 Simply connect the SER pin of one shift register to the `QH'` pin on another, and connect their SRCLK and RCLK pins together. That way, when you pulse SRCLK, the 2nd chip will read from the last output of the 1st, and when you pulse RCLK, both chips will update their output lines. This is great because this **does not require any additional GPIOs from the Omega!**
 
-You've now just created a 16-bit shift register. This is known as **daisy-chaining**.
+You've now just created a 16-bit shift register, and you can extend the chain further by adding more chips in the same way as above. This is known as **daisy-chaining**.
 
 #### Detailed Specifications
 
 if you're curious about the clock cycle timings or other information about the IC, you can refer to the [datasheet for the SN74HC595 shift register](http://www.ti.com/lit/ds/symlink/sn74hc595.pdf). The clock cycle timing diagram can be found on page 8.
-
-
 
 <!-- // explanation of a shift register, an external integrated circuit (ic) that takes serial input and provide the data in parallel
 // it allows us to essentially expand the number of output pins available to us
