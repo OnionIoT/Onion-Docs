@@ -67,10 +67,12 @@ If you haven't already done so, you'll need to prepare your computer by followin
 Then fire up the Arduino IDE on your computer and write the following:
 
 ```c
-int blinkTime = 1000;  // duration to keep the LED on/off in milliseconds
-int ledPin = 4;        // We set a variable for the LED pin number as good
-                       // practice -
-                       // we just need to change it here to change it everywhere
+// duration to keep the LED on/off in milliseconds
+int blinkTime = 1000;
+// We set a variable for the LED pin number as good practice -
+//	we just need to change it here to change it everywhere in the program
+int ledPin = 4;
+
 
 // This code runs once when the program starts, and no more
 void setup() {			
@@ -78,13 +80,16 @@ void setup() {
 }
 
 
-// The code in here will run continuously until we turn off the Arduino
+// The code in here will run continuously until we turn off the Arduino Dock
 void loop() {			
-    digitalWrite(ledPin, HIGH); // turn the LED on
-    delay(blinkTime);           // This line pauses the program for the amount
-                                // set by blinkTime
+	// turn the LED on
+    digitalWrite(ledPin, HIGH);
+	// pause the program for the amount set by blinkTime
+    delay(blinkTime);
 
-    digitalWrite(ledPin, LOW);  // turn the LED off
+	// turn the LED off
+    digitalWrite(ledPin, LOW);
+	// pause again
     delay(blinkTime);
 }
 ```
