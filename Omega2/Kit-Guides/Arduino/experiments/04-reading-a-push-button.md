@@ -61,9 +61,10 @@ Prepare the following components from your kit:
     * Plug the other end of the 5.1kΩ resistor to an empty row.
     * Using the 100nF capacitor, connect the row where the 5.1kΩ resistor terminates to the `GND` rail.
 
-![push-button-breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/push-button-breadboard.jpg)
+![Debouncing circuit for the push button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/04-debouncing-circuit.jpg)
 
-<!-- // TODO: photo of button and debouncer circuit with LEDs only LINK ABOVE IS NOT FINAL -->
+<!-- // DONE: photo of button and debouncer circuit with LEDs only LINK ABOVE IS NOT FINAL -->
+
 
 
 1. Connect the LEDs and resistors the same way as in the [multiple LED tutorial](#arduino-kit-02-multiple-leds).
@@ -78,7 +79,8 @@ Now let's connect the circuit to the Dock:
 1. From the debounce circuit, connect the row containing the 5.1kΩ resistor and the capacitor to GPIO pin `2` of the Arduino Dock.
 1. Finally, use a jumper wire to connect the other end of the 51kΩ resistor to `5V` on Arduino Dock.
 
-<!-- // TODO: photo of assembled circuit with Arduino-->
+<!-- // DONE: photo of assembled circuit with Arduino-->
+![The circuit fully assembled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/04-assembled-circuit.jpg)
 
 ### Writing the Code
 
@@ -144,7 +146,8 @@ When the button is pressed, the left most LED should turn on. For each additiona
 
 In addition, if we use the `cat` command on our Omega like previous tutorial, we will see a bitwise representation of our actual LEDs.
 
-<!-- // TODO: screenshot of the cat command showing the bitwise operations -->
+<!-- // DONE: screenshot of the cat command showing the bitwise operations -->
+![Serial output from the ATmega](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/04-serial-output.png)
 
 ### A Closer Look at the Code
 

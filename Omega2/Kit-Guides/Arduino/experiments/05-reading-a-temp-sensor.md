@@ -7,7 +7,6 @@ In this tutorial, we will learn how to read the ambient temperature using a temp
 
 ### Analog Temperature Sensor
 <!-- // DONE: should be its own markdown file
-
 // detects the ambient air temperature
 // outputs different voltage based on the temperature -->
 
@@ -34,7 +33,8 @@ Prepare the following components from your kit:
 #### Hooking up the Components
 
 <!-- // DONE: add an intro -->
-<!-- // TODO: IMAGE add a circuit diagram of the circuit we will be building -->
+<!-- // DONE: IMAGE add a circuit diagram of the circuit we will be building -->
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/05-circuit-diagram.png)
 
 Not a lot of components need interaction in this experiment, so the build should be pretty straightforward:
 
@@ -43,7 +43,8 @@ Not a lot of components need interaction in this experiment, so the build should
 
 Once that's all done, it should look like this:
 
-<!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
+<!-- // DONE: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
+![The temperature sensor connected to the Arduino Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/05-assembled-circuit.jpg)
 
 ### Writing the Code
 

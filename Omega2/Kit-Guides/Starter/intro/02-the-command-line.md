@@ -1,21 +1,33 @@
-// NOTE: when describing the commands, we can lift from our existing article: https://docs.onion.io/omega2-docs/exploring-the-file-system.html
-//	let's just make this more concise!
-
+<!-- // NOTE: when describing the commands, we can lift from our existing article: https://docs.onion.io/omega2-docs/exploring-the-file-system.html
+//	let's just make this more concise! -->
 ## The Command Line
 
-// intro:
-// * describe how the Omega's OS is linux, but a minimalistic version, the way we interface with the Omega is through the command line interface (looking for a super compact version of our linux intro series, but to servo as an intro to this article, https://docs.onion.io/omega2-docs/linux-for-omega-beginners.html )
+<!-- // intro:
+// * describe how the Omega's OS is linux, but a minimalistic version, the way we interface with the Omega is through the command line interface (looking for a super compact version of our linux intro series, but to servo as an intro to this article, https://docs.onion.io/omega2-docs/linux-for-omega-beginners.html ) -->
+
+The Omega's operating system (OS) is based on Linux, a popular open-source OS that powers servers and computers all over the world. The version on the Omega is a minimalistic and lightweight distribution called LEDE, which stands for **Linux Embedded Development Environment**. It supports many programming languages and and can run all kinds of complex projects while still being small enough to fit in the Omega's memory.
 
 ### The Command Line Interface
 
-// * a brief description of what the command line interface is and how we can use it to change any part of the Omega's OS.
+<!-- // * a brief description of what the command line interface is and how we can use it to change any part of the Omega's OS.
 // * for the purposes of the kit we'll be just doing the following:
 //		- navigating through the filesystem
 //		- creating (and potentially deleting) files and directories
-//		- creating and modifying text files
+//		- creating and modifying text files -->
 
 // can use https://docs.onion.io/omega2-docs/the-command-line-interface.html as a reference, but  don't talk about the login, date, and echo commands like the article
 
+We interact and operate the Omega by usng the **command line interface** (CLI). The CLI is the user’s access point into the operating system using a text-based terminal program. All user interaction is interpreted and executed by the OS through instructions, or **commands**. A user enters a command into a terminal to make something happen.
+
+The CLI can look something like the picture below. In this terminal program on Windows, the green box is where the commands you type will be displayed on the screen.
+
+![command line interface](http://i.imgur.com/hxuce5c.png)
+
+For the purposes of this kit, we'll get to do the following:
+
+* Navigating through the filesystem
+* Creating (and potentially deleting) files and directories
+* Creating and modifying text files
 
 #### The Filesystem
 

@@ -50,12 +50,15 @@ The seven segment display is not labelled, so we'll have to reference the pinout
 
 We will need to connect all 12 pins of the seven segment display to 12 digital pins of the Arduino Dock.
 
-<!-- TODO: CIRCUIT DIAGRAM -->
+<!-- DONE: CIRCUIT DIAGRAM -->
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/11-circuit-diagram.png)
 
 1. Connect the digit pins (`6`,`8`,`9`,`12`) of the seven seg to the GPIO pins `2`,`3`,`4`,`5` on the Arduino Dock respectively.
 2. Cconnect the segment pins (`1`,`2`,`3`,`4`,`5`,`7`,`10`,`11`) of the seven seg each to a different 1K resistor then to the pins `6`,`7`,`8`,`9`,`10`,`11`,`12`,`13` on the Arduino Dock respectively.
 
-<!-- TODO: PHOTO assembled circuit -->
+<!-- DONE: PHOTO assembled circuit -->
+![That's a lot of jumpers](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/11-assembled-circuit.jpg)
+
 
 ### Writing the Code
 
