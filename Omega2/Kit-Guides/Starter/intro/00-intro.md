@@ -2,7 +2,7 @@ Welcome to the Guide for the Onion Omega2 Starter Kit!
 
 ### What we're Going to Learn
 
-// a listing of what this kit will teach the reader
+<!-- // a listing of what this kit will teach the reader
 //	* How to put together circuits on a breadboard (essential skill for electronics prototyping)
 //	* Get comfortable reading circuit diagrams
 //	* Using Python to control external circuits with the Omega
@@ -11,12 +11,42 @@ Welcome to the Guide for the Onion Omega2 Starter Kit!
 //		* Object Oriented programming
 //			* Using classes
 //			* Writing our own classes
-//	*
+//	* -->
+
+We're going to learn about the following:
+
+* How to put together circuits on a breadboard  
+    * This is an essential skill for electronics prototyping!
+* Get comfortable reading circuit diagrams
+* Using Python to control external circuits with the Omega
+	* Programming from the ground-up 
+	* Programming existing Python modules
+	* Object Oriented programming
+		* Using classes
+		* Writing our own classes
 
 ### What's Included
 
 // overview of what the Kit contains
 // * include the image that was printed with the kits (ask Zheng for this)
+
+Your Starter Kit contains the following:
+
+* Omega2 Plus
+* Expansion Dock
+* Breadboard
+* 6" USB Micro-B Cable
+* Wall Charger 1A@5V Output
+* Plastic Carrying Case
+* Solid Core Jumper Wires (x40)
+* Multi-color LEDs (x20 assorted)
+* SPDT Switch
+* Resistors (x40 assorted)
+* Tactile Buttons (x12)
+* TMP102 Temperature Sensor
+* 7 Segment Display
+* 16x2 LCD Screen
+* 74HC595 Shift Register
 
 ### How to use this Guide
 
