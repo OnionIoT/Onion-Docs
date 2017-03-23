@@ -2,7 +2,7 @@ Welcome to the Guide for the Onion Omega2 Starter Kit!
 
 ![Starter Kit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/starter-kit-icon.png)
 
-### What we're Going to Learn
+### What We're Going to Learn
 
 <!-- DONE: // a listing of what this kit will teach the reader
 //	* How to put together circuits on a breadboard (essential skill for electronics prototyping)
@@ -47,7 +47,7 @@ Your Starter Kit contains the following items; we've labelled them here for your
 // * we recommend working your way linearly through the experiments as they usually build on what we've just learned -->
 Before getting started on the experiments, set up your Omega by following the guides below:
 
-1. [First Time Setup](#first-time-setup).
+1. [First Time Setup](#first-time-setup)
 1. [Software Installation](#starter-kit-intro-installing-software)
 
 Once you've done those, we recommend working your way through the experiments in order as they usually build on what we've learned in each one.
