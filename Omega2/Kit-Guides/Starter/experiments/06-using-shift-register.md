@@ -46,6 +46,11 @@ We'll be building a circuit on your breadboard using the following components:
 
 #### Hooking up the Components
 
+This is how the circuit is going to be arranged:
+
+![Circuit Diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/06-circuit-diagram.png)
+
+
 Before we get to working with our fancy chip, we need to learn how to properly orient them on the breadboard so we don't plug them in upside-down!
 
 <!-- IC direction marker -->
