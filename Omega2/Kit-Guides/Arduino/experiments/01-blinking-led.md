@@ -121,10 +121,13 @@ For this code, we declared our two variable (`ledPin` and `blinkTime`) at the be
 For example let's say we defined `ledPin` inside the `setup()` function like so:
 
 ```c
-int blinkTime = 1000;       // duration to keep the LED on/off in ms
+// duration to keep the LED on/off in milliseconds
+int blinkTime = 1000;
 
-void setup() {			// code to be run once at the start of the program
-	int ledPin = 4;             // LED on pin 4
+// This code runs once when the program starts, and no more
+void setup() {
+	// LED on pin 4
+	int ledPin = 4;
     pinMode(ledPin, OUTPUT);
 }
 

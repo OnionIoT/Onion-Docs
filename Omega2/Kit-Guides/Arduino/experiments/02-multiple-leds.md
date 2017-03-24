@@ -52,9 +52,10 @@ Now let's operate the LEDs with some programming. We'll write an Arduino sketch 
 Let's save the code below as `SKA02-multipleLeds.ino`:
 
 ``` c
-int timer = 100;                        // time delay between each LED in ms
-int ledPins[] = {9, 8, 7, 6, 5, 4};     // an array of GPIO pin numbers where
-                                        // LEDs are attached
+// time delay between each LED in ms
+int timer = 100;
+// an array of GPIO pin numbers where LEDs are attached
+int ledPins[] = {9, 8, 7, 6, 5, 4};
 
 int pinCount = sizeof(ledPins)/sizeof(int);
 // Above, sizeof() checks for the size of the input and returns it as the number
