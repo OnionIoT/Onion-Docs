@@ -15,6 +15,8 @@ For this circuit we will need use a photoresistor and a 10K resistor to make a v
 <!-- // DONE: IMAGE diagram for a voltage divider -->
 ![A voltage divider](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/voltage-divider.png)
 
+<!-- TODO: can we shrink this image? its gigantic -->
+
 $$ V_{out} = \frac{R_2}{R_1+R_2} \cdot V_{in} $$
 
 Using the equation for the voltage divider, we will be able to determine the resistance of the photoresistor and then calculate the light intensity.
@@ -56,12 +58,17 @@ For this experiment, the code doesn't activate anything, it will simply calculat
 If you're ready, copy the code below to `SKA06-photoresistor.ino` and flash it to start reading the light levels!
 
 ``` c
-int lightPin = A0;  //the pin number connected to the photoresistor
-int R1 = 10000;   // resistor value between photoresistor and GND
+// the analog pin connected to the photoresistor
+int lightPin = A0;
+// resistor value between photoresistor and GND
+int R1 = 10000;
+// delay between sensor reads
+int readDelay = 10000;
 
 void setup()
 {
-    Serial.begin(9600);  //initializing serial communication with the Omega2 for sending sensor data
+	//initializing serial communication with the Omega2 for sending sensor data
+    Serial.begin(9600);  
 }
 
 void loop()
@@ -83,7 +90,8 @@ void loop()
     float lightIntensity = 500/(Rphoto/1000);
     Serial.print(lightIntensity); Serial.println(" lux");
 
-    delay(1000);     //1 second delay between the readings
+	// delay between the readings
+    delay(readDelay);
 }
 ```
 

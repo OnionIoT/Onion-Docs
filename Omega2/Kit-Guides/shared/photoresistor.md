@@ -4,3 +4,5 @@ A photoresistor has a variable resistance based on the intensity of the light hi
 
 <!-- // DONE: Image of a photoresistor -->
 ![A photoresistor](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/photoresistor.jpg)
+
+<!-- TODO: fix broken link -->
