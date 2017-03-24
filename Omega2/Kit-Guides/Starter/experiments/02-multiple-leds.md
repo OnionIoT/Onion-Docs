@@ -47,11 +47,6 @@ We'll be building a circuit on your breadboard using the following components:
 
 While the individual LEDs will be connected in exactly the same way as in the first experiment, we're going to be using the negative rail on the breadboard to make the wiring a little simpler.
 
-Here's the circuit diagram for reference:
-
-![Circuit diagram with 16 LEDs](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagram/02-circuit-diagram.png)
-
-
 Grab six LEDs and let's do the following for each one:
 
 1. Plug in the LED across the breadboard, with the cathode on the left side of the gap and the anode on the right.
