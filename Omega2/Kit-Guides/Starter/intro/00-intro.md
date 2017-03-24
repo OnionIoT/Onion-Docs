@@ -48,6 +48,7 @@ Your Starter Kit contains the following items; we've labelled them here for your
 Before getting started on the experiments, set up your Omega by following the [First Time Setup Guide](#first-time-setup).
 
 Then you can learn more on:
+
 1. [Connecting to the Omega's Command Line](#starter-kit-connecting-to-the-omega-terminal)
 1. [An introduction to using the command line](#starter-kit-the-command-line)
 1. [Installing the software we need for the experiments](#starter-kit-intro-installing-software)
