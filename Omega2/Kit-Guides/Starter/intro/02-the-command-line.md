@@ -17,11 +17,13 @@ The Omega's operating system (OS) is based on Linux, a popular open-source OS th
 
 // can use https://docs.onion.io/omega2-docs/the-command-line-interface.html as a reference, but  don't talk about the login, date, and echo commands like the article -->
 
-We interact and operate the Omega by usng the **command line interface** (CLI). The CLI is the user’s access point into the operating system using a text-based terminal program. All user interaction is interpreted and executed by the OS through instructions, or **commands**. A user enters a command into a terminal to make something happen.
+We interact and operate the Omega by using the **command line interface** (CLI). The CLI is the user’s access point into the operating system using a text-based terminal program. All user interaction is interpreted and executed by the OS through instructions, or **commands**. A user enters a command into a terminal to make something happen.
 
 The CLI can look something like the picture below. In this terminal program on Windows, the green box is where the commands you type will be displayed on the screen.
 
 ![command line interface](http://i.imgur.com/hxuce5c.png)
+
+<!-- TODO: let's not link to external pics, use an Omega terminal pic, -->
 
 For the purposes of this kit, we'll get to do the following:
 
@@ -38,15 +40,18 @@ For the purposes of this kit, we'll get to do the following:
 //		* this is the home directory of the `root` user, makes sense to keep our files in our home directory
 //		* the contents of the `/root` directory will be preserved through fw updates -->
 
-In Linux, everything is a file. So naturally, the file system is where a great deal happens. The filesystem of LEDE is organized like a tree. At the very bottom of a tree is the root, and so it is with our filesystem. 
+In Linux, everything is a file. So naturally, the file system is where a great deal happens. The filesystem of LEDE is organized like a tree. At the very bottom of a tree is the root, and so it is with our filesystem.
 
-`/` is the universal symbol for the very bottom of the filesystem - the root directory. All the files that the OS has access to can be found under some directory under `/`. 
+`/` is the universal symbol for the very bottom of the filesystem - the root directory. All the files that the OS has access to can be found under some directory under `/`.
 
 This is not to be confused with the `root` **directory**. In LEDE, every user gets their own 'home' directory to store all their personal files. On the Omega, this is located at `/root/` by default. When we connect to Omegas' command line via `ssh`, we connect as the root and get placed inside the `/root/` folder. (Connecting via serial will place us in `/`.)
 
-The `~` directory is an alias for the home directory, and can be used in scripts and programs. For example, calling a file in `~/myProject` is equivalent to calling `/root/myProject`.
+<<<<<<< HEAD
+In Linux systems, `~` is an alias for the home directory, and can be used in scripts and programs. For example, calling a file in `~/myProject` is equivalent to calling `/root/myProject`.
 
 On the Omega, all the contents in the `/root/` directory will be preserved through any firmware updates. So for our experiments, we'll try to store our files in there so they stay put!
+
+>The home directory on other Linux systems may look like `/home/<username>`
 
 <!-- TODO: list of commands -->
 <!-- ### Commands We'll Cover -->
@@ -85,7 +90,7 @@ This tells us we're in the `/root/` folder, one level down from `/`. Notice that
 
 #### What's in a Directory?
 
-<!-- 
+<!--
 // ls command
 //	* talk about the basic `ls`, how it lists the contents of the current directory
 //	* talk about how it can be used to list the contents of other directories
@@ -110,7 +115,7 @@ Awesome, now we know there's four files in the working directory.
 
 But wait, there's more! Not only can `ls` list the working directory, if we give it a **path**, it can also peek into that path.
 
-> A **path** is the full location of something in the filesystem, starting from the root. 
+> A **path** is the full location of something in the filesystem, starting from the root.
 
 Let's say we want to take a look into our `/` directory, we can append `/` as an argument like so:
 
@@ -128,12 +133,13 @@ overlay       sbin          var           etc
 proc          sys           www
 ```
 
-The prompt tells us we're still in `~`, but those are folders in `/`. 
+The prompt tells us we're still in `~`, but those are folders in `/`.
 
-
-<!-- // include example(s) -->
+<!-- TODO: add `ls -l` since it's hella useful -->
 
 #### You can Get There from Here
+
+<!-- TODO: This section is too long and needs to be summarized -->
 
 <!-- // cd command
 //	* allows us to change the current working directory
@@ -160,7 +166,7 @@ Typing out the full path everything can become tedious, so there are many shortc
 * The relative path for the 'directory above' is `..`, so `cd ..` will take us up one level no matter where we are.
 * To get to any sub-directories in the working directory, we can `cd <name of directory>` instead of the absolute path.
 
-All of the shortcuts above work with each other too! 
+All of the shortcuts above work with each other too!
 
 Let's say we want to move two directories up:
 
@@ -180,18 +186,18 @@ If we want to `cd` up and sideways into the `kittens` directory, we can use the 
 
 <!-- // brief intro to the commands we're going to cover in this section, like: 'We'll learn how to change directories with the `cd` command, see what's in directories with `ls`' somethhing like that -->
 
-Navigating is very useful, but doing things with files is what gets projects working! So to do that, we'll go over commands to create and delete directories, and creating and removing files. 
+Navigating is very useful, but doing things with files is what gets projects working! So to do that, we'll go over commands to create and delete directories, and creating and removing files.
 
 We'll cover the `mkdir` and `touch` commands to create things, and the `rm` command to get rid of them.
 
 #### Creating Directories
 
-// mkdir command
+<!-- // mkdir command
 // * allows us to create new directories
 //		* using relative paths
 //		* using absolute paths
 
-// include example(s)
+// include example(s) -->
 
 
 The `mkdir` command allows us to create empty directories. Run it like so:
@@ -200,7 +206,17 @@ The `mkdir` command allows us to create empty directories. Run it like so:
 mkdir <DIRECTORY>
 ```
 
-You can use both relative and absolute paths
+You can use both relative and absolute paths. See the example below:
+
+```
+root@Omega-ABCD:~# mkdir hello               # relative path
+root@Omega-ABCD:~# ls
+hello
+root@Omega-ABCD:~# mkdir /root/hello/world   # absolute path
+root@Omega-ABCD:~# cd hello
+root@Omega-ABCD:~/hello# ls
+world
+```
 
 #### Creating Files
 
