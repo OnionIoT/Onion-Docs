@@ -3,13 +3,6 @@
 <!-- // description of what this experiment will accomplish and what we'll learn -->
 In this tutorial, we will learn how to read the ambient temperature using a temperature sensor. In addition, we will learn to how to do mathematical calculations in our code and how to convert between types.
 
-<!-- // LAZAR -->
-
-### Analog Temperature Sensor
-<!-- // DONE: should be its own markdown file
-// detects the ambient air temperature
-// outputs different voltage based on the temperature -->
-
 <!-- Analog Temperature Sensor -->
 ```{r child = '../../shared/analog-temperature-sensor.md'}
 ```
@@ -60,11 +53,15 @@ To get it done, copy the code below to your IDE, and flash to your Arduino Dock.
 ``` c
 //the scale factor of TMP36 (temperature sensor) is 10 mV/°C with a 500 mV offset to allow for negative temperatures
 
-int sensorPin = A0; // the analog pin number connected to the TMP36
+// the analog pin number connected to the TMP36
+int sensorPin = A0;
+// delay between sensor reads
+int readDelay = 10000;
 
 void setup()
 {
-    Serial.begin(9600);  //initializing serial communication with the Omega2 for sending sensor data
+	//initializing serial communication with the Omega2 for sending sensor data
+    Serial.begin(9600);
 }
 
 void loop()
@@ -87,7 +84,8 @@ void loop()
     float temperatureF = (temperatureC * 9.0 / 5.0) + 32.0;
     Serial.print(temperatureF); Serial.println(" degrees F");
 
-    delay(10000);         //waiting 10 seconds between readings since the change is gradual
+	// delay between readings since the change is gradual
+	delay(readDelay);
 }
 ```
 
