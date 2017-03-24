@@ -4,7 +4,7 @@ A push button is a momentary switch, so unlike a slide switch where the change i
 
 <!-- // DONE: Image of a push button switch -->
 
-![Push button switch](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shared-switches-push-button.jpg)
+![Push button switch](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/switches-push-button.jpg)
 
 Unlike the SPDT switches with levers, the push button switches in your Kit are the single pole single throw type, or **SPST**. It's named this way because:
 
@@ -20,4 +20,4 @@ For example, the buttons on TV remotes are all momentary push button type switch
 You may be wondering, "If there are four pins, how come this switch doesn't have two switch contacts?" This is because the button is made of two pairs of connected pins that split each end into two connections. The photo below shows which pins are connected, so take note that your circuit properly switches when it's supposed to:
 
 <!-- // DONE: photo or graphic of connected pins on SPST push button -->
-![How the pins of a push button are connected](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shared-switches-push-button-layout.jpg)
+![How the pins of a push button are connected](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/switches-push-button-layout.jpg)

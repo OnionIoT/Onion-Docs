@@ -3,7 +3,7 @@
 An analog temperature will detect the ambient air temperature and output a voltage signal based on the temperature.
 
 <!-- // DONE: Image of a temperature sensor -->
-![TMP36 Sensor](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shared-analog-temperature-sensor-photo.jpg)
+![TMP36 Sensor](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/analog-temperature-sensor-photo.jpg)
 
 The TMP36 in your Kit is a standard linear sensor. The higher the temperature, the higher the returned signal. It has a few important specs that you should get familiar with: 
 

@@ -54,7 +54,7 @@ for bit in bytestring:
 
 The pinout diagram for the 74HC595 is shown below:
 
-![595-pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shared-shift-register-pinout.png)
+![595-pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shift-register-pinout.png)
 
 On the right side of the chip, you can see the three control pins described above, as well as the first output (QA). On the left side, you can see the other 7 outputs (QB - QH).
 

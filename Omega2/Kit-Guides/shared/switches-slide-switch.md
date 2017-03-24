@@ -8,7 +8,7 @@ A three-terminal slide switch like the one included in your kit is commonly used
 SPDT switches are useful when it comes to choosing between two options: imagine an electrical outlet on the wall that has two plugs and a switch that allows you to choose which one of plugs can provide power.
 
 <!-- // DONE: IMAGE: side by side schematic and image of switch showing the two different switch settings -->
-![A red LED](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shared-switches-slide-sidebyside.png)
+![A red LED](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/switches-slide-sidebyside.png)
 
 You don't always have use an SPDT switch to choose between two options. It can be used just like any regular on-off switch by leaving one of the pins disconnected, or **floating**. This breaks the circuit path and prevents any current from flowing, like a simple power switch.
 
