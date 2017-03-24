@@ -95,12 +95,19 @@ The sketch we'll write is going to set up two pins on the Arduino Dock - one to 
 Paste the code below into your IDE, and flash it over to your Arduino to see it in action!
 
 ``` c
-int potPin = A0;    // analog pin for reading the potentiometer value
-int ledPin = 9;     // pwm pin for setting LED brightness
-int potValue = 0;   // potentiometer output as a value between 0 and 1023
+// analog pin for reading the potentiometer value
+int potPin = A0;
+// pwm pin for setting LED brightness
+int ledPin = 9;
+// potentiometer output as a value between 0 and 1023
+int potValue = 0;
+// delay between sensor reads for stability
+int readDelay = 100;
 
-void setup() {			// code to be run once at the start of the program
-  Serial.begin(9600);     // initializing serial communication for sending potentiometer value to the Omega
+// code to be run once at the start of the program
+void setup() {
+  // initializing serial communication for sending potentiometer value to the Omega
+  Serial.begin(9600);
   pinMode(ledPin, OUTPUT);
 }
 
@@ -109,7 +116,8 @@ void readPotValue()
 {
   potValue = analogRead(potPin);
   Serial.println(potValue);
-  delay(100);     //0.1s delay between reads for stability
+  // delay between reads for stability
+  delay(readDelay);
 }
 
 //use the potentiometer value to set the LED brightness using pwm duty cycle
