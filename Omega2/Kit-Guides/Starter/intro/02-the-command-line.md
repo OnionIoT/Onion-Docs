@@ -31,27 +31,25 @@ For the purposes of this kit, we'll get to do the following:
 
 #### The Filesystem
 
-// brief intro of the Omega's filesystem
+<!-- // brief intro of the Omega's filesystem
 //	* tell them that the stuff in `/` is largely common to all linux systems
 //		* can point them to articles on linux/openwrt - if this is too much work rn, put it as a future TODO
 //	* point out that we'll be working in `/root`, mention that this is a logical place for us to work since:
 //		* this is the home directory of the `root` user, makes sense to keep our files in our home directory
-//		* the contents of the `/root` directory will be preserved through fw updates
+//		* the contents of the `/root` directory will be preserved through fw updates -->
 
 In Linux, everything is a file. So naturally, the file system is where a great deal happens. The filesystem of LEDE is organized like a tree. At the very bottom of a tree is the root, and so it is with our filesystem. 
 
 `/` is the universal symbol for the very bottom of the filesystem - the root directory. All the files that the OS has access to can be found under some directory under `/`. 
 
-While there's a root directory, the root most often talked about is the root user. In LEDE, every user gets their own 'named' directory to store all their personal files. For root, this directory is located at `/root/`. When we connect to Omega through the command line, we connect as the root and get placed right inside the `/root/` folder.
+This is not to be confused with the `root` **directory**. In LEDE, every user gets their own 'home' directory to store all their personal files. On the Omega, this is located at `/root/` by default. When we connect to Omegas' command line via `ssh`, we connect as the root and get placed inside the `/root/` folder. (Connecting via serial will place us in `/`.)
 
-There's a short hand for this directory since it's quite important - `~`. When a script or command uses `~` it is usually an alias for `/root/`. 
-
-> Generally in Linux, every user has their own personal directory and `~` will always be an alias to it. This directory is called the home directory.
+The `~` directory is an alias for the home directory, and can be used in scripts and programs. For example, calling a file in `~/myProject` is equivalent to calling `/root/myProject`.
 
 On the Omega, all the contents in the `/root/` directory will be preserved through any firmware updates. So for our experiments, we'll try to store our files in there so they stay put!
 
-
-### Commands We'll Cover
+<!-- TODO: list of commands -->
+<!-- ### Commands We'll Cover -->
 
 <!-- // create a table of the commands we'll be covering here, should have the command name and what the command allows us to accomplish -->
 
@@ -137,14 +135,14 @@ The prompt tells us we're still in `~`, but those are folders in `/`.
 
 #### You can Get There from Here
 
-// cd command
+<!-- // cd command
 //	* allows us to change the current working directory
 //		* using relative paths
 //		* using absolute paths
 
-// include example(s)
+// include example(s) -->
 
-Of course we can't stay in the same working directory forever. Luckily we're not stuck, we can move out and about with the `cd` command. It stands for **change directory**.
+Of course we can't stay in the same working directory forever. We can move aroudn directories using the `cd` command. It stands for **change directory**.
 
 The most frequent use of `cd` is in conjuction with a path as the argument, like so:
 
@@ -152,12 +150,14 @@ The most frequent use of `cd` is in conjuction with a path as the argument, like
 cd /root
 ```
 
-This command changes the present working directory to `/root`. Earlier, we mentioned the idea of a 'path' in passing. To expand, a path (or 'absolute path')is like the full address to something in the file system. So for example, if you have a directory called `kittens` in your `/root` folder, the path of that directory is `/root/kittens`. Similarly, for a file called `kittens.jpg` in `/root/kittens`, the path would be `/root/kittens/kittens.jpg`.
+This command changes the present working directory to `/root`. 
 
-Of course typing out the full path everything gets tedious, so there's lots of shortcuts that `cd` can understand in the form of 'relative paths'. There are some path aliases that change where it leads depending on the context. 
+Earlier, we mentioned the idea of a 'path' in passing. A path (or 'absolute path') is like the full address to something in the file system. For example, if you have a directory called `kittens` in your `/root` folder, the path of that directory is `/root/kittens`. Similarly, for a file called `adorable.jpg` in `/root/kittens`, the path would be `/root/kittens/adorable.jpg`.
+
+Typing out the full path everything can become tedious, so there are many shortcuts that `cd` can understand in the form of 'relative paths'. There are some path aliases that change where it leads depending on the context. 
 
 * To go to the `/root` on the Omega (or the home folder as a different user) `cd` with no arguments will take us there.
-* The relative path for the 'directory above' is `/..`, so `cd /..` will take us up one level no matter where we are.
+* The relative path for the 'directory above' is `..`, so `cd ..` will take us up one level no matter where we are.
 * To get to any sub-directories in the working directory, we can `cd <name of directory>` instead of the absolute path.
 
 All of the shortcuts above work with each other too! 
@@ -165,12 +165,14 @@ All of the shortcuts above work with each other too!
 Let's say we want to move two directories up:
 
 ``` shell
-cd /../..
+cd ../..
 ```
 
-The first `/..` expands to 'up one level', and in that directory, `/..` again will of course take us back up once more.
+The first `..` expands to 'up one level', and in that directory, `..` again will of course take us back up once more.
 
-If we want to `cd` up and sideways into the `kittens` directory, we can use the path `/../kittens` - up one level, and into `kittens` below.
+We can also move to other directories contained in parent directories. If `..` had a directory called `puppies`, we could run:
+
+If we want to `cd` up and sideways into the `kittens` directory, we can use the path `../kittens` - up one level, and into `kittens` below.
 
 
 
@@ -198,7 +200,7 @@ The `mkdir` command allows us to create empty directories. Run it like so:
 mkdir <DIRECTORY>
 ```
 
-You can use 
+You can use both relative and absolute paths
 
 #### Creating Files
 
