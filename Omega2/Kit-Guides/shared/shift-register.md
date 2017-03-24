@@ -89,7 +89,7 @@ Here's the diagram from before to summarize what we've just described.
 <!-- // DONE: graphic: can resuse the block diagram graphic mentioned above -->
 ![Block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shift-register-output-demo-diagram.png)
 
-<!-- TODO: can we modify (a copy of) this diagram to correspond to the values we shift in and expect to see coming out? -->
+<!-- DONE: can we modify (a copy of) this diagram to correspond to the values we shift in and expect to see coming out? -->
 
 #### Daisy-Chaining
 
