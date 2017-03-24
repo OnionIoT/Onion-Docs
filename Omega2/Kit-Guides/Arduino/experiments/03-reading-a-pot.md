@@ -19,7 +19,7 @@ The trimmer potentiometer, also known as a trimpot, is essentially two variable 
 One variable resistor is between the left and middle pin of the trimpot while the other one is between the middle and right pin of the trimpot. If we connect the trimpot as a voltage divider as shown below, we will be able to vary the output voltage from 0V to the input voltage (5V) by simply turning the knob!
 
 <!-- // DONE: add schematic and equation of voltage divider. -->
-![A resistor based voltage divider](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/voltage-divider.jpg)
+![A resistor based voltage divider](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/voltage-divider.png)
 
 $$
 V_{out} = \frac{R_1}{R_1 + R_2} \cdot V_{in}
