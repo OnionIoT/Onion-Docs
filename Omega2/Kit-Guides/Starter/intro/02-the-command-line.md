@@ -46,7 +46,6 @@ In Linux, everything is a file. So naturally, the file system is where a great d
 
 This is not to be confused with the `root` **directory**. In LEDE, every user gets their own 'home' directory to store all their personal files. On the Omega, this is located at `/root/` by default. When we connect to Omegas' command line via `ssh`, we connect as the root and get placed inside the `/root/` folder. (Connecting via serial will place us in `/`.)
 
-<<<<<<< HEAD
 In Linux systems, `~` is an alias for the home directory, and can be used in scripts and programs. For example, calling a file in `~/myProject` is equivalent to calling `/root/myProject`.
 
 On the Omega, all the contents in the `/root/` directory will be preserved through any firmware updates. So for our experiments, we'll try to store our files in there so they stay put!
@@ -79,7 +78,7 @@ Navigation usually consists of finding our location, looking for landmarks, and 
 
 When we first drop into the command line, we don't get a lot of information about where we are. We only really know that we're in `root@omega-ABCD`. The `pwd` command will tell us exactly where we are relative to `/`
 
-Immediately after logging in, `pwd` should returng something like this:
+Immediately after logging in, `pwd` should return something like this:
 
 ``` shell
 root@Omega-ABCD:~# pwd
@@ -282,6 +281,6 @@ These two options are explained below:
     * If it finds more directories, it enters them and deletes their contents as well.
     * This is required when deleting directories, otherwise it will return an error.
 * `-f` - **force**
-    * When deleting files inside a directory, you'll be asked for confirmation to delete each file. 
-    * Use this option to skip this and delete the files right away.
+    * This will make the program continue if it runs into an error when trying to delete a file. 
     
+<!-- TODO: example -->
