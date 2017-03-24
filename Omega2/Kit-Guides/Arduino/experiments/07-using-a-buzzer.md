@@ -41,6 +41,11 @@ Prepare the following components from your kit:
 <!-- // DONE: IMAGE add a circuit diagram of the circuit we will be building -->
 ![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/07-circuit-diagram.png)
 
+<!-- TODO: Mistake in the circuit, buzzer should be connected to Arduino Dock Pin 9 -->
+
+
+<!-- TODO: let's be more explicit about how we made/connected the switch circuit -->
+
 Once you have all the components ready, it's time to build!
 
 1. First, let's set up the push button with debounce circuit similar to [tutorial 4](#arduino-kit-04-reading-a-push-button), we'll connect this to the Arduino Dock in a bit.
