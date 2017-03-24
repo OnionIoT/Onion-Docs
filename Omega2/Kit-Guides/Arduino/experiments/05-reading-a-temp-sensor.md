@@ -25,11 +25,9 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-<!-- // DONE: add an intro -->
-<!-- // DONE: IMAGE add a circuit diagram of the circuit we will be building -->
+<!-- // DONE: add an intro to the circuit diagram -->
 ![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/05-circuit-diagram.png)
 
-<!-- TODO: fix artifact in image -->
 
 Not a lot of components need interaction in this experiment, so the build should be pretty straightforward:
 

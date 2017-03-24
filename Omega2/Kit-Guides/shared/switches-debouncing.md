@@ -14,6 +14,8 @@ One way to solve this problem, or **debounce** the signal, is to add a few simpl
 
 ![hardware-debouncer](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/hardware-debouncer.jpg)
 
+<!-- TODO: broken link to image, doesn't exist in repo! -->
+
 Something to keep in mind about this setup is that **the input reads HIGH when the switch is open, and LOW when the switch is closed**. This may seem *backwards* at first, but this convention is actually very common with integrated circuits out in the wild! When writing programs, you should *abstract* this convention away from the main routines by using functions that return `TRUE` or `FALSE` depending on how you define the switch state, not the signal itself.
 
 <!-- // explain how the debouncing capacitor smooths out the signal:

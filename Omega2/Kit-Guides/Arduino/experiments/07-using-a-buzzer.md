@@ -2,7 +2,7 @@
 
 <!-- // DONE: ay-ay-ay this intro is so boring, please spice it up (hell yeah) -->
 
-In this experiment, we'll be sounding a buzzer from a button. Think of it as a model for your doorbell! We will build a circuit with a buzzer and a button, then we'll cover two ways to get the buzzer buzzing: polling the input and using a interrupt. In the process, we'll learn about the pros and cons of polling versus interrupts. As a required secondary superpower, we'll use a switch debouncing circuit (the same one as in [experiment 04](#arduino-kit-reading-a-push-button)) to make sure our button presses come in clear.
+In this experiment, we'll be sounding a buzzer from a button. Think of it as a model for your doorbell! We will build a circuit with a buzzer and a button, then we'll cover two ways to get the buzzer buzzing: polling the input and using a interrupt. In the process, we'll learn about the pros and cons of polling versus interrupts. As a required secondary superpower, we'll use a switch debouncing circuit (the same one as in [the push button experiment](#arduino-kit-reading-a-push-button)) to make sure our button presses come in clear.
 
 ### The Buzzer
 <!-- // should be its own markdown file

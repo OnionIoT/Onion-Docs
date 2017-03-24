@@ -32,6 +32,8 @@ This is a powerful tool since we can use interrupts in our programs to perform a
 
 For this experiment we will start with the circuit from the [multiple LEDs tutorial](#arduino-kit-multiple-leds) and add a push-button along with it's debouncing circuit. The push-button will be connected to a ATmega pin which is capable of triggering external interrupts (only pin 2 or 3 for ATmega328). The push button will be used as input (either pressed or not pressed) and the LEDs will animate the the button presses
 
+<!-- TODO: missing circuit diagram -->
+
 
 #### What You'll Need
 
