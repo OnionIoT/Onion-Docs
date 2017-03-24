@@ -10,4 +10,4 @@ There are some limitations to this method depending on how the driving circuit i
 
 ![A few difference PWM signals, at varing duty cycles](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/pwm-signals.jpg)
 
-<!-- // TODO: would be nice if this graphic also had the Duty Cycle % -->
+<!-- // DONE: would be nice if this graphic also had the Duty Cycle % -->
