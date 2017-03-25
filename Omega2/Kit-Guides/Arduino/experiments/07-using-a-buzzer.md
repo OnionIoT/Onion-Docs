@@ -17,7 +17,10 @@ If we connect the positive end of the buzzer to a pin on our Arduino Dock, we ca
 
 ### Building the Circuit
 
-For this experiment, we will be using a push button again for the input and a buzzer for output. Pressing the button will make the buzzer buzz. For the circuit we will need a buzzer, an 100Ω current limiting resistor, and a push button with its debounce circuit setup on a breadboard.
+For this experiment, we will be using a push button again for the input and a buzzer for output. Pressing the button will make the buzzer buzz. For the circuit we will need a buzzer, an 100Ω current limiting resistor, and a push button with its debounce circuit setup on a breadboard:
+
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/07-circuit-diagram.png)
+
 
 #### What You'll Need
 
@@ -36,13 +39,6 @@ Prepare the following components from your kit:
 * 1x Buzzer
 
 #### Hooking up the Components
-
-<!-- // DONE: add an intro (d)-->
-<!-- // DONE: IMAGE add a circuit diagram of the circuit we will be building -->
-![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/07-circuit-diagram.png)
-
-<!-- TODO: Mistake in the circuit, buzzer should be connected to Arduino Dock Pin 9 -->
-
 
 <!-- TODO: let's be more explicit about how we made/connected the switch circuit -->
 
