@@ -68,8 +68,12 @@ We will need to connect all 12 pins of the seven segment display to 12 digital p
 // TODO: LAZAR to revise code
 
 ``` arduino
-// array of bytes, each byte represents how a different character will be displayed on the 7-seg
-static const byte digitCodeMap[] = {  
+#define NUM_7SEG_DIGITS 		4
+#define NUM_7SEG_SEGMENTS 		8
+#define NUM_INPUT_CHARS			9
+
+// array of bytes, each byte represents how different characters will be displayed on the 7-seg
+static const byte digitCodeMap[] = {
  //DPGFEDCBA  Element  Char   7-segment map:
   B00111111, // 0   "0"          AAA
   B00000110, // 1   "1"         F   B
@@ -111,120 +115,146 @@ static const byte digitCodeMap[] = {
   B01000000, // 37  '-'  DASH
 };
 
-byte numDigits = 4;   // number of digits
-byte digitPins[] = {5, 4, 3, 2}; //Digits: 1,2,3,4
-byte segmentPins[] = {13, 11, 9, 7, 6, 12, 10, 8}; //Segments: A,B,C,D,E,F,G,Period
-byte index = B00000001;  // index byte used for turning on the correct segment
+// number of digits
+// array of pins to control the digits: 1,2,3,4
+byte digitPins[] = {5, 4, 3, 2};
+// array of pins to control the segments: A,B,C,D,E,F,G,Period
+byte segmentPins[] = {13, 11, 9, 7, 6, 12, 10, 8};
 
 // array of 4 bytes to be displayed, each byte representing a digit
 // 	initially set to represent '1234'
-byte currentDigitCode[4] = {digitCodeMap[1],digitCodeMap[2],digitCodeMap[3],digitCodeMap[4]};  
+byte currentDigitCode[NUM_7SEG_DIGITS] = {digitCodeMap[1],digitCodeMap[2],digitCodeMap[3],digitCodeMap[4]};
 
-char charArray[9];  // array of char to store the data from the Omega
-int decimalPlace;   // decimal point place
+// declare functions that will be used in the loop() function
+void 	displayDigits();
+void 	stringToDigits(String inputString);
 
 
-void setup() {     // code to be run only once
+// This code runs once when the program starts, and no more
+void setup()
+{
+	// initialize serial communication with the Omega
+	Serial.begin(9600);
 
-  Serial.begin(9600);           // initialize serial communication with the Omega
+	// loop for setting all the digit pins to output and then off (HIGH)
+	for (byte digitIndex = 0 ; digitIndex < NUM_7SEG_DIGITS ; digitIndex++) {
+		pinMode(digitPins[digitIndex], OUTPUT);
+		digitalWrite(digitPins[digitIndex], HIGH);
+	}
 
-  // loop for setting all the digit pins to output and then off (HIGH)
-  for (byte digit = 0 ; digit < numDigits ; digit++) {
-    pinMode(digitPins[digit], OUTPUT);
-    digitalWrite(digitPins[digit], HIGH);
-  }
-
-  // loop for setting all the segment pins to output and then  off (LOW)
-  for (byte segmentNum = 0 ; segmentNum < 8 ; segmentNum++) {
-   pinMode(segmentPins[segmentNum], OUTPUT);
-   digitalWrite(segmentPins[segmentNum], LOW);
-  }  
+	// loop for setting all the segment pins to output and then  off (LOW)
+	for (byte segmentIndex = 0 ; segmentIndex < NUM_7SEG_SEGMENTS ; segmentIndex++) {
+		pinMode(segmentPins[segmentIndex], OUTPUT);
+		digitalWrite(segmentPins[segmentIndex], LOW);
+	}
 }
 
-void displayDigits(){
-   //// triple nested for loop for displaying all the digits and their segments based on currentDigitCode[], which is an array of 4 bytes
-   // for each digit, set the specific digit pin LOW, turn on the correct segments, set the digit pin HIGH again
-   for (byte digit = 0 ; digit < numDigits ; digit++) {  
-		// add one cycle delay before displaying the next digit, required for correct display
-		digitalWrite(digitPins[digit], LOW);
-		for (byte cycle = 0 ; cycle < 2 ; cycle++) {    
-			// set the correct segments on for one digit based on one element of the currentDigitCode[] array
-			for (byte segmentNum = 0 ; segmentNum < 8 ; segmentNum++) {   
-				digitalWrite(segmentPins[segmentNum], currentDigitCode[digit] & index);        
-				index = index << 1;
-			}   
+// The code in here will run continuously until we turn off the Arduino Dock
+void loop()
+{
+	// display the digits stored in the currentDigitCode array
+	displayDigits();
+
+	// check for serial data coming from the Omega
+	if (Serial.available() > 0){
+		// read the incoming data as a string
+		String serialString = Serial.readString();      // read incoming data from the Omega as a string
+		Serial.println(serialString);
+
+		// convert the string into bytes that can be displayed on the 7seg (and store them in the currentDigitCode array)
+		stringToDigits(serialString);
+	}
+}
+
+
+
+//// function definitions
+// write the digits currently stored in the currentDigitCode to the 7-segment display
+void displayDigits()
+{
+	//// nested for loop for displaying all the digits and their segments based on currentDigitCode[], which is an array of 4 bytes
+	// for each digit, set the specific digit pin LOW, turn on the correct segments, set the digit pin HIGH again
+	for (byte digitIndex = 0 ; digitIndex < NUM_7SEG_DIGITS ; digitIndex++) {
+		// pull the current digit pin LOW to enable displaying the segments
+		digitalWrite(digitPins[digitIndex], LOW);
+
+		// set the correct segments on for current digit based on the current element of the currentDigitCode[] array
+		for (byte segmentIndex = 0 ; segmentIndex < NUM_7SEG_SEGMENTS ; segmentIndex++) {
+			// to the pin associated with the current segment,
+			// write the bit from the current element of the currentDigitCode[] array that corresponds to the current segment
+			digitalWrite(segmentPins[segmentIndex], (currentDigitCode[digitIndex] >> segmentIndex) & 0x01);
 		}
-		digitalWrite(digitPins[digit], HIGH);
-		index = B00000001;
-   }
+
+		// delay before disabling the current digit so the human eye can observe it
+		delay(5);
+		// pull the current digit pin HIGH to disable display of the segments
+		digitalWrite(digitPins[digitIndex], HIGH);
+	}
 }
 
-void checkDecimalPoint(){
-	// initialize decimalPlace as -1, representing no decimal point
-	decimalPlace = -1;
-	// loop for checking if there is a decimal point, if there is a decimal point, store the correct position in decimalPlace and remove the decimal point element from the array
-	for (byte digit = 0 ; digit < sizeof(charArray) ; digit++) {
-	if (charArray[digit] == '.') {      // check for decimal point
-		decimalPlace = digit-1;      // store the correct position in decimalPlace
-		// remove the decimal point element from the array, move the rest of the array one element to left
-		for (byte n = digit; n < sizeof(charArray) ; n++){
-			charArray[n] = charArray[n+1];
+// convert an input string into bytes can be displayed on the 7seg,
+//	store them in the currentDigitCode array
+void stringToDigits(String inputString)
+{
+	byte 	digitIndex = 0; // keep track of which digit on the display we're currently setting up
+	char 	inputCharacters[NUM_INPUT_CHARS];
+
+	// convert the incoming data into a char array
+	inputString.toCharArray(inputCharacters,NUM_INPUT_CHARS);
+
+	// attempt to match each character from the input to bytes that can be displayed on the 7-seg
+	for (byte index = 0 ; index < NUM_INPUT_CHARS ; index++) {
+		// convert a character to a integer (based on the ASCII table)
+		int charToInt = inputCharacters[index];
+		Serial.println(charToInt);
+
+		// case statement for matching the integer value of each character the an element from the digitCodeMap[] array
+		switch (charToInt) {
+			case 48 ... 57:   //0-9
+				currentDigitCode[digitIndex] = digitCodeMap[charToInt-'0'];	// subtract the integer ASCII value for '0' to be able to correctly index our digitCodeMap array
+				break;
+
+			case 65 ... 90: // A-Z
+				currentDigitCode[digitIndex] = digitCodeMap[charToInt-'0'-7]; // subtract the integer ASCII value for '0' and 7 to correctly map the A-Z ASCII values to our digitCodeMap array
+				break;
+
+			case 97 ... 122: // a-z
+				currentDigitCode[digitIndex] = digitCodeMap[charToInt-'0'-39];	// subtract the integer ASCII value for '0' and 7 to correctly map the a-z ASCII values to our digitCodeMap array
+				break;
+
+			case 45:  //dash
+				currentDigitCode[digitIndex] = digitCodeMap[37];
+				break;
+
+			case 32:  //space
+				currentDigitCode[digitIndex] = digitCodeMap[36];
+				break;
+
+			case 46: //dot
+				// set the decimal segment for the previous digit
+				//	but only if we've already setup a previous digit (to prevent unforseen errors)
+				if (digitIndex > 0) {
+					currentDigitCode[digitIndex-1] = currentDigitCode[digitIndex-1] | B10000000;
+				}
+				break;
+
+			default: // not mapped by digitCodeMap, set to blank
+				currentDigitCode[digitIndex] = digitCodeMap[36];
+				break;
+		}
+
+		// increment the digit index to the next index
+		//	but only if the character we just looked at was not a dot
+		//	since dots get added to the previous digit
+		if (charToInt != 46) {
+			digitIndex++;
+		}
+
+		// prematurely end the loop if we've decoded enough digits to fill the entire display
+		if (digitIndex >= NUM_7SEG_DIGITS) {
+			break;
 		}
 	}
-   }  
-}
-
-void loop() {    // code to be run continuously
-     displayDigits();
-     if (Serial.available() > 0){     // constantly check if there is serial data
-       String serialString = Serial.readString();      // read incoming data from the Omega as a string
-       Serial.println(serialString);
-       serialString.toCharArray(charArray,9);      // convert the incoming string to char array
-
-       // check for decimal point to be set later
-       checkDecimalPoint();
-
-      // loop for matching characters from the Omega to bytes from digitCodeMap[]
-      for (byte digit = 0 ; digit < numDigits ; digit++) {
-
-        // convert a character to a integer and subtract from it the integer value of '0' according to the ASCII table       
-        int charToInt = charArray [digit] - '0';
-        Serial.println(charToInt);
-
-        // case for matching the integer value of each character the an element from the digitCodeMap[] array
-        switch (charToInt){
-          case 0 ... 9:   //0-9
-             currentDigitCode[digit] = digitCodeMap[charToInt];
-             break;
-
-          case 17 ... 42: // A-Z
-             currentDigitCode[digit] = digitCodeMap[charToInt-7];
-             break;
-
-          case 49 ... 74: // a-z
-             currentDigitCode[digit] = digitCodeMap[charToInt-39];
-             break;
-
-           case -2: //dot
-              currentDigitCode[digit-1] = currentDigitCode[digit-1] | B10000000;
-              break;
-
-           case -3:  //dash
-              currentDigitCode[digit] = digitCodeMap[37];
-              break;
-
-           case -48: //null
-              for (byte n = digit; n < numDigits; n++) {
-                  currentDigitCode[n] = digitCodeMap[36];
-              }
-              return;
-        }
-
-        // if there is a decimal point, add the decimal point bit to the current digit byte
-        if (decimalPlace != -1)
-           currentDigitCode[decimalPlace] = currentDigitCode[decimalPlace] | B10000000;
-    }
-  }
 }
 ```
 
