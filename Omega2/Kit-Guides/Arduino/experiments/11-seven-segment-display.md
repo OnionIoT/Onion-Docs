@@ -269,9 +269,9 @@ echo -ne 'AAAA' > /dev/ttyS1
 
 <!-- // TODO: gif of 7seg showing 1234 and then changing to AAAA -->
 
-We should see the characters inside the single quoation mark '' displayed on our seven segment display.  By default echo will send the data and start a new line ('/n') after the data; we use the `-ne` operator to remove the new line. We can send any number and alphabet except for 'M' and 'W'. There will only be one way to display an alphabet regardless of its case. We can also send space ' ' and dash '-'; any undisplayable characters will be displayed as blank space ' '.  
+We should see the characters inside the single quoation mark '' displayed on our seven segment display.  By default echo will send the data and start a new line ('/n') after the data; we use the `-ne` operator to remove the new line. We can send any number and alphabet except for 'M' and 'W'. There will only be one way to display an alphabet regardless of its case. We can also send space ' ' and dash '-'; any characters that cannot be displayed will be replaced with a blank space ' '.  
 
-In addition, we can also add one decimal point in the string we send from the Omega. If multiple decimal points are used, only the right most one will be displayed. If the first character sent is a decimal point, it will not be displayed.
+In addition, we can also add decimal points in the string we send from the Omega. If the first character sent is a decimal point, it will not be displayed.
 
 
 #### A Closer Look at the Code
@@ -344,3 +344,5 @@ In addition, we need to move the rest of the array after the decimal point one e
 
 // TODO: introduce cron
 // show example of how to setup cron to output the time from the omega once a minute
+
+// copy heavily from STK LCD Expermient
