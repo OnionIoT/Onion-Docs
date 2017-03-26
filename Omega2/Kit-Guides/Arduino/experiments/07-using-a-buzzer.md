@@ -3,7 +3,7 @@
 In this experiment, we'll be sounding a buzzer from a button. Think of it as a model for your doorbell! We will build a circuit with a buzzer and a button, then we'll cover two ways to get the buzzer buzzing: polling the input and using a interrupt. In the process, we'll learn about the pros and cons of polling versus interrupts. As a required secondary superpower, we'll use a switch debouncing circuit (the same one as in [the push button experiment](#arduino-kit-reading-a-push-button)) to make sure our button presses come in clear.
 
 <!-- buzzer  -->
-```{r child='../../shared/seven-segment.md'}
+```{r child='../../shared/buzzer.md'}
 ```
 
 If we connect the positive end of the buzzer to a pin on our Arduino Dock, we can use software to control the buzzing!
@@ -190,11 +190,12 @@ attachInterrupt(digitalPinToInterrupt(interruptPin), changeState, CHANGE);
 ```
 
 
-This will attach the built-in Arduino interrupt to an interrupt pin (2 or 3). It will call on the interrupt service routine (ISR) function `changeState()` whenever there is a `CHANGE` in the push button input. The keyword `CHANGE`, as described in [push button experiment](#arduino-kit-reading-a-push-button), represents either `FALLING` edge (`HIGH` to `LOW`) or RISING edge (`LOW` to `HIGH`). This means if there the button is pressed or released, the `changeState()` function will be called. The task of the ISR `changeState()` is to simply write the opposite state of the push button to the buzzer. Notice we use the keyword `volatile` before `int` when declaring the `state` variable in line 4. Although the variable `state` is global and can be used in the ISR, to make sure the variable is updated correctly between the main program and the ISR, we declare them as `volatile`.
+This will attach the built-in Arduino interrupt to an interrupt pin (2 or 3). It will call on the Interrupt Service Routine (ISR) function `changeState()` whenever there is a `CHANGE` in the push button input. ISR functions cannot have parameters and shouldn't return anything.
 
+The keyword `CHANGE`, as described in [push button experiment](#arduino-kit-reading-a-push-button), represents both the `FALLING` edge (`HIGH` to `LOW`) or RISING edge (`LOW` to `HIGH`). This means if the input signal changes in any way (the button is pressed OR released), the `changeState()` ISR function will be called.
 
-In addition, we added the standard LED blinking code to our `loop()` similar to the [blinking LED experiment](#arduio-kit-blinking-led). However, now we use pin 13 which will blink the blue LED on the Arduino Dock.
+The task of the ISR `changeState()` is to simply write the opposite state of the push button to the buzzer. (Remember, we write the opposite state of the push button because the debouncing circuit inverts the reading of the button). Notice we use the keyword `volatile` before `int` when declaring the `state` variable at the beginning of the program. Although the variable `state` is global and can be used in the ISR, to make sure the variable is updated correctly between the main program and the ISR, we declare it as `volatile`.
 
-<!-- // DONE: go into a bit more detail about the volatile keyword (d) -->
+>For the curious, `volatile` means a variable will be directly modified by something other than the 'main body' of the program, and should be loaded from RAM instead of a CPU register - as that is generally where the 'reference' value of a variable is stored. Interrupts don't operate within the main program body, which is why we used `volatile` here to make sure the value of `state` is properly read.
 
->For the curious, `volatile` means a variable will be directly modified by something other than the 'main body' of the program, and should be loaded from RAM instead of a CPU register - as that is generally where the 'reference' value of a variable is stored. Interrupts don't exactly operate within the main program body, which is why we used `volatile` here to make sure the value of `state` is properly read.
+Since the interrupt and ISR will handle the push button input and setting the buzzer, our program is free to do other things! We've added the standard LED blinking code to our `loop()` similar to the [blinking LED experiment](#arduio-kit-blinking-led). The only difference being we used pin 13 here, which will blink the blue LED on the Arduino Dock.
