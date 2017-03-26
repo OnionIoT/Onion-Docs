@@ -1,17 +1,10 @@
 ## Using a Buzzer {#arduino-kit-using-a-buzzer}
 
-<!-- // DONE: ay-ay-ay this intro is so boring, please spice it up (hell yeah) -->
-
 In this experiment, we'll be sounding a buzzer from a button. Think of it as a model for your doorbell! We will build a circuit with a buzzer and a button, then we'll cover two ways to get the buzzer buzzing: polling the input and using a interrupt. In the process, we'll learn about the pros and cons of polling versus interrupts. As a required secondary superpower, we'll use a switch debouncing circuit (the same one as in [the push button experiment](#arduino-kit-reading-a-push-button)) to make sure our button presses come in clear.
 
-### The Buzzer
-<!-- // should be its own markdown file
-// description of the buzzer: we apply current, it buzzes, have some photos -->
-
-A buzzer can be described as audio signaling device, an alternative way to describe it is an annoying sound device. It has two pins and if we connect the positive (marked with +) end to power and the other end (negative) to the ground through a current limiting resistor, it will make a (potentially annoying) buzzing sound. The buzzer which is included in our kit is electromagnetic: it uses electromagnetism to generate repetitive mechanical motion which creates the buzzing sound.
-
-<!-- // DONE: IMAGE of a buzzer -->
-![A pretty standard buzzer](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/buzzer.jpg)
+<!-- buzzer  -->
+```{r child='../../shared/seven-segment.md'}
+```
 
 If we connect the positive end of the buzzer to a pin on our Arduino Dock, we can use software to control the buzzing!
 
@@ -69,9 +62,12 @@ And you're done! For reference your circuit should look a little like this:
 This program will continuously check an input pin to see if anything changes, and then fire the buzzer whenever it does see the appropriate change.
 
 ``` arduino
-int buzzerPin = 9;      // the pin number connect to the buzzer            
-int pollingPin = 2;     // the pin number connected to the push button
+// the pin number connect to the buzzer
+int buzzerPin = 9;
+// the pin number connected to the push button
+int pollingPin = 2;
 
+// This code runs once when the program starts, and no more
 void setup() {
    // initialize the buzzer pin as output
    pinMode(buzzerPin, OUTPUT);
@@ -80,16 +76,18 @@ void setup() {
    pinMode(pollingPin, INPUT);
 }
 
+// The code in here will run continuously until we turn off the Arduino Dock
 void loop() {
-   int state = digitalRead(pollingPin);   // read the state of the push button
+	// read the state of the push button
+	int state = digitalRead(pollingPin);   
 
-   // we want to:
-   //   ring the buzzer (buzzer HIGH) when the button is pressed (button LOW)
-   //   not buzz (buzzer LOW) when the button is released (button HIGH)
-   // note that the buzzer state is opposite of the button state
-   digitalWrite(buzzerPin, !state);
+	// we want to:
+	//   ring the buzzer (buzzer HIGH) when the button is pressed (button LOW)
+	//   not buzz (buzzer LOW) when the button is released (button HIGH)
+	// note that the buzzer state is opposite of the button state
+	digitalWrite(buzzerPin, !state);
 
-   delay(10);
+	delay(10);
 }
 ```
 
@@ -110,9 +108,13 @@ We will approach the simple task of pressing button to make the buzzer buzz in t
 
 In the first method, we poll the input of the push button at a regular interval by setting an ATmega pin as input. Remember from the previous tutorial that the push button input is inverted; therefore, we continuously read the state of the input and continuously write the opposite state `!state` of the input to the buzzer pin.
 
-<!-- // DONE: expand on how polling is taxing on the processor (but don't make it sound dangerous)-->
+| Button      | `state` Variable | Buzzer      | Pin 9 set To |
+|-------------|------------------|-------------|--------------|
+| Not Pressed | HIGH             | Not Ringing | LOW (!HIGH)  |
+| Pressed     | LOW              | Buzzing     | HIGH (!LOW)  |
 
-Polling has some issues with waste. The idea is to just check the input continuously until an event happens. The problem is that up until the event does happen, all that checking doesn't do anything useful! To avoid wasting CPU cycles like this, it's common practice to add a delay to the polling loop.
+
+Polling has some issues with waste. The idea is to just check the input continuously and perform some actions based on the value of the input. The problem is that, unless the input has changed, all that checking doesn't do anything useful! To avoid wasting CPU cycles like this, it's common practice to add a delay to the polling loop.
 
 Of course the downside is that this delay will make your program less responsive. Not only that, if the delay is too long, a short button press might actually be missed! In addition to the fact that we might not successfully capture all inputs, we're also locked in to just checking the state of that button - our program can't do anything else!
 
@@ -134,11 +136,16 @@ An alternative to polling is using interrupt-based inputs. In this approach, we 
 Without further ado, here's the code to do the same thing, but with an interrupt:
 
 ``` arduino
-int buzzerPin = 9;      // the pin number connect to the buzzer            
-int interruptPin = 2;     // the pin number connected to the push button interrupt
-int LEDPin = 13;        // the pin number connected to an LED, 13 is the blue LED on board
-volatile int state = LOW;   // the state of the buzzer - LOW for not buzzing
+// the pin number connect to the buzzer
+int buzzerPin = 9;
+// the pin number connected to the push button interrupt
+int interruptPin = 2;
+// the pin number connected to an LED, 13 is the blue LED on board
+int LEDPin = 13;
+// the state of the buzzer - initially set to LOW (not buzzing)
+volatile int state = LOW;   
 
+// This code runs once when the program starts, and no more
 void setup() {
   // initialize the buzzer pin as output
   pinMode(buzzerPin, OUTPUT);
@@ -150,6 +157,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(interruptPin), changeState, CHANGE);
 }
 
+// The code in here will run continuously until we turn off the Arduino Dock
 void loop() {
   // blinking LED regardless of the buzzer
   digitalWrite(LEDPin, HIGH);   
@@ -158,8 +166,10 @@ void loop() {
   delay(1000);              
 }
 
-// start at the not buzzing state, change to buzzing everytime the button is pressed and not buzzing when released
+// Interrupt Service Routine (ISR)
+//	set the buzzer pin to the appropriate state based on the current push button input value
 void changeState() {
+  // flip the push button input value since it is inverted due to the debouncing circuit
   state = !state;
   digitalWrite(buzzerPin, state);
 }
@@ -173,13 +183,12 @@ When the button is pressed, the buzzer will buzz until the button is released. H
 
 ### A Closer Look at the Code
 
-In this code, we initalize the interrupt by the following line:
+In this code, we initialize the interrupt by the following line:
 
 ```
 attachInterrupt(digitalPinToInterrupt(interruptPin), changeState, CHANGE);
 ```
 
-<!-- // DONE: complete the two links to previous experiments -->
 
 This will attach the built-in Arduino interrupt to an interrupt pin (2 or 3). It will call on the interrupt service routine (ISR) function `changeState()` whenever there is a `CHANGE` in the push button input. The keyword `CHANGE`, as described in [push button experiment](#arduino-kit-reading-a-push-button), represents either `FALLING` edge (`HIGH` to `LOW`) or RISING edge (`LOW` to `HIGH`). This means if there the button is pressed or released, the `changeState()` function will be called. The task of the ISR `changeState()` is to simply write the opposite state of the push button to the buzzer. Notice we use the keyword `volatile` before `int` when declaring the `state` variable in line 4. Although the variable `state` is global and can be used in the ISR, to make sure the variable is updated correctly between the main program and the ISR, we declare them as `volatile`.
 
