@@ -51,7 +51,7 @@ system.@led[0].sysfs='omega2p:amber:system'
 ```
 
 
-Now let’s look at the raw file. Run:
+Let’s compare this to the raw file. Run:
 
 ```
 cat /etc/config/system
@@ -84,31 +84,34 @@ config led
 
 ```
 
-The above file may seem organized enough, but if you were to edit it and make a typo or mistake, you could cause bugs or crashes in any programs that depends on it, especially at boot time!
+The above file may seem organized enough. However, if you were to edit it and make a typo or mistake, you could cause bugs or crashes in any programs that depend on it, especially at boot time!
 
-These configuration details are divided into **subsystems**. Each subsystem has its own file in `/etc/config` and is split into **sections** that contain groups of **options**. 
+These configuration details are divided into **subsystems**. Each subsystem has its own file in `/etc/config` and is split into **sections** that contain groups of **options**.
+
+#### Sections
 
 When working with `uci`, sections are displayed in the following syntax:
 
 ```
-[subsystem].[section]=[type]
+[SUBSYSTEM].[SECTIONNAME]=[TYPE]
 ```
+
+Sections can be named or unnamed. Unnamed sections take on the syntax `@SECTIONTYPE=SECTIONTYPE`.
 
 and options are displayed like so:
 
 ```
-[subsystem].[section].[option]=[string]
+[subsystem].[section].[option]=[value]
 ```
 
 Here are some examples of these fields in the raw configuration file above:
 
 * `subsystem` - `system` from the `system` file in `/etc/config`
-    * Not to be confused with the `system` in `config system`; this is coincidental.
+    * Not to be confused with the `system` in `config system`; this is named for convenience.
 * `section` - the `ntp` in `config timeserver 'ntp'`
-    * A section can be **named** or **unnamed**.
 * `type` - the `timeserver` in `config timeserver 'ntp'`
 * `option` - the `trigger` in `option trigger 'default-on'`
-* `string` - the `Omega-F119` in `option hostname 'Omega-F119'`
+* `value` - the `Omega-F119` in `option hostname 'Omega-F119'`
 
 To show the options in a configuration file, a section of a config file, or a specific option, run:
 
