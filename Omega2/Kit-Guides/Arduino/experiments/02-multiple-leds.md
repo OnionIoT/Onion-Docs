@@ -23,7 +23,12 @@ Prepare the following components from your kit:
 
 While the individual LEDs will be connected in exactly the same way as in the first experiment, we're going to be using the rails on the breadboard to make the wiring a little simpler. Here rails aren't of the train variety - they're the four vertically connected columns on each side of the breadboard. You'll see in a second why they're super handy.
 
-First, grab six LEDs and let's do the following for each one:
+Here's the diagram of our circuit for reference: 
+
+
+![Six LED circuit diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/02-circuit-diagram.png)
+
+To get started, let's grab six LEDs and let's do the following for each one:
 
 1. Plug in the LED into the breadboard across the center channel - make sure to keep the anodes and cathodes for each LED on the same sides!
 2. Connect one end of a 200Ω resistor to the cathode row, and the other end into the column marked `-`
