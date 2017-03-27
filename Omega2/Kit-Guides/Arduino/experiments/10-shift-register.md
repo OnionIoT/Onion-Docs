@@ -19,7 +19,11 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 
 For this experiment, we will send a 8 bits (a byte) serially from the ATmega to the shift register. When the latch pin of the shift register is set LOW, the shift register will use the stored 8 bits to set its 8 output pins accordingly. We will attach one LED to each of the 8 output pins and make them light up like Knight Rider's KITT. By the power of the shift register, we can do this using only three ATmega pins!
 
-// TODO: add the circuit diagram
+<!-- // DONE: add the circuit diagram -->
+
+This is the diagram of the circuit we'll be building:
+
+![Circuit diagram of the shift register experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/10-circuit-diagram.png)
 
 #### What You'll Need
 
@@ -42,14 +46,14 @@ Prepare the following components from your kit:
 
 // DONE: add pinout of 74HC595 -->
 
-// TODO: don't need to repeat this image, already included in the shift reg section above
-![The shift register with pins labelled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/74HC595-pinout.png)
+<!-- // DONE: don't need to repeat this image, already included in the shift reg section above -->
+<!-- ![The shift register with pins labelled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/74HC595-pinout.png) -->
 
 The IC should be plugged in across the channel of your breadboard (the slot running down the middle separating the `abcde` columns from the `fghij` columns). If you don't do this you will short out the pins across your IC. You may need to bend the pins just a bit in order to get it to fit.
 
 
-// TODO: don't need to repeat this image, already included in the shift reg section above
-![Shift register data flow](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shift-register-block-diagram.png)
+<!-- // DONE: don't need to repeat this image, already included in the shift reg section above -->
+<!-- ![Shift register data flow](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shift-register-block-diagram.png) -->
 
 Lets take a look at how the 16 pins of the 74HC595 shift register chip are defined.  We'll be referring to each pin by the numbers provided in the diagram above. When plugged in with the letters being right-side up, the bottow row of pins are pin 1 to 8 going from left to right. The top row of pins are pin 9 to 16 going from right to left.
 
