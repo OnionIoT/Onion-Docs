@@ -1,6 +1,6 @@
 Welcome to the Guide for the Onion Omega2 Maker Kit!
 
-![Starter Kit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/maker-kit-icon.png)
+![Maker Kit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/maker-kit-icon.png)
 
 ### What We're Going to Learn
 
