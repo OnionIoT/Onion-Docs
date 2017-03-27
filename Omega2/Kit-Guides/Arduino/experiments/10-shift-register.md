@@ -12,19 +12,14 @@ In this experiment, we'll be using a shift register to control eight LEDs, but w
 ```{r child = '../../shared/shift-register.md'}
 ```
 
-<!-- DONE: is this section needed anymore? -->
-<!-- Controlling shift register -->
-<!-- ```{r child = '../../shared/shift-register-control.md'} -->
-
-
 ### Building the Circuit
 
 <!-- // wire up the microcontroller outputs to the shift register
 // have all shift register outputs connected to an LED circuit -->
 
-For this experiment we will use the send a byte (8 bits) serially from the ATmega to the shift register. When the latch pin of the shift register is set LOW, the shift register will use the stored 8 bits to set its 8 output pins accordingly. We will attach one LED to each of the 8 output pins and make them light up like Knight Rider's KITT. By the power of the shift register, we can do this using only three ATmega pins!
+For this experiment, we will send a 8 bits (a byte) serially from the ATmega to the shift register. When the latch pin of the shift register is set LOW, the shift register will use the stored 8 bits to set its 8 output pins accordingly. We will attach one LED to each of the 8 output pins and make them light up like Knight Rider's KITT. By the power of the shift register, we can do this using only three ATmega pins!
 
-<!-- // DONE: what? this makes no sense, an led to check the state of an output pin? And then below we also make the eight LEDs light up? fix this section pls -->
+// TODO: add the circuit diagram
 
 #### What You'll Need
 
@@ -46,17 +41,20 @@ Prepare the following components from your kit:
 //    * explain each of the lines running from the Omega and what they do - according to the names from the controlling a shift register section
 
 // DONE: add pinout of 74HC595 -->
+
+// TODO: don't need to repeat this image, already included in the shift reg section above
 ![The shift register with pins labelled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/74HC595-pinout.png)
 
 The IC should be plugged in across the channel of your breadboard (the slot running down the middle separating the `abcde` columns from the `fghij` columns). If you don't do this you will short out the pins across your IC. You may need to bend the pins just a bit in order to get it to fit.
 
+
+// TODO: don't need to repeat this image, already included in the shift reg section above
 ![Shift register data flow](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/shift-register-block-diagram.png)
 
 Lets take a look at how the 16 pins of the 74HC595 shift register chip are defined.  We'll be referring to each pin by the numbers provided in the diagram above. When plugged in with the letters being right-side up, the bottow row of pins are pin 1 to 8 going from left to right. The top row of pins are pin 9 to 16 going from right to left.
 
 >Note: Your IC will have a semi-circle indentation that indicates "up". Make sure that you plug it in properly so you know which pins are where.
 
-<!-- // DONE: add a little blurb here: 'The Procedure:' or something along those lines, something to make it make sense with the tenses used in the list items -->
 
 Here's the steps to get there:
 
@@ -67,11 +65,11 @@ Here's the steps to get there:
 
   <!-- DONE: Insert picture of this stage -->
 ![Shift register wired](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/10-shift-reg-wired.jpg)
-  
+
 >The jumpers at the top will be wired to the LEDs eventually.
 
 2. Connecting your LEDs
-    * Connect the anodes of the eight LED each to one of the eight output pins of the 74HC595 - pin `15` and pin `1` to `7`, corresponding to `Q0` to `Q7`. Place the LEDs left to right in the following pin order: `Q0`, `Q1`, `Q2`, `Q3`, `Q4`, `Q5`, `Q6`, `Q7`. 
+    * Connect the anodes of the eight LED each to one of the eight output pins of the 74HC595 - pin `15` and pin `1` to `7`, corresponding to `Q0` to `Q7`. Place the LEDs left to right in the following pin order: `Q0`, `Q1`, `Q2`, `Q3`, `Q4`, `Q5`, `Q6`, `Q7`.
 
 <!-- // DONE: if it's just 8 pins and it's crucial to the experiment, list them all out -->
 
@@ -87,7 +85,7 @@ Here's the steps to get there:
   * Connect Arduino Dock digital pin 5 to `STCP` on the shift register.
   * Connect Arduino Dock digital pin 6 to `SHCP` on the shift register.
   * Connect the `Vcc` rail to a `5V` pin on the Arduino Dock
-  
+
   <!-- // DONE: what is meant by 5V header? -->
 
   <!-- DONE: Insert picture of this stage -->
@@ -101,54 +99,78 @@ Here's the steps to get there:
 
 
 ``` arduino
-int latchPin = 5;   // the pin number connected to the latch pin (12 of the 74HC595)
-                    // setting the latch LOW will send the 8 bits in storage to the output pins
-int clockPin = 6;   // the pin number connected to the clock pin (11 of the 74HC595)
-int dataPin = 4;    // the pin number connected to the input data pin (14 of the 74HC595)
+#define NUM_LEDS 	8
 
-byte storageByte = 0x01;  // the byte (8 bits) to be stored in the shift register
-                          // initalized it as 00000001 representing the first LED on
+// duration to pause
+int delayTime = 100;
 
+// the pin connected to the latch pin, RCLK (pin 12 of the shift register)
+//	setting the latch LOW will send the 8 bits in storage to the output pins
+int latchPin = 5;
+// the pin connected to the clock pin, SRCLK (pin 11 of the shift register)
+int clockPin = 6;
+// the pin connected to the serial data pin, SER (pin 14 of the shift register)
+int dataPin = 4;
+
+
+// This code runs once when the program starts, and no more
 void setup()
 {
-  // initialize all the shift register pins as output
+  // initialize all the pins connected to the shift register as outputs
   pinMode(latchPin, OUTPUT);
   pinMode(dataPin, OUTPUT);  
   pinMode(clockPin, OUTPUT);
 }
 
 // function which sends the stored byte to the output pins by setting the latch pin LOW
-void updateShiftRegister()
+void updateShiftRegister(byte storageByte)
 {
-  digitalWrite(latchPin, LOW);    // set the latch pin LOW
-  // send the storage byte from arduino to the shift register withe LSB first
-  // since the latch is LOW, set the 8 output pins based on the stored 8 bits and in turn light the correct LED
-  shiftOut(dataPin, clockPin, LSBFIRST, storageByte);    
-  digitalWrite(latchPin, HIGH);   // set the latch pin HIGH again
+  // set the latch pin LOW
+  digitalWrite(latchPin, LOW);
+
+  // send the storage byte to the shift register with the LSB first
+  // 	since the latch is LOW, set the 8 output pins based on the stored 8 bits and in turn light the correct LED
+  shiftOut(dataPin, clockPin, LSBFIRST, storageByte);
+
+  // set the latch pin HIGH again
+  digitalWrite(latchPin, HIGH);
 }
 
+// The code in here will run continuously until we turn off the Arduino Dock
 void loop()
 {
-  // send 00000001 to the shift register, set the latch LOW and light the first LED
-  updateShiftRegister();
+  // the byte (8 bits) to be stored in the shift register
+  //	initialize to 00000001, representing the first LED on
+  byte storageByte = 0x01;
 
-  // shift 1 bit to the left 7 times, each time set the only corresponding LED on
-  for (int i = 0; i < 7; i++)
+  // create the effect of having the light travel to the left
+  for (int i = 0; i < NUM_LEDS-1; i++)
   {
-    delay(100);   // wait 0.1 second between lighting each LED
-    storageByte = storageByte << 1;   // shift 1 bit to the left, the left most bit disappears and the right most bit is replaced by 0
-                                      // i.e. 00000001 to 00000010
-    updateShiftRegister();      // send the 8 bits to the shift register and set latch LOW
+	// send the 8 bits to the shift register and set latch LOW
+    updateShiftRegister(storageByte);
 
+	// bitwise shift to the left by 1 bit
+	//	the MSB will disappear and a 0 will be shifted in for the LSB
+	//  ex. 10000001 to 00000010
+    storageByte = storageByte << 1;
+
+	// wait before moving on to the next LED to enhance the animation
+	delay(delayTime);   
   }
 
-  // shift 1 bit to the right 7 times, each time set the only corresponding LED on
-  for (int i = 0; i < 7; i++)
+  // create the effect of having the light travel in the opposite direction
+  for (int i = 0; i < NUM_LEDS-1; i++)
   {
-    delay(100);   // wait 0.1 second between lighting each LED
-    storageByte = storageByte >> 1;   // shift 1 bit to the right, the right most bit disappears and the left most bit is replaced by 0
-                                      // i.e. 10000000 to 01000000
-    updateShiftRegister();      // send the 8 bits to the shift register and set latch LOW
+	// send the 8 bits to the shift register and set latch LOW
+    updateShiftRegister(storageByte);
+
+	// bitwise shift to the right by 1 bit
+	//	the LSB will disappear and a 0 will be shifted in for the MSB
+	// 	i.e. 10000000 to 01000000
+	storageByte = storageByte >> 1;
+
+	// wait before moving on to the next LED to enhance the animation
+	delay(delayTime);   
   }
 }
 ```
@@ -170,7 +192,7 @@ See, just like KITT:
 
 We are only using three Arduino Dock pins to control eight LEDs by taking advantage of the shift register. Lets begin by declaring the three pin variables (`latchPin`, `clockPin` and `dataPin`) and initializing the three pins as output in `setup()`.
 
-Each time we want to light up a different LED (change the output of the Shift Register), we use the `updateShiftRegister()` function in a loop to continuously change the outputs. 
+Each time we want to light up a different LED (change the output of the Shift Register), we use the `updateShiftRegister()` function in a loop to continuously change the outputs.
 
 
 #### Updating the Shift Register

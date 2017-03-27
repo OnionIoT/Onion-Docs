@@ -136,7 +136,7 @@ An alternative to polling is using interrupt-based inputs. In this approach, we 
 Without further ado, here's the code to do the same thing, but with an interrupt:
 
 ``` arduino
-// the pin number connect to the buzzer
+// the pin number connected to the buzzer
 int buzzerPin = 9;
 // the pin number connected to the push button interrupt
 int interruptPin = 2;

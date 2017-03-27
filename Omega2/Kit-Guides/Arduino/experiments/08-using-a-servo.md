@@ -19,6 +19,8 @@ In this tutorial, we will use two push buttons to control two servos: a sub-micr
 
 For the circuit, we will need a small (sub-micro size) servo motor (MicroServo DXW90) and a standard size servo motor (Futaba S3003). In addition, we will need two push buttons, each with their own debounce circuits setup on a breadboard. When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction.
 
+// TODO: insert the circuit diagram
+
 #### What You'll Need
 
 Prepare the following components from your kit:
@@ -71,18 +73,23 @@ In order to drive the servo, we'll create a servo class conforming to the limits
 To get your servos turning, copy the code below into `SKA08-usingServo.ino` and flash it to your Arduino Dock.
 
 ``` c++
-// import the Arduino Servo library and define it
-
+// import the Arduino Servo library
 #include <Servo.h>
 
+#define ABSOLUTE_ANGLE_CHANGE 	5
+
+// variables to hold program data
 int incrementButton = 2;
 int decrementButton = 3;
 int currentAngle = 90;
 
+
+
 // class to control servo motors
 class ServoMotor
 {
-	private:               // variables or functions that can only be used within the ServoMotor class
+	// variables or functions that can only be used within the ServoMotor class
+	private:
 	Servo servo;           // Servo object from the Arduino Servo library
 	float rate;            // rate of pulse width change per degree
 	float minPW, maxPW;    // min and max pulse width in microseconds (uS)
@@ -90,7 +97,8 @@ class ServoMotor
 	int maxAngle = 180;
 	int pin;
 
-	public:     //  variables or functions which can be called outside in the main program
+	//  variables or functions which can be called outside in the main program
+	public:
 
 	// ServoMotor() - constructor for a class with the same name
     // - will be automatically called when a class object is declared
@@ -98,14 +106,16 @@ class ServoMotor
     // - the class has functions to use given input to rotate the motor by
     //   arbitrary degrees
 	ServoMotor(int pinNumber, float minPWus, float maxPWus){
-
-		// pass in the pin number, max and min pulse width to private variables
+		// store the pin number, max and min pulse width in private variables
+		pin = pinNumber;
 		minPW = minPWus;
 		maxPW = maxPWus;
-		pin = pinNumber;
 
 		// calculate the pulse width change for each degree
-		rate = (maxPWus - minPWus)/(maxAngle - minAngle);
+		rate = (maxPWus - minPWus)/(float)(maxAngle - minAngle);
+
+		// attach the specified pin to the Arduino Servo library object
+		servo.attach(pin);
 	}
 
 	// function where you pass in an angle and it sets the servo motor to that angle
@@ -124,9 +134,6 @@ class ServoMotor
 		// convert the angle to pulse width in microseconds(uS) using the rate previously calculated in the constructor
 		float PWus = minPW + rate * angle;
 
-		// TODO: LAZAR: look into this, can potentially move this to the constructor
-		// initialize the servo pin using the Arduino Servo library
-		servo.attach(pin);
 
 		// set the servo angle by sending the calculated pulse width to the servo motor using the Arduino Servo library
 		servo.writeMicroseconds(PWus);
@@ -154,22 +161,29 @@ void loop() {   // code to be run continuously
     int increment = digitalRead(incrementButton);
     int decrement = digitalRead(decrementButton);
 
-    // if the increment button is pressed, increase the current angle by 5 degree and set both servos at the new angle
-    if (increment == 0){
-        currentAngle=currentAngle+5;
-        Serial.print("Current angle: "); Serial.println (currentAngle);			//print the current angle
-        smallServo.setAngle(currentAngle);
-        standardServo.setAngle(currentAngle);
-    }
 
-     // if the decrement button is pressed, decrease the current angle by 5 degree and set both servos at the new angle
-    if (decrement == 0){
-        currentAngle=currentAngle-5;
-        Serial.print("Current angle: "); Serial.println (currentAngle);			//print the current angle
-        smallServo.setAngle(currentAngle);
-        standardServo.setAngle(currentAngle);
-    }        
-    delay(200);  // if either button is pressed and held down, either increase or decrease the angle 5 degrees every 0.2 second
+    if (increment == 0) {
+		// if the increment button is pressed, increase the current angle
+		angleChange = ABSOLUTE_ANGLE_CHANGE;
+    }
+	else if (decrement == 0) {
+		// if the decrement button is pressed, decrease the current angle
+		angleChange = -1 * ABSOLUTE_ANGLE_CHANGE;
+	}
+
+	// carry out the angle change only if one of the buttons is pressed
+	//	having this separate if statement reduces repeated code
+	if (increment == 0 || decrement == 0) {
+		currentAngle = currentAngle + angleChange;
+		Serial.print("Current angle: "); Serial.println (currentAngle);			//print the current angle
+
+		// set both servos to the new angle
+		smallServo.setAngle(currentAngle);
+		standardServo.setAngle(currentAngle);
+	}
+
+	// add a delay so that if either button is held down, the servo angle will change at a maximum rate of 5 degrees every 0.2 seconds
+    delay(200);
 }
 ```
 
@@ -180,9 +194,11 @@ void loop() {   // code to be run continuously
 When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction. If either button is pressed and held down,
 the servos' shaft position will either increase or decrease by 5 degrees every 0.2 seconds.
 
-<!-- TODO: IMAGE video of the servos turning -->
+<!-- TODO: video of the servos turning -->
 
 ### A Closer Look at the Code
+
+// TODO: update the below based on the latest code
 
 <!-- // introduced object oriented programming for the first time in this code -->
 

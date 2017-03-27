@@ -2,7 +2,7 @@
 
 <!-- // description of what this experiment will accomplish and what we'll learn -->
 
-So far, our programs have been looping continously without stopping . In this tutorial, we get it to stop and listen for once! We'll be writing code that will patiently listen for an event, and perform an action only when it happens. We will still be using physical input to control our software, however this time instead of a trimpot we will be using a push button. Along the way, we're also going to learn about bitwise operations.
+So far, our programs have been looping continuously without stopping. In this tutorial, we get it to stop and listen for once! We'll be writing code that will patiently listen for an event, and perform an action only when it happens. We will still be using physical input to control our software, however this time instead of a trimpot we will be using a push button. Along the way, we're also going to learn about bitwise operations.
 
 <!-- Push Button -->
 ```{r child = '../../shared/switches-push-button.md'}
@@ -93,48 +93,63 @@ The program for this experiment won't loop at all! Instead it'll setup a interru
 Copy the code below and flash it to give it a spin.
 
 ``` c
-int interruptPin = 2;       // the pin number connected to the push button interrupt
-int ledPins[] = {9, 8, 7, 6, 5, 4};       // an array of GPIO numbers with LED attached
-int pinCount = 6;           // number of GPIOs used
-int currentLED = 0;         // the current LED being light up in from 0 to pinCount-1
-byte byteOfLEDs = B01000000;    // byte of LEDs representing which LEDs are on. Since theres six LEDs, we use the seventh bit to represent all LEDs off.
+#define NUM_LEDS		6
 
+// the pin number connected to the push button interrupt
+int interruptPin = 2;
+// an array of pins with LEDs attached
+int ledPins[] = {9, 8, 7, 6, 5, 4};
+// pin connected to the Arduino Dock LED
+int statusLedPin = 13;
+// a byte representing which LEDs are on
+//	we're only using 6 of the 8 bits since we've connected 6 LEDs
+volatile byte ledValues = B00000000;
+
+// This code runs once when the program starts, and no more
 void setup() {
   Serial.begin(9600);           // initialize serial communication with the Omega
 
   // initialize the interrupt pin and set it to call setLED function only when the button is pressed (FALLING edge trigger)
-  attachInterrupt(digitalPinToInterrupt(interruptPin), setLED, FALLING);
+  attachInterrupt(digitalPinToInterrupt(interruptPin), setLedChain, FALLING);
 
   // loop for initializing the LED GPIOs as output
-  for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+  for (int thisPin = 0; thisPin < NUM_LEDS; thisPin++) {
     pinMode(ledPins[thisPin], OUTPUT);
   }
+
+  // initialize the Arduino Dock LED GPIO to output
+  pinMode(statusLedPin, OUTPUT);
 }
 
+// The code in here will run continuously until we turn off the Arduino Dock
 void loop() {
-    // stay idle until the interrupt activates
+	// blink the status LED
+	digitalWrite(statusLedPin, HIGH);
+	delay(1000);
+	digitalWrite(statusLedPin, LOW);
+	delay(1000);
 }
 
-void setLED() {
-  // if all the six LED are turned on, turn off all the LEDs and exit the function
-  if (byteOfLEDs == B00111111){
-      currentLED = 0;
-      byteOfLEDs = B01000000;
-     // loop for turn off GPIOs one-by-one going left to right
-     for (int thisPin = 0; thisPin < pinCount; thisPin++) {
-         digitalWrite(ledPins[thisPin], LOW);
-     }
-     Serial.println(byteOfLEDs & B00111111, BIN);  // print the six least significant bits of byteOfLEDs to the Omega
-     return;
-  }
+// ISR for a button press
+void setLedChain() {
+	// decide whether enabling or disabling LEDs
+	if ((ledValues >> NUM_LEDS) & B00000001 == B00000001) {
+		// the last LED is on, start disabling the LEDs
+		//	shift all of the existing bits by 1, the least significant bit will be 0 (disabling the LED)
+		ledValues = ledValues << 1;
+	}
+	else {
+		// the last LED is not yet on, keep turning LEDs on
+		//	shift all of the existing bits by 1, set the least significant bit to 1
+		ledValues = (ledValues << 1) | B00000001;
+	}
 
-  // turn on the current LED and increment the counter to the next LED
-  digitalWrite(ledPins[currentLED], HIGH);
-  currentLED ++;
+	// set all of the LEDs according to the ledValues byte
+	for (int index = 0; index < NUM_LEDS; index++) {
+		int value = (ledValues >> index) & B00000001;
+		digitalWrite(ledPins[index], value);
+	}
 
-  // bit-wise operation used on byteOfLEDs to imitate actual LEDs turning on (1) and off (0)
-  byteOfLEDs = (byteOfLEDs | (byteOfLEDs >> 1)) & B00111111;
-  Serial.println(byteOfLEDs, BIN);   // print the byteOfLEDs to the Omega
 }
 ```
 
