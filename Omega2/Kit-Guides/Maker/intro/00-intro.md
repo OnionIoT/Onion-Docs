@@ -65,7 +65,29 @@ Here's a list of all of the experiments we're going to build with your Kit:
 ```{r child='../../Starter/intro/experiment-listing.md'}
 ```
 
-<!-- And a list of tutorials on using the PWM, OLED, and Relay Expansions:
+**COMING SOON!** 
+
+And a list of tutorials on using the PWM, OLED, and Relay Expansions:
+
+1. Dimming LEDs
+    * Learn about Pulse Width Modulation and controlling LEDs
+1. Controlling Servos
+	* Use the PWM Expansion to control Servos and pick up some Python skills along the way
+1. Run a DC Motor with an H-Bridge
+	* We'll get really creative and use the PWM Expansion to control an H-Bridge chip which will in turn drive a DC motor
+1. Writing text to the screen
+    * We'll use Python to programmatically write text to the screen
+1. Changing the screen's settings
+	* Learn how we can use user input to change display settings
+1. Draw lines!
+	* Prompt the user for input and use it to draw lines on the screen
+1. Controlling isolated circuits
+    * Learn how to control circuits electrically isolated from the Omega's circuits
+
+
+<!-- TODO: remove the above list when the articles are done -->
+
+<!-- TODO: put this back in when articles are done!
 
 ```{r child='./pwm-tutorial-listing.md'}
 ```

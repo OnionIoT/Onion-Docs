@@ -10,7 +10,6 @@ order: 7
 
 ## Isolated Control with the Relay Expansion {#maker-kit-relay-controlling-circuits}
 
-// LAZAR: come back to this
 
 In this tutorial, we'll use a switch with the Omega Relay expansion to turn a buzzer on or off. Along the way, we'll be looking into why relays are useful, and go into more detail regarding pitfalls when interacting with hardware.
 
@@ -27,7 +26,7 @@ In this tutorial, we'll use a switch with the Omega Relay expansion to turn a bu
 
 The Omega is designed to handle around 3.3V and the Docks up to 5V. Attempting to directly control 120V appliances like lights, kettles, garage doors will almost certainly fry your Omega. So how can you automate these household appliances with your Omega?
 
-Enter the **Relay Expansion**! A relay is a mechanical switch that is triggered electronically. This physically separates the circuit that switches and the circuit that the switch controls. The Relay Expansion is designed to isolate the Omega and the dock (the switching circuit) from the controlled circuits. Turning your lights on and off, 
+Enter the **Relay Expansion**! A relay is a mechanical switch that is triggered electronically. This physically separates the circuit that switches and the circuit that the switch controls. The Relay Expansion is designed to isolate the Omega and the dock (the switching circuit) from the controlled circuits. Turning your lights on and off,
 
 <!-- // DONE: This last sentence should be more along the lines of: -->
 <!-- //	The relay expansion is designed to isolate the switching circuit, in this case the Omega and Dock, from the load circuit. Allowing low power devices like the Omega to control high power circuits. -->
