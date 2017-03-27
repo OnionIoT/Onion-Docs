@@ -32,7 +32,9 @@ This is a powerful tool since we can use interrupts in our programs to perform a
 
 For this experiment we will start with the circuit from the [multiple LEDs tutorial](#arduino-kit-multiple-leds) and add a push-button along with it's debouncing circuit. The push-button will be connected to a ATmega pin which is capable of triggering external interrupts (only pin 2 or 3 for ATmega328). The push button will be used as input (either pressed or not pressed) and the LEDs will animate the the button presses
 
-<!-- TODO: missing circuit diagram -->
+<!-- DONE: missing circuit diagram -->
+
+![Debouncing circuit for the push button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/04-circuit-diagram.png)
 
 
 #### What You'll Need
@@ -63,11 +65,9 @@ Prepare the following components from your kit:
     * Plug the other end of the 5.1kΩ resistor to an empty row.
     * Using the 100nF capacitor, connect the row where the 5.1kΩ resistor terminates to the `GND` rail.
 
+<!-- // DONE: photo of button and debouncer circuit with LEDs only -->
+
 ![Debouncing circuit for the push button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/04-debouncing-circuit.jpg)
-
-<!-- // DONE: photo of button and debouncer circuit with LEDs only LINK ABOVE IS NOT FINAL -->
-
-
 
 1. Connect the LEDs and resistors the same way as in the [multiple LED tutorial](#arduino-kit-02-multiple-leds).
     * Plug in six LEDs onto the breadboard, each across the middle channel of the breadboard.
@@ -86,7 +86,7 @@ Now let's connect the circuit to the Dock:
 
 ### Writing the Code
 
-// TODO: Lazar to re-write this code
+<!-- // DONE: Lazar to re-write this code -->
 
 The program for this experiment won't loop at all! Instead it'll setup a interrupt, and perform actions only when the interrupt is activated.
 
@@ -153,18 +153,17 @@ void setLedChain() {
 }
 ```
 
-You know the drill, `SKA04-readingPushButton.ino`.
+You know the drill, save it to `SKA04-readingPushButton.ino`, then get ready to press a button!
 
 ### What to Expect
 
-When the button is pressed, the left most LED should turn on. For each additional button press, another led will turn on, going from left to right. When all leds are on and the button is pressed, all the LEDs will turn off at once. Additional button presses will repeat the previous actions.
+When the button is pressed, the left most LED should turn on. For each additional button press, another led will turn on, going from left to right. When all leds are on and the button is pressed, the LEDs will turn off one by one in the same order. All the while, the LED connected to GPIO13 will continue blinking steadily on and off.
 
 <!-- // TODO: gif -->
 
-In addition, if we use the `cat` command on our Omega like previous tutorial, we will see a bitwise representation of our actual LEDs.
 
-<!-- // DONE: screenshot of the cat command showing the bitwise operations -->
-![Serial output from the ATmega](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/04-serial-output.png)
+<!-- // DONE: screenshot of the cat command showing the bitwise operations - commented out no longer relevant, file is still on server -->
+<!-- ![Serial output from the ATmega](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/04-serial-output.png) -->
 
 ### A Closer Look at the Code
 
