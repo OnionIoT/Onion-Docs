@@ -65,11 +65,11 @@ Here's a list of all of the experiments we're going to build with your Kit:
 ```{r child='../../Starter/intro/experiment-listing.md'}
 ```
 
-And a list of tutorials on using the PWM, OLED, and Relay Expansions:
+<!-- And a list of tutorials on using the PWM, OLED, and Relay Expansions:
 
 ```{r child='./pwm-tutorial-listing.md'}
 ```
 ```{r child='./oled-tutorial-listing.md'}
 ```
 ```{r child='./relay-tutorial-listing.md'}
-```
+``` -->
