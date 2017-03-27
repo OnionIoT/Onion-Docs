@@ -4,10 +4,16 @@
 
 // give a few examples of why you would want to do this
 
+There are two ways of resetting the ATmega, either by the button labelled MCU_RESET on the Arduino Dock or using a software command. Pressing the reset button is similar to turn off the MCU and turn it back on again. This will only stops the program on the ATmega and restarts it from the beginning. It will not erase the program. In the context of an arduino sketch, it will reset any global variables, run the setup function again, and then start the loop function.
+
+There are several cases where resetting the MCU is useful. For example, if the program isn't looped or stopped and ywe want to run the program again. Instead of reflashing the program we can simply press the reset button. Resetting the ATmega is very useful when testing a code and restarting the program for debugging purposes.
+
 ### Physically with a Button
 
 // point out the MCU_RESET button on the arduino dock
 // have the labelled illustration included here
+
+When the MCU_RESET button is pressed and released, the blue LED should quickly blink a few times, indicating that its in the bootloader before it start running the program on the ATmega. If the LED fails to blink, then the ATmega is not properly resetted.
 
 ### Virtually with Software
 

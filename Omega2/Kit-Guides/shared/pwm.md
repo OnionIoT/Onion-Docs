@@ -1,25 +1,13 @@
-### PWM
+### Pulse Width Modulation
 
-PWM(Pulse Width Modulation) is a technique of producing varying analog signals from a digital source. 
+Pulse Width Modulation (PWM) is a technique of producing varying analog signals from a digital source.
 
-![alt text](http://www.bristolwatch.com/picaxe/images/io43.gif)
+Digital signals can only be either HIGH or LOW, where the HIGH voltage is some fixed value depending on the circuit. On the Omega, HIGH on the Omega is 3.3V.
 
-#### Duty Cycle
+On the other hand, an **analog** signal can be any voltage between HIGH and LOW. Normally, digital circuits can't freely vary voltage signals, but they can use PWM to get close enough. It works by repeatedly pulsing a HIGH digital signal on and off so that the **average** voltage coming from the circuit over time would be equivalent to an analog signal between HIGH and LOW. To change the analog voltage, you can vary how fast the HIGH signal is pulsed.
 
-Indicates what percentage of the time a signal is on or high voltage. So a PWM signal with a 25% duty cycle will be high for 25% of the time, and low 75% of the time. The duty cycle can be calculated as follows:
+There are some limitations to this method depending on how the driving circuit is built, but it's relatively simple to implement and can be accurate enough for most cases.
 
-$$DutyCycle = {\frac{T_{on}}{T_{CompleteCycle}}}\times100\%$$
+![A few difference PWM signals, at varing duty cycles](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/pwm-signals.jpg)
 
-#### Period
-
-Indicates the amount of time (usually in milliseconds) for each part of the cycle.
-The Time On, Ton in the diagram above is the time the signal is high. This is also known as pulse width.
-Similarly, Time Off, or Toff is the time the signal is low.
-
-The Complete Cycle time corresponds to the overall period of the PWM. Changing the period will also change the frequency of the PWM signal:
-
-$$Frequency = {\frac{1}{Period}}$$
-
-#### Application
-
-The power of PWM signals is that they allow you to deliver a continous range of voltages between the digital Hi and Low values. 
+<!-- // DONE: would be nice if this graphic also had the Duty Cycle % -->

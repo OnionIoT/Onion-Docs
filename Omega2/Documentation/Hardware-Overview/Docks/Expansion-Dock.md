@@ -93,7 +93,6 @@ The RGB LED is active-low, meaning that setting the GPIO to 0 will turn on the d
 
 We've made available a detailed [diagram](https://raw.githubusercontent.com/OnionIoT/technical-drawings/master/Mechanical/OM-D-EXP.PDF) of the dimensions and geometry of the Expansion Dock.
 
-
 ### Using the Dock
 
 <!-- [//]: # (little overview of the special features of this dock) -->

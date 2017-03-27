@@ -27,17 +27,8 @@ Both methods have their advantages and disadvantages. We recommend using SSH sin
 
 ### Connecting with SSH {#connecting-to-the-omega-terminal-ssh}
 
-SSH stands for **Secure Shell** . It's a network protocol that creates a secure channel for communication between two devices on the same network. It can be used to secure many different types of communication, but here we'll be using it to login to the Omega's command prompt.
-
-<!-- //TODO: add stylized picture of the Omega2 and a laptop connected to a wifi network -->
-
-#### The Good & Bad of SSH
-
-When using SSH, the Omega and your computer communicate over the WiFi network to which they are both connected. This means that as long as the Omega is powered on and within range of your WiFi network, you can connect to it! No need to plug it directly into your computer.
-
-The disadvantage of SSH is that if the network connection gets interrupted, the connection will also be severed.
-
-For most use-cases with the Omega, SSH will work really well. This should be your go-to method for accessing the Omega's command-line.
+```{r child = './Connecting-to-the-Omega-Terminal-Component-1-ssh-intro.md'}
+```
 
 #### The Connection method
 
@@ -50,240 +41,27 @@ The connection method will be different depending on what Operating System you'r
 
 ### SSH on a Mac device {#connecting-to-ssh-mac}
 
-<!-- {{#if OSX}} -->
-**Step 1: Open a Terminal**<br>
-Open your preferred Terminal App.
-
-**Step 2: Establishing a SSH connection**<br>
-Run the following command:
+```{r child = './Connecting-to-the-Omega-Terminal-Component-2-ssh-mac.md'}
 ```
-ssh root@omega-ABCD.local
-```
-Where `ABCD` is the unique id of your Omega.
-
-![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-osx-ssh-1.png)
-
-**Step 3: Enter Credentials**<br>
-When prompted, enter the password <br>
-By default, the password is: `onioneer`
-
-![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-osx-ssh-2.png)
-
->*If you're prompted about adding the address to the list of known hosts, type yes. This is just your computer getting to know the Omega for the first time!*
-
-**And you're in!**
-
-![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-osx-ssh-3.png)
-
-<!-- {{/if}} -->
 
 ### SSH on a Linux device {#connecting-to-ssh-linux}
 
-<!-- {{#if Linux}} -->
-**Step 1: Open a Terminal**<br>
-Open your preferred Terminal App.
-
-**Step 2: Establishing a SSH connection**<br>
-Run the following command:
+```{r child = './Connecting-to-the-Omega-Terminal-Component-3-ssh-linux.md'}
 ```
-ssh root@omega-ABCD.local
-```
-Where `ABCD` is the unique id of your Omega.
-
-![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-linux-ssh-1.png)
-
-**Step 3: Enter Credentials**<br>
-When prompted, enter the password <br>
-By default, the password is: `onioneer`
-
-![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-linux-ssh-2.png)
-
->*If you're prompted about adding the address to the list of known hosts, type yes. This is just your computer getting to know the Omega for the first time!*
-
-**And you're in!**
-
-![osx ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-linux-ssh-3.png)
-
-<!-- {{/if}} -->
-
 
 ### SSH on a Windows Device {#connecting-to-ssh-windows}
 
-**Step 1: Download PuTTy**<br>
-
-You can find PuTTy [here](http://www.putty.org/). Look for the `putty.exe` installer for Windows on intel x86. Once it's downloaded you can open and use it.
-
-**Step 2: Establish a SSH connection**<br>
-Configure an SSH connection to `omega-ABCD.local` on port `22`:
-
-![putty ssh](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-windows-ssh-1.png)
-
-Where `ABCD` is the unique id of your Omega.
-
-**Step 3: Enter Credentials**<br>
-Click Open and enter the credentials when prompted.
-
-By default, the credentials are:<br>
-Username: `root` <br>
-Password: `onioneer`
-
-**And you're connected!**
-
-<!-- {{/if}} -->
+```{r child = './Connecting-to-the-Omega-Terminal-Component-4-ssh-windows.md'}
+```
 
 
 ### Using SSH Key Pairs
 
-Over the course of a few months, the number of times you type in the password to connect will add up to a whole bunch of time that could have been spent having fun. Don't worry, there's another way to authenticate your SSH connection: **SSH Key Pairs**.
-
-By using SSH Key Pairs, **the Omega and your computer will do a secure handshake so you won't need to type in that pesky password all the time**. Not only that, using a key pair will make your Omega even more since passwords can be discovered but secure key pair authentication cannot be broken.
-
-#### What are Key Pairs?
-
-Good question! Authentication using a Key Pairs is based on having two randomly generated binary keys, where one is **public** and one is **private**.
-
-* The private key is like a handwritten signature, used to prove your identity, so **make sure to keep it secret and keep it safe!**
-* The public key's only purpose is to verify your identity, and is meant to be shared with other devices.
-
-An SSH connection to your Omega that's secured by with a key pair will look something like this:
-
-- Your computer will ask to login to the Omega, and the Omega will respond with 'Ok, but first prove your identity'
-- Your computer will then generate a hash using your private key and send it to the Omega
-- The Omega will use the stored public key to try to decode the identity hash, if the Public Key matches the Private Key, the decode will be successful, and the Omega will allow the connection to proceed.
-
-#### Adding your Public Key
-
-The method will be different depending on what Operating System you're using on the computer used to connect. We've included guides for the following:
-
-* [Mac OS X](#ssh-add-public-key-mac)
-* [Linux](#ssh-add-public-key-linux)
-* [Windows](#ssh-add-public-key-windows)
-
-#### How to Add your Public Key to the Omega on a MAC {#ssh-add-public-key-mac}
-
-<!-- {{#if OSX}} -->
-
-
-**Step 1: Locating Existing Key Pair**
-
-Let's first check to see if your computer already has a key pair. Open the Terminal App on your Mac and run:
-
+```{r child = './Connecting-to-the-Omega-Terminal-Component-5-ssh-key-pairs.md'}
 ```
-
-ls ~/.ssh/id_rsa.pub
-
-```
-
-If this file exists, skip ahead to Step 3.
-
-<!-- // TODO: add screenshot of terminal showing file exists -->
-
-**Step 2: Generating a Key Pair**
-
-No worries if you don't have a key yet, follow this [quick guide](https://help.github.com/articles/generating-an-ssh-key/#platform-mac) to generate a key pair.
-
-**Step 3: Copy Key Pair**
-
-Copy the contents of the public key file to the clipboard:
-
-```
-cat ~/.ssh/id_rsa.pub
-```
-
-**Step 4: Create an Authorized Keys File**
-
-Connect to your Omega's command prompt and create a new file:
-
-```
-vi /etc/dropbear/authorized_keys
-```
-
-And paste your public key into it.
-
-**And you're done!**
-
-From now on, you'll be able to securely connect to your Omega without having to type out a password every time.
-
-<!-- {{/if}} -->
-
-#### How to Add your Public Key to the Omega on a Linux machine {#ssh-add-public-key-linux}
-
-**Step 1: Locating Existing Key Pair**
-
-Let's first check to see if your computer already has a key pair. Open the Terminal App on your Mac and run:
-
-```
-ls ~/.ssh/id_rsa.pub
-```
-
-If this file exists, skip ahead to Step 3.
-
-<!-- // TODO: add screenshot of terminal showing file exists -->
-
-**Step 2: Generating a Key Pair**
-
-No worries if you don't have a key yet, follow this [quick guide](https://help.github.com/articles/generating-an-ssh-key/#platform-linux) to generate a key pair.
-
-**Step 3: Copy Key Pair**
-
-Copy the contents of the public key file to the clipboard:
-
-```
-cat ~/.ssh/id_rsa.pub
-```
-
-**Step 4: Create an Authorized Keys File**
-
-Connect to your Omega's command prompt and create a new file:
-
-```
-vi /etc/dropbear/authorized_keys
-```
-
-And paste your public key into it.
-
-**And you're done!**
-
-From now on, you'll be able to securely connect to your Omega without having to type out a password every time!
-
-#### How to Add your Public Key to the Omega on a Windows machine {#ssh-add-public-key-windows}
-
-**Step 1: Locating Existing Key Pair**
-
-Let's first check to see if your computer already has a key pair. Open the Windows Explorer and enter the following as the address:
-
-```
-%HOMEDRIVE%%HOMEPATH%\.ssh\id_rsa.pub
-```
-
-If this file exists, skip ahead to Step 3.
-
-**Step 2: Generating a Key Pair**
-
-No worries if you don't have a key yet, follow this [quick guide](https://help.github.com/articles/generating-an-ssh-key/#platform-windows) to generate a key pair.
-
-**Step 3: Copy Key Pair**
-
-Open the public key file with a text editor (Notepad works fine) and copy the contents to the clipboard
-
-
-**Step 4: Create an Authorized Keys File**
-
-Connect to your Omega's command prompt and create a new file:
-
-```
-vi /etc/dropbear/authorized_keys
-```
-
-And paste your public key into it.
-
-**And you're done!**
-
-From now on, you'll be able to securely connect to your Omega without having to type out a password every time.
 
 
 ### Connecting via Serial {#connecting-to-the-omega-terminal-serial}
-<!-- TODO: figure out how to arrange the headers in this article -->
 
 The Omega's command prompt can also be accessed with a USB cable, as long as your **Omega is docked in either an Expansion Dock or a Mini Dock**. What's happening is that the Omega is using its UART pins to run a terminal, the USB-to-Serial chip found on the Dock is translating the Serial Terminal signals into USB signals that your computer can understand and vice versa.
 

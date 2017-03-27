@@ -1,11 +1,31 @@
 ### Push Button Switches
 
-A push button is a momentary switch, so unlike a slide switch where the change in the switch state will be permanent, the change in a push button's state will only last while the button is being pressed.
+A push button is a momentary switch, so unlike a slide switch where the change in the switch state (on or off) will be permanent, the change in a push button's state will only last while the button is being pressed. It's called a **momentary** switch because the change in state is only while the button is being pressed; when the button is released, the switch .
 
-// TO DO: Image of a push button switch
+<!-- TODO: fix dangling last sentence -->
 
-Push Button switches fall into the SPST category of switches, with SPST standing for Single Pole Single throw. This type of switch has two terminals with the switch controlling whether the connection between the two terminals is open or closed, which translates into turning the circuit off or on.
+![Push button switch](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/switches-push-button.jpg)
 
-// TO DO: animation of switch being pressed, enabling flow of current in circuit, then flow stopping after button is released
+<!-- DONE: fix broken link -->
 
-The buttons on TV remotes are all momentary push button type switches, so expect the same type of functionality (changing settings) with push buttons in our experiments and projects.
+Unlike the SPDT switches with levers, the push button switches in your Kit are the single pole single throw type, or **SPST**. It's named this way because:
+
+* There is one contact that is switched when you push the button ("single pole")
+* The contact is switched between being disconnected and being connected to one output ("single throw")
+
+<!-- // TODO: FUTURE animation of switch being pressed, enabling flow of current in circuit, then flow stopping after button is released
+- we don't have time for this one, photo added instead
+-->
+
+![How the push button works](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/switches-push-button-on-off.png)
+
+<!-- DONE: small artifact on the right side -->
+
+For example, the buttons on TV remotes are all momentary push button type switches, so expect the same type of functionality (changing settings) with push buttons in our experiments and projects.
+
+You may be wondering, "If there are four pins, how come this switch doesn't have two switch contacts?" This is because the button is made of two pairs of connected pins that split each end into two connections. The photo below shows which pins are connected, so take note that your circuit properly switches when it's supposed to:
+
+<!-- // DONE: photo or graphic of connected pins on SPST push button -->
+![How the pins of a push button are connected](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/switches-push-button-layout.jpg)
+
+<!-- DONE: fix broken link -->

@@ -6,7 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 4
 ---
 
-## Reading a Switch
+## Reading a Switch {#starter-kit-reading-switch}
 
 <!-- // intro to this experiment:
 //  * so far, we've been using a program to control GPIOs, lets have some physical, user input controlling our software
@@ -16,22 +16,16 @@ So far, we've been using a program to control GPIOs. Let's try using physical us
 
 We'll be using a **slide switch** as an input to control whether an LED should be turned on or off.
 
-
-### GPIO Pins as Input
+First, we'll make a simple circuit to figure out how the switch works. Then we'll connect the switch to your Omega, and control the LED using the Omega as the brain!
 
 <!-- gpio input -->
 ```{r child = '../../shared/gpio-input.md'}
 ```
 
 
-### Switches
-
 <!-- switches -->
 ```{r child = '../../shared/switches.md'}
 ```
-
-
-### Slide Switches
 
 <!-- slide switches -->
 ```{r child = '../../shared/switches-slide-switch.md'}
@@ -43,163 +37,155 @@ We'll be using a **slide switch** as an input to control whether an LED should b
 // circuit 1: switch controls turning an LED on and off to illustrate how the slide switch works
 // spdt switch (one side is pull-up, other side is pull-down) connected to an led -->
 
-We'll be building the following circuit.
+The first circuit we build will have the LED directly controlled by the switch to demonstrate how the switch works. The Omega will be used only as a power source and will not control the operation of the circuit.
 
-// TODO: circuit diagram, see paper notes
+<!-- // DONE: circuit diagram, see paper notes -->
+![starter-kit-04-diagram-01](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/04-01-circuit-diagram.png)
+
 
 #### What You'll Need
 
 Prepare the following components from your kit:
 
-* Omega plugged into Expansion Dock
-* Breadboard
-* Jumper wires
-* SPDT switch
-* 1x (// TODO: resistor value) Resistor <!-- LED resistor -->
-* Any LED color of your choice!
+* 1x Omega plugged into Expansion Dock
+* 1x Breadboard
+* 1x SPDT switch
+* 1x 200Ω Resistor
+* 4x Jumper wires (M-M)
+* 1x Any LED color of your choice!
 
 #### Hooking up the Components
 
 <!-- // step by step guide of how to hook up the components
 //  * how to connect one side of the switch to gnd and one to vcc
 //  * connect the switchable part to the led -->
-Before putting the circuit together, make sure the Omega2 is powered OFF for safety. 
 
-1. Connect the Expansion Dock's 3.3V pin to one of the "+" columns on the breadboard.
-    * We'll call this column **Vcc**.
-1. Connect the Expansion Dock's GND pin to one of the "-" columns.
-    * We'll call this column **ground**.
-1. Connect the slide switch to the breadboard along any of the columns.
-1. Connect the switch's top pin to Vcc.
-    * We'll call this pin the **pull-up fork**.
-1. Connect the switch's bottom pin to ground.
-    * We'll call this pin the **pull-down fork**.
-1. Connect the LED's anode to ground, and the cathode to one end of a (// TODO: resistor value) resistor.
-1. Connect the other end of that resistor to the middle of the slide switch.
+1. Plug in the switch vertically across three rows.
+1. Connect the LED's anode to the switch's middle pin, and the cathode to an empty row.
+1. Connect one end of a 200Ω resistor to the LED's cathode, and the other end into one of the "-" rails.
+    * We'll call this the **ground** rail.
+1. Connect the Expansion Dock's `GND` pin to the ground rail.
+1. Connect the Expansion Dock's '3.3V' pin to the switch's top pin.
 
-Your circuit should look like this.
+Your circuit should look like something like this:
 
-// TODO: photo
+<!-- // DONE: photo of example circuit -->
 
-If your circuit matches, go ahead and turn the Omega2 on!
+![starter-kit-04-example](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/04-example-circuit.jpg)
 
-#### What to Expect
+```{r child ='../../shared/wiring-precautions.md'}
+```
 
-<!-- // the switch controls if there is power flowing to the LED:
-//  when the switch is set to the pull-up fork, the LED will be on
-//  when the switch is set to the pull-down fork, the LED will be off
 
-// this is a simple circuit but we wanted to illustrate how the switch works, let's move on to including our Omega in this circuit -->
+### What to Expect
 
-The slide switch physically controls if electricity flows or does not flow to the LED. 
 
-* When the switch is set to the pull-up fork, the LED receives power and lights up. 
+The slide switch physically controls the electricity flowing to the LED.
+
+* When the switch is set to the pull-up fork, the LED receives power and lights up.
 * When the switch is set to the pull-down fork, the LED does not receive power and turns off.
 
-This is a very simple circuit, but we wanted to illustrate how this switch works. Let's move on to including our Omega in this setup!
+This is circuit is quite direct - it demonstrates that this switch works and how it does so. In fact, the only reason we have the Omega connected is to supply power to the LED. Let's move on to including our Omega and get some logic in this setup!
+
 
 ### Building the Experiment Circuit
 
-<!-- // circuit 2: switch connected to GPIO, controls LED with software
-// spdt switch (with pull-up and pull-down sides) connected to gpio input
-// regular led circuit connected to gpio setup as output -->
+Now let's try letting the Omega reading the signal the switch sends and use that to turn on the LED. We'll rewire the circuit to have the Omega connecting the switch and the LED. Once we finished wiring the circuit, we'll write a program that turns the LED on or off through reading the switch position.
 
-In the next circuit, the Omega2 connects to the slide switch and LED. We'll write a program that turns the LED on or off depending on how you set the switch.
-
-// TODO: photo
+<!-- // DONE: IMAGE CIRCUIT DIAGRAM of experiment -->
+![starter-kit-04-diagram-02](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/04-02-circuit-diagram.png)
 
 #### What You'll Need
 
 * Use the same components as in the first circuit above.
-* You may need a few more jumper wires handy.
+* Throw in a few more jumper wires
 
 #### Hooking up the Components
 
-<!-- // step by step guide of how to hook up the components
-//  jack the switch setup from the above section - adjust so taht it leads to a gpio
-//  jack the LED setup from the previous articles -->
-Turn the Omega off before changing your circuit. Then, do the following:
+This circuit will keep the switch, but route the output of the switch to the Omega instead, and have it control the LED through a GPIO.
 
-1. Remove the LED and its resistor from the breadboard.
-1. Connect GPIO 0 on the Expansion Dock to the button pin using a jumper wire from the Expansion Dock to the breadboard.
-1. Place the LED back on the breadboard by doing the following:
-    1. Connect the cathode to GPIO 1 using a jumper wire from the breadboard to the Expansion Dock.
-    1. Connect the anode to one end of the (// TODO: resistor value) resistor.    
+1. Remove the LED and resistor from the breadboard. Keep the switch and other wires in place.
+1. Connect `GPIO0` on the Expansion Dock to the switch's middle pin.
+1. Connect the switch's bottom pin to the ground rail.
+1. Place the LED back on the breadboard across two empty rows, then do the following:
+    1. Connect the anode to `GPIO1` using a jumper wire from the breadboard to the Expansion Dock.
+    1. Connect the cathode to one end of the 200Ω resistor.
 1. Connect the other end of that resistor to ground.
 
 Your circuit should look like this:
 
-// TODO: photo
-
-If your circuit matches, power your Omega back on!
+<!-- // DONE: photo of experiment circuit-->
+![starter-kit-04-experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/04-experiment-circuit.jpg)
 
 ### Writing the Code
 
-Let's make a new file called `readSwitch.py` to hold our code:
-
-<!-- // code should poll a gpio, based on the input value, set a different gpio to output the read value
-// implementation:
-//  * while loop for polling
-//  * if it makes sense, write functions to read the gpio, and then set the other gpio (want to teach them good practices right off the bat)
-//  * make the delay at the end of the loop pretty long 2-5 seconds -->
+Let's make a new file called `STK04-readSwitch.py` to hold our code. This program will read in whatever state the switch is at, and then change the LED to match after some delay.
 
 ``` python
 import onionGpio
 import time
 
-# initialize GPIOs
-switchPin     = onionGpio.OnionGpio(0)      # use GPIO0
-ledPin        = onionGpio.OnionGpio(1)      # use GPIO1
+# specify sleep duration to be used in the program
+sleepTime = 2
+
+# set which GPIOs will be used
+switchPin     = 0      # use GPIO0
+ledPin        = 1      # use GPIO1
+
+
+# instantiate GPIO objects
+switch        = onionGpio.OnionGpio(switchPin)
+led           = onionGpio.OnionGpio(ledPin)
 
 # set the GPIO directions
-switchPin.setInputDirection()               # switch pin is an input
-ledPin.setOutputDirection(0)                # led pin is an output
+switch.setInputDirection()               # switch pin is an input
+led.setOutputDirection(0)                # led pin is an output
 
-# periodically check the switch and turn the LED on or off
+# infinite loop - runs main program code continuously
+# 	periodically check the switch and turn the LED on or off
 while 1:
-	switchValue = switchPin.getValue()     # read the switch's value
-    ledPin.setValue(switchValue)           # turn the LED on/off depending on the switch
+	# read the switch value
+    switchValue = switch.getValue()
+	# turn the LED on/off depending on the switch
+    led.setValue(switchValue)
 
-	time.sleep(2)                          # sleep for 2 seconds
+	# make the program pause
+    time.sleep(sleepTime)
 ```
 
 Let's run the code:
+
 ```
-python readSwitch.py
+python SKT04-readSwitch.py
 ```
 
 Now try flipping the switch on and off. What happens?
 
-#### What to Expect
+### What to Expect
 
-<!-- // the switch controls whether the LED is on or off. yes the same thing was achieved with the far simpler circuit, but is meant to illustrate how a physical input can control something virtual -->
+This circuit works the same way as the first circuit, albeit with a much slower reaction to the switch input. This demonstrates a physical input affecting something virtual (like our script); the virtual entity can interpret the signal then proceed to act on the physical world or interact with other virtual entities.
 
-This circuit does pretty much the same thing as the first circuit, albeit with a slower reaction to the switch input. This is meant as a simple example of a physical input affecting something virtual (eg. a program), which can in turn affect the physical world or interact with other virtual entities.
+<!-- DONE: GIF -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZJyr4UcxJck" frameborder="0" allowfullscreen></iframe>
 
-#### A Closer Look at the Code
+### A Closer Look at the Code
 
-<!-- // small overview of anything new we did -->
-##### Polling
+In this experiment, we continuously and repeatedly check the value of a sensor (our switch) then update the signal sent to the LED. This repeated checking is a classic way of reading a device and is called **polling**.
 
-<!-- // explain polling is the process of repeatedly checking an input
-//  * a delay was added since we don't want to burn up the cpu constantly checking the same thing - remember the CPU runs incredibly fast
-
-// talk about how sometimes it takes a while for the led to react:
-//  * this is due to the long delay, have them try shortening the delay
-//  * introduce some of the issues related to having polling:
-//    * can't do anything else in the program
-//    * can potentially have a long delay between the physical action and the software reacting
-//    * if only there was a better way! -->
+#### Polling
 
 Polling is the process of repeatedly checking an input.
 
-When flipping the switch, you may have noticed a delay of 2 seconds before the LED reacted. This delay was added so that the CPU has some time to rest between every check on the LED. We don't want to burn up the CPU by constantly checking the same thing - remember that it runs incredibly fast!
+When flipping the switch, you may have noticed a delay of 2 seconds before the LED reacted. This delay was added so that the CPU has some time to rest between every check on the LED. Every time the program checks the switch, it puts a small load on the CPU - remember that it runs really fast, and doing many checks very often will waste CPU power that could be used for other system processes!
 
-The delay length is set by the `time.sleep(2)` line. Try changing the number to something shorter, like 0.5 or 0.1, and seeing what happens.
+The delay length is set by the `time.sleep(sleepTime)` line. Try changing the `sleepTime` variable at the top to something shorter, like 0.5 or 0.1, and seeing what happens.
 
-Some of the issues during polling are as follows:
+Polling is not without its issues:
 
 * You can't do anything else in the program.
 * You need to find a polling speed that balances the time delay and stress on the CPU.
 
 If only there were a better way of doing this!
+
+<!-- TODO: FUTURE: link to reading push button; edge detection is not ready yet -->
+Next we'll learn how to [use a shift register](#starter-kit-using-shift-register).
