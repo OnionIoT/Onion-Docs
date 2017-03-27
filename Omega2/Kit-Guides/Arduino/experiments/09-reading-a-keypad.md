@@ -9,9 +9,9 @@ In this experiment, we will make a circuit that can read input from a keypad. To
 
 ### Building the Circuit
 
-<!-- // DONE: let's change it so that we use an external led, makes it feel more dramatic -->
-
 For the circuit, we will need a keypad and some jumpers along with an LED to light up.
+
+// TODO: missing circuit diagram
 
 #### What You'll Need
 
@@ -78,87 +78,162 @@ To use the library we need to add the following line at the top of our code:
 #include <Keypad.h>
 ```
 
-<!-- // DONE: verify this code works -->
+<!-- // TODO: rewrite this to have a -->
 
 ```c
 // include the Keypad library
 #include <Keypad.h>
 
-const byte ROWS = 4;	 //four rows
-const byte COLS = 3;	 //three columns
-char keys[ROWS][COLS] = {    // a 4x3 array of all the keys as chars
+#define PASSWORD_LENGTH		4
+
+#define STATE_INIT 			0
+#define STATE_IDLE			1
+#define STATE_READ_INPUT	2
+#define STATE_CHECK_INPUT	3
+#define STATE_OPEN_SESAME	4
+
+// variable to hold the current state
+int state;
+
+// four rows
+const byte ROWS = 4;
+//three columns
+const byte COLS = 3;
+// a 4x3 array of all the keys as chars
+char keys[ROWS][COLS] = {
   {'1','2','3'},
   {'4','5','6'},
   {'7','8','9'},
   {'*','0','#'}
 };
 
-byte rowPins[ROWS] = {8, 7, 6, 5};     //connect to the row pinouts of the keypad
-byte colPins[COLS] = {4, 3, 2};     //connect to the column pinouts of the keypad
-char password[] = {'4', '3', '2', '1'};   // array of chars as password
-int ledPin = 13;    // LED pin number to be lit when password is correct
+// connect to the row pinouts of the keypad
+byte rowPins[ROWS] = {8, 7, 6, 5};
+// connect to the column pinouts of the keypad
+byte colPins[COLS] = {4, 3, 2};
+// array of chars as password
+char password[] = {'4', '3', '2', '1'};
+// array of chars to hold our input
+char inputKeys[PASSWORD_LENGTH];
+// pin connected to LED that is to be lit up when password is correct
+int ledPin = 13;
+
+int count;
 
 // initializing keypad as an object from the Keypad library
 Keypad keypadObject = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
+// This code runs once when the program starts, and no more
 void setup(){
-  Serial.begin(9600);   // initializing serial communication with the Omega
-  pinMode (ledPin, OUTPUT);   // initializing pin for the LED
+  // initializing pin for the LED as output
+  pinMode (ledPin, OUTPUT);
+
+  // set the state to the inital state
+  state 	= STATE_INIT;
+
+  // initializing serial communication with the Omega
+  Serial.begin(9600);
+
 }
 
-void loop(){
+// function to compare input character array against password character array
+//	returns true or false based on if they're the same
+bool passwordMatch(char inputKeys[]) {
+	int i;
+	for (i = 0; i < PASSWORD_LENGTH; i++) {
+		if (inputKeys[i] != password[i]) {
+			// if the current input character doesn't match the password, exit the loop
+			break;
+		}
+	}
 
-  // set LED off
-  digitalWrite (13, LOW);
-
-  char key = keypadObject.getKey();   // read the key entered as a char
-  int keyCheck = 0;   // index for the number of correct keys entered after #
-  int i = 0;      // index for the number of keys entered after #
-  if (key != NO_KEY){   // wait until a key has been pressed
-    // print the key and ask to press #
-    Serial.println(key);   
-    Serial.println("Please press # to enter the password");
-
-    // if # is pressed ask for the password
-    if (key == '#'){
-        Serial.println("Please enter the password");
-
-        // using a loop, let the user enter the same number of keys as the password length, whether correct or not
-        while (i != sizeof (password)){
-          key = keypadObject.getKey();    // read the key entered as a char
-          if (key != NO_KEY){   // wait until a key has been pressed
-          Serial.println(key);   
-
-              // if the correct key is entered in the same order as the password, increment keyCheck
-              if (key == password[i]){
-                 keyCheck ++;
-                 i++;
-              }
-              // if any wrong key is entered, reset keyCheck
-              else{
-                 keyCheck = 0;
-                 i++;
-              }
-          }
-        }
-
-        // after the user entered the same number of keys as the password length, check if password is correct
-        if (keyCheck == sizeof (password)){
-          // if the keys are correctly entered, light the LED for 3 seconds
-          passwordSuccess();
-        }
-        else
-          // if any wrong key is entered, ask to entered the password again
-          Serial.println("Wrong password! Press #");   
-    }
-  }
+	// only if all of the input characters match the password will the loop run all the way through (and i will be PASSWORD_LENGTH)
+	return (i == PASSWORD_LENGTH ? true : false);
 }
 
+// function to make decisions on changing the state
+int stateDecisions(int currentState, char key) {
+	int nextState = currentState;	// by default, stay in the current state
+
+	switch (currentState) {
+		case STATE_INIT:
+			// print the info message and immediately advance to the idle state
+			Serial.println("Please press # to enter the password");
+			nextState = STATE_IDLE;
+			break;
+		case STATE_IDLE:
+			// only advance to the reading input state if the # key has been entered
+			if (key == '#') {
+				// initialize variables used in the read input state
+				count = 0;
+				nextState = STATE_READ_INPUT;
+				Serial.println("Enter the password");
+			}
+			else if (key != NO_KEY) {
+				Serial.println("Come on, please press # to enter the password");
+			}
+			break;
+		case STATE_READ_INPUT:
+			if (key != NO_KEY) {
+				// store the input key in our input array
+				inputKeys[count] = key;
+				count++;	// increment the number of inputs we've received
+
+				// only advance to the next state if we've collected the same number of digits as the length of the password
+				if (count == PASSWORD_LENGTH) {
+					nextState = STATE_CHECK_INPUT;
+				}
+
+				// print the key that was entered (for debugging purposes)
+				Serial.println(key);
+			}
+ 			break;
+		case STATE_CHECK_INPUT:
+			// only if the input matches the password do we open sesame (advance to the password success state)
+			if (passwordMatch(inputKeys) == true) {
+				nextState = STATE_OPEN_SESAME;
+			}
+			else {
+				Serial.println("Wrong password!");
+				nextState = STATE_INIT;
+			}
+			break;
+		case STATE_OPEN_SESAME:
+			// execute the protected content
+			passwordSuccess();
+			// go back to the very beginning
+			nextState = STATE_INIT;
+			break;
+		default:
+			Serial.println("Wrong password!");
+			break;
+	}
+
+	return nextState;
+}
+
+// code to run when successfully detected password
 void passwordSuccess(){
 	Serial.println("Correct password! LED On!");
-	digitalWrite (ledPin, HIGH);    // turn the LED on
-	delay(3000);    // keep it on for 3 seconds
-	digitalWrite (ledPin, LOW);    // turn the LED off again
+	 // turn the LED on
+	digitalWrite (ledPin, HIGH);
+	// keep it on for 3 seconds
+	delay(3000);
+	// turn the LED off again
+	digitalWrite (ledPin, LOW);
+}
+
+
+// The code in here will run continuously until we turn off the Arduino Dock
+void loop(){
+  // turn the LED off
+  digitalWrite (13, LOW);
+
+  // read the entered key (as a char)
+  char key = keypadObject.getKey();
+
+  // find the next state based on the current state and input from the keypad
+  state = stateDecisions(state, key);
 }
 ```
 
@@ -173,6 +248,8 @@ We will be using the keypad to create a password protected system. After the use
 
 
 ### A Closer Look at the Code
+
+// TODO: update the below based on the newest code
 
 <!-- // DONE: fill in the link -->
 
@@ -191,15 +268,15 @@ Try commenting out the `#include <Keypad.h>` line, you'll see that the compiler 
 
 #### Arrays By the Numbers
 
-We're no strangers to arrays by now, so this time we can dive a bit deeper into their capabilities. At the lowest level, arrays are actually represented as a hex number that represents a location in computer memory - the location of the start of the array. This means that arrays can store other arrays just as well as regular numbers. 
+We're no strangers to arrays by now, so this time we can dive a bit deeper into their capabilities. At the lowest level, arrays are actually represented as a hex number that represents a location in computer memory - the location of the start of the array. This means that arrays can store other arrays just as well as regular numbers.
 
 <!-- DONE: expand on this mind-expanding statement.  -->
 
-To explain, first thing to know is arrays are continous in memory. This means that each element of an array sequentially follows the previous, always. By knowing the size of each element and the head address, an array can be very easily manipulated. So to save space and needless computation, the start of the array is passed around as a handle to manipulate the whole thing. 
+To explain, first thing to know is arrays are continous in memory. This means that each element of an array sequentially follows the previous, always. By knowing the size of each element and the head address, an array can be very easily manipulated. So to save space and needless computation, the start of the array is passed around as a handle to manipulate the whole thing.
 
 In modern computers, addresses are almost always represented as an `int` or hex number.
 
-As you can imagine, this means that an array of arrays works just as an array of `int`'s would. 
+As you can imagine, this means that an array of arrays works just as an array of `int`'s would.
 
 
 #### Two-Dimensional Arrays
@@ -224,7 +301,7 @@ char keys[ROWS][COLS] = {
 };        // a 4x3 array of all the keys as chars
 ```
 
-Our keypad does not have a pin for each button, instead it has a pin for each row and column. The signals our code obtains is the row and column number of the button being pressed. 
+Our keypad does not have a pin for each button, instead it has a pin for each row and column. The signals our code obtains is the row and column number of the button being pressed.
 
 To best mirror that in code, the 2D array `keys[][]` does pretty much the same thing. Each button is represented by an element of the array, and each element can be accessed by a unique pair of numbers - the indices of `keys`.
 
