@@ -49,8 +49,8 @@ Before getting started on the experiments, set up your Omega by following the [F
 
 Then you can learn more on:
 
-1. [Connecting to the Omega's Command Line](#starter-kit-connecting-to-the-omega-terminal)
-1. [An introduction to using the command line](#starter-kit-the-command-line)
+1. [Connecting to the Omega's Command Line](#connecting-to-the-omega-terminal)
+1. [An introduction to using the command line](#the-command-line)
 1. [Installing the software we need for the experiments](#starter-kit-intro-installing-software)
 
 Once you've done those, we recommend working your way through the experiments in order as they usually build on what we've learned in each one.

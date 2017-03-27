@@ -1,3 +1,5 @@
+## Connecting to the Omega's Command Line {#connecting-to-the-omega-terminal}
+
 Now that your Omega is setup, connected to a WiFi network, and updated, you'll want to connect to it to start working on experiments from your Kit!
 
 We hear you, follow these instructions on using SSH to connect to your Omega's command line from your computer. Note that this will only work properly if your computer and Omega are connected to the same WiFi network.
