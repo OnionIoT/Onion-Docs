@@ -109,8 +109,8 @@ volatile byte ledValues = B00000000;
 void setup() {
   Serial.begin(9600);           // initialize serial communication with the Omega
 
-  // initialize the interrupt pin and set it to call setLED function only when the button is pressed (FALLING edge trigger)
-  attachInterrupt(digitalPinToInterrupt(interruptPin), setLedChain, FALLING);
+  // initialize the interrupt pin and set it to call setLED function only when the button is released (RISING edge trigger)
+  attachInterrupt(digitalPinToInterrupt(interruptPin), setLedChain, RISING);
 
   // loop for initializing the LED GPIOs as output
   for (int thisPin = 0; thisPin < NUM_LEDS; thisPin++) {
@@ -133,7 +133,7 @@ void loop() {
 // ISR for a button press
 void setLedChain() {
 	// decide whether enabling or disabling LEDs
-	if ((ledValues >> NUM_LEDS) & B00000001 == B00000001) {
+	if ((ledValues >> (NUM_LEDS-1) ) & B00000001 == B00000001) {
 		// the last LED is on, start disabling the LEDs
 		//	shift all of the existing bits by 1, the least significant bit will be 0 (disabling the LED)
 		ledValues = ledValues << 1;
