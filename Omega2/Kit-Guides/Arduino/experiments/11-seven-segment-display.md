@@ -270,8 +270,10 @@ In addition, we can also add decimal points in the string we send from the Omega
 
 #### A Closer Look at the Code
 
+**COMING SOON!**
 
-<!-- First we include the Arduino SevSeg library. We then initalize our own SevSeg object:
+<!-- // OLD TEXT!
+First we include the Arduino SevSeg library. We then initalize our own SevSeg object:
 
 ```
 sevseg.begin(COMMON_CATHODE, numDigits, digitPins, segmentPins, resistorsOnSegments);

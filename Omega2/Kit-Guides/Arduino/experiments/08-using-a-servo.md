@@ -218,23 +218,24 @@ the servos' shaft position will either increase or decrease by 5 degrees every 0
 
 ### A Closer Look at the Code
 
-// TODO: update the below based on the latest code
+**COMING SOON!**
 
-<!-- // introduced object oriented programming for the first time in this code -->
+<!--
+// TODO: update the below based on the latest code
 
 In this code, we introduce a very important, new concept: Object Oriented Programming (OOP). We will take a look at some of the key elements of OOP: classes, objects, constructors and class members.
 
 
 #### Object Oriented Programming
 
-<!-- // DONE: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read -->
+// DONE: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read
 
 In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is exactly the kind of scenario that spurred the creation of Object Oriented Programming. Ultimately, the goal of OOP is to model programmatic interactions as objects interacting with each other.
 
 To that end, we create **objects** with attributes (what it is) and methods that act on the attributes (how it behaves). Objects are constructed out of templates called **classes** in which we define what attributes the object will have, and the functions that will interact with them.
 
-<!-- // DONE: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions) -->
-<!-- // DONE: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it! -->
+// DONE: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions)
+// DONE: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it!
 
 #### Classes
 
@@ -324,3 +325,5 @@ This is because `setAngle()` member function is defined under `public:`.
 Furthermore, notice we have seven `private` member variables but we only use passed in three parameters (`pinNumer`,  `minPWus`, `maxPWus`) to three private member variable (`pin`, `minPW`, `maxPW`) in our constructor. This is because the three parameters are the only different parameters between different servo objects. The `rate` variable is calculated from the three parameters. The minimum and maximum servo angle (`minAngle` and `maxAngle`) are set to `0` degree and `180` degree for all `ServoMotor` objects.
 
 Lastly, we use a `Servo` object from the Arduino Servo library within our own `ServoMotor` class to interface with our Arduino Dock pins directly, so we don't have to directly handle the PWM driver of the Arduino Dock!
+
+-->
