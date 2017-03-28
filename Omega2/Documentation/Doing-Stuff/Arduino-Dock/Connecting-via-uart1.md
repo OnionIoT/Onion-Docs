@@ -1,6 +1,6 @@
-## Communicating with the Microcontroller
+## Communicating with the Microcontroller {#arduino-dock-communicating-via-serial}
 
-One of the method of communicating between the Omega and the microcontroller ATmega is through the serial interface UART1. The UART connection provides two-way communication using two pins on the Omega: TXD (transmitting from Omega) and RXD (receiving from ATmega). 
+One of the method of communicating between the Omega and the microcontroller ATmega is through the serial interface UART1. The UART connection provides two-way communication using two pins on the Omega: TXD (transmitting from Omega) and RXD (receiving from ATmega).
 
 // TODO: diagram Omega RXD and TXD to ATmega TXD and RXD on UART1
 
@@ -8,7 +8,7 @@ There are two UART ports on the Omega: UART0 and UART1. The port UART1 is used t
 
 // TODO: image of Arduino Dock 2 UART1
 
-In order to communicate between Omega and the ATmega, we use command line or python script to send and receive data on the Omega. On the ATmega side, we flash the microcontroller with a sketch to read and write data. 
+In order to communicate between Omega and the ATmega, we use command line or python script to send and receive data on the Omega. On the ATmega side, we flash the microcontroller with a sketch to read and write data.
 
 One important thing to note is the baud rate, which is the rate at which the data is transferred in bits per second. The baud rate can be varied but the Omega and the ATmega UART must be programmed to have the same baud rate.
 
@@ -24,7 +24,7 @@ We will use the serial library from the Arduino IDE:
 
 https://www.arduino.cc/en/reference/serial
 
-Here is a very simple arduino sketch that will make the ATmega continously send out "ATmega" 
+Here is a very simple arduino sketch that will make the ATmega continously send out "ATmega"
 
 ``` arduino
 void setup() {
