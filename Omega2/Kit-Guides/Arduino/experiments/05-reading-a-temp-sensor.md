@@ -1,7 +1,7 @@
 ## Reading an Analog Temperature Sensor {#arduino-kit-reading-a-temp-sensor}
 
 <!-- // description of what this experiment will accomplish and what we'll learn -->
-In this tutorial, we will learn how to read the ambient temperature using a temperature sensor. In addition, we will learn to how to do mathematical calculations in our code and how to convert between types.
+In this tutorial, we will learn how to read the ambient temperature using a temperature sensor. We'll then use the serial port to inform the Omega about the current ambient temperature. In addition, we will learn to how to do mathematical calculations in our code and how to convert between types.
 
 <!-- Analog Temperature Sensor -->
 ```{r child = '../../shared/analog-temperature-sensor.md'}

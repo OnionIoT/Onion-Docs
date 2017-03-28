@@ -2,7 +2,9 @@
 
 <!-- // this experiment will use a potentiometer to control brightness of an LED -->
 
-So far, we've been using a program to control output pins. Let's try using physical user input to control our software! This experiment will use a potentiometer (trimpot) to control brightness of an LED. Before we begin, let's take a look at the trimpot and one way to change the brightness of an LED.
+So far, we've been using a program to control output pins. Let's try using physical user input to control our software! This experiment will use a potentiometer (trimpot) to control brightness of an LED. Along the way, we'll learn about using polling to read the status of an input.
+
+Before we begin, let's take a look at the trimpot and one way to change the brightness of an LED.
 
 
 ### Variable Resistor

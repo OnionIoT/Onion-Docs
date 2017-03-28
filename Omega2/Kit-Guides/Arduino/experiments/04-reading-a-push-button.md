@@ -107,7 +107,8 @@ volatile byte ledValues = B00000000;
 
 // This code runs once when the program starts, and no more
 void setup() {
-  Serial.begin(9600);           // initialize serial communication with the Omega
+  // initialize serial communication with the Omega
+  Serial.begin(9600);
 
   // initialize the interrupt pin and set it to call setLED function only when the button is released (RISING edge trigger)
   attachInterrupt(digitalPinToInterrupt(interruptPin), setLedChain, RISING);
@@ -167,7 +168,10 @@ When the button is pressed, the left most LED should turn on. For each additiona
 
 ### A Closer Look at the Code
 
-// LAZAR to read all the text below
+**COMING SOON!**
+
+<!---
+// TODO: needs to be updated to match the re-written code
 
 In this code, we implemented an more efficient method of read inputs called interrupt, where as in the previous tutorial we used the method of polling. Notice we use two `for` loops: one for setting all LED pins to output and another to turn all the LEDs off without any delay.
 
@@ -203,4 +207,4 @@ If the button is pressed again after the LEDs are on,
 if (byteOfLEDs == B00111111)
 ```
 
-We use a `for` loop to set all the LEDs off and set the `byteOfLEDs` back to `B01000000`, representing all LEDs are off.
+We use a `for` loop to set all the LEDs off and set the `byteOfLEDs` back to `B01000000`, representing all LEDs are off.-->

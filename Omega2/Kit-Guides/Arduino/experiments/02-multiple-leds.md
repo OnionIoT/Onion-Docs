@@ -8,9 +8,10 @@ In this experiment, we're going to use what we learned in the first experiment a
 
 Similar to the previously experiment, we need our breadboard and jumper wires. However, now we will use six LEDs along with six current limiting resistors. We will makes the LEDs turn on one-by-one going left to right, and then turn them off one-by-one again going left to right.
 
-Here's the diagram of our circuit for reference: 
+Here's the diagram of our circuit for reference:
 
 ![Six LED circuit diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/02-circuit-diagram.png)
+
 #### What You'll Need
 
 Prepare the following components from your kit:
