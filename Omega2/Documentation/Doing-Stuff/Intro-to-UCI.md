@@ -17,8 +17,8 @@ We will focus on the `(COMMAND)` and `[ARGUMENTS]` sections in this introduction
 
 * `show`
 * `add`
-* `get`
 * `set`
+* `get`
 * `commit`
 
 All examples will be run on a dummy config file `/etc/config/foobar/`. If you want to follow along with the examples, create this file on your Omega:
@@ -36,7 +36,9 @@ touch /etc/config/foobar
 
 Don't forget to run `uci commit` after staging all of your changes, or the configuration will not be updated!
 
-### `show` - Examine Configuration Files
+### `show`
+
+Prints configuration files to the terminal.
 
 UCI configuration details are divided into **subsystems**. Each subsystem has its own file in `/etc/config` and is split into **sections** that contain groups of **options**.
 
@@ -176,9 +178,9 @@ uci show [SUBSYSTEM].[SECTION].[OPTION]
 
 You can also run just `uci show` to show all options in all of the configuration files.
 
-### `add` - Add Unnamed Section to Config File
+### `add`
 
-To add an **unnamed** section to a subsystem, run:
+Add an **unnamed** section to a subsystem.
 
 ```
 uci add (SUBSYSTEM) (TYPE)
@@ -199,12 +201,14 @@ root@Omega-F119:/# cat /etc/config/foobar
 config unnamedSection
 ```
 
-### `set` - Add or Change Option, or  Add Named Section
+### `set`
 
-To add or change an existing option's value, run:
+Adds or changes an existing option's value. Also can be used to add a named section.
+
+To add an option:
 
 ```
-uci set (SUBSYSTEM).(SECTION or SECTIONNAME).(OPTION)=(VALUE)
+uci set (SUBSYSTEM).(SECTIONNAME).(OPTION)=(VALUE)
 ```
 
 To add a named section, run:
@@ -235,5 +239,30 @@ config sectionType 'sectionName'
         option someOption 'someValue'
 ```
 
-#### Example - Changing the Omega's LED Trigger
+### `get`
 
+Gets the value of an option.
+
+```
+uci set (SUBSYSTEM).(SECTIONNAME).(OPTION)=(VALUE)
+```
+
+Example:
+
+```
+root@Omega-F119:/# uci get foobar.sectionName.someOption
+someValue
+```
+
+### Example - Changing the Omega's LED Pattern
+
+Let's change the LED on the Omega from a solid amber to a blinking 'heartbeat' flash. Run the following:
+
+```
+uci set system.@led[0].trigger='heartbeat'
+uci commit
+```
+
+Reboot your Omega, and once it has finished booting, the LED will be blinking in a 'thump-thump' pattern!
+
+<!-- TODO: gif or video -->
