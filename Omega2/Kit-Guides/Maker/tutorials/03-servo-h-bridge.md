@@ -142,7 +142,7 @@ Now let's set up our Circuit:
 1. Next, we'll set up the switches - we'll use them to control what digital signals are sent to the PWM Expansion, and in turn the motor through the H-bridge:
 	* Pick three sets of three rows (we used row 14 to 24)
 	* Plug your switches into the rows, three rows per switch - each switch needs a half-row of clearance between the next switch if you want to put them side-by-side.
-1. With 6 M-M jumpers, connect the leftmost row of each switch to `GND` rail, and the rightmost row of each switch to `Vcc` rail. 
+1. With 6 M-M jumpers, connect the leftmost row of each switch to `GND` rail, and the rightmost row of each switch to `Vcc` rail.
 
 <!-- TODO: IMAGE of fully wired H-bridge, short wires, pins labelled -->
 
@@ -191,67 +191,78 @@ Let's add a class blueprint for a DC motor controlled by an H-bridge to our `mot
 Open it up and add this:
 
 ``` python
+H_BRIDGE_MOTOR_FORWARD = 0
+H_BRIDGE_MOTOR_REVERSE = 1
+
 class hBridgeMotor:
-	"""Class that two digital signals and a pwm signal to control an h-bridge"""
+    """Class that two digital signals and a pwm signal to control an h-bridge"""
 
-	def __init__(self, fwdChannel, revChannel):
-		# note the channels
-		self.fwdChannel		= fwdChannel
-		self.revChannel 	= revChannel
+    def __init__(self, pwmChannel, fwdChannel, revChannel):
+        # note the channels
+        self.pwmChannel = pwmChannel
+        self.fwdChannel = fwdChannel
+        self.revChannel = revChannel
 
-		# setup the objects
-		self.fwdDriver 		= OmegaPwm(self.fwdChannel)
-		self.fwdDriver.setDutyCycle(0)
-		self.revDriver 		= OmegaPwm(self.revChannel)
-		self.revDriver.setDutyCycle(0)
+        # setup the objects
+        self.pwmDriver = OmegaPwm(self.pwmChannel)
+        self.pwmDriver.setDutyCycle(0)
+        self.fwdDriver = OmegaPwm(self.fwdChannel)
+        self.fwdDriver.setDutyCycle(0)
+        self.revDriver = OmegaPwm(self.revChannel)
+        self.revDriver.setDutyCycle(0)
 
-		# setup the limitations
-		self.minDuty 		= 0
-		self.maxDuty		= 100
+        # setup the limitations
+        self.minDuty = 0
+        self.maxDuty = 100
 
-	def setupMinDuty(self, duty):
-		"""Set the minimum allowed duty cycle for pwm"""
-		self.minDuty 		= duty
+    def setupMinDuty(self, duty):
+        """Set the minimum allowed duty cycle for pwm"""
+        self.minDuty = duty
 
-	def setupMaxDuty(self, duty):
-		"""Set the maximum allowed duty cycle for pwm"""
-		self.maxDuty 		= duty
+    def setupMaxDuty(self, duty):
+        """Set the maximum allowed duty cycle for pwm"""
+        self.maxDuty = duty
 
-	def reset(self):
-		"""Set the PWM to 0%, disable both h-bridge controls"""
-		ret 	|= self.fwdDriver.setDutyCycle(0)
-		ret 	|= self.revDriver.setDutyCycle(0)
+    def reset(self):
+        """Set the PWM to 0%, disable both h-bridge controls"""
+        ret =  self.pwmDriver.setDutyCycle(0)
+        ret |= self.fwdDriver.setDutyCycle(0)
+        ret |= self.revDriver.setDutyCycle(0)
 
-		return ret
+        return ret
 
-	def drive(self, direction, duty):
-		"""Set the PWM to the specified duty, and in the specified direction"""
-		ret 	= 0
-		if duty < self.minDuty:
-				duty 	= self.minDuty
-    elif duty > self.maxDuty:
-        duty 	= self.maxDuty
+    def spin(self, direction, duty):
+        """Set the PWM to the specified duty, and in the specified direction"""
+        ret = 0
 
+        # 0 - forward, 1 - reverse
+        if (direction == H_BRIDGE_MOTOR_FORWARD):
+            self.revDriver.setDutyCycle(0)
+            self.fwdDriver.setDutyCycle(100)
+        elif (direction == H_BRIDGE_MOTOR_REVERSE):
+            self.fwdDriver.setDutyCycle(0)
+            self.revDriver.setDutyCycle(100)
+        else:
+            ret = -1
 
-		# 0 - forward, 1 - reverse
-		if (direction == H_BRIDGE_MOTOR_FORWARD):
-			self.revDriver.setDutyCycle(0)
-			self.fwdDriver.setDutyCycle(duty)
-		elif (direction == H_BRIDGE_MOTOR_REVERSE):
-			self.fwdDriver.setDutyCycle(0)
-			self.revDriver.setDutyCycle(duty)
-		else:
-			ret 	= -1
+        if (ret == 0):
+            # check against the minimum and maximium pwm
+            if duty < self.minDuty:
+                duty     = self.minDuty
+            elif duty > self.maxDuty:
+                duty     = self.maxDuty
 
-		return ret
+            # program the duty cycle
+            ret = self.pwmDriver.setDutyCycle(duty)
+        return ret
 
-	def spinForward(self, duty):
-		ret 	= self.drive(H_BRIDGE_MOTOR_FORWARD, duty)
-		return ret
+    def spinForward(self, duty):
+        ret = self.spin(H_BRIDGE_MOTOR_FORWARD, duty)
+        return ret
 
-	def spinReverse(self, duty):
-		ret 	= self.drive(H_BRIDGE_MOTOR_REVERSE, duty)
-		return ret
+    def spinReverse(self, duty):
+        ret = self.spin(H_BRIDGE_MOTOR_REVERSE, duty)
+        return ret
 ```
 
 Next, let's write the code for the experiment. This code will get the motor to actually do stuff using the hBridgeMotor class we've made above. The script will ask you to enter some numbers, and drives the motor based on your input!
@@ -273,48 +284,49 @@ Create a file called `MAK03-hBridgeExperiment.py` and paste the following code i
 //	* see https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py#L152 for an example, should use a PWM Expansion channel to control the H-Bridge 1,2EN
 
 ``` python
-from omegaMotors import hBridgeMotor
+from motors import hBridgeMotor
 import onionGpio
 import time
 
 # set up hbridge pins on the Omega
-motor1A = 0		# TODO: this should be renamed so that it's clear that this is the PWM Expansion Channel that is connected to H-Bridge input 1A
-motor2A = 1 	# TODO: this should be renamed so that it's clear that this is the PWM Expansion Channel that is connected to H-Bridge input 2A
+H_BRIDGE_1A_CHANNEL = 0 # TODO: this should be renamed so that it's clear that this is the PWM Expansion Channel that is connected to H-Bridge input 1A
+H_BRIDGE_2A_CHANNEL = 1 # TODO: this should be renamed so that it's clear that this is the PWM Expansion Channel that is connected to H-Bridge input 2A
+H_BRIDGE_12EN_CHANNEL = 2
 
 # instantiate gpio objects for our switch inputs
-dircSignalPin = onionGpio.OnionGpio(0) 		# rename this so it's more clear that it's a gpio object, maybe something like dirSwitch
-spd1SignalPin = onionGpio.OnionGpio(1)		# rename this so it's more clear that it's a gpio object, maybe something like speed0Switch
-spd2SignalPin = onionGpio.OnionGpio(2)		# rename this so it's more clear that it's a gpio object, maybe something like speed1Switch
+directionGPIO = onionGpio.OnionGpio(0)     # rename this so it's more clear that it's a gpio object, maybe something like dirSwitch
+speed1GPIO = onionGpio.OnionGpio(1)        # rename this so it's more clear that it's a gpio object, maybe something like speed0Switch
+speed2GPIO = onionGpio.OnionGpio(2)        # rename this so it's more clear that it's a gpio object, maybe something like speed1Switch
 
 # create a dictionary of functions against which to check user input
 # this is basically a dispatch table to map function calls to different names
 motorCommands = {
     '000': (lambda motor: motor.reset()),
-    '001': (lambda motor: motor.spinForward(30)),
-    '010': (lambda motor: motor.spinForward(40)),
-    '011': (lambda motor: motor.spinForward(50)),
+    '001': (lambda motor: motor.spinForward(50)),
+    '010': (lambda motor: motor.spinForward(60)),
+    '011': (lambda motor: motor.spinForward(70)),
     '100': (lambda motor: motor.reset()),
-    '101': (lambda motor: motor.spinReverse(30)),
-    '110': (lambda motor: motor.spinReverse(40)),
-    '111': (lambda motor: motor.spinReverse(50)),
+    '101': (lambda motor: motor.spinReverse(50)),
+    '110': (lambda motor: motor.spinReverse(60)),
+    '111': (lambda motor: motor.spinReverse(70)),
 }
 
 def main():
     # instantiate the motor object
-    motor = hBridgeMotor(motor1A, motor2A)
+    motor = hBridgeMotor(H_BRIDGE_12EN_CHANNEL, H_BRIDGE_1A_CHANNEL, H_BRIDGE_2A_CHANNEL)
     command = '000';
 
     # loop forever
     while(True):
-		# sleeps for a bit to accomodate slow switches
-		time.sleep(0.5)
+        # sleeps for a bit to accomodate slow switches
+        time.sleep(0.5)
 
-		# gets the signals going through the switches
-        commandNew = dircSignalPin.getValue()[0]
-        commandNew = commandNew + spd1SignalPin.getValue()[0]
-        commandNew = commandNew + spd2SignalPin.getValue()[0]
+        # gets the signals going through the switches
+        commandNew = directionGPIO.getValue()[0]
+        commandNew = commandNew + speed1GPIO.getValue()[0]
+        commandNew = commandNew + speed2GPIO.getValue()[0]
 
-				# parses the command into motorCommands format
+                # parses the command into motorCommands format
         commandNew.replace('\n', '')
 
         # check user input against dictionary, run the corresponding function
