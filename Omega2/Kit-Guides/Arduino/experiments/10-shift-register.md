@@ -194,12 +194,20 @@ See, just like KITT:
 
 ### A Closer Look at the Code
 
+**COMING SOON!**
+
+<!-- TODO: revisit and fix this up to match the most recent code
+
 We are only using three Arduino Dock pins to control eight LEDs by taking advantage of the shift register. Lets begin by declaring the three pin variables (`latchPin`, `clockPin` and `dataPin`) and initializing the three pins as output in `setup()`.
 
 Each time we want to light up a different LED (change the output of the Shift Register), we use the `updateShiftRegister()` function in a loop to continuously change the outputs.
 
 
 #### Updating the Shift Register
+
+// TODO: need to update to match the code, we first set latchPin to LOW, then shift out the bits, then set it back to high. need an explanation for why we do this
+
+// TODO: mention that the shiftOut function is part of the arduino code, provide a link to the arduino documentation for this function
 
 First, let's take a look at what happens inside `updateShiftRegister()`. In this function, we send the 8 bits from the ATmega to the shift register:
 
@@ -216,8 +224,6 @@ digitalWrite(latchPin, LOW);
 ```
 
 When the latch is set to low, the stored bits in the shift register will be sent out to the output pins in parallel. We must set the latch back high again to reset the shift register and allow further input to be properly stored. This completes one update cycle for the shift register and `updateShiftRegister()` returns at this point.
-
-<!-- // DONE: at this point, we need to make it clear that we WERE talking about the inner workings of the `updateShiftRegister` function. and that FROM NOW ON, we're talking about the operation of the loop function, and how it creates the KITT effect -->
 
 #### Looping and Bitshifting
 
@@ -239,4 +245,4 @@ storageByte = storageByte >> 1;
 
 You'll notice we left in a slight delay before every update. This is because if we let it run as fast as possible, we won't get to see the light move, instead the speed of the CPU will make it appear as though all the lights are on at the same time. The Shift register can accurately update at 100MHz - much faster than we can percieve! So in order to actually see the effect, we slow it down by adding the delay.
 
-<!-- // DONE: expand on this sentence, this was lazy -->
+ -->

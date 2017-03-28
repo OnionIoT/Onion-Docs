@@ -1,4 +1,4 @@
-// TODO: overall: fix the grammar and typos
+<!-- // TODO: overall: fix the grammar and typos -->
 
 ## Controlling a 7-Segment Display {#arduino-kit-seven-segment-display}
 
@@ -11,7 +11,7 @@ For this tutorial, we will learn how to use a seven-segment display. In addition
 
 ### Building the Circuit
 
-// Atmega->shift register->7seg display
+<!-- // Atmega->shift register->7seg display -->
 
 For this experiment, we will send a string from the Omega to the ATmega through the serial port. We will then convert the string on the ATmega into an array of characters and display the first four characters on the seven segment display, but only if each of the characters (letter or a number) can be represented using seven segments.	// TODO: maybe break up this run-on sentence
 
@@ -43,9 +43,6 @@ The seven segment display from the kit is common cathode, which mean the cathode
 The seven segment display is not labelled, so we'll have to reference the pinout diagram to make sure the correct connections are being made. When facing the front of seven segment display with decimal points at the bottom, the bottom row of pins are numbered 1 to 6 going from left to right and the top row of pins are numbered 7 to 12 going from right to left.
 
 
-<!-- // DONE: do we use the shift reg here? LAZAR -->
-<!-- discussed with Gabe, nope. JAMES -->
-
 // TODO: fix build instructions to include images
 
 We will need to connect all 12 pins of the seven segment display to 12 digital pins of the Arduino Dock.
@@ -62,10 +59,7 @@ We will need to connect all 12 pins of the seven segment display to 12 digital p
 
 ### Writing the Code
 
-<!-- // write a sketch that takes input from the Serial (ie the Omega) and writes it to the 7 seg display
-//  * ensure proper input validation is done so that only  hex numbers can be written to the display -->
-
-// TODO: LAZAR to revise code
+<!-- // DONE: LAZAR to revise code -->
 
 ``` arduino
 #define NUM_7SEG_DIGITS 		4
@@ -291,9 +285,11 @@ char charArray[5]="abcd";
 
 When we set the array of char with a string, there will be an extra char at the end called the null terminator "\0"; therefore our array needs to be five chars long in order to store "abcd". -->
 
+<!-- // TODO: needs to be updated to match the most recent code
+
 // TODO: please fix the grammar and flow of everything here on out
 
-We start by making an array of bytes to represent how different number or alphebat can be displayed. Each byte in the array has eight bits and set all the segments of a character. We start by turning all the LEDs segments off. Since the anodes are connected to the segment pins, we will set them `LOW`. The cathodes are connected to the digit pins, we set them `HIGH`. This way the current is flowing in the reverse bias direction and the LED will not light up. // TODO: whoa, this last sentence came out of left-field, maybe an explanation of what reverse bias means
+We start by making an array of bytes to represent how different number or alphabet can be displayed. Each byte in the array has eight bits and set all the segments of a character. We start by turning all the LEDs segments off. Since the anodes are connected to the segment pins, we will set them `LOW`. The cathodes are connected to the digit pins, we set them `HIGH`. This way the current is flowing in the reverse bias direction and the LED will not light up. // TODO: whoa, this last sentence came out of left-field, maybe an explanation of what reverse bias means
 
 To display all the digits correctly, we must turn all on the segments of one digit on before we turn off that digit and turn on the next digit. If we cycle through turning on and off each digit faster than the human eye can see, it will look like all the digits are displayed correctly. However, we must add one extra cycle of delay between turning on and off each digit for some characters to be displayed properly; try remove the following `for` loop and see what happens:
 
@@ -340,9 +336,13 @@ currentDigitCode[decimalPlace] = currentDigitCode[decimalPlace] | B10000000;
 
 In addition, we need to move the rest of the array after the decimal point one element forward to replace the decimal point character. This is done in the `checkDecimalPoint()` function.
 
+-->
+
+<!-- TODO: write this section
 #### Going Further: Automating the Script
 
 // TODO: introduce cron
 // show example of how to setup cron to output the time from the omega once a minute
 
 // copy heavily from STK LCD Expermient
+-->

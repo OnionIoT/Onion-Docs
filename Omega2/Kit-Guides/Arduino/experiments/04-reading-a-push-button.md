@@ -187,6 +187,8 @@ The last parameter of `attachInterrupt()` function is the condition in which the
 
 #### Bitwise operations
 
+// TODO: this section needs a table showing the progression of the values of the ledValues variable based on button presses
+
 In this code we also added a byte variable `byteOfLEDs` to demonstrate how bitwise operation works. For in-depth reference, check out this [Bit Math](http://playground.arduino.cc/Code/BitMath) in the Arduino Playground.
 
 We use the following bitwise operation on byteOfLEDs to imitate actual LEDs turning on `1` and off `0`:

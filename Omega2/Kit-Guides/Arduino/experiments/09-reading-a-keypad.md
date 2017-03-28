@@ -11,7 +11,7 @@ In this experiment, we will make a circuit that can read input from a keypad. To
 
 For the circuit, we will need a keypad and some jumpers along with an LED to light up.
 
-<!-- // DONE: missing circuit diagram -->
+<!-- TODO: let's give a better description or mention that it will become clearer when we explain it below -->
 This is the diagram for our circuit:
 
 ![How the keypad connects to the Arduino Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/09-circuit-diagram.png)
@@ -28,11 +28,11 @@ Prepare the following components from your kit:
 * 1x LED of any colour
 * 1x Keypad
 
-<!-- // DONE: add in our external LED -->
 
 #### Hooking Up the Components
 
-<!-- // DONE: add an intro, mention: 'The keypad as seven pins: four pins for the rows and three pins for the columns.'' -->
+
+<!-- TODO: reference the circuit diagram in Step 1 -->
 
 Once you have the components ready to go, we can begin putting it together. Keep in mind the keypad has seven pins, one for each row and column - not one pin per button.
 
@@ -120,7 +120,7 @@ char password[] = {'4', '3', '2', '1'};
 char inputKeys[PASSWORD_LENGTH];
 // pin connected to LED that is to be lit up when password is correct
 int ledPin = 13;
-
+// variable used to index the password
 int count;
 
 // initializing keypad as an object from the Keypad library
@@ -154,7 +154,7 @@ bool passwordMatch(char inputKeys[]) {
 	return (i == PASSWORD_LENGTH ? true : false);
 }
 
-// function to make decisions on changing the state
+// function to make decisions on changing the state based on the current state and input from the keypad
 int stateDecisions(int currentState, char key) {
 	int nextState = currentState;	// by default, stay in the current state
 
@@ -252,13 +252,12 @@ We will be using the keypad to create a password protected system. After the use
 
 ### A Closer Look at the Code
 
-// TODO: update the below based on the newest code
+**COMING SOON!**
 
-<!-- // DONE: fill in the link -->
+<!-- TODO: update this section based on the most recent code!
+
 
 This code uses the Arduino Keypad library. Remember the `ServoMotor` class we wrote in the [previous tutorial](#arduino-kit-using-a-servo)? Well a library usually contains the definition of a class and then the implementation of the methods (functions) of that class. To use the class, we include the library's header file in our code, and then we are free to create a `keypadObject` object in our code.
-
-<!-- // DONE: change this object's name everywhere to keypadObject -->
 
 We've creatively named the object `keypadObject`.
 
@@ -273,7 +272,6 @@ Try commenting out the `#include <Keypad.h>` line, you'll see that the compiler 
 
 We're no strangers to arrays by now, so this time we can dive a bit deeper into their capabilities. At the lowest level, arrays are actually represented as a hex number that represents a location in computer memory - the location of the start of the array. This means that arrays can store other arrays just as well as regular numbers.
 
-<!-- DONE: expand on this mind-expanding statement.  -->
 
 To explain, first thing to know is arrays are continous in memory. This means that each element of an array sequentially follows the previous, always. By knowing the size of each element and the head address, an array can be very easily manipulated. So to save space and needless computation, the start of the array is passed around as a handle to manipulate the whole thing.
 
@@ -283,11 +281,6 @@ As you can imagine, this means that an array of arrays works just as an array of
 
 
 #### Two-Dimensional Arrays
-
-<!-- // DONE: clean up this paragraph, it's going in the right direction but doesn't include enough details: -->
-<!-- //	* expand on what is meant by a single row of variables -->
-<!-- //	* expand on the 2d array is similar to a table bit -->
-<!-- //	* talk about how 2d arrays need to be indexed in both dimensions -->
 
 More often than not, arrays of arrays are referred to as 'higher dimensional arrays' based on how many levels of arrays are used. Usually, it's two, leading to two-dimensional arrays.
 
@@ -310,14 +303,13 @@ To best mirror that in code, the 2D array `keys[][]` does pretty much the same t
 
 In this example, the 2D array is passed into a `keypadObject` object and the object will do the translation internally. We simply have to call the `getKey()` function to have the keypad return the value of the button that was pressed.
 
-<!-- // DONE: include some examples of accessing the array: like keys[2][3] = 6, give a few -->
 Internally, calling the `keypadObject.getKey()` function when a button has been pressed does something like this:
 
 * Read in the data from the keypad. Let's say we pressed down button '6', and send `HIGH` to pin `6` and `3`.
 * Convert the input data into a row value and a column value. This will take `6` and `3` and convert them to `1` and `2` respectively.
 * Return the value of the button that the row/column values specify. It looks into the `keys` array and returns the element at `[1][2]` - `'6'` specifically.
 
-By formatting the 2D array properly, we can extract the value of the button press without a single calculation.
+By formatting the 2D array properly, we can extract the value of the button press without a single calculation.-->
 
 
 ### Going Further
