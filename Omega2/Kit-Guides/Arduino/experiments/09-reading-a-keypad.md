@@ -11,7 +11,10 @@ In this experiment, we will make a circuit that can read input from a keypad. To
 
 For the circuit, we will need a keypad and some jumpers along with an LED to light up.
 
-// TODO: missing circuit diagram
+<!-- // DONE: missing circuit diagram -->
+This is the diagram for our circuit:
+
+![How the keypad connects to the Arduino Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/09-circuit-diagram.png)
 
 #### What You'll Need
 

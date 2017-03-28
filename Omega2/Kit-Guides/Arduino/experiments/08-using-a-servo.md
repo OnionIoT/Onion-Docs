@@ -63,7 +63,11 @@ Now that our components are set up, we'll connect them to the Arduino Dock:
 1. Connect the orange wire of small servo to pin `9` on the Arduino Dock, and the signal of the standard servo to pin `10`.
 1. Connect the positive power rail to `5V`. Don't worry if the servo rotates a bit when you power it on - this is expected.
 
-<!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
+<!-- // DONE: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
+
+Here's what the circuit looks like fully assembled:
+
+![The circuit fully assembled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/08-assembled-circuit.jpg)
 
 ### Writing the Code
 
