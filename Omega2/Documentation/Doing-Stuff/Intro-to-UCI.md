@@ -13,7 +13,7 @@ The syntax looks like this:
 uci [OPTIONS] (COMMAND) [ARGUMENTS]
 ```
 
-We will focus on the `(COMMAND)` and `[ARGUMENTS]` sections in this introduction. Some of the most used commands are:
+We will focus on the `(COMMAND)` and `[ARGUMENTS]` sections in this introduction. These are the commands we will focus on in this introduction.
 
 * `show`
 * `add`
@@ -21,9 +21,26 @@ We will focus on the `(COMMAND)` and `[ARGUMENTS]` sections in this introduction
 * `set`
 * `commit`
 
+All examples will be run on a dummy config file `/etc/config/foobar/`. If you want to follow along with the examples, create this file on your Omega:
+
+```
+touch /etc/config/foobar
+```
+
+### General Usage
+
+`uci` generally works along this process:
+
+1. **Stage** (temporarily store) changes to options using commands such as `uci add` or `uci set`
+1. Commit the staged changes using `uci commit`
+
+Don't forget to run `uci commit` after staging all of your changes, or the configuration will not be updated!
+
 ### `show` - Examine Configuration Files
 
-Let’s use one of the subsystems on the Omega, `system`, as an example. Run the following command:
+UCI configuration details are divided into **subsystems**. Each subsystem has its own file in `/etc/config` and is split into **sections** that contain groups of **options**.
+
+For example, let’s examine the `system` subsystem on the Omega. It contains some basic options such as the timezone, hostname (the Omega-ABCD that you see on the command line), and LED controls. the Run the following command:
 
 ```
 uci show system
@@ -49,7 +66,6 @@ system.@led[0].default='0'
 system.@led[0].trigger='default-on'
 system.@led[0].sysfs='omega2p:amber:system'
 ```
-
 
 Let’s compare this to the raw file. Run:
 
@@ -86,32 +102,71 @@ config led
 
 The above file may seem organized enough. However, if you were to edit it and make a typo or mistake, you could cause bugs or crashes in any programs that depend on it, especially at boot time!
 
-These configuration details are divided into **subsystems**. Each subsystem has its own file in `/etc/config` and is split into **sections** that contain groups of **options**.
-
 #### Sections
 
-When working with `uci`, sections are displayed in the following syntax:
+When using `uci show`, sections are displayed in the following format:
 
 ```
 [SUBSYSTEM].[SECTIONNAME]=[TYPE]
 ```
 
-Sections can be named or unnamed. Unnamed sections take on the syntax `@SECTIONTYPE=SECTIONTYPE`.
+Sections can be named or unnamed. Unnamed sections replace the `SECTIONNAME` field with `@TYPE[INDEX]`, where `INDEX` is the index of where the unnamed section appears. There can be more than one unnamed section in a configuration file, and they can be the same time if you wish. 
 
-and options are displayed like so:
+For example, your `firewall` config can have multiple sections of the type `rule` as shown below:
 
 ```
-[subsystem].[section].[option]=[value]
+firewall.@rule[0]=rule
+firewall.@rule[0].name='Allow-ICMPv6-Input'
+firewall.@rule[0].src='wan'
+firewall.@rule[0].proto='icmp'
+firewall.@rule[1]=rule
+firewall.@rule[1].name='Allow-DHCPv6'
+firewall.@rule[1].src='wan'
+firewall.@rule[1].proto='udp'
+...
+(and so on)
 ```
+
+The following lines are equivalent:
+
+| uci | Raw (/etc/config/system) |
+|-----------|-----|
+| system.@system[0]=system | config system |
+| system.ntp=timeserver | config timeserver 'ntp' |
+
+Let's break down the `system.ntp=timeserver` section in more detail:
+
+| Property | In `system.ntp=timeserver` |
+|-----------|-----|
+| SUBSYSTEM | system |
+| SECTIONNAME | ntp |
+| TYPE | timeserver |
+
+#### Options
+
+Otions are displayed like so:
+
+```
+[SUBSYSTEM].[SECTIONNAME].[OPTION]=[VALUE]
+```
+
+The following lines are equivalent:
+
+| uci | Raw (/etc/config/system) |
+|-----------|-----|
+| system.ntp.enable_server='0' | option enable_server '0' |
 
 Here are some examples of these fields in the raw configuration file above:
 
-* `subsystem` - `system` from the `system` file in `/etc/config`
-    * Not to be confused with the `system` in `config system`; this is named for convenience.
-* `section` - the `ntp` in `config timeserver 'ntp'`
-* `type` - the `timeserver` in `config timeserver 'ntp'`
-* `option` - the `trigger` in `option trigger 'default-on'`
-* `value` - the `Omega-F119` in `option hostname 'Omega-F119'`
+Let's break down the `system.ntp.enable_server='0'` option in more detail:
+
+| Property | In system.ntp.enable_server='0' |
+|-----------|-----|
+| SUBSYSTEM | system |
+| SECTIONNAME | ntp |
+| OPTION | enable_server |
+| VALUE | '0' |
+
 
 To show the options in a configuration file, a section of a config file, or a specific option, run:
 
@@ -121,20 +176,63 @@ uci show [SUBSYSTEM].[SECTION].[OPTION]
 
 You can also run just `uci show` to show all options in all of the configuration files.
 
-### `add` - Add Section to Config File
+### `add` - Add Unnamed Section to Config File
 
-To add a section to a subsystem, run:
-
-```
-uci add (SECTION) (SUBSYTEM)
-```
-
-### `set` - Add or Change Option
-
-To add or change an existing option, run:
+To add an **unnamed** section to a subsystem, run:
 
 ```
-uci set (SUBSYSTEM) (SECTION).[OPTION]
+uci add (SUBSYSTEM) (TYPE)
+```
+
+Example: 
+
+```
+root@Omega-F119:/# uci add foobar unnamedSection
+cfg0258c2
+root@Omega-F119:/# uci commit
+
+root@Omega-F119:/# uci show foobar
+foobar.@unnamedSection[0]=unnamedSection
+
+root@Omega-F119:/# cat /etc/config/foobar 
+
+config unnamedSection
+```
+
+### `set` - Add or Change Option, or  Add Named Section
+
+To add or change an existing option's value, run:
+
+```
+uci set (SUBSYSTEM).(SECTION or SECTIONNAME).(OPTION)=(VALUE)
+```
+
+To add a named section, run:
+
+```
+uci set (SUBSYSTEM).(NAME)=(TYPE)
+```
+
+**Note:** This command cannot add names to unnamed sections. Use `uci rename` instead.
+
+Example:
+
+```
+root@Omega-F119:/# uci set foobar.sectionName='sectionType'
+root@Omega-F119:/# uci set foobar.sectionName.someOption=someValue
+root@Omega-F119:/# uci commit
+
+root@Omega-F119:/# uci show foobar
+foobar.@unnamedSection[0]=unnamedSection
+foobar.sectionName=sectionType
+foobar.sectionName.someOption='someValue'
+
+root@Omega-F119:/# cat /etc/config/foobar 
+
+config unnamedSection
+
+config sectionType 'sectionName'
+        option someOption 'someValue'
 ```
 
 #### Example - Changing the Omega's LED Trigger
