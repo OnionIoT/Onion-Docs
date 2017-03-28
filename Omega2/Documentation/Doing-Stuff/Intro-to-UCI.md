@@ -180,7 +180,7 @@ You can also run just `uci show` to show all options in all of the configuration
 
 ### `add`
 
-Add an **unnamed** section to a subsystem.
+Adds an **unnamed** section to a subsystem.
 
 ```
 uci add (SUBSYSTEM) (TYPE)
