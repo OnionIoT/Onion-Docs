@@ -108,7 +108,7 @@ cat /dev/ttyS1
                                 # waits for input data
 ```
 
-This command will wait for and print any data received to the Omega until you exit the program (`Ctrl-C`).
+This command will wait for and print any data received by the Omega until you exit the program (`Ctrl-C`).
 
 #### Send and Print Received Data
 
@@ -209,7 +209,7 @@ This big command essentially does the following:
 You can use Python in order to communicate serially via the UART. The module to accomplish this is `PySerial` which can be installed using `opkg`.
 
 
-#### Installing the module
+#### Installing the Module
 
 <!-- // should be `opkg install pyton-pyserial` -->
 
