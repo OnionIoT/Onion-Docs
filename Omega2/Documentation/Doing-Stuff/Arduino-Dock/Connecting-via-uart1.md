@@ -8,7 +8,7 @@ One of the method of communicating between the Omega and the microcontroller ATm
 There are two UART ports on the Omega: UART0 and UART1. The port UART1 is used to connect the Omega to the ATmega on the Arduino Dock 2.
 
 <!-- // DONE: image of Arduino Dock 2 UART1 -->
-![Where the UART1 pins are located on the expansion header](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/arduino-dock-uart1-labelled.png)
+![Where the UART1 pins are located on the expansion header](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/omega-2-uart1-labelled.png)
 
 In order to communicate between Omega and the ATmega, we use command line or python script to send and receive data on the Omega. On the ATmega side, we flash the microcontroller with a sketch to read and write data.
 
