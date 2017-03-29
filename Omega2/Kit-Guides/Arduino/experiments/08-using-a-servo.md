@@ -163,7 +163,7 @@ void setup() {    // codes to be run once
   Serial.begin(9600);  // initializing serial communication with the Omega
 
   // initialize the two servo objects
-  smallServo = new ServoMotor (9, 500, 2000);     // initialize small servo (500us to 2000us) at pin 9
+  smallServo = new ServoMotor (9, 500, 2500);     // initialize small servo (500us to 2500us) at pin 9
   standardServo = new ServoMotor (10, 500, 2500);     // initialize standard servo (0us to 2500us) at pin 10
 
   // initialize the pins connected to the increment and decrement buttons
@@ -223,26 +223,30 @@ Heres what it looks like:
 
 **COMING SOON!**
 
-<!--
-// TODO: update the below based on the latest code
+<!-- // TODO: update the below based on the latest code -->
 
 In this code, we introduce a very important, new concept: Object Oriented Programming (OOP). We will take a look at some of the key elements of OOP: classes, objects, constructors and class members.
 
 
 #### Object Oriented Programming
 
-// DONE: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read
+<!-- // DONE: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read -->
 
 In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is exactly the kind of scenario that spurred the creation of Object Oriented Programming. Ultimately, the goal of OOP is to model programmatic interactions as objects interacting with each other.
 
-To that end, we create **objects** with attributes (what it is) and methods that act on the attributes (how it behaves). Objects are constructed out of templates called **classes** in which we define what attributes the object will have, and the functions that will interact with them.
+To that end, we create **objects** that represent this model. In this experiment, our objects are the two servos we use. 
 
-// DONE: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions)
-// DONE: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it!
+Objects don't normally appear out of thin air - the computer needs to know how they will work before they can be created. To that end, objects are created as **instances** of templates known as **classes**. A class will define what attributes its objects will have, and the functions that interact with the attributes.
+
+
+<!-- // DONE: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions) -->
+<!-- // DONE: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it! -->
 
 #### Classes
 
-So if classes are templates, what exactly do they do?
+So if classes are templates, how do we use them? 
+
+There's two steps. First we need to create the class itself. Once the class is created, then we can create objects from the class - more specifically, instances of the class.
 
 Let's take it back to our code above. First thing you'll notice relating to our class is probably:
 
@@ -253,32 +257,34 @@ class ServoMotor
 };
 ```
 
-This is our class definition! All the code inside defines what an object of `ServoMotor` would encompass. It's got attributes, methods, `public`'s, and `private`'s. One interesting thing about the class is that no attribute inside a class actually exist in memory. That is until we make an object out of it.
+This is our class definition! All the code inside defines what an instance of `ServoMotor` would encompass. It's got attributes, methods, `public`'s, and `private`'s. One interesting thing about the class is that, by default, no attribute inside a class actually exist in memory. Attributes of a class become actual data when we make an object out of it - commonly known as instantiating a class.
 
+>Most object oriented languages allow functions inside classes to be executed without an instance under certain conditions.
 
->Most object oriented languages allow functions inside classes to be executed without an object under certain conditions.
+Generally in a language that supports OOP, classes must be declared and loaded into a program before instances of that class can be created. 
+
 
 #### Objects
 
 Where in our code do we create objects? Right here:
 
 ```c++
-ServoMotor smallServo (9, 500, 2000);     // initialize DXW90 small servo (500us to 2000us) at pin 9
-ServoMotor standardServo (10, 0, 2500);     // initialize S3003 standard servo (0us to 2500us) at pin 10
+  smallServo = new ServoMotor (9, 500, 2500);     // initialize small servo (500us to 2500us) at pin 9
+  standardServo = new ServoMotor (10, 500, 2500);     // initialize standard servo (0us to 2500us) at pin 10
 ```
 
-The syntax to create objects from a class is very similar to creating variables of a certain type. In fact that's one way to think about classes and objects - types and variables with fancier internals.
+The syntax to instantiate a class is very similar to creating variables of a certain type. In fact that's one way to think about classes and objects - types and variables with fancier internals.
 
 Unlike variables, we work with objects by calling the methods (functions) defined by the class. The variables inside objects are not normally manipulated from 'outside' the object.
 
 Let's look back to the objects and classes to variables and types analogy. If objects are like variables of a class, then why do we have brackets and pass in arguments like a function?
 
-This is because the attributes of an object are fancier than `int`s or `char`s - objects can have other objects as variables. So in order to provide the flexibility needed, a function is called to create an object by setting up all the things needed for it to work as expected. The syntax in the snippet above is actually short-hand for a two-step process:
+This is because the attributes of an object are fancier than `int`s or `char`s - objects can have other objects as variables. So in order to provide the flexibility needed, a function is called to instantiate a class by setting up all the things needed for it to work as expected. The syntax in the snippet above is actually short-hand for a two-step process:
 
-* Call a function to create an object and set up the internals, returning a reference to the created object.
-* Give that reference a name (`smallServo` and `standardServo` above)
+* Call a function to instantiate the class and set up the internals of the instance, returning a reference to the created object.
+* Assign the returned object to a variable (`smallServo` and `standardServo` above)
 
-Then if you want an object, what function should you call?
+So if you want an object, which function are you going to call?
 
 #### Constructors
 
@@ -297,9 +303,15 @@ Let's take a look at this snippet:
     }
 ```
 
-This is the constructor of `ServoMotor` class. Whenever the code demands that a `ServoMotor` object be created,
+This is the constructor of `ServoMotor` class. Whenever the code demands that a `new ServoMotor` object be created, this is the function that is called.
 
-More formally, a constructor is function of the class that have the exact same name as the class and will be automatically called when a class object is declared.
+More formally, a constructor is function of the class that has the exact same name as the class and will be automatically called when a class object is created.
+
+In the snippet where we declared a `new ServoMotor` object (replicated just below), there's this `new` keyword. In many object oriented programming languages, this is the keyword that differentiates calling a class constructor (that brings back an object) versus naming the class itself - which may have functions that are useable without an object.
+
+```c++
+  smallServo = new ServoMotor (9, 500, 2500);     // initialize small servo (500us to 2500us) at pin 9
+ ```
 
 #### Class Members
 
@@ -311,22 +323,34 @@ In most object oriented languages, class members have access rights - either `pr
 
 To use our `ServoClass` template, we declared our two objects in the global scope similar to declaring global variables:
 
-```
-ServoMotor smallServo (9, 500, 2000);
-ServoMotor standardServo (10, 0, 2500);
-```
-
-However, our `ServoMotor` objects can only be defined after our `ServoMotor` class has been defined. In addition, We can call `setAngle()` on either of the two objects in our main program:
-
-```
-smallServo.setAngle(90);
-standardServo.setAngle(90);
+```c++
+ServoMotor *smallServo;
+ServoMotor *standardServo;
 ```
 
-This is because `setAngle()` member function is defined under `public:`.
+When the lines above are run, the objects haven't been constructed yet, what we've done instead is create pointers of the type `ServoMotor`.
 
-Furthermore, notice we have seven `private` member variables but we only use passed in three parameters (`pinNumer`,  `minPWus`, `maxPWus`) to three private member variable (`pin`, `minPW`, `maxPW`) in our constructor. This is because the three parameters are the only different parameters between different servo objects. The `rate` variable is calculated from the three parameters. The minimum and maximum servo angle (`minAngle` and `maxAngle`) are set to `0` degree and `180` degree for all `ServoMotor` objects.
+To actually make some serviceable objects, we call the `new` keyword in our `setup()` function as mentioned above and then put their addresses as the values of the pointers we've created above with the `=` operator.
+
+>A pointer is a variable that is exactly the size of a memory address on the system it's created in. It's a highly useful construct in C/C++ and arduino code as it enables arrays, objects and other kinds of complex data structures.
+
+Note that `ServoMotor` instances can only be defined after our `ServoMotor` class has been defined. That's why we declare the object pointers after the class definition. 
+
+Once we have the two objects instantiated, we can call `setAngle()` on either of the two objects in our main program:
+
+```c++
+smallServo->setAngle(90);
+standardServo->setAngle(90);
+```
+
+You'll notices from the code that the `setAngle()` member function is declared under the `public:` line. This tells the computer that it is exposed to any code that creates an object. The `->` notation is to denote the `smallServo` variable as a pointer to an object, not a direct object of the `ServoMotor` class.
+
+Furthermore, notice we have seven `private` member variables but we only passed in three parameters (`pinNumer`,  `minPWus`, `maxPWus`). They are assigned to three private member variable (`pin`, `minPW`, `maxPW`) in our constructor. This is because the three parameters are the only different parameters between different servo objects. The other variables are all either common between instances or calculated from these three initial values.
+
+For example, the `rate` variable is calculated from the scaled difference between `minPWus` and `maxPWus` parameters. The minimum and maximum servo angle (`minAngle` and `maxAngle`) are set to `0` degree and `180` degree for all `ServoMotor` objects.
 
 Lastly, we use a `Servo` object from the Arduino Servo library within our own `ServoMotor` class to interface with our Arduino Dock pins directly, so we don't have to directly handle the PWM driver of the Arduino Dock!
 
--->
+#### Pointers
+
+We've touched on pointers a little bit above, but in fact they are incredibly important to C/C++. It's a very deep topic that's not super relevant to this experiment, but it's very helpful to have some working knowledge about them when creating Arduino projects.
