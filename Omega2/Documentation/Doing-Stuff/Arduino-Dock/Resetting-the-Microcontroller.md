@@ -2,7 +2,7 @@
 
 The Arduino Dock gives us an easy method of resetting the ATmega microcontroller; we can use the MCU_RESET push button on the Dock itself.
 
-Pressing the reset button is similar to turning the MCU off and on again. This only stops the program currently running on the microcontroller and starts it again from the beginning. **It will not erase the program.** In the context of an Arduino sketch, it will reset any global variables, run the setup function again, and then start executing the loop function.
+Pressing the reset button is similar to turning the MCU off and on again. This only stops the program currently running on the microcontroller and *starts it again* from the beginning. **It will not erase the program.** In the context of an Arduino sketch, it will reset any global variables, run the setup function again, and then start executing the loop function.
 
 There are several cases where resetting the MCU is useful. For example, if the program isn't looped or stopped and we want to run the program again. Instead of reflashing the program we can simply press the reset button. Resetting the microcontroller is very useful when testing code and restarting the program for debugging purposes.
 
