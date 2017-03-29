@@ -93,7 +93,7 @@ The program for this experiment won't loop at all! Instead it'll setup a interru
 Copy the code below and flash it to give it a spin.
 
 ``` c
-#define NUM_LEDS		6
+#define NUM_LEDS        6
 
 // the pin number connected to the push button interrupt
 int interruptPin = 2;
@@ -102,15 +102,16 @@ int ledPins[] = {9, 8, 7, 6, 5, 4};
 // pin connected to the Arduino Dock LED
 int statusLedPin = 13;
 // a byte representing which LEDs are on
-//	we're only using 6 of the 8 bits since we've connected 6 LEDs
+//    we're only using 6 of the 8 bits since we've connected 6 LEDs
 volatile byte ledValues = B00000000;
 
 // This code runs once when the program starts, and no more
 void setup() {
-  Serial.begin(9600);           // initialize serial communication with the Omega
+  // initialize serial communication with the Omega
+  Serial.begin(9600);
 
-  // initialize the interrupt pin and set it to call setLED function only when the button is pressed (FALLING edge trigger)
-  attachInterrupt(digitalPinToInterrupt(interruptPin), setLedChain, FALLING);
+  // initialize the interrupt pin and set it to call setLED function only when the button is released (RISING edge trigger)
+  attachInterrupt(digitalPinToInterrupt(interruptPin), setLedChain, RISING);
 
   // loop for initializing the LED GPIOs as output
   for (int thisPin = 0; thisPin < NUM_LEDS; thisPin++) {
@@ -123,32 +124,32 @@ void setup() {
 
 // The code in here will run continuously until we turn off the Arduino Dock
 void loop() {
-	// blink the status LED
-	digitalWrite(statusLedPin, HIGH);
-	delay(1000);
-	digitalWrite(statusLedPin, LOW);
-	delay(1000);
+    // blink the status LED
+    digitalWrite(statusLedPin, HIGH);
+    delay(1000);
+    digitalWrite(statusLedPin, LOW);
+    delay(1000);
 }
 
 // ISR for a button press
 void setLedChain() {
-	// decide whether enabling or disabling LEDs
-	if ((ledValues >> NUM_LEDS) & B00000001 == B00000001) {
-		// the last LED is on, start disabling the LEDs
-		//	shift all of the existing bits by 1, the least significant bit will be 0 (disabling the LED)
-		ledValues = ledValues << 1;
-	}
-	else {
-		// the last LED is not yet on, keep turning LEDs on
-		//	shift all of the existing bits by 1, set the least significant bit to 1
-		ledValues = (ledValues << 1) | B00000001;
-	}
+    // decide whether enabling or disabling LEDs
+    if ((ledValues >> (NUM_LEDS-1) ) & B00000001 == B00000001) {
+        // the last LED is on, start disabling the LEDs
+        //    shift all of the existing bits by 1, the least significant bit will be 0 (disabling the LED)
+        ledValues = ledValues << 1;
+    }
+    else {
+        // the last LED is not yet on, keep turning LEDs on
+        //    shift all of the existing bits by 1, set the least significant bit to 1
+        ledValues = (ledValues << 1) | B00000001;
+    }
 
-	// set all of the LEDs according to the ledValues byte
-	for (int index = 0; index < NUM_LEDS; index++) {
-		int value = (ledValues >> index) & B00000001;
-		digitalWrite(ledPins[index], value);
-	}
+    // set all of the LEDs according to the ledValues byte
+    for (int index = 0; index < NUM_LEDS; index++) {
+        int value = (ledValues >> index) & B00000001;
+        digitalWrite(ledPins[index], value);
+    }
 
 }
 ```
@@ -159,7 +160,7 @@ You know the drill, save it to `SKA04-readingPushButton.ino`, then get ready to 
 
 When the button is pressed, the left most LED should turn on. For each additional button press, another led will turn on, going from left to right. When all leds are on and the button is pressed, the LEDs will turn off one by one in the same order. All the while, the LED connected to GPIO13 will continue blinking steadily on and off.
 
-<!-- // TODO: gif -->
+<!-- // TODO: FUTURE - once the bug's fixed, retake video -->
 
 
 <!-- // DONE: screenshot of the cat command showing the bitwise operations - commented out no longer relevant, file is still on server -->
@@ -167,7 +168,10 @@ When the button is pressed, the left most LED should turn on. For each additiona
 
 ### A Closer Look at the Code
 
-// LAZAR to read all the text below
+**COMING SOON!**
+
+<!---
+// TODO: needs to be updated to match the re-written code
 
 In this code, we implemented an more efficient method of read inputs called interrupt, where as in the previous tutorial we used the method of polling. Notice we use two `for` loops: one for setting all LED pins to output and another to turn all the LEDs off without any delay.
 
@@ -182,6 +186,8 @@ The second parameter is the interrupt service routine (ISR). The ISR is a specia
 The last parameter of `attachInterrupt()` function is the condition in which the interrupt triggers, either HIGH, LOW, RISING, FALLING or CHANGE as described earlier in this section. For our case, we use FALLING since the debounce circuit inverts the state of the button: HIGH when not press and LOW when pressed. So whenever the button is pressed, the ISR function `setLED()` will be called. The release of the button would fit as the RISING condition and does not matter in our case.
 
 #### Bitwise operations
+
+// TODO: this section needs a table showing the progression of the values of the ledValues variable based on button presses
 
 In this code we also added a byte variable `byteOfLEDs` to demonstrate how bitwise operation works. For in-depth reference, check out this [Bit Math](http://playground.arduino.cc/Code/BitMath) in the Arduino Playground.
 
@@ -203,4 +209,4 @@ If the button is pressed again after the LEDs are on,
 if (byteOfLEDs == B00111111)
 ```
 
-We use a `for` loop to set all the LEDs off and set the `byteOfLEDs` back to `B01000000`, representing all LEDs are off.
+We use a `for` loop to set all the LEDs off and set the `byteOfLEDs` back to `B01000000`, representing all LEDs are off.-->

@@ -2,7 +2,9 @@
 
 <!-- // this experiment will use a potentiometer to control brightness of an LED -->
 
-So far, we've been using a program to control output pins. Let's try using physical user input to control our software! This experiment will use a potentiometer (trimpot) to control brightness of an LED. Before we begin, let's take a look at the trimpot and one way to change the brightness of an LED.
+So far, we've been using a program to control output pins. Let's try using physical user input to control our software! This experiment will use a potentiometer (trimpot) to control brightness of an LED. Along the way, we'll learn about using polling to read the status of an input.
+
+Before we begin, let's take a look at the trimpot and one way to change the brightness of an LED.
 
 
 ### Variable Resistor
@@ -48,7 +50,7 @@ So far we've been turning LEDs fully on and fully off, but it's also possible ha
 
 For this experiment, we will use the knob of the trimpot (trimmer potentiometer) to control the brightness of the LED. We will connect a potentiometer to the analog input and an LED to a PWM pin with a current-limiting resistor. We'll use the ATmega to interpret the input from the trimpot, and set the LED's brightness accordingly.
 
-Let's take a more detailed look at the ATMega pins on the Arduino dock since we'll be using them mostly throughout these tutorials. Analog pins are from prefixed with capital A (`A0` to `A5`). Pins `0` to `13` are digital pins. If there is a tilde sign `~` in front of the pin number, it means it can be used as a PWM pin. Pins `0` and `1` are serial pins and should not be used if we want to do serial communication between the ATmega and the Omega.
+Let's take a more detailed look at the ATMega pins on the Arduino Dock since we'll be using them mostly throughout these tutorials. Analog pins are from prefixed with capital A (`A0` to `A5`). Pins `0` to `13` are digital pins. If there is a tilde sign `~` in front of the pin number, it means it can be used as a PWM pin. Pins `0` and `1` are serial pins and should not be used if we want to do serial communication between the ATmega and the Omega.
 
 #### What You'll Need
 
@@ -77,13 +79,13 @@ First, let's set up the circuit:
 
 Now that the potentiometer and LED are set up, let's connect them to the Arduino Dock so we can make them light up.
 
-1. With the connections to `GND` rail in place, let's connect the rail to `GND` on the Arduino dock.
-1. Using a jumper, connect the middle pin of the trimpot to the analog pin `A0` on the Arduino dock using a jumper wire.
+1. With the connections to `GND` rail in place, let's connect the rail to `GND` on the Arduino Dock.
+1. Using a jumper, connect the middle pin of the trimpot to the analog pin `A0` on the Arduino Dock using a jumper wire.
 1. Connect the anode of LED to the PWM pin `~9` on the Arduino Dock.
 1. Lastly, we'll connect the right pin of the trimpot to `5V` on the Arduino Dock as a reference for our input voltage.
 
 
-If all goes well, your circuit should look something like this:
+If all goes well, your circuit should work like this:
 
 <!-- // DONE: IMAGE photo -->
 ![Completed trimpot dimming circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/03-assembled-circuit.jpg)
@@ -149,7 +151,9 @@ cat /dev/ttyS1
 
 It will print a digital value (0 to 1023), which has been converted from the analog output of the potentiometer. This value should also correspond to the brightness of the LED. What is `ttyS1`? It's actually the serial connection from the ATmega chip to the Omega! By reading the 'file', we can see the serial output from the ATmega chip through the Omega.
 
-<!-- // TODO: IMAGE gif -->
+<!-- // DONE: IMAGE gif -->
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/xg5L9innn3I" frameborder="0" allowfullscreen></iframe>
 
 #### A Closer Look at the Code
 <!-- // anything new that we introduced -->

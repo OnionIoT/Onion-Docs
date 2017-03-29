@@ -1,8 +1,8 @@
-// TODO: overall: fix the grammar and typos
+<!-- // DONE: overall: fix the grammar and typos -->
 
 ## Controlling a 7-Segment Display {#arduino-kit-seven-segment-display}
 
-For this tutorial, we will learn how to use a seven-segment display. In addition, we will learn how to send data **from** the Omega **to** the ATmega through serial that will be displayed on the seven-segment. This way we don't have to reflash the ATmega everytime we want to display something new on the display.
+For this tutorial, we will learn how to use a seven-segment display. In addition, we will learn how to send data **from** the Omega **to** the ATmega through the serial connection. This way we don't have to reflash the ATmega everytime we want to display something new on the display.
 
 
 <!-- Seven Segment Display-->
@@ -11,11 +11,15 @@ For this tutorial, we will learn how to use a seven-segment display. In addition
 
 ### Building the Circuit
 
-// Atmega->shift register->7seg display
+<!-- // Atmega->shift register->7seg display -->
 
-For this experiment, we will send a string from the Omega to the ATmega through the serial port. We will then convert the string on the ATmega into an array of characters and display the first four characters on the seven segment display, but only if each of the characters (letter or a number) can be represented using seven segments.	// TODO: maybe break up this run-on sentence
+For this experiment, we will send a string from the Omega to the ATmega through the serial port. To prove we've done it, we'll display the first four characters on the seven segment display. 
 
-For the circuit, we will need the four-digit seven-segment display and eight 1kΩ current limiting resistors for each of the eight segment pins. The current limiting resistors are essential since there is an LED in each of the segments. The 12 pins of the seven-segment display can be grouped into two types: digit pins and segments pins. There are four digits and for each digit, there are eight segments including the decimal point. Therefore, there are a total of `4 x 8 = 32` LEDs.	// TODO: segment pins? lets refer to them as scan pins like we did in the shared article
+<!-- // DONE: maybe break up this run-on sentence -->
+
+We will need the four-digit seven-segment display and eight 1kΩ current limiting resistors for each of the eight scan pins. The 12 pins of the seven-segment display can be grouped into two types: digit pins and scan pins. The current limiting resistors are to protect the LED in each of the segments. There are four digits and there are eight segments for each digit (including the decimal point). Therefore, there are a total of `4 x 8 = 32` LEDs.
+
+<!-- // DONE: segment pins? lets refer to them as scan pins like we did in the shared article -->
 
 
 #### What You'll Need
@@ -33,44 +37,49 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-// TODO: copy from the starter kit 7seg article, this is an old TODO, please compare against the starter kit article
+<!-- // DONE: copy from the starter kit 7seg article, this is an old DONE, please compare against the starter kit article -->
 
-// TODO: fix this sentence, the grammar is poor and its not very clear
-The seven segment display from the kit is common cathode, which mean the cathode of LEDs are connected to the digit pins and their anodes are connected to the segment pins.
+<!-- // DONE: fix this sentence, the grammar is poor and its not very clear -->
+
+The seven segment display from the kit has some properties that can be used to properly wire it. First, the cathode of LEDs are connected to the digit pins. Second, their anodes are connected to the scan pins. This means we can selectively place current limiting resistors on only the pins that need it. We'll also have to consider how many LEDs are connected to each pin calculate resistance accordingly - but not to worry, that's already been done.
 
 ![Seven-segment display pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/seven-seg-pinout.jpg)
 
 The seven segment display is not labelled, so we'll have to reference the pinout diagram to make sure the correct connections are being made. When facing the front of seven segment display with decimal points at the bottom, the bottom row of pins are numbered 1 to 6 going from left to right and the top row of pins are numbered 7 to 12 going from right to left.
 
 
-<!-- // DONE: do we use the shift reg here? LAZAR -->
-<!-- discussed with Gabe, nope. JAMES -->
-
-// TODO: fix build instructions to include images
+<!-- // DONE: fix build instructions to include images -->
 
 We will need to connect all 12 pins of the seven segment display to 12 digital pins of the Arduino Dock.
 
+Here's the circuit diagram for reference.
 <!-- DONE: CIRCUIT DIAGRAM -->
 ![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/11-circuit-diagram.png)
 
 1. Connect the digit pins (`6`,`8`,`9`,`12`) of the seven seg to the GPIO pins `2`,`3`,`4`,`5` on the Arduino Dock respectively.
-2. Cconnect the segment pins (`1`,`2`,`3`,`4`,`5`,`7`,`10`,`11`) of the seven seg each to a different 1K resistor then to the pins `6`,`7`,`8`,`9`,`10`,`11`,`12`,`13` on the Arduino Dock respectively.
+1. Cconnect the scan pins (`1`,`2`,`3`,`4`,`5`,`7`,`10`,`11`) of the seven seg each to a different 1K resistor then to the pins `6`,`7`,`8`,`9`,`10`,`11`,`12`,`13` on the Arduino Dock respectively.
+  * For this step, we'll connect the pins to the resistors through the breadboard for ease of service. 
+  * For each connection, plug the resistor across the center channel of the breadboard, and connect the relevant pins one to each end - scan pin `1` to Arduino GPIO6, and so on.
 
 <!-- DONE: PHOTO assembled circuit -->
+Once done, it should look something like this:
+
 ![That's a lot of jumpers](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/11-assembled-circuit.jpg)
 
 
 ### Writing the Code
 
-<!-- // write a sketch that takes input from the Serial (ie the Omega) and writes it to the 7 seg display
-//  * ensure proper input validation is done so that only  hex numbers can be written to the display -->
+<!-- // DONE: LAZAR to revise code -->
 
-// TODO: LAZAR to revise code
+The code will do two things: 
+1. Read incoming data from the serial connection to the Omega.
+1. Error check, translate, and display the data on the seven segment display.
+
 
 ``` arduino
-#define NUM_7SEG_DIGITS 		4
-#define NUM_7SEG_SEGMENTS 		8
-#define NUM_INPUT_CHARS			9
+#define NUM_7SEG_DIGITS         4
+#define NUM_7SEG_SEGMENTS         8
+#define NUM_INPUT_CHARS            9
 
 // array of bytes, each byte represents how different characters will be displayed on the 7-seg
 static const byte digitCodeMap[] = {
@@ -122,48 +131,48 @@ byte digitPins[] = {5, 4, 3, 2};
 byte segmentPins[] = {13, 11, 9, 7, 6, 12, 10, 8};
 
 // array of 4 bytes to be displayed, each byte representing a digit
-// 	initially set to represent '1234'
+//     initially set to represent '1234'
 byte currentDigitCode[NUM_7SEG_DIGITS] = {digitCodeMap[1],digitCodeMap[2],digitCodeMap[3],digitCodeMap[4]};
 
 // declare functions that will be used in the loop() function
-void 	displayDigits();
-void 	stringToDigits(String inputString);
+void     displayDigits();
+void     stringToDigits(String inputString);
 
 
 // This code runs once when the program starts, and no more
 void setup()
 {
-	// initialize serial communication with the Omega
-	Serial.begin(9600);
+    // initialize serial communication with the Omega
+    Serial.begin(9600);
 
-	// loop for setting all the digit pins to output and then off (HIGH)
-	for (byte digitIndex = 0 ; digitIndex < NUM_7SEG_DIGITS ; digitIndex++) {
-		pinMode(digitPins[digitIndex], OUTPUT);
-		digitalWrite(digitPins[digitIndex], HIGH);
-	}
+    // loop for setting all the digit pins to output and then off (HIGH)
+    for (byte digitIndex = 0 ; digitIndex < NUM_7SEG_DIGITS ; digitIndex++) {
+        pinMode(digitPins[digitIndex], OUTPUT);
+        digitalWrite(digitPins[digitIndex], HIGH);
+    }
 
-	// loop for setting all the segment pins to output and then  off (LOW)
-	for (byte segmentIndex = 0 ; segmentIndex < NUM_7SEG_SEGMENTS ; segmentIndex++) {
-		pinMode(segmentPins[segmentIndex], OUTPUT);
-		digitalWrite(segmentPins[segmentIndex], LOW);
-	}
+    // loop for setting all the scan pins to output and then  off (LOW)
+    for (byte segmentIndex = 0 ; segmentIndex < NUM_7SEG_SEGMENTS ; segmentIndex++) {
+        pinMode(segmentPins[segmentIndex], OUTPUT);
+        digitalWrite(segmentPins[segmentIndex], LOW);
+    }
 }
 
 // The code in here will run continuously until we turn off the Arduino Dock
 void loop()
 {
-	// display the digits stored in the currentDigitCode array
-	displayDigits();
+    // display the digits stored in the currentDigitCode array
+    displayDigits();
 
-	// check for serial data coming from the Omega
-	if (Serial.available() > 0){
-		// read the incoming data as a string
-		String serialString = Serial.readString();      // read incoming data from the Omega as a string
-		Serial.println(serialString);
+    // check for serial data coming from the Omega
+    if (Serial.available() > 0){
+        // read the incoming data as a string
+        String serialString = Serial.readString();      // read incoming data from the Omega as a string
+        Serial.println(serialString);
 
-		// convert the string into bytes that can be displayed on the 7seg (and store them in the currentDigitCode array)
-		stringToDigits(serialString);
-	}
+        // convert the string into bytes that can be displayed on the 7seg (and store them in the currentDigitCode array)
+        stringToDigits(serialString);
+    }
 }
 
 
@@ -172,89 +181,89 @@ void loop()
 // write the digits currently stored in the currentDigitCode to the 7-segment display
 void displayDigits()
 {
-	//// nested for loop for displaying all the digits and their segments based on currentDigitCode[], which is an array of 4 bytes
-	// for each digit, set the specific digit pin LOW, turn on the correct segments, set the digit pin HIGH again
-	for (byte digitIndex = 0 ; digitIndex < NUM_7SEG_DIGITS ; digitIndex++) {
-		// pull the current digit pin LOW to enable displaying the segments
-		digitalWrite(digitPins[digitIndex], LOW);
+    //// nested for loop for displaying all the digits and their segments based on currentDigitCode[], which is an array of 4 bytes
+    // for each digit, set the specific digit pin LOW, turn on the correct segments, set the digit pin HIGH again
+    for (byte digitIndex = 0 ; digitIndex < NUM_7SEG_DIGITS ; digitIndex++) {
+        // pull the current digit pin LOW to enable displaying the segments
+        digitalWrite(digitPins[digitIndex], LOW);
 
-		// set the correct segments on for current digit based on the current element of the currentDigitCode[] array
-		for (byte segmentIndex = 0 ; segmentIndex < NUM_7SEG_SEGMENTS ; segmentIndex++) {
-			// to the pin associated with the current segment,
-			// write the bit from the current element of the currentDigitCode[] array that corresponds to the current segment
-			digitalWrite(segmentPins[segmentIndex], (currentDigitCode[digitIndex] >> segmentIndex) & 0x01);
-		}
+        // set the correct segments on for current digit based on the current element of the currentDigitCode[] array
+        for (byte segmentIndex = 0 ; segmentIndex < NUM_7SEG_SEGMENTS ; segmentIndex++) {
+            // to the pin associated with the current segment,
+            // write the bit from the current element of the currentDigitCode[] array that corresponds to the current segment
+            digitalWrite(segmentPins[segmentIndex], (currentDigitCode[digitIndex] >> segmentIndex) & 0x01);
+        }
 
-		// delay before disabling the current digit so the human eye can observe it
-		delay(5);
-		// pull the current digit pin HIGH to disable display of the segments
-		digitalWrite(digitPins[digitIndex], HIGH);
-	}
+        // delay before disabling the current digit so the human eye can observe it
+        delay(5);
+        // pull the current digit pin HIGH to disable display of the segments
+        digitalWrite(digitPins[digitIndex], HIGH);
+    }
 }
 
 // convert an input string into bytes can be displayed on the 7seg,
-//	store them in the currentDigitCode array
+//    store them in the currentDigitCode array
 void stringToDigits(String inputString)
 {
-	byte 	digitIndex = 0; // keep track of which digit on the display we're currently setting up
-	char 	inputCharacters[NUM_INPUT_CHARS];
+    byte     digitIndex = 0; // keep track of which digit on the display we're currently setting up
+    char     inputCharacters[NUM_INPUT_CHARS];
 
-	// convert the incoming data into a char array
-	inputString.toCharArray(inputCharacters,NUM_INPUT_CHARS);
+    // convert the incoming data into a char array
+    inputString.toCharArray(inputCharacters,NUM_INPUT_CHARS);
 
-	// attempt to match each character from the input to bytes that can be displayed on the 7-seg
-	for (byte index = 0 ; index < NUM_INPUT_CHARS ; index++) {
-		// convert a character to a integer (based on the ASCII table)
-		int charToInt = inputCharacters[index];
-		Serial.println(charToInt);
+    // attempt to match each character from the input to bytes that can be displayed on the 7-seg
+    for (byte index = 0 ; index < NUM_INPUT_CHARS ; index++) {
+        // convert a character to a integer (based on the ASCII table)
+        int charToInt = inputCharacters[index];
+        Serial.println(charToInt);
 
-		// case statement for matching the integer value of each character the an element from the digitCodeMap[] array
-		switch (charToInt) {
-			case 48 ... 57:   //0-9
-				currentDigitCode[digitIndex] = digitCodeMap[charToInt-'0'];	// subtract the integer ASCII value for '0' to be able to correctly index our digitCodeMap array
-				break;
+        // case statement for matching the integer value of each character the an element from the digitCodeMap[] array
+        switch (charToInt) {
+            case 48 ... 57:   //0-9
+                currentDigitCode[digitIndex] = digitCodeMap[charToInt-'0'];    // subtract the integer ASCII value for '0' to be able to correctly index our digitCodeMap array
+                break;
 
-			case 65 ... 90: // A-Z
-				currentDigitCode[digitIndex] = digitCodeMap[charToInt-'0'-7]; // subtract the integer ASCII value for '0' and 7 to correctly map the A-Z ASCII values to our digitCodeMap array
-				break;
+            case 65 ... 90: // A-Z
+                currentDigitCode[digitIndex] = digitCodeMap[charToInt-'0'-7]; // subtract the integer ASCII value for '0' and 7 to correctly map the A-Z ASCII values to our digitCodeMap array
+                break;
 
-			case 97 ... 122: // a-z
-				currentDigitCode[digitIndex] = digitCodeMap[charToInt-'0'-39];	// subtract the integer ASCII value for '0' and 7 to correctly map the a-z ASCII values to our digitCodeMap array
-				break;
+            case 97 ... 122: // a-z
+                currentDigitCode[digitIndex] = digitCodeMap[charToInt-'0'-39];    // subtract the integer ASCII value for '0' and 7 to correctly map the a-z ASCII values to our digitCodeMap array
+                break;
 
-			case 45:  //dash
-				currentDigitCode[digitIndex] = digitCodeMap[37];
-				break;
+            case 45:  //dash
+                currentDigitCode[digitIndex] = digitCodeMap[37];
+                break;
 
-			case 32:  //space
-				currentDigitCode[digitIndex] = digitCodeMap[36];
-				break;
+            case 32:  //space
+                currentDigitCode[digitIndex] = digitCodeMap[36];
+                break;
 
-			case 46: //dot
-				// set the decimal segment for the previous digit
-				//	but only if we've already setup a previous digit (to prevent unforseen errors)
-				if (digitIndex > 0) {
-					currentDigitCode[digitIndex-1] = currentDigitCode[digitIndex-1] | B10000000;
-				}
-				break;
+            case 46: //dot
+                // set the decimal segment for the previous digit
+                //    but only if we've already setup a previous digit (to prevent unforseen errors)
+                if (digitIndex > 0) {
+                    currentDigitCode[digitIndex-1] = currentDigitCode[digitIndex-1] | B10000000;
+                }
+                break;
 
-			default: // not mapped by digitCodeMap, set to blank
-				currentDigitCode[digitIndex] = digitCodeMap[36];
-				break;
-		}
+            default: // not mapped by digitCodeMap, set to blank
+                currentDigitCode[digitIndex] = digitCodeMap[36];
+                break;
+        }
 
-		// increment the digit index to the next index
-		//	but only if the character we just looked at was not a dot
-		//	since dots get added to the previous digit
-		if (charToInt != 46) {
-			digitIndex++;
-		}
+        // increment the digit index to the next index
+        //    but only if the character we just looked at was not a dot
+        //    since dots get added to the previous digit
+        if (charToInt != 46) {
+            digitIndex++;
+        }
 
-		// prematurely end the loop if we've decoded enough digits to fill the entire display
-		if (digitIndex >= NUM_7SEG_DIGITS) {
-			break;
-		}
-	}
+        // prematurely end the loop if we've decoded enough digits to fill the entire display
+        if (digitIndex >= NUM_7SEG_DIGITS) {
+            break;
+        }
+    }
 }
 ```
 
@@ -269,21 +278,27 @@ echo -ne 'AAAA' > /dev/ttyS1
 
 <!-- // TODO: gif of 7seg showing 1234 and then changing to AAAA -->
 
-We should see the characters inside the single quoation mark '' displayed on our seven segment display.  By default echo will send the data and start a new line ('/n') after the data; we use the `-ne` operator to remove the new line. We can send any number and alphabet except for 'M' and 'W'. There will only be one way to display an alphabet regardless of its case. We can also send space ' ' and dash '-'; any characters that cannot be displayed will be replaced with a blank space ' '.  
+Just like this:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1B4e6zbqYGU" frameborder="0" allowfullscreen></iframe>
+
+We should see the characters inside the single quoation mark '' displayed on our seven segment display.  By default echo will send the data and start a new line ('/n') after the data; we use the `-ne` operator to remove the new line. We can send any number and alphabet except for 'M' and 'W'. There will only be one way to display an alphabet regardless of its case. We can also send space ' ' and dash '-'; any characters that cannot be displayed will be replaced with a blank space ' '.
 
 In addition, we can also add decimal points in the string we send from the Omega. If the first character sent is a decimal point, it will not be displayed.
 
 
 #### A Closer Look at the Code
 
+**COMING SOON!**
 
-<!-- First we include the Arduino SevSeg library. We then initalize our own SevSeg object:
+<!-- // OLD TEXT!
+First we include the Arduino SevSeg library. We then initalize our own SevSeg object:
 
 ```
 sevseg.begin(COMMON_CATHODE, numDigits, digitPins, segmentPins, resistorsOnSegments);
 ```
 
-The first parameter is the configuration of the seven segment display, either common cathod or common anode. The second parameter defines the number of digits the display has, which is four. The third parameter is an array of pins on the Arduino Dock that is connected to the four digit pins and the fourth parameter is an array of pins that is connected to the eight segment pins. The last parameter is set true since we connected the current limiting resistors to the segment pins instead of the digit pins.
+The first parameter is the configuration of the seven segment display, either common cathod or common anode. The second parameter defines the number of digits the display has, which is four. The third parameter is an array of pins on the Arduino Dock that is connected to the four digit pins and the fourth parameter is an array of pins that is connected to the eight scan pins. The last parameter is set true since we connected the current limiting resistors to the scan pins instead of the digit pins.
 
 Furthermore, we store the characters to be displayed inside an array of chars:
 
@@ -291,9 +306,11 @@ char charArray[5]="abcd";
 
 When we set the array of char with a string, there will be an extra char at the end called the null terminator "\0"; therefore our array needs to be five chars long in order to store "abcd". -->
 
+<!-- // TODO: needs to be updated to match the most recent code
+
 // TODO: please fix the grammar and flow of everything here on out
 
-We start by making an array of bytes to represent how different number or alphebat can be displayed. Each byte in the array has eight bits and set all the segments of a character. We start by turning all the LEDs segments off. Since the anodes are connected to the segment pins, we will set them `LOW`. The cathodes are connected to the digit pins, we set them `HIGH`. This way the current is flowing in the reverse bias direction and the LED will not light up. // TODO: whoa, this last sentence came out of left-field, maybe an explanation of what reverse bias means
+We start by making an array of bytes to represent how different number or alphabet can be displayed. Each byte in the array has eight bits and set all the segments of a character. We start by turning all the LEDs segments off. Since the anodes are connected to the scan pins, we will set them `LOW`. The cathodes are connected to the digit pins, we set them `HIGH`. This way the current is flowing in the reverse bias direction and the LED will not light up. // TODO: whoa, this last sentence came out of left-field, maybe an explanation of what reverse bias means
 
 To display all the digits correctly, we must turn all on the segments of one digit on before we turn off that digit and turn on the next digit. If we cycle through turning on and off each digit faster than the human eye can see, it will look like all the digits are displayed correctly. However, we must add one extra cycle of delay between turning on and off each digit for some characters to be displayed properly; try remove the following `for` loop and see what happens:
 
@@ -340,9 +357,13 @@ currentDigitCode[decimalPlace] = currentDigitCode[decimalPlace] | B10000000;
 
 In addition, we need to move the rest of the array after the decimal point one element forward to replace the decimal point character. This is done in the `checkDecimalPoint()` function.
 
+-->
+
+<!-- TODO: write this section
 #### Going Further: Automating the Script
 
 // TODO: introduce cron
 // show example of how to setup cron to output the time from the omega once a minute
 
 // copy heavily from STK LCD Expermient
+-->

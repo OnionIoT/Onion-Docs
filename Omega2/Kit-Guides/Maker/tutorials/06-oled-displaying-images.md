@@ -51,7 +51,7 @@ Today's code will start to dip into low level graphics programming! On some leve
 
 First, lets get to coding: copy the code below into a file named `MAK06-drawingLines.py`, and run it on your Omega to see it in action.
 
-<!-- TODO: fix the code to be less ugly, functionalise user input retreival -->
+<!-- DONE: fix the code to be less ugly, functionalise user input retreival -->
 
 ``` python
 from OmegaExpansion import oledExp
@@ -82,13 +82,13 @@ class buffer:
             seg = SEG_MAX
         self.frame[seg][page] = byte
 
-	# TODO: add a comment describing the purpose of this function
-	def drawToScreen (self):
+        # TODO: add a comment describing the purpose of this function
+    def drawToScreen (self):
         for seg in self.frame:
             for byt in seg:
                 oledExp.writeByte (byt)
 
-	# TODO: add a comment describing the purpose of this function
+    # TODO: add a comment describing the purpose of this function
     def getEmptyFrame(self):
         tmpframe = []
         # Creating an empty 128x8 array
@@ -134,6 +134,7 @@ def main():
         while (True):
             print ('Enter the orientation of the line (0 for vertical, 1 for horizontal): ')
             orientation = raw_input()
+
             orientation = int(orientation, 10)
             if (orientation != 0 and orientation != 1):
                 print ('Please enter either 1 or 2')
@@ -156,7 +157,7 @@ def main():
         headPos = getPosition(headPosMax, headAskedWord, 'occupy?')
 
         # Obtaining the starting and ending positions of the line
-        startPos = getPosition(startPosMax, lineAskedWord, 'start on?')
+        startPos = getPosition(endPosMax, lineAskedWord, 'start on?')
         endPos = getPosition(endPosMax, lineAskedWord, 'end on?')
 
 

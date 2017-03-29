@@ -4,6 +4,8 @@ The Arduino Dock allows the Omega and the ATmega328P microcontroller interact wi
 
 > Programming and flashing a microcontroller mean the same thing, you are taking compiled code and uploading it to a microcontroller. The terms are often used interchangeably.
 
+We'll first cover how to setup your computer and Omega, and then move on to cover how to actually flash your Arduino Dock.
+
 ### Prerequisites
 
 You'll need to first make sure that your Omega has connected to internet.
@@ -46,8 +48,7 @@ The requirements vary depending on your Operating System:
 
 #### Arduino IDE
 
-<!-- // arduino ide must be installed on your computer
-// can reference https://wiki.onion.io/Tutorials/Arduino-Dock/Initial-Setup#computer-setup_arduino-ide -->
+**This has to be done just once to enable flashing wirelessly.**
 
 Install the latest Arduino IDE from the good folks over at [Arduino](//www.arduino.cc/en/Main/Software). We did all of our testing using Version 1.8.0.
 
@@ -80,11 +81,6 @@ Doesn't matter where you add it, you can nestle it with the other `uno.` setting
 
 ### Doing the Actual Flashing
 
-<!-- // two methods to flash the mcu
-//  1. using the arduino IDE
-//  2. copying the compiled file to the omega and flashing manually from the command line
-
-// make sure to mention that the Arduino Dock 2 comes ready to flash the microcontroller out of the bux -->
 
 Now we get to the fun part, flashing sketches to the ATmega chip!
 
@@ -96,6 +92,14 @@ We **strongly** recommend using the Arduino IDE, and only recommend flashing the
 
 Thanks to the setup you did on your computer and the Arduino Dock, you can actually use the Arduino IDE on your computer to wirelessly flash Sketches to the Arduino Dock, so long as your computer and the Omega on your Arduino Dock are on the same WiFi network.
 
+The process that takes place with this method:
+
+1. Your computer and the Arduino IDE compile the Sketch
+1. The compiled sketch is transferred to your Omega using SSH
+1. The Omega will flash the microcontroller
+
+**The Steps:**
+
 In the Arduino Tools menu, select "Arduino/Guinuino Uno" for the Board, and your Omega-ABCD hostname as the Port:
 ![Arduino IDE Tools->Port menu](//i.imgur.com/1xAEBmT.png)
 
@@ -104,8 +108,7 @@ If your Omega does not show up in the Port menu as a network port, restart the A
 When your sketch is ready, hit the Upload button. Once the sketch is compiled, it will require your Omega password to upload:
 ![Arduino IDE Uploading Sketch](//i.imgur.com/UDXIDVL.png)
 
-The IDE actually creates an SSH connection with the Omega to transfer the compiled hex file, and the Omega with then flash the ATmega chip via I2C!
-(If your previous sketch did not include the Onion Arduino Library you will have to press the MCU_RESET button on the Arduino Dock right after entering your password in order to flash successfully)
+The IDE actually creates an SSH connection with the Omega to transfer the compiled hex file, and the Omega with then flash the ATmega microcontroller using 4 GPIOs.
 
 Once the upload completes, the info screen will show something along the lines of:
 ![Arduino IDE Upload Done](//i.imgur.com/oPOB4Vl.png)

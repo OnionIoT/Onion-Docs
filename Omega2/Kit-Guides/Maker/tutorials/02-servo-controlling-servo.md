@@ -73,61 +73,61 @@ Let's write another class to represent a servo motor based on the class we wrote
 ``` python
 from omegaPwm import OmegaPwm
 
-SERVO_MIN_PULSE 	= 1000
-SERVO_MAX_PULSE		= 2000
+SERVO_MIN_PULSE = 1000
+SERVO_MAX_PULSE = 2000
 
 # Servo motor
 class Servo:
-	"""Class that uses PWM signals to drive a servo"""
+    """Class that uses PWM signals to drive a servo"""
 
-	def __init__(self, channel, minPulse=SERVO_MIN_PULSE, maxPulse=SERVO_MAX_PULSE):
-		# initialize a pwm channel
-		self.channel 	= channel
-        self.frequency	= 50
-		self.pwmDriver 	= OmegaPwm(self.channel, self.frequency)
+    def __init__(self, channel, minPulse=SERVO_MIN_PULSE, maxPulse=SERVO_MAX_PULSE):
+        # initialize a pwm channel
+        self.channel = channel
+        self.frequency = 50
+        self.pwmDriver = OmegaPwm(self.channel, self.frequency)
 
-		# note the min and max pulses (in microseconds)
-		self.minPulse 	= minPulse
-		self.maxPulse 	= maxPulse
+        # note the min and max pulses (in microseconds)
+        self.minPulse = minPulse
+        self.maxPulse = maxPulse
 
-		# calculate the total range
-		self.range 		= self.maxPulse - self.minPulse
+        # calculate the total range
+        self.range = self.maxPulse - self.minPulse
 
-		# calculate the us / degree
-		self.step 		= self.range / float(180)
+        # calculate the us / degree
+        self.step = self.range / float(180)
 
-		# calculate the period (in us)
-		self.period 	= (1000000 / self.pwmDriver.getFrequency())
+        # calculate the period (in us)
+        self.period = (1000000 / self.pwmDriver.getFrequency())
 
-		# initialize the min and max angles
-		self.minAngle 	= 0
-		self.maxAngle 	= 180
+        # initialize the min and max angles
+        self.minAngle     = 0
+        self.maxAngle     = 180
 
-	def setAngle(self, angle):
-		"""Move the servo to the specified angle"""
-		# check against the minimum and maximium angles
-		if angle < self.minAngle:
-			angle 	= self.minAngle
-		elif angle > self.maxAngle:
-			angle 	= self.maxAngle
+    def setAngle(self, angle):
+        """Move the servo to the specified angle"""
+        # check against the minimum and maximium angles
+        if (angle < self.minAngle):
+            angle     = self.minAngle
+        elif (angle > self.maxAngle):
+                angle   = self.maxAngle
 
-		# calculate pulse width for this angle
-		pulseWidth 	= angle * self.step + self.minPulse
+        # calculate pulse width for this angle
+        pulseWidth = angle * self.step + self.minPulse
 
-		# find the duty cycle percentage of the pulse width
-		duty 		= (pulseWidth * 100) / float(self.period)
+        # find the duty cycle percentage of the pulse width
+        duty = (pulseWidth * 100) / float(self.period)
 
-		# program the duty cycle
-		ret = self.pwmDriver.setDutyCycle(duty)
-		return ret
+        # program the duty cycle
+        ret = self.pwmDriver.setDutyCycle(duty)
+        return ret
 
     def setDutyCycle(self, duty):
-		"""Set duty cycle for pwm channel"""
-		ret 	= pwmExp.setupDriver(self.channel, duty, 0)
-		if (ret != 0):
-			print 'ERROR: pwm-exp setupDriver not successful!'
+        """Set duty cycle for pwm channel"""
+        ret = pwmExp.setupDriver(self.channel, duty, 0)
+        if (ret != 0):
+            print 'ERROR: pwm-exp setupDriver not successful!'
 
-		return ret
+        return ret
 ```
 
 Paste the code below into a file called `MAK02-servoControl.py`, make sure your circuit is set up, then run it and see what happens!
@@ -137,30 +137,30 @@ from motors import Servo
 import time
 
 def main():
-	# instantiate objects for the two servos
-	standardServo = Servo(0, 500, 2500)
-	microServer = Servo(1, 500, 2000);
+    # instantiate objects for the two servos
+    standardServo = Servo(0, 500, 2400)
+    microServo = Servo(1, 500, 2400);
 
-	# set both servos to the neutral position
-	standardServo.setAngle(90.0)
-	microServo.setAngle(90.0)
-	time.sleep(2)
+    # set both servos to the neutral position
+    standardServo.setAngle(90.0)
+    microServo.setAngle(90.0)
+    time.sleep(2)
 
-	while(True):
-		# Turn servos to the 0 angle position
-		standardServo.setAngle(90.0)
-		microServo.setAngle(90.0)
-		time.sleep(2)
-		# Turn servos to the neutral position
-		standardServo.setAngle(90.0)
-		microServo.setAngle(90.0)
-		time.sleep(2)
-		# Turn servos to the 180 angle position
-		standardServo.setAngle(90.0)
-		microServo.setAngle(90.0)
-		time.sleep(2)
+    while(True):
+        # Turn servos to the 0 angle position
+        standardServo.setAngle(0.0)
+        microServo.setAngle(0.0)
+        time.sleep(2)
+        # Turn servos to the neutral position
+        standardServo.setAngle(90.0)
+        microServo.setAngle(90.0)
+        time.sleep(2)
+        # Turn servos to the 180 angle position
+        standardServo.setAngle(180.0)
+        microServo.setAngle(180.0)
+        time.sleep(2)
 if __name__ == '__main__':
-	main()
+    main()
 ```
 
 ### What to Expect

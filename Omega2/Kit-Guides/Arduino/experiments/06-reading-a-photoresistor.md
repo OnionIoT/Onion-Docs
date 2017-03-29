@@ -67,7 +67,7 @@ int readDelay = 10000;
 
 void setup()
 {
-	//initializing serial communication with the Omega2 for sending sensor data
+    //initializing serial communication with the Omega2 for sending sensor data
     Serial.begin(9600);  
 }
 
@@ -90,7 +90,7 @@ void loop()
     float lightIntensity = 500/(Rphoto/1000);
     Serial.print(lightIntensity); Serial.println(" lux");
 
-	// delay between the readings
+    // delay between the readings
     delay(readDelay);
 }
 ```

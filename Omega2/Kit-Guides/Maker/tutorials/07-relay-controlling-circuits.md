@@ -128,32 +128,32 @@ from onionGpio import OnionGpio
 from OmegaExpansion import relayExp
 
 SWITCH_PIN = 0
-RELAY_ID = 7	# TODO: talk about how this is based on the relay switches
+RELAY_ID = 7        # TODO: talk about how this is based on the relay switches
 RELAY_CHANNEL = 0
 outputStrings = ['off', 'on']
 
 def main():
-	# TODO: add comment about how we instantiate a gpio object for our
-    switch = OnionGpio(SWITCH_PIN)	# This works because we directly imported
-									# the OnionGpio class from the module
+    # TODO: add comment about how we instantiate a gpio object for our
+    switch = OnionGpio(SWITCH_PIN)    # This works because we directly imported
+                                      # the OnionGpio class from the module
 
-	# Initializes switch GPIO, exits if the pin sends an error
+    # Initializes switch GPIO, exits if the pin sends an error
     bSwitch = switch.setInputDirection()
     print ("Setting GPIO pin " + str(SWITCH_PIN) + " to input.")
     if (bSwitch is False):
         print ("GPIO set direction error.")
-		return
-	print ("Pin set.")
+        return
+    print ("Pin set.")
 
-	# Initializes the relay, exits if the relay responds with an error
+    # Initializes the relay, exits if the relay responds with an error
     bRelay = relayExp.checkInit(RELAY_ID)
     print ("Checking Relay 0x2" + str(RELAY_ID) + " status.")
     if (bRelay is False):
         bInit = relayExp.driverInit(RELAY_ID)
         print ("Initializing Relay")
-		if (bInit is False):
-			print ("Relay initialization failure.")
-			return
+        if (bInit is False):
+            print ("Relay initialization failure.")
+            return
     print ("Relay initialized.")
 
 
@@ -169,14 +169,12 @@ def main():
                 print ("Error switching relay, the script will now exit.")
                 break
             else:
-                print ("Switch flipped, turning relay " +
-						outputStrings[switchState] + ".")
+                print ("Switch flipped, turning relay " + outputStrings[switchState] + ".")
 
     relayExp.setChannel(RELAY_ID, RELAY_CHANNEL, 0)
 
 if __name__ == "__main__":
     main()
-
 ```
 
 ### What to Expect

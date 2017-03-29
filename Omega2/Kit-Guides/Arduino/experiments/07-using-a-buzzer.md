@@ -14,7 +14,6 @@ For this experiment, we will be using a push button again for the input and a bu
 
 ![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/07-circuit-diagram.png)
 
-
 #### What You'll Need
 
 Prepare the following components from your kit:
@@ -33,11 +32,17 @@ Prepare the following components from your kit:
 
 #### Hooking up the Components
 
-<!-- TODO: let's be more explicit about how we made/connected the switch circuit -->
+<!-- DONE: let's be more explicit about how we made/connected the switch circuit -->
 
 Once you have all the components ready, it's time to build!
 
-1. First, let's set up the push button with debounce circuit similar to [tutorial 4](#arduino-kit-04-reading-a-push-button), we'll connect this to the Arduino Dock in a bit.
+1. First, let's set up the push button with debounce circuit similar to [the push button experiment](#arduino-kit-04-reading-a-push-button), we'll connect this to the Arduino Dock in a bit.
+    * Connect one end of the 51kΩ resistor to one side of the switch. This can be either pin, but make sure you remember which side is which
+    * Connect the other end of the 51kΩ resistor to an empty row, this will be where we connect our voltage reference.
+    * Connect the end of the switch that is currently empty to the `GND` rail with a jumper; again, either pin will do.
+    * Plug one end of the 5.1kΩ resistor to the same row where the switch and 51kΩ resistor are connected
+    * Plug the other end of the 5.1kΩ resistor to an empty row.
+    * Using the 100nF capacitor, connect the row where the 5.1kΩ resistor terminates to the `GND` rail.
 
 1. Now let's get the buzzer connected - plug the Buzzer across the channel of your breadboard.
 1. Using a jumper, connect the negative end of the buzzer (the pin WITHOUT a plus sign) to the `GND` rail.
@@ -78,16 +83,16 @@ void setup() {
 
 // The code in here will run continuously until we turn off the Arduino Dock
 void loop() {
-	// read the state of the push button
-	int state = digitalRead(pollingPin);   
+    // read the state of the push button
+    int state = digitalRead(pollingPin);   
 
-	// we want to:
-	//   ring the buzzer (buzzer HIGH) when the button is pressed (button LOW)
-	//   not buzz (buzzer LOW) when the button is released (button HIGH)
-	// note that the buzzer state is opposite of the button state
-	digitalWrite(buzzerPin, !state);
+    // we want to:
+    //   ring the buzzer (buzzer HIGH) when the button is pressed (button LOW)
+    //   not buzz (buzzer LOW) when the button is released (button HIGH)
+    // note that the buzzer state is opposite of the button state
+    digitalWrite(buzzerPin, !state);
 
-	delay(10);
+    delay(10);
 }
 ```
 
@@ -167,7 +172,7 @@ void loop() {
 }
 
 // Interrupt Service Routine (ISR)
-//	set the buzzer pin to the appropriate state based on the current push button input value
+//    set the buzzer pin to the appropriate state based on the current push button input value
 void changeState() {
   // flip the push button input value since it is inverted due to the debouncing circuit
   state = !state;

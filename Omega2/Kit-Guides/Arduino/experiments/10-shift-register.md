@@ -103,13 +103,13 @@ Here's the steps to get there:
 
 
 ``` arduino
-#define NUM_LEDS 	8
+#define NUM_LEDS     8
 
 // duration to pause
 int delayTime = 100;
 
 // the pin connected to the latch pin, RCLK (pin 12 of the shift register)
-//	setting the latch LOW will send the 8 bits in storage to the output pins
+//    setting the latch LOW will send the 8 bits in storage to the output pins
 int latchPin = 5;
 // the pin connected to the clock pin, SRCLK (pin 11 of the shift register)
 int clockPin = 6;
@@ -133,7 +133,7 @@ void updateShiftRegister(byte storageByte)
   digitalWrite(latchPin, LOW);
 
   // send the storage byte to the shift register with the LSB first
-  // 	since the latch is LOW, set the 8 output pins based on the stored 8 bits and in turn light the correct LED
+  //     since the latch is LOW, set the 8 output pins based on the stored 8 bits and in turn light the correct LED
   shiftOut(dataPin, clockPin, LSBFIRST, storageByte);
 
   // set the latch pin HIGH again
@@ -144,37 +144,37 @@ void updateShiftRegister(byte storageByte)
 void loop()
 {
   // the byte (8 bits) to be stored in the shift register
-  //	initialize to 00000001, representing the first LED on
+  //    initialize to 00000001, representing the first LED on
   byte storageByte = 0x01;
 
   // create the effect of having the light travel to the left
   for (int i = 0; i < NUM_LEDS-1; i++)
   {
-	// send the 8 bits to the shift register and set latch LOW
+    // send the 8 bits to the shift register and set latch LOW
     updateShiftRegister(storageByte);
 
-	// bitwise shift to the left by 1 bit
-	//	the MSB will disappear and a 0 will be shifted in for the LSB
-	//  ex. 10000001 to 00000010
+    // bitwise shift to the left by 1 bit
+    //    the MSB will disappear and a 0 will be shifted in for the LSB
+    //  ex. 10000001 to 00000010
     storageByte = storageByte << 1;
 
-	// wait before moving on to the next LED to enhance the animation
-	delay(delayTime);   
+    // wait before moving on to the next LED to enhance the animation
+    delay(delayTime);   
   }
 
   // create the effect of having the light travel in the opposite direction
   for (int i = 0; i < NUM_LEDS-1; i++)
   {
-	// send the 8 bits to the shift register and set latch LOW
+    // send the 8 bits to the shift register and set latch LOW
     updateShiftRegister(storageByte);
 
-	// bitwise shift to the right by 1 bit
-	//	the LSB will disappear and a 0 will be shifted in for the MSB
-	// 	i.e. 10000000 to 01000000
-	storageByte = storageByte >> 1;
+    // bitwise shift to the right by 1 bit
+    //    the LSB will disappear and a 0 will be shifted in for the MSB
+    //     i.e. 10000000 to 01000000
+    storageByte = storageByte >> 1;
 
-	// wait before moving on to the next LED to enhance the animation
-	delay(delayTime);   
+    // wait before moving on to the next LED to enhance the animation
+    delay(delayTime);   
   }
 }
 ```
@@ -186,6 +186,9 @@ void loop()
 The eight LEDs will light up like KITT from Knight Rider. The first LEDs will turn on, then the next will turn on and the previous one will turn off. This will repeat for all the LEDs in a loop from left to right and then from right to left. Only one LED should be lit up at a time.
 
 <!-- // TODO: GIF of experiment -->
+It should look a little like this:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/j6YaJ_SOlA8" frameborder="0" allowfullscreen></iframe>
 
 See, just like KITT:
 
@@ -194,12 +197,20 @@ See, just like KITT:
 
 ### A Closer Look at the Code
 
+**COMING SOON!**
+
+<!-- TODO: revisit and fix this up to match the most recent code
+
 We are only using three Arduino Dock pins to control eight LEDs by taking advantage of the shift register. Lets begin by declaring the three pin variables (`latchPin`, `clockPin` and `dataPin`) and initializing the three pins as output in `setup()`.
 
 Each time we want to light up a different LED (change the output of the Shift Register), we use the `updateShiftRegister()` function in a loop to continuously change the outputs.
 
 
 #### Updating the Shift Register
+
+// TODO: need to update to match the code, we first set latchPin to LOW, then shift out the bits, then set it back to high. need an explanation for why we do this
+
+// TODO: mention that the shiftOut function is part of the arduino code, provide a link to the arduino documentation for this function
 
 First, let's take a look at what happens inside `updateShiftRegister()`. In this function, we send the 8 bits from the ATmega to the shift register:
 
@@ -216,8 +227,6 @@ digitalWrite(latchPin, LOW);
 ```
 
 When the latch is set to low, the stored bits in the shift register will be sent out to the output pins in parallel. We must set the latch back high again to reset the shift register and allow further input to be properly stored. This completes one update cycle for the shift register and `updateShiftRegister()` returns at this point.
-
-<!-- // DONE: at this point, we need to make it clear that we WERE talking about the inner workings of the `updateShiftRegister` function. and that FROM NOW ON, we're talking about the operation of the loop function, and how it creates the KITT effect -->
 
 #### Looping and Bitshifting
 
@@ -239,4 +248,4 @@ storageByte = storageByte >> 1;
 
 You'll notice we left in a slight delay before every update. This is because if we let it run as fast as possible, we won't get to see the light move, instead the speed of the CPU will make it appear as though all the lights are on at the same time. The Shift register can accurately update at 100MHz - much faster than we can percieve! So in order to actually see the effect, we slow it down by adding the delay.
 
-<!-- // DONE: expand on this sentence, this was lazy -->
+ -->

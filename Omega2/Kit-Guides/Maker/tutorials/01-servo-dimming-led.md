@@ -124,7 +124,7 @@ Now let's write the script for the experiment. Create a file called `MAK01-pwmLe
 // TODO: the code is good, just need comments to describe what we're actually doing!
 
 ``` python
-from omegaPwm import OmegaPwm
+from motors import OmegaPwm
 import math
 import time
 
@@ -144,9 +144,9 @@ def main():
     # Construct pwmLED object array
     ledObjectArray = []
     for i in range(16):
-		# instantiate an object tied to the i channel 	// TODO: fix up this comment
+        # instantiate an object tied to the i channel     // TODO: fix up this comment
         obj = OmegaPwm(i, PWM_FREQUENCY)
-		# add the object into our array of objects
+        # add the object into our array of objects
         ledObjectArray.append(obj)
 
     phaseIncrement = (2 * math.pi)/16

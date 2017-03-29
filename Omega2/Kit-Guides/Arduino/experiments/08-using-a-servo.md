@@ -54,16 +54,20 @@ Let's first set up the two push buttons with their seperate debounce circuits sa
 Now that the buttons are set up, w  <!-- // DONE: add an intro (d)-->
 e'll connect the two servo motors:
 1. The small servo has 3 wires: connect the brown wire to the `GND` rail, the red wire to the `Vcc` rail. We'll connect the orange (signal) wire in a bit.
-	* Repeat for the standard sized servo.
+    * Repeat for the standard sized servo.
 
 Now that our components are set up, we'll connect them to the Arduino Dock:
 1. Connect the negative power rail to a `GND` pin on the Arduino Dock.
 1. Connect the point in the first debounce circuit between the 5.1kΩ resistor and the capacitor to pin `2` of the Arduino Dock.
-	* Repeat for the second debounce circuit, but plug the jumper into pin `3` instead
+    * Repeat for the second debounce circuit, but plug the jumper into pin `3` instead
 1. Connect the orange wire of small servo to pin `9` on the Arduino Dock, and the signal of the standard servo to pin `10`.
 1. Connect the positive power rail to `5V`. Don't worry if the servo rotates a bit when you power it on - this is expected.
 
-<!-- // TODO: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
+<!-- // DONE: IMAGE add a photo of the completed circuit and a blurb about 'this is more or less how your circuit should look' -->
+
+Here's what the circuit looks like fully assembled:
+
+![The circuit fully assembled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/08-assembled-circuit.jpg)
 
 ### Writing the Code
 
@@ -208,29 +212,33 @@ void loop() {   // code to be run continuously
 <!-- // description of how both servos will turn in a particular direction while a button is depressed, the buttons control the direction of rotation -->
 
 When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction. If either button is pressed and held down,
-the servos' shaft position will either increase or decrease by 5 degrees every 0.2 seconds.
+the servos' shaft position will either increase or decrease by 5° every 0.2 seconds.
 
-<!-- TODO: video of the servos turning -->
+<!-- DONE: video of the servos turning -->
+Heres what it looks like:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QUfyvtnzME4" frameborder="0" allowfullscreen></iframe>
 
 ### A Closer Look at the Code
 
-// TODO: update the below based on the latest code
+**COMING SOON!**
 
-<!-- // introduced object oriented programming for the first time in this code -->
+<!--
+// TODO: update the below based on the latest code
 
 In this code, we introduce a very important, new concept: Object Oriented Programming (OOP). We will take a look at some of the key elements of OOP: classes, objects, constructors and class members.
 
 
 #### Object Oriented Programming
 
-<!-- // DONE: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read -->
+// DONE: this is a huge block of text, see if we can add some descriptive headers so it doesn't seem like an intimidating thing that will take forever to read
 
 In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is exactly the kind of scenario that spurred the creation of Object Oriented Programming. Ultimately, the goal of OOP is to model programmatic interactions as objects interacting with each other.
 
 To that end, we create **objects** with attributes (what it is) and methods that act on the attributes (how it behaves). Objects are constructed out of templates called **classes** in which we define what attributes the object will have, and the functions that will interact with them.
 
-<!-- // DONE: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions) -->
-<!-- // DONE: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it! -->
+// DONE: before the next sentence, we need to go into further detail about what a class really is, and how it defines methods (functions)
+// DONE: after that we need to drive home the point that an object is an instance of a particular class. the existing text touches on this but we need to emphasize it!
 
 #### Classes
 
@@ -277,16 +285,16 @@ Then if you want an object, what function should you call?
 Let's take a look at this snippet:
 
 ```c++
-	ServoMotor(int pinNumber, float minPWus, float maxPWus){
+    ServoMotor(int pinNumber, float minPWus, float maxPWus){
 
-		// pass in the pin number, max and min pulse width to private variables
-		minPW = minPWus;
-		maxPW = maxPWus;
-		pin = pinNumber;
+        // pass in the pin number, max and min pulse width to private variables
+        minPW = minPWus;
+        maxPW = maxPWus;
+        pin = pinNumber;
 
-		// calculate the pulse width change for each degree
-		rate = (maxPWus - minPWus)/(maxAngle - minAngle);
-	}
+        // calculate the pulse width change for each degree
+        rate = (maxPWus - minPWus)/(maxAngle - minAngle);
+    }
 ```
 
 This is the constructor of `ServoMotor` class. Whenever the code demands that a `ServoMotor` object be created,
@@ -320,3 +328,5 @@ This is because `setAngle()` member function is defined under `public:`.
 Furthermore, notice we have seven `private` member variables but we only use passed in three parameters (`pinNumer`,  `minPWus`, `maxPWus`) to three private member variable (`pin`, `minPW`, `maxPW`) in our constructor. This is because the three parameters are the only different parameters between different servo objects. The `rate` variable is calculated from the three parameters. The minimum and maximum servo angle (`minAngle` and `maxAngle`) are set to `0` degree and `180` degree for all `ServoMotor` objects.
 
 Lastly, we use a `Servo` object from the Arduino Servo library within our own `ServoMotor` class to interface with our Arduino Dock pins directly, so we don't have to directly handle the PWM driver of the Arduino Dock!
+
+-->

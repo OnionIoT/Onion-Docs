@@ -8,9 +8,10 @@ In this experiment, we're going to use what we learned in the first experiment a
 
 Similar to the previously experiment, we need our breadboard and jumper wires. However, now we will use six LEDs along with six current limiting resistors. We will makes the LEDs turn on one-by-one going left to right, and then turn them off one-by-one again going left to right.
 
-Here's the diagram of our circuit for reference: 
+Here's the diagram of our circuit for reference:
 
 ![Six LED circuit diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/02-circuit-diagram.png)
+
 #### What You'll Need
 
 Prepare the following components from your kit:
@@ -34,7 +35,7 @@ To get started, let's grab six LEDs and let's do the following for each one:
 
 >You can probably guess that the column labelled `+` will be used to share a power supply. We'll be calling it the `Vcc` rail often in the future!
 
-Once you've done the above for all six LEDs, let's connect a jumper wire from the `GND` rail on the breadboard to a Ground pin on the Omega - those will be labelled `GND`. Since the two red and blue rails are connected vertically, what we've done is connect **all** of the LED cathodes to the Ground using just **one pin** on the Arduino dock.
+Once you've done the above for all six LEDs, let's connect a jumper wire from the `GND` rail on the breadboard to a Ground pin on the Omega - those will be labelled `GND`. Since the two red and blue rails are connected vertically, what we've done is connect **all** of the LED cathodes to the Ground using just **one pin** on the Arduino Dock.
 
 To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Arduino Dock. We'll be using six digital GPIOs (`9`, `8`, `7`, `6`, `5`, `4`) on the Arduino Dock (near the jack barrel connector).
 
@@ -92,7 +93,11 @@ void loop() {
 
 Your line-up of LEDs will be essentially chasing it's tail: the left-most LED will turn on, and then the next one, and the next and so on. When all of them turn on, the left-most one will turn off, and the rest will follow suit.
 
-<!-- // TODO: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another -->
+<!-- // DONE: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another -->
+
+Here's what it looks like:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/zQzOiXGjkvw" frameborder="0" allowfullscreen></iframe>
 
 ### A Closer Look at the Code
 
