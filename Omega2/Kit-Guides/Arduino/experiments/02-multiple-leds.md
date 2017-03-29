@@ -35,7 +35,7 @@ To get started, let's grab six LEDs and let's do the following for each one:
 
 >You can probably guess that the column labelled `+` will be used to share a power supply. We'll be calling it the `Vcc` rail often in the future!
 
-Once you've done the above for all six LEDs, let's connect a jumper wire from the `GND` rail on the breadboard to a Ground pin on the Omega - those will be labelled `GND`. Since the two red and blue rails are connected vertically, what we've done is connect **all** of the LED cathodes to the Ground using just **one pin** on the Arduino dock.
+Once you've done the above for all six LEDs, let's connect a jumper wire from the `GND` rail on the breadboard to a Ground pin on the Omega - those will be labelled `GND`. Since the two red and blue rails are connected vertically, what we've done is connect **all** of the LED cathodes to the Ground using just **one pin** on the Arduino Dock.
 
 To finish off the circuit, we need to connect the anodes of our LEDs to GPIOs on the Arduino Dock. We'll be using six digital GPIOs (`9`, `8`, `7`, `6`, `5`, `4`) on the Arduino Dock (near the jack barrel connector).
 

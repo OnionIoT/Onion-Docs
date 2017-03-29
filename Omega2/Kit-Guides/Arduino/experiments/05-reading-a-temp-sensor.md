@@ -170,7 +170,7 @@ A more immediate example is the communication between the sensor and the Dock. H
 
 ##### ATmega to Omega
 
-Now let's take a closer look at how the Omega and the ATmega communicate. The Arduino dock has a serial communication line, and we've plugged that directly into the Omega's [UART1](https://docs.onion.io/omega2-docs/uart1.html) port when the Omega's seated in the dock.
+Now let's take a closer look at how the Omega and the ATmega communicate. The Arduino Dock has a serial communication line, and we've plugged that directly into the Omega's [UART1](https://docs.onion.io/omega2-docs/uart1.html) port when the Omega's seated in the dock.
 
 To set up the ATmega to talk, we initialize the serial pin with `Serial.begin(9600)`. After the initialization, we can use the built-in Arduino functions `Serial.print()` or `Serial.println()` to send word from the ATmega. To listen in from the Omega side, the serial is connected to the UART1 port, which is mounted as a file, specifically `/dev/ttyS1`. Calling the `cat` command will start outputting the contents of the file to the command line - listening to the Serial talk from the ATmega!
 

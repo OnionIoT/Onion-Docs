@@ -50,7 +50,7 @@ So far we've been turning LEDs fully on and fully off, but it's also possible ha
 
 For this experiment, we will use the knob of the trimpot (trimmer potentiometer) to control the brightness of the LED. We will connect a potentiometer to the analog input and an LED to a PWM pin with a current-limiting resistor. We'll use the ATmega to interpret the input from the trimpot, and set the LED's brightness accordingly.
 
-Let's take a more detailed look at the ATMega pins on the Arduino dock since we'll be using them mostly throughout these tutorials. Analog pins are from prefixed with capital A (`A0` to `A5`). Pins `0` to `13` are digital pins. If there is a tilde sign `~` in front of the pin number, it means it can be used as a PWM pin. Pins `0` and `1` are serial pins and should not be used if we want to do serial communication between the ATmega and the Omega.
+Let's take a more detailed look at the ATMega pins on the Arduino Dock since we'll be using them mostly throughout these tutorials. Analog pins are from prefixed with capital A (`A0` to `A5`). Pins `0` to `13` are digital pins. If there is a tilde sign `~` in front of the pin number, it means it can be used as a PWM pin. Pins `0` and `1` are serial pins and should not be used if we want to do serial communication between the ATmega and the Omega.
 
 #### What You'll Need
 
@@ -79,8 +79,8 @@ First, let's set up the circuit:
 
 Now that the potentiometer and LED are set up, let's connect them to the Arduino Dock so we can make them light up.
 
-1. With the connections to `GND` rail in place, let's connect the rail to `GND` on the Arduino dock.
-1. Using a jumper, connect the middle pin of the trimpot to the analog pin `A0` on the Arduino dock using a jumper wire.
+1. With the connections to `GND` rail in place, let's connect the rail to `GND` on the Arduino Dock.
+1. Using a jumper, connect the middle pin of the trimpot to the analog pin `A0` on the Arduino Dock using a jumper wire.
 1. Connect the anode of LED to the PWM pin `~9` on the Arduino Dock.
 1. Lastly, we'll connect the right pin of the trimpot to `5V` on the Arduino Dock as a reference for our input voltage.
 
