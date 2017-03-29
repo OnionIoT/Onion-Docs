@@ -85,10 +85,10 @@ To use the library we need to `#include` it at the top of our code, by doing so,
 #define PASSWORD_LENGTH        4
 
 #define STATE_INIT             0
-#define STATE_IDLE            1
-#define STATE_READ_INPUT    2
-#define STATE_CHECK_INPUT    3
-#define STATE_OPEN_SESAME    4
+#define STATE_IDLE             1
+#define STATE_READ_INPUT       2
+#define STATE_CHECK_INPUT      3
+#define STATE_OPEN_SESAME      4
 
 // variable to hold the current state
 int state;
@@ -253,6 +253,8 @@ We will be using the keypad to create a password protected system. After the use
 
 **COMING SOON!**
 
+
+
 <!-- TODO: update this section based on the most recent code!
 
 
@@ -272,7 +274,7 @@ Try commenting out the `#include <Keypad.h>` line, you'll see that the compiler 
 We're no strangers to arrays by now, so this time we can dive a bit deeper into their capabilities. At the lowest level, arrays are actually represented as a hex number that represents a location in computer memory - the location of the start of the array. This means that arrays can store other arrays just as well as regular numbers.
 
 
-To explain, first thing to know is arrays are continous in memory. This means that each element of an array sequentially follows the previous, always. By knowing the size of each element and the head address, an array can be very easily manipulated. So to save space and needless computation, the start of the array is passed around as a handle to manipulate the whole thing.
+To explain, first thing to know is arrays are continuous in memory. This means that each element of an array sequentially follows the previous, always. By knowing the size of each element and the head address, an array can be very easily manipulated. So to save space and needless computation, the start of the array is passed around as a handle to manipulate the whole thing.
 
 In modern computers, addresses are almost always represented as an `int` or hex number.
 
