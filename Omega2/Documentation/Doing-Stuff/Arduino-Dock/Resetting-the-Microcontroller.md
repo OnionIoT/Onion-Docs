@@ -10,7 +10,7 @@ There are several cases where resetting the MCU is useful. For example, if the p
 
 The microcontroller can be reset physically by pressing the MCU_RESET momentary push button on the Arduino Dock.
 
-![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-illustration.png)
+![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-illustration-reset-highlight.png)
 
 When the MCU_RESET button is pressed and released, microcontroller will reset, it should only take a few seconds. Depending on the program loaded on the microcontroller, the blue microcontroller LED might quickly blink a few times, this indicates that the reset has taken place. It's also possible, again depending on the program, that it will not blink or react at all, you can still safely assume that the reset has taken place.
 
