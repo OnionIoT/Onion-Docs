@@ -6,15 +6,15 @@ To simplify our circuits, we assume switches cleanly change state when you push 
 
 ![bouncing-switch](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/switch-bouncing.gif)
 
-We want to avoid this since it will wreak havoc on our software that treats the button as a trigger for an action. When we press the button once, we expect the action to trigger only once; however, because the signal is bouncing, the action may be triggered tens or even hundreds of times. While this may not be an issue for simple actions such as turning on an LED, this can cause huge problems in more complex systems, such as programs that send messages to each other. For example, you don't want to press a button to lower the thermostat by 1 degree and have it lower by 12!
+We want to avoid this since it will wreak havoc on our software that treats the button as a trigger for an action. When we press the button once, we expect the action to trigger only once; however, because the signal is bouncing, the action may be triggered tens or even hundreds of times. While this may not be an issue for simple actions such as turning on an LED, this can cause huge problems in more complex systems, such as programs that send messages to each other. For example, you don't want to press a button to lower the thermostat by 1° and have it lower by 12!
 
 #### Debouncing a Circuit
 
 One way to solve this problem, or **debounce** the signal, is to add a few simple components around the switch to **filter** out these unwanted bounces. The diagram below shows a way of doing this.
 
-![hardware-debouncer](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/hardware-debouncer.jpg)
+![hardware-debouncer](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/debouncing-circuit.png)
 
-<!-- TODO: broken link to image, doesn't exist in repo! -->
+<!-- DONE: broken link to image, doesn't exist in repo! -->
 
 Something to keep in mind about this setup is that **the input reads HIGH when the switch is open, and LOW when the switch is closed**. This may seem *backwards* at first, but this convention is actually very common with integrated circuits out in the wild! When writing programs, you should *abstract* this convention away from the main routines by using functions that return `TRUE` or `FALSE` depending on how you define the switch state, not the signal itself.
 

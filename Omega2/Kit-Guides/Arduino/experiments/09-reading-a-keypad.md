@@ -11,11 +11,11 @@ In this experiment, we will make a circuit that can read input from a keypad. To
 
 For the circuit, we will need a keypad and some jumpers along with an LED to light up.
 
-<!-- TODO: let's give a better description or mention that it will become clearer when we explain it below -->
-This is the diagram for our circuit:
+<!-- DONE: let's give a better description or mention that it will become clearer when we explain it below -->
+
+The keypad will connect directly to the Arduino Dock, and we'll wire up the LED separate to be controlled by our code. For reference during the build, here's a diagram of our circuit:
 
 ![How the keypad connects to the Arduino Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/09-circuit-diagram.png)
-
 #### What You'll Need
 
 Prepare the following components from your kit:
@@ -32,9 +32,10 @@ Prepare the following components from your kit:
 #### Hooking Up the Components
 
 
-<!-- TODO: reference the circuit diagram in Step 1 -->
+<!-- DONE: reference the circuit diagram in Step 1 -->
 
 Once you have the components ready to go, we can begin putting it together. Keep in mind the keypad has seven pins, one for each row and column - not one pin per button.
+
 
 1. Connect all the seven keypad pins to the digital pins (`8`, `7`, `6`, `5`, `4`, `3`, `2`) on the Arduino Dock in order from left to right, i.e. the left most keypad pin to pin `8` on the Arduino Dock.
 1. Plug the LED in across the center of the breadboard, between whichever rows you wish.
@@ -75,13 +76,7 @@ The other way is to manually install a library.
 
 <!-- // DONE: add locations for OS X and Linux (can look this up online) -->
 
-To use the library we need to add the following line at the top of our code:
-
-```
-#include <Keypad.h>
-```
-
-<!-- // TODO: rewrite this to have a -->
+To use the library we need to `#include` it at the top of our code, by doing so, it tells the compiler to find the keypad library and drop all the code from it into the front of our sketch.
 
 ```c
 // include the Keypad library
