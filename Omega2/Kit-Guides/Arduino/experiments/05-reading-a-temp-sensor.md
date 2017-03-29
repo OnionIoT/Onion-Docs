@@ -60,7 +60,7 @@ int readDelay = 10000;
 
 void setup()
 {
-	//initializing serial communication with the Omega2 for sending sensor data
+    //initializing serial communication with the Omega2 for sending sensor data
     Serial.begin(9600);
 }
 
@@ -84,8 +84,8 @@ void loop()
     float temperatureF = (temperatureC * 9.0 / 5.0) + 32.0;
     Serial.print(temperatureF); Serial.println(" degrees F");
 
-	// delay between readings since the change is gradual
-	delay(readDelay);
+    // delay between readings since the change is gradual
+    delay(readDelay);
 }
 ```
 

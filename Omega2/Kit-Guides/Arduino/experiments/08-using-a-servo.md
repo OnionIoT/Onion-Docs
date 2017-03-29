@@ -54,12 +54,12 @@ Let's first set up the two push buttons with their seperate debounce circuits sa
 Now that the buttons are set up, w  <!-- // DONE: add an intro (d)-->
 e'll connect the two servo motors:
 1. The small servo has 3 wires: connect the brown wire to the `GND` rail, the red wire to the `Vcc` rail. We'll connect the orange (signal) wire in a bit.
-	* Repeat for the standard sized servo.
+    * Repeat for the standard sized servo.
 
 Now that our components are set up, we'll connect them to the Arduino Dock:
 1. Connect the negative power rail to a `GND` pin on the Arduino Dock.
 1. Connect the point in the first debounce circuit between the 5.1kΩ resistor and the capacitor to pin `2` of the Arduino Dock.
-	* Repeat for the second debounce circuit, but plug the jumper into pin `3` instead
+    * Repeat for the second debounce circuit, but plug the jumper into pin `3` instead
 1. Connect the orange wire of small servo to pin `9` on the Arduino Dock, and the signal of the standard servo to pin `10`.
 1. Connect the positive power rail to `5V`. Don't worry if the servo rotates a bit when you power it on - this is expected.
 
@@ -214,7 +214,10 @@ void loop() {   // code to be run continuously
 When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction. If either button is pressed and held down,
 the servos' shaft position will either increase or decrease by 5° every 0.2 seconds.
 
-<!-- TODO: video of the servos turning -->
+<!-- DONE: video of the servos turning -->
+Heres what it looks like:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QUfyvtnzME4" frameborder="0" allowfullscreen></iframe>
 
 ### A Closer Look at the Code
 
@@ -282,16 +285,16 @@ Then if you want an object, what function should you call?
 Let's take a look at this snippet:
 
 ```c++
-	ServoMotor(int pinNumber, float minPWus, float maxPWus){
+    ServoMotor(int pinNumber, float minPWus, float maxPWus){
 
-		// pass in the pin number, max and min pulse width to private variables
-		minPW = minPWus;
-		maxPW = maxPWus;
-		pin = pinNumber;
+        // pass in the pin number, max and min pulse width to private variables
+        minPW = minPWus;
+        maxPW = maxPWus;
+        pin = pinNumber;
 
-		// calculate the pulse width change for each degree
-		rate = (maxPWus - minPWus)/(maxAngle - minAngle);
-	}
+        // calculate the pulse width change for each degree
+        rate = (maxPWus - minPWus)/(maxAngle - minAngle);
+    }
 ```
 
 This is the constructor of `ServoMotor` class. Whenever the code demands that a `ServoMotor` object be created,

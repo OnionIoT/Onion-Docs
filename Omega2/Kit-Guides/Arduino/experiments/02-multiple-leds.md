@@ -93,7 +93,11 @@ void loop() {
 
 Your line-up of LEDs will be essentially chasing it's tail: the left-most LED will turn on, and then the next one, and the next and so on. When all of them turn on, the left-most one will turn off, and the rest will follow suit.
 
-<!-- // TODO: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another -->
+<!-- // DONE: GIF: Showing this experiment with the LEDs lighting up one after another and then turning off one after another -->
+
+Here's what it looks like:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/zQzOiXGjkvw" frameborder="0" allowfullscreen></iframe>
 
 ### A Closer Look at the Code
 
