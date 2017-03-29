@@ -199,7 +199,7 @@ See, just like KITT:
 
 We are only using three Arduino Dock pins to control eight LEDs by taking advantage of the shift register. Lets begin by declaring the three pin variables (`latchPin`, `clockPin` and `dataPin`) and initializing the three pins as output in `setup()`.
 
-Each time we want to light up a different LED, we **update the shift register** to send the shift register new signals for each LED. 
+Each time we want to light up a different LED, we **update the shift register** to send the shift register new signals for each LED. We also create a cool oscillating LED animation by using the **bitshifting** technique.
 
 #### Updating the Shift Register
 
@@ -251,7 +251,7 @@ The first `for` loop shifts the `1` bit from right to left: from the least signi
 storageByte = storageByte << 1;
 ```
 
-The second `for` loop shifts the `1` bit back to the least significant bit `00000001` one bit at a time for another seven cycles as shown below:
+The second `for` loop shifts the `1` bit back to the least significant bit `00000001` one bit at a time for another seven   cycles as shown below:
 
 ```c
 storageByte = storageByte >> 1;
