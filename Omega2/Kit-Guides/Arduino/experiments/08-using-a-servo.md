@@ -212,7 +212,7 @@ void loop() {   // code to be run continuously
 <!-- // description of how both servos will turn in a particular direction while a button is depressed, the buttons control the direction of rotation -->
 
 When one button is pressed, both servos will turn to one direction; when the other button is pressed, they both turn to the other direction. If either button is pressed and held down,
-the servos' shaft position will either increase or decrease by 5 degrees every 0.2 seconds.
+the servos' shaft position will either increase or decrease by 5° every 0.2 seconds.
 
 <!-- TODO: video of the servos turning -->
 
