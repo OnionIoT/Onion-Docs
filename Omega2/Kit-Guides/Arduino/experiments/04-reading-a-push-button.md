@@ -160,7 +160,7 @@ You know the drill, save it to `SKA04-readingPushButton.ino`, then get ready to 
 
 When the button is pressed, the left most LED should turn on. For each additional button press, another led will turn on, going from left to right. When all leds are on and the button is pressed, the LEDs will turn off one by one in the same order. All the while, the LED connected to GPIO13 will continue blinking steadily on and off.
 
-<!-- // TODO: gif -->
+<!-- // TODO: FUTURE - once the bug's fixed, retake video -->
 
 
 <!-- // DONE: screenshot of the cat command showing the bitwise operations - commented out no longer relevant, file is still on server -->

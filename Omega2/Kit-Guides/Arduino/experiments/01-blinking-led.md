@@ -2,10 +2,14 @@
 
 In our very first experiment, we will turn an LED on and off. This is the hardware equivalent of the 'Hello World' program. This first experiment will start small but it will be a solid foundation for the rest of the experiments.
 
-<!-- // TODO: IMAGE insert a gif of what this experiment will accomplish, need to get people excited! -->
+<!-- // DONE: IMAGE insert a gif of what this experiment will accomplish, need to get people excited! -->
+
+Here's a taste of what's in store:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/u5o5xAGO6ck" frameborder="0" allowfullscreen></iframe>
 
 
-Remember, when inventing and building new things, try to break the work down into bite sized chunks, that way you'll see progress much sooner and it will motivate you to keep going!
+When inventing and building new things, try to break the work down into bite sized chunks, that way you'll see progress much sooner and it will motivate you to keep going!
 
 <!-- LEDs -->
 ```{r child = '../../shared/led.md'}

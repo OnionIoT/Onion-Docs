@@ -240,6 +240,10 @@ void loop(){
 
 <!-- // TODO: PHOTO - GIF: include a gif of this -->
 
+Here's the experiment running in our lab:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/tMiiJ3QjdUQ" frameborder="0" allowfullscreen></iframe>
+
 We will be using the keypad to create a password protected system. After the user presses the `#` key, they will be prompted via serial to enter a password. If the entered password matches with the password set in by `char password[]`, which is `4321` by default, the blue LED on the Arduino Dock will light up for 3 seconds. If the wrong password has been entered, it will ask the user to press the `#` key again to retry.
 
 

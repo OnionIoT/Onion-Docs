@@ -186,6 +186,9 @@ void loop()
 The eight LEDs will light up like KITT from Knight Rider. The first LEDs will turn on, then the next will turn on and the previous one will turn off. This will repeat for all the LEDs in a loop from left to right and then from right to left. Only one LED should be lit up at a time.
 
 <!-- // TODO: GIF of experiment -->
+It should look a little like this:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/j6YaJ_SOlA8" frameborder="0" allowfullscreen></iframe>
 
 See, just like KITT:
 

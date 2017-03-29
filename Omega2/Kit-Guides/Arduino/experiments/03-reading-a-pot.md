@@ -85,7 +85,7 @@ Now that the potentiometer and LED are set up, let's connect them to the Arduino
 1. Lastly, we'll connect the right pin of the trimpot to `5V` on the Arduino Dock as a reference for our input voltage.
 
 
-If all goes well, your circuit should look something like this:
+If all goes well, your circuit should work like this:
 
 <!-- // DONE: IMAGE photo -->
 ![Completed trimpot dimming circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/03-assembled-circuit.jpg)
@@ -151,7 +151,9 @@ cat /dev/ttyS1
 
 It will print a digital value (0 to 1023), which has been converted from the analog output of the potentiometer. This value should also correspond to the brightness of the LED. What is `ttyS1`? It's actually the serial connection from the ATmega chip to the Omega! By reading the 'file', we can see the serial output from the ATmega chip through the Omega.
 
-<!-- // TODO: IMAGE gif -->
+<!-- // DONE: IMAGE gif -->
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/xg5L9innn3I" frameborder="0" allowfullscreen></iframe>
 
 #### A Closer Look at the Code
 <!-- // anything new that we introduced -->
