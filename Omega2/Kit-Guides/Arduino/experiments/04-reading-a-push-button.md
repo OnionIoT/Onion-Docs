@@ -93,7 +93,7 @@ The program for this experiment won't loop at all! Instead it'll setup a interru
 Copy the code below and flash it to give it a spin.
 
 ``` c
-#define NUM_LEDS		6
+#define NUM_LEDS        6
 
 // the pin number connected to the push button interrupt
 int interruptPin = 2;
@@ -102,7 +102,7 @@ int ledPins[] = {9, 8, 7, 6, 5, 4};
 // pin connected to the Arduino Dock LED
 int statusLedPin = 13;
 // a byte representing which LEDs are on
-//	we're only using 6 of the 8 bits since we've connected 6 LEDs
+//    we're only using 6 of the 8 bits since we've connected 6 LEDs
 volatile byte ledValues = B00000000;
 
 // This code runs once when the program starts, and no more
@@ -124,32 +124,32 @@ void setup() {
 
 // The code in here will run continuously until we turn off the Arduino Dock
 void loop() {
-	// blink the status LED
-	digitalWrite(statusLedPin, HIGH);
-	delay(1000);
-	digitalWrite(statusLedPin, LOW);
-	delay(1000);
+    // blink the status LED
+    digitalWrite(statusLedPin, HIGH);
+    delay(1000);
+    digitalWrite(statusLedPin, LOW);
+    delay(1000);
 }
 
 // ISR for a button press
 void setLedChain() {
-	// decide whether enabling or disabling LEDs
-	if ((ledValues >> (NUM_LEDS-1) ) & B00000001 == B00000001) {
-		// the last LED is on, start disabling the LEDs
-		//	shift all of the existing bits by 1, the least significant bit will be 0 (disabling the LED)
-		ledValues = ledValues << 1;
-	}
-	else {
-		// the last LED is not yet on, keep turning LEDs on
-		//	shift all of the existing bits by 1, set the least significant bit to 1
-		ledValues = (ledValues << 1) | B00000001;
-	}
+    // decide whether enabling or disabling LEDs
+    if ((ledValues >> (NUM_LEDS-1) ) & B00000001 == B00000001) {
+        // the last LED is on, start disabling the LEDs
+        //    shift all of the existing bits by 1, the least significant bit will be 0 (disabling the LED)
+        ledValues = ledValues << 1;
+    }
+    else {
+        // the last LED is not yet on, keep turning LEDs on
+        //    shift all of the existing bits by 1, set the least significant bit to 1
+        ledValues = (ledValues << 1) | B00000001;
+    }
 
-	// set all of the LEDs according to the ledValues byte
-	for (int index = 0; index < NUM_LEDS; index++) {
-		int value = (ledValues >> index) & B00000001;
-		digitalWrite(ledPins[index], value);
-	}
+    // set all of the LEDs according to the ledValues byte
+    for (int index = 0; index < NUM_LEDS; index++) {
+        int value = (ledValues >> index) & B00000001;
+        digitalWrite(ledPins[index], value);
+    }
 
 }
 ```

@@ -82,13 +82,13 @@ To use the library we need to `#include` it at the top of our code, by doing so,
 // include the Keypad library
 #include <Keypad.h>
 
-#define PASSWORD_LENGTH		4
+#define PASSWORD_LENGTH        4
 
-#define STATE_INIT 			0
-#define STATE_IDLE			1
-#define STATE_READ_INPUT	2
-#define STATE_CHECK_INPUT	3
-#define STATE_OPEN_SESAME	4
+#define STATE_INIT             0
+#define STATE_IDLE            1
+#define STATE_READ_INPUT    2
+#define STATE_CHECK_INPUT    3
+#define STATE_OPEN_SESAME    4
 
 // variable to hold the current state
 int state;
@@ -127,7 +127,7 @@ void setup(){
   pinMode (ledPin, OUTPUT);
 
   // set the state to the inital state
-  state 	= STATE_INIT;
+  state     = STATE_INIT;
 
   // initializing serial communication with the Omega
   Serial.begin(9600);
@@ -135,90 +135,90 @@ void setup(){
 }
 
 // function to compare input character array against password character array
-//	returns true or false based on if they're the same
+//    returns true or false based on if they're the same
 bool passwordMatch(char inputKeys[]) {
-	int i;
-	for (i = 0; i < PASSWORD_LENGTH; i++) {
-		if (inputKeys[i] != password[i]) {
-			// if the current input character doesn't match the password, exit the loop
-			break;
-		}
-	}
+    int i;
+    for (i = 0; i < PASSWORD_LENGTH; i++) {
+        if (inputKeys[i] != password[i]) {
+            // if the current input character doesn't match the password, exit the loop
+            break;
+        }
+    }
 
-	// only if all of the input characters match the password will the loop run all the way through (and i will be PASSWORD_LENGTH)
-	return (i == PASSWORD_LENGTH ? true : false);
+    // only if all of the input characters match the password will the loop run all the way through (and i will be PASSWORD_LENGTH)
+    return (i == PASSWORD_LENGTH ? true : false);
 }
 
 // function to make decisions on changing the state based on the current state and input from the keypad
 int stateDecisions(int currentState, char key) {
-	int nextState = currentState;	// by default, stay in the current state
+    int nextState = currentState;    // by default, stay in the current state
 
-	switch (currentState) {
-		case STATE_INIT:
-			// print the info message and immediately advance to the idle state
-			Serial.println("Please press # to enter the password");
-			nextState = STATE_IDLE;
-			break;
-		case STATE_IDLE:
-			// only advance to the reading input state if the # key has been entered
-			if (key == '#') {
-				// initialize variables used in the read input state
-				count = 0;
-				nextState = STATE_READ_INPUT;
-				Serial.println("Enter the password");
-			}
-			else if (key != NO_KEY) {
-				Serial.println("Come on, please press # to enter the password");
-			}
-			break;
-		case STATE_READ_INPUT:
-			if (key != NO_KEY) {
-				// store the input key in our input array
-				inputKeys[count] = key;
-				count++;	// increment the number of inputs we've received
+    switch (currentState) {
+        case STATE_INIT:
+            // print the info message and immediately advance to the idle state
+            Serial.println("Please press # to enter the password");
+            nextState = STATE_IDLE;
+            break;
+        case STATE_IDLE:
+            // only advance to the reading input state if the # key has been entered
+            if (key == '#') {
+                // initialize variables used in the read input state
+                count = 0;
+                nextState = STATE_READ_INPUT;
+                Serial.println("Enter the password");
+            }
+            else if (key != NO_KEY) {
+                Serial.println("Come on, please press # to enter the password");
+            }
+            break;
+        case STATE_READ_INPUT:
+            if (key != NO_KEY) {
+                // store the input key in our input array
+                inputKeys[count] = key;
+                count++;    // increment the number of inputs we've received
 
-				// only advance to the next state if we've collected the same number of digits as the length of the password
-				if (count == PASSWORD_LENGTH) {
-					nextState = STATE_CHECK_INPUT;
-				}
+                // only advance to the next state if we've collected the same number of digits as the length of the password
+                if (count == PASSWORD_LENGTH) {
+                    nextState = STATE_CHECK_INPUT;
+                }
 
-				// print the key that was entered (for debugging purposes)
-				Serial.println(key);
-			}
- 			break;
-		case STATE_CHECK_INPUT:
-			// only if the input matches the password do we open sesame (advance to the password success state)
-			if (passwordMatch(inputKeys) == true) {
-				nextState = STATE_OPEN_SESAME;
-			}
-			else {
-				Serial.println("Wrong password!");
-				nextState = STATE_INIT;
-			}
-			break;
-		case STATE_OPEN_SESAME:
-			// execute the protected content
-			passwordSuccess();
-			// go back to the very beginning
-			nextState = STATE_INIT;
-			break;
-		default:
-			Serial.println("Wrong password!");
-			break;
-	}
+                // print the key that was entered (for debugging purposes)
+                Serial.println(key);
+            }
+             break;
+        case STATE_CHECK_INPUT:
+            // only if the input matches the password do we open sesame (advance to the password success state)
+            if (passwordMatch(inputKeys) == true) {
+                nextState = STATE_OPEN_SESAME;
+            }
+            else {
+                Serial.println("Wrong password!");
+                nextState = STATE_INIT;
+            }
+            break;
+        case STATE_OPEN_SESAME:
+            // execute the protected content
+            passwordSuccess();
+            // go back to the very beginning
+            nextState = STATE_INIT;
+            break;
+        default:
+            Serial.println("Wrong password!");
+            break;
+    }
 
-	return nextState;
+    return nextState;
 }
 
 // code to run when successfully detected password
 void passwordSuccess(){
-	Serial.println("Correct password! LED On!");
-	 // turn the LED on
-	digitalWrite (ledPin, HIGH);
-	// keep it on for 3 seconds
-	delay(3000);
-	// turn the LED off again
-	digitalWrite (ledPin, LOW);
+    Serial.println("Correct password! LED On!");
+     // turn the LED on
+    digitalWrite (ledPin, HIGH);
+    // keep it on for 3 seconds
+    delay(3000);
+    // turn the LED off again
+    digitalWrite (ledPin, LOW);
 }
 
 

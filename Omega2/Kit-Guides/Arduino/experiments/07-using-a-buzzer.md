@@ -83,16 +83,16 @@ void setup() {
 
 // The code in here will run continuously until we turn off the Arduino Dock
 void loop() {
-	// read the state of the push button
-	int state = digitalRead(pollingPin);   
+    // read the state of the push button
+    int state = digitalRead(pollingPin);   
 
-	// we want to:
-	//   ring the buzzer (buzzer HIGH) when the button is pressed (button LOW)
-	//   not buzz (buzzer LOW) when the button is released (button HIGH)
-	// note that the buzzer state is opposite of the button state
-	digitalWrite(buzzerPin, !state);
+    // we want to:
+    //   ring the buzzer (buzzer HIGH) when the button is pressed (button LOW)
+    //   not buzz (buzzer LOW) when the button is released (button HIGH)
+    // note that the buzzer state is opposite of the button state
+    digitalWrite(buzzerPin, !state);
 
-	delay(10);
+    delay(10);
 }
 ```
 
@@ -172,7 +172,7 @@ void loop() {
 }
 
 // Interrupt Service Routine (ISR)
-//	set the buzzer pin to the appropriate state based on the current push button input value
+//    set the buzzer pin to the appropriate state based on the current push button input value
 void changeState() {
   // flip the push button input value since it is inverted due to the debouncing circuit
   state = !state;
