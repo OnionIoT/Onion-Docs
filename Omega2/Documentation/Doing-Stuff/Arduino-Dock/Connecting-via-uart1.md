@@ -2,11 +2,13 @@
 
 One of the method of communicating between the Omega and the microcontroller ATmega is through the serial interface UART1. The UART connection provides two-way communication using two pins on the Omega: TXD (transmitting from Omega) and RXD (receiving from ATmega).
 
-// TODO: diagram Omega RXD and TXD to ATmega TXD and RXD on UART1
+<!-- // DONE: diagram Omega RXD and TXD to ATmega TXD and RXD on UART1 -->
+![Serial pin layout on the Arduino Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/arduino-dock-uart-diagram.png)
 
-There are two UART ports on the Omega: UART0 and UART1. The port UART1 is used to connected the Omega to the ATmega on the Arduino Dock 2.
+There are two UART ports on the Omega: UART0 and UART1. The port UART1 is used to connect the Omega to the ATmega on the Arduino Dock 2.
 
-// TODO: image of Arduino Dock 2 UART1
+<!-- // DONE: image of Arduino Dock 2 UART1 -->
+![Where the UART1 pins are located on the expansion header](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/arduino-dock-uart1-labelled.png)
 
 In order to communicate between Omega and the ATmega, we use command line or python script to send and receive data on the Omega. On the ATmega side, we flash the microcontroller with a sketch to read and write data.
 
@@ -16,9 +18,9 @@ One important thing to note is the baud rate, which is the rate at which the dat
 
 ### Flashing the ATmega to communicate with the Omega
 
-First we need to flash the ATmega with a sketch, programming it to read and/or write data:
+First we need to flash the ATmega with a sketch, programming it to read and/or write data. Details on flashing the dock can be found in the relevant [article](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html#flash-arduino-dock-wirelessly) in the Onion Docs.
 
-// TODO: reference flashing ATmega
+<!-- // DONE: reference flashing ATmega -->
 
 We will use the serial library from the Arduino IDE:
 
