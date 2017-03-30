@@ -6,27 +6,15 @@ devices: [ Omega , Omega2 ]
 order: 4
 ---
 
-// TODO: be consistent, always capitalize OLED, OLED Expansion, Python
+<!-- // DONE: be consistent, always capitalize OLED, OLED Expansion, Python -->
 
 ## Writing Text to the OLED Display {#maker-kit-oled-writing-text}
 
 In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python module for the OLED Expansion. By the end, you'll be able to boot it up, and write whatever you wish!
 
+```{r child='../shared/oled-info.md'}
+```
 
-### The OLED Display
-
-// TODO: come back to this when merged with master branch
-//	-> can reuse this text in all of the OLED articles (Hardware Overview, C Library, Python Module, Node Module)
-
-The OLED Expansion has a resolution of 128x64 pixels. It is addressable by 128 vertical columns and 8 horizontal pages.
-
-![display](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-column-rows.png)
-
-Each page consists of 8 horizontal pixel rows. When a byte is written to the display, the Least Significant Byte (LSB) corresponds to the top-most pixel of the page in the current column. The Most Significant Byte (MSB) corresponds to the bottom-most pixel of the page in the current column.
-
-![display](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-not-colored-in.png)
-
-The display keeps a cursor pointer in memory that indicates the current page and column being addressed. The cursor will automatically be incremented after each byte is written, the cursor can also be moved by the user through functions discussed later. When writing text to the display, each character is 6 columns wide and 1 page long. This means that 8 lines of text each 21 characters long, can be written to the OLED display.
 
 ### Building the Circuit
 
@@ -39,9 +27,9 @@ This tutorial does not require you to use a breadboard as the OLED Expansion is 
 
 ### Writing the Code
 
-// TODO: avoid saying things like 'fairly simple', will make beginners feel bad when they struggle
+<!-- // DONE: avoid saying things like 'fairly simple', will make beginners feel bad when they struggle -->
 
-The code we'll be writing is fairly simple, we'll be calling on the `oledExp` class from the `OmegaExpansion` Python Module and using the built in functions to print a bunch of stuff.
+The code we'll be writing is straightforward: we'll be calling on the `oledExp` class from the `OmegaExpansion` Python Module and using the built in functions to print a bunch of text.
 
 Create a file called `MAK04-oledWriteText.py` and paste the following code in it:
 
@@ -58,26 +46,30 @@ quoteArray = ['Banging your head against a wall burns 150 calories an hour.',
 'If you lift a kangaroos tail off the ground it cannot hop.']
 
 def main():
-    # TODO: comment briefly describing the actions that follow
+    # This bit creates a datetime object that represents a snapshot of the time when this line is run
+    # The data in it (hours, seconds, etc.) will be extracted to display on the OLED screen
     dateTimeObj = datetime.datetime.now()
     hour = dateTimeObj.hour
     sec = dateTimeObj.second
 
-    # TODO comment
+    # The minute data is stored as an integer in the datetime object, however it needs to have a leading zero for numbers less than 10
+    # This section first converts the minute to a string, then checks if it's less then 10, adding a needed zero if it is
     minute = str(dateTimeObj.minute)
     if dateTimeObj.minute < 10:
         minute = "0" + minute
 
-    # TODO: comment briefly describing the actions that follow
+    # The 'hour' attribute of dateTimeObj is stored in 24hr format, this part checks for AM/PM differences and converts the time to 12hr format, creating a variable to store the 'AM/PM' string along the way
     if(hour/12 == 0):
         day = "AM"
         hour = str(hour % 12)
     else:
         day = "PM"
         hour = str(hour % 12)
-    dateTimeStr = hour+":"+minute+" "+day
+        
+    # assembing the data into a properly formatted time string
+    dateTimeStr = hour + ":" + minute + " " + day
 
-    # TODO: comment briefly describing the actions that follow
+    # Creates a greeting based on the time of day
     if(dateTimeObj.hour < 12):
         greeting = "Good Morning"
     elif(17 > dateTimeObj.hour >= 12):
@@ -88,16 +80,18 @@ def main():
     # Initialize the display
     oledExp.driverInit()
 
-    # TODO: comment briefly describing the actions that follow
+    # Preps the OLED screen to display text
     oledExp.setTextColumns()
+
+    # Writes out the time of day to the OLED display in a specific location
     oledExp.setCursor(0,13)
     oledExp.write(dateTimeStr)
 
-    # TODO: comment briefly describing the actions that follow
+    # Writes the greeting to a different location so it doesn't overwrite the time of day
     oledExp.setCursor(2,0)
     oledExp.write(greeting)
 
-    # TODO: comment briefly describing the actions that follow
+    # Writes out a random quote, again in a new location
     oledExp.setCursor(4,0)
     oledExp.write(quoteArray[sec%5])
 
@@ -129,10 +123,10 @@ This is a very rudimentary  way of generating a random number, and it is not act
 
 ### Pseudo-Random vs. True Random
 
-// TODO: avoid using 'extremely simplified', again, can make beginners feel bad
+<!-- // DONE: avoid using 'extremely simplified', again, can make beginners feel bad -->
 
-Securing messages on the internet is currently the biggest way random numbers are used right now. Almost all methods of sending and receiving secure messages need truly random numbers. As an extremely simplified explanation, if the numbers used are generated from an algorithm (like the one above), the secure message can be decoded by copying the algorithm and predicting the random number output. Cyber-security is a much much larger topic than we can cover here. If you are interested, there's a great deal of resources available online from much more qualified sources.
+Securing messages on the internet is currently the biggest way random numbers are used right now. Almost all methods of sending and receiving secure messages need truly random numbers. If the numbers used are generated from an algorithm (like the one above), the secure message can be decoded by copying the algorithm and predicting the random number output. Cyber-security is a much much larger topic than we can cover here. If you are interested, there's a great deal of resources available online from much more qualified sources. Cloudflare has a great [blog post](https://blog.cloudflare.com/why-randomness-matters) with an excellent example of where pseudo-random numbers fall short in security if you want to read more about it.
 
-// TODO: any time you mention that resources are available online, link to at least one of them
+<!-- // DONE: any time you mention that resources are available online, link to at least one of them -->
 
 Next time, we [fiddle with the screen](#maker-kit-oled-change-settings).
