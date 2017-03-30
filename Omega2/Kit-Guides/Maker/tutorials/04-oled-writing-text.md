@@ -29,7 +29,7 @@ This tutorial does not require you to use a breadboard as the OLED Expansion is 
 
 <!-- // DONE: avoid saying things like 'fairly simple', will make beginners feel bad when they struggle -->
 
-The code we'll be writing is straightforward: we'll be calling on the `oledExp` class from the `OmegaExpansion` Python Module and using the built in functions to print a bunch of text.
+The code we'll be writing is straightforward: we'll be calling on the `oledExp` class from the `OmegaExpansion` Python Module and using the built in functions to print a bunch of text. For more details on the Oled Expansion Python Class and Module, check out the [software  module reference](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) in the Omega2 Docs.
 
 Create a file called `MAK04-oledWriteText.py` and paste the following code in it:
 
@@ -39,6 +39,7 @@ import time
 import datetime
 import math
 
+# array of quotes that we will be displaying
 quoteArray = ['Banging your head against a wall burns 150 calories an hour.',
 'In the UK, it is illegal to eat mince pies on Christmas Day!',
 'When hippos are upset, their sweat turns red.',
@@ -46,14 +47,14 @@ quoteArray = ['Banging your head against a wall burns 150 calories an hour.',
 'If you lift a kangaroos tail off the ground it cannot hop.']
 
 def main():
-    # This bit creates a datetime object that represents a snapshot of the time when this line is run
-    # The data in it (hours, seconds, etc.) will be extracted to display on the OLED screen
+    # instantiate datetime object that represents a snapshot of the time when this line is run
+    # 	we'll be displaying the data (hours, minutes, etc) on the OLED
     dateTimeObj = datetime.datetime.now()
     hour = dateTimeObj.hour
     sec = dateTimeObj.second
 
     # The minute data is stored as an integer in the datetime object, however it needs to have a leading zero for numbers less than 10
-    # This section first converts the minute to a string, then checks if it's less then 10, adding a needed zero if it is
+    # 	This section first converts the minute to a string, and adds a leading zero if the number is less than 10
     minute = str(dateTimeObj.minute)
     if dateTimeObj.minute < 10:
         minute = "0" + minute
@@ -65,11 +66,11 @@ def main():
     else:
         day = "PM"
         hour = str(hour % 12)
-        
-    # assembing the data into a properly formatted time string
+
+    # assembling the time data into a properly formatted time string
     dateTimeStr = hour + ":" + minute + " " + day
 
-    # Creates a greeting based on the time of day
+    # create a greeting based on the time of day
     if(dateTimeObj.hour < 12):
         greeting = "Good Morning"
     elif(17 > dateTimeObj.hour >= 12):
@@ -91,9 +92,10 @@ def main():
     oledExp.setCursor(2,0)
     oledExp.write(greeting)
 
-    # Writes out a random quote, again in a new location
+    # Writes out one of our quotes 'randomly', again in a new location
     oledExp.setCursor(4,0)
     oledExp.write(quoteArray[sec%5])
+
 
 if __name__ == '__main__':
     main()
