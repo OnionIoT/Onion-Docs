@@ -167,7 +167,7 @@ Here's what it looks like when it's all wired up:
 ```{r child = '../../shared/wiring-precautions.md'}
 ```
 
->There is a reason we use the `GND` and `Vcc` pins on the **PWM expansion** instead on the header pins from the dock. If it's connected to the header pins, the motor will feedback voltage to the expansion dock. This can cause a boot-loop or other unpredictable behaviour with the omega. The PWM expansion's `Vcc`/`GND` pins have circuit breaking diodes in place to prevent this.
+>There is a reason we use the `GND` and `Vcc` pins on the **PWM expansion** instead on the header pins from the Dock. If it's connected to the header pins, the motor will feedback voltage to the expansion Dock. This can cause a boot-loop or other unpredictable behaviour with the omega. The PWM expansion's `Vcc`/`GND` pins have circuit breaking diodes in place to prevent this.
 
 
 
