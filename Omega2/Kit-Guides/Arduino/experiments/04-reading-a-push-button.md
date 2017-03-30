@@ -205,8 +205,6 @@ In our code, we attach a interrupt to one of the pins using the built-in Arduino
 
 <!-- // DONE: this section needs a table showing the progression of the values of the ledValues variable based on button presses -->
 
-In this code we also added a byte variable `ledValues` to demonstrate how bitwise operation works. For in-depth reference, check out this [Bit Math](http://playground.arduino.cc/Code/BitMath) in the Arduino Playground.
-
 Binary numbers are numbers whose digits can only be 1 or 0. You can write a binary number in an Arduino sketch by adding a `B` in front of it, such as `B00101001`. See the below table for the first few binary numbers:
 
 | Binary | Decimal |
@@ -220,9 +218,11 @@ Binary numbers are numbers whose digits can only be 1 or 0. You can write a bina
 
 and so on. The number of 0s in front of the number do not affect the number's value.
 
-Binary numbers with 8 digits are known as **bytes**. You can declare `byte`-type variables in Arduino if you want to limit their size to only 8 bits. In our case, that's more than enough.
+Binary numbers with 8 digits are known as **bytes**. You can declare `byte`-type variables in Arduino if you want to limit their size to only 8 bits. In our case, that's more than enough, so we declare a `byte` variable called `ledValues`.
 
 Bits are typically numbered from right to left. Thus, the first bit of a number would be the one on the farthest right, the 2nd would be on its left, and so on.
+
+For in-depth reference, check out this [Bit Math](http://playground.arduino.cc/Code/BitMath) in the Arduino Playground.
 
 #### Bitwise Operations
 

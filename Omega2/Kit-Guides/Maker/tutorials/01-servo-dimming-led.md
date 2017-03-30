@@ -6,33 +6,47 @@ devices: [ Omega , Omega2 ]
 order: 1
 ---
 
-// TODO: give this a read-through before diving into editing, some typos and gramatical errors need to be fixed
+<!-- // TODO: give this a read-through before diving into editing, some typos and gramatical errors need to be fixed
 
 // TODO: always capitalize Onion products: PWM Expansion, Expansion Dock, on the Dock, etc
-
-// TODO: Expansion Dock GPIOs should be referred to as Omega GPIOx, can include 'on the Expansion Header' to make it clear
-// TODO: the 5V, 3.3V, and GND pins should be referred to as 5V, 3.3V, and GND pins on the Expansion Header
+-->
 
 ## Dimming LEDs {#maker-kit-servo-dimming-led}
 
 <!-- // DONE: need to capitalize Python EVERYWHERE -->
 
-// TODO: this first sentence is pretty awkward even though we're doing something pretty awesome
+<!-- // DONE: this first sentence is pretty awkward even though we're doing something pretty awesome -->
 
-In this tutorial, we will be learning how to use the PWM Expansion with Python and animating 16 LEDs along the way. We'll be wiring LEDs to the PWM expansion using a breadboard, then we'll write some code to light up the LEDs for a mini light show.
+Welcome to the Maker Kit! We hope you're as excited as we are to get cracking with your fancy Onion Expansions.
 
+In this tutorial, we'll learn how to control the PWM Expansion with Python, and we'll use it to control a whopping **16 LEDs**. We'll connect the LEDs to a breadboard, then we'll write some code to light up the LEDs for a mini light show!
 
 <!-- pwm -->
 ``` {r child = '../../shared/pwm.md'}
 ```
 
-// TODO: let's include a section on LEDs. No need to include the whole led.md thing, just a small refresher on the anode, cathode, and need for a current limiting resistor. make sure to link back to the first experiment from the starter kit
+<!-- // DONE: let's include a section on LEDs. No need to include the whole led.md thing, just a small refresher on the anode, cathode, and need for a current limiting resistor. make sure to link back to the first experiment from the starter kit -->
+
+
+Let's quickly review a bit about LEDs:
+
+* LEDs only allow current to flow in one direction. When current flows through them, they light up!
+* They are polarized and have two ends: 
+    * The **anode**, where current enters. Connect this side towards the power rail or high voltage.
+    * The **cathode**, where current exits. Connect this side towards the next component in series or ground.
+* They need a resistor to limit the current that flows through them; too much will burn them out. At 3.3V, the 200Ω resistors can provide enough resistance.
+
+You can take a quick look at the [first Starter Kit experiment](#starter-kit-blinking-led) for full details.
 
 ### Building the Circuit
 
 <!-- // 16 LEDs connected to the Servo Expansion -->
 
-For this circuit, we will connect one LED to each of the 16 channels (0-15) on the PWM Expansion. Using the breadboard here will keep things organised.
+For this circuit, we will connect one LED to each of the 16 channels (0-15) on the PWM Expansion. Using the breadboard here will keep things organized.
+
+We will be building the following circuit:
+
+![Circuit diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/diagrams/01-circuit-diagram.png)
 
 #### What You'll Need
 
@@ -53,7 +67,7 @@ Each LED will be connected to the board in the same way, so we'll cover wiring a
 
 1. Find the anode and the cathode of your LED, make note of which one is where, then plug the LED across the channel of your breadboard on any row you wish (on columns `e` and `f`)
     * The most reliable way to find the anode/cathode isn't the length of the pins, it's by examining the [diode](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/LED%2C_5mm%2C_green_%28en%29.svg/432px-LED%2C_5mm%2C_green_%28en%29.svg.png) inside the plastic head.
-1. Take a 200Ω resistor and use it to connect the row you've plugged the LED's into with the column labelled `-` right next to it.
+1. Take a 200Ω resistor and use it to connect the LED's cathode to the column labelled `-`.
     * We'll call the `-`labelled column the **`GND` rail**.
 1. Now connect the `GND` rail to the `GND` pin on channel `S0` of your PWM Expansion with one M-M jumper
 1. Find the signal pin of any channel. We'll start at channel 0 (`S0` on the PWM Expansion).
@@ -63,7 +77,8 @@ Each LED will be connected to the board in the same way, so we'll cover wiring a
 
 If your circuit now looks like this:
 
-<!-- // TODO: IMAGE picture and/or circuit diagram -->
+<!-- // DONE: IMAGE picture and/or circuit diagram -->
+![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/01-assembled-circuit.jpg)
 
 Then we're all set!
 
@@ -89,7 +104,7 @@ class OmegaPwm:
         bInit     = pwmExp.checkInit()
 
         if (bInit == 0):
-            # initialize the expansion
+            # initialize the Expansion
             ret     = pwmExp.driverInit()
             if (ret != 0):
                 print 'ERROR: pwm-exp init not successful!'
@@ -121,7 +136,7 @@ class OmegaPwm:
 
 Now let's write the script for the experiment. Create a file called `MAK01-pwmLed.py` and throw the following code in it. Then run it and keep an eye on your LEDs:
 
-// TODO: the code is good, just need comments to describe what we're actually doing!
+<!-- // TODO: the code is good, just need comments to describe what we're actually doing! -->
 
 ``` python
 from motors import OmegaPwm
@@ -171,22 +186,25 @@ if __name__ == '__main__':
 
 You should see a wave like effect across the LEDs when they are placed beside each other in order from 0 to 15.
 
-// TODO: IMAGE add gif/video of LEDs working
+<!-- // TODO: IMAGE add gif/video of LEDs working -->
 
 This code uses an infinite loop, so you'll have to terminate the script with `Ctrl-C`.
 
 
 ### A Closer Look at the Code
 
-// TODO: this second sentence tries to do many things, let's split it up and talk about how each object is tied to a particular channel when it is instantiated. can also move that last sentence up to the description of the class. and THEN talk about what the setDutyCycle class does
-This code does two major things. First, it specifies a generic class for a PWM channel. This generic class has a function `setDutyCycle()` that sets the specified duty cycle on the particular channel that the class has been instantiated with. By creating an object for each output channel, we can set the brightness of each LED individually.
+<!-- // TODO: this second sentence tries to do many things, let's split it up and talk about how each object is tied to a particular channel when it is instantiated. can also move that last sentence up to the description of the class. and THEN talk about what the setDutyCycle class does -->
+There are two major things we do here. 
+
+* First, it specifies a generic class for a PWM channel. This generic class has a function `setDutyCycle()` that is used to set each channel's duty cycle. 
+* We then set the brightness of each LED individually by creating an object for each output channel.
 
 Some points of interest here:
 
 * Creating objects from classes
 * Using the PWM Python Module
 
-Additionally, this code has a lot of mathematical operators, if you're confused, here's a cheat-sheet of what do the operators do:
+Additionally, this code has a lot of mathematical operators. If you're confused, here's a cheat-sheet of what do the operators do:
 
 |    Operator   | Effect                                       |
 |:-------------:|----------------------------------------------|
@@ -200,9 +218,9 @@ Additionally, this code has a lot of mathematical operators, if you're confused,
 > // TODO: include a link to a page that describes sines, radians, etc
 
 
-#### Creating a class
+#### Creating a Class
 
-// TODO: bask in your glory, this paragraph is great!
+<!-- // bask in your glory, this paragraph is great! -->
 
 As a refresher, Python is an **Object Oriented** programming language.
 
@@ -212,13 +230,14 @@ As a refresher, Python is an **Object Oriented** programming language.
 
 <!-- DONE: link properly to shift register article when lazar's finished -->
 
-To see another example of another example of classes in Python, check out the [shift register](#shift-register-creating-classes) article where we first introduced them.
+To see another example of classes in Python, check out the [shift register](#shift-register-creating-classes) article where we first introduced them.
 
-In our case, we used the class `OmegaPwm` as a blueprint for a single PWM output channel. By creating objects of this class, we can represent and control an actual PWM channel on the board. When we call the `OmegaPwm()` function with arguments `i` and `PWM_FREQUENCY` we're initializing an object of the `OmegaPwm` class representing channel `i` on the expansion. Once we instantiate each channel object we store the objects inside of a list, such that their index corresponds to the channel number. This makes the rest of our code a little simpler. // TODO: include a small teaser of how it makes it simpler, or just say, 'as you'll see below'
+In our case, we used the class `OmegaPwm` as a blueprint for a single PWM output channel. By creating objects of this class, we can represent and control an individual PWM channel on the board. When we call the `OmegaPwm()` function with arguments `i` and `PWM_FREQUENCY` we're initializing an object of the `OmegaPwm` class representing channel `i` on the Expansion. Once we instantiate each channel object we store the objects inside of a list, such that their index corresponds to the channel number. This makes the rest of our code a little simpler, as you'll soon see below. 
+<!-- // DONE: include a small teaser of how it makes it simpler, or just say, 'as you'll see below' -->
 
 #### Using the Onion PWM Expansion Python Module
 
-Python's functionality can be expanded with modules and packages - like extra lego sets allowing you to build more complex things. Here we use the PWM module (pyPwmExp) to control the PWM expansion. The module comes with a set of functions to control and modify the PWM expansion channels and properties. By running a script to control the expansion, you don't need to manually need to enter or trigger any commands through the terminal. You can simply leave it running, and it would automatically do its job!
+Python's functionality can be expanded with modules and packages - like extra lego sets allowing you to build more complex things. Here we use the PWM module (pyPwmExp) to control the PWM Expansion. The module comes with a set of functions to control and modify the PWM Expansion channels and properties. By running a script to control the Expansion, you don't need to manually need to enter or trigger any commands through the terminal. You can simply leave it running, and it would automatically do its job!
 
 You can find a detailed guide to this module in the [pyPwmExp library](#pwm-expansion-python-module) reference in the Onion docs.
 
@@ -234,7 +253,7 @@ Specifically, we use the following functions:
 
 In `omegaPwm.py`, you'll notice the servo frequency was set to 1000 Hz. This is to ensure the LED doesn't flicker no matter what duty cycle we set the channel to output. This is done in the class' constructor function by passing `PWM_FREQUENCY` as the 2nd argument. For each channel, we can change the duty cycle on the fly by calling `setupDriver()` and sending in the channel, and the duty cycle (recall that this is between 0% and 100%). By changing the duty cycle, we change the average voltage sent to the LED connected to the channel - this is how the LEDs dim and brighten.
 
-Instantiating an `OmegaPwm` object requires a channel number and frequency. Note that if you change the frequency of one channel (through initialization or `setFrequency()`), you change it for **all** channels. This is because the PWM expansion only has one oscillator shared between all the outputs.
+Instantiating an `OmegaPwm` object requires a channel number and frequency. Note that if you change the frequency of one channel (through initialization or `setFrequency()`), you change it for **all** channels. This is because the PWM Expansion only has one oscillator shared between all the outputs.
 
 ##### Initializing the PWM Expansion
 
@@ -244,14 +263,14 @@ If you look at the constructor (the `__init__` function), you will notice the li
 pwmExp.driverInit()
 ```
 
-This line initializes the PWM expansion for usage. This starts the oscillator on the PWM expansion which actually produces the signals sent through the pins. Without this line, the oscillator will be off and the expansion won't respond! //TODO: technically, it would respond, but it wouldn't produce any pwm signals
+This line initializes the PWM Expansion for usage. This starts the oscillator on the PWM Expansion which actually produces the signals sent through the pins. Without this line, the oscillator will be off and the Expansion won't respond! //TODO: technically, it would respond, but it wouldn't produce any pwm signals
 
-Before we initialize the oscillator, we can check if it's already on with `pwmExp.checkInit()`. By checking the return value we can avoid initializing it multiple times. For the PWM expansion in particular, initializing it multiple times doesn't really matter much. However initialization for other hardware devices may take quite a while, so it's a pretty good habit to get into to save you some time.
+Before we initialize the oscillator, we can check if it's already on with `pwmExp.checkInit()`. By checking the return value we can avoid initializing it multiple times. For the PWM Expansion in particular, initializing it multiple times doesn't really matter much. However initialization for other hardware devices may take quite a while, so it's a pretty good habit to get into to save you some time.
 
 ### What's Math?
 
 You'll notice a lot of mathematical operations going on with the math module in Python. Combined, this allows the brightness of the LEDs to vary sinusoidally. Python's built in mathematical operations are pretty powerful, but it does have some pitfalls which we'll go over next tutorial.
 
-// TODO: maybe include a graphic and/or more text to explain what you mean by vary sinusoidally. We don't want to make the readers feel dumb
+<!-- // TODO: maybe include a graphic and/or more text to explain what you mean by vary sinusoidally. We don't want to make the readers feel dumb -->
 
 Next time, we will [control servos](#maker-kit-servo-controlling-servo) with the PWM Expansion.
