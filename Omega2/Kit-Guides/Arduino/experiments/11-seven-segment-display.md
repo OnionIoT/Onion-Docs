@@ -289,33 +289,20 @@ In addition, we can also add decimal points in the string we send from the Omega
 
 ### A Closer Look at the Code
 
+There's lots going on in this code, but the main operations are to receive character data through the serial port, translate the characters to data that can be displayed on the 7-segment display, and then actively display all of those characters on the display.
 
+The topics that we're going to take a closer look at include:
 
-Cover the following:
-
-* character encoding array
-	* made manually
-	* explain static const
-* setup function explain what we're doing
-* displaying the digits
-	* looping through each digit
-		- delay before disabling (for human eye)
-	* looping through each segment
-		- explain bit shifts
-* reading and converting serial input
-	* reading serial data
-	* convert to char array and process each char one-by-one
-	* ascii table representation & mapping to our digit array
-	 	- special treatment of dot character
-	* ending the loop early
-* diff b/w declaring and defining functions
-
-
-There's lots going on in this code, ...
+* A description of the overall flow of the program
+* How characters are encoded to be displayed with 7 segments
+* How we actually show the characters on the display and what's really happening vs what it looks like is happening. This part will cover **bitwise operations**.
+* Capturing and converting serial input
+* A distinction between declaring and defining functions
 
 #### Program Flow
 
 In the `setup()` function, we do the following:
+
 * Initialize serial communication with the Omega
 * Initialize all of the pins controlling the digit select (scan) pins on the 7-segment display as Output pins
 	* Set all of them to HIGH to disable all of the digit selects. Since all of the segment LED anodes are connected to the digit select pins, setting them to HIGH will stop any and all current from flowing through the LEDs. A digit select pin needs to be set to LOW (and a segment pin set to HIGH) in order for current to flow through and illuminate the LED
@@ -426,9 +413,23 @@ As an example, let's say the value in `currentCharacter` is `B01011011`, the enc
 | Dp      | 7                    | B00000000                            | B00000000                                   | Off         |
 
 
-##### Reading and Converting Serial Input
+##### For the Human Eye
+
+We've covered how displaying a character actually works:
+
+1. Enable the digit select
+2. Light up the segments to actually create the digit
+3. Wait just long enough for the human eye to register the light
+4. Disable the digit select
+5. Move on to the next digit and repeat the process
+
+So, while it looks like all four characters are on at the same time, each digit is only lit up for a fraction of a second before the microcontroller moves on to light up the next digit and the next. It all just happens so fast that the human eye can't register that the first character actually turned off before the second character was displayed. And it appears to us that all four characters are lit up the entire time.
+
+That's why we run the `displayDigits()` function in every loop iteration; to maintain this visual effect. Try experimenting with increasing or decreasing the delay between digits in the `displayDigits()` function or by adding a delay to the main `loop()`.
 
 
+
+#### Reading and Converting Serial Input
 
 In each iteration of the `loop()` function, the code will check for available data on the Serial port. When we do send data from the Omega through UART1, there will be available bytes on the serial line that we'll store as a String variable:
 
@@ -479,7 +480,7 @@ Declaring a function lets the compiler know that this function will be defined l
 
 In this case, this was done for mostly illustrative purposes, but this is an important programming concept to keep in mind.
 
-
+<!-- TODO: complete this section -->
 <!-- #### Going Further: Adding Automation
 
 Let's say you wanted to use the 7-segment display to show the current time. The Omega will then have to send the current time to the microcontroller via serial once a minute. Luckily, there's a tool in Linux that serves exactly this purpose!
@@ -488,7 +489,8 @@ We can use the `cron` Linux utility to automatically run a command once every mi
 
 Run `crontab -e` to edit the file that contains cron commands and schedules to run them, and add this line to the end of the file:
 
-// TODO: test and complete this code
+// TODO: figure out how to print just the hours and minutes in 24 hour.
+// TODO: figure out how to run that with cron
 
 ```
 * * * * * echo <DATE> > /dev/ttyS1
