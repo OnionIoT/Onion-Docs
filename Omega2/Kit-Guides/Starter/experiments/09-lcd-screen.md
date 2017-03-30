@@ -344,6 +344,8 @@ This is an incredibly common programming technique and is at the heart of Object
 
 ### Going Further: Automating the Script
 
+<!-- // TODO: update this so that it runs the python script directly -->
+
 We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
 
 First, take note of which directory your scripts are in by running the command `pwd`. If you're developing in the `/root` folder, you will see:
@@ -386,6 +388,8 @@ Finally, run the following command to restart cron so it can start running your 
 ```
 
 Your LCD should now update once a minute, and you're free to use your Omega for other things in the meantime!
+
+To learn more about `cron` on the Omega, see the article on [running a command based on a schedule](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html) in the Omega2 documentation.
 
 #### Known Issues
 

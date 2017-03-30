@@ -221,8 +221,6 @@ Heres what it looks like:
 
 ### A Closer Look at the Code
 
-**COMING SOON!**
-
 <!-- // TODO: update the below based on the latest code -->
 
 In this code, we introduce a very important, new concept: Object Oriented Programming (OOP). We will take a look at some of the key elements of OOP: classes, objects, constructors and class members.
@@ -234,7 +232,7 @@ In this code, we introduce a very important, new concept: Object Oriented Progra
 
 In our experiment, we have two servos, they operate in the same way but some attributes (parameters) are slightly different: attached pin number, minimum pulse width, maximum pulse width. This is exactly the kind of scenario that spurred the creation of Object Oriented Programming. Ultimately, the goal of OOP is to model programmatic interactions as objects interacting with each other.
 
-To that end, we create **objects** that represent this model. In this experiment, our objects are the two servos we use. 
+To that end, we create **objects** that represent this model. In this experiment, our objects are the two servos we use.
 
 Objects don't normally appear out of thin air - the computer needs to know how they will work before they can be created. To that end, objects are created as **instances** of templates known as **classes**. A class will define what attributes its objects will have, and the functions that interact with the attributes.
 
@@ -244,7 +242,7 @@ Objects don't normally appear out of thin air - the computer needs to know how t
 
 #### Classes
 
-So if classes are templates, how do we use them? 
+So if classes are templates, how do we use them?
 
 There's two steps. First we need to create the class itself. Once the class is created, then we can create objects from the class - more specifically, instances of the class.
 
@@ -261,7 +259,7 @@ This is our class definition! All the code inside defines what an instance of `S
 
 >Most object oriented languages allow functions inside classes to be executed without an instance under certain conditions.
 
-Generally in a language that supports OOP, classes must be declared and loaded into a program before instances of that class can be created. 
+Generally in a language that supports OOP, classes must be declared and loaded into a program before instances of that class can be created.
 
 
 #### Objects
@@ -334,7 +332,7 @@ To actually make some serviceable objects, we call the `new` keyword in our `set
 
 >A pointer is a variable that is exactly the size of a memory address on the system it's created in. It's a highly useful construct in C/C++ and arduino code as it enables arrays, objects and other kinds of complex data structures.
 
-Note that `ServoMotor` instances can only be defined after our `ServoMotor` class has been defined. That's why we declare the object pointers after the class definition. 
+Note that `ServoMotor` instances can only be defined after our `ServoMotor` class has been defined. That's why we declare the object pointers after the class definition.
 
 Once we have the two objects instantiated, we can call `setAngle()` on either of the two objects in our main program:
 
