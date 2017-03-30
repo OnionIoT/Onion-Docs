@@ -199,7 +199,7 @@ See, just like KITT:
 
 We are only using three Arduino Dock pins to control eight LEDs by taking advantage of the shift register. Lets begin by declaring the three pin variables (`latchPin`, `clockPin` and `dataPin`) and initializing the three pins as output in `setup()`.
 
-Each time we want to light up a different LED, we **update the shift register** to send the shift register new signals for each LED. We also create a cool oscillating LED animation by using the **bitshifting** technique.
+Each time we want to light up a different LED, we **update the shift register** to send the shift register new signals for each LED.
 
 #### Updating the Shift Register
 
@@ -227,34 +227,6 @@ Once the byte has been sent, we set the latch pin HIGH to trigger the clock that
 
 ```c
 digitalWrite(latchPin, HIGH);
-```
-
-#### Bitshifting
-
-So how does the KITT effect happen? We use a technique called bitshifting, which involves shifting the bits in a byte left or right. Doing this repeatedly results in an effect that looks like the light is moving back and forth!
-
-The bitshift operators are `<<` for shifting left, and `>>` for shifting right. To bitshift any binary number, specify the number of digits to move left or right by. See the following example:
-
-```c
-byte myByte = 0x0001
-myByte = myByte << 2      // 0x0100
-myByte = myByte >> 1      // 0x0010
-```
-
-Bitshifting one place to the left is the same as **multiplying** the number by 2, and shifting to the right is the same as **dividing** by 2; remember that 0x0010 = 2, 0x0100 = 4, 0x1000 = 8, and so on. This is like how adding or removing zeroes in the decimal system is the same as multiplying or dividing by 10!
-
-Back to our code. Before any looping is done, we initialize `storageByte` to `0x01`, or `00000001` in binary. During the loop function, there's two `for` loops that will shift the single `1` back and forth, sending the result to the LEDs through the shift register. That is how we get our light to move just like KITT.
-
-The first `for` loop shifts the `1` bit from right to left: from the least significant bit `00000001`  to the most significant bit `10000000`. We shift one bit at a time for seven loop cycles as shown in the code below:
-
-```c
-storageByte = storageByte << 1;
-```
-
-The second `for` loop shifts the `1` bit back to the least significant bit `00000001` one bit at a time for another seven   cycles as shown below:
-
-```c
-storageByte = storageByte >> 1;
 ```
 
 You'll notice we left in a slight delay before every update. This is because if we let it run as fast the CPU can go,it will be too fast for us to see. Instead, the lights will appear as if they were all on at the same time. The shift register can accurately update at 100MHz - much faster than our eyes can perceive! In order to actually see the effect, we slow it down by adding the delay.
