@@ -85,10 +85,10 @@ To use the library we need to `#include` it at the top of our code, by doing so,
 #define PASSWORD_LENGTH        4
 
 #define STATE_INIT             0
-#define STATE_IDLE            1
-#define STATE_READ_INPUT    2
-#define STATE_CHECK_INPUT    3
-#define STATE_OPEN_SESAME    4
+#define STATE_IDLE             1
+#define STATE_READ_INPUT       2
+#define STATE_CHECK_INPUT      3
+#define STATE_OPEN_SESAME      4
 
 // variable to hold the current state
 int state;
@@ -246,44 +246,29 @@ Here's the experiment running in our lab:
 
 We will be using the keypad to create a password protected system. After the user presses the `#` key, they will be prompted via serial to enter a password. If the entered password matches with the password set in by `char password[]`, which is `4321` by default, the blue LED on the Arduino Dock will light up for 3 seconds. If the wrong password has been entered, it will ask the user to press the `#` key again to retry.
 
-
-
-
 ### A Closer Look at the Code
 
-**COMING SOON!**
+Here we modelled our code as a **state machine** to help us better organize our program's behavior. We also made use of **two-dimensional arrays** to help us model our data to resemble our physical hardware more closely.
 
-<!-- TODO: update this section based on the most recent code!
+#### State Machines
 
+State machines are a bit different from general purpose programs that we've been writing. They can be used when the possible situations, or **states** of the problem are all known and well-defined. In our case, we have only 5 distinct states that our controller can be in:
 
-This code uses the Arduino Keypad library. Remember the `ServoMotor` class we wrote in the [previous tutorial](#arduino-kit-using-a-servo)? Well a library usually contains the definition of a class and then the implementation of the methods (functions) of that class. To use the class, we include the library's header file in our code, and then we are free to create a `keypadObject` object in our code.
+1. Initialized
+1. Idle
+1. Reading input
+1. Checking input
+1. Open sesame! (running a password-protected function)
 
-We've creatively named the object `keypadObject`.
+The state machine changes from one state to another in response to inputs such as pressing buttons on the keypad. These changes are known as **transitions**.
 
-```
-Keypad keypadObject = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
-```
+This also lets us have more organized program flow because states are free to transition wherever we want without us worrying about where they appear in the code. In our case, the `STATE_CHECK_INPUT` state can transition either to `STATE_OPEN_SESAME` if the password is correct, or to `STATE_IDLE` if the password is incorrect.
 
-Try commenting out the `#include <Keypad.h>` line, you'll see that the compiler will complain, saying that it doesn't know what a Keypad is! This file is in the Arduino Keypad library and it defines the `Keypad` class. However, before we instantiate our `keypadObject` object, we need  to declare the variables which needed to be passed into the Keypad object. This includes a two-dimensional array `keys[][]`.
+### Two-Dimensional Arrays
 
+Arrays can hold values of any type in order, but they can also contain other arrays. The **dimension** of an array is how many indexes you need to address a single member. In our case, we're using two-dimensional arrays.
 
-#### Arrays By the Numbers
-
-We're no strangers to arrays by now, so this time we can dive a bit deeper into their capabilities. At the lowest level, arrays are actually represented as a hex number that represents a location in computer memory - the location of the start of the array. This means that arrays can store other arrays just as well as regular numbers.
-
-
-To explain, first thing to know is arrays are continous in memory. This means that each element of an array sequentially follows the previous, always. By knowing the size of each element and the head address, an array can be very easily manipulated. So to save space and needless computation, the start of the array is passed around as a handle to manipulate the whole thing.
-
-In modern computers, addresses are almost always represented as an `int` or hex number.
-
-As you can imagine, this means that an array of arrays works just as an array of `int`'s would.
-
-
-#### Two-Dimensional Arrays
-
-More often than not, arrays of arrays are referred to as 'higher dimensional arrays' based on how many levels of arrays are used. Usually, it's two, leading to two-dimensional arrays.
-
-Two-dimensional arrays can be thought of as tables - with a fixed number of rows and columns, and each cell being a single element. Using a 2D array like a table, we can map the keypad directly to an array without jumping any calculation hoops. To get a better visual, let's take a look at the code:
+Two-dimensional arrays can be thought of as tables - with a fixed number of rows and columns, and each cell being a single element. Using a 2D array like a table, we can map the keypad directly to an array using X and Y coordinates. To get a better visual, let's take a look at the code:
 
 ```c++
 const byte ROWS = 4; //four rows
@@ -296,20 +281,20 @@ char keys[ROWS][COLS] = {
 };        // a 4x3 array of all the keys as chars
 ```
 
-Our keypad does not have a pin for each button, instead it has a pin for each row and column. The signals our code obtains is the row and column number of the button being pressed.
+Our keypad does not have a pin for each button; instead, it has a pin for each row and column. When a button is pressed, the signals on the pin and column lines change, and the `Keypad` library is designed to detect these changes to determine which key is being pressed.
 
-To best mirror that in code, the 2D array `keys[][]` does pretty much the same thing. Each button is represented by an element of the array, and each element can be accessed by a unique pair of numbers - the indices of `keys`.
+We use the `keys[][]` array to store the location and value of each button. Each button can be accessed by a pair of indices, kind of like X-Y coordinates. For example, we stored the '6' key in `keys[1][2]`.
 
-In this example, the 2D array is passed into a `keypadObject` object and the object will do the translation internally. We simply have to call the `getKey()` function to have the keypad return the value of the button that was pressed.
+We then use the `Keypad.getKey()` function that reads the column and row pins from the keypad, then finds the character in our array that corresponds to the button that was pressed. It goes through the following steps:
 
-Internally, calling the `keypadObject.getKey()` function when a button has been pressed does something like this:
+* Briefly scans for any buttons that were just pressed. 
+    * If we pressed button '6', it will detect pins `6` and `3`.
+* Converts the pin numbers into a row value and a column value. 
+    * This will take `6` and `3` and convert them to `1` and `2` respectively.
+* Returns the value of the button in our 2D array at the location specified by the row and column values.
+    * It returns the value of `keys[1][2]`, which is `'6'`.
 
-* Read in the data from the keypad. Let's say we pressed down button '6', and send `HIGH` to pin `6` and `3`.
-* Convert the input data into a row value and a column value. This will take `6` and `3` and convert them to `1` and `2` respectively.
-* Return the value of the button that the row/column values specify. It looks into the `keys` array and returns the element at `[1][2]` - `'6'` specifically.
-
-By formatting the 2D array properly, we can extract the value of the button press without a single calculation.-->
-
+This lets model our data to resemble our physical hardware more closely, which makes it easier to understand when writing our programs!
 
 ### Going Further
 
