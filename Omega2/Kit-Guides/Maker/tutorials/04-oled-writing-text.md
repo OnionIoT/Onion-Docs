@@ -29,7 +29,7 @@ This tutorial does not require you to use a breadboard as the OLED Expansion is 
 
 <!-- // DONE: avoid saying things like 'fairly simple', will make beginners feel bad when they struggle -->
 
-The code we'll be writing is straightforward: we'll be calling on the `oledExp` class from the `OmegaExpansion` Python Module and using the built in functions to print a bunch of text. for more details on the Oled Expansion Python Class and Module, check out the [software  module reference](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) in the Omega2 Docs.
+The code we'll be writing is straightforward: we'll be calling on the `oledExp` class from the `OmegaExpansion` Python Module and using the built in functions to print a bunch of text. For more details on the Oled Expansion Python Class and Module, check out the [software  module reference](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) in the Omega2 Docs.
 
 Create a file called `MAK04-oledWriteText.py` and paste the following code in it:
 

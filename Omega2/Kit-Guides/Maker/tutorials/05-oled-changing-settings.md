@@ -37,7 +37,7 @@ Plug your Omega2 and the OLED Expansion into the Expansion Dock like in the prev
 
 ### Writing the Code
 
-The code we'll write for this experiment is going to go a bit more in depth into the workings of the OLED screen. We'll take a look at all the utility functions of the `oledExp` class and how they modify the screen and its contents. Specificically, we'll be fiddling with the brightness, inverting the display, and scrolling the contents.
+The code we'll write for this experiment is going to go a bit more in depth into the workings of the OLED screen. We'll take a look at all the utility functions of [the `oledExp` class](https://docs.onion.io/omega2-docs/relay-expansion-python-module.html) and how they modify the screen and its contents. Specificically, we'll be fiddling with the brightness, inverting the display, and scrolling the contents.
 
 To make it happen, create a file called `MAK05-oledChangeSettings.py` and paste the following code in it:
 
@@ -45,7 +45,7 @@ To make it happen, create a file called `MAK05-oledChangeSettings.py` and paste 
 from OmegaExpansion import oledExp
 bInvert = 0
 
-# This functions toggles the invert state of the OLED screen - if it's normal, it will invert it, if it's inverted, it will reset it to normal
+# This functions toggles the inverted color state of the OLED screen - if it's regular, it will invert it, if it's inverted, it will reset to regular
 def toggleColor():
 	global bInvert
 	if(bInvert == 0):
@@ -98,6 +98,7 @@ commandFunctions  = {
 }
 
 def main():
+	# initialize the OLED Expansion
 	oledExp.driverInit()
 
 	# Lists out all the commands available
@@ -107,6 +108,7 @@ def main():
 	while(True):
 		userInput = raw_input(">> ")
 		try:
+			# run the function based on the user's input
 			commandFunctions[userInput]()
 		except KeyError as e:
 			pass
@@ -159,7 +161,7 @@ If you want to learn more about user input, the next tutorial ([displaying image
 
 <!-- // DONE: the content here is decent, but the writing could use some work. Let's be more descriptive about user interfaces. the first sentence is esp weak -->
 
-A user interface is the main way we interact with software. Here, the user interface is the list of commands we output and the prompt we print afterwards (`>>`). The command list lets us know what we can do here, and the prompt lets us know where our input will happen. 
+A user interface is the main way we interact with software. Here, the user interface is the list of commands we output and the prompt we print afterwards (`>>`). The command list lets us know what we can do here, and the prompt lets us know where our input will happen.
 
 Why don't we print out 'type in your command, and then press enter to send it'? There's a hint already present in the list of commands - 'Enter the following...' implies we'll have to enter some text. Additionally, just like smart-phone apps don't need to tell us to touch the screen, we already know the context requires text-based input because we ran our program in the commandline!
 
