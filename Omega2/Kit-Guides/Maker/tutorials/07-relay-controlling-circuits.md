@@ -129,7 +129,7 @@ Once the relay is set up, let's connect our circuit to it:
 
 With that, we're all done!
 
-Here's a picture of our completed circuit.
+Here's a picture of our completed circuit:
 
 <!-- // TODO: IMAGE of completed circuit -->
 
@@ -138,7 +138,7 @@ Here's a picture of our completed circuit.
 
 <!-- // TODO: this is a great intro, i edited the middle and last parts a little, please make them flow better -->
 
-The code we'll be using is a bit more complicated than you may think. So to simplify the operation of the Relay Expansion, we leverage the `relayExp` class from the `OmegaExpansion` Python Module.
+The code we'll be using is a bit more complicated than you may think. So to simplify the operation of the Relay Expansion, we leverage the `relayExp` class from the `OmegaExpansion` Python Module. For more details on the Relay Expansion Python Module, check out the [software  module reference](https://docs.onion.io/omega2-docs/relay-expansion-python-module.html) in the Omega2 Docs.
 
 For this experiment, it would be reasonable to assume that we will check the state of the SPDT switch and then set the buzzer accordingly. We won't be doing that.
 
