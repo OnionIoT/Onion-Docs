@@ -26,7 +26,7 @@ In this tutorial, we'll use a switch with the Omega Relay Expansion to turn a bu
 
 The Omega is designed to handle around 3.3V and the Docks up to 5V. Attempting to directly control 120V appliances like lights, kettles, garage doors will almost certainly fry the Omega. So how can you automate these household appliances with an Omega?
 
-Enter the Relay! A relay is a mechanical switch that is triggered electronically. This physically separates the circuit that switches and the circuit that the switch controls. The Relay Expansion is designed to isolate the Omega and the dock (the switching circuit) from the controlled circuits. Turning lights on and off, opening the garage, and resetting wireless routers are all kinds of possible with the Relay.
+Enter the Relay! A relay is a mechanical switch that is triggered electronically. This physically separates the circuit that switches and the circuit that the switch controls. The Relay Expansion is designed to isolate the Omega and the Dock (the switching circuit) from the controlled circuits. Turning lights on and off, opening the garage, and resetting wireless routers are all kinds of possible with the Relay.
 
 <!-- // DONE: This last sentence should be more along the lines of: -->
 <!-- //	The relay expansion is designed to isolate the switching circuit, in this case the Omega and Dock, from the load circuit. Allowing low power devices like the Omega to control high power circuits. -->
@@ -96,7 +96,7 @@ The circuit for this experiment will involve wiring the Relay Expansion to both 
 
 The circuit should look something like this:
 
-<!-- // TODO: IMAGE of breadboard with switch and buzzer in, grounded to exp dock -->
+<!-- // TODO: IMAGE of breadboard with switch and buzzer in, grounded to exp Dock -->
 
 
 Now let's connect the buzzer circuit to the Relay Expansion. 	We'll be using channel 0, with all switches on the relay set to `OFF`. We've included a diagram below to help out.
@@ -115,11 +115,11 @@ Once the relay is set up, let's connect our circuit to it:
 <!-- // DONE: explain that black is usually associated with ground -->
 
 1. First, grab a jumper wire (preferably black, according to convention for ground wires) and connect one end to the `GND` pin on the Dock, and the other to the `GND` rail on the breadboard.
-1. Connect the middle row of the SPDT switch (row 6) to GPIO0 on the dock using a M-M jumper.
+1. Connect the middle row of the SPDT switch (row 6) to GPIO0 on the Dock using a M-M jumper.
 <!--  // DONE: this next sentence is wiggity wack, pls edit -->
 1. Take the jumper connected to the `OUT` terminal of the Relay Expansion and connect the free end to the cathode of the buzzer. We have it plugged into row 1 column C.
 1. Take the jumper connected to the `IN` terminal, and plug that into the `5V` pin on the Dock - this line will deliver power to the buzzer when the relay is switched on.
-1. Grab a red or orange jumper and plug one end into the `3.3V` pin on the dock.
+1. Grab a red or orange jumper and plug one end into the `3.3V` pin on the Dock.
 1. Plug the other end into remaining empty pin of the switch. We plugged it into row 7 - this will be the 'HIGH' position of the switch.
 
 With that, we're all done!
