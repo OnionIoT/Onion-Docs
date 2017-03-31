@@ -8,7 +8,7 @@ order: 5
 
 ## Changing the Display's Behavior {#maker-kit-oled-change-settings}
 
-In this tutorial, we will use text-based input from the user to change the OLED display's settings. We'll be scrolling the display contents as well as dimming and inverting the display colours, let's jump in.
+In this expriment, we will use text-based input from the user to change the OLED display's settings. We'll be scrolling the display contents as well as dimming and inverting the display colours, let's jump in.
 
 ### The OLED's Settings
 
@@ -33,7 +33,7 @@ The scrolling setting allows you to scroll the contents of the screen in either 
 
 ### Building the Circuit
 
-Plug your Omega2 and the OLED Expansion into the Expansion Dock like in the previous tutorial and let's get started!
+Plug your Omega2 and the OLED Expansion into the Expansion Dock like in the previous expriment and let's get started!
 
 ### Writing the Code
 
@@ -137,7 +137,7 @@ In this script, we use the lookup table once again to codify valid inputs. Howev
 
 #### Error Checking
 
-User input is a core part of any product - from cars to carpets. For this tutorial, we use Python's command line as the source of user input. In Python, we can request input via the `raw_input()` function. This function pauses the Python interpreter and reads keyboard commands until it sees the enter key being pressed (in most languages it's represented by the return character, `\n`). Reading user input doesn't help much if we can't interpret it and then perform the desired actions. This is where error checking becomes necessary.
+User input is a core part of any product - from cars to carpets. For this expriment, we use Python's command line as the source of user input. In Python, we can request input via the `raw_input()` function. This function pauses the Python interpreter and reads keyboard commands until it sees the enter key being pressed (in most languages it's represented by the return character, `\n`). Reading user input doesn't help much if we can't interpret it and then perform the desired actions. This is where error checking becomes necessary.
 
 If you typed in `asdf` to the command line when prompted, nothing would happen to the screen. This is expected behavior! If the code was not error checked, we'd see something entirely different. To try it out, replace the following section in the code:
 
@@ -156,8 +156,8 @@ With this:
 
 If you did it 'right', the next time you run the code and enter an invalid command like `asdf`, the script should crash. The `try:/except:` structure prevents crashing by catching the error when it's 'thrown'. In effect, it lets you continue to type commands and change the behaviour of the OLED screen no matter how badly you mistyped them.
 
-<!-- // DONE: make it something like 'the next tutorial on displaying images on the OLED further builds on this concept.' -->
-If you want to learn more about user input, the next tutorial ([displaying images on the OLED](#drawing-on-the-oled-screen)) builds right on this concept.
+<!-- // DONE: make it something like 'the next expriment on displaying images on the OLED further builds on this concept.' -->
+If you want to learn more about user input, the next expriment ([displaying images on the OLED](#drawing-on-the-oled-screen)) builds right on this concept.
 
 #### User interface
 

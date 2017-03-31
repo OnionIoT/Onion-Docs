@@ -10,7 +10,7 @@ order: 4
 
 ## Writing Text to the OLED Display {#maker-kit-oled-writing-text}
 
-In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python module for the OLED Expansion. By the end, you'll be able to boot it up, and write whatever you wish!
+In this expriment, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python module for the OLED Expansion. By the end, you'll be able to boot it up, and write whatever you wish!
 
 ```{r child='../shared/oled-info.md'}
 ```
@@ -18,7 +18,7 @@ In this tutorial, we'll be figuring out how to start up the OLED Expansion's scr
 
 ### Building the Circuit
 
-This tutorial does not require you to use a breadboard as the OLED Expansion is a complete circuit. Plug it into your Expansion Dock and you're good to go!
+This expriment does not require you to use a breadboard as the OLED Expansion is a complete circuit. Plug it into your Expansion Dock and you're good to go!
 
 #### What You'll Need
 

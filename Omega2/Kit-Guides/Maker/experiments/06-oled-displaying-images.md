@@ -10,16 +10,16 @@ order: 6
 
 ## Drawing on the OLED Screen {#maker-kit-oled-displaying-images}
 
-<!-- // DONE: this intro can be better. This tutorial is exciting, we're drawing lines to the screen! Get the people stoked, this is too try! -->
+<!-- // DONE: this intro can be better. This expriment is exciting, we're drawing lines to the screen! Get the people stoked, this is too try! -->
 <!-- // DONE: let's avoid words like simple & basic, can be intimidating to beginner -->
 
-This tutorial will walk you through drawing to the OLED Expansion. We'll create a script that draws lines to the OLED screen, along the way, we'll learn about the essentials to create computer graphics. After all, fancy polygons and shaders in the games we love are just lines on the screen!
+This expriment will walk you through drawing to the OLED Expansion. We'll create a script that draws lines to the OLED screen, along the way, we'll learn about the essentials to create computer graphics. After all, fancy polygons and shaders in the games we love are just lines on the screen!
 
 ### Drawing to The OLED Screen
 
 <!-- // describe how the OLED Screen works -->
 
-The OLED is an efficient low-power screen that can be programmed to display any monochrome visuals included text, graphics, and even animations! In depth information about how the OLED operates can be found in the [OLED Expansion article](https://docs.onion.io/omega2-docs/oled-expansion.html) in the Hardware Overview section of the docs. It is highly recommended to have the [OLED Python Module](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) reference handy, as this tutorial is entirely software based.
+The OLED is an efficient low-power screen that can be programmed to display any monochrome visuals included text, graphics, and even animations! In depth information about how the OLED operates can be found in the [OLED Expansion article](https://docs.onion.io/omega2-docs/oled-expansion.html) in the Hardware Overview section of the docs. It is highly recommended to have the [OLED Python Module](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) reference handy, as this expriment is entirely software based.
 
 One important concept to understand is the cursor. The cursor is essentially the position of the next byte to be written to the screen. After a byte is written, the cursor will automaticaly advance once to the next pixel column, staying in the same page. Once the cursor reaches the end of a page, it wraps around to column 0 of the next page, and so on. So simply calling `oledExp.writeByte(0xff)` multiple times is enough to light up the whole OLED display - this is a behaviour we will be using to greatly simplify drawing things to the screen.
 <!-- (// DONE: what is meant by once? please go into more detail about how the cursor advances. article 4 has a good description of the cursor -->
@@ -43,13 +43,13 @@ For bonus points, we'll get involved with input and output to customize where ou
 
 And as always, we'll discuss all the concepts in detail after we've gotten hands on with the project.
 
-<!-- // DONE: if i'm a beginner, I'm thinking 'what the flip is a frame buffer? better go back to the previous tutorials, I must have missed it' -->
+<!-- // DONE: if i'm a beginner, I'm thinking 'what the flip is a frame buffer? better go back to the previous expriments, I must have missed it' -->
 <!-- //	* first introduce the concept briefly -->
 <!-- //	* then say 'this is known as a frame buffer' (with the least amount of condescending as possible) -->
 
 ### Building the Circuit
 
-The OLED Expansion is a complete circuit. So for this tutorial, we just need to plug it into the Expansion Dock and we'll be good to go!
+The OLED Expansion is a complete circuit. So for this expriment, we just need to plug it into the Expansion Dock and we'll be good to go!
 
 #### What You'll Need
 

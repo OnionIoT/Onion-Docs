@@ -11,7 +11,7 @@ order: 7
 ## Isolated Control with the Relay Expansion {#maker-kit-relay-controlling-circuits}
 
 
-In this tutorial, we'll use a switch with the Omega Relay Expansion to turn a buzzer on or off. Along the way, we'll be looking into why relays are useful, and go into more detail regarding pitfalls when interacting with hardware.
+In this expriment, we'll use a switch with the Omega Relay Expansion to turn a buzzer on or off. Along the way, we'll be looking into why relays are useful, and go into more detail regarding pitfalls when interacting with hardware.
 
 
 
@@ -70,7 +70,7 @@ Our goal here is to connect a buzzer to the Relay Expansion and a power supply, 
 
 The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole means there's a single power source being switched, dual throw means the power is always connected to one output or the other. The middle pin is the power input, and the two pins on the side are the outputs. Here we'll just use a single output, leaving the other as open circuit.
 
->In this tutorial, we'll be using the power supplied by our Dock due to easy access. Feel free to try using different power supply methods, but take note you may need voltage dropping resistors for higher powered supplies to avoid burning out the buzzer. If you're not confident it'll turn out well, you can just go along with our setup - it'll work for sure!
+>In this expriment, we'll be using the power supplied by our Dock due to easy access. Feel free to try using different power supply methods, but take note you may need voltage dropping resistors for higher powered supplies to avoid burning out the buzzer. If you're not confident it'll turn out well, you can just go along with our setup - it'll work for sure!
 
 <!-- // DONE: add a note that you should only try this if you're confident in your abilities -->
 
@@ -223,7 +223,7 @@ Infinite loop appears here as well, and as usual, exit the script with `Ctrl-C`.
 
 ### A Closer Look at the Code
 
-From the PWM tutorials, we've touched on how to account for the limitations of hardware when writing software. In this tutorial we've put more of that into practice. One important thing introduced is the **Read - Modify - Write** cycle. One major part of the cycle is **checking status** of our components (the 'read' part of the cycle). Additionally, we **log** the status. This is a very good habit to get into for fast debugging because we can use that output to quickly tell if and **where** something is going wrong.
+From the PWM expriments, we've touched on how to account for the limitations of hardware when writing software. In this expriment we've put more of that into practice. One important thing introduced is the **Read - Modify - Write** cycle. One major part of the cycle is **checking status** of our components (the 'read' part of the cycle). Additionally, we **log** the status. This is a very good habit to get into for fast debugging because we can use that output to quickly tell if and **where** something is going wrong.
 
 <!--
 // DONE: 'very good habit to get into for fast debugging - since you will be able to use the output of your program to quickly identify the source of your issue'

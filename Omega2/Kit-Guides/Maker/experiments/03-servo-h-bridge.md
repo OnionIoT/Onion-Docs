@@ -13,18 +13,18 @@ order: 4
 
 ## Controlling a DC Motor using an H-Bridge {#maker-kit-servo-h-bridge}
 
-<!-- // this tutorial will show us how to control a dc motor using an h-bridge. we'll also continue using the class from the first example to create classes to help us accomplish our goals -->
+<!-- // this expriment will show us how to control a dc motor using an h-bridge. we'll also continue using the class from the first example to create classes to help us accomplish our goals -->
 
 <!-- // DONE: this is the rewritten intro -->
-For this tutorial, we'll be controlling a motor using the PWM Expansion. To do this, we'll be using an H-Bridge chip and sending it the appropriate control signals with the PWM Expansion, the H-Bridge will then take care of running the motor. Along the way, we'll learn exactly how H-Bridges work and create more classes that take advantage of the ones we've made previously. To expand on that, we'll hook up three switches and program the Omega to control the speed and direction of the motor based on their positions.
+For this expriment, we'll be controlling a motor using the PWM Expansion. To do this, we'll be using an H-Bridge chip and sending it the appropriate control signals with the PWM Expansion, the H-Bridge will then take care of running the motor. Along the way, we'll learn exactly how H-Bridges work and create more classes that take advantage of the ones we've made previously. To expand on that, we'll hook up three switches and program the Omega to control the speed and direction of the motor based on their positions.
 
 <!-- // this is the old intro: -->
-<!-- For this tutorial, we’ll be controlling a motor using the PWM Expansion. To do this, the PWM Expansion will send appropriate signals to an ‘H-bridge’ by changing duty cycles, and the H-bridge will transmit the signal to the motor. Using three switches, we can send signals to change the speed and direction of the motor -->
+<!-- For this expriment, we’ll be controlling a motor using the PWM Expansion. To do this, the PWM Expansion will send appropriate signals to an ‘H-bridge’ by changing duty cycles, and the H-bridge will transmit the signal to the motor. Using three switches, we can send signals to change the speed and direction of the motor -->
 <!-- // note the changes, -->
 
 <!-- // DONE: this should point back to the previous experiment, not a Docs article -->
 
->If you need a refresher on how PWM (or Pulse-Width Modulation) works, you can find an explaination in the [first dimming LED tutorial](#maker-kit-servo-dimming-led).
+>If you need a refresher on how PWM (or Pulse-Width Modulation) works, you can find an explaination in the [first dimming LED expriment](#maker-kit-servo-dimming-led).
 
 <!-- dcmotor -->
 ```{r child = '../../shared/dcmotor.md'}
@@ -105,10 +105,10 @@ You may need a couple of rubber bands and a block to hold down the DC Motor when
 
 <!-- // the # of SPDT switches in the kit will be increased to 10 as of 2017-01-01 -->
 
-When working with ICs, setting up the breadboard's rails can be very helpful in reducing clutter. For this tutorial, we'll do this first to reduce the wires needed.
+When working with ICs, setting up the breadboard's rails can be very helpful in reducing clutter. For this expriment, we'll do this first to reduce the wires needed.
 
 1. Connect the negative (`-`) rails on either side of the board together on one end (usually the end away from most of the wiring) with a M-M jumper, we'll call this the `GND` rail.
-1. Do the same with the positive (`+`) rails, we'll call these `Vcc` rails in this tutorial.
+1. Do the same with the positive (`+`) rails, we'll call these `Vcc` rails in this expriment.
 
 <!-- // TODO: IMAGE of connected rails on a breadboard -->
 
@@ -179,7 +179,7 @@ Here's what it looks like when it's all wired up:
 
 <!-- // DONE: its a class definition, not a blueprint, beginner users might get the idea that 'blueprint' is the legit terminology -->
 
-Let's add a class definition for a DC motor controlled by an H-bridge to the `motors.py` file we made in the previous tutorial. This class definition will specifically drive a DC motor hooked up to an H-bridge. It builds on the abstractions in the `OmegaPwm` class and takes care of the details in operating the motor.
+Let's add a class definition for a DC motor controlled by an H-bridge to the `motors.py` file we made in the previous expriment. This class definition will specifically drive a DC motor hooked up to an H-bridge. It builds on the abstractions in the `OmegaPwm` class and takes care of the details in operating the motor.
 
 Open up `motors.py` and add the following:
 
@@ -358,7 +358,7 @@ As you've probably seen before, we use an infinite loop here, and you can break 
 
 ### A Closer Look at the Code
 
-In this tutorial, we put together knowledge from the previous tutorials to control a DC motor with Python. We're now **receiving user input** interactively, allowing us to change the output in real-time. On top of that we we used a **lookup table** to track and translate the input from the user into the output sent to the controller.
+In this expriment, we put together knowledge from the previous expriments to control a DC motor with Python. We're now **receiving user input** interactively, allowing us to change the output in real-time. On top of that we we used a **lookup table** to track and translate the input from the user into the output sent to the controller.
 
 #### Receiving User Input
 
