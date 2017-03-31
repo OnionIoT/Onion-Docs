@@ -60,10 +60,11 @@ If you want to start building right away, skip ahead to the [next section](#cont
 // DONE: this first sentence is a little convoluted
 //	* should be Omega -> PWM Expansion -> H-Bridge -> DC motor
 -->
-<!-- // TODO: include a block diagram of the system -->
-
 
 This circuit will connect the Omega to a DC motor. The Omega will first be connected to the PWM Expansion, the PWM Expansion will be sending signals to an H-bridge, which will deliver power to the DC motor according to the signals. The PWM will signal how fast the motor should turn and the H-bridge acts as a switch - turning the supply voltage on or off according to the PWM signal.
+
+<!-- // DONE: include a block diagram of the system -->
+![How our circuit will work](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/03-block-diagram.png)
 
 In the pictures, you'll see some shorter wires, these we used instead of jumpers to give you a better picture of what's going on. To more easily see the rotations of the motor, we wrapped some duct tape around the motor axle.
 <!-- // DONE: let's not overcomplicate by telling them to use shorter wires since they don't have shorter wires. -->
