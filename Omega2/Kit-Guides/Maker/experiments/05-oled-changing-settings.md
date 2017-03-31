@@ -20,16 +20,21 @@ The OLED configurations which we will adjust are:
 
 The brightness refers to the intensity at which the pixels of the display are illuminated. The brightness can be set to value between `0` and `255`, from complete darkness to maximum brightness. By default the brightness is set to `207`. Just like on a phone or laptop, reducing the brightness will decrease the energy draw of the screen, increasing battery life.
 
-<!-- // TODO: GIF of min brightness to max brightness -->
+<!-- // DONE: GIF of min brightness to max brightness -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/2fx-JNhYsno" frameborder="0" allowfullscreen></iframe>
+
 
 Color inversion refers to switching all of the illuminated pixels to dark and all of the dark pixels to illuminated, giving us a kind of negative image.
 
-<!-- // TODO: GIF of normal -> inverted -->
+<!-- // DONE: GIF of normal -> inverted -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/xq2GpoNDItE" frameborder="0" allowfullscreen></iframe>
 
 <!-- // DONE: beginner users won't be clear on the meaning of 'wrapping fashion' -->
 The scrolling setting allows you to scroll the contents of the screen in either the horizontal or diagonal direction.
 
-<!-- // TODO: GIF of content scrolling on OLED screen -->
+<!-- // DONE: GIF of content scrolling on OLED screen -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/51ZgFM746mA" frameborder="0" allowfullscreen></iframe>
+
 
 ### Building the Circuit
 
@@ -129,7 +134,9 @@ To stop the program enter `Ctrl+C`
 
 Here it is running on our setup:
 
-<!-- // TODO: IMAGE Add gif -->
+<!-- // DONE: IMAGE Add gif -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/uuJDwl7Fg6w" frameborder="0" allowfullscreen></iframe>
+
 
 ### A Closer Look at the Code
 

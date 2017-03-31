@@ -21,11 +21,18 @@ This expriment will walk you through drawing to the OLED Expansion. We'll create
 
 The OLED is an efficient low-power screen that can be programmed to display any monochrome visuals included text, graphics, and even animations! In depth information about how the OLED operates can be found in the [OLED Expansion article](https://docs.onion.io/omega2-docs/oled-expansion.html) in the Hardware Overview section of the docs. It is highly recommended to have the [OLED Python Module](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) reference handy, as this expriment is entirely software based.
 
-One important concept to understand is the cursor. The cursor is essentially the position of the next byte to be written to the screen. After a byte is written, the cursor will automaticaly advance once to the next pixel column, staying in the same page. Once the cursor reaches the end of a page, it wraps around to column 0 of the next page, and so on. So simply calling `oledExp.writeByte(0xff)` multiple times is enough to light up the whole OLED display - this is a behaviour we will be using to greatly simplify drawing things to the screen.
+#### A Note on the Cursor
+
+One important concept to understand is the cursor. The cursor is essentially the position of the next byte to be written to the screen. After a byte is written, the cursor will automaticaly advance once to the next pixel column, staying in the same page. Once the cursor reaches the end of a page, it wraps around to column 0 of the next page, and so on. In fact - it works just like the cursor in a word processor. 
+
+Just like we can fill a page in a word processor by holding 'm', we can call `oledExp.writeByte(0xff)` multiple times to light up the whole OLED display. This works because `0xff` is a byte that lights up all eight pixels under the cursor.
+
+This behaviour we will soon use to simplify drawing things to the screen.
+
 <!-- (// DONE: what is meant by once? please go into more detail about how the cursor advances. article 4 has a good description of the cursor -->
 
 
-<!-- // TODO: needs to be more clear: -->
+<!-- // DONE: needs to be more clear: -->
 <!-- //	* might be a better idea to first introduce how `oledExp.writeByte(0xff)` works (in terms of pages and columns) as it is fairly non-intuitive, AND THEN have this section on the cursor -->
 <!-- //		* A good example is writing 0x0f or 0xf0 -->
 <!-- //	* mention how many times `oledExp.writeByte(0xff)` actually needs to be called to fill in the whole screen -->
@@ -216,7 +223,9 @@ The lines you draw will stay on the screen because the buffer never gets cleared
 
 <!-- // DONE: would be nice to give a brief description of why the lines will stay on the scren -->
 
-<!-- // TODO: IMAGE add gif or picture of lines being drawn -->
+<!-- // DONE: IMAGE add gif or picture of lines being drawn -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Bu4cMvvqFzc" frameborder="0" allowfullscreen></iframe>
+
 
 ### A Closer Look at the Code
 

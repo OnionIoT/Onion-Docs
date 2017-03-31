@@ -74,6 +74,10 @@ The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole me
 
 <!-- // DONE: add a note that you should only try this if you're confident in your abilities -->
 
+For reference, here's a circuit diagram of our experiment:
+
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/diagrams/01-circuit-diagram.png)
+
 #### What You'll Need
 
 Grab the components listed from your kit, and let's get wiring!
@@ -101,12 +105,15 @@ The circuit for this experiment will involve wiring the Relay Expansion to both 
 
 The circuit should look something like this:
 
-<!-- // TODO: IMAGE of breadboard with switch and buzzer in, grounded to exp Dock -->
+<!-- // DONE: IMAGE of breadboard with switch and buzzer in, grounded to exp Dock -->
+![The buzzer and switch wired in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/07-buzzer-switch.jpg)
 
 
 Now let's connect the buzzer circuit to the Relay Expansion. 	We'll be using channel 0, with all switches on the relay set to `OFF`. We've included a diagram below to help out.
 
-<!-- // TODO: IMAGE diagram of the relay switch numbering -->
+<!-- // DONE: IMAGE diagram of the relay switch numbering -->
+![How the relays are numbered](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-expansion-illustration.png)
+
 
 1. To set up the relay, turn the screw on the `IN` terminal counterclockwise until the metal clamp inside is sitting a bit less than halfway in the bottom of the housing, not too much or the screw might pop out.
     * If you're unsure, close the terminal all the way by turning the screw clockwise until you can't anymore, then open it.
@@ -131,12 +138,13 @@ With that, we're all done!
 
 Here's a picture of our completed circuit:
 
-<!-- // TODO: IMAGE of completed circuit -->
+<!-- // DONE: IMAGE of completed circuit -->
+![Relay and buzzer circuit wired in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/07-assembled-circuit.jpg)
 
 
 ### Writing the Code
 
-<!-- // TODO: this is a great intro, i edited the middle and last parts a little, please make them flow better -->
+<!-- // DONE: this is a great intro, i edited the middle and last parts a little, please make them flow better -->
 
 The code we'll be using is a bit more complicated than you may think. So to simplify the operation of the Relay Expansion, we leverage the `relayExp` class from the `OmegaExpansion` Python Module. For more details on the Relay Expansion Python Module, check out the [software  module reference](https://docs.onion.io/omega2-docs/relay-expansion-python-module.html) in the Omega2 Docs.
 
@@ -214,7 +222,9 @@ if __name__ == "__main__":
 
 ### What to Expect
 
-<!-- TODO: IMAGE or gif of project working -->
+<!-- DONE: IMAGE or gif of project working -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/hyGaTJltirA" frameborder="0" allowfullscreen></iframe>
+
 
 When the script is running, you'll see a ton of debug messages from the console. Now when you flick the switch to on or off, the buzzer should respond by turning on or off appropriately.
 

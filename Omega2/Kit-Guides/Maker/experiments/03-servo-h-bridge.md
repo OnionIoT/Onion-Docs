@@ -8,8 +8,8 @@ order: 4
 
 <!-- // DONE: always capitalize Onion products: PWM Expansion, Expansion Dock, on the Dock, etc -->
 
-<!-- // TODO: Expansion Dock GPIOs should be referred to as Omega GPIOx, can include 'on the Expansion Header' to make it clear -->
-<!-- // TODO: the 5V, 3.3V, and GND pins should be referred to as 5V, 3.3V, and GND pins on the Expansion Header -->
+<!-- // DONE: Expansion Dock GPIOs should be referred to as Omega GPIOx, can include 'on the Expansion Header' to make it clear -->
+<!-- // DONE: the 5V, 3.3V, and GND pins should be referred to as 5V, 3.3V, and GND pins on the Expansion Header -->
 
 ## Controlling a DC Motor using an H-Bridge {#maker-kit-servo-h-bridge}
 
@@ -75,7 +75,10 @@ In the pictures, you'll see some shorter wires, these we used instead of jumpers
 **Note**: As can be seen above, the chip is roughly mirrored. The top right and bottom left pins are the power supply for the outputs (`pin 8`) and the chip (`pin 16`) respectively. The difference between the two power pins is the voltage supplied to the outputs can be up to 36V, while the voltage supplied to the chip is recommended to be within 2~5V. If you want to power a large motor, you should power the motor with the external supply through `pin 8` and supply around 3V to `pin 16`.
 
 
-<!-- // TODO: include a circuit diagram -->
+<!-- // DONE: include a circuit diagram -->
+
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/diagrams/01-circuit-diagram.png)
+
 
 #### What You'll Need
 
@@ -110,13 +113,16 @@ When working with ICs, setting up the breadboard's rails can be very helpful in 
 1. Connect the negative (`-`) rails on either side of the board together on one end (usually the end away from most of the wiring) with a M-M jumper, we'll call this the `GND` rail.
 1. Do the same with the positive (`+`) rails, we'll call these `Vcc` rails in this expriment.
 
-<!-- // TODO: IMAGE of connected rails on a breadboard -->
+<!-- // DONE: IMAGE of connected rails on a breadboard -->
+![How the breadboard rails are connected together](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/03-rails-connected.jpg)
 
 Now let's set up our Circuit:
 
 1. Grab your H-bridge, pick a location on your breadboard and plug the H-bridge across the channel in the middle of your breadboard. It should be sitting across with one side in column E and the other in column F, with the **half-circle cutout** pointing toward the end of the breadboard. We picked rows 5 to 12 in our breadboard.
 
-<!-- // TODO: IMAGE of H-bridge across channel with pins labelled -->
+<!-- // DONE: IMAGE of H-bridge across channel with pins labelled -->
+![The H-bridge sitting in the breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/03-h-bridge-wired.png)
+
 
 <!-- // DONE: when talking about IC pins, I would rather refer to them by the NAME of the pin, so 'wire 3A to GND' as opposed to 'pin 5 to GND' -->
 <!-- //	the goal is to teach them what's going on, rather then have them follow wiring instructions -->
@@ -138,14 +144,16 @@ Now let's set up our Circuit:
 	* Plug your switches into the rows, three rows per switch - each switch needs a half-row of clearance between the next switch if you want to put them side-by-side.
 1. With 6 M-M jumpers, connect the leftmost row of each switch to `GND` rail, and the rightmost row of each switch to `Vcc` rail.
 
-<!-- TODO: IMAGE of fully wired H-bridge, short wires, pins labelled -->
+<!-- DONE: IMAGE of fully wired H-bridge, short wires, pins labelled -->
+![The motor, H-bridge, and switches wired](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/03-motor-h-bridge-switches.jpg)
+
 
 <!-- // DONE: this sentence should be more like 'The H-Bridge circuit is done! Now let's connect it to the PWM Expansion so it can be controlled by the Omega' -->
 
 Now that the H-bridge circuit is done, let's connect the whole thing to your Omega so it can control the motor:
 
 1. We'll ground the circuit by connecting the `GND` rail to the `GND` pin on channel `S0` on the PWM Expansion with one M-F jumper.
-1. Using 3 M-M jumpers, connect the center row of each switch to GPIO0, GPIO1, and GPIO2 on the Expansion Headers. Make sure you remember which is which, since these will control your motor later!
+1. Using 3 M-M jumpers, connect the center row of each switch to Omega GPIO0, GPIO1, and GPIO2 on the Expansion Headers. Make sure you remember which is which, since these will control your motor later!
 1. Take one M-M jumper and connect `1,2EN` on the IC (row 5 on our board) to the `Vcc` rail.
 1. Using two M-F jumpers,
 	* Connect `1A`, or row 6 on our board, to channel `S0`.
@@ -154,7 +162,9 @@ Now that the H-bridge circuit is done, let's connect the whole thing to your Ome
 
 Here's what it looks like when it's all wired up:
 
-<!-- TODO: IMAGE assembled circuit -->
+<!-- DONE: IMAGE assembled circuit -->
+![All done!](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/03-assembled-circuit.jpg)
+
 
 <!-- wiring precautions -->
 ```{r child = '../../shared/wiring-precautions.md'}
@@ -350,7 +360,9 @@ When run, the script starts the PWM oscillator, and then sets the output to be e
 
 Here it is in action:
 
-<!-- TODO: IMAGE or gif of project working -->
+<!-- DONE: IMAGE or gif of project working -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/zC9l3LXt4fs" frameborder="0" allowfullscreen></iframe>
+
 
 As you've probably seen before, we use an infinite loop here, and you can break it by hitting `Ctrl-C`.
 

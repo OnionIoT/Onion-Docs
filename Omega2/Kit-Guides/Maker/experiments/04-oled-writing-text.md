@@ -105,7 +105,9 @@ if __name__ == '__main__':
 
 After running the Python code, you should see the current current time on the right side of the top row, a greeting on the third row and a random fact on the fifth row.
 
-<!-- // TODO: IMAGE add gif of the results -->
+<!-- // DONE: IMAGE add gif of the results -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/tpmmlRAoveE" frameborder="0" allowfullscreen></iframe>
+
 
 ### A Closer Look at the Code
 
