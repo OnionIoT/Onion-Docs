@@ -67,12 +67,14 @@ Gather the following from your kit:
 
 ### Writing the Code
 
-//TODO: insert a link to the previous article
-Let's write another class to represent a servo motor based on the class we wrote in the first experiment. Create a file called `motors.py` and paste the following code in it:
+<!-- //DONE: insert a link to the previous article -->
+
+Let's write another class to represent a servo motor based on the class we wrote in the [previous experiment](#maker-kit-servo-dimming-led). Create a file called `motors.py` and paste the following code in it:
 
 ``` python
 from omegaPwm import OmegaPwm
 
+# define the minimum and maximum pulse widths that will suit most servos (in us)
 SERVO_MIN_PULSE = 1000
 SERVO_MAX_PULSE = 2000
 
@@ -146,6 +148,7 @@ def main():
     microServo.setAngle(90.0)
     time.sleep(2)
 
+    # infinite loop
     while(True):
         # Turn servos to the 0 angle position
         standardServo.setAngle(0.0)
@@ -159,6 +162,8 @@ def main():
         standardServo.setAngle(180.0)
         microServo.setAngle(180.0)
         time.sleep(2)
+
+
 if __name__ == '__main__':
     main()
 ```

@@ -43,6 +43,8 @@ To make it happen, create a file called `MAK05-oledChangeSettings.py` and paste 
 
 ```python
 from OmegaExpansion import oledExp
+
+# global variable that stores if the screen is in the inverted color mode or not
 bInvert = 0
 
 # This functions toggles the inverted color state of the OLED screen - if it's regular, it will invert it, if it's inverted, it will reset to regular
