@@ -35,7 +35,7 @@ One important concept to understand is the cursor. The cursor is essentially the
 
 One major concept we'll be working with is a **frame buffer**.
 
-Frame buffers work by storing a copy of the entire screen in memory for easy modification. It is then sent whole to be drawn on the screen once all the changes are finalized. 
+Frame buffers work by storing a copy of the entire screen in memory for easy modification. It is then sent whole to be drawn on the screen once all the changes are finalized.
 
 Since a frame buffer is an abstract idea, we'll be using a multi-dimensional array to actually implement one in our code.
 
@@ -76,7 +76,7 @@ VER = False
 
 X_MAX = 127
 Y_MAX = 63
-SEG_MAX = 127
+COL_MAX = 127
 PAGE_MAX = 7
 
 byte = 0xff
@@ -85,31 +85,36 @@ class buffer:
     def __init__ (self):
         self.frame = self.getEmptyFrame()
 
-	# This function writes a byte to the frame buffer at the specified location after it's checked that the coordinates don't go out of bounds - if it goes out, the program crashes!
-    def writeByteToBuffer (self, seg, page, byte):
+	# This function writes a byte to the frame buffer at the specified location
+	# 	it also sanitizes the coordinates if they are out of bounds (otherwise the program would crash)
+    def writeByteToBuffer (self, column, page, byte):
+        # sanitize the input coordinates
         if (page > PAGE_MAX):
             page = PAGE_MAX
-        if (seg > SEG_MAX):
-            seg = SEG_MAX
-        self.frame[seg][page] = byte
+        if (column > COL_MAX):
+            column = COL_MAX
+        # add the byte to the frame buffer
+        self.frame[column][page] = byte
 
-    # Here we draw the frame buffer to the OLED screen in one fell swoop
+    # Here we draw the entire frame buffer to the OLED screen
     def drawToScreen (self):
-        for seg in self.frame:
-            for byt in seg:
-                oledExp.writeByte (byt)
+        for column in self.frame:
+            for byte in column:
+                oledExp.writeByte (byte)
 
     # Creates and returns a new, empty frame buffer
     def getEmptyFrame(self):
-        tmpframe = []
-        # Creating an empty 128x8 array
-        for x in range(0,SEG_MAX+1):
-            tmpframe.append([]);
-            for y in range(0,PAGE_MAX+1):
-                 tmpframe[x].append(0)
-        return tmpframe
+		# use two comprehensions to create a 128x8 array populated with all zeroes
+        return [ [0 for i in range(0, PAGE_MAX+1)] for j in range(0, COL_MAX+1)]
 
-# Input requesting function to obtain a 'position' has arguments that allow changing what position is asked and the limits on the position for error checking
+# Setup the OLED Expansion for displaying images
+def initOled():
+    initStatus = oledExp.driverInit();
+    powerStatus = oledExp.setDisplayPower(1)
+    memModeStatus = oledExp.setMemoryMode(1)
+
+# Function that requests input to obtain a 'position'
+#	arguments allow changing what position is asked for and the limits on the position for error checking
 def getPosition (maxPos, orientation, located):
     pos = 0
     while (True):
@@ -117,7 +122,7 @@ def getPosition (maxPos, orientation, located):
         # Getting input from user
         pos = raw_input('>>> ')
 
-		# TODO: add comment describing the try-catch
+		# ensure the user only inputs numbers
         try:
             pos = int (pos, 10)
         except ValueError as e:
@@ -128,12 +133,28 @@ def getPosition (maxPos, orientation, located):
         else:
             return pos
 
+def drawLine(currentFrame, orientation, headPos, startPos, endPos):
+    # in case the user reversed the start and end numbers
+    if (startPos > endPos):
+        tmp = startPos
+        startPos = endPos
+        endPos = tmp
+
+    # This loop draws the line to the buffer based on the data obtained above - where it starts, where it ends, and the orientation
+    # The data has all been error checked to keep this step super neat
+    if (orientation == VER):
+        for y in range (startPos, endPos):
+            currentFrame.writeByteToBuffer(headPos, y, byte)
+    else:
+        for x in range (startPos, endPos):
+            currentFrame.writeByteToBuffer(x, headPos, byte)
+
+    # write the buffer to the screen
+    status = currentFrame.drawToScreen()
 
 def main():
-	# Starts up the OLED screen and sets it up to display images instead of text
-    initStatus = oledExp.driverInit();
-    powerStatus = oledExp.setDisplayPower(1)
-    memModeStatus = oledExp.setMemoryMode(1)
+    # Starts up the OLED screen and sets it up to display images instead of text
+    initOled()
     orientation = 0
 
     # creating a local buffer object
@@ -154,13 +175,13 @@ def main():
 
         # Changing the questions asked depending according to orientation
         if (orientation == VER):
-            headPosMax = SEG_MAX
+            headPosMax = COL_MAX
             endPosMax = PAGE_MAX
             headAskedWord = 'column'
             lineAskedWord = 'row'
         else:
             headPosMax = PAGE_MAX
-            endPosMax = SEG_MAX
+            endPosMax = COL_MAX
             headAskedWord = 'row'
             lineAskedWord = 'column'
 
@@ -171,24 +192,8 @@ def main():
         startPos = getPosition(endPosMax, lineAskedWord, 'start on?')
         endPos = getPosition(endPosMax, lineAskedWord, 'end on?')
 
-
-        # In case you put the numbers reversed
-        if (startPos > endPos):
-            tmp = startPos
-            startPos = endPos
-            endPos = tmp
-
-		# This loop draws the line to the buffer based on the data obtained above - where it starts, where it ends, and the orientation
-        # The data has all been error checked to keep this step super neat
-        if (orientation == VER):
-            for y in range (startPos, endPos):
-                currentFrame.writeByteToBuffer(headPos, y, byte)
-        else:
-            for x in range (startPos, endPos):
-                currentFrame.writeByteToBuffer(x, headPos, byte)
-
-		# This line outputs the buffer to the screen.
-        status = currentFrame.drawToScreen()
+        # draw to the OLED screen
+        drawLine(currentFrame, orientation, headPos, startPos, endPos)
 
 
 	# note that this command is outside of the while loop body
@@ -217,7 +222,7 @@ The lines you draw will stay on the screen because the buffer never gets cleared
 
 <!-- // DONE: fix this run-on sentence -->
 
-A buffer works by storing an entire screen of output data in memory to make it easy to change. Then after all the operations to change the output image are completed, it will draw the entire thing to the screen all at once. 
+A buffer works by storing an entire screen of output data in memory to make it easy to change. Then after all the operations to change the output image are completed, it will draw the entire thing to the screen all at once.
 
 In the code we do this by first creating a frame buffer as a multi-dimensional array. Then drawing the lines into it. Finally calling `oledExp.writeByte()` continuously until the entire screen is drawn (`128*8 = 1024` times, to be exact) from the data in the buffer.
 
