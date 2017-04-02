@@ -384,13 +384,9 @@ Run `crontab -e` to edit the file that contains commands and schedules to run th
 Finally, run the following command to restart cron so it can start running your script:
 
 ```
-/usr/sbin/crond restart
+/etc/init.d/cron restart
 ```
 
 Your LCD should now update once a minute, and you're free to use your Omega for other things in the meantime!
 
 To learn more about `cron` on the Omega, see the article on [running a command based on a schedule](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html) in the Omega2 documentation.
-
-#### Known Issues
-
-At the time of writing this guide, `crond restart` will start a new instance of cron. If you want to be circumspect, we recommend running `pidof crond` to check how many instances are currently running. The output of `pidof` should be either nothing (no `crond` running at all) or a list of numbers. Each number is the process ID (`pid`) of a running instance of `crond`. You can call `kill <pid>` to stop the process associated with that ID.
