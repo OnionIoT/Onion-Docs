@@ -8,23 +8,23 @@ order: 4
 
 <!-- // DONE: always capitalize Onion products: PWM Expansion, Expansion Dock, on the Dock, etc -->
 
-<!-- // TODO: Expansion Dock GPIOs should be referred to as Omega GPIOx, can include 'on the Expansion Header' to make it clear -->
-<!-- // TODO: the 5V, 3.3V, and GND pins should be referred to as 5V, 3.3V, and GND pins on the Expansion Header -->
+<!-- // DONE: Expansion Dock GPIOs should be referred to as Omega GPIOx, can include 'on the Expansion Header' to make it clear -->
+<!-- // DONE: the 5V, 3.3V, and GND pins should be referred to as 5V, 3.3V, and GND pins on the Expansion Header -->
 
 ## Controlling a DC Motor using an H-Bridge {#maker-kit-servo-h-bridge}
 
-<!-- // this tutorial will show us how to control a dc motor using an h-bridge. we'll also continue using the class from the first example to create classes to help us accomplish our goals -->
+<!-- // this expriment will show us how to control a dc motor using an h-bridge. we'll also continue using the class from the first example to create classes to help us accomplish our goals -->
 
 <!-- // DONE: this is the rewritten intro -->
-For this tutorial, we'll be controlling a motor using the PWM Expansion. To do this, we'll be using an H-Bridge chip and sending it the appropriate control signals with the PWM Expansion, the H-Bridge will then take care of running the motor. Along the way, we'll learn exactly how H-Bridges work and create more classes that take advantage of the ones we've made previously. To expand on that, we'll hook up three switches and program the Omega to control the speed and direction of the motor based on their positions.
+For this expriment, we'll be controlling a motor using the PWM Expansion. To do this, we'll be using an H-Bridge chip and sending it the appropriate control signals with the PWM Expansion, the H-Bridge will then take care of running the motor. Along the way, we'll learn exactly how H-Bridges work and create more classes that take advantage of the ones we've made previously. To expand on that, we'll hook up three switches and program the Omega to control the speed and direction of the motor based on their positions.
 
 <!-- // this is the old intro: -->
-<!-- For this tutorial, we’ll be controlling a motor using the PWM Expansion. To do this, the PWM Expansion will send appropriate signals to an ‘H-bridge’ by changing duty cycles, and the H-bridge will transmit the signal to the motor. Using three switches, we can send signals to change the speed and direction of the motor -->
+<!-- For this expriment, we’ll be controlling a motor using the PWM Expansion. To do this, the PWM Expansion will send appropriate signals to an ‘H-bridge’ by changing duty cycles, and the H-bridge will transmit the signal to the motor. Using three switches, we can send signals to change the speed and direction of the motor -->
 <!-- // note the changes, -->
 
 <!-- // DONE: this should point back to the previous experiment, not a Docs article -->
 
->If you need a refresher on how PWM (or Pulse-Width Modulation) works, you can find an explaination in the [first dimming LED tutorial](#maker-kit-servo-dimming-led).
+>If you need a refresher on how PWM (or Pulse-Width Modulation) works, you can find an explaination in the [first dimming LED expriment](#maker-kit-servo-dimming-led).
 
 <!-- dcmotor -->
 ```{r child = '../../shared/dcmotor.md'}
@@ -60,10 +60,11 @@ If you want to start building right away, skip ahead to the [next section](#cont
 // DONE: this first sentence is a little convoluted
 //	* should be Omega -> PWM Expansion -> H-Bridge -> DC motor
 -->
-<!-- // TODO: include a block diagram of the system -->
-
 
 This circuit will connect the Omega to a DC motor. The Omega will first be connected to the PWM Expansion, the PWM Expansion will be sending signals to an H-bridge, which will deliver power to the DC motor according to the signals. The PWM will signal how fast the motor should turn and the H-bridge acts as a switch - turning the supply voltage on or off according to the PWM signal.
+
+<!-- // DONE: include a block diagram of the system -->
+![How our circuit will work](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/03-block-diagram.png)
 
 In the pictures, you'll see some shorter wires, these we used instead of jumpers to give you a better picture of what's going on. To more easily see the rotations of the motor, we wrapped some duct tape around the motor axle.
 <!-- // DONE: let's not overcomplicate by telling them to use shorter wires since they don't have shorter wires. -->
@@ -75,7 +76,10 @@ In the pictures, you'll see some shorter wires, these we used instead of jumpers
 **Note**: As can be seen above, the chip is roughly mirrored. The top right and bottom left pins are the power supply for the outputs (`pin 8`) and the chip (`pin 16`) respectively. The difference between the two power pins is the voltage supplied to the outputs can be up to 36V, while the voltage supplied to the chip is recommended to be within 2~5V. If you want to power a large motor, you should power the motor with the external supply through `pin 8` and supply around 3V to `pin 16`.
 
 
-<!-- // TODO: include a circuit diagram -->
+<!-- // DONE: include a circuit diagram -->
+
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/diagrams/01-circuit-diagram.png)
+
 
 #### What You'll Need
 
@@ -105,18 +109,21 @@ You may need a couple of rubber bands and a block to hold down the DC Motor when
 
 <!-- // the # of SPDT switches in the kit will be increased to 10 as of 2017-01-01 -->
 
-When working with ICs, setting up the breadboard's rails can be very helpful in reducing clutter. For this tutorial, we'll do this first to reduce the wires needed.
+When working with ICs, setting up the breadboard's rails can be very helpful in reducing clutter. For this expriment, we'll do this first to reduce the wires needed.
 
 1. Connect the negative (`-`) rails on either side of the board together on one end (usually the end away from most of the wiring) with a M-M jumper, we'll call this the `GND` rail.
-1. Do the same with the positive (`+`) rails, we'll call these `Vcc` rails in this tutorial.
+1. Do the same with the positive (`+`) rails, we'll call these `Vcc` rails in this expriment.
 
-<!-- // TODO: IMAGE of connected rails on a breadboard -->
+<!-- // DONE: IMAGE of connected rails on a breadboard -->
+![How the breadboard rails are connected together](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/03-rails-connected.jpg)
 
 Now let's set up our Circuit:
 
 1. Grab your H-bridge, pick a location on your breadboard and plug the H-bridge across the channel in the middle of your breadboard. It should be sitting across with one side in column E and the other in column F, with the **half-circle cutout** pointing toward the end of the breadboard. We picked rows 5 to 12 in our breadboard.
 
-<!-- // TODO: IMAGE of H-bridge across channel with pins labelled -->
+<!-- // DONE: IMAGE of H-bridge across channel with pins labelled -->
+![The H-bridge sitting in the breadboard](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/03-h-bridge-wired.png)
+
 
 <!-- // DONE: when talking about IC pins, I would rather refer to them by the NAME of the pin, so 'wire 3A to GND' as opposed to 'pin 5 to GND' -->
 <!-- //	the goal is to teach them what's going on, rather then have them follow wiring instructions -->
@@ -138,14 +145,16 @@ Now let's set up our Circuit:
 	* Plug your switches into the rows, three rows per switch - each switch needs a half-row of clearance between the next switch if you want to put them side-by-side.
 1. With 6 M-M jumpers, connect the leftmost row of each switch to `GND` rail, and the rightmost row of each switch to `Vcc` rail.
 
-<!-- TODO: IMAGE of fully wired H-bridge, short wires, pins labelled -->
+<!-- DONE: IMAGE of fully wired H-bridge, short wires, pins labelled -->
+![The motor, H-bridge, and switches wired](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/03-motor-h-bridge-switches.jpg)
+
 
 <!-- // DONE: this sentence should be more like 'The H-Bridge circuit is done! Now let's connect it to the PWM Expansion so it can be controlled by the Omega' -->
 
 Now that the H-bridge circuit is done, let's connect the whole thing to your Omega so it can control the motor:
 
 1. We'll ground the circuit by connecting the `GND` rail to the `GND` pin on channel `S0` on the PWM Expansion with one M-F jumper.
-1. Using 3 M-M jumpers, connect the center row of each switch to GPIO0, GPIO1, and GPIO2 on the Expansion Headers. Make sure you remember which is which, since these will control your motor later!
+1. Using 3 M-M jumpers, connect the center row of each switch to Omega GPIO0, GPIO1, and GPIO2 on the Expansion Headers. Make sure you remember which is which, since these will control your motor later!
 1. Take one M-M jumper and connect `1,2EN` on the IC (row 5 on our board) to the `Vcc` rail.
 1. Using two M-F jumpers,
 	* Connect `1A`, or row 6 on our board, to channel `S0`.
@@ -154,7 +163,9 @@ Now that the H-bridge circuit is done, let's connect the whole thing to your Ome
 
 Here's what it looks like when it's all wired up:
 
-<!-- TODO: IMAGE assembled circuit -->
+<!-- DONE: IMAGE assembled circuit -->
+![All done!](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/03-assembled-circuit.jpg)
+
 
 <!-- wiring precautions -->
 ```{r child = '../../shared/wiring-precautions.md'}
@@ -179,7 +190,7 @@ Here's what it looks like when it's all wired up:
 
 <!-- // DONE: its a class definition, not a blueprint, beginner users might get the idea that 'blueprint' is the legit terminology -->
 
-Let's add a class definition for a DC motor controlled by an H-bridge to the `motors.py` file we made in the previous tutorial. This class definition will specifically drive a DC motor hooked up to an H-bridge. It builds on the abstractions in the `OmegaPwm` class and takes care of the details in operating the motor.
+Let's add a class definition for a DC motor controlled by an H-bridge to the `motors.py` file we made in the previous expriment. This class definition will specifically drive a DC motor hooked up to an H-bridge. It builds on the abstractions in the `OmegaPwm` class and takes care of the details in operating the motor.
 
 Open up `motors.py` and add the following:
 
@@ -350,7 +361,9 @@ When run, the script starts the PWM oscillator, and then sets the output to be e
 
 Here it is in action:
 
-<!-- TODO: IMAGE or gif of project working -->
+<!-- DONE: IMAGE or gif of project working -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/zC9l3LXt4fs" frameborder="0" allowfullscreen></iframe>
+
 
 As you've probably seen before, we use an infinite loop here, and you can break it by hitting `Ctrl-C`.
 
@@ -358,7 +371,7 @@ As you've probably seen before, we use an infinite loop here, and you can break 
 
 ### A Closer Look at the Code
 
-In this tutorial, we put together knowledge from the previous tutorials to control a DC motor with Python. We're now **receiving user input** interactively, allowing us to change the output in real-time. On top of that we we used a **lookup table** to track and translate the input from the user into the output sent to the controller.
+In this expriment, we put together knowledge from the previous expriments to control a DC motor with Python. We're now **receiving user input** interactively, allowing us to change the output in real-time. On top of that we we used a **lookup table** to track and translate the input from the user into the output sent to the controller.
 
 #### Receiving User Input
 
