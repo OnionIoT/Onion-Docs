@@ -273,7 +273,8 @@ Next, let's write the code for the experiment. This code will get the motor to a
 
 Create a file called `MAK03-hBridgeExperiment.py` and paste the following code in it:
 
-// TODO: this code is overkill for what we're doing... no need for the lambda stuff
+<!--
+// DONE: this code is overkill for what we're doing... no need for the lambda stuff
 // let's explore a simpler solution:
 //	* have a lookup table for the speed control:
 //		00 -> 25%
@@ -283,6 +284,7 @@ Create a file called `MAK03-hBridgeExperiment.py` and paste the following code i
 //		- ideally, have a function that takes the switch values as input and returns the duty cycle
 //	* read the direction switch into a variable to get 0 or 1 for direction
 // 	* just have a single `hBridge(direction, dutyCycle)` call to control the motor
+-->
 
 <!-- // DONE: another oversight, it's useful to be able to disable our motor completely. We might not use it in this example, but still useful -->
 <!-- //	* see https://github.com/OnionIoT/i2c-exp-driver/blob/master/src/python/omegaMotors.py#L152 for an example, should use a PWM Expansion channel to control the H-Bridge 1,2EN -->
@@ -344,9 +346,10 @@ if __name__ == '__main__':
     main()
 ```
 
-
-// TODO: everything from here on out needs to be updated to reflect that we're using switches and new code.
+<!--
+// DONE: everything from here on out needs to be updated to reflect that we're using switches and new code.
 // * When the new code is done, reconfigure this to fit the circuit and code
+-->
 
 ### What to Expect
 
@@ -357,11 +360,11 @@ When run, the script starts the PWM oscillator, and then sets the output to be e
 | First digit     | 0    | Motor turns clockwise         |
 |                 | 1    | Motor turns counter clockwise |
 | Last two digits | 00   | off                           |
-|                 | 01   | 30% speed                     |
-|                 | 10   | 40% speed                     |
-|                 | 11   | 50% speed                     |
+|                 | 01   | 50% speed                  |
+|                 | 10   | 60% speed                  |
+|                 | 11   | 70% speed                     |
 
-// TODO: the above speed digits need to be updatd
+<!-- // DONE: the above speed digits need to be updatd -->
 
 Here it is in action:
 
@@ -379,9 +382,11 @@ In this expriment, we put together knowledge from the previous expriments to con
 
 #### Receiving User Input
 
-<!-- TODO: see embeded todo -->
+<!-- DONE: see embeded todo -->
 
-Here we started to interactively obtain input in a very controlled way. With some quick math (// TODO: put in 2^3=8 here along with a short explanation), there's only 8 ways a set of 3 switches can be flipped. This means that we really only have to account for 8 separate input cases. However when requesting and processing user input, always keep in mind that all kinds of different inputs can be recieved. Here, our error checking happens right at the start of the interaction by limiting the number of inputs that the user has access to in the first place. If we allowed users to enter arbitrary commands, we would have to do a lot more validation.
+Here we started to interactively obtain input in a very controlled way. Each switch has two states - 1/ON/HIGH and 0/OFF/LOW. So for three switches there's `2^3 = 8` differt states of the switch system. This means that we really only have to account for 8 separate input cases. 
+
+Unfortunately it's not always this easy, and it's good practice to assume all kinds of different inputs can be recieved. Here a good deal error checking happens right at the start of the interaction by limiting the number of input states that are available - we only have three switches. If we allowed users to enter arbitrary commands, we would have to do a lot more validation.
 
 #### Lookup Tables
 
@@ -391,9 +396,11 @@ By checking input against a lookup table before sending commands, we can guarant
 
 ### Limits of PWM Motor Control
 
-DC motors rely on an applied voltage to run, and using PWM means the motor is actually being 'tapped' by a series of pulses. Sort of like pushing a box to make it move versus tapping it really quickly. There's a limit to how short each tap can be before the the motor won't have time to react to it - if you send out a pulse that is 3ms or less (duty cycle of 15% or less at 50Hz), you'll see the motor would wiggle, but won't rotate at all. Another way to see this in action is to set the motor to about 30%, but set the frequency to 100Hz, the same thing should happen, since the actual pulses of 'high' voltage being sent to the motor is dropping below a certain timeframe.
+DC motors rely on an applied voltage to run, and using PWM means the motor is actually being 'tapped' by a series of pulses. Sort of like pushing a box to make it move versus tapping it really quickly. Just like there's a minimum amount of force needed for a tap to get a box moving, there's a limit to how short each tap can be before the the motor won't to react to it. 
 
-// TODO: rewrite the above so the main concept your're talking about is the pulse width in ms, then make comments on the duty cycle and frequency as a corollary
+That is to say, if the pulsewidth is below a certain threshold, the motor won't start. In testing, the pulsewidth needed to start the motor is somewhere around 10ms - about 50% duty at 50Hz.
+
+<!-- // DONE: rewrite the above so the main concept your're talking about is the pulse width in ms, then make comments on the duty cycle and frequency as a corollary -->
 
 Try out different motor settings and see how it behaves. If you're testing a project with motors and want to slow it down to debug, keeping the limitations of PWM motor control in mind can save you a lot of time!
 
