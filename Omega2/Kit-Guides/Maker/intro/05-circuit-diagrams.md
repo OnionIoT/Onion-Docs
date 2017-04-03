@@ -18,38 +18,32 @@
 //		* a photo of the real component
 -->
 
-```{r child = '../circuit-components/led.md'}
+```{r child = '../../shared/circuit-components/led.md'}
 ```
 
-```{r child = '../circuit-components/resistor.md'}
+```{r child = '../../shared/circuit-components/resistor.md'}
 ```
 
-```{r child = '../circuit-components/capacitor.md'}
+```{r child = '../../shared/circuit-components/capacitor.md'}
 ```
 
-```{r child = '../circuit-components/power-supply.md'}
+```{r child = '../../shared/circuit-components/power-supply.md'}
 ```
 
-```{r child = '../circuit-components/ground.md'}
+```{r child = '../../shared/circuit-components/ground.md'}
 ```
 
-```{r child = '../circuit-components/spst.md'}
+```{r child = '../../shared/circuit-components/spst.md'}
 ```
 
-```{r child = '../circuit-components/spdt.md'}
+```{r child = '../../shared/circuit-components/spdt.md'}
 ```
 
-```{r child = '../circuit-components/integrated-circuit.md'}
+```{r child = '../../shared/circuit-components/integrated-circuit.md'}
 ```
 
-```{r child = '../circuit-components/omega-pin.md'}
+```{r child = '../../shared/circuit-components/omega-pin.md'}
 ```
 
-```{r child = '../circuit-components/device-pin.md'}
+```{r child = '../../shared/circuit-components/device-pin.md'}
 ```
-
-
-<!-- // NOTE FROM LAZAR: only include symbols for components included in this kit, can use separate files for each component,
-// see `Omega2/Kit-Guides/shared/circuit-components/resistor.md` for an example
-// lets put all of the components in that directory, `Omega2/Kit-Guides/shared/circuit-components/`
--->
