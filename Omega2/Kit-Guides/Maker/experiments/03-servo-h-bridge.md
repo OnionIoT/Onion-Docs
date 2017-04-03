@@ -215,7 +215,7 @@ class hBridgeMotor:
         self.revDriver = OmegaPwm(self.revChannel)
         self.revDriver.setDutyCycle(0)
 
-        # setup the limitations
+        # set the constraints
         self.minDuty = 0
         self.maxDuty = 100
 
@@ -292,15 +292,15 @@ from motors import hBridgeMotor
 import onionGpio
 import time
 
-# set up hbridge pins on the Omega
-H_BRIDGE_1A_CHANNEL = 0 # TODO: this should be renamed so that it's clear that this is the PWM Expansion Channel that is connected to H-Bridge input 1A
-H_BRIDGE_2A_CHANNEL = 1 # TODO: this should be renamed so that it's clear that this is the PWM Expansion Channel that is connected to H-Bridge input 2A
+# setup PWM Expansion Channels connected to H-Bridge IC
+H_BRIDGE_1A_CHANNEL = 0
+H_BRIDGE_2A_CHANNEL = 1
 H_BRIDGE_12EN_CHANNEL = 2
 
 # instantiate gpio objects for our switch inputs
-directionGPIO = onionGpio.OnionGpio(0)     # rename this so it's more clear that it's a gpio object, maybe something like dirSwitch
-speed1GPIO = onionGpio.OnionGpio(1)        # rename this so it's more clear that it's a gpio object, maybe something like speed0Switch
-speed2GPIO = onionGpio.OnionGpio(2)        # rename this so it's more clear that it's a gpio object, maybe something like speed1Switch
+directionGPIO = onionGpio.OnionGpio(0)
+speed1GPIO = onionGpio.OnionGpio(1)
+speed2GPIO = onionGpio.OnionGpio(2)
 
 # create a dictionary of functions against which to check user input
 # this is basically a dispatch table to map function calls to different names
@@ -322,7 +322,7 @@ def main():
 
     # loop forever
     while(True):
-        # sleeps for a bit to accomodate slow switches
+        # sleeps for a bit to accomodate switches
         time.sleep(0.5)
 
         # gets the signals going through the switches
@@ -330,13 +330,15 @@ def main():
         commandNew = commandNew + speed1GPIO.getValue()[0]
         commandNew = commandNew + speed2GPIO.getValue()[0]
 
-                # parses the command into motorCommands format
+        # parses the command into motorCommands format
         commandNew.replace('\n', '')
 
         # check user input against dictionary, run the corresponding function
+		#   but only if the command has changed, no need to keep calling the same command
         if (command != commandNew):
             command = commandNew
             motorCommands[command](motor)
+
 
 if __name__ == '__main__':
     main()
@@ -359,6 +361,8 @@ When run, the script starts the PWM oscillator, and then sets the output to be e
 |                 | 10   | 40% speed                     |
 |                 | 11   | 50% speed                     |
 
+// TODO: the above speed digits need to be updatd
+
 Here it is in action:
 
 <!-- DONE: IMAGE or gif of project working -->
@@ -375,7 +379,9 @@ In this expriment, we put together knowledge from the previous expriments to con
 
 #### Receiving User Input
 
-Here we started to interactively obtain input in a very controlled way. With some quick math, there's only 8 ways a set of 3 switches can be flipped. This means that we really only have to account for 8 separate input cases. However when requesting and processing user input, always keep in mind that all kinds of different inputs can be recieved. Here, our error checking happens right at the start of the interaction by limiting the number of inputs that the user has access to in the first place. If we allowed users to enter arbitrary commands, we would have to do a lot more validation.
+<!-- TODO: see embeded todo -->
+
+Here we started to interactively obtain input in a very controlled way. With some quick math (// TODO: put in 2^3=8 here along with a short explanation), there's only 8 ways a set of 3 switches can be flipped. This means that we really only have to account for 8 separate input cases. However when requesting and processing user input, always keep in mind that all kinds of different inputs can be recieved. Here, our error checking happens right at the start of the interaction by limiting the number of inputs that the user has access to in the first place. If we allowed users to enter arbitrary commands, we would have to do a lot more validation.
 
 #### Lookup Tables
 
@@ -385,8 +391,10 @@ By checking input against a lookup table before sending commands, we can guarant
 
 ### Limits of PWM Motor Control
 
-DC motors rely on an applied voltage to run, and using PWM means the motor is actually being 'tapped' by a series of pulses. Sort of like pushing a box to make it move versus tapping it really quickly. There's a limit to how short each tap can be before the the motor won't have time to react to it - if you send out a duty cycle of less than about 15% at 50Hz, you'll see the motor would wiggle, but won't rotate at all. Another way to see this in action is to set the motor to about 30%, but set the frequency to 100Hz, the same thing should happen, since the actual pulses of 'high' voltage being sent to the motor is dropping below a certain timeframe.
+DC motors rely on an applied voltage to run, and using PWM means the motor is actually being 'tapped' by a series of pulses. Sort of like pushing a box to make it move versus tapping it really quickly. There's a limit to how short each tap can be before the the motor won't have time to react to it - if you send out a pulse that is 3ms or less (duty cycle of 15% or less at 50Hz), you'll see the motor would wiggle, but won't rotate at all. Another way to see this in action is to set the motor to about 30%, but set the frequency to 100Hz, the same thing should happen, since the actual pulses of 'high' voltage being sent to the motor is dropping below a certain timeframe.
 
-Try out different outputs to the motor and see how it behaves. If you're testing a project with motors and want to slow it down to debug, keeping the limitations of PWM motor control in mind can save you a lot of time!
+// TODO: rewrite the above so the main concept your're talking about is the pulse width in ms, then make comments on the duty cycle and frequency as a corollary
+
+Try out different motor settings and see how it behaves. If you're testing a project with motors and want to slow it down to debug, keeping the limitations of PWM motor control in mind can save you a lot of time!
 
 Next time, we [write text to a screen](#maker-kit-oled-writing-text).
