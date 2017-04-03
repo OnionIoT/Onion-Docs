@@ -77,6 +77,7 @@ In the pictures, you'll see some shorter wires, these we used instead of jumpers
 
 
 <!-- // DONE: include a circuit diagram -->
+Here's a diagram to refer back to if things get hectic:
 
 ![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/diagrams/01-circuit-diagram.png)
 
@@ -100,7 +101,8 @@ You may need a couple of rubber bands and a block to hold down the DC Motor when
 
 #### Hooking up the Components
 
-<!-- // omega -> h-bridge: three channels from pwm expansion to control the two input pins and the duty cycle pin, all requisite wiring for power
+<!-- 
+// omega -> h-bridge: three channels from pwm expansion to control the two input pins and the duty cycle pin, all requisite wiring for power
 //  * talk about how the IC should be plugged in across the channel of the breadboard (have this note in a markdown file so it can be easily reused)
 // h-bridge -> dc motor: the h-bridge motor outputs to the motor... duh
 

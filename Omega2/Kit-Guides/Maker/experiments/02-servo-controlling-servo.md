@@ -41,6 +41,10 @@ For our experiment, we'll demonstrate how servos can be controlled through PWM s
 
 For this experiment, we'll be wiring a circuit that allows us to control the motors directly through the PWM expansion. This circuit is relatively simple because the motor and the PWM Expansion are both plug and play. If you haven't already, it is highly recommended that you read over the [PWM Expansion](#pwm-expansion) article in our documentation for safety tips.
 
+For completeness, here's a diagram of our circuit:
+
+![How the servos connect to the PWM Expansion](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/diagrams/02-circuit-diagram.png)
+
 #### What You'll Need
 
 Gather the following from your kit:
@@ -61,6 +65,7 @@ Gather the following from your kit:
 1. Repeat the step above with the Micro Servo connecting to channel `S1`.
 
 // TODO: let's make a 'Going Further' section at the end of the guide and move this point down there. The issue is not that you would draw too much current from the Dock (note it's drawing current from the regulator circuit, not the Omega), the issue is that the Dock just can't supply enough current for servos under high loads. So if you want to do dope things with servos (robot arms, rovers, etc), you'll need an external power supply. This section should also talk about how the Omega cannot be powered by this external power supply since the dc barrel jack supply is isolated. See https://github.com/OnionIoT/Onion-Docs/blob/master/Omega2/Documentation/Hardware-Overview/Expansions/PWM-Expansion.md for details
+
 **Note 1:** If you're driving a large load on your servo, you should provide an external power supply to the PWM Expansion to avoid drawing too much current through the Omega!
 
 <!-- // DONE (killed it): mmmm this is super unlikely/hard to do and I don't wanna scare the users. In the off chance that it does happen, it's all good since only the GND row will make contact, and the USB receptacle is grounded anyway. no harm, no foul. -->
@@ -181,15 +186,24 @@ The script will first set the servo motors to the 90 degree position.
 
 Then a repeating pattern will happen continuously. First, the motor shaft move to the `0` degree position staying there for two seconds. Next the shaft will move to the `90` degree (neutral) positon and stay there for two seconds. Finally it will move to the `180` degree positon and stay there for two seconds. The pattern will then repeat itself.
 
+Here it is working in the Onion Lab:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/i2KygjFe22A" frameborder="0" allowfullscreen></iframe>
+
 Since the pattern will repeat infinitely, you will need to break by entering `Ctrl-C`.
 
-// TODO: why is it highly recommended to turn the oscillator off?
+<!--
+// DONE: why is it highly recommended to turn the oscillator off?
 //	* this is another example of something that will scare newbies.
 //	* explain that the PWM Expansion is free-running and that it will keep sending the last programmed PWM signal. go on to explain that if the servos aren't really doing anything, to decrease the potential wear, we can disable the PWM Expansion's oscillator to allow the servos to be idle when they're not in use
-**Note**: Due to the nature of the servo motors in the kit, it's highly recommended to turn the oscillator off after killing the script by running the following in ssh or terminal:
+-->
+
+**Note**: It's highly recommended to turn the oscillator off after killing the script by running the following in ssh or terminal:
 ```
 pwm-exp -s
 ```
+
+This is because the servos will continue to be sent signals if the oscillator remains on. Although the arms won't be swinging, the motor will be running needlessly and drain power.
 
 ### A Closer Look at the Code
 
