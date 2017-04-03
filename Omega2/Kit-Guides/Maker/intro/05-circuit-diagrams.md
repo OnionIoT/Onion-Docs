@@ -47,3 +47,6 @@
 
 ```{r child = '../../shared/circuit-components/device-pin.md'}
 ```
+
+```{r child = '../../shared/circuit-components/servo.md'}
+```
