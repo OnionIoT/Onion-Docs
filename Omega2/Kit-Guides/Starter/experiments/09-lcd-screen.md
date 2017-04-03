@@ -373,7 +373,7 @@ Everything should work just like before. Now let's move on to setting up `cron`.
 
 >To briefly explain, the asterisks (\*) mean 'for all instances'. The position of the asterisk corresponds to 'minute', 'hour', 'date', 'month', and 'year' in order from left to right. The path at the end is the script or command you want to run. Basically, this line tells cron to run the `STK09-temperatureLCD.py` script once a minute.
 
-**Note** that this will load [`vim`](http://vim.wikia.com/wiki/New_to_Vim) to edit this file by default.
+**Note** that, by default, this command will load [the `vim` text editor](http://vim.wikia.com/wiki/New_to_Vim) to edit the crontab settings.
 
 <!-- TODO: update the vim link with our intro vim tutorial -->
 
