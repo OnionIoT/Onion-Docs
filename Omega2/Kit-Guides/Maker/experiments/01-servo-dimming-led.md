@@ -6,9 +6,9 @@ devices: [ Omega , Omega2 ]
 order: 1
 ---
 
-<!-- // TODO: give this a read-through before diving into editing, some typos and gramatical errors need to be fixed
+<!-- // DONE: give this a read-through before diving into editing, some typos and gramatical errors need to be fixed
 
-// TODO: always capitalize Onion products: PWM Expansion, Expansion Dock, on the Dock, etc
+// DONE: always capitalize Onion products: PWM Expansion, Expansion Dock, on the Dock, etc
 -->
 
 ## Dimming LEDs {#maker-kit-servo-dimming-led}
@@ -79,7 +79,7 @@ Each LED will be connected to the board in the same way, so we'll cover wiring a
 If your circuit now looks like this:
 
 <!-- // DONE: IMAGE picture and/or circuit diagram -->
-![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/01-assembled-circuit.jpg)
+![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/01-assembled-circuit.jpg)
 
 Then we're all set!
 
@@ -137,7 +137,7 @@ class OmegaPwm:
 
 Now let's write the script for the experiment. Create a file called `MAK01-pwmLed.py` and throw the following code in it. Then run it and keep an eye on your LEDs:
 
-<!-- // TODO: the code is good, just need comments to describe what we're actually doing! -->
+<!-- // DONE: the code is good, just need comments to describe what we're actually doing! -->
 
 ``` python
 from motors import OmegaPwm
@@ -146,6 +146,7 @@ import time
 
 # define constants
 PWM_FREQUENCY = 1000
+sleepTime = 0.005
 
 # apply sine to the input radian value
 #    ensure that it
@@ -157,6 +158,7 @@ def calcDutyCycle(rad):
         result = 0.0
     return result
 
+# main function
 def main():
     # construct an array of OmegaPwm objects
     ledObjectArray = []		# create an empty array
@@ -170,79 +172,69 @@ def main():
     channelIncrement = (2 * math.pi)/16
 	# define the phase difference (in radians) for each
     phaseIncrement = (2 * math.pi)/160
-
+    
+    # counters for frames and duty cycles in the LED animation
     loopCount = 0
     duty = 0
+    
+    # infinite loop
     while(True):
 		# loop through each of the LED PWM Channels
         for index,element in enumerate(ledObjectArray):
 			# calculate the duty cycle for the channel using a sine function
-			#   the input to the duty cycle calculation consists of the sum of :
-			#   - multiplying the channelIncrement by the index (which matches the PWM channel number)
-			#   - multiplying the phaseIncrement by the loop count
+			#   the input to the duty cycle calculation consists of the sum of two numbers, one fixed and one changing:
+			#   - multiplying channelIncrement by the PWM channel index - fixed for each channel
+			#   - multiplying phaseIncrement by the loop count - changing
             duty = calcDutyCycle(( (index) * channelIncrement ) + (loopCount * phaseIncrement))
             element.setDutyCycle(duty)
 		# increment the loop count and ensure it doesn't go over 160
         loopCount += 1
         loopCount = loopCount % 160
 		# add a small delay for the visual effect
-        time.sleep(.005)
+        time.sleep(sleepTime)
 
 if __name__ == '__main__':
     main()
 ```
 
-// TODO: additions to the closer look at the code section
-* What ends up happening to the duty cycle of each channel:
-	- The duty cycle value is based on the sine of the radian value (angle) we input
-	- The radian values for each channel will always be `channelIncrement` apart
-	- Each time the infinite loop executes, the radian values for the channels will be incremented by `phaseIncrement`
-		- because of the modulo we implemented, once the loop has iterated 160 times, the `phaseIncrement` will start again 
-* describe that the for loop in the program code above is the same as:
-
-``` python
-	for loopCount in range(0,160):
-		for index in ledObjectArray:
-			duty = calcDutyCycle(( (index) * channelIncrement ) + (loopCount * phaseIncrement))
-            ledObjectArray[index].setDutyCycle(duty)
-```
-
-
 ### What to Expect
 
 You should see a wave like effect across the LEDs when they are placed beside each other in order from 0 to 15.
 
-<!-- // TODO: IMAGE add gif/video of LEDs working -->
+<!-- // DONE: IMAGE add gif/video of LEDs working -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/szgAWYNQxKw" frameborder="0" allowfullscreen></iframe>
 
 This code uses an infinite loop, so you'll have to terminate the script with `Ctrl-C`.
 
-
 ### A Closer Look at the Code
 
-<!-- // TODO: this second sentence tries to do many things, let's split it up and talk about how each object is tied to a particular channel when it is instantiated. can also move that last sentence up to the description of the class. and THEN talk about what the setDutyCycle class does -->
-There are two major things we do here. 
+<!-- // DONE: this second sentence tries to do many things, let's split it up and talk about how each object is tied to a particular channel when it is instantiated. can also move that last sentence up to the description of the class. and THEN talk about what the setDutyCycle class does -->
+The basic structure of our experiment goes as follows:
 
-* First, it specifies a generic class for a PWM channel. This generic class has a function `setDutyCycle()` that is used to set each channel's duty cycle. 
-* We then set the brightness of each LED individually by creating an object for each output channel.
+* First, we create a generic class to control one PWM channel. 
+* In our main function, we create an object for each PWM channel from the class above.
+* We then set each channel's duty cycle using their `setDutyCycle()` function.
 
 Some points of interest here:
 
 * Creating objects from classes
 * Using the PWM Python Module
+* Using sinusoidal waves
 
-Additionally, this code has a lot of mathematical operators. If you're confused, here's a cheat-sheet of what do the operators do:
+This experiment makes use of several mathematical operators. If you need a refresher, here's a cheat-sheet of what do the operators do:
 
 |    Operator   | Effect                                       |
 |:-------------:|----------------------------------------------|
 |    `a * b`    | Multiplies a and b                           |
 |    `a / b`    | Divides a by b                               |
-|    `a % b`    | Returns the remainder of a divided by b      |
+|    `a % b`    | Returns the remainder of a divided by b ("modulo") |
 | `math.sin(a)` | Returns the sine of a, where a is in radians |
 |   `math.pi`   | Returns the value of pi                      |
 |    `a += b`   | Assigns the value of a plus b to a           |
 
-> // TODO: include a link to a page that describes sines, radians, etc
+> // DONE: include a link to a page that describes sines, radians, etc
 
+We will explain the sine function in the following sections.
 
 #### Creating a Class
 
@@ -258,7 +250,7 @@ As a refresher, Python is an **Object Oriented** programming language.
 
 To see another example of classes in Python, check out the [shift register](#shift-register-creating-classes) article where we first introduced them.
 
-In our case, we used the class `OmegaPwm` as a blueprint for a single PWM output channel. By creating objects of this class, we can represent and control an individual PWM channel on the board. When we call the `OmegaPwm()` function with arguments `i` and `PWM_FREQUENCY` we're initializing an object of the `OmegaPwm` class representing channel `i` on the Expansion. Once we instantiate each channel object we store the objects inside of a list, such that their index corresponds to the channel number. This makes the rest of our code a little simpler, as you'll soon see below. 
+In our case, we used the class `OmegaPwm` as a blueprint for a single PWM output channel. By creating objects of this class, we can represent and control an individual PWM channel on the board. When we call the `OmegaPwm()` function with arguments `i` and `PWM_FREQUENCY`, we're initializing objects of the `OmegaPwm` class for each channel `i` on the Expansion. Once we instantiate each channel object we store the objects inside of a list, such that their index corresponds to the channel number. This makes the rest of our code a little simpler, as you'll soon see below. 
 <!-- // DONE: include a small teaser of how it makes it simpler, or just say, 'as you'll see below' -->
 
 #### Using the Onion PWM Expansion Python Module
@@ -279,7 +271,8 @@ Specifically, we use the following functions:
 
 In `omegaPwm.py`, you'll notice the servo frequency was set to 1000 Hz. This is to ensure the LED doesn't flicker no matter what duty cycle we set the channel to output. This is done in the class' constructor function by passing `PWM_FREQUENCY` as the 2nd argument. For each channel, we can change the duty cycle on the fly by calling `setupDriver()` and sending in the channel, and the duty cycle (recall that this is between 0% and 100%). By changing the duty cycle, we change the average voltage sent to the LED connected to the channel - this is how the LEDs dim and brighten.
 
-Instantiating an `OmegaPwm` object requires a channel number and frequency. Note that if you change the frequency of one channel (through initialization or `setFrequency()`), you change it for **all** channels. This is because the PWM Expansion only has one oscillator shared between all the outputs.
+Instantiating an `OmegaPwm` object requires a channel number and frequency. Note that if you change the oscillator frequency of one channel (through initialization or `setFrequency()`), you change it for **all** channels. This is because the PWM Expansion only has one oscillator shared between all the outputs.
+
 
 ##### Initializing the PWM Expansion
 
@@ -289,14 +282,44 @@ If you look at the constructor (the `__init__` function), you will notice the li
 pwmExp.driverInit()
 ```
 
-This line initializes the PWM Expansion for usage. This starts the oscillator on the PWM Expansion which actually produces the signals sent through the pins. Without this line, the oscillator will be off and the Expansion won't respond! //TODO: technically, it would respond, but it wouldn't produce any pwm signals
+This line initializes the PWM Expansion for usage. This starts the oscillator on the PWM Expansion which actually produces the signals sent through the pins. Without this line, the oscillator will be off and will not produce any PWM signals! 
+<!-- //DONE: technically, it would respond, but it wouldn't produce any pwm signals -->
 
 Before we initialize the oscillator, we can check if it's already on with `pwmExp.checkInit()`. By checking the return value we can avoid initializing it multiple times. For the PWM Expansion in particular, initializing it multiple times doesn't really matter much. However initialization for other hardware devices may take quite a while, so it's a pretty good habit to get into to save you some time.
 
-### What's Math?
+#### The Math Behind the Duty Cycle
 
-You'll notice a lot of mathematical operations going on with the math module in Python. Combined, this allows the brightness of the LEDs to vary sinusoidally. Python's built in mathematical operations are pretty powerful, but it does have some pitfalls which we'll go over next expriment.
+You'll notice a lot of mathematical operations going on with the math module in Python. Combined, this allows the brightness of the LEDs to vary sinusoidally. 
 
-<!-- // TODO: maybe include a graphic and/or more text to explain what you mean by vary sinusoidally. We don't want to make the readers feel dumb -->
+<!-- // DONE: maybe include a graphic and/or more text to explain what you mean by vary sinusoidally. We don't want to make the readers feel dumb -->
+
+If you're not familiar with what "sinusoidally" refers to, a sine wave is a type of smooth wave that goes up and down over time. The sine function is based on the **vertical component** of a line that goes from the center of an imaginary circle to its edge. When you rotate the line by an **angle** (like the hands on a clock), the length of the vertical component will change. You can see an example of one in the graphic below:
+
+![Sine wave](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/sine-wave.gif)
+
+The sine function takes an angle and returns a value between -1 and 1. To convert it to a duty cycle, we then multiply the value by 50, bringing the maximum range to -50 and +50. We then add 50 to the final value so that it will now be between 0 and 100.
+
+In every frame, for each channel, we calculate the duty cycle by doing the following:
+
+* The duty cycle value is based on the sine of the angle we pass it. The angles are in units called **radians**. 
+    * The sine function's values will start repeating every 360 degrees or 2π radians, because it's going around a circle.
+* Before the infinite loop, we offset each PWM channel's starting duty cycle to be evenly within 2π radians (a full circle).
+    * The lights will always be `channelIncrement` apart from each other.
+* Each time the infinite loop executes, the radian values for the channels will be incremented by `phaseIncrement`.
+	* We added a modulo operation to the loop counter; once it has iterated 160 times, the counter will reset to 0 and start again.
+    * This is to prevent increasing the loop counter to infinity! Well, it wouldn't reach infinity, but [unexpected things](https://www.fefe.de/intof.html) might start happening.
+
+We then pass the calculated duty cycle to the `setDutyCycle()` function, which sets the LED's brightness.
+
+The code in the `for` loop in the `main()` function is equivalent to the block below:
+
+``` python
+	for loopCount in range(0,160):
+		for index in ledObjectArray:
+			duty = calcDutyCycle(( (index) * channelIncrement ) + (loopCount * phaseIncrement))
+            ledObjectArray[index].setDutyCycle(duty)
+```
+
+Python's built in mathematical operations are pretty powerful, but they do have some pitfalls which we'll cover in the next experiment.
 
 Next time, we will [control servos](#maker-kit-servo-controlling-servo) with the PWM Expansion.
