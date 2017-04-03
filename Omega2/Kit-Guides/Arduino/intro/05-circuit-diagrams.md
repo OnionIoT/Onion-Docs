@@ -39,6 +39,18 @@
 ```{r child = '../../shared/circuit-components/spdt.md'}
 ```
 
+```{r child = '../../shared/circuit-components/trimpot.md'}
+```
+
+```{r child = '../../shared/circuit-components/photoresistor.md'}
+```
+
+```{r child = '../../shared/circuit-components/buzzer.md'}
+```
+
+```{r child = '../../shared/circuit-components/servo.md'}
+```
+
 ```{r child = '../../shared/circuit-components/integrated-circuit.md'}
 ```
 
@@ -47,3 +59,9 @@
 
 ```{r child = '../../shared/circuit-components/device-pin.md'}
 ```
+
+
+<!-- // NOTE FROM LAZAR: only include symbols for components included in this kit, can use separate files for each component,
+// see `Omega2/Kit-Guides/shared/circuit-components/resistor.md` for an example
+// lets put all of the components in that directory, `Omega2/Kit-Guides/shared/circuit-components/`
+-->

@@ -344,9 +344,7 @@ This is an incredibly common programming technique and is at the heart of Object
 
 ### Going Further: Automating the Script
 
-<!-- // TODO: update this so that it runs the python script directly -->
-
-We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running.
+We can use the `cron` Linux utility to automatically run the script once every minute, without having to tie up your system by leaving Python running. Since `cron` executes from elsewhere in the Linux system, we'll have the give it the *absolute path* to our scripts.
 
 First, take note of which directory your scripts are in by running the command `pwd`. If you're developing in the `/root` folder, you will see:
 
@@ -354,32 +352,30 @@ First, take note of which directory your scripts are in by running the command `
 /root
 ```
 
-Keep this in mind for the next step.
-
-Then, create a shell script file in `/root` called `checkTempSensor.sh`.  and write the following in it:
-
-``` sh
-##!/bin/sh -e
-/usr/bin/python (PATH TO SCRIPTS)/STK09-temperatureLCD.py
-```
-
-And replace `(PATH TO SCRIPTS)` with the output of the `pwd` command from above.
-
-Then change the file permissions of this shell script so it becomes executable:
+Let's assume that you put your scripts in the `/root` directory. So to run our script with an absolute path, the command would be:
 
 ```
-chmod +x checkTempSensor.sh
+python /root/STK09-temperatureLCD.py
 ```
 
-Run `crontab -e` to edit the file that contains commands and schedules to run them, and add this line to the end of the file:
+Try it out yourself:
 
 ```
-* * * * * /root/checkTempSensor.sh
+cd /
+python /root/STK09-temperatureLCD.py
 ```
 
->To briefly explain, the asterisks (\*) mean 'for all instances'. The position of the asterisk corresponds to 'minute', 'hour', 'date', 'month', and 'year' in order from left to right. The path at the end is the script or command you want to run. Basically, this line tells cron to run the `checkTempSensor.sh` script once a minute.
+Everything should work just like before. Now let's move on to setting up `cron`. Run `crontab -e` to edit the file that contains commands and schedules to run them, and add this line to the end of the file:
 
-**Note** that this will load [`vim`](http://vim.wikia.com/wiki/New_to_Vim) to edit this file by default.
+```
+* * * * * python /root/STK09-temperatureLCD.py
+```
+
+>To briefly explain, the asterisks (\*) mean 'for all instances'. The position of the asterisk corresponds to 'minute', 'hour', 'date', 'month', and 'year' in order from left to right. The path at the end is the script or command you want to run. Basically, this line tells cron to run the `STK09-temperatureLCD.py` script once a minute.
+
+**Note** that, by default, this command will load [the `vim` text editor](http://vim.wikia.com/wiki/New_to_Vim) to edit the crontab settings.
+
+<!-- TODO: update the vim link with our intro vim tutorial -->
 
 Finally, run the following command to restart cron so it can start running your script:
 
