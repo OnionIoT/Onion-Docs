@@ -10,7 +10,7 @@ order: 4
 
 ## Writing Text to the OLED Display {#maker-kit-oled-writing-text}
 
-In this tutorial, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python module for the OLED Expansion. By the end, you'll be able to boot it up, and write whatever you wish!
+In this expriment, we'll be figuring out how to start up the OLED Expansion's screen and writing some text to it using Onion's Python module for the OLED Expansion. By the end, you'll be able to boot it up, and write whatever you wish!
 
 ```{r child='../shared/oled-info.md'}
 ```
@@ -18,7 +18,7 @@ In this tutorial, we'll be figuring out how to start up the OLED Expansion's scr
 
 ### Building the Circuit
 
-This tutorial does not require you to use a breadboard as the OLED Expansion is a complete circuit. Plug it into your Expansion Dock and you're good to go!
+This expriment does not require you to use a breadboard as the OLED Expansion is a complete circuit. Plug it into your Expansion Dock and you're good to go!
 
 #### What You'll Need
 
@@ -29,7 +29,7 @@ This tutorial does not require you to use a breadboard as the OLED Expansion is 
 
 <!-- // DONE: avoid saying things like 'fairly simple', will make beginners feel bad when they struggle -->
 
-The code we'll be writing is straightforward: we'll be calling on the `oledExp` class from the `OmegaExpansion` Python Module and using the built in functions to print a bunch of text. for more details on the Oled Expansion Python Class and Module, check out the [software  module reference](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) in the Omega2 Docs.
+The code we'll be writing is straightforward: we'll be calling on the `oledExp` class from the `OmegaExpansion` Python Module and using the built in functions to print a bunch of text. For more details on the Oled Expansion Python Class and Module, check out the [software  module reference](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) in the Omega2 Docs.
 
 Create a file called `MAK04-oledWriteText.py` and paste the following code in it:
 
@@ -105,7 +105,9 @@ if __name__ == '__main__':
 
 After running the Python code, you should see the current current time on the right side of the top row, a greeting on the third row and a random fact on the fifth row.
 
-<!-- // TODO: IMAGE add gif of the results -->
+<!-- // DONE: IMAGE add gif of the results -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/tpmmlRAoveE" frameborder="0" allowfullscreen></iframe>
+
 
 ### A Closer Look at the Code
 

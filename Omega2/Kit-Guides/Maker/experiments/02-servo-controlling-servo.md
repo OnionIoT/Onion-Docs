@@ -17,7 +17,7 @@ order: 2
 
 // TODO: you can do better on this intro, let's make these people stoked!
 
-In this tutorial we will learn how to control servo motors using the PWM Expansion with Python. First, let's get to know our servos.
+In this expriment we will learn how to control servo motors using the PWM Expansion with Python. First, let's get to know our servos.
 
 // TODO: makes more sense to have the PWM description first and then the servo description. update the last sentence above to flow with the article
 
@@ -67,12 +67,14 @@ Gather the following from your kit:
 
 ### Writing the Code
 
-//TODO: insert a link to the previous article
-Let's write another class to represent a servo motor based on the class we wrote in the first experiment. Create a file called `motors.py` and paste the following code in it:
+<!-- //DONE: insert a link to the previous article -->
+
+Let's write another class to represent a servo motor based on the class we wrote in the [previous experiment](#maker-kit-servo-dimming-led). Create a file called `motors.py` and paste the following code in it:
 
 ``` python
 from omegaPwm import OmegaPwm
 
+# define the minimum and maximum pulse widths that will suit most servos (in us)
 SERVO_MIN_PULSE = 1000
 SERVO_MAX_PULSE = 2000
 
@@ -146,6 +148,7 @@ def main():
     microServo.setAngle(90.0)
     time.sleep(2)
 
+    # infinite loop
     while(True):
         # Turn servos to the 0 angle position
         standardServo.setAngle(0.0)
@@ -159,6 +162,8 @@ def main():
         standardServo.setAngle(180.0)
         microServo.setAngle(180.0)
         time.sleep(2)
+
+
 if __name__ == '__main__':
     main()
 ```
@@ -212,7 +217,7 @@ while(True):
 
 The reason anyone would use an infinite loop is so we can create programs that will always run. Practically, thermostats, digital clocks, and even computers all rely on infinite loops to work. During the an infinite loop, conditions and states can be evaluated over and over again. After the conditions are checked, actions that require those conditions are performed. For example, a thermostat would evaluate the temperature of the room over and over again. When it detects the temperature to be lower than some number, it turns on the heat; and if it's higher than some number, it should turn off the heat accordingly.
 
-In this example the loop doesn't check anything, only progressing through the commands one-by-one. Be prepared for that to change in the upcoming tutorials though!
+In this example the loop doesn't check anything, only progressing through the commands one-by-one. Be prepared for that to change in the upcoming expriments though!
 
 #### Math in Python
 

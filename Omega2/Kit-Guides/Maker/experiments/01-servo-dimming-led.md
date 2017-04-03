@@ -19,6 +19,7 @@ order: 1
 
 Welcome to the Maker Kit! We hope you're as excited as we are to get cracking with your fancy Onion Expansions.
 
+
 In this tutorial, we'll learn how to control the PWM Expansion with Python, and we'll use it to control a whopping **16 LEDs**. We'll connect the LEDs to a breadboard, then we'll write some code to light up the LEDs for a mini light show!
 
 <!-- pwm -->
@@ -146,7 +147,8 @@ import time
 # define constants
 PWM_FREQUENCY = 1000
 
-# TODO: need a small description comment of this function
+# apply sine to the input radian value
+#    ensure that it
 def calcDutyCycle(rad):
     result = 50.0*(math.sin(rad)) + 50.0
     if(result > 100.0):
@@ -156,29 +158,53 @@ def calcDutyCycle(rad):
     return result
 
 def main():
-    # Construct pwmLED object array
-    ledObjectArray = []
+    # construct an array of OmegaPwm objects
+    ledObjectArray = []		# create an empty array
     for i in range(16):
-        # instantiate an object tied to the i channel     // TODO: fix up this comment
+        # instantiate an object tied to the i channel on the PWM Expansion
         obj = OmegaPwm(i, PWM_FREQUENCY)
         # add the object into our array of objects
         ledObjectArray.append(obj)
 
-    phaseIncrement = (2 * math.pi)/16
-    actualIncrement = (2 * math.pi)/160
+    # define the phase difference (in radians) between each channel
+    channelIncrement = (2 * math.pi)/16
+	# define the phase difference (in radians) for each
+    phaseIncrement = (2 * math.pi)/160
 
-    i = 0
+    loopCount = 0
     duty = 0
     while(True):
+		# loop through each of the LED PWM Channels
         for index,element in enumerate(ledObjectArray):
-            duty = calcDutyCycle(( (index) * phaseIncrement ) + (i * actualIncrement))
+			# calculate the duty cycle for the channel using a sine function
+			#   the input to the duty cycle calculation consists of the sum of :
+			#   - multiplying the channelIncrement by the index (which matches the PWM channel number)
+			#   - multiplying the phaseIncrement by the loop count
+            duty = calcDutyCycle(( (index) * channelIncrement ) + (loopCount * phaseIncrement))
             element.setDutyCycle(duty)
-        i += 1
-        i = i % 160
+		# increment the loop count and ensure it doesn't go over 160
+        loopCount += 1
+        loopCount = loopCount % 160
+		# add a small delay for the visual effect
         time.sleep(.005)
 
 if __name__ == '__main__':
     main()
+```
+
+// TODO: additions to the closer look at the code section
+* What ends up happening to the duty cycle of each channel:
+	- The duty cycle value is based on the sine of the radian value (angle) we input
+	- The radian values for each channel will always be `channelIncrement` apart
+	- Each time the infinite loop executes, the radian values for the channels will be incremented by `phaseIncrement`
+		- because of the modulo we implemented, once the loop has iterated 160 times, the `phaseIncrement` will start again 
+* describe that the for loop in the program code above is the same as:
+
+``` python
+	for loopCount in range(0,160):
+		for index in ledObjectArray:
+			duty = calcDutyCycle(( (index) * channelIncrement ) + (loopCount * phaseIncrement))
+            ledObjectArray[index].setDutyCycle(duty)
 ```
 
 
@@ -269,7 +295,7 @@ Before we initialize the oscillator, we can check if it's already on with `pwmEx
 
 ### What's Math?
 
-You'll notice a lot of mathematical operations going on with the math module in Python. Combined, this allows the brightness of the LEDs to vary sinusoidally. Python's built in mathematical operations are pretty powerful, but it does have some pitfalls which we'll go over next tutorial.
+You'll notice a lot of mathematical operations going on with the math module in Python. Combined, this allows the brightness of the LEDs to vary sinusoidally. Python's built in mathematical operations are pretty powerful, but it does have some pitfalls which we'll go over next expriment.
 
 <!-- // TODO: maybe include a graphic and/or more text to explain what you mean by vary sinusoidally. We don't want to make the readers feel dumb -->
 

@@ -53,6 +53,8 @@ Here's the circuit diagram for reference.
 <!-- DONE: CIRCUIT DIAGRAM -->
 ![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/diagrams/11-circuit-diagram.png)
 
+<!-- TODO: redo the circuit diagram so that the pins of the 7-seg are clear, like the circuit diagram in the Starter Kit 7seg article https://docs.onion.io/omega2-starter-kit/starter-kit-seven-segment-display.html -->
+
 1. Connect the digit pins (`6`,`8`,`9`,`12`) of the seven seg to the GPIO pins `2`,`3`,`4`,`5` on the Arduino Dock respectively.
 1. Cconnect the scan pins (`1`,`2`,`3`,`4`,`5`,`7`,`10`,`11`) of the seven seg each to a different 1K resistor then to the pins `6`,`7`,`8`,`9`,`10`,`11`,`12`,`13` on the Arduino Dock respectively.
   * For this step, we'll connect the pins to the resistors through the breadboard for ease of service.
@@ -261,7 +263,7 @@ void stringToDigits(String inputString)
         }
 
         // prematurely end the loop if we've decoded enough digits to fill the entire display
-        if (digitIndex >= NUM_7SEG_DIGITS) {
+        if (digitIndex > NUM_7SEG_DIGITS) {
             break;
         }
     }
@@ -480,20 +482,26 @@ Declaring a function lets the compiler know that this function will be defined l
 
 In this case, this was done for mostly illustrative purposes, but this is an important programming concept to keep in mind.
 
-<!-- TODO: complete this section -->
-<!-- #### Going Further: Adding Automation
 
-Let's say you wanted to use the 7-segment display to show the current time. The Omega will then have to send the current time to the microcontroller via serial once a minute. Luckily, there's a tool in Linux that serves exactly this purpose!
+ #### Going Further: Adding Automation
+
+Let's say you wanted to use the 7-segment display to show the current time. Easy! We just need to display the current 24 hour time (hour and minute separated by a period), and push it to the microcontroller via serial:
+
+```
+date +"%H.%M" > /dev/ttyS1
+```
+
+> The `+"%H.%M"` adds output formatting to the `date` command. Try experimenting with the command, it's very flexible.
+
+In order for this to work like a real clock, the Omega will then have to send the current time to the microcontroller via serial once a minute. Luckily, there's a tool in Linux that serves exactly this purpose!
 
 We can use the `cron` Linux utility to automatically run a command once every minute, without having to tie up your system with running a script.
 
 Run `crontab -e` to edit the file that contains cron commands and schedules to run them, and add this line to the end of the file:
 
-// TODO: figure out how to print just the hours and minutes in 24 hour.
-// TODO: figure out how to run that with cron
 
 ```
-* * * * * echo <DATE> > /dev/ttyS1
+* * * * * date +"%H.%M" > /dev/ttyS1
 ```
 
 >To briefly explain, the asterisks (\*) mean 'for all instances'. The position of the asterisk corresponds to 'minute', 'hour', 'date', 'month', and 'year' in order from left to right. The path at the end is the script or command you want to run. Basically, this line tells cron to run the echo command once a minute.
@@ -503,13 +511,9 @@ Run `crontab -e` to edit the file that contains cron commands and schedules to r
 Finally, run the following command to restart cron so it can start running your script:
 
 ```
-/usr/sbin/crond restart
+/etc/init.d/cron restart
 ```
 
 Your 7-segment display should now update once a minute, and you're free to use your Omega for other things in the meantime!
 
 To learn more about `cron` on the Omega, see the article on [running a command based on a schedule](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html) in the Omega2 documentation.
-
-#### Known Issues
-
-At the time of writing this guide, `crond restart` will start a new instance of cron. If you want to be circumspect, we recommend running `pidof crond` to check how many instances are currently running. The output of `pidof` should be either nothing (no `crond` running at all) or a list of numbers. Each number is the process ID (`pid`) of a running instance of `crond`. You can call `kill <pid>` to stop the process associated with that ID. -->

@@ -8,7 +8,7 @@ order: 5
 
 ## Changing the Display's Behavior {#maker-kit-oled-change-settings}
 
-In this tutorial, we will use text-based input from the user to change the OLED display's settings. We'll be scrolling the display contents as well as dimming and inverting the display colours, let's jump in.
+In this expriment, we will use text-based input from the user to change the OLED display's settings. We'll be scrolling the display contents as well as dimming and inverting the display colours, let's jump in.
 
 ### The OLED's Settings
 
@@ -20,32 +20,39 @@ The OLED configurations which we will adjust are:
 
 The brightness refers to the intensity at which the pixels of the display are illuminated. The brightness can be set to value between `0` and `255`, from complete darkness to maximum brightness. By default the brightness is set to `207`. Just like on a phone or laptop, reducing the brightness will decrease the energy draw of the screen, increasing battery life.
 
-<!-- // TODO: GIF of min brightness to max brightness -->
+<!-- // DONE: GIF of min brightness to max brightness -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/2fx-JNhYsno" frameborder="0" allowfullscreen></iframe>
+
 
 Color inversion refers to switching all of the illuminated pixels to dark and all of the dark pixels to illuminated, giving us a kind of negative image.
 
-<!-- // TODO: GIF of normal -> inverted -->
+<!-- // DONE: GIF of normal -> inverted -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/xq2GpoNDItE" frameborder="0" allowfullscreen></iframe>
 
 <!-- // DONE: beginner users won't be clear on the meaning of 'wrapping fashion' -->
 The scrolling setting allows you to scroll the contents of the screen in either the horizontal or diagonal direction.
 
-<!-- // TODO: GIF of content scrolling on OLED screen -->
+<!-- // DONE: GIF of content scrolling on OLED screen -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/51ZgFM746mA" frameborder="0" allowfullscreen></iframe>
+
 
 ### Building the Circuit
 
-Plug your Omega2 and the OLED Expansion into the Expansion Dock like in the previous tutorial and let's get started!
+Plug your Omega2 and the OLED Expansion into the Expansion Dock like in the previous expriment and let's get started!
 
 ### Writing the Code
 
-The code we'll write for this experiment is going to go a bit more in depth into the workings of the OLED screen. We'll take a look at all the utility functions of the `oledExp` class and how they modify the screen and its contents. Specificically, we'll be fiddling with the brightness, inverting the display, and scrolling the contents.
+The code we'll write for this experiment is going to go a bit more in depth into the workings of the OLED screen. We'll take a look at all the utility functions of [the `oledExp` class](https://docs.onion.io/omega2-docs/relay-expansion-python-module.html) and how they modify the screen and its contents. Specificically, we'll be fiddling with the brightness, inverting the display, and scrolling the contents.
 
 To make it happen, create a file called `MAK05-oledChangeSettings.py` and paste the following code in it:
 
 ```python
 from OmegaExpansion import oledExp
+
+# global variable that stores if the screen is in the inverted color mode or not
 bInvert = 0
 
-# This functions toggles the invert state of the OLED screen - if it's normal, it will invert it, if it's inverted, it will reset it to normal
+# This functions toggles the inverted color state of the OLED screen - if it's regular, it will invert it, if it's inverted, it will reset to regular
 def toggleColor():
 	global bInvert
 	if(bInvert == 0):
@@ -98,6 +105,7 @@ commandFunctions  = {
 }
 
 def main():
+	# initialize the OLED Expansion
 	oledExp.driverInit()
 
 	# Lists out all the commands available
@@ -107,6 +115,7 @@ def main():
 	while(True):
 		userInput = raw_input(">> ")
 		try:
+			# run the function based on the user's input
 			commandFunctions[userInput]()
 		except KeyError as e:
 			pass
@@ -125,7 +134,9 @@ To stop the program enter `Ctrl+C`
 
 Here it is running on our setup:
 
-<!-- // TODO: IMAGE Add gif -->
+<!-- // DONE: IMAGE Add gif -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/uuJDwl7Fg6w" frameborder="0" allowfullscreen></iframe>
+
 
 ### A Closer Look at the Code
 
@@ -133,7 +144,7 @@ In this script, we use the lookup table once again to codify valid inputs. Howev
 
 #### Error Checking
 
-User input is a core part of any product - from cars to carpets. For this tutorial, we use Python's command line as the source of user input. In Python, we can request input via the `raw_input()` function. This function pauses the Python interpreter and reads keyboard commands until it sees the enter key being pressed (in most languages it's represented by the return character, `\n`). Reading user input doesn't help much if we can't interpret it and then perform the desired actions. This is where error checking becomes necessary.
+User input is a core part of any product - from cars to carpets. For this expriment, we use Python's command line as the source of user input. In Python, we can request input via the `raw_input()` function. This function pauses the Python interpreter and reads keyboard commands until it sees the enter key being pressed (in most languages it's represented by the return character, `\n`). Reading user input doesn't help much if we can't interpret it and then perform the desired actions. This is where error checking becomes necessary.
 
 If you typed in `asdf` to the command line when prompted, nothing would happen to the screen. This is expected behavior! If the code was not error checked, we'd see something entirely different. To try it out, replace the following section in the code:
 
@@ -152,14 +163,14 @@ With this:
 
 If you did it 'right', the next time you run the code and enter an invalid command like `asdf`, the script should crash. The `try:/except:` structure prevents crashing by catching the error when it's 'thrown'. In effect, it lets you continue to type commands and change the behaviour of the OLED screen no matter how badly you mistyped them.
 
-<!-- // DONE: make it something like 'the next tutorial on displaying images on the OLED further builds on this concept.' -->
-If you want to learn more about user input, the next tutorial ([displaying images on the OLED](#drawing-on-the-oled-screen)) builds right on this concept.
+<!-- // DONE: make it something like 'the next expriment on displaying images on the OLED further builds on this concept.' -->
+If you want to learn more about user input, the next expriment ([displaying images on the OLED](#drawing-on-the-oled-screen)) builds right on this concept.
 
 #### User interface
 
 <!-- // DONE: the content here is decent, but the writing could use some work. Let's be more descriptive about user interfaces. the first sentence is esp weak -->
 
-A user interface is the main way we interact with software. Here, the user interface is the list of commands we output and the prompt we print afterwards (`>>`). The command list lets us know what we can do here, and the prompt lets us know where our input will happen. 
+A user interface is the main way we interact with software. Here, the user interface is the list of commands we output and the prompt we print afterwards (`>>`). The command list lets us know what we can do here, and the prompt lets us know where our input will happen.
 
 Why don't we print out 'type in your command, and then press enter to send it'? There's a hint already present in the list of commands - 'Enter the following...' implies we'll have to enter some text. Additionally, just like smart-phone apps don't need to tell us to touch the screen, we already know the context requires text-based input because we ran our program in the commandline!
 

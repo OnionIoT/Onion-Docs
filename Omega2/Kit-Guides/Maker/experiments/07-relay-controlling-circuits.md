@@ -11,7 +11,7 @@ order: 7
 ## Isolated Control with the Relay Expansion {#maker-kit-relay-controlling-circuits}
 
 
-In this tutorial, we'll use a switch with the Omega Relay Expansion to turn a buzzer on or off. Along the way, we'll be looking into why relays are useful, and go into more detail regarding pitfalls when interacting with hardware.
+In this expriment, we'll use a switch with the Omega Relay Expansion to turn a buzzer on or off. Along the way, we'll be looking into why relays are useful, and go into more detail regarding pitfalls when interacting with hardware.
 
 
 
@@ -70,9 +70,13 @@ Our goal here is to connect a buzzer to the Relay Expansion and a power supply, 
 
 The switch used here is an SPDT switch - Single Pole, Dual Throw. Single pole means there's a single power source being switched, dual throw means the power is always connected to one output or the other. The middle pin is the power input, and the two pins on the side are the outputs. Here we'll just use a single output, leaving the other as open circuit.
 
->In this tutorial, we'll be using the power supplied by our Dock due to easy access. Feel free to try using different power supply methods, but take note you may need voltage dropping resistors for higher powered supplies to avoid burning out the buzzer. If you're not confident it'll turn out well, you can just go along with our setup - it'll work for sure!
+>In this expriment, we'll be using the power supplied by our Dock due to easy access. Feel free to try using different power supply methods, but take note you may need voltage dropping resistors for higher powered supplies to avoid burning out the buzzer. If you're not confident it'll turn out well, you can just go along with our setup - it'll work for sure!
 
 <!-- // DONE: add a note that you should only try this if you're confident in your abilities -->
+
+For reference, here's a circuit diagram of our experiment:
+
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/diagrams/01-circuit-diagram.png)
 
 #### What You'll Need
 
@@ -101,12 +105,15 @@ The circuit for this experiment will involve wiring the Relay Expansion to both 
 
 The circuit should look something like this:
 
-<!-- // TODO: IMAGE of breadboard with switch and buzzer in, grounded to exp Dock -->
+<!-- // DONE: IMAGE of breadboard with switch and buzzer in, grounded to exp Dock -->
+![The buzzer and switch wired in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/07-buzzer-switch.jpg)
 
 
 Now let's connect the buzzer circuit to the Relay Expansion. 	We'll be using channel 0, with all switches on the relay set to `OFF`. We've included a diagram below to help out.
 
-<!-- // TODO: IMAGE diagram of the relay switch numbering -->
+<!-- // DONE: IMAGE diagram of the relay switch numbering -->
+![How the relays are numbered](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-expansion-illustration.png)
+
 
 1. To set up the relay, turn the screw on the `IN` terminal counterclockwise until the metal clamp inside is sitting a bit less than halfway in the bottom of the housing, not too much or the screw might pop out.
     * If you're unsure, close the terminal all the way by turning the screw clockwise until you can't anymore, then open it.
@@ -131,12 +138,13 @@ With that, we're all done!
 
 Here's a picture of our completed circuit:
 
-<!-- // TODO: IMAGE of completed circuit -->
+<!-- // DONE: IMAGE of completed circuit -->
+![Relay and buzzer circuit wired in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/07-assembled-circuit.jpg)
 
 
 ### Writing the Code
 
-<!-- // TODO: this is a great intro, i edited the middle and last parts a little, please make them flow better -->
+<!-- // DONE: this is a great intro, i edited the middle and last parts a little, please make them flow better -->
 
 The code we'll be using is a bit more complicated than you may think. So to simplify the operation of the Relay Expansion, we leverage the `relayExp` class from the `OmegaExpansion` Python Module. For more details on the Relay Expansion Python Module, check out the [software  module reference](https://docs.onion.io/omega2-docs/relay-expansion-python-module.html) in the Omega2 Docs.
 
@@ -214,7 +222,9 @@ if __name__ == "__main__":
 
 ### What to Expect
 
-<!-- TODO: IMAGE or gif of project working -->
+<!-- DONE: IMAGE or gif of project working -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/hyGaTJltirA" frameborder="0" allowfullscreen></iframe>
+
 
 When the script is running, you'll see a ton of debug messages from the console. Now when you flick the switch to on or off, the buzzer should respond by turning on or off appropriately.
 
@@ -223,7 +233,7 @@ Infinite loop appears here as well, and as usual, exit the script with `Ctrl-C`.
 
 ### A Closer Look at the Code
 
-From the PWM tutorials, we've touched on how to account for the limitations of hardware when writing software. In this tutorial we've put more of that into practice. One important thing introduced is the **Read - Modify - Write** cycle. One major part of the cycle is **checking status** of our components (the 'read' part of the cycle). Additionally, we **log** the status. This is a very good habit to get into for fast debugging because we can use that output to quickly tell if and **where** something is going wrong.
+From the PWM expriments, we've touched on how to account for the limitations of hardware when writing software. In this expriment we've put more of that into practice. One important thing introduced is the **Read - Modify - Write** cycle. One major part of the cycle is **checking status** of our components (the 'read' part of the cycle). Additionally, we **log** the status. This is a very good habit to get into for fast debugging because we can use that output to quickly tell if and **where** something is going wrong.
 
 <!--
 // DONE: 'very good habit to get into for fast debugging - since you will be able to use the output of your program to quickly identify the source of your issue'
