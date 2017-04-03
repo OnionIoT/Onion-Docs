@@ -1,4 +1,4 @@
-## Circuit Diagram Introduction
+## Intro to Circuit Diagrams {#circuit-diagram-crash-course}
 
 ```{r child='../../shared/intro/circuit-diagram-intro.md'}
 ```

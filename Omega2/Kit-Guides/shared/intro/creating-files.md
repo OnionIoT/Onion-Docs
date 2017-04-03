@@ -9,11 +9,9 @@
 //	* we'll be using the Vi text editor
 -->
 
-In the Kit Guide, there will be many experiments that make use of Python and Shell scripts. To get these scripts to run, we can save them on a computer and send them over to the Omega to run. 
+In this Guide, there will be many experiments that make use of Python and Shell scripts. To get these scripts to run, we store the program code on the Omega as a file.
 
-But for small changes, it's a lot more convenient to simply edit the script on the Omega, and test it out right there without breaking the groove.
-
-On the Omega, there's only one text editor - `vim`. It's different from more familiar editors in how it works, so we'll cover the basics super quickly to get to making cool things faster!
+On the Omega, there's only one text editor installed by default - `vim`. It's different from more familiar editors in how it works, so we'll cover the basics super quickly before we move on to making cool things faster!
 
 
 ### Creating or Opening a File
@@ -24,7 +22,7 @@ On the Omega, there's only one text editor - `vim`. It's different from more fam
 // if the file already exists, will open it
 -->
 
-To work with a file, simply call `vim <filename>`. 
+To work with a file, simply call `vim <filename>`. It will work if you do `vi <filename>` as well.
 
 If the file already exists, it will open it in vim. If it doesn't, it will open an empty temporary file with the given name.
 
@@ -37,11 +35,11 @@ If you type things immediately when vim starts, nothing will come out. So how do
 
 <!-- // process: Have to hit `i` to be able to instert text, even before copy pasting -->
 
-Hit `i` to get into 'insert mode' now we can start entering text!
+Hit `i` to get into 'insert mode', now we can start entering text!
 
-The controls of insert mode should be quite familiar if you've used notepad before. The keys will insert characters, the arrow keys will nagivate, and `home/end/pgup/pgdn` will behave accordingly. 
+The controls of insert mode should be quite familiar if you've used notepad before. The keys will insert characters, the arrow keys provide nagivation, and `home/end/pgup/pgdn` will behave accordingly.
 
-Vim is based off modes. Entering characters and pasting with `ctrl-shift-v` will only work in **insert mode**. 
+Vim is based on different modes. Entering characters and pasting with `ctrl-shift-v` will only work in **insert mode**.
 
 Vim begins in **normal mode**, where all keystrokes are interpreted as commands. So all the text you want to paste will be interpreted as commands, causing lots of unpredicatble changes to the file.
 
@@ -50,7 +48,7 @@ If mistakes were made, what can we do?
 
 ### Undo and Redo
 
-Undo is a normal mode function, hit `ESC` and press `u` to undo the last bit of change made. To redo hit `ctrl-r` in normal mode.
+Undo is a normal mode function, hit `ESC` and press `u` to undo the last bit of changes made. To redo hit `ctrl-r` in normal mode.
 
 The reason we hit `ESC` first is to return to normal mode. So instead of inserting `u`, vim will undo the last changes we made.
 
@@ -108,5 +106,3 @@ Normally when trying to exit vim with unsaved changes, vim will deny the attempt
 // TODO: find a really good Vi tutorial
 -->
 There's a lot more than meets the eye with vim. It's actually a very power editor under the hood and can be installed in all major operating systems. If you want to learn how to make the most out of it, [Open Vim](http://www.openvim.com/tutorial.html) has a fantastic tutorial that can get you started.
-
-
