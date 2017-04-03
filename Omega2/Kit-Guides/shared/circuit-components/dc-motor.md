@@ -6,4 +6,5 @@ The DC motor is the simplest of motors, it converts electrical energy to mechani
 
 The DC motor has two terminals that are technically polar. The direction of the current flowing through the terminals will determine the direction of the motor's spin - connecting the anode to a voltage source will generally spin the motor clockwise. Different motors may behave differently.
 
-// TODO: IMAGE of the kit DC motor
+<!-- // DONE: IMAGE of the kit DC motor -->
+![What a DC motor looks like](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/dc-motor-photo.jpg)

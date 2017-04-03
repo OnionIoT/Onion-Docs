@@ -6,4 +6,4 @@ A relay switch is a mechanical switch that is triggered electronically.
 
 The relay we'll be using is on the Relay Expansion. It has two channels, channel `0` on the side away from the header pins, and channel `1` on the near side. Whenever we use the relay in a circuit diagram, it will be labelled with the exact channel number we'll be using.
 
-// TODO: IMAGE of the relay expansion if it's not included elsewhere
+<!-- // TODO: IMAGE of the relay expansion if it's not included elsewhere -->

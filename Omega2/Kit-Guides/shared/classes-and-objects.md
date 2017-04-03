@@ -1,3 +1,3 @@
-In Object Oriented Programming, **classes** are blueprints or an abstraction of code. An **object** is a copy of data and/or functions that are specified in class blueprint. In a program, you can create as many copies (objects) of a class whenever you need to!
+In Object Oriented Programming, **classes** are blueprints or abstractions of code. An **object** is a copy of data and/or functions created from a class blueprint. In a program, you can create as many copies (objects) of a class whenever you need to!
 
 For example, you can write a class for a "four sided shape" that contains data for length and width. You can then use it to create objects such as a "square" or a "rectangle". Creating an object from a class is called **instantiation**, and objects created from a class are called **instances**.
