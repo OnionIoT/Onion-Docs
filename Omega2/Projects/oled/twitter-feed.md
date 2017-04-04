@@ -1,6 +1,10 @@
 # Showing Tweets
 
-intro
+// intro on project
+
+![oled+tweet photo](./img/twitter-feed-photo-0.jpg)
+
+// a glance at what we'll use to make it
 
 
 ### Overview
@@ -58,25 +62,29 @@ git clone https://github.com/OnionIoT/oled-twitter-display.git
 
 #### 4. Create a Twitter Application
 
-We'll need to create a Twitter Application in order to be able to use Twitters APIs. Specifically, our code needs an API Key and API Secret in order to authenticate with Twitter before we can use the APIs:
+We'll need to create a Twitter Application in order to be able to use Twitter's APIs to grab Tweets. Specifically, our code needs an API Key and API Secret in order to authenticate with Twitter before we can use the APIs:
 
-1. Head over to https://apps.twitter.com and sign in with your Twitter handle.
-// scrshot 1
+1. Head over to https://apps.twitter.com and sign in with your Twitter handle
+
+  ![twitter apps splash screen](./img/twitter-feed-screenshot-0.png)
 
 1. Fill in the form details for your application. It doesn't really matter what you type in, but a solid name and description goes a long way when you come back to a project after months away from it.
-// scrshot 2
+
+  ![twitter apps create app](./img/twitter-feed-screenshot-1.png)
 
 1. Read and agree to the Twitter Developer Agreement and hit Create your Twitter application.
-// scrshot 3
 
-> Note that your Twitter account must have an associated mobile phone number before Twitter will allow you to create an application!
+  ![twitter apps create app part 2](./img/twitter-feed-screenshot-2.png)
+
+  > Note that your Twitter account must have an associated mobile phone number before Twitter will allow you to create an application!
 
 1. Your Application is now created!
-// scrshot 4
+
+  ![twitter app created](./img/twitter-feed-screenshot-3.png)
 
 1. Head over to the **Keys and Access Tokens** tab to grab the info we need
 
-// scrshot 5
+  ![twitter app keys](./img/twitter-feed-screenshot-4.png)
 
 
 #### 5. Setup and Run the Code
@@ -86,13 +94,14 @@ The `config.json` file holds all of the settings for the project. Populate the `
 
 And then populate `application.user` with the Twitter handle whose latest tweet you want to be shown on the OLED Expansion
 
+![config file](./img/twitter-feed-terminal-screenshot-0.png)
+
 Now run the code: `python oledTwitterDisplay.py`
 
+![oled+tweet photo](./img/twitter-feed-photo-0.jpg)
 
-// photo of latest tweet
 
-
-#### 6. Automate the
+#### 6. Automate the Program to Run Periodically
 
 The program will grab and display the latest Tweet, and then promptly exit. We'll use `cron`, a super useful Linux utility, to have the program run periodically.
 
