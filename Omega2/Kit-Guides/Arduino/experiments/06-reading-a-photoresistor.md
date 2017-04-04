@@ -10,12 +10,12 @@ In this tutorial, we will use a photoresistor to detect the ambient light intens
 
 ### Building the Circuit
 
-For this circuit we will need use a photoresistor and a 10K resistor to make a voltage divider on a breadboard. We will be using jumper wires for the connections.
+For this circuit we will need use a photoresistor and a 1k resistor to make a voltage divider on a breadboard. We will be using jumper wires for the connections.
 
 <!-- // DONE: IMAGE diagram for a voltage divider -->
 ![A voltage divider](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/voltage-divider.png)
 
-<!-- TODO: can we shrink this image? its gigantic -->
+<!-- DONE: can we shrink this image? its gigantic -->
 
 $$ V_{out} = \frac{R_2}{R_1+R_2} \cdot V_{in} $$
 
@@ -30,7 +30,7 @@ Prepare the following components from your kit:
 * Breadboard
 * 3x Jumper wires (M-M)
 * 1x Photoresistor
-* 1x 10kΩ Resistor
+* 1x 1kΩ Resistor
 
 #### Hooking up the Components
 
@@ -40,8 +40,8 @@ Prepare the following components from your kit:
 
 Once you have the components ready, follow these steps:
 
-1. Connect one end of the photoresistor to `5V` and the other end to the 10K resistor (the polarity does not matter).
-1. Connect the other end of the 10K resistor to `GND`.
+1. Connect one end of the photoresistor to `5V` and the other end to the 1k resistor (the polarity does not matter).
+1. Connect the other end of the 1k resistor to `GND`.
 1. Connect the middle point between the photoresistor and resistor to the A0 analog pin on the Arduino Dock.
 
 All done! Here's what our finished circuit looks like:
