@@ -15,7 +15,7 @@ For this circuit we will need use a photoresistor and a 10K resistor to make a v
 <!-- // DONE: IMAGE diagram for a voltage divider -->
 ![A voltage divider](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/voltage-divider.png)
 
-<!-- TODO: can we shrink this image? its gigantic -->
+<!-- DONE: can we shrink this image? its gigantic -->
 
 $$ V_{out} = \frac{R_2}{R_1+R_2} \cdot V_{in} $$
 
