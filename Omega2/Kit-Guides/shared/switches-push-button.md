@@ -1,8 +1,8 @@
 ### Push Button Switches
 
-A push button is a momentary switch, so unlike a slide switch where the change in the switch state (on or off) will be permanent, the change in a push button's state will only last while the button is being pressed. It's called a **momentary** switch because the change in state is only while the button is being pressed; when the button is released, the switch .
+A push button is a momentary switch, so unlike a slide switch where the change in the switch state (on or off) will be permanent, the change in a push button's state will only last while the button is being pressed. It's called a **momentary** switch because the change in state is only while the button is being pressed; when the button is released, the switch will turn off.
 
-<!-- TODO: fix dangling last sentence -->
+<!-- DONE: fix dangling last sentence -->
 
 ![Push button switch](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/switches-push-button.jpg)
 

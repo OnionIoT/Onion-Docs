@@ -36,7 +36,8 @@ We'll be making a circuit with an LED controlled by a **push button**. When the 
 
 First we'll build a circuit with a button to control an LED directly. See the diagram below:
 
-// TODO: example circuit diagram
+<!-- // DONE: example circuit diagram -->
+![Circuit Diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/05-01-circuit-diagram.png)
 
 #### What You'll Need
 
@@ -64,7 +65,7 @@ Prepare the following components from your kit:
 
 Your circuit should look like this.
 
-![debouncer-circuit-setup-01](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/debouncer-circuit-setup-01.jpg)
+![debouncer-circuit-setup-01](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/05-example-circuit.jpg)
 
 
 If your circuit matches, go ahead and turn the Omega2 on!
@@ -85,7 +86,9 @@ When you push and hold the button, the LED should turn on. When you release the 
 
 Now we'll build a circuit with a button and **inverting** debouncer circuit connected to a GPIO, and an LED connected to another GPIO that is driven by software. The "inverting" part means that when the button is pressed, the circuit sends the GPIO a `LOW` signal, and when the button is released, the circuit sends a `HIGH` signal.
 
-<!-- // TODO: need a circuit diagram -->
+<!-- // DONE: need a circuit diagram -->
+![Circuit Diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/diagrams/05-02-circuit-diagram.png)
+
 
 #### What You'll Need
 
@@ -116,7 +119,7 @@ You'll need to pull a few more components from your Kit. Prepare the following:
 
 Your circuit should look like this:
 
-![debouncer-circuit-setup-02](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/debouncer-circuit-setup-02.jpg)
+![debouncer-circuit-setup-02](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/05-experiment-circuit.jpg)
 
 <!-- // TODO: photo of circuit-->
 
