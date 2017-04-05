@@ -160,8 +160,9 @@ You know the drill, save it to `SKA04-readingPushButton.ino`, then get ready to 
 
 When the button is pressed, the left most LED should turn on. For each additional button press, another led will turn on, going from left to right. When all leds are on and the button is pressed, the LEDs will turn off one by one in the same order. All the while, the LED connected to GPIO13 will continue blinking steadily on and off.
 
-<!-- // TODO: FUTURE - once the bug's fixed, retake video -->
+Here's the push button circuit in action:
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/2akS5-mATVw" frameborder="0" allowfullscreen></iframe>
 
 <!-- // DONE: screenshot of the cat command showing the bitwise operations - commented out no longer relevant, file is still on server -->
 <!-- ![Serial output from the ATmega](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Arduino/img/04-serial-output.png) -->
