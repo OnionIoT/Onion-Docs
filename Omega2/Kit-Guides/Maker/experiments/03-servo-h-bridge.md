@@ -50,7 +50,7 @@ If you want to start building right away, skip ahead to the [next section](#cont
 
 <!-- // DONE: move this section into it's own markdown file -->
 
-```{r child='../../shared/h-bridge.md'}
+```{r child='../../shared/hbridge-ic.md'}
 ```
 
 
@@ -201,7 +201,7 @@ H_BRIDGE_MOTOR_FORWARD = 0
 H_BRIDGE_MOTOR_REVERSE = 1
 
 class hBridgeMotor:
-    """Class that two digital signals and a pwm signal to control an h-bridge"""
+    """Class that two digital signals and a pwm signal to control an H-Bridge"""
 
     def __init__(self, pwmChannel, fwdChannel, revChannel):
         # note the channels
@@ -230,7 +230,7 @@ class hBridgeMotor:
         self.maxDuty = duty
 
     def reset(self):
-        """Set the PWM to 0%, disable both h-bridge controls"""
+        """Set the PWM to 0%, disable both H-Bridge controls"""
         ret =  self.pwmDriver.setDutyCycle(0)
         ret |= self.fwdDriver.setDutyCycle(0)
         ret |= self.revDriver.setDutyCycle(0)
