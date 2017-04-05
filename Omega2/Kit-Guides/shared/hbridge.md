@@ -19,7 +19,8 @@ An H-Bridge is a circuit that allows voltages to be applied across a load in eit
 An H-Bridge is made up of four switches: two in series, and two in parallel, with the load placed in between the switches. In this configuration the circuit takes an "H" shape.
 
 
-![H-Bridge](https://en.wikipedia.org/wiki/H_bridge#/media/File:H_bridge.svg)
+![H-Bridge diagram](https://upload.wikimedia.org/wikipedia/commons/d/d4/H_bridge.svg)
+
 
 <!-- // DONE: talk about how the h-bridge structure allows us to switch the polarity of the voltage across the load -->
 
