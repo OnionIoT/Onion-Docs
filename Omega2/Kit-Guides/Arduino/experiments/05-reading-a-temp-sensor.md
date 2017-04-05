@@ -143,7 +143,7 @@ In a nutshell, cast (or typecast) tells the compiler to convert one type into an
 
 When powered, the temperature sensor will output a varying voltage depending on what the sensor is detecting. Analog read will take that voltage and convert it to a digital value (0 to 1023).
 
-From the TMP36 datasheet, the temperature sensor has a scale factor of 10 mV/°C with a offset of 500mV to account for negative temperatures. To exmaple with some concrete examples: the sensor will output 0.5V at 0°C, 0.51V at 1°C and 0.49V at -1°C. Using the the scale factor and offset, we can convert the voltage input to temperature in degree celsius. This is done by subtracting the voltage by 0.5 and multiplying by 100.
+From the TMP36 datasheet, the temperature sensor has a scale factor of 10 mV/°C with a offset of 500mV to account for negative temperatures. To show with some concrete examples: the sensor will output 0.5V at 0°C, 0.51V at 1°C and 0.49V at -1°C. Using the the scale factor and offset, we can convert the voltage input to temperature in degree celsius. This is done by subtracting the voltage by 0.5 and multiplying by 100.
 
 Before we can get our temperature with the calculation above, we need to convert the digital value back to a voltage value between 0V and 5V.
 
