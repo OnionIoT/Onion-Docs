@@ -5,7 +5,7 @@
 
 For this project, we'll be displaying the latest stock information for a configurable list of stocks:
 
-// include a photo of the final result
+![oled+stock photo](./img/stock-ticker-photo-0.jpg)
 
 ### Overview
 
@@ -15,9 +15,10 @@ For this project, we'll be displaying the latest stock information for a configu
 
 This code will be written in Python and we'll be making use of a [Google Finance](https://www.google.com/finance) API to grab stock data. It will print the following data to the OLED:
 
+1. Date and time (UTC)
 1. Stock symbol (up to 4 characters)
 1. Current trading price (USD)
-1. Percentage change since last closing date
+1. Percentage change since last closing
 
 Specifically, the code uses the `info` endpoint; this is technically [deprecated](https://groups.google.com/forum/#!topic/google-finance-apis/q-DbjbzQDGQ), but still seems to remain active and returns up-to-date finance data.
 
@@ -78,7 +79,7 @@ Some notes about the stock symbols:
 
 Now run the code: `python main.py`
 
-![oled+tweet photo](./img/stock-ticker-photo-0.jpg)
+![oled+stock photo](./img/stock-ticker-photo-0.jpg)
 
 If you're interested in how the `pyOledExp` code can be used to control the OLED Expansion, take a look at how it's used in [the project code](https://github.com/OnionIoT/oled-stock-ticker/blob/master/oledDriver.py) and also check out the [`pyOledExp` Module documentation](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html).
 
@@ -109,8 +110,43 @@ And the code will run once every minute, generating *literally* up-to-the-minute
 
 ### Code Highlight
 
+This code basically does the following:
 
+1. Load the list of stocks from the configuration file
+1. Creates a timestamp of when this script was called
+1. Sends a `GET` request with the given stocks to the Google Finance API
+1. Cleans up and stores the response into a variable
+1. Formats relevant information such as symbol and price for displaying on the OLED
+1. Prints the timestamp and stock information to the OLED
 
+### Going Further
 
-// one or two paragraphs (max) about something cool we did in the code
-//	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc)
+You can customize the formatting or which information you want to display on the OLED by changing the `formatGoogleStockInfo()` function in `stocks.py`.
+
+To see all of the available information, query the API for a single stock by running `stocks.py` and the symbol as the first argument:
+
+```
+python stocks.py BB
+
+[
+    {
+        "c": "+0.01", 
+        "ccol": "chg", 
+        "e": "TSE", 
+        "ltt": "4:00PM EDT", 
+        "cp_fix": "0.09", 
+        "c_fix": "0.01", 
+        "l": "10.64", 
+        "s": "0", 
+        "lt": "Apr 6, 4:00PM EDT", 
+        "pcls_fix": "10.63", 
+        "t": "BB", 
+        "lt_dts": "2017-04-06T16:00:00Z", 
+        "l_fix": "10.64", 
+        "cp": "0.09", 
+        "id": "674819", 
+        "l_cur": "CA$10.64"
+    }
+]
+```
+
