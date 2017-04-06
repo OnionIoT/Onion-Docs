@@ -100,7 +100,6 @@ Now run the code: `python oledTwitterDisplay.py`
 
 ![oled+tweet photo](./img/twitter-feed-photo-0.jpg)
 
-The code uses
 If you're interested in how the `pyOledExp` code can be used to control the OLED Expansion, take a look at how it's used in [the project code](https://github.com/OnionIoT/oled-twitter-display/blob/master/oledTwitterDisplay.py) and also check out the [`pyOledExp` Module documentation](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html).
 
 
