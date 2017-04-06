@@ -1,0 +1,156 @@
+## Headlines on the OLED Screen
+
+This project will pull a fresh headline from News API and display it to the OLED screen. [News API](https://newsapi.org/) is a news aggregator that returns headlines from a variety of news sources as JSON data.
+
+// TODO foto of the headline workin'
+
+
+### Overview
+
+**Skill Level:** Intermediate
+
+**Time Required:** 30 minutes
+
+The project will use a Python script to call the News API `/articles` endpoint for headline data.
+
+The complete project code can be found in Onion's [`oled-news-flash` repo on GitHub](https://github.com/OnionIoT/oled-news-flash).
+
+
+### Ingredients
+
+1. Onion Omega2 or Omega2+
+1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
+1. Onion OLED Expansion
+
+
+### Step-by-Step
+
+Here's how to get your own headlines screen running on your Omega!
+
+#### 1. Prepare your Ingredients
+
+You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
+
+Once that's done, plug in your OLED Expansion:
+
+![oled expansion dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-dock-45deg.jpg)
+
+
+#### 2. Install Python
+
+Connect to the Omega's Command line and install Python and some additional packages we need:
+
+```
+opkg update
+opkg install python-light python-urllib3 pyOledExp
+```
+
+The `python-urllib3` package will allow us to make HTTP requests in Python, while the `pyOledExp` package gives us control of the OLED Expansion.
+
+
+#### 3. Download the Project Code
+
+All the code from the project can be found in the [`oled-news-flash` repo on GitHub](https://github.com/OnionIoT/oled-news-flash).
+
+This project only has two files, so you can download it directly to your Omega with much hassle.
+
+```
+wget https://raw.githubusercontent.com/OnionIoT/oled-news-flash/master/oledNewsFlash.py
+wget https://raw.githubusercontent.com/OnionIoT/oled-news-flash/master/config.json
+```
+
+If you'd like to use git instead, [install Git on your Omega](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
+
+```
+git clone https://github.com/OnionIoT/oled-news-flash.git
+```
+
+#### 4. Obtain a News API Key
+
+We need an API key in order to access the News API endpoints. The simplest way is to create an account which will give us access to the News API key generator.
+
+1. Register at https://newsapi.org/register
+
+1. Open up `config.json` and paste the API key generated as the `X-API-KEY` value - replacing `your api key here`.
+
+
+#### 5. Choose Your Source
+
+News API gets headlines from a ton of news sources. We've set the default source to Reuters, but you can change which source you want to pull from.
+
+Open up `config.json` and copy the text under any source you wish as the value for `source` - replacing `reuters`.
+
+#### 6. Run it!
+
+```
+python oledNewsFlash.py
+```
+
+To make sure it works properly.
+
+#### And Beyond
+
+Now we can automate this script with `cron` to keep the headlines updated on the OLED screen.
+
+Enter `crontab -e` to add a task to the `cron` daemon, it will open a file in vi, enter in the following:
+
+```
+*/15 * * * * python /root/oled-news-flash/oledNewsFlash.py
+#
+```
+
+> This assumes that your project code is located in `/root/oled-news-flash/` - if it's not, don't forget to change the directory!
+
+
+Now, we'll restart `cron` to update it with our new task:
+
+```
+/etc/init.d/cron restart
+```
+
+And the code will run once every 15 minutes, updating the OLED screen with the latest headline.
+
+> Check out the Omega documentation for more info on [using `cron`](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html)
+
+### Code Highlight
+
+Many web sites and services provide Application Programming Interfaces (API) to allow others to call on the data they provide without a whole webpage to bog it down.
+
+Calling an API is all about knowing what the API needs, and how to deliver that data.
+
+To contact any API, we need to know at least two major things:
+
+1. URL - the address we need to look up
+2. Method - what method the URL accepts, and what do they do
+
+#### Endpoints
+
+For this project, our URL is `https://newsapi.org/v1/articles`. The URL has two bits to it, first is the the actual API's location - `newsapi.org/vi/`. The second is the **endpoint**, kind of like a specific apartment number of the address. Here it's `/articles`.
+
+Together, they're often referred as an **endpoint** of the API.
+
+>News API has a `/sources` endpoint as well which provide different services when called.
+
+#### Methods
+
+Now that we have our endpoint, we need know how to request data from it.
+
+When sending a request, it must be made with a request **method** to let the server know what we need at a broad level from the endpoint.
+
+HTTP supports at least nine different request methods to accommodate different needs. The most common ones are 'GET', 'POST', and 'DELETE'.
+
+Logically, to get data from the `/articles` endpoint, we need to send it a 'GET' request.
+
+#### Parameters, Headers and Bodies
+
+Often, APIs provide personalized data - calendars, emails, and other user-specific data. To implement this kind of interaction, requests are sent with **parameters**, **headers** and possibly a **body** for 'POST' requests.
+
+Parameters are strings that get appended to the request URL with details about our request. This is the most basic way of communicating additional information to the server. 
+
+>Our custom `source` and `sortBy` values are sent to the server through URL parameters.
+
+The API key is a way to identify a user of the service, allowing APIs to pull up user-specific data. For an API serving general information like News API, an API key mostly useful in identifying what level of access a user has.
+
+Generally the API key is passed through the header - a list of key-value pairs that is sent with our request. What goes in the header depends on the API we request from. [The documentation](https://newsapi.org/#documentation) should always specify what kind of things should be put in the header to correctly get information.
+
+The body is another list of key-value pairs used to store content for 'POST' requests. Again, the specifics of the body depends on what the API needs.
