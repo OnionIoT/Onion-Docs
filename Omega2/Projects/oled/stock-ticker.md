@@ -23,7 +23,7 @@ Specifically, the code uses the `info` endpoint; this is technically [deprecated
 
 We also use the [Onion's `pyOledExp` module](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) to provide control of the OLED Expansion.
 
-The complete project code can be found in Onion's [`oled-twitter-display` repo on GitHub](https://github.com/OnionIoT/oled-twitter-display).
+The complete project code can be found in Onion's [`oled-stock-ticker` repo on GitHub](https://github.com/OnionIoT/oled-stock-ticker).
 
 ### Ingredients
 
@@ -72,20 +72,45 @@ Some notes about the stock symbols:
 
 * The OLED has 8 rows and the 1st will be used for the date and time, so only the first seven will be shown.
 * Due to space constraints on the OLED, the stock ticker can properly display only stocks with 4 letters or less.
+* The code assumes the stocks are traded in USD.
 
+![config file](./img/stock-ticker-terminal-0.png)
 
-![config file](./img/-screenshot-0.png)
+Now run the code: `python main.py`
 
-Now run the code: `python oledTwitterDisplay.py`
+![oled+tweet photo](./img/stock-ticker-photo-0.jpg)
 
-![oled+tweet photo](./img/twitter-feed-photo-0.jpg)
+If you're interested in how the `pyOledExp` code can be used to control the OLED Expansion, take a look at how it's used in [the project code](https://github.com/OnionIoT/oled-stock-ticker/blob/master/oledDriver.py) and also check out the [`pyOledExp` Module documentation](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html).
 
-The code uses
-If you're interested in how the `pyOledExp` code can be used to control the OLED Expansion, take a look at how it's used in [the project code](https://github.com/OnionIoT/oled-twitter-display/blob/master/oledTwitterDisplay.py) and also check out the [`pyOledExp` Module documentation](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html).
+#### 5. Automate the Program to Run Periodically
 
+The program will grab and display the latest stock info, then promptly exit. We'll use `cron`, a super useful Linux utility, to have the program run periodically.
 
+Enter `crontab -e` to add a task to the `cron` daemon, it will open a file in vi, enter in the following:
+
+```
+* * * * * python /root/oled-stock-ticker/main.py
+#
+```
+
+> This assumes that your project code is located in `/root/oled-stock-ticker`
+
+Now, we'll restart `cron`:
+
+```
+/etc/init.d/cron restart
+```
+
+And the code will run once every minute, generating *literally* up-to-the-minute stock information on your OLED!
+
+> Check out the Omega documentation for more info on [using `cron`](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html)
+
+<!-- // TODO: this doesn't work, the oled just goes blank -->
 
 ### Code Highlight
+
+
+
 
 // one or two paragraphs (max) about something cool we did in the code
 //	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc)
