@@ -72,7 +72,7 @@ root@Omega-18C2:~/oledQrCodeGenerator# python main.py 'Wow, my first QR Code'
 
 This will encode the data and display the resulting QR code on the OLED Expansion:
 
-![QR Code on OLED Exp](http://i.imgur.com/yhLiYEN.jpg)
+![QR Code on OLED Exp](./img/oled-qr-code-photo.jpg)
 
 
 
