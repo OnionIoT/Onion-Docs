@@ -49,9 +49,10 @@ The `python-urllib3` package will allow us to make HTTP requests in Python, whil
 
 #### 3. Download the Project Code
 
-The code for this project is all done and can be found in Onion's [oled-twitter-display repo](https://github.com/OnionIoT/oled-twitter-display) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
+The code for this project is all done and can be found in Onion's [oled-twitter-display repo](https://github.com/OnionIoT/oled-twitter-display) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory on the Omega, and clone the GitHub repo:
 
 ```
+cd /root
 git clone https://github.com/OnionIoT/oled-twitter-display.git
 ```
 
