@@ -10,7 +10,11 @@ This page lists all of the currently identified issues in the Omega OS. The issu
     * Resolution: 
         * The Onion repos have `avrdude` version 6.1 which works
         * Option 1: Install `arduino-dock-2` before enabling the LEDE package repos
-        * Option 2: If already installed, run `opkg remove avrdude`, deactivate the LEDE package repos by commenting them out in `/etc/opkg/distfeeds.conf`, run `opkg update`, then install again but from the Onion repo: `opkg install avrdude`
+        * Option 2: If already installed:
+            * run `opkg remove avrdude`
+            * deactivate the LEDE package repos by commenting them out in `/etc/opkg/distfeeds.conf`
+            * run `opkg update`
+            * install again but from the Onion repo: `opkg install avrdude`
 * ~~The Omega cannot successfully connect to the Onion Cloud~~
     * Status: **Fixed** in b149
 * ~~The reset button does not work~~
