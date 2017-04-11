@@ -36,8 +36,6 @@ Follow these instructions to setup the Smart Plant project on your very own Omeg
 
 You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
-![Expansion Dock](./img/gcal-alarm-setup-1.jpg)
-
 
 #### 2. Install Required Software on the Omega
 
@@ -64,12 +62,11 @@ To keep it straightforward, the buzzer will be powered directly by a GPIO. We'll
 1. Plug the Buzzer across the channel of your breadboard.
 1. Using a jumper, connect the negative end of the buzzer (the pin WITHOUT a plus sign) to a `GND` pin on the expansion headers
 1. Plug in a 100Ω current limiting resistor across the (+) row of the buzzer and an empty row.
-1. Connect the resistor to GPIO1 on the expansion headers.
+1. Finally, connect the resistor to GPIO1 on the expansion headers.
 
+Once we're done, it should look a little like this:
 
-![Buzzer circuit ready to go](./img/gcal-alarm-setup-2.jpg)
-
-And then the male ends of the jumper wires into the appropriate Arduino Dock pins.
+![Buzzer circuit ready to go](./img/gcal-alarm-setup.jpg)
 
 
 #### 4. Download the Project Code
@@ -97,13 +94,13 @@ We'll use a Google calendar as an example.
 
 First, go to the settings page of your calendar:
 
-![Setting Pages](./img/calendar-find-1.png)
+![Setting Pages](./img/gcal-alarm-find-1.png)
 
 Then navigate to the 'Calendars' tab in the settings page. Here, click which calendar your event will be in:
-![Setting Pages](./img/calendar-find-2.png)
+![Setting Pages](./img/gcal-alarm-find-2.png)
 
 The green 'ICAL' button next to 'Private Address' will be a direct link to your up-to-date calendar in the `.ics` format - this is it! To get the link, right click, and hit the 'Copy Link Location' button.
-![Setting Pages](./img/calendar-find-3.png)
+![Setting Pages](./img/gcal-alarm-find-3.png)
 
 Open up `config.json` from the repo, and paste the link as the value to the "icalAddr" key - replacing `your-calendar-address`.
 
