@@ -72,11 +72,11 @@ Now that the Omega is configured, we should be able to get on the internet throu
 Make sure that your connection is set to `Obtain IP address and DNS address Automatically`. It should be set so by default.
 
 
-#### Windows
+##### Windows
 To do this on Windows, follow this [guide](http://www.computerhope.com/issues/ch001048.htm)
 
 
-#### Mac OSX
+##### Mac OSX
 To do this on Mac OSX, follow this [guide](https://www.cs.cmu.edu/~help/networking/dhcp_info/dhcp_mac.html)
 
 <!-- ### Linux -->
