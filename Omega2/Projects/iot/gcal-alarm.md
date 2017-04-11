@@ -46,11 +46,14 @@ opkg update
 opkg install python python-pip
 ```
 
-Some of our packages aren't available in the LEDE repository, so we need `python-pip` to install them:
+We'll need python packages that aren't available in the LEDE repository. To install, we'll use `pip` instead of `opkg`:
 
 ``` 
-pip install urllib3 crontab icalendar
+pip install setuptools
+pip install urllib3 python-crontab icalendar
 ```
+
+First we'll install `setuptools` - a requirement for our other packages.
 
 `urllib3` will help connect to our calendar source. `icalendar` will help parse the calendar data, and `crontab` will allow us to create and remove cron jobs for our alarm.
 
