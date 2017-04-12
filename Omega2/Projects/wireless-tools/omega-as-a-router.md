@@ -40,9 +40,9 @@ TODO: picture
 
 The next step is to disable the Omega's WiFi connection capabilities. By this, we mean the **ability to connect to other WiFi networks**, as it will be using the Ethernet Expansion to access the Internet instead.
 
->We're going to be restarting the WiFi on the Omega a few times, so this will break any SSH connections each time. To avoid this, you can try using a serial connection with your Omega. For more information, please refer to this [guide on connecting to your Omega.](#connecting-to-the-omega-terminal)
+>We're going to be restarting the WiFi on the Omega a few times, breaking any SSH connections in the process. To avoid this, you can try using a serial connection with your Omega. For more information, please refer to this [guide on connecting to your Omega.](#connecting-to-the-omega-terminal)
 
-On the Omega's command line, enter the following commands to disable the Omega's WiFi connection:
+On the Omega's command line, enter the following commands:
 
 ```
 uci set wireless.@wifi-iface[0].ApCliEnable=0
@@ -58,7 +58,7 @@ wifi
 <!--# 3 -->
 #### 3. Changing your Omega Router’s Settings
 
-Set the SSID and password of the router's WiFi network with the following commands, substituting `OmegaRouter` and `RouterPassword` for the SSID and password that you want:
+Set the SSID and password of the router's WiFi network with the following commands, substituting `OmegaRouter` and `RouterPassword`:
 
 ```
 uci set wireless.@wifi-iface[0].ssid=OmegaRouter
@@ -66,7 +66,9 @@ uci set wireless.@wifi-iface[0].key=RouterPassword
 uci commit
 ```
 
-If you wish to keep the default encryption type (`psk2`), you can continue to restarting the wifi; this is recommended for security, as 1st generation WPA is [not secure](http://www.pcworld.com/article/153396/wifi_hacked.html). 
+##### Changing the Encryption Type
+
+If you wish to keep the default encryption type (`psk2`), you can continue to [restarting the wifi](#projects-omega-as-a-router-restarting-the-wifi); this is recommended for security, as 1st generation WPA is [not secure](http://www.pcworld.com/article/153396/wifi_hacked.html). 
 
 However, if you wish to change the encryption type, find the type you want in the [UCI wireless encryption list](https://wiki.openwrt.org/doc/uci/wireless/encryption), then substitute it into `YourEncryptionType` and run:
 
@@ -74,6 +76,8 @@ However, if you wish to change the encryption type, find the type you want in th
 uci set wireless.@wifi-iface[0].encryption=YourEncryptionType
 uci commit
 ```
+
+##### Restarting the WiFi {#projects-omega-as-a-router-restarting-the-wifi}
 
 Run the following command to restart the WiFi network and apply your settings:
 
@@ -144,11 +148,10 @@ Now restart the firewall by running:
 
 And we're ready! To use the Omega Router, you simply need to connect your computer or your smartphone/tablet to the WiFi network that you configured in Step 4, and your devices should be able to access the Internet via the Omega.
 
-#### 7. Sample and Default Configuration Files
+![router network](./img/router-network.png)
 
-The files in the `omega-as-router` repo contain both reference and default configuration files.
+#### 7. Sample Configuration Files
 
-* `etc/config` contains files from an Omega used as a router.
-* `default/etc/config` contains files from a factory fresh unit.
+The the `omega-as-router` repo contains reference configuration files that you can use to troubleshoot if you aren't able to get it to work.
 
-If you need to copy these files to your Omega, you will have to substitute some of the placeholders such as `somewifissid`, `RouterPassword` and `Omega-<ABCD>`. Read and edit each file carefully before copying to the Omega!
+Please note that there are some placeholders such as `RouterPassword` and `somewifissid`. Make sure to copy only the relevant parts!
