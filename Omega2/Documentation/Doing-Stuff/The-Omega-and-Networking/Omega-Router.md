@@ -72,20 +72,32 @@ wifi
 
 Since you probably don't want uninvited guests on your new router, it is recommended that you change your Omega Router's settings from the default setup, especially the password.
 
-To do so, enter the following commands:
+To do so, enter the following commands, substituting `OmegaRouter` and `RouterPassword`:
 
 ```
 uci set wireless.@wifi-iface[0].ssid=OmegaRouter
 uci set wireless.@wifi-iface[0].key=RouterPassword
-uci set wireless.@wifi-iface[0].encryption=YourEncryptionType
+uci commit
 ```
-These commands are used to change the SSID of your Omega, the router password, as well as the type of encryption you want to use for the router and the password.
+
+#### Changing the Encryption Type
+
+If you wish to keep the default encryption type (`psk2`), you can continue to the next step below.
+
+However, if you wish to change the encryption type, find the type you want in the [UCI wireless encryption list](https://wiki.openwrt.org/doc/uci/wireless/encryption), then substitute it into `YourEncryptionType` and run:
+
+```
+uci set wireless.@wifi-iface[0].encryption=YourEncryptionType
+uci commit
+```
 
 ***Note: If you don't know what encryption type to use, just keep the default.***
 
-Once you have finished customizing the WiFi network, simply save and close the file by pressing `ESC` and then typing `:wq`
+Please keep in mind that 1st generation WPA is [not secure](http://www.pcworld.com/article/153396/wifi_hacked.html).
 
-Run the following command to restart the WiFi network and apply your settings:
+#### Restarting the Wifi
+
+Once you have finished customizing the WiFi network, run the following command to restart the WiFi network and apply your settings:
 
 ```
 wifi
