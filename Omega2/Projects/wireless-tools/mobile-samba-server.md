@@ -188,7 +188,17 @@ smbpasswd -a root
 
 This utility will create a `root` Samba account associated with the `root` account of the operating system. You'll be prompted to enter a new password. 
 
-#### 6. Access your shared folder
+#### 6. Applying our changes
+
+Samba needs to be restarted for our configuration to apply. We can do this with:
+
+```
+/etc/init.d/samba restart
+```
+
+Now we're ready to check out our file share!
+
+#### 7. Access your shared folder
 
 Of course once the server is running, we'll have to actually access it somehow.
 
