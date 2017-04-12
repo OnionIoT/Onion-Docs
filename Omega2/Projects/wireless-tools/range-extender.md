@@ -62,13 +62,13 @@ Find the block that looks something like the following:
 
 ```
 config zone
-    option name         wan
-    list   network      'wwan'
-    option input        ACCEPT
-    option output       ACCEPT
-    option forward      ACCEPT
-    option masq     1
-    option mtu_fix      1
+        option name 'wan'
+        option output 'ACCEPT'
+        option forward 'REJECT'
+        option masq '1'
+        option mtu_fix '1'
+        option network 'wwan'
+        option input 'ACCEPT'
 ```
 
 and make sure that the input, output, and forwarding settings are set to `ACCEPT`
@@ -86,6 +86,7 @@ Once you have saved and closed the file, run the following command to restart th
 /etc/init.d/firewall restart
 ```
 
+>If you want to revert your configuration to the original, we have a complete set of default configurations from a factory-fresh Omega2 [here](https://github.com/OnionIoT/uci-default-configs)
 
 #### 3. Use Your Omega WiFi Range Extender
 
