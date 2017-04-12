@@ -30,7 +30,7 @@ Here's how to turn your Omega into a wireless router!
 
 Connect your Ethernet Expansion to the Expansion dock, and plug in the Ethernet cable, as shown below:
 
-TODO: picture
+![router network](./img/router-setup.jpg)
 
 <!--# 2 -->
 
@@ -68,7 +68,7 @@ uci commit
 
 ##### Changing the Encryption Type
 
-If you wish to keep the default encryption type (`psk2`), you can continue to [restarting the wifi](#projects-omega-as-a-router-restarting-the-wifi); this is recommended for security, as 1st generation WPA is [not secure](http://www.pcworld.com/article/153396/wifi_hacked.html). 
+If you wish to keep the default encryption type (`psk2`), you can continue to the next step below.
 
 However, if you wish to change the encryption type, find the type you want in the [UCI wireless encryption list](https://wiki.openwrt.org/doc/uci/wireless/encryption), then substitute it into `YourEncryptionType` and run:
 
@@ -76,6 +76,8 @@ However, if you wish to change the encryption type, find the type you want in th
 uci set wireless.@wifi-iface[0].encryption=YourEncryptionType
 uci commit
 ```
+
+Please keep in mind that 1st generation WPA is [not secure](http://www.pcworld.com/article/153396/wifi_hacked.html).
 
 ##### Restarting the WiFi {#projects-omega-as-a-router-restarting-the-wifi}
 
@@ -152,6 +154,12 @@ And we're ready! To use the Omega Router, you simply need to connect your comput
 
 #### 7. Sample Configuration Files
 
-The the `omega-as-router` repo contains reference configuration files that you can use to troubleshoot if you aren't able to get it to work.
+The Onion [omega-as-router Github repository](https://github.com/OnionIoT/omega-as-router) contains reference configuration files in case you need to troubleshoot your setup.
+
+Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
+
+```
+git clone https://github.com/OnionIoT/omega-as-router.git
+```
 
 Please note that there are some placeholders such as `RouterPassword` and `somewifissid`. Make sure to copy only the relevant parts!
