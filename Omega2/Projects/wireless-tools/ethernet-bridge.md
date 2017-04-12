@@ -23,6 +23,7 @@ What we are going to do is to first enable the Omega's Ethernet connection, and 
 1. Onion Omega2 or Omega2+
 1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
 1. Onion Ethernet Expansion
+1. An Ethernet cable
 
 <!-- The Steps -->
 ### Step-by-Step
@@ -58,10 +59,12 @@ Change `option ifname 'eth0.1'` to `option ifname 'eth0'`
 
 
 Restart the network service by running the follow command:
+
 ```
 /etc/init.d/network restart
 ```
 
+>If you want to revert your configuration to the original, we have a complete set of default configurations from a factory-fresh Omega2 [here](https://github.com/OnionIoT/uci-default-configs)
 
 
 <!--# 3 -->
