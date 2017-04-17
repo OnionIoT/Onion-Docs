@@ -3,6 +3,8 @@
 
 Using a webcam connected to the Omega, we can take photos over time and string them together to make a video of your scene!
 
+<!-- // TODO: a gif/video of the result -->
+
 
 <!-- // include a photo of the final result -->
 ### Overview
