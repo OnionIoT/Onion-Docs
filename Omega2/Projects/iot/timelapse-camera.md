@@ -73,9 +73,36 @@ mkdir sd/timelapse
 ```
 
 
-#### 3. Set up the webcam
+#### 3. Webcam software
 
-To get the webcam to take pictures, we'll need the software:
+To get the webcam to take pictures, we'll need the software.
+
+The package we use here isn't in the official Onion repo so we'll have to use LEDE's repo to get it.
+
+Open up the source list like so:
+
+```
+vim /etc/opkg/distfeeds.conf
+```
+
+And comment/uncomment the lines so they look like this:
+```
+src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt7688/packages
+src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base
+# src/gz reboot_onion http://repo.onion.io/omega2/packages
+## src/gz reboot_luci http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/luci
+src/gz reboot_packages http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/packages
+## src/gz reboot_routing http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/routing
+## src/gz reboot_telephony http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/telephony
+# src/gz omega2_core http://repo.onion.io/omega2/packages/core
+# src/gz omega2_base http://repo.onion.io/omega2/packages/base
+# src/gz omega2_packages http://repo.onion.io/omega2/packages/packages
+src/gz omega2_onion http://repo.onion.io/omega2/packages/onion
+```
+
+>A complete guide on how to do so can be found in our guide on [Using Opkg](https://docs.onion.io/omega2-docs/using-opkg.html#using-opkg-switch-to-lede-repos).
+
+Next, restart the Omega so the changes will take place. Once that's done, we can go ahead and install the `fswebcam` package:
 
 ```
 opkg update
@@ -83,11 +110,12 @@ opkg install fswebcam
 ```
 
 
-The `fswebcam` utility lets us take a picture like so:
+The `fswebcam` utility lets us take a picture just like this:
 
 ```
 fswebcam --no-banner -r 1280x720 `date +"%Y-%m-%d_%H%M%S"`.jpg
 ```
+
 
 #### 4. Script it to save our fingers
 
