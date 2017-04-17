@@ -4,7 +4,7 @@ A router is a device that connects multiple devices on a wired or wireless netwo
 
 The Ethernet Expansion is required to give your Omega access to an Ethernet port. By using the Ethernet Expansion, we can turn our Omega into a low-cost yet effective router.
 
-<!-- ![illustration](../img/ethernet-bridge-illustration.png) -->
+![router network](./img/router-network.png)
 
 ### Overview
 
