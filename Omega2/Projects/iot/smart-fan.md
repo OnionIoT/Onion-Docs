@@ -40,13 +40,14 @@ All the code we used can be found in the [iot-smart-fan repository](https://gith
 1. 12V DC supply capable of supplying at least 1.0A
 1. 1x 5.1kΩ Resistor
 1. Jumpers
-  * 3x M-F 
-  * 3x M-M
+    * 3x M-F 
+    * 3x M-M
 
-* The case fan needs to be PWM compatible - it should have a 4-pin header like this:
+
 ** The Omega2 and 2+ accepts I2C, 1Wire, and SPI, among other protocols
+\* The case fan needs to be PWM compatible - it should have a 4-pin header like this:
 
-
+![Fan with 4-pin header](./img/iot-smart-fan-with-header.jpg)
 
 ### Step-by-Step
 
@@ -143,7 +144,6 @@ To this:
 ``` python
         motor.setDutyCycle(duty)
 ```
-
 
 
 #### 6. Calibrate and customize
