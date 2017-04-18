@@ -148,7 +148,7 @@ The prompt tells us we're still in `~`, but those are folders in `/`.
 
 // include example(s) -->
 
-Of course we can't stay in the same working directory forever. We can move aroudn directories using the `cd` command. It stands for **change directory**.
+Of course we can't stay in the same working directory forever. We can move around directories using the `cd` command. It stands for **change directory**.
 
 The most frequent use of `cd` is in conjuction with a path as the argument, like so:
 
