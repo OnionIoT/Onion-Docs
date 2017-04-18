@@ -2,7 +2,7 @@
 
 In this project, we'll be using the Omega to scan local WiFi networks, record the GPS coordinates where they're found, display the networks with the strongest signal on the OLED Expansion, and save the data to a spreadsheet file.
 
-// TODO: photo
+![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-outside.jpg)
 
 ### Overview
 
@@ -38,11 +38,11 @@ Here's how to turn your Omega into a WiFi scanner!
 
 Connect your Omega to the Power Dock, then plug in the OLED Expansion into the Expansion Header. Then plug in the GPS Expansion into the USB host port as shown below.
 
-// TODO: photo
+![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-assembled.jpg)
 
 The GPS Expansion's antenna is connected via a Hirose U.FL connector. If you have your own antenna with the appropriate connector that you would like to use, you can gently unplug the included antenna (the large square piece with a wire) and replace it with your own.
 
-// TODO: photo
+![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-external-antenna.jpg)
 
 <!--# 2 -->
 
@@ -95,18 +95,24 @@ This way, when you flip the power switch, the Omega will run the code in the bac
 
 #### 5. Using the WiFi Scanner
 
-Here's the fun part! Test out your Omega by navigating to the `wifi-hotspot-scanner` directory and running:
-
-```
-python main.py
-```
+Here's the fun part! Press the reset button and the Omega will run the program.
 
 If the GPS Expansion is able to lock onto a satellite signal, you'll see the time, the GPS coordinates, and the 6 WiFi networks with the strongest signal available nearby.
 
-// TODO: photo
+![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-outside.jpg)
+
+The Omega will then save data about all of the discovered networks to a file called `wifiData.csv`. You can then import this into a spreadsheet or navigation program for mapping later!
+
+##### Unable to Lock Signal
 
 If the GPS Expansion cannot lock onto a satellite, you'll see an error message on the OLED. The program will try again in a few seconds.
 
 #### 6. Code Highlight
 
-This project makes use of `ubus`
+This project uses the `ubus` system on the Omega to call certain services and functions as if you were sending data to a web API. The basic syntax goes like this:
+
+```
+ubus call (service) (function) '{(JSON parameters)}'
+```
+
+The WiFi scanning and GPS functions both are shorthand for these `ubus` calls. You can see how they work in the `helpers.py` and `ubusHelper.py` modules.
