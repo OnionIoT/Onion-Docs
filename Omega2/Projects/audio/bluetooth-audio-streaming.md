@@ -165,7 +165,7 @@ Your device should be listed. If you see nothing, try initiating the connection 
 
 ![check connections](./img/bluetooth-audio-cli-04.png)
 
-#### Set Up Audio Streaming From the Device
+#### 5. Set Up Audio Streaming From the Device
 
 We will use a command called `pactl` to set up audio streaming from the Bluetooth connection to the USB Audio Expansion. First run:
 
@@ -185,7 +185,7 @@ pactl load-module module-loopback source=SOURCENAME sink=alsa_output.default rat
 
 The Omega is now ready to stream Bluetooth audio!
 
-##### Using the Bluetooth Audio Streamer
+##### 6. Using the Bluetooth Audio Streamer
 
 Before plugging in your speaker, make sure the volume is set as low as possible. Then start playing music or audio on your device. Gradually turn up the volume on the speaker until you can hear it. And you're done!
 
