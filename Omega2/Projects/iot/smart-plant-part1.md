@@ -1,4 +1,4 @@
-## Smart Plant - Part 1
+## Smart Plant - Part 1 {#smart-plant-p1}
 
 This is the first part of a multi-step project where we'll make on of your plants smart! For now, we'll measure and display the soil moisture level of your plant.
 
@@ -188,7 +188,7 @@ To make sure your plant is always smart, we can configure the system so that the
 Open the `/etc/rc.local` file using the Vi editor: `vi /etc/rc.local`. Hit `i` and paste in the command we used to launch the smart plant program:
 
 ```
-root@Omega-F11D:~# python /root/smart-plant/smartPlant.py --oled
+python /root/smart-plant/smartPlant.py --oled
 ```
 
 Make sure you put this in before the `exit 0` line. Hit `esc` and type `:wq` to save and close the file.
