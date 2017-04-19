@@ -1,31 +1,41 @@
-<!-- comment: anything in triangle brackets is meant to be replaced with text -->
-<!-- comment: see `Omega2/Projects/oled/twitter-feed.md` for an example -->
+## Smart Plant - Part 2 {#smart-plant-p2}
 
-## <PROJECT TITLE>
+This is the second major part of the smart plant project! [Last time](#smart-plant-p1), we setup an Omega to measure the soil moisture level in one of your plants. This part involves sending that data to a cloud service so we can visualize it and open the door to even more features. The cloud service we will be using is [Losant](https://www.losant.com/)
 
-// brief intro to the project
-
-// include a photo of the final result
+![final result](./img/smart-plant-p2-7-dashboard-5-large-graph.png)
 
 ### Overview
 
-**Skill Level:** [Beginner|Intermediate|Advanced]
+**Skill Level:** Intermediate
 
-**Time Required:** <a time estimate to complete the project>
+**Time Required:** 1 hour
 
-// go into some detail here about how we're going to be implementing the project
-//	eg. which programming language we'll be using, APIs
-//	include links to any api or module references
+We're keeping the Arduino Dock and analog soil moisture sensor from the first part. Using a command line argument, we will be activating a part of the Python program we didn't use last time. This part of the program will use the MQTT protocol to communicate with Losant.
+
+Losant provides a Python library, `losant-mqtt`, to easily interface devices with their cloud platform. Underneath, the popular `paho-mqtt` module is used to implement the MQTT communication. The same thing can be achieved with just `paho-mqtt` since the Losant module is just a wrapper for `paho-mqtt`, but the Losant module makes the implementation a little easier, so we'll use it.
+
+This project will provide a guide on setting up Losant for our purposes:
+
+* Creating an application
+* Creating a device on their platform
+* Managing security with Access Keys
+* Developing a basic workflow
+* Setting up a Dashboard to visualize the smart plant data
+
+It also shows how to setup an Omega to send data to Losant.
+
+The complete project code can be found in Onion's [`smart-plant` repo on GitHub](https://github.com/OnionIoT/smart-plant).
+
 
 ### Ingredients
 
-// a numbered list of all physical items used to make this project
-//	all items should be linked to a place online where they can be bought
-//	the Onion items should be linked to their corresponding Onion store page
-
 1. Onion Omega2 or Omega2+
-1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
-1. Onion OLED Expansion
+1. Onion Arduino Dock 2
+1. Onion OLED Expansion (optional but recommended)
+1. Soil Moisture Sensor
+1. 3x Male-to-Female Jumper Wires
+
+![smart plant ingredients](./img/smart-plant-p1-ingredients.jpg)
 
 
 
