@@ -5,13 +5,13 @@
  
 Keys are so last year. With the internet, we can unlock things with our keyboard!
 
->Note: in fact, keys are still very useful. This project recommends you to use a normally-open lock and a key-lock in conjunction, as power failure will result in a fail-safe backup instead of locking you out.
+>Note: in fact, keys are still very useful. We still recommend you to use a normally-open lock and a key-lock in conjunction, as power failure will result in a fail-safe backup instead of locking you out.
 
 ### Overview
 
 **Skill Level:** Intermediate
 
-**Time Required:** 1 hour
+**Time Required:** 1.5 hours
 
 <!-- // go into some detail here about how we're going to be implementing the project //	eg. which programming language we'll be using, APIs //	include links to any api or module references -->
 
@@ -32,6 +32,8 @@ To accomplish this, we'll use the HTTP server on the Omega to listen for the unl
     * we found 12V/1A DC supply to be compatible with most locks
 
 \* We recommend a simple power locking, normally unlocked lock so you don't get locked out when there's no power.
+
+<!-- // TODO: picture of ingredients all together -->
 
 ### Step-by-Step
 
@@ -57,6 +59,8 @@ It's a good idea to start with a simple circuit to test the hardware. Using a tw
 * Next, connect the power wire (red) to the 'OUT' terminal of Channel 0 on the Relay Expansion.
 * Finally, connect the power terminal of your supply to the 'IN' terminal of Channel 0 on the Relay Expansion
 
+<!-- // TODO: lock+relay+omega picture -->
+
 
 Once the lock is wired, connect to the Omega's [command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal) and then try to switch the relay:
 
@@ -80,6 +84,8 @@ The code used to handle this setup can be found in the [iot-door-lock repository
 #### 6. Mount the lock
 
 Now that the pieces work together, it's time to mount your lock! Keep all the components powered off, and take the testing rig apart
+
+<!-- // TODO: example picture of mounting a lock -->
 
 >At Onion HQ, we've extended the wiring of the lock and routed it to an Omega and power supply right next to the door, but depending on the situation, you may have to do something completely different. 
 
@@ -108,3 +114,5 @@ Here's a quick overview of how it works:
 
 <!-- // one or two paragraphs (max) about something cool we did in the code -->
 <!-- //	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc) -->
+
+<!-- // TODO: Bonus points -->
