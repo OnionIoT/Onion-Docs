@@ -268,7 +268,9 @@ Try rebooting your Omega (enter `reboot` in the command line), and you'll see th
 
 #### 1. Create a Losant Dashboard
 
-Now that we've successfully sent data to Losant, we
+// TODO: hanging sentence
+
+Now that we've successfully sent data to Losant, we 
 
 Click the `Dashboards` menu and then `Create Dashboard`, give your dashboard a name and description. Hit `Create Dashboard`:
 

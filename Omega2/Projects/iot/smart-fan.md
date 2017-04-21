@@ -7,7 +7,7 @@
 
 <!-- // include a photo of the final result -->
 
-By hooking up a temperature sensor to the Omega, we can use the data it provides to modulate the speed of a fan. 
+Mornings too cold, but gets too hot by noon? By hooking up a temperature sensor to the Omega, we can use the data it provides to modulate the speed of a fan - cooling us down only when we need it!
 
 <!-- // TODO: Add photo -->
 
@@ -19,9 +19,9 @@ By hooking up a temperature sensor to the Omega, we can use the data it provides
 
 <!-- // go into some detail here about how we're going to be implementing the project //	eg. which programming language we'll be using, APIs //	include links to any api or module references -->
 
-There's a lot of implementation details in this project that will change depend on the exact hardware you have access to. We used a D18B20 1Wire temperature sensor and a 3D printed fan + DC motor setup just like in the [Maker Kit tutorial](https://docs.onion.io/omega2-maker-kit/maker-kit-servo-h-bridge.html) since we had all of those handy. However, we recommend using a PWM controllable computer case fan as they're super common and fairly cheap.
+There's a lot of implementation details in this project that will change depend on the exact hardware you have access to. We used a D18B20 1Wire temperature sensor and a 3D printed fan + DC motor setup just like in the [Maker Kit tutorial](https://docs.onion.io/omega2-maker-kit/maker-kit-servo-h-bridge.html) since we had all of those handy. However, we recommend using a computer case fan as they're super common and fairly cheap.
 
-To control the fan, we'll be using a python script and the Onion PWM Python Module. We also use a library to operate the 1Wire sensor, but your mileage may vary depending on your sensor.
+To control the fan, we'll be using a python script and the Onion PWM Python Module to pulse the fan. We also use a library to operate the 1Wire sensor, but your mileage may vary depending on your sensor.
 
 All the code we used can be found in the [iot-smart-fan repository](https://github.com/OnionIoT/iot-smart-fan) on GitHub.
 
