@@ -35,19 +35,17 @@ All the code we used can be found in the [iot-smart-fan repository](https://gith
 1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
 1. Onion PWM Expansion
 1. Breadboard (optional, but it helps a lot)
-1. Computer case fan *
-1. Digital temperature sensor **
-1. 12V DC supply capable of supplying at least 1.0A
+1. Computer case fan
+1. Digital temperature sensor *
+1. 12V DC supply capable of supplying at least 0.5A
 1. 1x 5.1kΩ Resistor
+1. Transistor rated for 12V at 0.5A
 1. Jumpers
     * 3x M-F 
     * 3x M-M
 
 
-** The Omega2 and 2+ accepts I2C, 1Wire, and SPI, among other protocols
-\* The case fan needs to be PWM compatible - it should have a 4-pin header like this:
-
-![Fan with 4-pin header](./img/iot-smart-fan-with-header.jpg)
+\* The Omega2 and 2+ accepts I2C, 1Wire, and SPI, among other protocols
 
 ### Step-by-Step
 
@@ -63,29 +61,33 @@ First let's get the Omega ready to go. if you haven't already, complete the [Fir
 
 We need Python and the Onion Expansion Modules to make this work:
 
-
 ```
 opkg update
 opkg install python-light pyPwmExp
 ```
 
+Other modules we use we'll get from GitHub in a bit.
 
 #### 3. Connect the fan
 
+Computer case fans are voltage driven, but we can cheat by using PWM with a transistor to switch the supply voltage.
+
 If you have jumpers handy, we recommend using them as a bridge between the header of the fan and the PWM expansion.
 
-This is the pin-out diagram for the smart fan:
+First we'll have to set up the transistor. For our lab setup, we used a STS8550 PNP transistor with a 2-wire PC case fan. If you use a different model, make sure to note which pin is the base/collector/emittor.
 
-![4-pin case fan header pinout](./img/iot-smart-fan-pinout.png)
-
-We'll only be using three out of the four pins: `VDC`, `GND` and the `Control` pin. 
+Most commonly, case fans have three pins/wires - one of which is a tachometer output. If you're using one of these, make sure there's no power being supplied to the output pin, this will cause damage to the fan.
 
 >The output pin sends the current speed of the fan, it can be used in your code to check if the fan is working as a bonus!
 
-1. Connect the `GND` from the fan to the `GND` pin on the PWM Expansion
-1. Do the same with the `Control` pin from the fan header to the `SIG` pin of any channel on the PWM Expansion. To keep it simple, we'll assume you used `S0` - channel 0.
-1. Finally, connect the `VDC` pin of the fan to the `Vcc` pin on the PWM Expansion
+We connected the power supply to the PWM expansion for cleaner wiring.
 
+1. Connect the Signal pin from the PWM Expansion channel 0 (`S0`) to the base pin of the transistor (middle pin in the 8550)
+1. Connect the `GND` from the fan to the collector pin on the transistor.
+1. Connect the emittor pint from the transistor to any `GND` pin on the PWM Expansion
+1. Finally, connect the `VDC` of the fan to the `Vcc` pin on the PWM Expansion
+
+This circuit will now switch the Fan's voltage based on the PWM signal from channel 0
 
 #### 4. Wire up the temperature sensor
 
@@ -102,6 +104,7 @@ The D18B20 has a pinout that looks like this:
 You'll need to grab your breadboard and plug the sensor into three different columns. The resistor will bridge the `VDD` and `DQ` lines, so plug that between the two columns like this:
 
 <!-- // TODO: temp-sensor circuit -->
+![temperature sensor wired](./img/smart-fan-sensor-circuit.jpg)
 
 Now we can connect the sensor to the Expansion Headers.
 
