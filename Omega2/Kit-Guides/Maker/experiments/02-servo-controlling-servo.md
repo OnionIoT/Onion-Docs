@@ -66,17 +66,17 @@ Gather the following from your kit:
 
 Your circuit should look like this:
 
-![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/01-assembled-circuit.jpg)
+![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/02-assembled-circuit.jpg)
 
 ### Writing the Code
 
 <!-- //DONE: insert a link to the previous article -->
 
-Let's write another class to represent a servo motor based on the class we wrote in the [previous experiment](#maker-kit-servo-dimming-led). Create a file called `motors.py` and paste the following code in it:
+Let's write another class to represent a servo motor based on the class we wrote in the [previous experiment](#maker-kit-servo-dimming-led).
+
+Open up `motors.py` from before and append the following code to it:
 
 ``` python
-from omegaPwm import OmegaPwm
-
 # define the minimum and maximum pulse widths that will suit most servos (in us)
 SERVO_MIN_PULSE = 1000
 SERVO_MAX_PULSE = 2000
