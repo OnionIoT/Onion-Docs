@@ -89,7 +89,7 @@ Then we're all set!
 
 ### Writing the Code
 
-Let's write a class to abstract methods for a PWM pin on the Omega. Create a file called `omegaPwm.py` and paste the following code in it:
+Let's write a class to abstract methods for a PWM pin on the Omega. Create a file called `motors.py` and paste the following code in it:
 
 ``` python
 from OmegaExpansion import pwmExp
