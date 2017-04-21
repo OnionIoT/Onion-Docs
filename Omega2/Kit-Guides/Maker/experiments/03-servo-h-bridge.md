@@ -79,7 +79,7 @@ In the pictures, you'll see some shorter wires, these we used instead of jumpers
 <!-- // DONE: include a circuit diagram -->
 Here's a diagram to refer back to if things get hectic:
 
-![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/diagrams/01-circuit-diagram.png)
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/diagrams/03-circuit-diagram.png)
 
 
 #### What You'll Need
@@ -194,7 +194,7 @@ Here's what it looks like when it's all wired up:
 
 Let's add a class definition for a DC motor controlled by an H-bridge to the `motors.py` file we made in the previous expriment. This class definition will specifically drive a DC motor hooked up to an H-bridge. It builds on the abstractions in the `OmegaPwm` class and takes care of the details in operating the motor.
 
-Open up `motors.py` and add the following:
+Open up `motors.py` from the [Dimming LEDs experiment](#maker-kit-servo-dimming-led) and add the following:
 
 ``` python
 H_BRIDGE_MOTOR_FORWARD = 0
