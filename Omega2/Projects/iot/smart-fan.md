@@ -9,7 +9,7 @@
 
 Mornings too cold, but gets too hot by noon? By hooking up a temperature sensor to the Omega, we can use the data it provides to modulate the speed of a fan - cooling us down only when we need it!
 
-<!-- // TODO: Add photo -->
+<!-- // DONE: Add photo -->
 ![Smart fan all set up!](./img/smart-fan-example.jpg)
 
 ### Overview
