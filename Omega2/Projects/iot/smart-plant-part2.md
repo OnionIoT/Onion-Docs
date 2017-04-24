@@ -43,6 +43,7 @@ The complete project code can be found in Onion's [`smart-plant` repo on GitHub]
 
 Follow these instructions to set this project up on your very own Omega!
 
+<!-- TODO: enumerate the steps correctly -->
 
 #### 1. Prepare
 
@@ -51,7 +52,7 @@ You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide]
 
 #### 1. Complete Part 1 of the Project
 
-This project builds on the first part of the Smart Plant project. If you haven't already completed the [first part ](#smart-plant-p1), go back and do it now!
+This project builds on the first part of the Smart Plant project. If you haven't already completed the [first part](#smart-plant-p1), go back and do it now!
 
 #### 1. Register for Losant
 
@@ -267,6 +268,8 @@ Hit `esc` and type `:wq` to save and close the file.
 Try rebooting your Omega (enter `reboot` in the command line), and you'll see that your program will start up again when the Omega boots up.
 
 #### 1. Create a Losant Dashboard
+
+// TODO: hanging sentence
 
 Now that we've successfully sent data to Losant, we
 

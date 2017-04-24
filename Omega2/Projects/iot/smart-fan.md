@@ -7,9 +7,10 @@
 
 <!-- // include a photo of the final result -->
 
-By hooking up a temperature sensor to the Omega, we can use the data it provides to modulate the speed of a fan. 
+Mornings too cold, but gets too hot by noon? By hooking up a temperature sensor to the Omega, we can use the data it provides to modulate the speed of a fan - cooling us down only when we need it!
 
-<!-- // TODO: Add photo -->
+<!-- // DONE: Add photo -->
+![Smart fan all set up!](./img/smart-fan-example.jpg)
 
 ### Overview
 
@@ -19,11 +20,13 @@ By hooking up a temperature sensor to the Omega, we can use the data it provides
 
 <!-- // go into some detail here about how we're going to be implementing the project //	eg. which programming language we'll be using, APIs //	include links to any api or module references -->
 
-There's a lot of implementation details in this project that will change depend on the exact hardware you have access to. We used a D18B20 1Wire temperature sensor and a 3D printed fan + DC motor setup just like in the [Maker Kit tutorial](https://docs.onion.io/omega2-maker-kit/maker-kit-servo-h-bridge.html) since we had all of those handy. However, we recommend using a PWM controllable computer case fan as they're super common and fairly cheap.
+There's a lot of implementation details in this project that will change depend on the exact hardware you have access to. We used a D18B20 1Wire temperature sensor, for example. For the fan, we recommend a computer case fan, since those are quite easy to come by and works decently well.
 
-To control the fan, we'll be using a python script and the Onion PWM Python Module. We also use a library to operate the 1Wire sensor, but your mileage may vary depending on your sensor.
+We also cooked up a 3D printed fan + DC motor setup just like in the [Maker Kit tutorial](https://docs.onion.io/omega2-maker-kit/maker-kit-servo-h-bridge.html) since we had all of those handy. 
 
-All the code we used can be found in the [iot-smart-fan repository](https://github.com/OnionIoT/iot-smart-fan) on GitHub.
+To control the fan, we'll be using a python script and the Onion PWM Python Module to pulse the fan. We also use a library to operate the 1Wire sensor, but your mileage may vary depending on your sensor.
+
+All the code we used is written for a case fan with a transistor switching it. It can be found in the [iot-smart-fan repository](https://github.com/OnionIoT/iot-smart-fan) on GitHub.
 
 ### Ingredients
 
@@ -35,19 +38,17 @@ All the code we used can be found in the [iot-smart-fan repository](https://gith
 1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
 1. Onion PWM Expansion
 1. Breadboard (optional, but it helps a lot)
-1. Computer case fan *
-1. Digital temperature sensor **
-1. 12V DC supply capable of supplying at least 1.0A
+1. Computer case fan
+1. Digital temperature sensor *
+1. 12V DC supply capable of supplying at least 0.5A
 1. 1x 5.1kΩ Resistor
+1. NPN Transistor rated for 12V at 0.5A
 1. Jumpers
     * 3x M-F 
     * 3x M-M
 
 
-** The Omega2 and 2+ accepts I2C, 1Wire, and SPI, among other protocols
-\* The case fan needs to be PWM compatible - it should have a 4-pin header like this:
-
-![Fan with 4-pin header](./img/iot-smart-fan-with-header.jpg)
+\* The Omega2 and 2+ accepts I2C, 1Wire, and SPI, among other protocols, unfortunately it cannot read analog voltages.
 
 ### Step-by-Step
 
@@ -63,35 +64,41 @@ First let's get the Omega ready to go. if you haven't already, complete the [Fir
 
 We need Python and the Onion Expansion Modules to make this work:
 
-
 ```
 opkg update
 opkg install python-light pyPwmExp
 ```
 
+Other modules will be included in the GitHub repo.
 
 #### 3. Connect the fan
 
+Computer case fans are voltage driven, but we can cheat by using PWM with a transistor to switch the supply voltage.
+
 If you have jumpers handy, we recommend using them as a bridge between the header of the fan and the PWM expansion.
 
-This is the pin-out diagram for the smart fan:
+First we'll have to set up the transistor. For our lab setup, we used a STS8050 NPN transistor with a 2-wire PC case fan. If you use a different model, make sure to note which pin is the base/collector/emittor.
 
-![4-pin case fan header pinout](./img/iot-smart-fan-pinout.png)
+>If you use a PNP transistor, your fan will automatically turn on unless you set the pwm output to 100%. This is because PNP transistors turn 'on' when the base draws current, when the PWM channel is at 0% duty, it draws a tiny bit of current - enough to turn on the transistor!
 
-We'll only be using three out of the four pins: `VDC`, `GND` and the `Control` pin. 
+Most commonly, case fans have three pins/wires - one of which is a tachometer output. If you're using one of these, make sure there's no power being supplied to the output pin, this will cause damage to the fan.
 
 >The output pin sends the current speed of the fan, it can be used in your code to check if the fan is working as a bonus!
 
-1. Connect the `GND` from the fan to the `GND` pin on the PWM Expansion
-1. Do the same with the `Control` pin from the fan header to the `SIG` pin of any channel on the PWM Expansion. To keep it simple, we'll assume you used `S0` - channel 0.
-1. Finally, connect the `VDC` pin of the fan to the `Vcc` pin on the PWM Expansion
+We connected the power supply to the PWM expansion for cleaner wiring.
 
+1. Connect the `GND` from the fan to the collector pin on the transistor (right pin when looking at the flat side of the 8050).
+1. Connect the Signal pin from the PWM Expansion channel 0 (`S0`) to the base pin of the transistor.
+1. Connect the emittor pin from the transistor to any `GND` pin on the PWM Expansion.
+1. Finally, connect the `VDC` of the fan to the `Vcc` pin on the PWM Expansion.
+
+This circuit will now switch the Fan's voltage based on the PWM signal from channel 0!
 
 #### 4. Wire up the temperature sensor
 
-This part is written assuming you're working with the D18B20, if your sensor is different, you may have to find a guide elsewhere on wiring it properly
+This part is written assuming you're working with the D18B20, if your sensor is different, you may have to find a guide elsewhere on wiring it properly. 
 
->Note that the Omega does **not** have analog voltage reading capabilities - you'd have to use your own ADC if your sensor is analog!
+>Note that the Omega does **not** have analog voltage reading capabilities - you'd have to use an ADC plus write your own converting code to use an analog sensor!
 
 The D18B20 has a pinout that looks like this:
 
@@ -101,7 +108,8 @@ The D18B20 has a pinout that looks like this:
 
 You'll need to grab your breadboard and plug the sensor into three different columns. The resistor will bridge the `VDD` and `DQ` lines, so plug that between the two columns like this:
 
-<!-- // TODO: temp-sensor circuit -->
+<!-- // DONE: temp-sensor circuit -->
+![temperature sensor wired](./img/smart-fan-sensor-circuit.jpg)
 
 Now we can connect the sensor to the Expansion Headers.
 
@@ -110,48 +118,62 @@ Now we can connect the sensor to the Expansion Headers.
 * Finally, connect the `VDD` pin to a `3.3V` pin on the Expansion Header
 
 
-#### 5. Write the code
+#### 5. Get the code
 
 Head over to the [iot-smart-fan repository](https://github.com/OnionIoT/iot-smart-fan) on GitHub, and download the repo.
 
-Here's where you'll have to do some editing of the code if you're using a computer case fan. Instead of the three PWM channels used by the H-bridge, the case fan will use only a single PWM as signal. 
+Copy the all the files to the same directory in your omega. If you're using your own temperature sensor, you'll have to make some changes before it'll run.
 
-##### Temperature Sensor
+#### 5. (and a half) Custom sensor
 
-There's a good bit of setup for the temperature sensor - initialization, communicating, and parsing. If you have a different sensor than the the one given, you'd have to edit the setup lines (between `SENSOR SETUP BEGIN` and `SENSOR SETUP END`) to ensure it sends and recieves data correctly.
-##### Case Fan
+There's a good bit of setup for the temperature sensor - initialization, communicating, and parsing. 
 
-Open up `iotSmartFan.py` and change this line:
+If you have a different sensor than the the one given, you'd have to edit the setup lines to ensure it sends and recieves data correctly. The code that sets up the sensor can be found in the lines between `SENSOR SETUP BEGIN` and `SENSOR SETUP END`.
 
-``` python
-    motor = hBridgeMotor(H_BRIDGE_12EN_CHANNEL, H_BRIDGE_1A_CHANNEL, H_BRIDGE_2A_CHANNEL)
-```
-
-To this:
+Additionally, you'd probably need to change the function used to get the sensor data:
 
 ``` python
-    motor = OmegaPwm(0)
+        temp = sensor.readValue()
 ```
 
-And this line:
 
-``` python
-        motor.spinForward(duty)
-```
-
-To this:
-
-``` python
-        motor.setDutyCycle(duty)
-```
-
+One important thing to note is that the values assigned to temp must be integer or float.
 
 #### 6. Calibrate and customize
 
 By editing the `config.json`, you can change the output range of the fan and the temperature range to restrict the fan to. The fan is set to spin at a rate between the minimum and maximum duty. The output duty has a linear relationship with the temperature when it is between the min and max temperature.
 
 
-<!-- ### Bonus Points! -->
+### Bonus Points!
 
 <!-- // one or two paragraphs (max) about something cool we did in the code -->
 <!-- //	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc) -->
+
+If you want to copy our setup with an H-bridge (switching YOOG fans!), you'll have to swap out the `OmegaPwm` class with the `hBridgeMotor` class from `omegaMotors.py`. Check the pin outs that we've put in by default in `iotSmartFan.py` to make sure you're pluggin the H-bridge in correctly.
+
+For a detailed guide on how to wire this set up, check out the wiring instructions in our [Maker Kit guide experiment](https://docs.onion.io/omega2-maker-kit/maker-kit-servo-dimming-led.html).
+
+
+To change up the code, open up `iotSmartFan.py` and change this line:
+
+``` python
+    fan = OmegaPwm(FAN_PWM_CHANNEL)
+```
+
+
+To this:
+``` python
+    fan = hBridgeMotor(FAN_PWM_CHANNEL, H_BRIDGE_1A_CHANNEL, H_BRIDGE_2A_CHANNEL)
+```
+
+And this line:
+
+``` python
+        fan.setDutyCycle(duty)
+```
+
+To this:
+
+``` python
+        fan.spinForward(duty)
+```
