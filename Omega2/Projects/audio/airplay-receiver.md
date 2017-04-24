@@ -39,7 +39,6 @@ Finally, to actually stream music, a device with AirPlay controller capabilities
     * or a USB Digital-Analog Converter
 
 ![All the ingredients we used](./img/airplay-receiver-ingredients.jpg)
-![](./img/airplay-receiver-ingredients.jpg)
 
 ### Step-by-Step
 
@@ -132,7 +131,7 @@ Restart the Omega for the changes to take effect, and we'll plug in some speaker
 In our setup, we used a USB Digital-Analog Converter (DAC). But any USB speaker setup should work out of the box thanks to Linux's audio stack. Plug it into the dock, and we'll be good to go!
 
 <!-- // DONE: image of dock plug -->
-![](./img/airplay-receiver-usb-insert.jpg)
+![plugging in our USB DAC](./img/airplay-receiver-usb-insert.jpg)
 
 #### 6. Prepare your controller
 
