@@ -5,6 +5,11 @@
  
 Keys are so last year. With the internet, we can unlock things with our keyboard!
 
+
+Here's a setup we've placed in Onion HQ:
+![The omega controlling it](./img/door-lock-p1-1.jpg)
+![The lock itself](./img/door-lock-p1-2.jpg)
+
 >Note: in fact, keys are still very useful. We still recommend you to use a normally-open lock and a key-lock in conjunction, as power failure will result in a fail-safe backup instead of locking you out.
 
 ### Overview
@@ -17,9 +22,6 @@ Keys are so last year. With the internet, we can unlock things with our keyboard
 
 To accomplish this, we'll use the HTTP server on the Omega to listen for the unlock signal through a request. When it's set up, we'll be able to to unlock by accessing a web page through a phone, a laptop, or a kerosene powered toaster.
 
-Here's a setup we've placed in Onion HQ:
-![The omega controlling it](./img/door-lock-p1-1.jpg)
-![The lock itself](./img/door-lock-p1-2.jpg)
 
 ### Ingredients
 
