@@ -29,15 +29,18 @@ We'll need all of the same materials as in the previous part:
 1. Soil Moisture Sensor
 1. 3x Male-to-Female Jumper Wires
 
-The new materials we need:
+And some new ingredients:
 
 1. Onion Relay Expansion
 1. DC Barrel Jack Adapter
 1. [Water Pump (12V DC)](http://www.canadarobotix.com/index.php?route=product/search&search=pump)
 1. 3x Male-to-Male Jumper Wires
-1. 12V DC Power Supply
-1. Flat-head screwdriver
+1. 12V 1A DC Power Supply
 1. Plastic Tubing
+
+Tools:
+
+1. Flat-head screwdriver
 
 <!-- TODO: find water pump from a US retailer -->
 <!-- TODO: add specific tubing -->
@@ -56,7 +59,7 @@ You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide]
 
 #### 1. Complete the Previous Parts of the Project
 
-This project builds on the previous parts of the Smart Plant project. If you haven't already completed the [first](#smart-plant-p1), [second](#smart-plant-p2), and [third parts](#smart-plant-p3), go back and do them now now!
+This project builds on the previous parts of the Smart Plant project. If you haven't already completed the [first](#smart-plant-p1), [second](#smart-plant-p2), and [third parts](#smart-plant-p3), go back and do them now!
 
 
 #### 1. Install Required Software on the Omega
@@ -86,7 +89,7 @@ We'll wire up the Water Pump with the Relay Expansion before connecting the Rela
 
 #### 1. Connect the Relay Expansion and Provide Power
 
-Grab your Smart Plant Omega and Arduino Dock and unplug it from power. Take off the OLED Expasnion and plug in your freshly wired Relay Expansion.
+Grab your Smart Plant Omega and Arduino Dock and unplug it from power. Take off the OLED Expansion and plug in your freshly wired Relay Expansion.
 
 // TODO: photo of the above
 

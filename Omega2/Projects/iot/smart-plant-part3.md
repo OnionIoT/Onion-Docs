@@ -48,7 +48,7 @@ You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide]
 
 #### 1. Complete the Previous Parts of the Project
 
-This project builds on the first and second parts of the Smart Plant project. If you haven't already completed the [first part](#smart-plant-p1) and [second parts](#smart-plant-p2), go back and do them now now!
+This project builds on the first and second parts of the Smart Plant project. If you haven't already completed the [first part](#smart-plant-p1) and [second parts](#smart-plant-p2), go back and do them now!
 
 #### 1. Login to Losant
 
