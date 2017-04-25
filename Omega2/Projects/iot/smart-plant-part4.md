@@ -1,18 +1,23 @@
 ## Smart Plant - Part 4 {#smart-plant-p4}
 
-// brief intro to the project
+// TODO: brief intro to the project
 
-// include a photo of the final result
+// TODO: include a photo of the final result
 
 ### Overview
 
-**Skill Level:** [Beginner|Intermediate|Advanced]
+**Skill Level:** Intermediate
 
-**Time Required:** <a time estimate to complete the project>
+**Time Required:** 1 Hour
 
-// go into some detail here about how we're going to be implementing the project
-//	eg. which programming language we'll be using, APIs
-//	include links to any api or module references
+// TODO: explanation of what we're doing in this project:
+// * using a Relay Expansion to switch a water pump on and off
+// * enabling another option in the program (make sure to mention to link to the `pyRelayExp` module documentation)
+// * physical pump and watering setup
+// * creating a workflow send commands to your omega to calibrate our plant watering
+// * add device command to our previous workflow to automatically water the plant
+
+The complete project code can be found in Onion's [`smart-plant` repo on GitHub](https://github.com/OnionIoT/smart-plant).
 
 ### Ingredients
 
@@ -32,6 +37,7 @@ The new materials we need:
 1. 3x Male-to-Male Jumper Wires
 1. 12V DC Power Supply
 1. Flat-head screwdriver
+1. Plastic Tubing
 
 <!-- TODO: find water pump from a US retailer -->
 <!-- TODO: add specific tubing -->
@@ -42,7 +48,6 @@ The new materials we need:
 
 Follow these instructions to set this project up on your very own Omega!
 
-// each step should be simple
 
 #### 1. Prepare
 
@@ -54,7 +59,9 @@ You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide]
 This project builds on the previous parts of the Smart Plant project. If you haven't already completed the [first](#smart-plant-p1), [second](#smart-plant-p2), and [third parts](#smart-plant-p3), go back and do them now now!
 
 
-#### 1.
+#### 1. Install Required Software on the Omega
+
+To control the Relay Expansion from a Python program, you'll need to install the Onion Relay Expansion Module:
 
 ```
 opkg update
@@ -94,7 +101,7 @@ Power the Omega and Arduino Dock through the Micro-USB port and connect the 12V 
 
 #### 1. Test your Setup
 
-When your Omega boots up again, login to the Omega's command line and run the following command:
+When your Omega boots up again, login to the Omega's command line and run the following command to turn on the relay connected to the water pump:
 
 ```
 relay-exp 0 on
@@ -102,7 +109,7 @@ relay-exp 0 on
 
 Your pump should now come to life!
 
-To turn off the pump, run the following
+To turn off the pump, run the following:
 
 ```
 relay-exp 0 off
@@ -115,55 +122,145 @@ relay-exp 0 off
 
 // TODO: section on connecting tubing to the pump. then running the tubing to a water reservoir and the other end to the plant
 
+
+#### 1. Stop the Existing Program
+
+In the first part of the project, we modified `/etc/rc.local` to automatically run the smart plant program on boot. We'll now need to find the program and stop it before running it again manually.
+
+Find the process of the running smart plant program:
+
+```
+root@Omega-F11D:~# ps | grep smart
+ 1999 root     17568 S    python /root/smart-plant/smartPlant.py --oled --quiet
+ 2185 root      1184 S    grep smart
+```
+
+Kill the process to stop the program:
+
+```
+root@Omega-F11D:~# kill 1999
+```
+
+
 #### 1. Pump Calibration
 
-// start the script on the Omega
+We'll need to play with the pump a little to see how long it should be enabled in order to properly water the plant.
+
+Let's first run the Smart Plant program with the pump option enabled:
+
 ```
-python /root/smart-plant/smartPlant.py --oled --losant /root/smart-plant/losant.json --pump
+python /root/smart-plant/smartPlant.py --oled --quiet --losant /root/smart-plant/losant.json --pump
 ```
 
-// Losant: create new workflow and test
+Now, let's create a Losant workflow where we can use a virtual button to turn on our pump. We'll use this workflow now to find the optimal watering duration for your plant, and then afterwards you can use it to water your plant from anywhere in the world!
 
-![](./img/smart-plant-p4-0-pump-test-0-new-workflow.png)
+Head over to `https://www.losant.com/` and log in. Select your Smart Plant Application, click on the `Workflows` menu and then `Create Workflow`. Give your workflow a name and a description:
 
-![](./img/smart-plant-p4-0-pump-test-1-button.png)
+![new worfklow](./img/smart-plant-p4-0-pump-test-0-new-workflow.png)
 
-![](./img/smart-plant-p4-0-pump-test-2-button-setup.png)
+Add a `Virtual Button` block to your workflow:
 
-![](./img/smart-plant-p4-0-pump-test-3-device-command.png)
+![add button](./img/smart-plant-p4-0-pump-test-1-button.png)
 
-![](./img/smart-plant-p4-0-pump-test-4-set-device.png)
+For completeness, have the button send a payload:
 
-![](./img/smart-plant-p4-0-pump-test-5-set-command.png)
+![setup button](./img/smart-plant-p4-0-pump-test-2-button-setup.png)
 
-![](./img/smart-plant-p4-0-pump-test-6-debug.png)
+Now add a `Device Command` block:
 
-![](./img/smart-plant-p4-0-pump-test-7-debug-setup.png)
+![add device command](./img/smart-plant-p4-0-pump-test-3-device-command.png)
+
+Set it up to use the device associated with your Smart Plant Omega, in our case, that was `omega-f11d`:
+
+![device command: set device](./img/smart-plant-p4-0-pump-test-4-set-device.png)
+
+Now we need to setup the command to send to the device. The name of command the program on the Omega is expecting is `waterPlant`, the payload is a string that is the number of seconds to keep the pump enabled. In our case, we started with 4 seconds:
+
+![device command: set command](./img/smart-plant-p4-0-pump-test-5-set-command.png)
+
+Let's also add a `Debug` block:
+
+![add debug](./img/smart-plant-p4-0-pump-test-6-debug.png)
+
+Set the debug message to something simple so we know our button click has gone through, and Deploy the workflow:
+
+![deploy](./img/smart-plant-p4-0-pump-test-7-debug-setup.png)
+
+
+Try pressing the button and seeing how much water actually makes it to your plant:
 
 ![](./img/smart-plant-p4-0-pump-test-8-button-pressed.png)
 
 
-// experiment to see how much time is required to get enough water to the plant
+Experiment with the payload of the `Device Command` block to see how much water suits your plant. Also, keep in mind the `LOW_MOISTURE` and `OK_MOISTURE` levels we set in the [previous part of the project](#smart-plant-p3), when your plant is watered at the `LOW_MOISTURE` level, the amount of water added should take it back up above `OK_MOISTURE` level.
+
+We found a duration of **7 seconds** to work well for our plant.
+
+
+#### 1. Update Program Run at Boot
+
+Since we now need to run the Smart Plant program with additional arguments to enable the pump, we'll need to update the `/etc/rc.local` file.
+
+Open the `/etc/rc.local` file using the Vi editor: `vi /etc/rc.local`. Hit `i` and paste in the additional arguments, your file should look like this:
+
+```
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+python /root/smart-plant/smartPlant.py --oled --quiet --losant /root/smart-plant/losant.json --pump
+exit 0
+```
+Hit `esc` and type `:wq` to save and close the file.
+
+Try rebooting your Omega (enter `reboot` in the command line), and you'll see that your program will start up again when the Omega boots up.
+
 
 #### 1. Update the Existing Workflow
 
-![](./img/smart-plant-p4-1-edit-workflow-0-existing-workflow.png)
+To make our smart plant truly automated, we need to add sending the `waterPlant` command to the notification workflow made in the [previous part of the project](#smart-plant-p3):
 
-![](./img/smart-plant-p4-1-edit-workflow-1-device-command.png)
+![existing workflow](./img/smart-plant-p4-1-edit-workflow-0-existing-workflow.png)
 
-![](./img/smart-plant-p4-1-edit-workflow-2-set-device.png)
+Add a `Device Command` Block to the bottom:
 
-![](./img/smart-plant-p4-1-edit-workflow-3-set-global.png)
+![device command block](./img/smart-plant-p4-1-edit-workflow-1-device-command.png)
 
-![](./img/smart-plant-p4-1-edit-workflow-4-set-command.png)
+Like before, we need to set it up to use the device associated with your Smart Plant Omega:
 
-![](./img/smart-plant-p4-1-edit-workflow-5-connect.png)
+![device command: set device](./img/smart-plant-p4-1-edit-workflow-2-set-device.png)
 
-![](./img/smart-plant-p4-1-edit-workflow-6-debug.png)
+Create a Global variable to store the duration for which the pump will be active:
 
-![](./img/smart-plant-p4-1-edit-workflow-7-deploy.png)
+![global for pump duration](./img/smart-plant-p4-1-edit-workflow-3-set-global.png)
 
-![](./img/smart-plant-p4-1-edit-workflow-8-debug-messages.png)
+Now, go back to the `Device Command` block to setup the command name and payload. It will be the same as in the testing workflow used above, just this time, use `{{globals.PUMP_DURATION}}`, the global variable we just created:
+
+![device command: set command](./img/smart-plant-p4-1-edit-workflow-4-set-command.png)
+
+Connect the `Device Command` block to the output of the `Tweet` block so that the plant gets watered right after the Tweet is sent out:
+
+![connect device command](./img/smart-plant-p4-1-edit-workflow-5-connect.png)
+
+Let's also add a `Debug` block that will output that the command indeed got sent out:
+
+![debug block](./img/smart-plant-p4-1-edit-workflow-6-debug.png)
+
+It might also be a good idea to change the contents of the Tweet:
+
+![tweet content](./img/smart-plant-p4-1-edit-workflow-7-tweet.png)
+
+Connect the `Debug` block to the `Device Command` block and hit `Deploy Workflow`:
+
+![](./img/smart-plant-p4-1-edit-workflow-8-deploy.png)
+
+
+#### 1. Sit Back and Relax
+
+Now whenever your plant's soil moisture level falls below the level in the `LOW_MOISTURE` global variable, your plant will water itself and alert you with a Tweet!
+
+![command sent](./img/smart-plant-p4-2-plant-is-smart-0-debug-messages.png)
+
+![tweet](./img/smart-plant-p4-2-plant-is-smart-1-tweet.png)
 
 
 

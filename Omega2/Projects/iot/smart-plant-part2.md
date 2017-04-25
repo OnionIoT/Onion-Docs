@@ -269,9 +269,7 @@ Try rebooting your Omega (enter `reboot` in the command line), and you'll see th
 
 #### 1. Create a Losant Dashboard
 
-// TODO: hanging sentence
-
-Now that we've successfully sent data to Losant, we
+Now that we've successfully sent data to Losant, let's create a Dashboard so we can easily check in on our plant and see how much moisture there is in the soil.
 
 Click the `Dashboards` menu and then `Create Dashboard`, give your dashboard a name and description. Hit `Create Dashboard`:
 
