@@ -1,4 +1,4 @@
-## Thermal Printer
+## Solderless Thermal Printer
 
 In this project, we'll be using the Omega to control a thermal printer via a web interface. Simply type text in a box, and click Print to print it out in real life!
 
@@ -12,8 +12,11 @@ In this project, we'll be using the Omega to control a thermal printer via a web
 
 **Time Required:** 20 minutes
 
-We'll wire up a barrel connector for power and jumpers for serial communication with the Omega.
+We'll be 3D printing a plastic base for our printer and wiring. Then we'll wire up a barrel connector for power and wires for serial communication with the Omega.
 
+This tutorial will require you to solder a wire to one of the components on the Mini Dock. Please familiarize yourself with proper soldering technique and safety procedures when working with soldering irons, as there is a risk of injury due to the high heat! 
+
+If you are not comfortable soldering, try finding a friend or professional who can quickly solder it for you.
 
 ### Ingredients
 
@@ -32,9 +35,19 @@ We'll wire up a barrel connector for power and jumpers for serial communication 
 
 Follow these steps to turn your Omega into a web-based printer!
 
+#### 1. 3D Print the Base
+
+3D print the base to hold our components together. If you do not have a 3D printer available nearby, there are online services available such as [3DHubs](https://www.3dhubs.com/).
+
+#### 2. Plug in the Power Jack
+
+Insert the power jack adapter into the printer base. Do this first, since the other pieces will cover up the base later.
+
+![How the power jack fits](./img/thermal-printer-base.jpg)
+
 #### 3. Trim the cable
 
-First, we need to cut one end of the 5-pin TTL cable that came with the thermal printer. This is so we can re-route the wires to where they need to go. The other end we'll leave alone, that goes into the printer.
+Next we need to cut one end of the 5-pin TTL cable that came with the thermal printer. This is so we can re-route the wires to where they need to go. The other end we'll leave alone, that goes into the printer.
 
 Cut only **one** of these ends off, leaving bare wire:
 

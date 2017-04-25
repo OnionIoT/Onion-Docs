@@ -19,12 +19,9 @@ Thanks to the work of Mike Brady, the Omega can be set up to receive AirPlay str
 
 There's three main pieces of the puzzle here:
 
-To get AirPlay working, we will set up `shairport-sync` on the Omega. 
+To get AirPlay working, we will set up `shairport-sync` on the Omega. The audio stack on the Omega will work out of the box with USB devices, so we simply need to plug in any USB audio device. Finally, to actually stream music, a device with AirPlay controller capabilities must be set up to stream to the Omega.
 
-The audio stack on the Omega will work out of the box with USB devices, so we simply need to plug it in. 
-
-Finally, to actually stream music, a device with AirPlay controller capabilities must be set up to stream to the Omega.
-
+We'll go over setting all of it up, but first, our ingredients.
 
 ### Ingredients
 
