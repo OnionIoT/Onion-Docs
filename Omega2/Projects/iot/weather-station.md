@@ -1,23 +1,25 @@
 ## Weather Station
 
-This project will allow you to read temperature from a sensor, display it on the OLED Expansion, and also push the data to Ubidots for logging and monitoring!
+This project will allow you to send weather data to IBM's Watson IoT cloud platform, where you can view it on the web!
 
-![temperature monitor running](./img/temperature-monitor-complete.jpg)
+![temperature monitor running](./img/iot-weather-station-complete.jpg)
 
 ### Overview
 
-**Skill Level:** Beginner-Intermediate
+**Skill Level:** Intermediate
 
-**Time Required:** 20 minutes
+**Time Required:** 40 minutes
 
-We'll be using a software 1-Wire bus to read the temperature from a sensor. The code will then write the value on the OLED Expansion and push the data to your [Ubidots](https://ubidots.com/) account. The code is written in Python and makes use of the UART1 serial port on the Omega to communicate with the Arduino Dock's microcontroller. We're also using [Onion's `pyOledExp` module](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) to provide control of the OLED Expansion.
+We'll be using the Python Serial module to periodically send commands to the Arduino Dock, which will then read the temperature and humidity from a sensor. The Omega will then read that data back and send it to IBM Watson, where you can visualize the data in real time! We will then automate the project to run when the Omega is turned on.
 
-The complete project code can be found in Onion's [`temperature-monitor` repo on GitHub](https://github.com/OnionIoT/temperature-monitor).
+The device code can be found in Onion's [`iot-weather-station` repo on GitHub](https://github.com/OnionIoT/iot-weather-station), while the Arduino Dock sketch can be found in the Examples of the [Onion Arduino Library](https://github.com/OnionIoT/Onion-Arduino-Library)
 
 
 ### Ingredients
 
 1. Onion Omega2+
+    * or Omega2 standard booting from a USB storage device with at least 16 MB of free memory; see [Booting From External Storage](https://docs.onion.io/omega2-docs/boot-from-external-storage.html)
+    * For convenience, this tutorial will assume you are using an Omega2+.
 1. Arduino Dock R2
 1. Breadboard
 1. DHT22 temperature + humidity sensor
@@ -34,11 +36,35 @@ Follow these instructions to setup the Weather Station project on your very own 
 
 You'll have to have an Omega2+ ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
-Plug in the Omega to the Arduino Dock and follow the instructions in [this guide](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html) to prepare it for flashing the Arduino Dock.
+**Note 1:** The Arduino Dock does not have a USB to serial converter chip, so [all connections to the Omega must be done over SSH](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-ssh).
 
-#### 3. Download the Python Code on the Omega
+**Note 2:** The Omega's firmware along with this project and its dependencies will require approximately 18 MB of storage space. If you wish to install the Console and additional apps, we recommend [booting the filesystem from an external SD card or USB drive](https://docs.onion.io/omega2-docs/boot-from-external-storage.html).
 
-The code for this project is all done and can be found in Onion's [iot-weather-station repo](https://github.com/OnionIoT/iot-weather-station) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
+After completing the first time setup, follow the steps in the [Arduino Dock guide](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html) to prepare it for flashing Arduino sketches.
+
+#### 2. Wire Up the Sensor
+
+We will treat the side of the DHT sensor with the holes as the **front**.
+
+1. Insert the DHT sensor into the breadboard with the front facing the middle gap.
+    * The pins will be numbered 1-4 from left to right.
+1. Connect Vdd (pin 1) to the Arduino Dock's 5V pin.
+1. Connect DATA (pin 2) to the Arduino Dock's digital pin 2.
+1. Connect GND (pin 4) to one of the Arduino's GND pins.
+    * This is not a typo. Pin 3 is unused on this DHT sensor!
+1. Connect the 10kΩ resistor across Vdd and DATA.
+
+Your setup should look something like this:
+
+// TODO: photo
+
+**Optional** - Remove the DHT sensor from the breadboard, and use the M-F jumper wires to connect the pins back to the breadboard. This is so you can easily move the sensor around!
+
+// TODO: photo
+
+#### 3. Download the Software on the Omega
+
+The code for this project can be found in Onion's [iot-weather-station repo](https://github.com/OnionIoT/iot-weather-station) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
 
 ```
 git clone https://github.com/OnionIoT/iot-weather-station.git
@@ -51,7 +77,28 @@ cd iot-weather-station
 sh install.sh
 ```
 
-#### Flash the Arduino Code
+Then get the Omega's MAC address for use with Watson by running the `watsonHelper.py` script:
+
+```
+python watsonHelper.py
+```
+
+You will see output that looks something like this:
+
+```
+root@Omega-F12D:~/iot-weather-station# python watsonHelper.py 
+====================
+Device ID:
+(MAC address here)
+====================
+Loaded Device ID into device.cfg.
+Enter this Device ID on the IBM Bluemix website when registering this device on the Watson IoT platform.
+Don't forget to add your Organization ID, Device Type, and Authorization Token to the device.cfg file!
+```
+
+Copy or write down the MAC address underneath "Device ID" for later.
+
+#### 4. Flash the Arduino Code
 
 On your computer using the Arduino IDE, install the `Adafruit Unified Sensor` and `DHT sensor library` libraries from the Library Manager by following [this guide](https://www.arduino.cc/en/Guide/Libraries) guide on the Arduino website.
 
@@ -66,137 +113,149 @@ Flash the weather station sketch to the Arduino Dock by doing the following:
 1. Click on `File > Examples > Onion > weatherStation` to open the weather station sketch.
 1. Flash it to the Arduino Dock by following the instructions in the [Arduino Dock guide](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html).
 
-#### 4. Setup the Omega on the IBM Watson IoT Platform
+#### 5. Setup the Omega on the IBM Watson IoT Platform
 
-First, sign up for a [Ubidots](https://ubidots.com/) account. At the time this was written, you should have 5000 credits in your account available for trial and testing. This is more than enough to get this project running!
+We will be using [IBM's guide on registering devices in Watson](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/) as a reference for this section. Open the link in your web browser and refer to the additional information that we have provided for each step below.
 
-Then go to the [account homepage](https://app.ubidots.com/ubi/insights/#/list), and click on Devices at the top, and click on the grey Add Device button. Call it `1-wire-project` like so:
+##### Step 1 - Introduction
 
-![temperature monitor create ubidots device](./img/temperature-monitor-create-ubidots-device.png)
+* You can register for an [IBM Bluemix account here](https://console.ng.bluemix.net/registration/).
 
-Now we need to add a variable to store our data. Click on the device's blue card to go to its device page. Then click on the grey Add Variable button, then click Default. Call the new variable `temperature` (case sensitive) like so:
+##### Step 2 - Create IBM Watson IoT Platform Organization
 
-![temperature monitor create ubidots device](./img/temperature-monitor-create-new-variable.png)
+* You can call the service "Onion IoT", "Watson IoT", or whatever you like.
 
-Now we need to create an API key for this project. Click on your username in the top right of the screen, then click My Profile. In the profile menu, click on API Keys on the left. Then click on the blue Create Token button to generate a token; click on the `newToken` text to rename it to `1-wire-project`.
+##### Step 3 - Create Device Type
 
-![temperature monitor create api token](./img/temperature-monitor-ubidots-create-api-token.png)
+* Call the device type `omega`. 
+    * The description can be somethign like "Onion Omega IoT board"
+* In the "Define Template" step on the Watson website, check off only the "Model" attribute.
+* In "Submit Information", enter `omega2` for the Model.
+    * New devices by default will have this value for their Model attribute unless you specify something else.
+* You can leave Metadata blank.
 
-You will need to put this long string of text into the `config.json` file in the project repo on the Omega to authenticate your requests. Replace the `yourTokenhere` placeholder with the key you just created:
+##### Step 4 - Add Device in IBM Watson IoT Platform
 
-![temperature monitor edit api token](./img/temperature-monitor-edit-api-token.png)
+* When adding a device, choose the `omega` device type we just created.
+* In the "Device Info" substep, enter the Device ID that we got from the `watsonHelper.py` helper script a few steps back.
+* You can leave the Model field blank and it will automatically fill it in with `omega2`.
+* You can leave the "Metadata" field blank.
+* In "Security", we recommend letting Watson automatically generate an authentication token for you. Click on "Next" without entering anything.
+* In the "Summary" substep, review that your information is correct, then click "Add".
 
-Your software is now ready to run!
+You should see a card with information about your Organization ID, Device ID, and more:
 
-#### Configure the Omega to connect to Watson
+// TODO: screencap
 
-#### Wire Up the Sensor
+On the Omega, open the `device.cfg` file for editing and replace the placeholders in ALLCAPS with the information in the fields above like so:
 
-Next you will need to prepare the wires. The OLED Expansion does not have female headers to connect wires nor Expansions because they may block the screen. To deal with this, do the following for each of the 3 wires:
+| Watson Website       | device.cfg   |
+|----------------------|--------------|
+| Organization ID      | YOURORG      |
+| Device ID            | YOURDEVICEID |
+| Authentication Token | YOURTOKEN    |
 
-1. Using the wire cutter, cut one connector of the jumper wire off while leaving a male end intact.
-    * One male end is needed to connect to the breadboard!
-1. Using the wire stripper, strip about 10mm of insulation from the freshly cut end.
-1. Pinch the exposed wire with one hand and twist it several times until the threads are thoroughly wound around each other. 
-    * This is so they don't fray.
-1. Take the twisted wire and bend it 180 degrees backwards in half to make a thin hook-like shape.
-1. Twist the hook again so it closes and doesn't fray.
+##### Remaining steps
 
-Your wires should look like this:
+Step 5 - Generate API Keys and onwards are not necessary for this project.
 
-![temperature monitor assembly 01](./img/temperature-monitor-assembly-01.jpg)
+#### 6. Set Up Visualization Boards and Cards on Watson
 
-#### Run the Project
+Follow the steps in [IBM's guide to configuring cards in Watson](https://developer.ibm.com/recipes/tutorials/configuring-the-cards-in-the-new-watson-iot-dashboard/) with the additional information we have provided below:
 
-Use this diagram for reference when wiring up the sensor:
+##### Step 2 - Overview to Boards & Cards
 
-![temperature monitor ds18b20 pinout](../../Kit-Guides/img/DS18B20-pin-layout.png)
+* You can make your own board to show the collected data from the sensor. In this example, we've called it `Weather Station`.
 
-We will treat the flat side as the front.
+##### Step 3 - Realtime Data Visualization
 
-1. With the front of the sensor facing the middle gap of the breadboard, insert the three pins across 3 adjacent rows.
-1. Connect the 5.1kΩ resistor to both DQ (pin 2) and Vdd (pin 3).
+* First create a line chart card according to the guide.
+* When connecting data sets, set `weather` as the Event.
+* Create a data set for both temperature and humidity each. Each data set's Property value will be `temperature` and `humidity` respectively.
 
-Your sensor should look like this:
+See the example below for the temperature data set:
 
-![temperature monitor assembly 02](./img/temperature-monitor-assembly-02.jpg)
+// TODO: screenshot, available
 
-#### 7. Sensor -> Omega
+* We recommend using an XL line chart size to be able to see enough data over time.
+* Set the title to "History"
 
-Our sensor is now ready and we need to connect it to the Omega using the wires we just prepared. The male end of the wire will plug into the breadboard while the bare ends will go into the Dock's Expansion pins.
+You can also add a Value card to clearly display the last measurement values.
 
-1. Connect GND (pin 1) to the Omega’s GND pin.
-1. Connect DQ (pin 2) to the Omega’s GPIO19.
-1. Connect Vdd (pin 3) to the Omega’s 3.3V pin.
+* When adding the card, click on "Value" as the type.
+* Use a M size chart to display both temperature and humidity at the same time.
+* You can set the title of this card to "Current"
 
-Insert the bare ends of the wire into the Expansion Dock like this:
+Now you've got visualization set up on Watson!
 
-![temperature monitor assembly 03](./img/temperature-monitor-assembly-03.jpg)
+// TODO: screencap, available
 
-Your circuit should now look like this so far:
+#### 7. Running the Weather Station Project
 
-![temperature monitor assembly 04](./img/temperature-monitor-assembly-04.jpg)
-
-#### 8. Connect OLED Expansion
-
-The OLED Expansion will then plug in on top of the wires; there will most likely be enough space for the Expansion's pins to fit. Plug it in and it should look like this:
-
-![temperature monitor assembled](./img/temperature-monitor-assembled.jpg)
-
-#### 9. Run the Code
-
-On the Omega, run the code: 
+On the Omega, navigate to the `iot-weather-station` directory and run the `main.py` file:
 
 ```
-cd /root/temperature-monitor
 python main.py
 ```
 
-On the Omega, you should see something like this:
+You should see messages being published from the command line, and new data points in your Watson dashboard! Try placing the sensor near sources of cold or hot air, or try blowing on it to change the relative humidity and see what happens on the dashboard.
 
-![temperature monitor complete](./img/temperature-monitor-complete.jpg)
+// TODO: screencap, available
 
-Now go to your Ubidots account page and check on your `temperature` variable in the `1-wire-project` device. You should see your new reading:
+#### 8. Run the Program on Boot
 
-![temperature monitor new reading](./img/temperature-monitor-new-reading.png)
+We can automate this project to run when the Omega is turned on, and we can also make it run in the background so you can use the Omega for other things while it's running! To do this, we'll place a script in  `/etc/init.d`.
 
-#### 10. Automate the Program to Run Periodically
-
-The program will read the temperature, display it on the OLED, push the value to Ubidots, then promptly exit. We'll use `cron`, a super useful Linux utility, to have the program run periodically.
-
-Enter `crontab -e` to add a task to the `cron` daemon, it will open a file in vi, enter in the following:
+In the repo folder, make the `weather-station` file executable, copy it to `/etc/init.d`, then enable it to run on boot:
 
 ```
-* * * * * python /root/temperature-monitor/main.py
-#
+chmod +x weather-station
+cp weather-station /etc/init.d
+/etc/init.d/weather-station enable
 ```
 
-> This assumes that your project code is located in `/root/iot-weather-station`
-
-Now, we'll restart `cron`:
-
-```
-/etc/init.d/cron restart
-```
-
-And the code will run once every minute, pushing data to your Ubidots account that you can view over time!
-
-![temperature monitor multiple readings](./img/temperature-monitor-multiple-readings.png)
-
-> Check out the Omega documentation for more info on [using `cron`](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html)
+Reboot the Omega, and you will see the dashboard automatically being populated with data while the command line is available for you to use!
 
 ### Code Highlight
 
-This project makes use of two main interfaces: 1-Wire and Ubidots.
+This project makes use of two main interfaces: the Arduino Dock and the IBM Watson IoT platform.
 
-The 1-Wire protocol is a bus-based protocol that uses, as the name implies, one data wire to transmit data between devices. The `main.py` script uses some functions from the `oneWire.py` module to automatically do the following:
+The Arduino Dock sketch is set to poll the DHT sensor only when an `r` character is sent over the serial bus.
 
-* setup a 1-Wire bus on the Omega
-* scan for the temperature sensor's address
-* use the in subsequent calls without you having to probe it yourself!
+```c++
+if (Serial.available() > 0) {
+  // read the input
+  int inByte = Serial.read();
+  delay(500); // small delay before responding
 
-The Ubidots requests are handled by the `ubidots-client` command line utility that the `Ubidots` class calls. This is the same as running the command below:
-
+  // respond only if correct command is received
+  if ((char)inByte == 'r') {
+    responder();
+    delay(delayMS);
+  }
+}
 ```
-ubidots -t (TOKEN) -d (DEVICENAME) set '{"variableOne":12, "variableTwo":10, ...}'
+
+It then sends a response in JSON.
+
+```c++
+void responder() {
+  // read the weather sensor
+  if (getWeather()) {
+    String temperature = String(sensorResponse.temperature);
+    String humidity = String(sensorResponse.humidity);
+
+    // encode output to JSON
+    String response = "{\"temperature\":" + temperature + ", \"humidity\":" + humidity + "}";
+    Serial.println(response);
+  }
+  else {
+    // send false
+    Serial.println("false");
+  }
+}
 ```
+
+JSON was chosen as it is a widely used data serialization format, and JSON parsers exist in most programming languages. You can use this example to create your own Arduino Dock apps that can collect data and send it back to the Omega, which can then run any programming language you like!
+
+The IBM Watson IoT Python library is also useful for sending data to Watson from the Omega. You can reuse the `device.cfg` and `watsonHelper.py` files in your next IoT projects!
