@@ -2,7 +2,7 @@
 
 This project will allow you to send weather data to IBM's Watson IoT cloud platform, where you can view it on the web!
 
-![temperature monitor running](./img/iot-weather-station-complete.jpg)
+![IBM Watson weather station](./img/weather-station-populated-visualization.png)
 
 ### Overview
 
@@ -38,7 +38,7 @@ You'll have to have an Omega2+ ready to go, complete the [First Time Setup Guide
 
 **Note 1:** The Arduino Dock does not have a USB to serial converter chip, so [all connections to the Omega must be done over SSH](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-ssh).
 
-**Note 2:** The Omega's firmware along with this project and its dependencies will require approximately 18 MB of storage space. If you wish to install the Console and additional apps, we recommend [booting the filesystem from an external SD card or USB drive](https://docs.onion.io/omega2-docs/boot-from-external-storage.html).
+**Note 2:** The Omega's firmware along with this project and its dependencies will require approximately 18 MB of storage space. If you wish to install apps on the Console such as the Editor, we recommend [booting the filesystem from an external SD card or USB drive](https://docs.onion.io/omega2-docs/boot-from-external-storage.html).
 
 After completing the first time setup, follow the steps in the [Arduino Dock guide](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html) to prepare it for flashing Arduino sketches.
 
@@ -56,11 +56,13 @@ We will treat the side of the DHT sensor with the holes as the **front**.
 
 Your setup should look something like this:
 
-// TODO: photo
+![assembled](./img/weather-station-assembled.jpg)
+
+In the above setup, two 5.1kΩ resistors were used in series to achieve the 10kΩ pullup.
 
 **Optional** - Remove the DHT sensor from the breadboard, and use the M-F jumper wires to connect the pins back to the breadboard. This is so you can easily move the sensor around!
 
-// TODO: photo
+![optional wires](./img/weather-station-optional-wires.jpg)
 
 #### 3. Download the Software on the Omega
 
@@ -117,6 +119,11 @@ Flash the weather station sketch to the Arduino Dock by doing the following:
 
 We will be using [IBM's guide on registering devices in Watson](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/) as a reference for this section. Open the link in your web browser and refer to the additional information that we have provided for each step below.
 
+If you're having difficulties in this section, follow these two developer recipes to become familiar with the Watson web interface:
+
+* [Connect an Onion Omega2 to IBM Watson IoT Platform](https://developer.ibm.com/recipes/tutorials/connect-an-onion-omega2-to-ibm-watson-iot-platform/)
+* [How to Register Devices in IBM Watson IoT Platform](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/)
+
 ##### Step 1 - Introduction
 
 * You can register for an [IBM Bluemix account here](https://console.ng.bluemix.net/registration/).
@@ -128,8 +135,10 @@ We will be using [IBM's guide on registering devices in Watson](https://develope
 ##### Step 3 - Create Device Type
 
 * Call the device type `omega`. 
-    * The description can be somethign like "Onion Omega IoT board"
-* In the "Define Template" step on the Watson website, check off only the "Model" attribute.
+    * The description can be something like "Onion Omega IoT board".
+    
+* In the "Define Template" substep on the Watson website, check off only the "Model" attribute.
+
 * In "Submit Information", enter `omega2` for the Model.
     * New devices by default will have this value for their Model attribute unless you specify something else.
 * You can leave Metadata blank.
@@ -143,9 +152,11 @@ We will be using [IBM's guide on registering devices in Watson](https://develope
 * In "Security", we recommend letting Watson automatically generate an authentication token for you. Click on "Next" without entering anything.
 * In the "Summary" substep, review that your information is correct, then click "Add".
 
-You should see a card with information about your Organization ID, Device ID, and more:
+![device summary](./img/weather-station-device-summary.png)
 
-// TODO: screencap
+You should see a card containing your Organization ID, Device ID, and more. Don't close this card until you've recorded the token somewhere, because there's no way to view the authentication token for this device again! Take a look at the sample card below:
+
+![device credentials](./img/weather-station-device-credentials.png)
 
 On the Omega, open the `device.cfg` file for editing and replace the placeholders in ALLCAPS with the information in the fields above like so:
 
@@ -157,7 +168,7 @@ On the Omega, open the `device.cfg` file for editing and replace the placeholder
 
 ##### Remaining steps
 
-Step 5 - Generate API Keys and onwards are not necessary for this project.
+"Step 5 - Generate API Keys" and onwards are not necessary for this project.
 
 #### 6. Set Up Visualization Boards and Cards on Watson
 
@@ -171,12 +182,11 @@ Follow the steps in [IBM's guide to configuring cards in Watson](https://develop
 
 * First create a line chart card according to the guide.
 * When connecting data sets, set `weather` as the Event.
-* Create a data set for both temperature and humidity each. Each data set's Property value will be `temperature` and `humidity` respectively.
+* Create a data set for temperature following the example below:
 
-See the example below for the temperature data set:
+![temperature dataset](./img/weather-station-temperature-dataset.png)
 
-// TODO: screenshot, available
-
+* Repeat for humidity by replacing all instances of `temperature` with `humidity`.
 * We recommend using an XL line chart size to be able to see enough data over time.
 * Set the title to "History"
 
@@ -186,9 +196,9 @@ You can also add a Value card to clearly display the last measurement values.
 * Use a M size chart to display both temperature and humidity at the same time.
 * You can set the title of this card to "Current"
 
-Now you've got visualization set up on Watson!
+![empty graphs](./img/weather-station-empty-visualization.png)
 
-// TODO: screencap, available
+Now you've got visualization set up on Watson!
 
 #### 7. Running the Weather Station Project
 
@@ -198,9 +208,9 @@ On the Omega, navigate to the `iot-weather-station` directory and run the `main.
 python main.py
 ```
 
-You should see messages being published from the command line, and new data points in your Watson dashboard! Try placing the sensor near sources of cold or hot air, or try blowing on it to change the relative humidity and see what happens on the dashboard.
+You should see messages being published from the command line, and new data points in your Watson dashboard! Try placing the sensor near sources of cold or hot air, or try breathing over it to change the relative humidity and see what happens on the dashboard.
 
-// TODO: screencap, available
+![graphs with data](./img/weather-station-populated-visualization.png)
 
 #### 8. Run the Program on Boot
 
