@@ -42,6 +42,7 @@ All the code we used is written for a case fan with a transistor switching it. I
 1. Digital temperature sensor *
 1. 12V DC supply capable of supplying at least 0.5A
 1. 1x 5.1kΩ Resistor
+1. 1x 10 μF Capacitor
 1. NPN Transistor rated for 12V at 0.5A
 1. Jumpers
     * 3x M-F 
@@ -90,9 +91,14 @@ We connected the power supply to the PWM expansion for cleaner wiring.
 1. Connect the `GND` from the fan to the collector pin on the transistor (right pin when looking at the flat side of the 8050).
 1. Connect the Signal pin from the PWM Expansion channel 0 (`S0`) to the base pin of the transistor.
 1. Connect the emittor pin from the transistor to any `GND` pin on the PWM Expansion.
-1. Finally, connect the `VDC` of the fan to the `Vcc` pin on the PWM Expansion.
+1. Plug one end of the 10 μF capacitor to the emitter row of the transistor.
+1. Plug the other end to an empty row.
+1. Connect the `VDC` of the fan to the row where the capacitor ends.
+1. Finally, connect the `Vcc` pin on the PWM Expansion to the row with the capacitor and the fan `VDC`.
 
 This circuit will now switch the Fan's voltage based on the PWM signal from channel 0!
+
+>The capacitor and fan creates a **second order band-pass filter**. The capacitor will absorb high-frequency signals inside a certain frequency range, leaving DC power to be routed to the fan.
 
 #### 4. Wire up the temperature sensor
 
