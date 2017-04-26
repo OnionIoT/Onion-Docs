@@ -1,4 +1,4 @@
-## Thermal Printer {#iot-thermal-printer}
+## Thermal Printer {#thermal-printer}
 
 In this project, we'll be using the Omega to control a thermal printer via a web interface. Simply type text in a box, and click Print to print it out in real life!
 

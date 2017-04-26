@@ -1,8 +1,10 @@
 ## Smart Plant - Part 4 {#smart-plant-p4}
 
-// TODO: brief intro to the project
+<!-- // TODO: brief intro to the project -->
 
-// TODO: include a photo of the final result
+<!-- // TODO: include a photo of the final result -->
+
+Now that our plant can tweet at us, let's see if we can have our plant water itself! For this project, we'll add a water pump to our work in [Smart Plant Part 3](#smart-plant-p3) so we can automate the watering process.
 
 ### Overview
 
@@ -10,12 +12,16 @@
 
 **Time Required:** 1 Hour
 
-// TODO: explanation of what we're doing in this project:
-// * using a Relay Expansion to switch a water pump on and off
-// * enabling another option in the program (make sure to mention to link to the `pyRelayExp` module documentation)
-// * physical pump and watering setup
-// * creating a workflow send commands to your omega to calibrate our plant watering
-// * add device command to our previous workflow to automatically water the plant
+<!-- // TODO: explanation of what we're doing in this project: -->
+<!-- // * using a Relay Expansion to switch a water pump on and off -->
+<!-- // * enabling another option in the program (make sure to mention to link to the `pyRelayExp` module documentation) -->
+<!-- // * physical pump and watering setup -->
+<!-- // * creating a workflow send commands to your omega to calibrate our plant watering -->
+<!-- // * add device command to our previous workflow to automatically water the plant -->
+
+For this project, we'll be using the Relay Expansion to control a water pump, enabling our smart plant to water itself! To do that, we'll build a circuit to power the water pump, and use the [Relay Expansion Python Module](https://docs.onion.io/omega2-docs/relay-expansion-python-module.html) to control the pump with a script.
+
+Once our pump works as expected, we'll build a new Losant workflow to test it out. Finally, we'll add it to the Losant workflow we've built in [Smart Plant Part 3](#smart-plant-p3) to get our plant to water itself!
 
 The complete project code can be found in Onion's [`smart-plant` repo on GitHub](https://github.com/OnionIoT/smart-plant).
 
@@ -42,8 +48,11 @@ Tools:
 
 1. Flat-head screwdriver
 
-<!-- TODO: find water pump from a US retailer -->
-<!-- TODO: add specific tubing -->
+<!-- DONE: find water pump from a US retailer -->
+<!-- DONE: add specific tubing -->
+
+<!-- DONE: ingredients photo -->
+![](./img/smart-plant-p4-ingredients.jpg)
 
 
 
@@ -75,31 +84,46 @@ opkg install pyRelayExp
 
 We'll wire up the Water Pump with the Relay Expansion before connecting the Relay Expansion to the Dock.
 
-// TODO: photo: water pump, 3x jumper wires, relay expansion, dc barrel jack adapter, dc power supply
+<!-- // DONE: photo: water pump, 3x jumper wires, relay expansion, dc barrel jack adapter, dc power supply -->
+![](./img/smart-plant-p4-4-1.jpg)
 
-// TODO: add photos for each step (note: the steps don't have to be in a list, can just be broken up with photos)
+<!-- // DONE: add photos for each step (note: the steps don't have to be in a list, can just be broken up with photos) -->
 
 1. Run a jumper wire from the **negative terminal** of the DC Barrel Jack Adapter to the **negative terminal** of the Water Pump
+
+![](./img/smart-plant-p4-4-2.jpg)
+
 1. Run a jumper wire from the **positive terminal** of the DC Barrel Jack Adapter to the **IN** screw terminal on Channel 0 of the Relay Expansion
+
+![](./img/smart-plant-p4-4-3.jpg)
+
 1. Run a jumper wire from the **OUT** screw terminal on Channel 0 of the Relay Expansion to the **positive terminal** of the Water Pump
 
+![](./img/smart-plant-p4-4-4.jpg)
 
-// TODO: Add a brief > note on how to use screw terminals
+
+
+<!-- // DONE: Add a brief > note on how to use screw terminals -->
+>To set up the terminals on the Relay Expansion, turn the screw on the terminal counterclockwise until the metal clamp inside is sitting a bit less than halfway in the bottom of the housing, not too much or the screw might pop out.
+>The screw terminal on the barrel jack adapter is a bit different, it will rise and sink depending on the clamp position. When the screw is roughly flush with the top, it is open. To close it, turn clockwise until the screw sinks to about halfway, or until it becomes difficult to continue turning.
 
 
 #### 1. Connect the Relay Expansion and Provide Power
 
 Grab your Smart Plant Omega and Arduino Dock and unplug it from power. Take off the OLED Expansion and plug in your freshly wired Relay Expansion.
 
-// TODO: photo of the above
+<!-- // DONE: photo of the above -->
+![](./img/smart-plant-p4-5-1.jpg)
 
 You can then plug the OLED Expansion into the Relay Expansion.
 
-// TODO: photo of the above
+<!-- // DONE: photo of the above -->
+![](./img/smart-plant-p4-5-2.jpg)
 
 Power the Omega and Arduino Dock through the Micro-USB port and connect the 12V power supply to the DC Barrel Jack Adapter:
 
-// TODO: photo of the above
+<!-- // DONE: photo of the above -->
+![](./img/smart-plant-p4-5-3.jpg)
 
 
 #### 1. Test your Setup
@@ -123,7 +147,7 @@ relay-exp 0 off
 
 #### 1. Water Pump Setup
 
-// TODO: section on connecting tubing to the pump. then running the tubing to a water reservoir and the other end to the plant
+<!-- // TODO: section on connecting tubing to the pump. then running the tubing to a water reservoir and the other end to the plant -->
 
 
 #### 1. Stop the Existing Program
@@ -269,5 +293,5 @@ Now whenever your plant's soil moisture level falls below the level in the `LOW_
 
 ### Code Highlight
 
-// one or two paragraphs (max) about something cool we did in the code
-//	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc)
+<!-- // one or two paragraphs (max) about something cool we did in the code -->
+<!-- //	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc) -->

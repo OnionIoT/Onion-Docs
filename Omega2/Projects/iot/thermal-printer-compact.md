@@ -1,6 +1,6 @@
-## Compact Thermal Printer
+## Compact Thermal Printer {#thermal-printer-compact}
 
-In this project, we'll build on the [Thermal Printer Project](#iot-thermal-printer). The Expansion Dock is super handy, but not exactly a paragon of sleek design. Using the Mini Dock, we can reduce the wiring and cables needed to shrink the footprint by half!
+In this project, we'll build on the [Thermal Printer Project](#thermal-printer). The Expansion Dock is super handy, but not exactly a paragon of sleek design. Using the Mini Dock, we can reduce the wiring and cables needed to shrink the footprint by half!
 
 ![Thermal printer compact](./img/thermal-printer-2-1.jpg)
 
