@@ -87,7 +87,7 @@ Before getting to software, you should make sure the lock chosen can be mounted 
 
 #### 5. Setting up the code
 
-The code used to handle this setup can be found in the [iot-door-lock repository]() on GitHub. Download the repo and copy the contents of the `www` folder to the `/www` directory on your Omega, and you should be good to go!
+The code used to handle this setup can be found in the [iot-door-lock repository](https://github.com/OnionIoT/iot-door-lock) on GitHub. Download the repo and copy the contents of the `www` folder to the `/www` directory on your Omega, and you should be good to go!
 
 >If your lock has more modes/controls, feel free to take a look at the code (specially `door.sh`) and make changes that control your lock more effectively.
 
