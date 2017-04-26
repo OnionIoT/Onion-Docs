@@ -147,7 +147,7 @@ root@Omega-F11D:~# python /root/smart-plant/smartPlant.py --oled
 > Latest measurement:  202
  > Measurement List:  19%  19%  19%  19%
  >> Average Value: 19%
- ```
+```
 
 ![smart plant running](./img/smart-plant-p1-plant-online.jpg)
 
