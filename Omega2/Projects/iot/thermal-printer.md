@@ -1,8 +1,8 @@
-## Thermal Printer
+## Thermal Printer {#iot-thermal-printer}
 
 In this project, we'll be using the Omega to control a thermal printer via a web interface. Simply type text in a box, and click Print to print it out in real life!
 
-![Thermal printer 1](./img/thermal-printer-1.jpg)
+![Thermal printer 1](./img/thermal-printer-1-1.jpg)
 
 ![Web Interface](./img/thermal-printer-web-page.png)
 
@@ -12,8 +12,9 @@ In this project, we'll be using the Omega to control a thermal printer via a web
 
 **Time Required:** 20 minutes
 
-We'll wire up a barrel connector for power and jumpers for serial communication with the Omega.
+This tutorial will use the Omega to control a thermal printer - most often seen at cash registers and restaurant checkouts. We'll be using connectors and cables that come with the printer to communicate via Serial and supply power.
 
+Optionally, we'll 3D print a base to clean up the cabling and give the printer some polish.
 
 ### Ingredients
 
@@ -23,47 +24,37 @@ We'll wire up a barrel connector for power and jumpers for serial communication 
     * comes with a 2-pin JST power cable and a 5-pin TTL cable
 1. 2.1 mm power jack adapter (https://www.adafruit.com/product/368)
 1. 5V / 2A Power supply (https://www.adafruit.com/product/276)
+1. 3D printed base (http://www.thingiverse.com/thing:1272778)
 
-![Ingredients](./img/thermal-printer-ingredients.jpg)
+![Ingredients](./img/thermal-printer-1-ingredients.jpg)
 
 ### Step-by-Step
 
 Follow these steps to turn your Omega into a web-based printer!
 
 
-#### 1. Trim the cable
-
-First, we need to cut one end of the 5-pin TTL cable that came with the thermal printer. This is so we can re-route the wires to where they need to go. The other end we'll leave alone, that goes into the printer.
-
-Cut only **one** of these ends off, leaving bare wire:
-
-![Cut one of these off](./img/thermal-printer-cable.jpg)
-
-#### 2. Assemble the Circuit
+#### 1. Assemble the Circuit
 
 This is the circuit diagram for our printer:
 
 <!-- TODO: new circuit diagram -->
-![Circuit Diagram](./img/thermal-printer-circuit-diagram.png)
+![Circuit Diagram](./img/thermal-printer-1-circuit-diagram.jpg)
 
 For these wiring instructions, we're assuming you're working with an Onion Expansion Dock. Other docks may have different pin layouts than pictures show.
 
-<!-- TODO: review wiring instructions -->
+First make sure the Omega is off and seated in the Expansion Dock.
 
-Plug in the 2-pin JST power cable into the left side of the bottom of the printer above. Route the red and black wires to the barrel jack; make sure the red wire is connected to the "(+)" terminal and the black to the "(-)" terminal. 
+Then, plug in the 2-pin JST power cable into the left side of the bottom of the printer above. Route the black wire to the `GND` pin on the Expansion Dock headers.
 
-Then plug the non-cut end of the 5-pin TTL cable into the socket at the bottom of the printer. Then connect the green wire to the `TX` pin on the Omega Expansion header. The yellow wire goes to the `RX` pin. Finally, plug the black wire to the `GND` pin on the Expansion Dock header.
+Next we'll connect the serial wires. First plug one end of the 5-pin TTL cable into the socket at the bottom of the printer. Using a jumper (preferably green to keep it clear) connect the green wire pin on the TTL connector to the `TX` pin on the Omega Expansion header. Same goes for the yellow wire pin on the TTL connector, except this one goes to the `RX` pin. Lastly, do the same for the black wire to the `GND` pin on the Expansion Dock header - we used a breadboard intermediary in the diagram to show how the connection is supposed to go.
 
-The wiring on the underside of the printer should look something like this:
+Finally, connect the red wire from the JST connector to a `5V` pin on the Expansion Dock headers.
 
-<!-- TODO: review photo -->
 
-![Thermal printer 3](./img/thermal-printer-3.jpg)
+#### 2. Set up the software
 
-Now plug in the 5V power supply into the barrel jack and turn the switch on the Mini Dock to ON. Then turn on the Omega and connect to its command line.
 
-#### 3. Download the Code
-
+If you need to, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
 The code for this project is all done and can be found in Onion's [iot-thermal-printer repo](https://github.com/OnionIoT/iot-thermal-printer) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
 
@@ -78,7 +69,7 @@ cd iot-thermal-printer
 sh install.sh
 ```
 
-#### 4. Running the Printer
+#### 3. Running the Printer
 
 1. Connect your Omega to your WiFi network, or connect your computer to the Omega's WiFi network.
 1. In a web browser, navigate to omega-ABCD.local/printer.html, where ABCD is the last 4 digits on the sticker on the Omega.
