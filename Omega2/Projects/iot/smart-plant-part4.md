@@ -1,4 +1,4 @@
-## Smart Plant - Part 4 {#smart-plant-p4}
+## Smart Plant - Automatic Plant Watering {#smart-plant-p4}
 
 <!-- // TODO: brief intro to the project -->
 

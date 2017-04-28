@@ -1,8 +1,12 @@
-## Bluetooth Audio Streaming
+## Bluetooth Speaker
 
 The Omega can communicate with other devices using the Bluetooth Low Energy wireless protocol. In this project, we're going to turn it into a Bluetooth speaker that you can control from your phone or tablet!
 
+// TODO: make it super explicit that we're going to be actually listening to audio!
+
 ![complete](./img/bluetooth-audio-complete.jpg)
+
+TODO: retake this photo so that the Omega is the focus, nicer background
 
 ### Overview
 
@@ -21,7 +25,6 @@ We'll first install the necessary Bluetooth and audio drivers. Then we'll learn 
 1. USB hub with at least 2 ports
 1. Standard headphones or speakers with a 3.5mm audio jack
 
-<!-- The Steps -->
 ### Step-by-Step
 
 Here's how to turn your Omega into a Bluetooth speaker!
@@ -29,7 +32,7 @@ Here's how to turn your Omega into a Bluetooth speaker!
 #### 1. Setup the Hardware
 
 1. Connect the Omega to the Dock.
-1. Plug in the USB hub to the large USB host port. 
+1. Plug in the USB hub to the large USB host port.
 1. Plug in the Bluetooth Expansion and USB Audio Expansion into the USB hub.
 1. Do not connect your speaker just yet, as there will be loud popping and crackling when the USB Audio Expansion initializes!
 
@@ -37,7 +40,6 @@ Here's how to turn your Omega into a Bluetooth speaker!
 
 After assembling all the components, turn on the Omega.
 
-<!--# 2 -->
 
 #### 2. Install Software
 

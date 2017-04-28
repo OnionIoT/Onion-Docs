@@ -1,4 +1,4 @@
-## Smart Plant - Part 5 {#smart-plant-p5}
+## Smart Plant - A Single Power Supply {#smart-plant-p5}
 
 // brief intro to the project
 

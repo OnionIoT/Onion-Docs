@@ -1,4 +1,4 @@
-## iCalendar Buzzer Alarm 
+## Calendar-Based Alarm {#calendar-alarm}
 
 
 This project will set up a buzzer alarm by automatically pulling calendar data from a source of your choice.
@@ -48,7 +48,7 @@ opkg install python python-pip
 
 We'll need python packages that aren't available in the LEDE repository. To install, we'll use `pip` instead of `opkg`:
 
-``` 
+```
 pip install setuptools
 pip install urllib3 python-crontab icalendar
 ```
@@ -106,6 +106,9 @@ The green 'ICAL' button next to 'Private Address' will be a direct link to your 
 ![Setting Pages](./img/gcal-alarm-find-3.png)
 
 Open up `config.json` from the repo, and paste the link as the value to the "icalAddr" key - replacing `your-calendar-address`.
+
+// TODO: add a (censored) example of the config.json file
+
 
 #### 6. Run the Code
 

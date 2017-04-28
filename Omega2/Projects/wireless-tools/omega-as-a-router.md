@@ -21,7 +21,6 @@ What we are going to do is to first enable the Omega's Ethernet connection, stop
 1. Any Onion Dock, preferably one with serial such as: Expansion Dock, Mini Dock
 1. Onion Ethernet Expansion
 
-<!-- The Steps -->
 ### Step-by-Step
 
 Here's how to turn your Omega into a wireless router!

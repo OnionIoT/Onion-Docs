@@ -1,6 +1,8 @@
-## Weather Station
+## Weather Station {#weather-station}
 
 This project will allow you to send weather data to IBM's Watson IoT cloud platform, where you can view it on the web!
+
+// TODO: needs to mention what specific weather data is being collected
 
 ![IBM Watson weather station](./img/weather-station-populated-visualization.png)
 
@@ -88,7 +90,7 @@ python watsonHelper.py
 You will see output that looks something like this:
 
 ```
-root@Omega-F12D:~/iot-weather-station# python watsonHelper.py 
+root@Omega-F12D:~/iot-weather-station# python watsonHelper.py
 ====================
 Device ID:
 (MAC address here)
@@ -134,9 +136,9 @@ If you're having difficulties in this section, follow these two developer recipe
 
 ##### Step 3 - Create Device Type
 
-* Call the device type `omega`. 
+* Call the device type `omega`.
     * The description can be something like "Onion Omega IoT board".
-    
+
 * In the "Define Template" substep on the Watson website, check off only the "Model" attribute.
 
 * In "Submit Information", enter `omega2` for the Model.

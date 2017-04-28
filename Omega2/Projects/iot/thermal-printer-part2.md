@@ -1,32 +1,37 @@
-## Compact Thermal Printer {#thermal-printer-compact}
+## Thermal Printer - A Compact Version {#thermal-printer-p2}
 
-In this project, we'll build on the [Thermal Printer Project](#thermal-printer). The Expansion Dock is super handy, but not exactly a paragon of sleek design. Using the Mini Dock, we can reduce the wiring and cables needed to shrink the footprint by half!
+In this project, we'll build on the [Thermal Printer Project](#thermal-printer-p1). While the Expansion Dock definitely suits this purpose well, we make the same thing in a very compact package using the Mini Dock and a little bit of wire splicing and soldering.
 
 ![Thermal printer compact](./img/thermal-printer-2-1.jpg)
 
+// TODO: another photo of how compact this is
 
 ### Overview
 
-**Skill Level:** Intermediate
+**Skill Level:** Advanced
 
-**Time Required:** 20 minutes
+**Time Required:** 1 Hour
 
 We'll need a 3D printed plastic base for this project - if you have it printed out already, this will save you some trouble. Additionally, we'll wire up a barrel connector for power and wires for serial communication with the Omega instead of powering it from the Expansion dock.
 
-This tutorial will require you to solder a wire to one of the components on the Mini Dock. Please familiarize yourself with proper soldering technique and safety procedures when working with soldering irons, as there is a risk of injury due to the high heat! 
+This tutorial will require you to solder a wire to one of the components on the Mini Dock. Please familiarize yourself with proper soldering technique and safety procedures when working with soldering irons, as there is a risk of injury due to the high heat!
 
 If you are not comfortable soldering, try finding a friend or professional who can quickly solder it for you.
 
 ### Ingredients
 
 1. Omega2 / Omega2+
-1. Mini Dock 
-1. Thermal Printer (https://www.adafruit.com/product/2751) 
+1. Mini Dock
+1. Thermal Printer (https://www.adafruit.com/product/2751)
     * comes with a 2-pin JST power cable and a 5-pin TTL cable that we will be using in this project
 1. 2.1 mm power jack adapter (https://www.adafruit.com/product/368)
 1. 5V / 2A Power supply (https://www.adafruit.com/product/276)
 1. 3D printed base (http://www.thingiverse.com/thing:1272778)
+
+Tools:
+
 1. Soldering iron + solder
+1. Double-sided tape
 
 ![Ingredients](./img/thermal-printer-2-ingredients.jpg)
 
@@ -58,9 +63,9 @@ This is the circuit diagram for our printer:
 
 ![Circuit Diagram](./img/thermal-printer-2-circuit-diagram.png)
 
-Plug in the 2-pin JST power cable into the left side of the bottom of the printer above. Route the red and black wires to the barrel jack; make sure the red wire is connected to the "(+)" terminal and the black to the "(-)" terminal. 
+Plug in the 2-pin JST power cable into the left side of the bottom of the printer above. Route the red and black wires to the barrel jack; make sure the red wire is connected to the "(+)" terminal and the black to the "(-)" terminal.
 
-Then plug the non-cut end of the 5-pin TTL cable into the printer as shown above. Route the wires through the gap in the printer case on the right side of the USB connector. 
+Then plug the non-cut end of the 5-pin TTL cable into the printer as shown above. Route the wires through the gap in the printer case on the right side of the USB connector.
 
 Route the black, green, and yellow TTL wires to the highlighted pins on the Mini Dock above. Then solder the red power cable to the pin on the regulator on the Mini Dock as shown above. Take care that you solder to the correct pin or you may damage your board!
 

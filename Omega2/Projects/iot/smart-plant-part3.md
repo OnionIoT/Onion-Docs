@@ -1,7 +1,4 @@
-<!-- comment: anything in triangle brackets is meant to be replaced with text -->
-<!-- comment: see `Omega2/Projects/oled/twitter-feed.md` for an example -->
-
-## Smart Plant - Part 3 {#smart-plant-p3}
+## Smart Plant - Twitter Alerts {#smart-plant-p3}
 
 <!-- // brief intro to the project
 // include a photo of the final result -->

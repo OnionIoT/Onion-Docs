@@ -1,4 +1,4 @@
-## AirPlay with the Omega
+## AirPlay Speaker {#airplay-audio-receiver}
 
 <!-- // brief intro to the project  -->
 <!-- // include a photo of the final result -->
@@ -50,7 +50,7 @@ For this project, we'll need an Omega2 ready to go. If needed, complete the [Fir
 
 #### 2. Replace Avahi
 
-The version of Avahi that comes installed on the Omega does not have 'dbus-daemon' support which we'll be 
+The version of Avahi that comes installed on the Omega does not have 'dbus-daemon' support which we'll be
 
 To fix this, we'll have to connect to the Omega's [command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal) to uninstall the pre-existing avahi package. Then we can get the `avahi-dbus-daemon` package to replace it.
 
@@ -68,7 +68,7 @@ opkg install avahi-dbus-daemon --force-overwrite
 
 #### 3. Install Shairport Sync
 
-`shairport-sync` runs an Airplay Receiver server to listen and process AirPlay streams. 
+`shairport-sync` runs an Airplay Receiver server to listen and process AirPlay streams.
 
 Fortunately, it is available in the Onion Repositories, so we can install with `opkg`:
 
@@ -109,7 +109,7 @@ Specifically, these following lines:
         option mdns_backend '' # avahi/external-avahi/dns-sd/external-dns-sd/tinysvcmdns
 ```
 
-First let's set `disabled` to `'0'` to enable the UCI configuration. 
+First let's set `disabled` to `'0'` to enable the UCI configuration.
 
 Optionally, pick out a new name to display in your AirPlay devices menus.
 
@@ -151,4 +151,3 @@ Now take a look at your AirPlay device, and you should see the Omega pop up as a
 
 <!-- // one or two paragraphs (max) about something cool we did in the code -->
 <!-- //	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc) -->
- 

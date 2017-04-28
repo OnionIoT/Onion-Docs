@@ -1,4 +1,4 @@
-## Smart Plant - Part 1 {#smart-plant-p1}
+## Smart Plant - Measuring Plant Data {#smart-plant-p1}
 
 This is the first part of a multi-step project where we'll make one of your plants smart! For now, we'll measure and display the soil moisture level of your plant.
 
