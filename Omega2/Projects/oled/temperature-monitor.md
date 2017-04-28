@@ -1,8 +1,12 @@
-## Temperature Monitor
+## Ambient Temperature Monitor
 
 This project will allow you to read temperature from a sensor, display it on the OLED Expansion, and also push the data to Ubidots for logging and monitoring!
 
+TODO: add link to Ubidots
+
 ![temperature monitor running](./img/temperature-monitor-complete.jpg)
+
+TODO: add short blurb describing what
 
 ### Overview
 
@@ -11,6 +15,8 @@ This project will allow you to read temperature from a sensor, display it on the
 **Time Required:** 20 minutes
 
 We'll be using a software 1-Wire bus to read the temperature from a sensor. The code will then write the value on the OLED Expansion and push the data to your [Ubidots](https://ubidots.com/) account. The code is written in Python and makes use of the UART1 serial port on the Omega to communicate with the Arduino Dock's microcontroller. We're also using [Onion's `pyOledExp` module](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) to provide control of the OLED Expansion.
+
+TODO: remove mentions of of Arduino Dock above!
 
 The complete project code can be found in Onion's [`temperature-monitor` repo on GitHub](https://github.com/OnionIoT/temperature-monitor).
 
@@ -38,7 +44,7 @@ Follow these instructions to setup the Temperature Monitor project on your very 
 
 #### 1. Prepare
 
-You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware. 
+You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
 **Do not plug in your OLED Expansion just yet.**
 
@@ -92,7 +98,7 @@ Next you will need to prepare the wires. The OLED Expansion does not have female
 1. Using the wire cutter, cut one connector of the jumper wire off while leaving a male end intact.
     * One male end is needed to connect to the breadboard!
 1. Using the wire stripper, strip about 10mm of insulation from the freshly cut end.
-1. Pinch the exposed wire with one hand and twist it several times until the threads are thoroughly wound around each other. 
+1. Pinch the exposed wire with one hand and twist it several times until the threads are thoroughly wound around each other.
     * This is so they don't fray.
 1. Take the twisted wire and bend it 180 degrees backwards in half to make a thin hook-like shape.
 1. Twist the hook again so it closes and doesn't fray.
@@ -140,7 +146,7 @@ The OLED Expansion will then plug in on top of the wires; there will most likely
 
 #### 9. Run the Code
 
-On the Omega, run the code: 
+On the Omega, run the code:
 
 ```
 cd /root/temperature-monitor

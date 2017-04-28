@@ -1,7 +1,4 @@
-<!-- comment: anything in triangle brackets is meant to be replaced with text -->
-<!-- comment: see `Omega2/Projects/oled/twitter-feed.md` for an example -->
-
-## <PROJECT TITLE>
+## Stock Ticker (#stock-ticker)
 
 For this project, we'll be displaying the latest stock information for a configurable list of stocks:
 
@@ -67,7 +64,7 @@ git clone https://github.com/OnionIoT/oled-stock-ticker.git
 
 #### 4. Setup and Run the Code
 
-The `config.json` file holds all of the settings for the project. Populate the `stocks` array with the symbols of the stocks you wish to track. 
+The `config.json` file holds all of the settings for the project. Populate the `stocks` array with the symbols of the stocks you wish to track.
 
 Some notes about the stock symbols:
 
@@ -130,23 +127,22 @@ python stocks.py BB
 
 [
     {
-        "c": "+0.01", 
-        "ccol": "chg", 
-        "e": "TSE", 
-        "ltt": "4:00PM EDT", 
-        "cp_fix": "0.09", 
-        "c_fix": "0.01", 
-        "l": "10.64", 
-        "s": "0", 
-        "lt": "Apr 6, 4:00PM EDT", 
-        "pcls_fix": "10.63", 
-        "t": "BB", 
-        "lt_dts": "2017-04-06T16:00:00Z", 
-        "l_fix": "10.64", 
-        "cp": "0.09", 
-        "id": "674819", 
+        "c": "+0.01",
+        "ccol": "chg",
+        "e": "TSE",
+        "ltt": "4:00PM EDT",
+        "cp_fix": "0.09",
+        "c_fix": "0.01",
+        "l": "10.64",
+        "s": "0",
+        "lt": "Apr 6, 4:00PM EDT",
+        "pcls_fix": "10.63",
+        "t": "BB",
+        "lt_dts": "2017-04-06T16:00:00Z",
+        "l_fix": "10.64",
+        "cp": "0.09",
+        "id": "674819",
         "l_cur": "CA$10.64"
     }
 ]
 ```
-

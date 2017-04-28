@@ -1,14 +1,16 @@
-## Generating QR Codes to Display on the OLED Expansion
+## QR Code Generator
 
 QR Codes are essentially two dimensional barcodes that can easily be scanned with any camera and a little bit of processing power. The average smartphone will make short work of any QR code it comes across.
 
 ![Onion QR Code](http://i.imgur.com/0Ef3def.png)
 
+TODO: add photo of final product
+
 
 In this tutorial, we'll go through how you can use Python to encode text into a QR Code and display it on your OLED Expansion.
 
 
-### Overview 
+### Overview
 
 **Skill Level:** Beginner
 
@@ -53,7 +55,7 @@ git clone https://github.com/OnionIoT/oledQrCodeGenerator.git
 
 #### 3. Running the Code
 
-Finally, we get to make some QR codes! 
+Finally, we get to make some QR codes!
 Navigate into the repo directory:
 ```
 cd oledQrCodeGenerator
@@ -97,7 +99,7 @@ The default generated QR code will be a Version 3 code with the Low error correc
 
 #### 4. Using the code as a Python Module (Optional)
 
-The `oledQrCodeGenerator` code can also be imported as a module into your own Python projects! 
+The `oledQrCodeGenerator` code can also be imported as a module into your own Python projects!
 
 The `dispQrCode()` function will perform the same actions described above.
 
@@ -114,7 +116,7 @@ oledQrCodeGenerator.dispQrCode('Hello!')
 print 'All done!'
 ```
 
-Note that your Python script will have to be in the same directory as `oledQrCodeGenerator` in order for it to work properly. 
+Note that your Python script will have to be in the same directory as `oledQrCodeGenerator` in order for it to work properly.
 
 
 
@@ -138,4 +140,3 @@ The code in the `qrcode` directory is a stripped-down version of lincolnloop's `
 https://github.com/lincolnloop/python-qrcode
 
 The rest of the code is home grown by the Onion team :)
-

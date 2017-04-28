@@ -1,4 +1,4 @@
-## Headlines on the OLED Screen
+## News Headlines
 
 This project will pull a fresh headline from News API and display it to the OLED screen. [News API](https://newsapi.org/) is a news aggregator that returns headlines from a variety of news sources as JSON data.
 
@@ -147,7 +147,7 @@ Logically, to get data from the `/articles` endpoint, we need to send it a 'GET'
 
 Often, APIs provide personalized data - calendars, emails, and other user-specific data. To implement this kind of interaction, requests are sent with **parameters**, **headers** and possibly a **body** for 'POST' requests.
 
-Parameters are strings that get appended to the request URL with details about our request. This is the most basic way of communicating additional information to the server. 
+Parameters are strings that get appended to the request URL with details about our request. This is the most basic way of communicating additional information to the server.
 
 >Our custom `source` and `sortBy` values are sent to the server through URL parameters.
 

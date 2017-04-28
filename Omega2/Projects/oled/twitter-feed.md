@@ -1,4 +1,4 @@
-## Displaying the Latest Tweet
+## Twitter Feed Display
 
 For this project, we'll be displaying the latest Tweet of a specified Twitter user on the OLED Expansion:
 
