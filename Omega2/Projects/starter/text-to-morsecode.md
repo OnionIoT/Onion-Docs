@@ -1,4 +1,4 @@
-## Morse Code Translator
+## Morse Code LED (#morse-code-led)
 
 Morse code is an old binary encoding that transmits messages letter-by-letter through sound.
 
@@ -174,4 +174,3 @@ echo default-on > /sys/class/leds/omega2\:amber\:system/trigger
 ```
 
 >Remember, on an Omega2+, the LED will be named `omega2p:amber:system` as opposed to `omega2:amber:system` so you will have to pipe the above command to `/sys/class/leds/omega2p\:amber\:system/trigger`
-
