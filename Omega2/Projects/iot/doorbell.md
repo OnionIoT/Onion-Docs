@@ -1,4 +1,4 @@
-## Smart Doorbell (#smart-doorbell)
+## Smart Doorbell {#smart-doorbell}
 
 // TODO: potentially update the title?
 

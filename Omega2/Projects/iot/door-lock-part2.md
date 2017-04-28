@@ -1,4 +1,4 @@
-## Internet Lock {#internet-lock-p2}
+## Internet Lock - Part 2{#internet-lock-p2}
 
 TODO: update this title
 

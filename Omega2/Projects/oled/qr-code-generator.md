@@ -1,4 +1,4 @@
-## QR Code Generator
+## QR Code Generator {#qr-code-generator}
 
 QR Codes are essentially two dimensional barcodes that can easily be scanned with any camera and a little bit of processing power. The average smartphone will make short work of any QR code it comes across.
 
