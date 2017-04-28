@@ -6,7 +6,7 @@ TODO: add link to Ubidots
 
 ![temperature monitor running](./img/temperature-monitor-complete.jpg)
 
-TODO: add short blurb describing what
+TODO: add short blurb describing what weather data is being collected
 
 ### Overview
 

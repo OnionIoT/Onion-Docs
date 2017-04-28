@@ -6,6 +6,8 @@ The Ethernet Expansion is required to give your Omega access to an Ethernet port
 
 ![router network](./img/router-network.png)
 
+// TODO: retake screenshot when there's only a single omega present
+
 ### Overview
 
 **Skill Level:** Intermediate

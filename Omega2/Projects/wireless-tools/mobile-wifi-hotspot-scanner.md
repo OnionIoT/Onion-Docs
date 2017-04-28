@@ -105,6 +105,8 @@ If the GPS Expansion is able to lock onto a satellite signal, you'll see the tim
 
 The Omega will then save data about all of the discovered networks to a file called `wifiData.csv`. You can then import this into a spreadsheet or navigation program for mapping later!
 
+// TODO: need a close-up that clearly shows the expected output on the OLED
+
 ##### Unable to Lock Signal
 
 If the GPS Expansion cannot lock onto a satellite, you'll see an error message on the OLED. The program will try again in a few seconds.
