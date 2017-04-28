@@ -1,8 +1,5 @@
-<!-- comment: anything in triangle brackets is meant to be replaced with text -->
-<!-- comment: see `Omega2/Projects/oled/twitter-feed.md` for an example -->
+## Internet Lock {#internet-lock-p1}
 
-## Internet Lock
- 
 Keys are so last year. With the internet, we can unlock things with our keyboard!
 
 
@@ -11,6 +8,8 @@ Here's a setup we've placed in Onion HQ:
 ![The lock itself](./img/door-lock-p1-2.jpg)
 
 >Note: in fact, keys are still very useful. We still recommend you to use a normally-open lock and a key-lock in conjunction, as power failure will result in a fail-safe backup instead of locking you out.
+
+TODO: Disclaimer about security and how this is a project, not a full-blown home security solution. Use your own judgement on applying this project to securing your belongings, residence, etc. User accepts all risk and Onion cannot be help responsible.
 
 ### Overview
 
@@ -34,7 +33,7 @@ To accomplish this, we'll use the HTTP server on the Omega to listen for the unl
 1. Onion Relay Expansion
 1. An electric lock *
 1. Lock mounting tools - screws, bolts, extra wires, and appropriate tools
-1. Appropriate power supply for your lock 
+1. Appropriate power supply for your lock
     * we found 12V/1A DC supply to be compatible with most locks
 
 \* We recommend a simple power locking, normally unlocked lock so you don't get locked out when there's no power.
@@ -62,9 +61,9 @@ Next, read up on the operation of the lock of choice. Our code is based of a sim
 
 #### 2. Test the lock
 
-It's a good idea to start with a simple circuit to test the hardware. Using a two-wire lock, we'll connect it to our power supply through the Relay Expansion. 
+It's a good idea to start with a simple circuit to test the hardware. Using a two-wire lock, we'll connect it to our power supply through the Relay Expansion.
 
-* First, connect the `GND` wire (usually the black wire) of the lock to the ground terminal of your power supply. 
+* First, connect the `GND` wire (usually the black wire) of the lock to the ground terminal of your power supply.
 * Next, connect the power wire (red) to the 'OUT' terminal of Channel 0 on the Relay Expansion.
 * Finally, connect the power terminal of your supply to the 'IN' terminal of Channel 0 on the Relay Expansion
 
@@ -98,13 +97,13 @@ Now that the pieces work together, it's time to mount your lock! Keep all the co
 <!-- // DONE: example picture of mounting a lock -->
 ![Our wiring setup](./img/door-lock-p1-mounted.jpg)
 
->At Onion HQ, we've extended the wiring of the lock and routed it to an Omega and power supply right next to the door, but depending on the situation, you may have to do something completely different. 
+>At Onion HQ, we've extended the wiring of the lock and routed it to an Omega and power supply right next to the door, but depending on the situation, you may have to do something completely different.
 
 #### 5. Automatically lock/unlock
 
 We've also included a crontab example (`crontab.txt`) in the repo that sets up the lock to turn on and off at 11AM and 6PM respectively.
 
-Here's a quick overview of how it works: 
+Here's a quick overview of how it works:
 
 ```
 # * * * * *  command to execute

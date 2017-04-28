@@ -1,6 +1,7 @@
-## Internet Lock {#internet-lock-p2}
+## Smart Doorbell (#smart-doorbell)
 
-TODO: update this title
+// TODO: potentially update the title?
+
 
 <!-- comment: anything in triangle brackets is meant to be replaced with text -->
 <!-- comment: see `Omega2/Projects/oled/twitter-feed.md` for an example -->
