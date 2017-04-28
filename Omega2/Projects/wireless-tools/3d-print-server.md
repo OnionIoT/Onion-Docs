@@ -1,13 +1,8 @@
-<!-- comment: anything in triangle brackets is meant to be replaced with text -->
-<!-- comment: see `Omega2/Projects/oled/twitter-feed.md` for an example -->
-
-## Octoprint Server
-
-<!-- // brief intro to the project -->
-
-<!-- // include a photo of the final result -->
+## OctoPrint 3D Printing Server {#3d-print-server}
 
 Instead of connecting directly to our 3D printer, we can have the Omega serve up a web interface with Octoprint to connect to our printer from any device in our Local Area Network.
+
+// TODO: download these photos, include them in the repo and link to them from the repo
 
 ![](https://community.onion.io/uploads/files/1486487035483-img_20170206_133518.jpeg)
 ![](https://community.onion.io/uploads/files/1486486915332-screen-shot-2017-02-07-at-12.04.00-pm.png)
@@ -18,17 +13,10 @@ Instead of connecting directly to our 3D printer, we can have the Omega serve up
 
 **Time Required:** 30 minutes
 
-<!-- // go into some detail here about how we're going to be implementing the project -->
-<!-- //	eg. which programming language we'll be using, APIs -->
-<!-- //	include links to any api or module references -->
-
-To get our printer server up and running, we'll have to use some packages from the LEDE repository. Additionally, we're going to build a custom version of Octoprint to fix some compatibility issues.
+To get our printer server up and running, we'll have to use some packages from the LEDE repository. Additionally, we're going to build a custom version of OctoPrint to fix some compatibility issues.
 
 ### Ingredients
 
-<!-- // a numbered list of all physical items used to make this project -->
-<!-- //	all items should be linked to a place online where they can be bought -->
-<!-- //	the Onion items should be linked to their corresponding Onion store page -->
 
 1. Onion Omega2+
 1. Any Onion Dock that can safely power the Omega
@@ -88,7 +76,7 @@ mount /dev/mmcblk0p1 /mnt/SD
 Copy current `/overlay` directory:
 
 ```
-tar -C /overlay -cvf - . | tar -C /mnt/SD/ -xf - 
+tar -C /overlay -cvf - . | tar -C /mnt/SD/ -xf -
 umount /mnt/SD
 ```
 
@@ -205,4 +193,3 @@ octoprint &
 ```
 
 And bam, we're golden.
-

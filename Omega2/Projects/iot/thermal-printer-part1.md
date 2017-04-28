@@ -1,10 +1,12 @@
-## Thermal Printer {#thermal-printer}
+## Thermal Printer {#thermal-printer-p1}
 
 In this project, we'll be using the Omega to control a thermal printer via a web interface. Simply type text in a box, and click Print to print it out in real life!
 
 ![Thermal printer 1](./img/thermal-printer-1-1.jpg)
 
 ![Web Interface](./img/thermal-printer-web-page.png)
+
+// TODO: need a photo of the printed output
 
 ### Overview
 
@@ -20,7 +22,7 @@ Optionally, we'll 3D print a base to clean up the cabling and give the printer s
 
 1. Omega2 / Omega2+
 1. Any Onion Dock that breaks out the Omega's  serial pins - Expansion Dock, Breadboard Dock, Arduino Dock 2, Power Dock, etc.
-1. Thermal Printer (https://www.adafruit.com/product/2751) 
+1. Thermal Printer (https://www.adafruit.com/product/2751)
     * comes with a 2-pin JST power cable and a 5-pin TTL cable
 1. 2.1 mm power jack adapter (https://www.adafruit.com/product/368)
 1. 5V / 2A Power supply (https://www.adafruit.com/product/276)

@@ -1,7 +1,8 @@
-## Mobile Storage Server with Samba
+## Mobile Network File Server
 
 Being a network-based distribution, LEDE has packages for Samba - a file sharing server. So by plugging in a USB storage device, you can turn your Omega into a portable network file server!
 
+TODO: update this intro, highlighting the fact that it's a mobile network file server
 
 ### Overview
 
@@ -18,7 +19,13 @@ This project will walk through how to set up an external storage device, configu
 1. Any Onion Dock to power the Omega (we really like the Mini Dock for this purpose)
 1. A USB storage device or microSD (for Omega2+)
 
+// TODO: mention that:
+// * we like the Mini Dock for this project if you plan to keep it in one place
+// * we like the Power Dock if you plan to make this a truly portable network storage
+
 ### Step-by-Step
+
+// TODO: whoa... NAS? this came out of nowhere!
 
 Let's turn your Omega into a portable NAS!
 
@@ -63,7 +70,7 @@ For a detailed walk-through on how to use storage devices, take a look at the gu
 
 We'll need Samba for this, naturally. Samba's name occasionally changes with versioning changes, to check what it is, we can do:
 
-``` 
+```
 opkg update
 opkg list-installed | grep samba
 opkg install samba##-server
@@ -91,7 +98,7 @@ apcli0    Link encap:Ethernet  HWaddr AA:AA:AA:AA:AA:AA
           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
           RX packets:13787 errors:0 dropped:3 overruns:0 frame:0
           TX packets:5953 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
+          collisions:0 txqueuelen:1000
           RX bytes:3197266 (3.0 MiB)  TX bytes:602257 (588.1 KiB)
 
 br-wlan   Link encap:Ethernet  HWaddr AA:AA:AA:AA:AA:AA
@@ -101,7 +108,7 @@ br-wlan   Link encap:Ethernet  HWaddr AA:AA:AA:AA:AA:AA
           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
           RX packets:456 errors:0 dropped:0 overruns:0 frame:0
           TX packets:746 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
+          collisions:0 txqueuelen:1000
           RX bytes:58973 (57.5 KiB)  TX bytes:88296 (86.2 KiB)
     ...
     ...
@@ -125,13 +132,13 @@ config samba
         option 'homes'                  '1'
 ```
 
-These fields are all customizable options that change how the Samba server behaves. 
+These fields are all customizable options that change how the Samba server behaves.
 
 We recommend changing `name` option to `Omega-ABCD` for easy recognition. The other options should be left as-is, and the `description` option can be changed to something helpful.
 
 Next, we'll add in a line like this:
 
-``` 
+```
         option 'interface' 'apcli0'
 ```
 
@@ -182,11 +189,11 @@ Samba has a ton of configuration features that allow you to micromanage who gets
 
 To allow access, we'll have to set up passwords any user we specified - since we only used root, we can call `smbpasswd` like so:
 
-``` 
+```
 smbpasswd -a root
 ```
 
-This utility will create a `root` Samba account associated with the `root` account of the operating system. You'll be prompted to enter a new password. 
+This utility will create a `root` Samba account associated with the `root` account of the operating system. You'll be prompted to enter a new password.
 
 #### 6. Applying our changes
 
@@ -208,10 +215,9 @@ On Windows, a Samba share can be found by opening a file explorer and going to '
 
 ##### Linux
 
-Modern Linux distros have Samba clients well integrated in the file explorer, and the process is very similar to windows. Open up file explorer, navigate to the Network root, and find your Omega to access. 
+Modern Linux distros have Samba clients well integrated in the file explorer, and the process is very similar to windows. Open up file explorer, navigate to the Network root, and find your Omega to access.
 
 >Some desktop environments have it grouped under a 'Samba Shares' folder or the like inside the Network root.
 
 
 <!-- ##### OSX -->
-

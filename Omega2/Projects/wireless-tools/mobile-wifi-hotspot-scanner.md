@@ -1,6 +1,8 @@
-## Mobile WiFi Hotspot Scanner
+## Mobile WiFi Network Scanner
 
 In this project, we'll be using the Omega to scan local WiFi networks, record the GPS coordinates where they're found, display the networks with the strongest signal on the OLED Expansion, and save the data to a spreadsheet file.
+
+TODO: before this intro sentence, add an intro that's a 10,000 ft description of the project. then it naturally leads into the existing sentence
 
 ![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-outside.jpg)
 
@@ -10,7 +12,7 @@ In this project, we'll be using the Omega to scan local WiFi networks, record th
 
 **Time Required:** 10 minutes
 
-Using the Power Dock, you will be able to use your Omega out in the world without needing a USB power supply. We will then scan any WiFi networks in range using a `ubus` call. Then we will retrieve location data from the GPS Expansion also via `ubus`. We will then sort the networks by signal strength, then display the 6 networks with the strongest signal on the OLED Expansion. 
+Using the Power Dock, you will be able to use your Omega out in the world without needing a USB power supply. We will then scan any WiFi networks in range using a `ubus` call. Then we will retrieve location data from the GPS Expansion also via `ubus`. We will then sort the networks by signal strength, then display the 6 networks with the strongest signal on the OLED Expansion.
 
 We will then save the following data for each network into a comma separated value (CSV) file that can be imported into a spreadsheet program:
 

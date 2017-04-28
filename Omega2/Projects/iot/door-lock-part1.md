@@ -1,4 +1,4 @@
-## Internet Lock - Part 1 {#internet-lock-p1}
+## IoT Lock {#internet-lock-p1}
 
 // TODO: update this title
 
@@ -6,7 +6,11 @@ Keys are so last year. With the internet, we can unlock things with our keyboard
 
 
 Here's a setup we've placed in Onion HQ:
+
 ![The omega controlling it](./img/door-lock-p1-1.jpg)
+
+// TODO: Retake this photo so that it matches the setup described in the article
+
 ![The lock itself](./img/door-lock-p1-2.jpg)
 
 >Note: in fact, keys are still very useful. We still recommend you to use a normally-open lock and a key-lock in conjunction, as power failure will result in a fail-safe backup instead of locking you out.
@@ -99,6 +103,8 @@ Now that the pieces work together, it's time to mount your lock! Keep all the co
 <!-- // DONE: example picture of mounting a lock -->
 ![Our wiring setup](./img/door-lock-p1-mounted.jpg)
 
+TODO: retake this photo so there is little to no chinese writing in the background, we want to show off the fact that we're a north american company
+
 >At Onion HQ, we've extended the wiring of the lock and routed it to an Omega and power supply right next to the door, but depending on the situation, you may have to do something completely different.
 
 #### 5. Automatically lock/unlock
@@ -121,6 +127,8 @@ Here's a quick overview of how it works:
 # The hash (#) denotes a comment that will be ignored
 ```
 
+
+TODO: need a section on using the
 
 <!-- ### Bonus Points! -->
 

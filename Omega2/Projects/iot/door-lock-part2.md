@@ -1,4 +1,4 @@
-## Internet Lock - Part 2{#internet-lock-p2}
+## IoT Lock - Control with a Tweet {#internet-lock-p2}
 
 TODO: update this title
 

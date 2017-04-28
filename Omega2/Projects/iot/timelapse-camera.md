@@ -1,9 +1,8 @@
-## Time-Lapse Camera for the Omega2+
-<!-- // brief intro to the project -->
+## Time-Lapse Camera
 
 Using a webcam connected to the Omega, we can take photos over time and string them together to make a video of your scene!
 
-<!-- // TODO: a gif/video of the result -->
+// TODO: a link to a youtube video of one of our timelapses
 
 
 <!-- // include a photo of the final result -->
@@ -15,7 +14,7 @@ Using a webcam connected to the Omega, we can take photos over time and string t
 
 <!-- // go into some detail here about how we're going to be implementing the project // eg. which programming language we'll be using, APIs // include links to any api or module references -->
 
-In this proejct, we'll use the `fswebcam` utility and `cron` to capture images from the webcam at timed intervals, then we'll convert it all to a video using `ffmpeg`. To keep the amount of typing to a minimum, we will create shell scripts to do the work for us!
+In this project, we'll use the `fswebcam` utility and `cron` to capture images from the webcam at timed intervals, then we'll convert it all to a video using `ffmpeg`. To keep the amount of typing to a minimum, we will create shell scripts to do the work for us!
 
 ### Ingredients
 
@@ -124,7 +123,7 @@ To save us from typing that out every time, we'll write a short script.
 
 Save the code below to `/root/snapshot.sh`:
 
-``` shell 
+``` shell
 #!/bin/sh
 
 fswebcam --no-banner -r 1280x720 /root/sd/timelapse/`date +"%Y-%m-%d_%H%M"`.jpg
@@ -165,7 +164,7 @@ This opens an editor (by default, `vim`) to edit the file.
 To create a cronjob, append the following to the `crontab`:
 ```
 #take snapshot every minute
-* * * * * /root/snapshot.sh 
+* * * * * /root/snapshot.sh
 ```
 
 For our new cronjob to take effect, restart the cron daemon with:
@@ -251,7 +250,7 @@ Link the images to the web directory of the Omega, and `uhttpd` will automatical
 ln -s /tmp/run/mountd/mmcblk0p4/timelapse /www/timelapse
 ```
 
-To get to our images, go to http://<address_of_omega>/timelapse 
+To get to our images, go to http://<address_of_omega>/timelapse
 
 
 ![The image files as they appear on a browser](./img/timelapse-camera-web-page.png)

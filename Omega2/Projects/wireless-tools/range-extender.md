@@ -1,8 +1,10 @@
-## WiFi Range Extender
+## Omega as a WiFi Range Extender
 
 A WiFi range extender is a device that can increase the effective range of a router by being placed closer to the end user and emitting it's own access point.
 The Omega's powerful WiFi capabilities and incredibly small footprint allow it to be effective as a WiFi range extender.
 
+
+TODO: photo of the setup
 
 <!-- illustration -->
 

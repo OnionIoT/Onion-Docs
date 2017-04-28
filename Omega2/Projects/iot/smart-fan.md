@@ -1,13 +1,12 @@
-<!-- comment: anything in triangle brackets is meant to be replaced with text -->
-<!-- comment: see `Omega2/Projects/oled/twitter-feed.md` for an example -->
-
-## Temperature Sensing Smart Fan
+## Temperature-Based Smart Fan
 
 <!-- // brief intro to the project -->
 
 <!-- // include a photo of the final result -->
 
 Mornings too cold, but gets too hot by noon? By hooking up a temperature sensor to the Omega, we can use the data it provides to modulate the speed of a fan - cooling us down only when we need it!
+
+// TODO: mention a use-case of using this to cool down electronics or some homebrewing setup, anything where temperature control is required
 
 <!-- // DONE: Add photo -->
 ![Smart fan all set up!](./img/smart-fan-example.jpg)
@@ -22,7 +21,7 @@ Mornings too cold, but gets too hot by noon? By hooking up a temperature sensor 
 
 There's a lot of implementation details in this project that will change depend on the exact hardware you have access to. We used a D18B20 1Wire temperature sensor, for example. For the fan, we recommend a computer case fan, since those are quite easy to come by and works decently well.
 
-We also cooked up a 3D printed fan + DC motor setup just like in the [Maker Kit tutorial](https://docs.onion.io/omega2-maker-kit/maker-kit-servo-h-bridge.html) since we had all of those handy. 
+We also cooked up a 3D printed fan + DC motor setup just like in the [Maker Kit tutorial](https://docs.onion.io/omega2-maker-kit/maker-kit-servo-h-bridge.html) since we had all of those handy.
 
 To control the fan, we'll be using a python script and the Onion PWM Python Module to pulse the fan. We also use a library to operate the 1Wire sensor, but your mileage may vary depending on your sensor.
 
@@ -45,11 +44,13 @@ All the code we used is written for a case fan with a transistor switching it. I
 1. 1x 10 μF Capacitor
 1. NPN Transistor rated for 12V at 0.5A
 1. Jumpers
-    * 3x M-F 
+    * 3x M-F
     * 3x M-M
 
 
 \* The Omega2 and 2+ accepts I2C, 1Wire, and SPI, among other protocols, unfortunately it cannot read analog voltages.
+
+// TODO: change this so that
 
 ### Step-by-Step
 
@@ -63,7 +64,7 @@ First let's get the Omega ready to go. if you haven't already, complete the [Fir
 
 #### 2. Installing the software needed
 
-We need Python and the Onion Expansion Modules to make this work:
+We need Python and the Onion PWM Expansion Modules to make this work:
 
 ```
 opkg update
@@ -102,7 +103,7 @@ This circuit will now switch the Fan's voltage based on the PWM signal from chan
 
 #### 4. Wire up the temperature sensor
 
-This part is written assuming you're working with the D18B20, if your sensor is different, you may have to find a guide elsewhere on wiring it properly. 
+This part is written assuming you're working with the D18B20, if your sensor is different, you may have to find a guide elsewhere on wiring it properly.
 
 >Note that the Omega does **not** have analog voltage reading capabilities - you'd have to use an ADC plus write your own converting code to use an analog sensor!
 
@@ -132,7 +133,7 @@ Copy the all the files to the same directory in your omega. If you're using your
 
 #### 5. (and a half) Custom sensor
 
-There's a good bit of setup for the temperature sensor - initialization, communicating, and parsing. 
+There's a good bit of setup for the temperature sensor - initialization, communicating, and parsing.
 
 If you have a different sensor than the the one given, you'd have to edit the setup lines to ensure it sends and recieves data correctly. The code that sets up the sensor can be found in the lines between `SENSOR SETUP BEGIN` and `SENSOR SETUP END`.
 

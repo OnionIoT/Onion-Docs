@@ -1,4 +1,4 @@
-## Smart Plant - Part 2 {#smart-plant-p2}
+## Smart Plant - Visualizing Plant Data {#smart-plant-p2}
 
 This is the second major part of the smart plant project! [Last time](#smart-plant-p1), we setup an Omega to measure the soil moisture level in one of your plants. This part involves sending that data to a cloud service so we can visualize it and open the door to even more features. The cloud service we will be using is [Losant](https://www.losant.com/)
 
