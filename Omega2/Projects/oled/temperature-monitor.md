@@ -4,9 +4,13 @@ This project will allow you to read temperature from a sensor, display it on the
 
 TODO: add link to Ubidots
 
+TODO: take a new photo where the main thing is the Omega and OLED, the temp sensor is secondary
+
 ![temperature monitor running](./img/temperature-monitor-complete.jpg)
 
-TODO: add short blurb describing what
+TODO: add screenshot of data on ubidots platform
+
+TODO: add short blurb describing what weather data is being collected
 
 ### Overview
 

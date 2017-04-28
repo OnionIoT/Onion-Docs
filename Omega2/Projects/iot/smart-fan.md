@@ -1,4 +1,4 @@
-## Temperature-Based Smart Fan
+## Temperature-Based Smart Fan {#smart-fan}
 
 <!-- // brief intro to the project -->
 

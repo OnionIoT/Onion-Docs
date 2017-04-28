@@ -90,6 +90,7 @@ wget https://raw.githubusercontent.com/OnionIoT/iot-gcal-alarm/master/iotGcalAla
 Now all of the code will be in the new `/root/iot-gcal-alarm/` directory on your Omega.
 
 #### 5. Find Your Calendar
+// TODO: this step should be 'Setting Up your Calendar'
 
 The calendar can be any calendar you wish, but for the events to be recognized, they have to include `SET_BUZZER` string in the event's title. More specifically, the 'SUMMARY' field of the iCalendar event.
 
@@ -109,8 +110,10 @@ Open up `config.json` from the repo, and paste the link as the value to the "ica
 
 // TODO: add a (censored) example of the config.json file
 
+#### 6. Create a Calendar Event with an Alarm
+// TODO: add the content for this step
 
-#### 6. Run the Code
+#### 7. Run the Code
 
 Let's run the code!
 

@@ -1,4 +1,4 @@
-## Mobile Network File Server
+## Mobile Network File Server {#network-file-server}
 
 Being a network-based distribution, LEDE has packages for Samba - a file sharing server. So by plugging in a USB storage device, you can turn your Omega into a portable network file server!
 

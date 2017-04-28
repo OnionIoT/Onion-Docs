@@ -1,4 +1,4 @@
-## Omega as an WiFi Ethernet Bridge
+## Omega as an WiFi Ethernet Bridge {#omega-wifi-ethernet-bridge}
 
 
 An Ethernet Bridge is a device that shares its WiFi internet access through an Ethernet connection, similar to a WiFi dongle.

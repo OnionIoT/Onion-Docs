@@ -1,10 +1,12 @@
-## Omega as a Router
+## Omega WiFi Router {#omega-wifi-router}
 
 A router is a device that connects multiple devices on a wired or wireless network. They are very widely used with modems to allow multiple devices to connect to the Internet through the single connection provided by the modem. We're going to use the Omega as a wireless router that takes an Ethernet connection and broadcasts a WiFi access point!
 
 The Ethernet Expansion is required to give your Omega access to an Ethernet port. By using the Ethernet Expansion, we can turn our Omega into a low-cost yet effective router.
 
 ![router network](./img/router-network.png)
+
+// TODO: retake screenshot when there's only a single omega present
 
 ### Overview
 
