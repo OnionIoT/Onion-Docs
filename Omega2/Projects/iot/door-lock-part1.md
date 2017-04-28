@@ -1,4 +1,4 @@
-## Internet Lock {#internet-lock-p1}
+## Internet Lock - Part 1 {#internet-lock-p1}
 
 Keys are so last year. With the internet, we can unlock things with our keyboard!
 
@@ -9,7 +9,9 @@ Here's a setup we've placed in Onion HQ:
 
 >Note: in fact, keys are still very useful. We still recommend you to use a normally-open lock and a key-lock in conjunction, as power failure will result in a fail-safe backup instead of locking you out.
 
-TODO: Disclaimer about security and how this is a project, not a full-blown home security solution. Use your own judgement on applying this project to securing your belongings, residence, etc. User accepts all risk and Onion cannot be help responsible.
+<!-- DONE: Disclaimer about security and how this is a project, not a full-blown home security solution. Use your own judgement on applying this project to securing your belongings, residence, etc. User accepts all risk and Onion cannot be held responsible. -->
+
+**Disclaimer: This security-related project is just that: a *project*. This is not intended to be a fully-featured nor robust home security solution. Use your own judgment when applying this project to securing your belongings, property, etc. By doing this project, you accept all risk and Onion cannot be held responsible for any damages or misuse.**
 
 ### Overview
 
