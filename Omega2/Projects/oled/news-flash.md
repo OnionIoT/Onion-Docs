@@ -1,4 +1,4 @@
-## News Headlines
+## News Headlines {#news-headlines}
 
 This project will pull a fresh headline from News API and display it to the OLED screen. [News API](https://newsapi.org/) is a news aggregator that returns headlines from a variety of news sources as JSON data.
 

@@ -1,4 +1,4 @@
-## Ambient Temperature Monitor
+## Ambient Temperature Monitor {#ubidots-temperature-monitor}
 
 This project will allow you to read temperature from a sensor, display it on the OLED Expansion, and also push the data to Ubidots for logging and monitoring!
 

@@ -1,4 +1,4 @@
-## Morse Code LED (#morse-code-led)
+## Morse Code LED {#morse-code-led}
 
 Morse code is an old binary encoding that transmits messages letter-by-letter through sound.
 

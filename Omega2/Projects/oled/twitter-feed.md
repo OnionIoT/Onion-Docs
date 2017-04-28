@@ -1,4 +1,4 @@
-## Twitter Feed Display
+## Twitter Feed Display {#twitter-feed-display}
 
 For this project, we'll be displaying the latest Tweet of a specified Twitter user on the OLED Expansion:
 

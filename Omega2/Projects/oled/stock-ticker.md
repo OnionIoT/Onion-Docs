@@ -1,4 +1,4 @@
-## Stock Ticker (#stock-ticker)
+## Stock Ticker {#stock-ticker}
 
 For this project, we'll be displaying the latest stock information for a configurable list of stocks:
 

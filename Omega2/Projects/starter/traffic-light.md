@@ -1,4 +1,4 @@
-## LED Traffic Light (#led-traffic-light)
+## LED Traffic Light {#led-traffic-light}
 
 <!-- comment: anything in triangle brackets is meant to be replaced with text -->
 <!-- comment: see `Omega2/Projects/oled/twitter-feed.md` for an example -->

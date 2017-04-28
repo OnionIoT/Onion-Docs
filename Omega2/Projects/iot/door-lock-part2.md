@@ -1,4 +1,4 @@
-## Internet Lock - Part 2 {#internet-lock-p2}
+## Internet Lock - Part 2{#internet-lock-p2}
 
 Let's take what we did in Internet Lock - Part 1, and add a program to control it from Twitter!
 
