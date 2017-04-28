@@ -1,4 +1,4 @@
-## Bluetooth Speaker
+## Bluetooth Speaker {#bluetooth-audio-speaker}
 
 The Omega can communicate with other devices using the Bluetooth Low Energy wireless protocol. In this project, we're going to turn it into a Bluetooth speaker that you can control from your phone or tablet!
 

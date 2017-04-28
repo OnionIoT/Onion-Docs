@@ -1,4 +1,4 @@
-## Omega as a Router
+## Omega WiFi Router {#omega-wifi-router}
 
 A router is a device that connects multiple devices on a wired or wireless network. They are very widely used with modems to allow multiple devices to connect to the Internet through the single connection provided by the modem. We're going to use the Omega as a wireless router that takes an Ethernet connection and broadcasts a WiFi access point!
 

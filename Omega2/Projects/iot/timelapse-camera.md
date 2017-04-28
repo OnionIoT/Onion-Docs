@@ -1,4 +1,4 @@
-## Time-Lapse Camera
+## Time-Lapse Camera {#timelapse-camera}
 
 Using a webcam connected to the Omega, we can take photos over time and string them together to make a video of your scene!
 

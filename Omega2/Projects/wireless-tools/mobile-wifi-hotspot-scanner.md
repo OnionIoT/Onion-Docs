@@ -1,8 +1,9 @@
-## Mobile WiFi Network Scanner
+## Mobile WiFi Network Scanner {#wifi-network-scanner}
 
 In this project, we'll be using the Omega to scan local WiFi networks, record the GPS coordinates where they're found, display the networks with the strongest signal on the OLED Expansion, and save the data to a spreadsheet file.
 
-TODO: before this intro sentence, add an intro that's a 10,000 ft description of the project. then it naturally leads into the existing sentence
+// TODO: before this intro sentence, add an intro that's a 10,000 ft description of the project. then it naturally leads into the existing sentence.
+// Something like what we have in the project listing document: Collect and display the location, signal strength, and more of WiFi networks in your surrounding area. Take it on the go as well! 
 
 ![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-outside.jpg)
 
