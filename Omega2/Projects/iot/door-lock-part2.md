@@ -62,7 +62,7 @@ Follow these instructions to control the smart lock from Twitter on your very ow
 
 #### 1. Prepare
 
-You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
+You'll have to have your Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
 
 #### 1. Complete Part 1 of the Project
