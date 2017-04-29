@@ -94,6 +94,8 @@ And `option enabled '0'` to `option enabled '1'`.
 
 Reboot for our changes to take effect.
 
+TODO: change this to use `df -h` for human readable output
+
 After the Omega starts again, you can verify if you /overlay is mounted properly by running `df`.
 
 You should see something like this:
@@ -101,6 +103,8 @@ You should see something like this:
 ```
 /dev/mmcblk0p1         7374776     33328   6947108   0% /overlay
 ```
+
+TODO: change the above to be the output of `df -h`
 
 
 #### 4. Build Octoprint

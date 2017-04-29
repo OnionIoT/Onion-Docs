@@ -1,4 +1,4 @@
-## Calendar-Based Alarm {#calendar-alarm}
+## Alarms based on an Online Calendar {#calendar-alarm}
 
 
 This project will set up a buzzer alarm by automatically pulling calendar data from a source of your choice.

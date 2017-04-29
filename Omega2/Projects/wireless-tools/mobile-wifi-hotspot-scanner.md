@@ -3,7 +3,7 @@
 In this project, we'll be using the Omega to scan local WiFi networks, record the GPS coordinates where they're found, display the networks with the strongest signal on the OLED Expansion, and save the data to a spreadsheet file.
 
 // TODO: before this intro sentence, add an intro that's a 10,000 ft description of the project. then it naturally leads into the existing sentence.
-// Something like what we have in the project listing document: Collect and display the location, signal strength, and more of WiFi networks in your surrounding area. Take it on the go as well! 
+// Something like what we have in the project listing document: Collect and display the location, signal strength, and more of WiFi networks in your surrounding area. Take it on the go as well!
 
 ![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-outside.jpg)
 
@@ -114,10 +114,12 @@ If the GPS Expansion cannot lock onto a satellite, you'll see an error message o
 
 #### 6. Code Highlight
 
-This project uses the `ubus` system on the Omega to call certain services and functions as if you were sending data to a web API. The basic syntax goes like this:
+This project uses the `ubus` system utility on the Omega to call certain services and functions as if you were sending data to a web API. The basic syntax goes like this:
 
 ```
 ubus call (service) (function) '{(JSON parameters)}'
 ```
 
 The WiFi scanning and GPS functions both are shorthand for these `ubus` calls. You can see how they work in the `helpers.py` and `ubusHelper.py` modules.
+
+// TODO: expand on this a little more, give some context as to what ubus is and how we use it in the program

@@ -2,7 +2,7 @@
 	* Report collected temperature and humidity data to IBM's Watson IoT Platform
 1. [Time-Lapse Camera](#timelapse-camera)
 	* Create awesome timelapse videos with your Omega by taking photos at a regular interval and then stitching them together into a video
-1. [Calendar-Based Alarm](#calendar-alarm)
+1. [Alarms based on an Online Calendar](#calendar-alarm)
 	* Create an event on your online calendar and your Omega will buzz to remind you
 1. Thermal Printer
 	1. [Your very own Thermal Printer](#thermal-printer-p1)
