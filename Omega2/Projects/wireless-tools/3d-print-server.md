@@ -107,6 +107,9 @@ You should see something like this:
 TODO: change the above to be the output of `df -h`
 
 
+TODO: link to the docs article on booting from usb storage, add a blurb about it
+
+
 #### 4. Build Octoprint
 
 Octoprint requires some packages that are not in the Onion repository, so we'll pull them from the LEDE repo instead.
