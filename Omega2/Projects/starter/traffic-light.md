@@ -1,9 +1,6 @@
 ## LED Traffic Light {#led-traffic-light}
 
-<!-- comment: anything in triangle brackets is meant to be replaced with text -->
-<!-- comment: see `Omega2/Projects/oled/twitter-feed.md` for an example -->
-
-This quick project will allow you to build a simple traffic light using a few LEDs and the Omega, while also teaching you the basics of how to control the GPIOs!
+For this project, we will be building a working, miniature traffic light using a few LEDs and the Omega. We'll also introduce the basics of controlling the Omega's GPIOs with a Python program.
 
 ![completed](./img/traffic-light-complete.jpg)
 
@@ -13,12 +10,15 @@ This quick project will allow you to build a simple traffic light using a few LE
 
 **Time Required:** 10 minutes
 
-We'll be using the Onion GPIO Python module. This module is the bread and butter of any project where you will need to control and interface with other circuits!
+We'll be using the [Onion GPIO Python module](https://docs.onion.io/omega2-docs/gpio-python-module.html). This module is the bread and butter of any project where you will need to control and interface with other circuits!
+
+The complete project code can be found in Onion's [`starter-traffic-light` repo on GitHub](https://github.com/OnionIoT/starter-traffic-light).
+
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Any Onion Dock that breaks out GPIOs: Expansion Dock, Arduino Dock R2, Power Dock, Breadboard Dock
+* Onion Omega2 or Omega2+
+* Any Onion Dock that exposes the Omega's GPIOs: Expansion Dock, Arduino Dock R2, Power Dock, Breadboard Dock
 * 1x Breadboard
 * 3x LEDs
     * 1x red
@@ -51,27 +51,27 @@ To learn more on how to connect to the Omega's command-line you can read our com
     * Red to GPIO2
     * Amber to GPIO1
     * Green to GPIO0
-    
+
 ![completed](./img/traffic-light-assembled.jpg)
 
 #### 1. Install Python
 
-Install Python and the required module by running the following commands:
+Install Python, the required Python module, and Git by running the following commands:
 
 ```
 opkg update
-opkg install python-light pyOnionGpio
+opkg install python-light pyOnionGpio git git-http ca-bundle
 ```
 
-#### Download the Project Code
+#### 2. Download the Project Code
 
-The code for this project can be found in Onion's [starter-traffic-light repo](https://github.com/OnionIoT/starter-traffic-light) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
+The code for this project can be found in Onion's [`starter-traffic-light` repo](https://github.com/OnionIoT/starter-traffic-light) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
 
 ```
 git clone https://github.com/OnionIoT/starter-traffic-light.git
 ```
 
-#### Running the Project
+#### 3. Running the Project
 
 Enter the project directory and run the `main.py` file:
 
@@ -84,8 +84,12 @@ You should see the lights changing color!
 
 ![completed](./img/traffic-light-complete.jpg)
 
+// TODO: add a photo of the red LED lit up
+
 ### Code Highlight
 
-We use the Onion GPIO Python module to control the GPIOs. It provides convenient functions such as `setOutputDirection()` and `setValue()` that abstract a lot of the boring work under the hood.
+We use the Onion GPIO Python module to control the GPIOs. It provides convenient functions such as `setOutputDirection()` and `setValue()` that abstract a lot of the work under the hood.
 
-For more details, take a look at the [documentation](https://docs.onion.io/omega2-docs/gpio-python-module.html)
+// TODO: include a few lines of the code and have a sentence or two explaining what exactly the code is accomplishing
+
+For more details, take a look at the [Onion GPIO Python module documentation](https://docs.onion.io/omega2-docs/gpio-python-module.html).
