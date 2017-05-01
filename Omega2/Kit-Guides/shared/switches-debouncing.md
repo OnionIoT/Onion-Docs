@@ -12,7 +12,7 @@ We want to avoid this since it will wreak havoc on our software that treats the 
 
 One way to solve this problem, or **debounce** the signal, is to add a few simple components around the switch to **filter** out these unwanted bounces. The diagram below shows a way of doing this.
 
-![hardware-debouncer](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/debouncing-circuit.png)
+![A sample debouncing circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/debouncing-circuit.png)
 
 <!-- DONE: broken link to image, doesn't exist in repo! -->
 

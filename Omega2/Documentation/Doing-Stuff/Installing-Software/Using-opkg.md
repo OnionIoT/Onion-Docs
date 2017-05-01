@@ -192,7 +192,7 @@ As mentioned above, we host a smaller selection of packages than the official LE
 Let us know which packages you would like to see added by posting on the [Onion Community](https://community.onion.io/) or creating a [ticket on our Helpdesk](https://onion.freshdesk.com/). We'll do our best to update the repo in a timely manner!
 
 
-#### How to Switch Back to the Official LEDE Package Repos
+### How to Switch Back to the Official LEDE Package Repos {#using-opkg-switch-to-lede-repos}
 
 If you really dislike using our repos, it's easy to switch back to using the official LEDE repos. You can also experiment with combining the use of Onion and LEDE repos. This can all be accomplished by editing the `/etc/opkg/distfeeds.conf` file that configures which repos are to be used.
 

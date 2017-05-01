@@ -50,7 +50,7 @@ If you want to start building right away, skip ahead to the [next section](#cont
 
 <!-- // DONE: move this section into it's own markdown file -->
 
-```{r child='../../shared/h-bridge.md'}
+```{r child='../../shared/hbridge-ic.md'}
 ```
 
 
@@ -79,7 +79,7 @@ In the pictures, you'll see some shorter wires, these we used instead of jumpers
 <!-- // DONE: include a circuit diagram -->
 Here's a diagram to refer back to if things get hectic:
 
-![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/diagrams/01-circuit-diagram.png)
+![Circuit diagram for this experiment](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/diagrams/03-circuit-diagram.png)
 
 
 #### What You'll Need
@@ -194,14 +194,14 @@ Here's what it looks like when it's all wired up:
 
 Let's add a class definition for a DC motor controlled by an H-bridge to the `motors.py` file we made in the previous expriment. This class definition will specifically drive a DC motor hooked up to an H-bridge. It builds on the abstractions in the `OmegaPwm` class and takes care of the details in operating the motor.
 
-Open up `motors.py` and add the following:
+Open up `motors.py` from the [Dimming LEDs experiment](#maker-kit-servo-dimming-led) and add the following:
 
 ``` python
 H_BRIDGE_MOTOR_FORWARD = 0
 H_BRIDGE_MOTOR_REVERSE = 1
 
 class hBridgeMotor:
-    """Class that two digital signals and a pwm signal to control an h-bridge"""
+    """Class that two digital signals and a pwm signal to control an H-Bridge"""
 
     def __init__(self, pwmChannel, fwdChannel, revChannel):
         # note the channels
@@ -230,7 +230,7 @@ class hBridgeMotor:
         self.maxDuty = duty
 
     def reset(self):
-        """Set the PWM to 0%, disable both h-bridge controls"""
+        """Set the PWM to 0%, disable both H-Bridge controls"""
         ret =  self.pwmDriver.setDutyCycle(0)
         ret |= self.fwdDriver.setDutyCycle(0)
         ret |= self.revDriver.setDutyCycle(0)

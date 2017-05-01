@@ -127,7 +127,7 @@ oledExp.driverInit()
 
 Initialize the OLED Display:
 ``` c
-status 	= oledExp.driverInit();
+status 	= oledExp.driverInit()
 ```
 
 
@@ -138,6 +138,7 @@ status 	= oledExp.driverInit();
 ### Functions to Adjust Settings
 
 There is a series of functions that adjust various settings on the OLED Display. The adjustable settings are:
+
 * [Screen on/off](#oled-py-set-display-power)
 * [Colour inversion](#oled-py-set-display-mode)
 * [Setting screen brightness](#oled-py-set-brightness)
@@ -417,6 +418,7 @@ It sets the start pixel to 0 and the end pixel to 127. This enables the use of t
 Any data written to the screen gets written to the current position of the cursor. This position can be adjusted.
 
 Two methods exist:
+
 * [Specifying the page row and character column](#oled-py-set-cursor)
 * [Specifying the page row and pixel column](#oled-py-set-cursor-by-pixel)
 

@@ -113,7 +113,7 @@ If you need to upgrade to the latest version anyway, you can type:
 oupgrade -l
 ```
 
-**Note: This is not recommended unless you know what you're doing!**
+**WARNING! This is not recommended unless you know what you're doing! Onion is not responsible for issues or damage to your device caused by using an unstable firmware version.**
 
 This will not reflash the Omega if the latest firmware is already installed.
 

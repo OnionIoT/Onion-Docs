@@ -72,20 +72,32 @@ wifi
 
 Since you probably don't want uninvited guests on your new router, it is recommended that you change your Omega Router's settings from the default setup, especially the password.
 
-To do so, enter the following commands:
+To do so, enter the following commands, substituting `OmegaRouter` and `RouterPassword`:
 
 ```
 uci set wireless.@wifi-iface[0].ssid=OmegaRouter
 uci set wireless.@wifi-iface[0].key=RouterPassword
-uci set wireless.@wifi-iface[0].encryption=YourEncryptionType
+uci commit
 ```
-These commands are used to change the SSID of your Omega, the router password, as well as the type of encryption you want to use for the router and the password.
+
+#### Changing the Encryption Type
+
+If you wish to keep the default encryption type (`psk2`), you can continue to the next step below.
+
+However, if you wish to change the encryption type, find the type you want in the [UCI wireless encryption list](https://wiki.openwrt.org/doc/uci/wireless/encryption), then substitute it into `YourEncryptionType` and run:
+
+```
+uci set wireless.@wifi-iface[0].encryption=YourEncryptionType
+uci commit
+```
 
 ***Note: If you don't know what encryption type to use, just keep the default.***
 
-Once you have finished customizing the WiFi network, simply save and close the file by pressing `ESC` and then typing `:wq`
+Please keep in mind that 1st generation WPA is [not secure](http://www.pcworld.com/article/153396/wifi_hacked.html).
 
-Run the following command to restart the WiFi network and apply your settings:
+#### Restarting the Wifi
+
+Once you have finished customizing the WiFi network, run the following command to restart the WiFi network and apply your settings:
 
 ```
 wifi
@@ -93,24 +105,14 @@ wifi
 
 ### Step 4: Enable `eth0`
 
-The Omega is primarily designed as a development board to prototype WiFi-enabled devices, so by default, we have turned off the ethernet interface `eth0` in the firmware. In order to use the Omega as a router, you will need to re-enable this. To do this, you will need to open up the `/etc/config/network` file, find the the block that looks something like the following:
+The Omega is primarily designed as a development board to prototype WiFi-enabled devices, so by default, we have turned off the ethernet interface `eth0` in the firmware. In order to use the Omega as a router, you will need to re-enable this. 
+
+Enable the Ethernet connection by running:
 
 ```
-config interface 'wan'
-   option ifname 'eth0'
-   option proto 'dhcp'   
-```
-and add the following line:
-
-```
-option hostname 'OnionOmega'
-```
-
-```
-config interface 'wan'
-   option ifname 'eth0'
-   option proto 'dhcp'
-   option hostname 'OnionOmega'
+uci set network.wan.ifname='eth0'
+uci set network.wan.hostname='OnionOmega'
+uci commit
 ```
 
 This will tell the Omega to turn on the `eth0` interface and we will also be referring to this network as `wan`.
@@ -129,33 +131,33 @@ Find the block that looks something like the following:
 
 ```
 config zone
-    option name         wan
-    list   network      'wwan'
-    option input        ACCEPT
-    option output       ACCEPT
-    option forward      ACCEPT
-    option masq     1
-    option mtu_fix      1
+        option name 'wan'
+        option output 'ACCEPT'
+        option forward 'REJECT'
+        option masq '1'
+        option mtu_fix '1'
+        option network 'wwan'
+        option input 'ACCEPT'
 ```
 
-and add the following line:
+and do the following:
 
-```
-list   network      'wan'
-```
+* Change `option forward 'REJECT'` to `option forward 'ACCEPT'`
+* Change `option network 'wwan'` to `list network 'wwan'`
+* Add `list network 'wan'` after the `list network 'wwan'` line
 
 What you will end up with is something like the following:
 
 ```
 config zone
-    option name         wan
-    list   network      'wwan'
-    list   network      'wan'
-    option input        ACCEPT
-    option output       ACCEPT
-    option forward      ACCEPT
-    option masq         1
-    option mtu_fix      1
+        option name 'wan'
+        option output 'ACCEPT'
+        option forward 'ACCEPT'
+        option masq '1'
+        option mtu_fix '1'   
+        list network 'wwan'  
+        list network 'wan'   
+        option input 'ACCEPT'
 ```
 
 What this tells the Omega to do is to add the `wan` network (which we defined in `/etc/config/network` file) to a firewall zone called `wan`. This zone has already been setup to route packets to another firewall zone called `lan`, which contains the `wlan0` interface.

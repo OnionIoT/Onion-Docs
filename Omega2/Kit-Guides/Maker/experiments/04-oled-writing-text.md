@@ -127,10 +127,6 @@ This is a very rudimentary  way of generating a random number, and it is not act
 
 ### Pseudo-Random vs. True Random
 
-<!-- // DONE: avoid using 'extremely simplified', again, can make beginners feel bad -->
-
-Securing messages on the internet is currently the biggest way random numbers are used right now. Almost all methods of sending and receiving secure messages need truly random numbers. If the numbers used are generated from an algorithm (like the one above), the secure message can be decoded by copying the algorithm and predicting the random number output. Cyber-security is a much much larger topic than we can cover here. If you are interested, there's a great deal of resources available online from much more qualified sources. Cloudflare has a great [blog post](https://blog.cloudflare.com/why-randomness-matters) with an excellent example of where pseudo-random numbers fall short in security if you want to read more about it.
-
-<!-- // DONE: any time you mention that resources are available online, link to at least one of them -->
+Securing messages on the internet is currently the biggest way random numbers are used right now. Almost all methods of sending and receiving secure messages need truly random numbers. If the numbers used are generated from an algorithm (like the one above), the secure message can be decoded by copying the algorithm and predicting the random number output. Cyber-security is a muchm much larger topic than we can cover here. If you are interested, there's a great deal of resources available online from very qualified sources. Cloudflare has a great [blog post](https://blog.cloudflare.com/why-randomness-matters) with an excellent example of where pseudo-random numbers fall short in security if you want to read more about it.
 
 Next time, we [fiddle with the screen](#maker-kit-oled-change-settings).

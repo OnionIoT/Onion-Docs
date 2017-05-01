@@ -258,6 +258,7 @@ root@Omega-2757:/# fast-gpio read 14
 ```
 
 #### Setting a GPIO pin's value:
+
 This will drive the selected pin to the value desired.
 
 ```
@@ -266,4 +267,21 @@ fast-gpio set <gpio pin number> <value to set; 0 or 1>
 
 If the pin is not in `output` mode, `fast-gpio` will silently change it to `output` before setting the value.
 
-<!-- Gabe: removed bit about "digital input"; was the same part of fast-gpio as the input section -->
+
+#### Generating a PWM signal on a GPIO:
+
+Generate a software-based Pulse Width Modulated (PWM) signal on a selected pin. Specify the desired duty cycle and frequency of the PWM signal.
+
+```
+fast-gpio pwm <gpio> <freq in Hz> <duty cycle percentage>
+```
+
+This will launch a background process that will generate the PWM signal. 
+
+> Software-based PWM is implemented by a program that usually waits for a defined amount of time before toggling the GPIO output. This has the potential to be **inaccurate** since the CPU might be interrupted with other processes and tasks. Software PWM is generally good enough for dimming an LED but not for something requiring more accuracy, such as driving a servo.
+
+To stop the PWM signal, set the GPIO's value:
+
+```
+fast-gpio <gpio> 0
+```

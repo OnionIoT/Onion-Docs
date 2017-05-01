@@ -6,16 +6,7 @@ devices: [ Omega , Omega2 ]
 order: 1
 ---
 
-<!-- // DONE: give this a read-through before diving into editing, some typos and gramatical errors need to be fixed
-
-// DONE: always capitalize Onion products: PWM Expansion, Expansion Dock, on the Dock, etc
--->
-
 ## Dimming LEDs {#maker-kit-servo-dimming-led}
-
-<!-- // DONE: need to capitalize Python EVERYWHERE -->
-
-<!-- // DONE: this first sentence is pretty awkward even though we're doing something pretty awesome -->
 
 Welcome to the Maker Kit! We hope you're as excited as we are to get cracking with your fancy Onion Expansions.
 
@@ -25,9 +16,6 @@ In this tutorial, we'll learn how to control the PWM Expansion with Python, and 
 <!-- pwm -->
 ``` {r child = '../../shared/pwm.md'}
 ```
-
-<!-- // DONE: let's include a section on LEDs. No need to include the whole led.md thing, just a small refresher on the anode, cathode, and need for a current limiting resistor. make sure to link back to the first experiment from the starter kit -->
-
 
 Let's quickly review a bit about LEDs:
 
@@ -40,8 +28,6 @@ Let's quickly review a bit about LEDs:
 You can take a quick look at the [first Starter Kit experiment](#starter-kit-blinking-led) for full details.
 
 ### Building the Circuit
-
-<!-- // 16 LEDs connected to the Servo Expansion -->
 
 For this circuit, we will connect one LED to each of the 16 channels (0-15) on the PWM Expansion. Using the breadboard here will keep things organized.
 
@@ -78,18 +64,14 @@ Each LED will be connected to the board in the same way, so we'll cover wiring a
 
 If your circuit now looks like this:
 
-<!-- // DONE: IMAGE picture and/or circuit diagram -->
 ![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Maker/img/01-assembled-circuit.jpg)
 
 Then we're all set!
 
 
-<!-- // DONE: why do we need an external DC supply? would this make more sense to be introduced when using servos? -->
-
-
 ### Writing the Code
 
-Let's write a class to abstract methods for a PWM pin on the Omega. Create a file called `omegaPwm.py` and paste the following code in it:
+Let's write a class to abstract methods for a PWM pin on the Omega. Create a file called `motors.py` and paste the following code in it:
 
 ``` python
 from OmegaExpansion import pwmExp
@@ -136,8 +118,6 @@ class OmegaPwm:
 ```
 
 Now let's write the script for the experiment. Create a file called `MAK01-pwmLed.py` and throw the following code in it. Then run it and keep an eye on your LEDs:
-
-<!-- // DONE: the code is good, just need comments to describe what we're actually doing! -->
 
 ``` python
 from motors import OmegaPwm
@@ -201,14 +181,12 @@ if __name__ == '__main__':
 
 You should see a wave like effect across the LEDs when they are placed beside each other in order from 0 to 15.
 
-<!-- // DONE: IMAGE add gif/video of LEDs working -->
 <iframe width="560" height="315" src="https://www.youtube.com/embed/szgAWYNQxKw" frameborder="0" allowfullscreen></iframe>
 
 This code uses an infinite loop, so you'll have to terminate the script with `Ctrl-C`.
 
 ### A Closer Look at the Code
 
-<!-- // DONE: this second sentence tries to do many things, let's split it up and talk about how each object is tied to a particular channel when it is instantiated. can also move that last sentence up to the description of the class. and THEN talk about what the setDutyCycle class does -->
 The basic structure of our experiment goes as follows:
 
 * First, we create a generic class to control one PWM channel. 
@@ -232,13 +210,11 @@ This experiment makes use of several mathematical operators. If you need a refre
 |   `math.pi`   | Returns the value of pi                      |
 |    `a += b`   | Assigns the value of a plus b to a           |
 
-> // DONE: include a link to a page that describes sines, radians, etc
 
 We will explain the sine function in the following sections.
 
 #### Creating a Class
 
-<!-- // bask in your glory, this paragraph is great! -->
 
 As a refresher, Python is an **Object Oriented** programming language.
 
@@ -246,12 +222,9 @@ As a refresher, Python is an **Object Oriented** programming language.
 ```{r child = '../../shared/classes-and-objects.md'}
 ```
 
-<!-- DONE: link properly to shift register article when lazar's finished -->
-
 To see another example of classes in Python, check out the [shift register](#shift-register-creating-classes) article where we first introduced them.
 
 In our case, we used the class `OmegaPwm` as a blueprint for a single PWM output channel. By creating objects of this class, we can represent and control an individual PWM channel on the board. When we call the `OmegaPwm()` function with arguments `i` and `PWM_FREQUENCY`, we're initializing objects of the `OmegaPwm` class for each channel `i` on the Expansion. Once we instantiate each channel object we store the objects inside of a list, such that their index corresponds to the channel number. This makes the rest of our code a little simpler, as you'll soon see below. 
-<!-- // DONE: include a small teaser of how it makes it simpler, or just say, 'as you'll see below' -->
 
 #### Using the Onion PWM Expansion Python Module
 
@@ -290,8 +263,6 @@ Before we initialize the oscillator, we can check if it's already on with `pwmEx
 #### The Math Behind the Duty Cycle
 
 You'll notice a lot of mathematical operations going on with the math module in Python. Combined, this allows the brightness of the LEDs to vary sinusoidally. 
-
-<!-- // DONE: maybe include a graphic and/or more text to explain what you mean by vary sinusoidally. We don't want to make the readers feel dumb -->
 
 If you're not familiar with what "sinusoidally" refers to, a sine wave is a type of smooth wave that goes up and down over time. The sine function is based on the **vertical component** of a line that goes from the center of an imaginary circle to its edge. When you rotate the line by an **angle** (like the hands on a clock), the length of the vertical component will change. You can see an example of one in the graphic below:
 
