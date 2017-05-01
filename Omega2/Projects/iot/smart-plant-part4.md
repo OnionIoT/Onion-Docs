@@ -1,10 +1,14 @@
 ## Smart Plant - Automatic Plant Watering {#smart-plant-p4}
 
-<!-- // TODO: brief intro to the project -->
+<!-- // DONE: brief intro to the project -->
 
-<!-- // TODO: include a photo of the final result -->
+<!-- // DONE: include a photo of the final result -->
 
 Now that our plant can tweet at us, let's see if we can have our plant water itself! For this project, we'll add a water pump to our work in [Smart Plant Part 3](#smart-plant-p3) so we can automate the watering process.
+
+<!-- // TODO: this photo shows the sensor disconnected... retake it ;-; -->
+
+![](./img/smart-plant-p4-complete.jpg)
 
 ### Overview
 
@@ -12,7 +16,7 @@ Now that our plant can tweet at us, let's see if we can have our plant water its
 
 **Time Required:** 1 Hour
 
-<!-- // TODO: explanation of what we're doing in this project: -->
+<!-- // DONE: explanation of what we're doing in this project: -->
 <!-- // * using a Relay Expansion to switch a water pump on and off -->
 <!-- // * enabling another option in the program (make sure to mention to link to the `pyRelayExp` module documentation) -->
 <!-- // * physical pump and watering setup -->
@@ -21,7 +25,7 @@ Now that our plant can tweet at us, let's see if we can have our plant water its
 
 For this project, we'll be using the Relay Expansion to control a water pump, enabling our smart plant to water itself! To do that, we'll build a circuit to power the water pump, and use the [Relay Expansion Python Module](https://docs.onion.io/omega2-docs/relay-expansion-python-module.html) to control the pump with a script.
 
-Once our pump works as expected, we'll build a new Losant workflow to test it out. Finally, we'll add it to the Losant workflow we've built in [Smart Plant Part 3](#smart-plant-p3) to get our plant to water itself!
+Once our pump works as expected, we'll build a new Losant **workflow** to test it out. Finally, we'll add it to the Losant workflow we've built in [Smart Plant Part 3](#smart-plant-p3) to get our plant to water itself!
 
 The complete project code can be found in Onion's [`smart-plant` repo on GitHub](https://github.com/OnionIoT/smart-plant).
 
@@ -42,7 +46,9 @@ And some new ingredients:
 1. [Water Pump (12V DC)](http://www.canadarobotix.com/index.php?route=product/search&search=pump)
 1. 3x Male-to-Male Jumper Wires
 1. 12V 1A DC Power Supply
-1. Plastic Tubing
+1. Flexible Plastic Tubing
+    * Make sure to match the tubing's **inner** diameter (ID) is slightly less than the pump's ports' **outer** diameter (OD). This is so the tubing will stretch and grip the ports, preventing any leaks!
+    * [This mini water pump's](http://www.canadarobotix.com/pump/2033) ports have a 0.34 inch OD, and we found vinyl tubing with 0.25 inch ID provides a great seal when coupled together.
 
 Tools:
 
@@ -147,8 +153,25 @@ relay-exp 0 off
 
 #### 1. Water Pump Setup
 
-<!-- // TODO: section on connecting tubing to the pump. then running the tubing to a water reservoir and the other end to the plant -->
+<!-- // DONE: section on connecting tubing to the pump. then running the tubing to a water reservoir and the other end to the plant -->
 
+Before we connect the tubing, disconnect the motor from the circuit. This is so you can more easily work with the pump and avoid spilling water on your components.
+
+Now prepare a water reservoir; it can be as simple as a glass of water. Then measure a length of tubing that would go from the bottom of your reservoir to the inlet of the pump. Cut off the tubing, then first fit one end to the pump's inlet.
+
+![](./img/smart-plant-p4-tubing-01.jpg)
+
+Then insert the other end into your reservoir. We recommend securing it to the reservoir using some tape so that the tubing stays inside.
+
+Repeat this process for another piece of tubing that will go from the pump outlet to your plant.
+
+![](./img/smart-plant-p4-tubing-02.jpg)
+
+Now connect the motor back to the circuit, and plug in the power supplies for the Omega and pump:
+
+<!-- // TODO: this photo shows the sensor disconnected... retake it ;-; -->
+
+![](./img/smart-plant-p4-complete.jpg)
 
 #### 1. Stop the Existing Program
 
