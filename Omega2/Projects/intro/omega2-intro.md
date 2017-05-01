@@ -2,6 +2,10 @@
 
 #### What is an IoT Computer?
 
+- what is IoT
+- what is a connected hardware application
+- what is an IoT computer used for
+
 An IoT computer is a Linux computer designed specifically for use in building connected hardware applications.
 
 - small form factor
@@ -14,7 +18,7 @@ An IoT computer is a Linux computer designed specifically for use in building co
 #### History
 
 // 2015: original Omega
-// 2016: Omega2 at just $5
+// 2016: Omega2 at just $5, FCC certified
 
 ### Hardware
 
@@ -103,6 +107,12 @@ The Omega2+ additionally has a Micro-SD card slot on the underside that can be u
 
 // Operating system
 
+// supported programming languages
+
+// limitations
+
+// mention web-based
+
 
 ### Docks
 
@@ -158,3 +168,5 @@ The Omega2+ additionally has a Micro-SD card slot on the underside that can be u
 - list the exp, pwr, and ard docks
 
 #### Available Expansions
+
+- listing of available expansions and their value propositions
