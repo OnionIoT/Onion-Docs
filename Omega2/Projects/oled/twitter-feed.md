@@ -7,9 +7,9 @@ For this project, we'll be displaying the latest Tweet of a specified Twitter us
 
 ### Overview
 
-**Skill Level:** Intermediate
+**Skill Level:** Beginner
 
-**Time Required:** 30 minutes
+**Time Required:** 20 minutes
 
 The code will be written in Python and we'll be making use of [Twitter's REST APIs](https://dev.twitter.com/rest/public) to grab Tweet data. Specifically, the code uses the [`statuses/user_timeline` endpoint](https://dev.twitter.com/rest/reference/get/statuses/user_timeline). Also in use is [Onion's `pyOledExp` module](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) to provide control of the OLED Expansion.
 
@@ -17,9 +17,9 @@ The complete project code can be found in Onion's [`oled-twitter-display` repo o
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
-1. Onion OLED Expansion
+* Onion Omega2 or Omega2+
+* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
+* Onion OLED Expansion
 
 
 
@@ -66,26 +66,19 @@ git clone https://github.com/OnionIoT/oled-twitter-display.git
 We'll need to create a Twitter Application in order to be able to use Twitter's APIs to grab Tweets. Specifically, our code needs an API Key and API Secret in order to authenticate with Twitter before we can use the APIs:
 
 1. Head over to https://apps.twitter.com and sign in with your Twitter handle
-
   ![twitter apps splash screen](./img/twitter-feed-screenshot-0.png)
-
 1. Fill in the form details for your application. It doesn't really matter what you type in, but a solid name and description goes a long way when you come back to a project after months away from it.
-
   ![twitter apps create app](./img/twitter-feed-screenshot-1.png)
-
 1. Read and agree to the Twitter Developer Agreement and hit Create your Twitter application.
-
   ![twitter apps create app part 2](./img/twitter-feed-screenshot-2.png)
-
   > Note that your Twitter account must have an associated mobile phone number before Twitter will allow you to create an application!
 
 1. Your Application is now created!
-
   ![twitter app created](./img/twitter-feed-screenshot-3.png)
-
 1. Head over to the **Keys and Access Tokens** tab to grab the info we need
-
   ![twitter app keys](./img/twitter-feed-screenshot-4.png)
+
+  // TODO: the photo needs to be edited to circle the Consumer Key and Consumer secret
 
 
 #### 5. Setup and Run the Code
@@ -93,7 +86,7 @@ We'll need to create a Twitter Application in order to be able to use Twitter's 
 The `config.json` file holds all of the settings for the project. Populate the `authorization` object with the Consumer Key and Consumer Secret from the Twitter app.
 
 
-And then populate `application.user` with the Twitter handle whose latest tweet you want to be shown on the OLED Expansion
+And then populate `application.user` with the Twitter handle whose latest tweet you want to be shown on the OLED Expansion:
 
 ![config file](./img/twitter-feed-terminal-screenshot-0.png)
 

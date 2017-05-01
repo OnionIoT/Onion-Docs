@@ -8,6 +8,7 @@ In this tutorial, we'll go through how you can use Python to encode text into a 
 
 ![QR Code on OLED Exp](./img/oled-qr-code-photo.jpg)
 
+// TODO: add a blurb that it then be scanned and the encoded text will be read. If it's a website, most phones will automatically navigate there
 
 ### Overview
 
@@ -18,23 +19,27 @@ In this tutorial, we'll go through how you can use Python to encode text into a 
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
-1. Onion OLED Expansion
+* Onion Omega2 or Omega2+
+* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
+* Onion OLED Expansion
 
 
 ### Step-by-Step
 
 Ok, here we go! First we'll install some required packages to make everything run smoothly, and then we'll grab the code for this tutorial from GitHub.
 
-All of the code can be found on this GitHub Repo: https://github.com/OnionIoT/oledQrCodeGenerator
+All of the code can be found on this Onion GitHub Repo: https://github.com/OnionIoT/oledQrCodeGenerator
 
 
 
+#### 1. Prepare your Ingredients
 
-#### 1. Installing Required Packages
+You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
-We will need to have support for git, Python, and the [Onion OLED Expansion Python Module](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-Library):
+
+#### 2. Installing Required Packages
+
+We will need to have support for git, Python, and the [Onion OLED Expansion Python Module](https://wiki.onion.io/Documentation/Libraries/OLED-Expansion-Library). [Connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and run the following command:
 
 ```
 opkg update
@@ -43,24 +48,27 @@ opkg install git git-http python-light python-codecs pyOledExp
 
 
 
-#### 2. Downloading the Code
+#### 3. Downloading the Code
 
-Now we need to download the Python code that actually does all the work:
+Now we need to download the Python code from GitHub that actually does all the work. [Connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and run the following command:
+
 ```
 cd /root
 git clone https://github.com/OnionIoT/oledQrCodeGenerator.git
 ```
 
 
-#### 3. Running the Code
+#### 4. Running the Code
 
 Finally, we get to make some QR codes!
 Navigate into the repo directory:
+
 ```
 cd oledQrCodeGenerator
 ```
 
 And run the program, the argument to the script is the text that will be encoded in the QR code pattern:
+
 ```
 root@Omega-18C2:~/oledQrCodeGenerator# python main.py 'Wow, my first QR Code'
 > Encoding 21 characters
@@ -82,21 +90,21 @@ This will encode the data and display the resulting QR code on the OLED Expansio
 Behind the scenes, the Python code does the following:
 
 * Encodes the input text into a matrix representing the QR Code
-  * The size of the QR code is based on the amount of input text
+	* The size of the QR code is based on the amount of input text
 * Converts the QR code matrix into data that can be displayed on the OLED
 * Displays the resulting image on the OLED display
-  * Performs display initialization
-  * Inverts the display colours
-  * Displays the generated image file
+	* Performs display initialization
+	* Inverts the display colours
+	* Displays the generated image file
 
 An additional feature was added for easier scanning: if the QR code is small (less than half the height of the OLED display), the image will be doubled in size so that each QR code pixel shows up as four pixels on the OLED display.
 
-The default generated QR code will be a Version 3 code with the Low error correction setting and a one-pixel border, creating a code that is 31x31 pixels. If the amount of text to be encoded cannot fit in a Version 3 code, the program will select the next version that will fit the amount of data to be encoded.
+The default generated QR code will be a Version 3 code with the Low error correction setting and a one-pixel border, creating a code that is 31x31 pixels. If the amount of text to be encoded cannot fit in a Version 3 code, the program will select the next version that will fit the amount of data to be encoded. Check out the [Wikipedia entry on QR Codes](https://en.wikipedia.org/wiki/QR_code) for more details on QR code versions.
 
 
 
 
-#### 4. Using the code as a Python Module (Optional)
+#### 5. Using the code as a Python Module (Optional)
 
 The `oledQrCodeGenerator` code can also be imported as a module into your own Python projects!
 
@@ -117,6 +125,8 @@ print 'All done!'
 
 Note that your Python script will have to be in the same directory as `oledQrCodeGenerator` in order for it to work properly.
 
+// TODO: you can do a import os and add the project directory to the python lib path. then the new script doesn't have to be in the same dir as oledQrCodeGenerator to work properly.
+
 
 
 ### Reading QR Codes
@@ -129,7 +139,6 @@ Don't worry, your smartphone is perfectly capable of reading the code from the O
 
 For QR codes that encode a lot of text, your phone might take a little while longer to scan the code. Trial and error works best in this scenario: try moving your phone to different distances and angles from the OLED.
 
-Happy hacking!
 
 
 
@@ -137,5 +146,3 @@ Happy hacking!
 
 The code in the `qrcode` directory is a stripped-down version of lincolnloop's `python-qrcode` repo:
 https://github.com/lincolnloop/python-qrcode
-
-The rest of the code is home grown by the Onion team :)

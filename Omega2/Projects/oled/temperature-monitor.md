@@ -1,6 +1,6 @@
 ## Ambient Temperature Monitor {#ubidots-temperature-monitor}
 
-This project will allow you to read temperature from a sensor, display it on the OLED Expansion, and also push the data to Ubidots for logging and monitoring!
+This project will allow you to read temperature from a sensor, display it on the OLED Expansion, and also push the data to Ubidots IoT Platform for logging and monitoring!
 
 TODO: add link to Ubidots
 
@@ -20,30 +20,34 @@ TODO: add short blurb describing what weather data is being collected
 
 We'll be using a software 1-Wire bus to read the temperature from a sensor. The code will then write the value on the OLED Expansion and push the data to your [Ubidots](https://ubidots.com/) account. The code is written in Python and makes use of the UART1 serial port on the Omega to communicate with the Arduino Dock's microcontroller. We're also using [Onion's `pyOledExp` module](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html) to provide control of the OLED Expansion.
 
-TODO: remove mentions of of Arduino Dock above!
+TODO: we definitely don't use the Arduino Dock here, update the above paragraph to talk a bit about 1-wire
 
 The complete project code can be found in Onion's [`temperature-monitor` repo on GitHub](https://github.com/OnionIoT/temperature-monitor).
 
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
-1. Onion OLED Expansion
-1. 1x DS18B20 1-Wire Temperature Sensor
-1. 1x 5.1 kΩ Resistor
-1. 3x Male-to-Female or Male-to-Male Jumper Wires
+* Onion Omega2 or Omega2+
+* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
+* Onion OLED Expansion
+* 1x DS18B20 1-Wire Temperature Sensor
+* 1x 5.1 kΩ Resistor
+* 3x Male-to-Female or Male-to-Male Jumper Wires
     * Make sure they use threaded wire on the inside
-1. 1x Breadboard
-1. 1x Wire Cutter
-1. 1x Wire Stripper
+* 1x Breadboard
+
+// TODO: note, we should always separate the tools from the project ingredients
+
+Tools:
+* 1x Wire Cutter
+* 1x Wire Stripper
 
 <!-- ![temperature monitor ingredients](./img/temperature-monitor-ingredients.jpg) -->
 
 
 ### Step-by-Step
 
-Follow these instructions to setup the Temperature Monitor project on your very own Omega!
+Follow these instructions to setup the Ambient Temperature Monitor project on your very own Omega!
 
 
 #### 1. Prepare
@@ -63,11 +67,15 @@ opkg install python-light python-urllib3 pyOledExp ubidots-client
 
 The `python-urllib3` package will allow us to make HTTP requests in Python, while the `pyOledExp` package gives us control of the OLED Expansion.
 
-The `ubidots-client` package will allow us to push and pull data from Ubidots.
+The `ubidots-client` package will allow us to push and pull data from the Ubidots IoT Platform.
 
 #### 3. Download the Project Code
 
-The code for this project is all done and can be found in Onion's [oled-temperature-monitor repo](https://github.com/OnionIoT/oled-temperature-monitor) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
+// TODO: don't really dig redirecting them to an article on installing Git, should install give in the previous step and then have them clone the repo to their root directory
+
+// TODO: the name and link for the github repo are wrong...
+
+The code for this project is all done and can be found in Onion's [`oled-temperature-monitor` repo](https://github.com/OnionIoT/oled-temperature-monitor) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
 
 ```
 git clone https://github.com/OnionIoT/oled-temperature-monitor.git
@@ -77,15 +85,15 @@ git clone https://github.com/OnionIoT/oled-temperature-monitor.git
 
 First, sign up for a [Ubidots](https://ubidots.com/) account. At the time this was written, you should have 5000 credits in your account available for trial and testing. This is more than enough to get this project running!
 
-Then go to the [account homepage](https://app.ubidots.com/ubi/insights/#/list), and click on Devices at the top, and click on the grey Add Device button. Call it `1-wire-project` like so:
+Then go to the [account homepage](https://app.ubidots.com/ubi/insights/#/list), and click on Devices at the top, and click on the grey **Add Device** button. Call it `1-wire-project` like so:
 
 ![temperature monitor create ubidots device](./img/temperature-monitor-create-ubidots-device.png)
 
-Now we need to add a variable to store our data. Click on the device's blue card to go to its device page. Then click on the grey Add Variable button, then click Default. Call the new variable `temperature` (case sensitive) like so:
+Now we need to add a **variable** to store our data. Click on the device's blue card to go to its device page. Then click on the grey Add Variable button, then click Default. Call the new variable `temperature` (case sensitive) like so:
 
 ![temperature monitor create ubidots device](./img/temperature-monitor-create-new-variable.png)
 
-Now we need to create an API key for this project. Click on your username in the top right of the screen, then click My Profile. In the profile menu, click on API Keys on the left. Then click on the blue Create Token button to generate a token; click on the `newToken` text to rename it to `1-wire-project`.
+Now we need to create an **API key** for this project. Click on your username in the top right of the screen, then click My Profile. In the profile menu, click on API Keys on the left. Then click on the blue Create Token button to generate a token; click on the `newToken` text to rename it to `1-wire-project`.
 
 ![temperature monitor create api token](./img/temperature-monitor-ubidots-create-api-token.png)
 
@@ -114,6 +122,8 @@ Your wires should look like this:
 #### 6. Connect the Sensor
 
 Use this diagram for reference when wiring up the sensor:
+
+// TODO: this image link needs to be an html url
 
 ![temperature monitor ds18b20 pinout](../../Kit-Guides/img/DS18B20-pin-layout.png)
 
@@ -147,6 +157,8 @@ Your circuit should now look like this so far:
 The OLED Expansion will then plug in on top of the wires; there will most likely be enough space for the Expansion's pins to fit. Plug it in and it should look like this:
 
 ![temperature monitor assembled](./img/temperature-monitor-assembled.jpg)
+
+// TODO: add a blurb about how we're successfully using the GPIOs at the same time as the OLED Exp
 
 #### 9. Run the Code
 

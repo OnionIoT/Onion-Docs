@@ -2,16 +2,14 @@
 
 This project will pull a fresh headline from News API and display it to the OLED screen. [News API](https://newsapi.org/) is a news aggregator that returns headlines from a variety of news sources as JSON data.
 
-<!-- // DONE foto of the headline workin' -->
-
 ![A headline on the OLED screen](./img/news-flash-photo.jpg)
 
 
 ### Overview
 
-**Skill Level:** Intermediate
+**Skill Level:** Beginner
 
-**Time Required:** 30 minutes
+**Time Required:** 20 minutes
 
 The project will use a Python script to call the News API `/articles` endpoint for headline data.
 
@@ -20,9 +18,9 @@ The complete project code can be found in Onion's [`oled-news-flash` repo on Git
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
-1. Onion OLED Expansion
+* Onion Omega2 or Omega2+
+* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
+* Onion OLED Expansion
 
 
 ### Step-by-Step
@@ -75,6 +73,8 @@ We need an API key in order to access the News API endpoints. The simplest way i
 
 1. Open up `config.json` and paste the API key generated as the `X-API-KEY` value - replacing `your api key here`.
 
+// TODO: need a screenshot or copied code of the example config.json
+
 
 #### 5. Choose Your Source
 
@@ -82,13 +82,19 @@ News API gets headlines from a ton of news sources. We've set the default source
 
 Open up `config.json` and copy the text under any source you wish as the value for `source` - replacing `reuters`.
 
+// TODO: need a screenshot or copied code of the example config.json
+
 #### 6. Run it!
+
+On your Omega's command line, run the following:
 
 ```
 python oledNewsFlash.py
 ```
 
-To make sure it works properly.
+And you should see the latest news headline on your OLED screen.
+
+// TODO: insert photo
 
 #### And Beyond
 
@@ -127,7 +133,7 @@ To contact any API, we need to know at least two major things:
 
 #### Endpoints
 
-For this project, our URL is `https://newsapi.org/v1/articles`. The URL has two bits to it, first is the the actual API's location - `newsapi.org/vi/`. The second is the **endpoint**, kind of like a specific apartment number of the address. Here it's `/articles`.
+For this project, our URL is `https://newsapi.org/v1/articles`. The URL has two bits to it, first is the the actual API's location - `newsapi.org/v1/`. The second is the **endpoint**, kind of like a specific apartment number of the address. Here it's `/articles`.
 
 Together, they're often referred as an **endpoint** of the API.
 
@@ -151,8 +157,10 @@ Parameters are strings that get appended to the request URL with details about o
 
 >Our custom `source` and `sortBy` values are sent to the server through URL parameters.
 
-The API key is a way to identify a user of the service, allowing APIs to pull up user-specific data. For an API serving general information like News API, an API key mostly useful in identifying what level of access a user has.
+The API key is a way to identify and authenticate a user of the service, allowing APIs to pull up user-specific data. For an API serving general information like News API, an API key is mostly useful in identifying the user's level of access.
 
-Generally the API key is passed through the header - a list of key-value pairs that is sent with our request. What goes in the header depends on the API we request from. [The documentation](https://newsapi.org/#documentation) should always specify what kind of things should be put in the header to correctly get information.
+Generally, the API key is passed through the HTTP request's header - a list of key-value pairs that is sent with our request. What goes in the header depends on the particular API being used. [The documentation](https://newsapi.org/#documentation) should always specify what kind of things should be put in the header to correctly get information.
 
-The body is another list of key-value pairs used to store content for 'POST' requests. Again, the specifics of the body depends on what the API needs.
+// TODO: give an example of the headers sent with this http requets
+
+The body is typically a JSON list of key-value pairs used to store content for 'POST' requests. Again, the specifics of the body depends on what the API needs.

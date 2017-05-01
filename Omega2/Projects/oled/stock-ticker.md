@@ -4,11 +4,13 @@ For this project, we'll be displaying the latest stock information for a configu
 
 ![oled+stock photo](./img/stock-ticker-photo-0.jpg)
 
+// TODO: add a disclaimer that the google finance data is probably delayed by 15min and that this shouldn't be used to inform investment decisions
+
 ### Overview
 
 **Skill Level:** Beginner
 
-**Time Required:** 5 minutes
+**Time Required:** 10 minutes
 
 This code will be written in Python and we'll be making use of a [Google Finance](https://www.google.com/finance) API to grab stock data. It will print the following data to the OLED:
 
@@ -25,9 +27,9 @@ The complete project code can be found in Onion's [`oled-stock-ticker` repo on G
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
-1. Onion OLED Expansion
+* Onion Omega2 or Omega2+
+* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
+* Onion OLED Expansion
 
 ### Step-by-Step
 
@@ -45,7 +47,7 @@ Once that's done, plug in your OLED Expansion:
 
 #### 2. Install Python
 
-Connect to the Omega's Command line and install Python as well as some of the packages we need:
+[Connect to the Omega's Command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and install Python as well as some of the packages we need:
 
 ```
 opkg update
@@ -56,15 +58,19 @@ The `python-urllib3` package will allow us to make HTTP requests in Python, whil
 
 #### 3. Download the Project Code
 
+// TODO: don't really dig redirecting them to an article on installing Git, should install give in the previous step and then have them clone the repo to their root directory
+
 The code for this project is all done and can be found in Onion's [oled-stock-ticker repo](https://github.com/OnionIoT/oled-stock-ticker) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
 
 ```
 git clone https://github.com/OnionIoT/oled-stock-ticker.git
 ```
 
-#### 4. Setup and Run the Code
+#### 4. Setup the Ticker
 
 The `config.json` file holds all of the settings for the project. Populate the `stocks` array with the symbols of the stocks you wish to track.
+
+![config file](./img/stock-ticker-terminal-0.png)
 
 Some notes about the stock symbols:
 
@@ -72,7 +78,9 @@ Some notes about the stock symbols:
 * Due to space constraints on the OLED, the stock ticker can properly display only stocks with 4 letters or less.
 * The code assumes the stocks are traded in USD.
 
-![config file](./img/stock-ticker-terminal-0.png)
+
+
+#### 4. Run the Code
 
 Now run the code: `python main.py`
 
@@ -80,7 +88,7 @@ Now run the code: `python main.py`
 
 If you're interested in how the `pyOledExp` code can be used to control the OLED Expansion, take a look at how it's used in [the project code](https://github.com/OnionIoT/oled-stock-ticker/blob/master/oledDriver.py) and also check out the [`pyOledExp` Module documentation](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html).
 
-#### 5. Automate the Program to Run Periodically
+#### 6. Automate the Program to Run Periodically
 
 The program will grab and display the latest stock info, then promptly exit. We'll use `cron`, a super useful Linux utility, to have the program run periodically.
 
@@ -101,13 +109,15 @@ Now, we'll restart `cron`:
 
 And the code will run once every minute, generating *literally* up-to-the-minute stock information on your OLED!
 
+// TODO: again, include a note saying that the stock data is likely to be delayed and shouldn't be used to inform investment decisions
+
 > Check out the Omega documentation for more info on [using `cron`](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html)
 
-<!-- // TODO: this doesn't work, the oled just goes blank -->
+// TODO: this doesn't work, the oled just goes blank (This was here before Lazar's review of the first draft. Please investigate)
 
 ### Code Highlight
 
-This code basically does the following:
+This code does the following:
 
 1. Load the list of stocks from the configuration file
 1. Creates a timestamp of when this script was called
@@ -146,3 +156,5 @@ python stocks.py BB
     }
 ]
 ```
+
+// TODO: seems kinda like a cliff-hanger to just leave it off here. include some parting words or something
