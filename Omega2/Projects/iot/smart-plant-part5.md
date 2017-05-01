@@ -74,6 +74,7 @@ Regulator Input:
 1. Connect the 12V `-`rail to the GND pin of the regulator (left most pin when looking from the front) with a jumper wire
 1. Connect the 12V `+` rail to the Vin pin of the regulator (right most pin when looking form the front) with a jumper wire
 
+![](./img/smart-plant-p5-wiring-01.jpg)
 
 Regulator Output:
 
@@ -81,6 +82,7 @@ Regulator Output:
 1. Connect the GND pin of the regulator (left most pin when looking from the front) to the 5V `-` rail with a jumper wire
 1. Connect the Vout pin of the regulator (middle pin) to the 5V `+` rail with a jumper wire. Now this rail can be used to power the Arduino Dock and Omega
 
+![](./img/smart-plant-p5-wiring-02.jpg)
 
 Pump Setup:
 
@@ -88,6 +90,9 @@ Pump Setup:
 1. Connect a jumper wire from the 12V `+`rail to the **IN** screw terminal on Channel 0 of the Relay Expansion
 1. Connect a jumper wire from the **OUT** screw terminal on Channel 0 of the Relay Expansion to the **positive terminal** of the Water Pump
 
+![](./img/smart-plant-p5-wiring-03.jpg)
+
+Once you've done that, plug the Relay Expansion back into the Arduino Dock.
 
 Power the Arduino Dock:
 
@@ -97,8 +102,11 @@ Power the Arduino Dock:
 // TODO: include a photo of this for sure
 1. Connect the **5V `+` rail** to the Arduino Dock `5V` pin
 
+Then 
 
-#### 1. Connect the Expansions and Provide Power
+![](./img/smart-plant-p5-wiring-04.jpg)
+
+#### 1. Provide Power
 
 Now the system is setup to be powered by just the 12V Power Supply, we just have to connect all the pieces!
 
