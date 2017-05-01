@@ -1,13 +1,18 @@
 ## Alarms based on an Online Calendar {#calendar-alarm}
 
+// TODO: this is a super poor intro sentence and doesn't fully describe the project.
+// Should be something like:
+// This project will create a real-world alarm clock that can be setup from an online calendar of your choice. Just create a calendar event with a specific word in it, and your Omega will act as an alarm based on the event's time and date.
 
 This project will set up a buzzer alarm by automatically pulling calendar data from a source of your choice.
 
+// TODO: include a photo of the final result
+
 ### Overview
 
-**Skill Level:** Advanced
+**Skill Level:** Intermediate
 
-**Time Required:** 45 minutes
+**Time Required:** 45 minutes	// TODO: really?
 
 This project requires an online calendar source in addition to the ingredients below. We'll be using Google calendar in our Step-By-Step, but you can pick any compatible iCalendar source.
 
@@ -16,12 +21,12 @@ The complete project code can be found in Onion's [`iot-gcal-alarm` repo on GitH
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Any Dock with expansion headers
-1. A breadboard (optional, but recommended)
-1. 1x 100Ω Resistor
-1. Buzzer
-1. 2x Jumper wires (M-M)
+* Onion Omega2 or Omega2+
+* Any Onion Dock that exposes the Omega's GPIOs: Expansion Dock, Arduino Dock R2, Power Dock, Breadboard Dock
+* A breadboard (optional, but recommended)
+* 1x 100Ω Resistor
+* Buzzer
+* 2x Jumper wires (M-M)
 
 
 ![All the ingredients](./img/gcal-alarm-ingredients.jpg)
@@ -29,7 +34,7 @@ The complete project code can be found in Onion's [`iot-gcal-alarm` repo on GitH
 
 ### Step-by-Step
 
-Follow these instructions to setup the Smart Plant project on your very own Omega!
+Follow these instructions to setup your very own alarm!
 
 
 #### 1. Prepare
@@ -43,19 +48,17 @@ You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide]
 
 ```
 opkg update
-opkg install python python-pip
+opkg install python python-pip git git-http ca-bundle
 ```
 
-We'll need python packages that aren't available in the LEDE repository. To install, we'll use `pip` instead of `opkg`:
+We'll use `pip` to install some additional Python module:
 
 ```
-pip install setuptools
+pip install --upgrade setuptools
 pip install urllib3 python-crontab icalendar
 ```
 
-First we'll install `setuptools` - a requirement for our other packages.
-
-`urllib3` will help connect to our calendar source. `icalendar` will help parse the calendar data, and `crontab` will allow us to create and remove cron jobs for our alarm.
+The `urllib3` module will help make HTTP requests to connect to our calendar source. `icalendar` will help parse the calendar data, and `crontab` will allow us to create and remove cron jobs for our alarm.
 
 
 #### 3. Build the Buzzer Circuit
@@ -65,7 +68,7 @@ To keep it straightforward, the buzzer will be powered directly by a GPIO. We'll
 1. Plug the Buzzer across the channel of your breadboard.
 1. Using a jumper, connect the negative end of the buzzer (the pin WITHOUT a plus sign) to a `GND` pin on the expansion headers
 1. Plug in a 100Ω current limiting resistor across the (+) row of the buzzer and an empty row.
-1. Finally, connect the resistor to GPIO1 on the expansion headers.
+1. Finally, connect the resistor to GPIO1 on the Dock's Expansion Headers
 
 Once we're done, it should look a little like this:
 
@@ -74,16 +77,18 @@ Once we're done, it should look a little like this:
 
 #### 4. Download the Project Code
 
-The code for the Calendar Alarm can be found in Onion's [iot-gcal-alarm repo](https://github.com/OnionIoT/iot-gcal-alarm) on Github. You can either use git to clone it to your Omega:
+The code for the Calendar Alarm can be found in Onion's [iot-gcal-alarm repo](https://github.com/OnionIoT/iot-gcal-alarm) on Github. You can use Git to clone it to your Omega:
 
 ```
 cd /root
 git clone https://github.com/OnionIoT/iot-gcal-alarm.git
 ```
 
-Or use wget to download the three files directly to your Omega
+Or use `wget` to download the three files directly to your Omega:
+
 ```
 cd /root
+mkdir iot-gcal-alarm
 wget https://raw.githubusercontent.com/OnionIoT/iot-gcal-alarm/master/iotGcalAlarm.py https://raw.githubusercontent.com/OnionIoT/iot-gcal-alarm/master/config.json https://raw.githubusercontent.com/OnionIoT/iot-gcal-alarm/master/config.json
 ```
 
@@ -111,7 +116,7 @@ Open up `config.json` from the repo, and paste the link as the value to the "ica
 // TODO: add a (censored) example of the config.json file
 
 #### 6. Create a Calendar Event with an Alarm
-// TODO: add the content for this step
+// TODO: add the content and screenshots for this step
 
 #### 7. Run the Code
 
@@ -125,6 +130,8 @@ The script will read the calendar data from your source, and add a cron job for 
 
 
 ### Code Highlight
+
+// TODO: write this section
 
 <!-- // one or two paragraphs (max) about something cool we did in the code -->
 <!-- //	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc) -->

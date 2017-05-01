@@ -1,10 +1,10 @@
 ## Ambient Temperature Monitor {#ubidots-temperature-monitor}
 
-This project will allow you to read temperature from a sensor, display it on the OLED Expansion, and also push the data to Ubidots IoT Platform for logging and monitoring!
+This project will allow you to read temperature from a sensor, display it on the OLED Expansion, and also push the data to [Ubidots IoT Platform](https://ubidots.com/) for logging and monitoring!
 
 TODO: add link to Ubidots
 
-TODO: take a new photo where the main thing is the Omega and OLED, the temp sensor is secondary
+TODO: take a new photo where the main thing is the Omega and OLED, the temp sensor is secondary (can keep this existing photo at the bottom of this project)
 
 ![temperature monitor running](./img/temperature-monitor-complete.jpg)
 
@@ -39,6 +39,7 @@ The complete project code can be found in Onion's [`temperature-monitor` repo on
 // TODO: note, we should always separate the tools from the project ingredients
 
 Tools:
+
 * 1x Wire Cutter
 * 1x Wire Stripper
 
@@ -58,7 +59,7 @@ You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide]
 
 #### 2. Install Software
 
-Connect to the Omega's Command line and install Python as well as some of the packages we need:
+[Connect to the Omega's Command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and install Python as well as some of the packages we need:
 
 ```
 opkg update

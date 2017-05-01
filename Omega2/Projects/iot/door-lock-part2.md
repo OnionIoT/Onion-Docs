@@ -23,17 +23,17 @@ Same as before, the code used to handle this setup can be found in the [iot-door
 
 First, this app will be listening for new tweets from the users you specify in the configuration. Please note that all public tweets will be received over the Internet by your Omega when the main script is running.
 
-By default, the Omega is configured to change the state of the lock when it detects a tweet from an authorized user with a corresponding hashtag. The list of allowed users and hashtags for each command are configured in a separate JSON file, `config.json`. 
+By default, the Omega is configured to change the state of the lock when it detects a tweet from an authorized user with a corresponding hashtag. The list of allowed users and hashtags for each command are configured in a separate JSON file, `config.json`.
 
 Some examples of authorization are shown below (all of the command hashtags follow the same rules):
 
 | Event      | Lock Response |
 |:-----------|:----------:|
-| @authorizedUser1 posts a status containing `#unlock` | Unlock |
-| @authorizedUser2 replies to a status and includes `#toggle` | Toggle (briefly) |
-| @authorizedUser2 retweets a status from @authorizedUser1 that contains `#lock` | Lock |
-| @unauthorizedUser1 posts or retweets a status containing `#toggle`| None |
-| @unauthorizedUser2 posts retweets a status from @authorizedUser1 containing `#unlock`| None |
+| `@authorizedUser1` posts a status containing `#unlock` | Unlock |
+| `@authorizedUser2` replies to a status and includes `#toggle` | Toggle (briefly) |
+| `@authorizedUser2` retweets a status from `@authorizedUser1` that contains `#lock` | Lock |
+| `@unauthorizedUser1` posts or retweets a status containing `#toggle`| None |
+| `@unauthorizedUser2` posts retweets a status from `@authorizedUser1` containing `#unlock`| None |
 
 **Note:** The lock will respond to the **first** command hashtag it finds in each status, so posting "`#lock` `#unlock`" will activate the lock.
 
@@ -154,7 +154,7 @@ Tell your friends to try it out too!
 
 #### Rate Limiting
 
-The Twitter Streaming API that pushes new tweets to the Omega limits the amount of **new** sessions you can initiate within a certain period of time. If you restart the program too often in a short window of time, you will receive a 420 error. You will see a warning on the command line, and the program will automatically disconnect and retry according to Twitter's recommended backoff policy; see the Rate Limiting section on [Twitter's documentation](https://dev.twitter.com/streaming/overview/connecting). 
+The Twitter Streaming API that pushes new tweets to the Omega limits the amount of **new** sessions you can initiate within a certain period of time. If you restart the program too often in a short window of time, you will receive a 420 error. You will see a warning on the command line, and the program will automatically disconnect and retry according to Twitter's recommended backoff policy; see the Rate Limiting section on [Twitter's documentation](https://dev.twitter.com/streaming/overview/connecting).
 
 The rate limiting criteria are not made public, so we recommend playing it safe and relaxing for about 5-10 minutes each time you need to restart the script.
 
