@@ -9,8 +9,8 @@
 		* Wire up a thermal printer and print from your browser
 	1. [A Compact Version](#thermal-printer-p2)
 		* Put your soldering skills to use and setup a really compact thermal printer
-1. [Twitter Doorbell](#smart-doorbell)
-	* Want to know who's at your door? This project will Tweet you a photo of your visitor
+<!-- 1. [Twitter Doorbell](#smart-doorbell) -->
+	<!-- * Want to know who's at your door? This project will Tweet you a photo of your visitor -->
 1. Smart Plant
 	1. [Measure Plant Data](#smart-plant-p1)
 		* Add smarts to your plant by measuring it's soil moisture level

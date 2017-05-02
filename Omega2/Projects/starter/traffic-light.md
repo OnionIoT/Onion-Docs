@@ -65,6 +65,8 @@ opkg install python-light pyOnionGpio git git-http ca-bundle
 
 #### 2. Download the Project Code
 
+// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're doing, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
+
 The code for this project can be found in Onion's [`starter-traffic-light` repo](https://github.com/OnionIoT/starter-traffic-light) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
 
 ```

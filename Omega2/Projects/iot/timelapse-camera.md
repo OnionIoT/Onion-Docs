@@ -2,10 +2,11 @@
 
 Using a webcam connected to the Omega, we can take photos over time and string them together to make a video of your scene!
 
-// TODO: a link to a youtube video of one of our timelapses
+// TODO: include a photo of the final setup
+
+// TODO: include a link to a youtube video of one of our timelapses
 
 
-<!-- // include a photo of the final result -->
 ### Overview
 
 **Skill Level:** Intermediate
@@ -20,10 +21,10 @@ In this project, we'll use the `fswebcam` utility and `cron` to capture images f
 
 <!-- // a numbered list of all physical items used to make this project // all items should be linked to a place online where they can be bought // the Onion items should be linked to their corresponding Onion store page -->
 
-1. Onion Omega2+
-1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2, Mini Dock,
-1. Micro SD card
-1. [USB Camera](https://www.logitech.com/en-ca/product/hd-pro-webcam-c920)
+* Onion Omega2+
+* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2, Mini Dock,
+* Micro SD card
+* [USB Camera](https://www.logitech.com/en-ca/product/hd-pro-webcam-c920)
 
 ![Ingredients](./img/timelapse-camera-ingredients.jpg)
 
@@ -31,25 +32,22 @@ In this project, we'll use the `fswebcam` utility and `cron` to capture images f
 
 Follow these instructions create sweet time-lapse videos with a webcam on your Omega2+!
 
-<!-- // each step should be simple -->
-#### 1. Get our Hardware ready
+// TODO: throw all of the code into a github repo so that it can be used as reference. Just mention that it's available for reference, don't have to change the whole article to download the project code
+
+
+#### 1. Get the Hardware Ready
 
 You'll have to have an Omega2+ ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
-Insert the MicroSD card, plug in the USB webcam, connect the Omega to power, and we're golden.
+Insert the MicroSD card, plug in the USB webcam, connect the Omega to power, and we're ready to start.
 
 ![The setup](./img/timelapse-camera-setup.jpg)
 
-#### 2. Prepare an external storage device
+#### 2. Prepare an External Storage Device
 
-The pictures we'll take with the webcam would fill up the Omega's storage quite quickly. To make sure we have enough space for our pictures, we'll need a MicroSD card to store it all.
+The pictures taken with the webcam would fill up the Omega's built-instorage quite quickly. To make sure we have enough space for our pictures, we'll need a MicroSD card to store it all.
 
-```
-screen /dev/tty.SLAB_USBtoUART 115200
-```
-
-
-We can use `df -h` to check the storage on the Omega - and make sure we're using the correct device.
+[Connect to the Omega's Command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and use `df -h` to check the storage on the Omega - and make sure we're using the correct device.
 
 ``` bash
 root@Omega-F181:~# df -h
@@ -64,19 +62,21 @@ tmpfs                   512.0K         0    512.0K   0% /dev
 
 Here, the last line shows the MicroSD card is successfully mounted under `/tmp/run/mountd/mmcblk0p4`
 
-Now that we're sure where the MicroSD card is, let's create a shortcut to it for easy access:
+Now that we're sure where the MicroSD card is, let's create a soft-link to it for easy access:
 
 ```
-ln -s /tmp/run/mountd/mmcblk0p1 ~/sd
+ln -s /tmp/run/mountd/mmcblk0p1 /root/sd
 mkdir sd/timelapse
 ```
 
+> A soft-link is the Linux equivalent of a shortcut. It is just a file that contains a reference to another file or directory. In this case, `/root/sd` contains a reference to `/tmp/run/mountd/mmcblk0p1`
 
-#### 3. Webcam software
+
+#### 3. Install Webcam Software
 
 To get the webcam to take pictures, we'll need the software.
 
-The package we use here isn't in the official Onion repo so we'll have to use LEDE's repo to get it.
+The package we use here isn't included in the Onion package repo so we'll have to use the LEDE package repo to get it.
 
 Open up the source list like so:
 
@@ -101,22 +101,25 @@ src/gz omega2_onion http://repo.onion.io/omega2/packages/onion
 
 >A complete guide on how to do so can be found in our guide on [Using Opkg](https://docs.onion.io/omega2-docs/using-opkg.html#using-opkg-switch-to-lede-repos).
 
-Next, restart the Omega so the changes will take place. Once that's done, we can go ahead and install the `fswebcam` package:
+Next, we'll run `opkg update` so the changes take effect and then we can go ahead and install the `fswebcam` package:
 
 ```
 opkg update
 opkg install fswebcam
 ```
 
+#### 4. Take a Photo
 
-The `fswebcam` utility lets us take a picture just like this:
+The `fswebcam` utility lets us take a photo with a webcam with the following command:
 
 ```
 fswebcam --no-banner -r 1280x720 `date +"%Y-%m-%d_%H%M%S"`.jpg
 ```
 
+// TODO: include an explanation of what the backticks date command actually does: it names the output file according to the time+date. instruct people to try running the date command by itself on the command line. Explain that the backticks just make it execute and then return the output in the context of the fswebcam command
 
-#### 4. Script it to save our fingers
+
+#### 5. Script it to save our fingers
 
 
 To save us from typing that out every time, we'll write a short script.
@@ -137,7 +140,7 @@ chmod +x snapshot.sh
 ```
 
 
-#### 4. Automate it
+#### 6. Automate it
 
 We'll use `cron` to automate the capture image script. `cron` is a utility that will repeatedly execute some command at set times. Here's a quick overview of how cron's syntax works:
 
@@ -153,7 +156,7 @@ We'll use `cron` to automate the capture image script. `cron` is a utility that 
 # └───────────────────────── min (0 - 59)
 ```
 
-To set up a new task (a cronjob), we'll need to edit cron's configuration file with:
+To set up a new task - called a cronjob - we'll need to edit cron's configuration file with:
 
 ```
 crontab -e
@@ -175,12 +178,12 @@ For our new cronjob to take effect, restart the cron daemon with:
 
 Now wait a bit, if new files are created each minute, then we're good to move on!
 
-![Output images from the webcam](./img/timelapse-camera-fs-output-page.png)
+![Output images from the webcam](./img/timelapse-camera-fs-output.png)
 
 
-#### 5. Set up FFmpeg
+#### 7. Set up FFmpeg
 
-Once cron starts working and we have some images from the webcam, we need to convert them to video with FFmpeg.
+Once cron starts working and we have some images from the webcam, we'll want to create our very first timelapse video. To do that we'll be using the FFmpeg program.
 
 First, grab the package:
 
@@ -221,7 +224,7 @@ Here's the options we used for `ffmpeg` and what they do:
 | -q:v | Quality of video | integer between 1~31 (1 is highest quality) | 1 |
 
 
-#### 6. Making the video
+#### 8. Making the Timelapse Video
 
 Almost there!
 
@@ -238,11 +241,11 @@ To make the video, we directly call the script:
 
 Voila! A time-lapsed video of the scene you pointed your webcam to!
 
-### Code Highlight
+// TODO: don't end the sentence on a preposition
 
-<!-- // one or two paragraphs (max) about something cool we did in the code // just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc) -->
 
-### Bonus points: accessing the images on network
+
+### Bonus points: Accessing the Images through a Browser
 
 Link the images to the web directory of the Omega, and `uhttpd` will automatically serve them up.
 
@@ -250,7 +253,7 @@ Link the images to the web directory of the Omega, and `uhttpd` will automatical
 ln -s /tmp/run/mountd/mmcblk0p4/timelapse /www/timelapse
 ```
 
-To get to our images, go to http://<address_of_omega>/timelapse
+To get to our images, go to http://omega-abcd/timelapse in your browser. Remeber to replace `omega-abcd` with your Omega's unique name!
 
 
 ![The image files as they appear on a browser](./img/timelapse-camera-web-page.png)

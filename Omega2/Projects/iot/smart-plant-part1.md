@@ -14,14 +14,15 @@ We'll be using the Arduino Dock to read the analog measurement from a soil moist
 
 The complete project code can be found in Onion's [`smart-plant` repo on GitHub](https://github.com/OnionIoT/smart-plant).
 
+// TODO: have a multi-step project overview, can jack the info from the `intro/vol1/project-listing-03-iot.md`
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Onion Arduino Dock 2
-1. Onion OLED Expansion (optional but recommended)
-1. Soil Moisture Sensor
-1. 3x Male-to-Female Jumper Wires
+* Onion Omega2 or Omega2+
+* Onion Arduino Dock 2
+* Onion OLED Expansion (optional but recommended)
+* Soil Moisture Sensor
+* 3x Male-to-Female Jumper Wires
 
 ![smart plant ingredients](./img/smart-plant-p1-ingredients.jpg)
 
@@ -33,7 +34,7 @@ Follow these instructions to setup the Smart Plant project on your very own Omeg
 
 #### 1. Prepare
 
-You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
+You'll need to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
 ![Arduino Dock](./img/smart-plant-p1-setup.jpg)
 
@@ -131,7 +132,7 @@ Let's run the code!
 python /root/smart-plant/smartPlant.py --oled
 ```
 
-The program will run and collect a moisture level measurement through the Arduino Dock about once a minute and displayed on the command line as well as the OLED Expansion:
+The program will run and collect a moisture level measurement through the Arduino Dock about once a second. The measurement will be displayed on the command line as well as the OLED Expansion:
 
 ```
 root@Omega-F11D:~# python /root/smart-plant/smartPlant.py --oled
@@ -185,6 +186,8 @@ Hit 'ctrl+c' to end the program. You'll notice that the OLED will change so that
 
 To make sure your plant is always smart, we can configure the system so that the smart plant program runs whenever the Omega boots up.
 
+// TODO: let's change this so that we use init.d instead. Create a `init.d/smart-plant` file in the repo and have it launch the command that's mentioned below. Update the text to reflect this
+
 Open the `/etc/rc.local` file using the Vi editor: `vi /etc/rc.local`. Hit `i` and paste in the command we used to launch the smart plant program:
 
 ```
@@ -198,5 +201,6 @@ Try rebooting your Omega (enter `reboot` in the command line), and you'll see th
 
 ### Code Highlight
 
-// one or two paragraphs (max) about something cool we did in the code
-//	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc)
+// TODO: can write about:
+// * communicating with the microcontroller with serial
+// * the use of getopt to read command line arguments

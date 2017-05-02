@@ -2,9 +2,13 @@
 
 This project will allow you to send weather data to IBM's Watson IoT cloud platform, where you can view it on the web!
 
-// TODO: needs to mention what specific weather data is being collected
+// TODO: needs to mention what specific weather data is being collected and how we're collecting it
+
+// TODO: link to Watson IoT
 
 ![IBM Watson weather station](./img/weather-station-populated-visualization.png)
+
+// TODO: let's collect data for several hours and display that
 
 ### Overview
 
@@ -12,22 +16,22 @@ This project will allow you to send weather data to IBM's Watson IoT cloud platf
 
 **Time Required:** 40 minutes
 
-We'll be using the Python Serial module to periodically send commands to the Arduino Dock, which will then read the temperature and humidity from a sensor. The Omega will then read that data back and send it to IBM Watson, where you can visualize the data in real time! We will then automate the project to run when the Omega is turned on.
+We'll be using the [Python pySerial module](https://pythonhosted.org/pyserial/) to periodically send commands to the Arduino Dock, which will then read the temperature and humidity from a sensor. The Omega will then read that data back and send it to IBM Watson, where you can visualize the data in real time! We will then automate the project to run automatically when the Omega is turned on.
 
-The device code can be found in Onion's [`iot-weather-station` repo on GitHub](https://github.com/OnionIoT/iot-weather-station), while the Arduino Dock sketch can be found in the Examples of the [Onion Arduino Library](https://github.com/OnionIoT/Onion-Arduino-Library)
+The device code can be found in Onion's [`iot-weather-station` repo on GitHub](https://github.com/OnionIoT/iot-weather-station), while the Arduino Dock sketch can be found in the Examples of the [Onion Arduino Library](https://github.com/OnionIoT/Onion-Arduino-Library).
 
 
 ### Ingredients
 
-1. Onion Omega2+
+* Onion Omega2+
     * or Omega2 standard booting from a USB storage device with at least 16 MB of free memory; see [Booting From External Storage](https://docs.onion.io/omega2-docs/boot-from-external-storage.html)
     * For convenience, this tutorial will assume you are using an Omega2+.
-1. Arduino Dock R2
-1. Breadboard
-1. DHT22 temperature + humidity sensor
-1. 10kΩ resistor
-1. M-M jumper wires
-1. (Optional) M-F jumper wires
+* Arduino Dock R2
+* Breadboard
+* DHT22 temperature + humidity sensor
+* 10kΩ resistor
+* M-M jumper wires
+* (Optional) M-F jumper wires
 
 ### Step-by-Step
 
@@ -66,7 +70,9 @@ In the above setup, two 5.1kΩ resistors were used in series to achieve the 10k�
 
 ![optional wires](./img/weather-station-optional-wires.jpg)
 
-#### 3. Download the Software on the Omega
+#### 3. Download the Project Code on the Omega
+
+// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
 
 The code for this project can be found in Onion's [iot-weather-station repo](https://github.com/OnionIoT/iot-weather-station) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
 
@@ -80,6 +86,12 @@ Now enter the repo directory and run `install.sh` to install the required packag
 cd iot-weather-station
 sh install.sh
 ```
+
+// TODO: include a '>' section that explains what the install.sh script actually does
+// TODO: perhaps give an explanation that this will take some time (give a range) and that they should launch the script and go make a lemonade or something
+
+
+// TODO: split this next part into its own step
 
 Then get the Omega's MAC address for use with Watson by running the `watsonHelper.py` script:
 
@@ -100,11 +112,15 @@ Enter this Device ID on the IBM Bluemix website when registering this device on 
 Don't forget to add your Organization ID, Device Type, and Authorization Token to the device.cfg file!
 ```
 
+// TODO: for this type of instruction, it's probably easiest if you screenshot your Omega terminal output and draw a circle around the mac address
+
 Copy or write down the MAC address underneath "Device ID" for later.
 
 #### 4. Flash the Arduino Code
 
 On your computer using the Arduino IDE, install the `Adafruit Unified Sensor` and `DHT sensor library` libraries from the Library Manager by following [this guide](https://www.arduino.cc/en/Guide/Libraries) guide on the Arduino website.
+
+// TODO: let's make the Onion Arduino Library an official arduino library that can be installed like the libraries above. Then we can include screenshot based guides on how to install all 3 libraries using the arduino ide (let's hold on to this till the very end, ie do everything else for the project book and then come back to this)
 
 Then install the Onion Arduino Library by doing the following:
 
@@ -116,6 +132,8 @@ Flash the weather station sketch to the Arduino Dock by doing the following:
 
 1. Click on `File > Examples > Onion > weatherStation` to open the weather station sketch.
 1. Flash it to the Arduino Dock by following the instructions in the [Arduino Dock guide](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html).
+
+// TODO: see smart-plant-p1, let's try to replicate as much of that flashing the arduino sketch section as we can
 
 #### 5. Setup the Omega on the IBM Watson IoT Platform
 
@@ -156,6 +174,8 @@ If you're having difficulties in this section, follow these two developer recipe
 
 ![device summary](./img/weather-station-device-summary.png)
 
+// TODO: for the above photo, take a new screenshot that shows the same mac address shown in the step above
+
 You should see a card containing your Organization ID, Device ID, and more. Don't close this card until you've recorded the token somewhere, because there's no way to view the authentication token for this device again! Take a look at the sample card below:
 
 ![device credentials](./img/weather-station-device-credentials.png)
@@ -168,6 +188,8 @@ On the Omega, open the `device.cfg` file for editing and replace the placeholder
 | Device ID            | YOURDEVICEID |
 | Authentication Token | YOURTOKEN    |
 
+// TODO: include a screenshot of the device.cfg on your Omega
+
 ##### Remaining steps
 
 "Step 5 - Generate API Keys" and onwards are not necessary for this project.
@@ -176,6 +198,9 @@ On the Omega, open the `device.cfg` file for editing and replace the placeholder
 
 Follow the steps in [IBM's guide to configuring cards in Watson](https://developer.ibm.com/recipes/tutorials/configuring-the-cards-in-the-new-watson-iot-dashboard/) with the additional information we have provided below:
 
+// TODO: include a screenshot of the blank board
+
+// TODO: find a way to very explicitly communicate that this corresponds to step two in the guide above
 ##### Step 2 - Overview to Boards & Cards
 
 * You can make your own board to show the collected data from the sensor. In this example, we've called it `Weather Station`.
@@ -192,7 +217,7 @@ Follow the steps in [IBM's guide to configuring cards in Watson](https://develop
 * We recommend using an XL line chart size to be able to see enough data over time.
 * Set the title to "History"
 
-You can also add a Value card to clearly display the last measurement values.
+You can also add a Value card to clearly display the most recent measurement values.
 
 * When adding the card, click on "Value" as the type.
 * Use a M size chart to display both temperature and humidity at the same time.
@@ -226,13 +251,17 @@ cp weather-station /etc/init.d
 /etc/init.d/weather-station enable
 ```
 
+// TODO: in the repo, move the weather-station script into a directory called init.d, so that it's super explicit what it's for
+
 Reboot the Omega, and you will see the dashboard automatically being populated with data while the command line is available for you to use!
+
+// TODO: add a '>' section that the script we placed in `/etc/init.d` registers our weather station python script with procd, the process management daemon of the system (note: this should be a separate section since we're likely to reuse it in other projects)
 
 ### Code Highlight
 
 This project makes use of two main interfaces: the Arduino Dock and the IBM Watson IoT platform.
 
-The Arduino Dock sketch is set to poll the DHT sensor only when an `r` character is sent over the serial bus.
+The Arduino Dock sketch is set to read data from the DHT sensor only when an `r` character is sent over the serial bus.
 
 ```c++
 if (Serial.available() > 0) {
