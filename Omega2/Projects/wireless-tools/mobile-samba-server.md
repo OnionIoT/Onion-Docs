@@ -1,8 +1,8 @@
 ## Mobile Network File Server {#network-file-server}
 
-Being a network-based distribution, LEDE has packages for Samba - a file sharing server. So by plugging in a USB storage device, you can turn your Omega into a portable network file server!
+The Omega's firmware has packages available for a file sharing server program called Samba. By plugging in a USB storage device, you can turn your Omega into a mobile network file server!
 
-TODO: update this intro, highlighting the fact that it's a mobile network file server
+<!-- DONE: update this intro, highlighting the fact that it's a mobile network file server -->
 
 ### Overview
 
@@ -16,18 +16,20 @@ This project will walk through how to set up an external storage device, configu
 ### Ingredients
 
 1. Onion Omega2 or Omega2+
-1. Any Onion Dock to power the Omega (we really like the Mini Dock for this purpose)
+1. Any Onion Dock to power the Omega
+    * We like the Mini Dock if you plan to keep it one place.
+    * We like the Power Dock if you plan to make this a truly portable network storage device.
 1. A USB storage device or microSD (for Omega2+)
 
-// TODO: mention that:
+<!-- // DONE: mention that:
 // * we like the Mini Dock for this project if you plan to keep it in one place
-// * we like the Power Dock if you plan to make this a truly portable network storage
+// * we like the Power Dock if you plan to make this a truly portable network storage -->
 
 ### Step-by-Step
 
-// TODO: whoa... NAS? this came out of nowhere!
+<!-- // DONE: whoa... NAS? this came out of nowhere! -->
 
-Let's turn your Omega into a portable NAS!
+Let's turn your Omega into a portable network attached storage, or NAS for short!
 
 #### 1. Set up your Omega to connect to your router
 
