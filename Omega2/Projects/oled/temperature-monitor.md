@@ -72,7 +72,9 @@ The `ubidots-client` package will allow us to push and pull data from the Ubidot
 
 #### 3. Download the Project Code
 
-// TODO: don't really dig redirecting them to an article on installing Git, should install give in the previous step and then have them clone the repo to their root directory
+// TODO: don't really dig redirecting them to an article on installing Git, should install git in the previous step and then have them clone the repo to their root directory
+
+// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
 
 // TODO: the name and link for the github repo are wrong...
 

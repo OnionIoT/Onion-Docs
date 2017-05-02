@@ -70,7 +70,9 @@ In the above setup, two 5.1kÎ© resistors were used in series to achieve the 10kÎ
 
 ![optional wires](./img/weather-station-optional-wires.jpg)
 
-#### 3. Download the Software on the Omega
+#### 3. Download the Project Code on the Omega
+
+// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
 
 The code for this project can be found in Onion's [iot-weather-station repo](https://github.com/OnionIoT/iot-weather-station) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
 

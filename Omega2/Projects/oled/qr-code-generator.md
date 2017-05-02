@@ -50,6 +50,9 @@ opkg install git git-http python-light python-codecs pyOledExp
 
 #### 3. Downloading the Code
 
+// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
+// note: can still reuse most of the text from here, don't just copy paste from the smart plant
+
 Now we need to download the Python code from GitHub that actually does all the work. [Connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and run the following command:
 
 ```

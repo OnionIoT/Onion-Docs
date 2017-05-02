@@ -88,6 +88,7 @@ Insert your printer into the base from the top so that the 5-pin cable is visibl
 
 // TODO: missing step numbering
 #### Assemble the Omega
+// TODO: need a more descriptive step title
 
 Plug the Omega into the Mini Dock. The pins should push the wires into the Dock and make contact as the Omega is inserted.
 
@@ -103,6 +104,7 @@ Now plug in the 5V power supply into the barrel jack and turn the switch on the 
 #### Download the Code
 
 // TODO: again, not a huge fan of pointing them to an article on how to install git, maybe just include a step to install git?
+// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
 
 The code for this project is all done and can be found in Onion's [iot-thermal-printer repo](https://github.com/OnionIoT/iot-thermal-printer) on GitHub.
 
