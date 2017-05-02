@@ -99,7 +99,7 @@ We'll wire up the Water Pump with the Relay Expansion before connecting the Rela
 >To set up the terminals on the Relay Expansion, turn the screw on the terminal counterclockwise until the metal clamp inside is sitting a bit less than halfway in the bottom of the housing, not too much or the screw might pop out.
 >The screw terminal on the barrel jack adapter is a bit different, it will rise and sink depending on the clamp position. When the screw is roughly flush with the top, it is open. To close it, turn clockwise until the screw sinks to about halfway, or until it becomes difficult to continue turning.
 
-// TODO: retake these 3 photos so that all of the components are in the same place for each photo
+// TODO: photo: retake these 3 photos so that all of the components are in the same place for each photo
 
 1. Run a jumper wire from the **negative terminal** of the DC Barrel Jack Adapter to the **negative terminal** of the Water Pump
 

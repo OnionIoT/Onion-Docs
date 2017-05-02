@@ -1,8 +1,5 @@
 ## IoT Lock {#internet-lock-p1}
 
-
-// TODO: update this title
-
 Keys are so last year. With the internet, we can unlock things with our keyboard!
 
 
@@ -10,15 +7,14 @@ Here's a setup we've placed in Onion HQ:
 
 ![The omega controlling it](./img/door-lock-p1-1.jpg)
 
-// TODO: Retake this photo so that it matches the setup described in the article
+// TODO: PHOTO: Retake the above photo so that it matches the setup described in the article (NO SERVO EXPANSION)
+
 
 ![The lock itself](./img/door-lock-p1-2.jpg)
 
 >Note: in fact, keys are still very useful. We still recommend you to use a normally-open lock and a key-lock in conjunction, as power failure will result in a fail-safe backup instead of locking you out.
 
-<!-- DONE: Disclaimer about security and how this is a project, not a full-blown home security solution. Use your own judgement on applying this project to securing your belongings, residence, etc. User accepts all risk and Onion cannot be held responsible. -->
-
-**Disclaimer: This security-related project is just that: a *project*. This is not intended to be a fully-featured nor robust home security solution. Use your own judgment when applying this project to securing your belongings, property, etc. By doing this project, you accept all risk and Onion cannot be held responsible for any damages or misuse.**
+**Disclaimer: This security-related project is just that, a *project*. This is not intended to be a fully-featured or robust home security solution. Use your own judgment when applying this project to securing your belongings, property, etc. By doing this project, you accept all risk and Onion cannot be held responsible for any damages or misuse.**
 
 ### Overview
 
@@ -26,28 +22,20 @@ Here's a setup we've placed in Onion HQ:
 
 **Time Required:** 1.5 hours
 
-<!-- // go into some detail here about how we're going to be implementing the project //	eg. which programming language we'll be using, APIs //	include links to any api or module references -->
-
-To accomplish this, we'll use the HTTP server on the Omega to listen for the unlock signal through a request. When it's set up, we'll be able to to unlock by accessing a web page through a phone, a laptop, or a kerosene powered toaster.
+To accomplish this, we'll use the HTTP server, `uhttpd` on the Omega to listen for the unlock signal through a request and `cgi-bin` scripts to control the lock. When it's set up, we'll be able to to unlock by accessing a web page through a phone, a laptop, or a kerosene powered toaster.
 
 
 ### Ingredients
 
-<!-- // a numbered list of all physical items used to make this project -->
-<!-- //	all items should be linked to a place online where they can be bought -->
-<!-- //	the Onion items should be linked to their corresponding Onion store page -->
-
-1. Onion Omega2 or Omega2+
-1. Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
-1. Onion Relay Expansion
-1. An electric lock *
-1. Lock mounting tools - screws, bolts, extra wires, and appropriate tools
-1. Appropriate power supply for your lock
+* Onion Omega2 or Omega2+
+* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
+* Onion Relay Expansion
+* An electric lock *
+* Lock mounting tools - screws, bolts, extra wires, and appropriate tools
+* Appropriate DC power supply for your lock
     * we found 12V/1A DC supply to be compatible with most locks
 
 \* We recommend a simple power locking, normally unlocked lock so you don't get locked out when there's no power.
-
-<!-- // DONE: picture of ingredients all together -->
 
 Here's what our list looked like - minus the mounting tools and parts.
 ![The components we need](./img/door-lock-p1-ingredients.jpg)
@@ -56,9 +44,7 @@ Here's what our list looked like - minus the mounting tools and parts.
 
 Our instructions will be based on the recommended lock type. If you have an advanced electric lock with multiple settings, you can adjust the instructions as you see fit.
 
-<!-- // each step should be simple -->
-
-#### 1. Prepare the ingredients
+#### 1. Prepare
 
 To get started, we need to set up the Omega and our lock.
 
@@ -66,53 +52,94 @@ First we need an Omega2 ready to go. If you haven't already, complete the [First
 
 Plug in the Relay Expansion, and that's it for the Omega.
 
-Next, read up on the operation of the lock of choice. Our code is based of a simple on/off switch system so it helps to know if it will work with the chosen lock.
+// TODO: PHOTO: add a photo of the relay expansion plugged into the Expansion Dock
 
 #### 2. Test the lock
 
+Next, read up on the operation of the lock of choice. Our code is based of a simple on/off switch system so it helps to know if it will work with your chosen lock.
+
 It's a good idea to start with a simple circuit to test the hardware. Using a two-wire lock, we'll connect it to our power supply through the Relay Expansion.
 
-* First, connect the `GND` wire (usually the black wire) of the lock to the ground terminal of your power supply.
-* Next, connect the power wire (red) to the 'OUT' terminal of Channel 0 on the Relay Expansion.
-* Finally, connect the power terminal of your supply to the 'IN' terminal of Channel 0 on the Relay Expansion
+>To set up the terminals on the Relay Expansion, turn the screw on the terminal counterclockwise until the metal clamp inside is sitting a bit less than halfway in the bottom of the housing, not too much or the screw might pop out.
+>The screw terminal on the barrel jack adapter is a bit different, it will rise and sink depending on the clamp position. When the screw is roughly flush with the top, it is open. To close it, turn clockwise until the screw sinks to about halfway, or until it becomes difficult to continue turning.
 
-<!-- // DONE: lock+relay+omega picture -->
+* First, connect the **negative (ground) terminal** (usually the black wire) of the lock to the **negative (ground) terminal** of the power supply.
+* Next, connect the **positive terminal** of your supply to the **IN** screw terminal of Channel 0 on the Relay Expansion
+* Finally, connect the **positive (power) terminal** (usually red) to the **OUT** screw terminal of Channel 0 on the Relay Expansion.
+
 ![here's our testing circuit](./img/door-lock-p1-test-circuit.jpg)
 
 
-Once the lock is wired, connect to the Omega's [command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal) and then try to switch the relay:
+Once the lock is wired, connect to the Omega's [command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal) and then switch on the relay:
 
 ```
-relay-exp -i 0 1
+relay-exp -i 0 on
 ```
 
-If it works, you're all set to continue!
+If the lock's state changes, you're all set to continue! Before proceeding, Yyu can disable the lock with:
 
-#### 4. Plan out the mounting
+```
+relay-exp -i 0 off
+```
+
+
+#### 4. Plan out the Lock Placement
 
 Before getting to software, you should make sure the lock chosen can be mounted to the door with good fit. Take some measurements and plan out the wiring and placement of the Omega/supply so we can quickly follow through once the software is ready to go.
 
+*Measure twice, cut once.*
 
-#### 5. Setting up the code
 
-The code used to handle this setup can be found in the [iot-door-lock repository](https://github.com/OnionIoT/iot-door-lock) on GitHub. Download the repo and copy the contents of the `www` folder to the `/www` directory on your Omega, and you should be good to go!
-
->If your lock has more modes/controls, feel free to take a look at the code (specially `door.sh`) and make changes that control your lock more effectively.
-
-#### 6. Mount the lock
+#### 5. Mount the lock
 
 Now that the pieces work together, it's time to mount your lock! Keep all the components powered off, and take the testing rig apart
 
-<!-- // DONE: example picture of mounting a lock -->
 ![Our wiring setup](./img/door-lock-p1-mounted.jpg)
 
-TODO: retake this photo so there is little to no chinese writing in the background, we want to show off the fact that we're a north american company
+// TODO: photo: retake this photo so there is little to no chinese writing in the background, we want to show off the fact that we're a north american company
 
 >At Onion HQ, we've extended the wiring of the lock and routed it to an Omega and power supply right next to the door, but depending on the situation, you may have to do something completely different.
 
-#### 5. Automatically lock/unlock
+#### 6. Download the Project Code
 
-We've also included a crontab example (`crontab.txt`) in the repo that sets up the lock to turn on and off at 11AM and 6PM respectively.
+The code for this project can be found in Onion' [`iot-door-lock` repository](https://github.com/OnionIoT/iot-door-lock) on GitHub. We'll use [`git` to download the code to your Omega](https://docs.onion.io/omega2-docs/installing-and-using-git.html): navigate to the `/root` directory on the Omega, and clone the GitHub repo:
+
+```
+opkg update
+opkg install git git-http ca-bundle
+cd /root
+git clone https://github.com/OnionIoT/iot-door-lock.git
+```
+
+>If your lock has more modes/controls, feel free to take a look at the code (specially `door.sh`) and make changes that control your lock more effectively.
+
+
+Now copy the contents of the `www` directory of the repo to the `/www` directory on your Omega, and you should be good to go!
+
+```
+cp -r iot-door-lock/www/ www/
+```
+
+// TODO: confirm this copy command works
+
+
+#### 7. Using the IoT Lock
+
+TODO: Need a step on how to access the lock, include a screenshot of the webpage, mention that the omega name works on iphone but not on android (have to use the ip address)
+
+
+#### Bonus: Automatically Lock/Unlock
+
+We've also included a crontab example, `crontab.txt`, in the repo that sets up the lock to turn on and off at 11AM and 6PM respectively:
+
+```
+0 11 * * 1,2,3,4,5 sh /www/cgi-bin/door.sh unlock
+0 18 * * 1,2,3,4,5 sh /www/cgi-bin/door.sh lock
+#
+```
+
+<!-- future TODO: pull the contents of this file from github and then just render it here inside the backticks -->
+
 
 Here's a quick overview of how it works:
 
@@ -131,11 +158,6 @@ Here's a quick overview of how it works:
 ```
 
 
-TODO: need a section on using the
 
-<!-- ### Bonus Points! -->
 
-<!-- // one or two paragraphs (max) about something cool we did in the code -->
-<!-- //	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc) -->
-
-<!-- // TODO: Bonus points -->
+// TODO: teaser on the next step of the project
