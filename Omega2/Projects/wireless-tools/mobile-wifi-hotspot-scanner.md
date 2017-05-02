@@ -1,9 +1,9 @@
 ## Mobile WiFi Network Scanner {#wifi-network-scanner}
 
-In this project, we'll be using the Omega to scan local WiFi networks, record the GPS coordinates where they're found, display the networks with the strongest signal on the OLED Expansion, and save the data to a spreadsheet file.
+The Omega can scan nearby WiFi networks and report information such as their SSID, encryption type, and signal strength. In this project, we'll be using the Omega to scan local WiFi networks, record the GPS coordinates where they're found, display the networks with the strongest signal on the OLED Expansion, and save the rest of the data to a spreadsheet file.
 
-// TODO: before this intro sentence, add an intro that's a 10,000 ft description of the project. then it naturally leads into the existing sentence.
-// Something like what we have in the project listing document: Collect and display the location, signal strength, and more of WiFi networks in your surrounding area. Take it on the go as well!
+<!-- // DONE: before this intro sentence, add an intro that's a 10,000 ft description of the project. then it naturally leads into the existing sentence.
+// Something like what we have in the project listing document: Collect and display the location, signal strength, and more of WiFi networks in your surrounding area. Take it on the go as well! -->
 
 ![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-outside.jpg)
 
@@ -106,7 +106,7 @@ If the GPS Expansion is able to lock onto a satellite signal, you'll see the tim
 
 The Omega will then save data about all of the discovered networks to a file called `wifiData.csv`. You can then import this into a spreadsheet or navigation program for mapping later!
 
-// TODO: need a close-up that clearly shows the expected output on the OLED
+// TODO: photo; need a close-up that clearly shows the expected output on the OLED
 
 ##### Unable to Lock Signal
 
@@ -114,12 +114,53 @@ If the GPS Expansion cannot lock onto a satellite, you'll see an error message o
 
 #### 6. Code Highlight
 
-This project uses the `ubus` system utility on the Omega to call certain services and functions as if you were sending data to a web API. The basic syntax goes like this:
+The `ubus` system utility is a key part of the firmware on which the Omega is based. It allows you to call services and functions on the Omega as if you were sending data to a web API. The basic syntax goes like this:
 
 ```
 ubus call (service) (function) '{(JSON parameters)}'
 ```
 
-The WiFi scanning and GPS functions both are shorthand for these `ubus` calls. You can see how they work in the `helpers.py` and `ubusHelper.py` modules.
+The WiFi and GPS scanning functions are available as `ubus` functions so that they can be called by any program.
 
-// TODO: expand on this a little more, give some context as to what ubus is and how we use it in the program
+You can see how they work in the `ubusHelper.py` module:
+
+```python
+# basics of running a command
+# returns a dict as ubus functions return json objects
+def runCommand(command):
+    output, err = shellHelper.runCommand(command)
+    responseDict = json.loads(output)
+    return responseDict
+
+# often used commands
+# add more if you need
+def call(args):
+    command = ["ubus", "call"]
+    command.extend(args)
+    return runCommand(command)
+```
+
+and `ubusHelper.py` module:
+
+```python
+# scan wifi networks in range
+# returns a list of wifi dictionaries
+def scanWifi():
+    device = json.dumps({"device": "ra0"})
+    args = ["onion", "wifi-scan", device]
+    return ubus.call(args)["results"]
+
+# read the GPS expansion
+# returns a dictionary with gps info
+def readGps():
+    args =["gps", "info"]
+    response = ubus.call(args)
+    
+    # check if the GPS is locked
+    if "signal" in response and response["signal"] == False:
+        return False
+    # else return the data
+    return response
+```
+
+<!-- // DONE: expand on this a little more, give some context as to what ubus is and how we use it in the program -->
