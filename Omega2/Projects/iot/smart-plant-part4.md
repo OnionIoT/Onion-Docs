@@ -31,7 +31,7 @@ The complete project code can be found in Onion's [`smart-plant` repo on GitHub]
 
 ### Ingredients
 
-We'll need all of the same materials as in the previous part:
+We'll need all of the same materials as in the previous parts:
 
 1. Onion Omega2 or Omega2+
 1. Arduino Dock 2

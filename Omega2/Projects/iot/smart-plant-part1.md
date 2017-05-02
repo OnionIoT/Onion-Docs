@@ -204,3 +204,6 @@ Try rebooting your Omega (enter `reboot` in the command line), and you'll see th
 // TODO: can write about:
 // * communicating with the microcontroller with serial
 // * the use of getopt to read command line arguments
+
+
+// TODO: add a teaser for the next part of the project

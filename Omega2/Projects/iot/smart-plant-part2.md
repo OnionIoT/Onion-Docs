@@ -1,6 +1,6 @@
 ## Smart Plant - Visualizing Plant Data {#smart-plant-p2}
 
-This is the second major part of the smart plant project! [Last time](#smart-plant-p1), we setup an Omega to measure the soil moisture level in one of your plants. This part involves sending that data to a cloud service so we can visualize it and open the door to even more features. The cloud service we will be using is [Losant](https://www.losant.com/)
+This is the second major part of the smart plant project! [Last time](#smart-plant-p1), we setup an Omega to measure the soil moisture level in one of your plants. This part involves sending that data to a cloud service so we can visualize it and open the door to even more possibilities. The cloud service we will be using is the [Losant IoT Platform](https://www.losant.com/).
 
 ![final result](./img/smart-plant-p2-7-dashboard-5-large-graph.png)
 
@@ -29,11 +29,13 @@ The complete project code can be found in Onion's [`smart-plant` repo on GitHub]
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Onion Arduino Dock 2
-1. Onion OLED Expansion (optional but recommended)
-1. Soil Moisture Sensor
-1. 3x Male-to-Female Jumper Wires
+The same as the first part of the project:
+
+* Onion Omega2 or Omega2+
+* Onion Arduino Dock 2
+* Onion OLED Expansion (optional but recommended)
+* Soil Moisture Sensor
+* 3x Male-to-Female Jumper Wires
 
 ![smart plant ingredients](./img/smart-plant-p1-ingredients.jpg)
 
@@ -43,7 +45,7 @@ The complete project code can be found in Onion's [`smart-plant` repo on GitHub]
 
 Follow these instructions to set this project up on your very own Omega!
 
-<!-- TODO: enumerate the steps correctly -->
+// TODO: enumerate the steps correctly (when you're done all of the other TODOs)
 
 #### 1. Prepare
 
@@ -54,13 +56,15 @@ You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide]
 
 This project builds on the first part of the Smart Plant project. If you haven't already completed the [first part](#smart-plant-p1), go back and do it now!
 
+![smart plant part1](./img/smart-plant-p1.jpg)
+
 #### 1. Register for Losant
 
 Navigate to [Losant.com](https://www.losant.com/) and sign up for their free sandbox tier.
 
 #### 1. Create a Losant Application
 
-You'll first need to create a Losant **Application** to be able to use their cloud services. For more details see the [Losant Application Documentation](https://docs.losant.com/applications/overview/).
+You'll first need to create a Losant **Application** to be able to use their IoT Platform. For more details see the [Losant Application Documentation](https://docs.losant.com/applications/overview/).
 
 Click the `Applications` Menu, and then `Create Application`:
 
@@ -77,15 +81,17 @@ Ok, now your application is created
 
 Now that you have an Application, you'll need to create a **Device**. A device on Losant can send data to the cloud and receive commands from the cloud. For more details see the [Losant Device Documentation](https://docs.losant.com/devices/overview/).
 
-Click the `Devices` menu, and `Create a Blank Device`:
+Click the `Devices` menu, and then `Create a Blank Device`:
 
 ![blank devices](./img/smart-plant-p2-1-device-0-blank-devices.png)
+
+// TODO: in the above image, we should circle the Create a Blank Device button
 
 Give your device a name, we found it easiest to use the name of the Omega we're using to measure the soil moisture levels. Make sure the `Device Type` is set to **`Standalone`**:
 
 ![create device](./img/smart-plant-p2-1-device-1-create-device.png)
 
-Scroll down and add a `Number` attribute named `moisture` to the device. This attribute will hold the soil moisture level coming from your Omega:
+Scroll down and add a `Number` attribute named `moisture` to the device. This attribute will hold the soil moisture level data coming from your Omega:
 
 ![set device attributes](./img/smart-plant-p2-1-device-2-device-attributes.png)
 
@@ -96,7 +102,7 @@ Hit `Create Device` and your device will be ready to go. Note the Device ID on t
 
 #### 1. Create a Losant Access Key
 
-To actually get your Omega to communicate with Losant, it will need to authenticate with Losant. To carry out that authentication, we'll use an Access Key. For more details see the [Losant Access Key Documentation](https://docs.losant.com/applications/access-keys/).
+To actually get your Omega to communicate with Losant, it will need to authenticate. To carry out that authentication, we'll use an Access Key. For more details see the [Losant Access Key Documentation](https://docs.losant.com/applications/access-keys/).
 
 Click the `Security` Menu and then the `Add Access Key` button:
 
@@ -112,7 +118,7 @@ In either case, hit the `Create Access Key` button:
 
 ![key access restrictions](./img/smart-plant-p2-2-access-key-2-create-access-key.png)
 
-The access key and secret have now been generated! **Make sure to note them both down because this will be the only time you will get to see the Secret. We recommend downloading to a file:**
+The access key and secret have now been generated! **Make sure to note them both down because this will be the only time you will get to see the Secret! We recommend downloading to a file.**
 
 ![key and secret](./img/smart-plant-p2-2-access-key-3-access-key-view.png)
 
@@ -133,11 +139,11 @@ Type `device` into the search bar, then click and drag the `Device` block onto t
 
 ![device block search](./img/smart-plant-p2-3-workflow-1-device.png)
 
-Click on the new `Device` block and scroll down in the right-side toolbar to select which of your devices will be associated with this `Device` block:
+Click on the new `Device` block and scroll down in the right-side toolbar to select which of your devices will be associated with this `Device` block. You'll want to select the device you just created:
 
 ![device block setup](./img/smart-plant-p2-3-workflow-2-device.png)
 
-Now, let's add a Debug box so we can view the data coming from our device. Type `debug` into the search box:
+Now, let's add a `Debug` box so we can view the data coming from our device. Type `debug` into the search box:
 
 ![debug block search](./img/smart-plant-p2-3-workflow-4-debug.png)
 
@@ -183,13 +189,15 @@ The `paho-mqtt` module provides MQTT functionality, and `losant-mqtt` provides a
 
 #### 1. Setup Losant Credentials on Omega
 
-In order to connect and authenticate with Losant, the Smart Plant program will need to know the Device ID of your Losant Device, your Access Key and Secret.
+In order to connect and authenticate with Losant, the Smart Plant program will need to know the Device ID of your Losant Device, as well as your Access Key and Secret.
 
 Look at your device on Losant to get the Device ID:
 
 ![device id](./img/smart-plant-p2-1-device-3-device-created.png)
 
 The Access Key and Secret you should have noted down somewhere when you created the Access Key. If you don't have the Access secret noted down somewhere, you'll have to create a new Access Key!
+
+// TODO: the losant.json file is now part of the smart-plant repo, update the below to reflect that
 
 Now on your Omega, in the `/root/smart-plant` directory, create a file to store your Losant credentials. We named the file `losant.json`. The contents of the file are in [JSON format](http://www.json.org/) and should look like this:
 
@@ -202,6 +210,13 @@ Now on your Omega, in the `/root/smart-plant` directory, create a file to store 
 ```
 
 Copy the above to your Omega and populate it with your credentials.
+
+
+
+// TODO: since we changed the first part to setup an init.d script, we need to update this step
+// The new step should entail:
+//	* running `/etc/init.d/smart-plant stop`
+//		-> before putting this step in, confirm that it actually stops the existing python script instance on the Omega
 
 #### 1. Stop the Existing Program
 
@@ -234,11 +249,15 @@ Assuming your Losant credentials are valid, you should see your device come onli
 
 ![](./img/smart-plant-p2-5-test-0-device-online.png)
 
-Going to the workflow, we can take a look at the `Debug` block's Debug output to see the data coming form the Omega:
+Going to the workflow, we can take a look at the `Debug` block's Debug output to see the data coming from the Omega:
 
 ![](./img/smart-plant-p2-5-test-1-debug-message.png)
 
-If you look at the Python code, you'll see that what we send from the Omega is showing up in the debug windows:
+// TODO: update the above image:
+// * 'dbug code' should actually read 'debug data'
+// * circle the `data` part of the debug data read-out
+
+If you look at the Python code, you'll see that what we send from the Omega is showing up in the debug window on Losant:
 ```
 {
 	"data" {
@@ -249,6 +268,12 @@ If you look at the Python code, you'll see that what we send from the Omega is s
 
 Hit `ctrl+c` to stop the program.
 
+
+
+// TODO: since we changed the first part to setup an init.d script, we need to update this step
+// This step should entail:
+//	* updating /etc/init.d/smart-plant to have the OPT argument include `--losant /root/smart-plant/losant.json`
+//	* restarting the process: `/etc/init.d/smart-plant restart`
 
 #### 1. Update Program Run at Boot
 
@@ -283,7 +308,7 @@ Give the block a Name and set the time range to `60 minutes` and one point every
 
 ![setup block](./img/smart-plant-p2-6-dashboard-2-block-setup.png)
 
-Scroll down to select your device from the Device IDs dropdown and the `moisture` attribute:
+Scroll down to select your device from the Device IDs dropdown. Then select `moisture` from the Attribute dropdown:
 
 ![](./img/smart-plant-p2-6-dashboard-3-block-data.png)
 
@@ -314,7 +339,7 @@ Hit `Save Block` and check out the chart now:
 
 ##### Changing the Time Range
 
-Seeing the last hour of our plant's moisture level isn't too helpful, so let's change it to something more useful!
+Seeing just the last hour of our plant's moisture level isn't too helpful, so let's change it to something more useful!
 
 Hover over the chart and click the Gear icon. Adjust the Graph's Time Range to `24 hours` or more.
 
@@ -329,7 +354,5 @@ If you do want to display more data, it would be useful to have a larger chart! 
 ![large chart](./img/smart-plant-p2-7-dashboard-5-large-graph.png)
 
 
-### Code Highlight
 
-// one or two paragraphs (max) about something cool we did in the code
-//	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc)
+// TODO: add a teaser for the next part of the project
