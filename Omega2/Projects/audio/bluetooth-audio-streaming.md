@@ -1,12 +1,10 @@
 ## Bluetooth Speaker {#bluetooth-audio-speaker}
 
-The Omega can communicate with other devices using the Bluetooth Low Energy wireless protocol. In this project, we're going to turn it into a Bluetooth speaker that you can control from your phone or tablet!
-
-// TODO: make it super explicit that we're going to be actually listening to audio!
+The Omega can communicate with other devices using the Bluetooth Low Energy wireless protocol. In this project, we're going to turn it into a Bluetooth speaker that you can play music and control it from your phone or tablet!
 
 ![complete](./img/bluetooth-audio-complete.jpg)
 
-TODO: retake this photo so that the Omega is the focus, nicer background
+TODO: PHOTO: retake this photo so that the Omega is the focus, nicer background, make it nice and hip like (./img/airplay-receiver-dope.png)
 
 ### Overview
 
@@ -18,18 +16,24 @@ We'll first install the necessary Bluetooth and audio drivers. Then we'll learn 
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Any Onion Dock with a USB host connector: Expansion Dock, Power Dock, Mini Dock, Arduino Dock R2
-1. Onion Bluetooth Expansion
-1. USB Audio Expansion, or any generic USB audio dongle
-1. USB hub with at least 2 ports
-1. Standard headphones or speakers with a 3.5mm audio jack
+* Onion Omega2 or Omega2+
+* Any Onion Dock with a USB host connector: Expansion Dock, Power Dock, Mini Dock, Arduino Dock 2
+	* We found the Power Dock especially useful since you can take it on the go!
+* Onion Bluetooth Expansion
+* USB Audio Expansion, or any generic USB audio dongle
+* USB hub with at least 2 ports
+* Standard headphones or speakers with a 3.5mm audio jack
 
 ### Step-by-Step
 
 Here's how to turn your Omega into a Bluetooth speaker!
 
-#### 1. Setup the Hardware
+
+#### 1. Prepare the Ingredients
+
+For this project, we'll need an Omega2 ready to go. If needed, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
+
+#### 2. Setup the Hardware
 
 1. Connect the Omega to the Dock.
 1. Plug in the USB hub to the large USB host port.
@@ -41,9 +45,9 @@ Here's how to turn your Omega into a Bluetooth speaker!
 After assembling all the components, turn on the Omega.
 
 
-#### 2. Install Software
+#### 3. Install Software
 
-Connect to the Omega's command line and install the necessary packages by running the commands below:
+[Connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal) and install the necessary packages by running the commands below:
 
 ```
 opkg update
@@ -53,7 +57,7 @@ opkg install bluez-libs bluez-utils pulseaudio-daemon pulseaudio-tools alsa-lib 
 * The `bluez` packages are for controlling the Bluetooth radio.
 * The `pulseaudio` and `alsa` packages are audio drivers for Linux.
 
-#### 3. Setting Up the `pulseaudio` daemon
+#### 4. Setting Up the `pulseaudio` daemon
 
 Run the following commands to initialize the daemon:
 
@@ -88,7 +92,7 @@ chmod 0777 /dev/snd/*
 
 before moving to the next step again.
 
-#### 4. Pairing the Omega to Your Bluetooth Device
+#### 5. Pairing the Omega to Your Bluetooth Device
 
 Check that your Bluetooth Expansion is properly detected by the Omega by running:
 
@@ -108,7 +112,7 @@ hciconfig hci0 sspmode enable
 hciconfig hci0 piscan
 ```
 
-Turn on Bluetooth on the device you wish to connect to the Omega. Then on the Omega, enter the `bluetoothctl` command to be taken into a new command prompt. Then run:
+Enable Bluetooth on the device you wish to connect to the Omega. Then on the Omega, enter the `bluetoothctl` command to be taken into a new command prompt. Then run:
 
 ```
 agent on
@@ -167,7 +171,7 @@ Your device should be listed. If you see nothing, try initiating the connection 
 
 ![check connections](./img/bluetooth-audio-cli-04.png)
 
-#### 5. Set Up Audio Streaming From the Device
+#### 6. Set Up Audio Streaming From the Device
 
 We will use a command called `pactl` to set up audio streaming from the Bluetooth connection to the USB Audio Expansion. First run:
 
@@ -187,8 +191,11 @@ pactl load-module module-loopback source=SOURCENAME sink=alsa_output.default rat
 
 The Omega is now ready to stream Bluetooth audio!
 
-##### 6. Using the Bluetooth Audio Streamer
+
+##### 7. Using the Bluetooth Audio Streamer
 
 Before plugging in your speaker, make sure the volume is set as low as possible. Then start playing music or audio on your device. Gradually turn up the volume on the speaker until you can hear it. And you're done!
 
 ![complete](./img/bluetooth-audio-complete.jpg)
+
+Enjoy your Omega-powered Bluetooth speaker!

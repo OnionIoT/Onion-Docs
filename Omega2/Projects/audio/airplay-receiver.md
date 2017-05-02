@@ -20,7 +20,7 @@ Reference configuration files can be found on Onion's [`audio-airplay-receiver` 
 ### Ingredients
 
 * Onion Omega2 or Omega2+
-* Onion Dock with USB connectivity
+* Any Onion Dock with a USB host connector: Expansion Dock, Power Dock, Mini Dock, Arduino Dock 2
 	* We found the Power Dock especially useful since you can take it on the go!
 * A USB audio device *
 * Headphones or a speaker
@@ -146,4 +146,4 @@ Play some tunes and enjoy your AirPlay-powered WiFi audio streaming brought to y
 
 ### Acknowledgements
 
-A big thank you to Mike Brady, who's work makes this possible. Mike keeps the [`shairport-sync` project](https://github.com/mikebrady/shairport-sync) alive!
+A big thank you to Mike Brady, who keeps the [`shairport-sync` project](https://github.com/mikebrady/shairport-sync) alive, making this project possible!
