@@ -99,32 +99,21 @@ Power the Arduino Dock:
 **WARNING: It is very important that you connect the 5V rail to your Arduino Dock. Accidentally using the 12V rail will for sure damage your Arduino Dock and Omega. Proceed at your own risk, but don't worry, if you follow the instructions, you'll be fine.**
 
 1. Connect the **5V `-` rail** to one of the Arduino Dock's `GND` pins
-// TODO: include a photo of this for sure
 1. Connect the **5V `+` rail** to the Arduino Dock `5V` pin
-
-Then 
 
 ![](./img/smart-plant-p5-wiring-04.jpg)
 
+Then plug in the OLED Expansion.
+
+![](./img/smart-plant-p5-wiring-05.jpg)
+
 #### 1. Provide Power
-
-Now the system is setup to be powered by just the 12V Power Supply, we just have to connect all the pieces!
-
-Plug in the Relay Expansion into the Expansion Header:
-
-// TODO: photo of the above
-
-You can then plug the OLED Expansion into the Relay Expansion:
-
-// TODO: photo of the above
 
 Now we provide power by connecting the 12V power supply to the DC Barrel Jack Adapter. Your Omega should now be booting.
 
 Revel in the fact that you've created a regulator circuit that can power your Omega as well as the 12V pump!
 
-
-
-
+// TODO: photo
 
 
 ### Code Highlight
