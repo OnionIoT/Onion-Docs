@@ -14,7 +14,15 @@ We'll be using the Arduino Dock to read the analog measurement from a soil moist
 
 The complete project code can be found in Onion's [`smart-plant` repo on GitHub](https://github.com/OnionIoT/smart-plant).
 
-// TODO: have a multi-step project overview, can jack the info from the `intro/vol1/project-listing-03-iot.md`
+In this project series, we'll be doing the following:
+
+1. Adding smarts to your plant by measuring it's soil moisture level
+1. Sending plant data to the Losant IoT Platform and check in on your plant from anywhere by looking at the nicely visualized data
+1. Updating the Losant workflow to notify you with a Tweet when your plant needs watering
+1. Adding a water pump to your setup and update the Losant workflow to automatically water your plant when it needs watering
+1. Updating the smart plant setup so the Omega and pump can be powered with a single supply
+
+<!-- // DONE: have a multi-step project overview, can jack the info from the `intro/vol1/project-listing-03-iot.md` -->
 
 ### Ingredients
 
@@ -65,7 +73,11 @@ If you don't already have it, install the [Arduino IDE](https://www.arduino.cc/e
 
 <!-- TODO: adding Onion Library to Arduino IDE needs to be linked to an article on how this can be accomplished  -->
 
-First we'll need to add the Onion Library to your Arduino IDE. Then we'll upload one of the example sketches from the library to the microcontroller on your Arduino Dock.
+First we'll need to add the Onion Library to your Arduino IDE. 
+
+
+
+Then we'll upload one of the example sketches from the library to the microcontroller on your Arduino Dock.
 
 Go to File -> Examples -> Onion -> Read Analog Value
 

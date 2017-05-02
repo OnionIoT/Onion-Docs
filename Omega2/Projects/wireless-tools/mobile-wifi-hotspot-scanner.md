@@ -140,7 +140,7 @@ def call(args):
     return runCommand(command)
 ```
 
-and `ubusHelper.py` module:
+and the `helpers.py` module:
 
 ```python
 # scan wifi networks in range
