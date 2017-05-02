@@ -14,7 +14,15 @@ We'll be using the Arduino Dock to read the analog measurement from a soil moist
 
 The complete project code can be found in Onion's [`smart-plant` repo on GitHub](https://github.com/OnionIoT/smart-plant).
 
-// TODO: have a multi-step project overview, can jack the info from the `intro/vol1/project-listing-03-iot.md`
+In this project series, we'll be doing the following:
+
+1. Adding smarts to your plant by measuring it's soil moisture level
+1. Sending plant data to the Losant IoT Platform and check in on your plant from anywhere by looking at the nicely visualized data
+1. Updating the Losant workflow to notify you with a Tweet when your plant needs watering
+1. Adding a water pump to your setup and update the Losant workflow to automatically water your plant when it needs watering
+1. Updating the smart plant setup so the Omega and pump can be powered with a single supply
+
+<!-- // DONE: have a multi-step project overview, can jack the info from the `intro/vol1/project-listing-03-iot.md` -->
 
 ### Ingredients
 
@@ -57,25 +65,26 @@ The `git`, `git-http`, and `ca-bundle` packages will allows us to download the p
 
 #### 3. Arduino IDE Setup
 
-If you don't already have it, install the [Arduino IDE](https://www.arduino.cc/en/Main/Software) on your computer. Then follow [our instructions](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html) to enable the Arduino IDE to wirelessly flash the Arduino Dock 2.
+If you don't already have it, install the [Arduino IDE](https://www.arduino.cc/en/Main/Software) on your computer. Then follow [our instructions](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html) to enable the Arduino IDE to install the Onion Library and wirelessly flash the Arduino Dock 2.
 
 ![arduino ide + Arduino Dock](./img/smart-plant-p1-arduino-ide-0.png)
 
 #### 4. Flash the Arduino Dock's Microcontroller
 
-<!-- TODO: adding Onion Library to Arduino IDE needs to be linked to an article on how this can be accomplished  -->
+We're going to upload one of the example sketches from the library to the microcontroller on your Arduino Dock.
 
-First we'll need to add the Onion Library to your Arduino IDE. Then we'll upload one of the example sketches from the library to the microcontroller on your Arduino Dock.
+Go to File -> Examples -> Onion -> readAnalogValue
 
-Go to File -> Examples -> Onion -> Read Analog Value
+![](./img/smart-plant-p1-arduino-sketch.png) 
 
-<!-- TODO: screenshot of selecting the Onion example sketch -->
+<!-- DONE: screenshot of selecting the Onion example sketch -->
 
 This sketch will read the signal on Analog pin A0 and will transmit the value via serial if the correct command is received from the other end.
 
 Select your Omega from the listed Network Ports when you open the Tools menu and then Port:
 
-<!-- TODO: screenshot of the above -->
+![](./img/smart-plant-p1-arduino-port.png) 
+<!-- DONE: screenshot of the above -->
 
 > If your Omega doesn't show up in the list of Network Ports, run `/etc/init.d/avahi-daemon restart` and it should show up in about 15 seconds.
 
@@ -186,18 +195,15 @@ Hit 'ctrl+c' to end the program. You'll notice that the OLED will change so that
 
 To make sure your plant is always smart, we can configure the system so that the smart plant program runs whenever the Omega boots up.
 
-// TODO: let's change this so that we use init.d instead. Create a `init.d/smart-plant` file in the repo and have it launch the command that's mentioned below. Update the text to reflect this
-
-Open the `/etc/rc.local` file using the Vi editor: `vi /etc/rc.local`. Hit `i` and paste in the command we used to launch the smart plant program:
+In the project directory, make the `etc/init.d/smart-plant` file executable, copy it into `/etc/init.d`, then enable it by running the following commands:
 
 ```
-python /root/smart-plant/smartPlant.py --oled
+chmod +x etc/init.d/smart-plant
+cp etc/init.d/smart-plant /etc/init.d/
+/etc/init.d/smart-plant enable
 ```
 
-Make sure you put this in before the `exit 0` line. Hit `esc` and type `:wq` to save and close the file.
-
-Try rebooting your Omega (enter `reboot` in the command line), and you'll see that your program will start up again when the Omega boots up.
-
+The program will now run when the Omega is turned on. Try rebooting your Omega (enter `reboot` in the command line), and you'll see that your program will start up again when the Omega boots up.
 
 ### Code Highlight
 
