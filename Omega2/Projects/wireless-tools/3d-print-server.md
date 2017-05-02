@@ -2,10 +2,11 @@
 
 Instead of connecting directly to our 3D printer, we can have the Omega serve up a web interface with Octoprint to connect to our printer from any device in our Local Area Network.
 
-// TODO: download these photos, include them in the repo and link to them from the repo
+<!-- // DONE: download these photos, include them in the repo and link to them from the repo -->
 
-![](https://community.onion.io/uploads/files/1486487035483-img_20170206_133518.jpeg)
-![](https://community.onion.io/uploads/files/1486486915332-screen-shot-2017-02-07-at-12.04.00-pm.png)
+![](./img/3d-print-server-complete.jpg)
+![](./img/3d-print-server-web-interface.png)
+
 
 ### Overview
 
@@ -94,21 +95,23 @@ And `option enabled '0'` to `option enabled '1'`.
 
 Reboot for our changes to take effect.
 
-TODO: change this to use `df -h` for human readable output
+<!-- DONE: change this to use `df -h` for human readable output -->
 
-After the Omega starts again, you can verify if you /overlay is mounted properly by running `df`.
+After the Omega starts again, you can verify if your /overlay is mounted properly by running `df -h`.
 
 You should see something like this:
 
 ```
-/dev/mmcblk0p1         7374776     33328   6947108   0% /overlay
+Filesystem                Size      Used Available Use% Mounted on
+.
+.
+.
+/dev/mmcblk0p1         7201.9M     32.5M   6784.3M   0% /overlay
 ```
 
-TODO: change the above to be the output of `df -h`
 
-
-TODO: link to the docs article on booting from usb storage, add a blurb about it
-
+<!-- DONE: link to the docs article on booting from usb storage, add a blurb about it -->
+More details on this process can be found in our [Booting from External Storage guide](https://docs.onion.io/omega2-docs/boot-from-external-storage.html).
 
 #### 4. Build Octoprint
 
