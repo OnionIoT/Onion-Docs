@@ -167,7 +167,7 @@ Enter a message that you would like to blink in morse code:
 root@Omega-2757:~# sh /root/morse.sh Hello Onion
 ```
 
-// TODO add an image here
+// TODO: Photo: add an image here
 
 Once you're done, you can set the blinking back to `default-on` with the following command:
 

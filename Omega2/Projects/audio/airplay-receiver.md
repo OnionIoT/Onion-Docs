@@ -136,7 +136,7 @@ Now that everything's ready to go, enter `shairport-sync -d` to start up the sha
 
 Now take a look at your AirPlay device, and you should see the Omega pop up as a receiver!
 
-// TODO: add a screen shot of this working on an iOS device
+// TODO: PHOTO: add a screen shot of this working on an iOS device
 
 ![AllConnect with the Omega as a receiver](./img/airplay-receiver-android-app.png)
 

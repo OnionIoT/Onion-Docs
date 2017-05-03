@@ -49,7 +49,6 @@ The `python-urllib3` package will allow us to make HTTP requests in Python, whil
 
 #### 3. Download the Project Code
 
-// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
 
 The code for this project is all done and can be found in Onion's [oled-twitter-display repo](https://github.com/OnionIoT/oled-twitter-display) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory on the Omega, and clone the GitHub repo:
 
@@ -73,14 +72,13 @@ We'll need to create a Twitter Application in order to be able to use Twitter's 
   ![twitter apps create app](./img/twitter-feed-screenshot-1.png)
 1. Read and agree to the Twitter Developer Agreement and hit Create your Twitter application.
   ![twitter apps create app part 2](./img/twitter-feed-screenshot-2.png)
-  > Note that your Twitter account must have an associated mobile phone number before Twitter will allow you to create an application!
+
+	>Note that your Twitter account must have an associated mobile phone number before Twitter will allow you to create an application!
 
 1. Your Application is now created!
   ![twitter app created](./img/twitter-feed-screenshot-3.png)
 1. Head over to the **Keys and Access Tokens** tab to grab the info we need
   ![twitter app keys](./img/twitter-feed-screenshot-4.png)
-
-  // TODO: the photo needs to be edited to circle the Consumer Key and Consumer secret
 
 
 #### 5. Setup and Run the Code
