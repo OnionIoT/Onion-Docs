@@ -72,14 +72,13 @@ We'll need to create a Twitter Application in order to be able to use Twitter's 
   ![twitter apps create app](./img/twitter-feed-screenshot-1.png)
 1. Read and agree to the Twitter Developer Agreement and hit Create your Twitter application.
   ![twitter apps create app part 2](./img/twitter-feed-screenshot-2.png)
-  > Note that your Twitter account must have an associated mobile phone number before Twitter will allow you to create an application!
+
+  >Note that your Twitter account must have an associated mobile phone number before Twitter will allow you to create an application!
 
 1. Your Application is now created!
   ![twitter app created](./img/twitter-feed-screenshot-3.png)
 1. Head over to the **Keys and Access Tokens** tab to grab the info we need
   ![twitter app keys](./img/twitter-feed-screenshot-4.png)
-
-  // TODO: the photo needs to be edited to circle the Consumer Key and Consumer secret
 
 
 #### 5. Setup and Run the Code
