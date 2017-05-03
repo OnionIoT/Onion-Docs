@@ -12,6 +12,10 @@ The Omega's firmware has packages available for a file sharing server program ca
 
 This project will walk through how to set up an external storage device, configure a Samba server on the Omega, and how to access it from other operating systems.
 
+#### Sample Configuration files
+
+The Onion [`samba-server-config` GitHub repository](https://github.com/OnionIoT/samba-server-config) contains reference configuration files in case you need to troubleshoot your setup.
+
 
 ### Ingredients
 

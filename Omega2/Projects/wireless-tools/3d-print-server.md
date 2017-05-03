@@ -1,8 +1,12 @@
 ## OctoPrint 3D Printing Server {#octoprint-server}
 
-Instead of having to connect a computer directly to our 3D Printer, we can have the Omega run Octoprint, a 3D printing server that will control the printer. Octoprint serves up a web interface that we can access from any device in our Local Area Network that allows you to control and monitor every aspect of your 3D printer and your printing jobs right from within your browser.
+This project allows you to use the Omega to wirelessly control your 3D printer.
+
+Instead of having to connect a computer directly to our 3D Printer, we can have the Omega run Octoprint, a 3D printing server that will control the printer.
 
 ![](./img/3d-print-server-complete.jpg)
+
+Octoprint serves up a web interface that we can access from any device in our Local Area Network that allows you to control and monitor every aspect of your 3D printer and your printing jobs right from within your browser.
 
 ![](./img/3d-print-server-web-interface.png)
 
@@ -21,7 +25,7 @@ To get our printer server up and running, we'll have to use some packages from t
 * Any Onion Dock with a USB host connector: Expansion Dock, Power Dock, Mini Dock, Arduino Dock 2
 	* We liked the Mini Dock for this project since it's so compact
 * 3D Printer that is [supported by Octoprint](https://github.com/foosel/OctoPrint/wiki/Supported-Printers)
-* Micro-SD Card (2GB or more)
+* Micro-SD Card
 * USB cable to connect the Omega and 3D printer
 
 ### Step-by-Step
@@ -172,7 +176,9 @@ That's it! Now we can test drive our Octoprint Installation:
 ./run
 ```
 
-Open a browser, connect to your Omega through port `5000`.
+Open a browser, connect to port `5000` on your Omega. We renamed our Omega to `omega-printerbot` so the address we use is `http://omega-printerbot.local:5000`:
+
+![](./img/3d-print-server-web-interface.png)
 
 
 #### 5. Auto start Octoprint at startup

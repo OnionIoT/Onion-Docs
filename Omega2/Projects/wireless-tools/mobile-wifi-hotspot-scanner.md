@@ -11,7 +11,7 @@ The Omega can scan nearby WiFi networks and report information such as their SSI
 
 **Time Required:** 10 minutes
 
-Using the Power Dock, you will be able to use your Omega out in the world without needing a USB power supply. The scanner will:
+The WiFi scanner will:
 
 * Scan for any WiFi networks in range using a `ubus` call
 * Retrieve location data form the GPS Expansion, again using the `ubus`
@@ -26,14 +26,19 @@ It will then save the following data for each network into a comma separated val
 * Encryption type
 * Signal strength
 
+Using the Power Dock, you will be able to use your scanner out in the world without needing a USB power supply.
+
 
 ### Ingredients
 
 * Onion Omega2 or Omega2+
 * Onion Power Dock
+	* The Expansion Dock and Arduino Dock will work as well, they just won't be mobile
 * Onion OLED Expansion
 * Onion GPS Expansion
 * External GPS Antenna (optional)
+* A 3.7V LiPo battery
+	* We found 1500 mAh to be good for several hours of use
 
 // TODO: PHOTO: of all of the ingredients
 

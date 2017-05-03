@@ -4,15 +4,14 @@ A router is a device that connects multiple devices on a wired or wireless netwo
 
 
 We're going to use the Omega as a wireless router that:
-* Accepts an Ethernet connection
+
+* Received Internet connectivity through a wired Ethernet connection
 * Broadcasts a WiFi network Access Point (AP)
 * Shares network access from the Ethernet network to the WiFi AP network
 
 The Ethernet Expansion is required to give your Omega access to an Ethernet port. By using the Ethernet Expansion, we can turn our Omega into a low-cost yet effective router.
 
 ![router network](./img/router-network.png)
-
-// TODO: retake screenshot when there's only a single omega present
 
 ### Overview
 
@@ -21,6 +20,12 @@ The Ethernet Expansion is required to give your Omega access to an Ethernet port
 **Time Required:** 10 minutes
 
 What we are going to do is to first enable the Omega's Ethernet connection, stop the Omega from connecting to other, existing WiFi networks, then enable routing network traffic from the Omega's AP to the Internet through the Ethernet connection.
+
+#### Sample Configuration files
+
+The Onion [`omega-as-router` Github repository](https://github.com/OnionIoT/omega-as-router) contains reference configuration files in case you need to troubleshoot your setup.
+
+Please note that there are some placeholders such as `RouterPassword` and `somewifissid`. Make sure to copy only the relevant parts!
 
 
 ### Ingredients
@@ -160,15 +165,3 @@ Now restart the firewall by running:
 And we're ready! To use the Omega Router, you simply need to connect your computer or your smartphone/tablet to the WiFi network that you configured in Step 4, and your devices should be able to access the Internet via the Omega.
 
 ![router network](./img/router-network.png)
-
-#### 8. Sample Configuration Files
-
-The Onion [`omega-as-router` Github repository](https://github.com/OnionIoT/omega-as-router) contains reference configuration files in case you need to troubleshoot your setup.
-
-Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
-
-```
-git clone https://github.com/OnionIoT/omega-as-router.git
-```
-
-Please note that there are some placeholders such as `RouterPassword` and `somewifissid`. Make sure to copy only the relevant parts!
