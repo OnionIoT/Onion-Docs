@@ -219,7 +219,9 @@ Of course once the server is running, we'll have to actually access it somehow.
 
 On Windows, a Samba share can be found by opening a file explorer and going to 'Network'. The `name` we specified in `/etc/config/samba` should appear as a network location, and the folder we shared listed inside it. You'll be prompted for login details, input `root` and the password you selected in step 5, and voila!
 
-<!-- TODO: screenshot guide on how to connect to the samba share -->
+<!-- TODO: find online guide on how to connect to a samba share -->
+
+<!-- TODO: future: screenshot guide on how to connect to the samba share -->
 
 ##### Linux
 
@@ -227,7 +229,9 @@ Modern Linux distros have Samba clients well integrated in the file explorer, an
 
 >Some desktop environments have it grouped under a 'Samba Shares' folder or the like inside the Network root.
 
-<!-- TODO: screenshot guide on how to connect to the samba share -->
+<!-- TODO: find online guide on how to connect to a samba share -->
+
+<!-- TODO: future: screenshot guide on how to connect to the samba share -->
 
 
 
@@ -237,4 +241,6 @@ On OS X, connecting to a Samba share can be done using Finder. Open a Finder win
 
 After that, it will will just be like any other directory on your computer.
 
-<!-- TODO: screenshot guide on how to connect to the samba share -->
+<!-- TODO: find online guide on how to connect to a samba share -->
+
+<!-- TODO: future: screenshot guide on how to connect to the samba share -->
