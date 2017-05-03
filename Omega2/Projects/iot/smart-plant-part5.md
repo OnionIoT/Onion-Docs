@@ -6,13 +6,11 @@
 
 ### Overview
 
-**Skill Level:** [Beginner|Intermediate|Advanced]
+**Skill Level:** Intermediate
 
-**Time Required:** <a time estimate to complete the project>
+**Time Required:** 20 minutes
 
-// go into some detail here about how we're going to be implementing the project
-//	eg. which programming language we'll be using, APIs
-//	include links to any api or module references
+When you were building the smart plant, 
 
 ### Ingredients
 

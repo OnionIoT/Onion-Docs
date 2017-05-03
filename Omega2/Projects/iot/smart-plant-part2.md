@@ -45,24 +45,24 @@ The same as the first part of the project:
 
 Follow these instructions to set this project up on your very own Omega!
 
-// TODO: enumerate the steps correctly (when you're done all of the other TODOs)
+<!-- // DONE: enumerate the steps correctly (when you're done all of the others) -->
 
 #### 1. Prepare
 
 You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
 
-#### 1. Complete Part 1 of the Project
+#### 2. Complete Part 1 of the Project
 
 This project builds on the first part of the Smart Plant project. If you haven't already completed the [first part](#smart-plant-p1), go back and do it now!
 
 ![smart plant part1](./img/smart-plant-p1.jpg)
 
-#### 1. Register for Losant
+#### 3. Register for Losant
 
 Navigate to [Losant.com](https://www.losant.com/) and sign up for their free sandbox tier.
 
-#### 1. Create a Losant Application
+#### 4. Create a Losant Application
 
 You'll first need to create a Losant **Application** to be able to use their IoT Platform. For more details see the [Losant Application Documentation](https://docs.losant.com/applications/overview/).
 
@@ -77,7 +77,7 @@ Give your Application a name, `Smart Plant` was our choice:
 Ok, now your application is created
 ![application created](./img/smart-plant-p2-0-app-2-application-created.png)
 
-#### 1. Create a Losant Device
+#### 5. Create a Losant Device
 
 Now that you have an Application, you'll need to create a **Device**. A device on Losant can send data to the cloud and receive commands from the cloud. For more details see the [Losant Device Documentation](https://docs.losant.com/devices/overview/).
 
@@ -85,7 +85,7 @@ Click the `Devices` menu, and then `Create a Blank Device`:
 
 ![blank devices](./img/smart-plant-p2-1-device-0-blank-devices.png)
 
-// TODO: in the above image, we should circle the Create a Blank Device button
+<!-- // DONE: in the above image, we should circle the Create a Blank Device button -->
 
 Give your device a name, we found it easiest to use the name of the Omega we're using to measure the soil moisture levels. Make sure the `Device Type` is set to **`Standalone`**:
 
@@ -100,7 +100,7 @@ Hit `Create Device` and your device will be ready to go. Note the Device ID on t
 ![device created](./img/smart-plant-p2-1-device-3-device-created.png)
 
 
-#### 1. Create a Losant Access Key
+#### 6. Create a Losant Access Key
 
 To actually get your Omega to communicate with Losant, it will need to authenticate. To carry out that authentication, we'll use an Access Key. For more details see the [Losant Access Key Documentation](https://docs.losant.com/applications/access-keys/).
 
@@ -127,7 +127,7 @@ Alright! Your Access Key is ready to go!
 ![access key created](./img/smart-plant-p2-2-access-key-4-created.png)
 
 
-#### 1. Create a Losant Workflow
+#### 7. Create a Losant Workflow
 
 Now we need to make a [Losant Workflow](https://docs.losant.com/workflows/overview/) so our device can interact with the rest of Losant. For now, our workflow will be a simple tool for debugging. These workflows are easy to use and very powerful, definitely check out [Losant's workflow documentation](https://docs.losant.com/workflows/overview/) to learn more.
 
@@ -160,7 +160,7 @@ Your workflow is now saved and deployed, meaning that it's running at this very 
 ![workflow deployed](./img/smart-plant-p2-3-workflow-7-deployed.png)
 
 
-#### 1. How does my Omega talk to Losant?
+#### 8. How does my Omega talk to Losant?
 
 Glad you asked! There's some additional software and configuration we need to do on the Omega to get it to report the soil moisture level to Losant on a regular basis. Behind the scenes, the Python script will be using MQTT to communicate with Losant.
 
@@ -168,7 +168,7 @@ If you haven't completed the [first part of the Smart Plant project](#smart-plan
 
 
 
-#### 1. Install Required Software on the Omega
+#### 9. Install Required Software on the Omega
 
 To install additional Python packages, we'll need to install the Python package manager, PIP. [Connect to the Omega's Command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-ssh) and run the following command:
 
@@ -187,7 +187,7 @@ pip install losant-mqtt
 
 The `paho-mqtt` module provides MQTT functionality, and `losant-mqtt` provides an easy to use interface for connecting to Losant.
 
-#### 1. Setup Losant Credentials on Omega
+#### 10. Setup Losant Credentials on Omega
 
 In order to connect and authenticate with Losant, the Smart Plant program will need to know the Device ID of your Losant Device, as well as your Access Key and Secret.
 
@@ -197,47 +197,27 @@ Look at your device on Losant to get the Device ID:
 
 The Access Key and Secret you should have noted down somewhere when you created the Access Key. If you don't have the Access secret noted down somewhere, you'll have to create a new Access Key!
 
-// TODO: the losant.json file is now part of the smart-plant repo, update the below to reflect that
+<!-- // DONE: the losant.json file is now part of the smart-plant repo, update the below to reflect that -->
 
-Now on your Omega, in the `/root/smart-plant` directory, create a file to store your Losant credentials. We named the file `losant.json`. The contents of the file are in [JSON format](http://www.json.org/) and should look like this:
+Now on your Omega, in the `/root/smart-plant` directory, there is a configuration file template called `losant.json`. Open it for editing and enter your `deviceId`, `key`, and `secret` to complete the setup.
 
-```
-{
-	"deviceId":"<YOUR DEVICE ID>",
-	"key":"<YOUR ACCESS KEY>",
-	"secret":"<YOUR ACCESS SECRET>"
-}
-```
-
-Copy the above to your Omega and populate it with your credentials.
-
-
-
-// TODO: since we changed the first part to setup an init.d script, we need to update this step
+<!-- // DONE: since we changed the first part to setup an init.d script, we need to update this step
 // The new step should entail:
 //	* running `/etc/init.d/smart-plant stop`
-//		-> before putting this step in, confirm that it actually stops the existing python script instance on the Omega
+//		-> before putting this step in, confirm that it actually stops the existing python script instance on the Omega 
+// it works (gabe)-->
 
-#### 1. Stop the Existing Program
+#### 11. Stop the Existing Program
 
-In the first part of the project, we modified `/etc/rc.local` to automatically run the smart plant program on boot. We'll now need to find the program and stop it before running it again manually.
+In the first part of the project, we added a script to `/etc/init.d` to automatically run the smart plant program on boot. We'll now need to stop the program before running it again manually.
 
-Find the process of the running smart plant program:
-
-```
-root@Omega-F11D:~# ps | grep smart
- 1999 root     17568 S    python /root/smart-plant/smartPlant.py --oled --quiet
- 2185 root      1184 S    grep smart
-```
-
-Kill the process to stop the program:
+Run the following command:
 
 ```
-root@Omega-F11D:~# kill 1999
+/etc/init.d/smart-plant stop
 ```
 
-
-#### 1. Report the Smart Plant Data to Losant
+#### 12. Report the Smart Plant Data to Losant
 
 Let's try running the Smart Plant program with reporting to Losant enabled. We're also providing the path to the Losant configuration file:
 
@@ -253,11 +233,12 @@ Going to the workflow, we can take a look at the `Debug` block's Debug output to
 
 ![](./img/smart-plant-p2-5-test-1-debug-message.png)
 
-// TODO: update the above image:
+<!-- // DONE: update the above image:
 // * 'dbug code' should actually read 'debug data'
-// * circle the `data` part of the debug data read-out
+// * circle the `data` part of the debug data read-out -->
 
 If you look at the Python code, you'll see that what we send from the Omega is showing up in the debug window on Losant:
+
 ```
 {
 	"data" {
@@ -270,16 +251,41 @@ Hit `ctrl+c` to stop the program.
 
 
 
-// TODO: since we changed the first part to setup an init.d script, we need to update this step
+<!-- // DONE: since we changed the first part to setup an init.d script, we need to update this step
 // This step should entail:
 //	* updating /etc/init.d/smart-plant to have the OPT argument include `--losant /root/smart-plant/losant.json`
-//	* restarting the process: `/etc/init.d/smart-plant restart`
+//	* restarting the process: `/etc/init.d/smart-plant restart` -->
 
-#### 1. Update Program Run at Boot
+#### 13. Update Program Run at Boot
 
-Since we now need to run the Smart Plant program with additional arguments to talk to Losant, we'll need to update the `/etc/rc.local` file.
+Since we now need to run the Smart Plant program with additional arguments to talk to Losant, we'll need to update the `/etc/init.d/smart-plant` file.
 
-Open the `/etc/rc.local` file using the Vi editor: `vi /etc/rc.local`. Hit `i` and paste in the additional arguments, your file should look like this:
+Open the `/etc/init.d/smart-plant` file using the Vi editor: `vi /etc/init.d/smart-plant`. Hit `i` and use the arrow keys to navigate to the line that says `BIN="usr/...`. After the `--quiet` text, insert a space and type the following:
+
+```
+--losant /root/smart-plant/losant.json
+```
+
+and insert a space between the `json` and the `>` character.
+
+Your smart-plant file should now look like this:
+
+```
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2016 Onion Corporation
+START=99
+
+USE_PROCD=1
+BIN="/usr/bin/python /root/smart-plant/smartPlant.py --oled --quiet --losant /root/smart-plant/losant.json > /dev/null 2>&1 &"
+
+start_service() {
+        procd_open_instance
+        procd_set_param command $BIN
+        procd_set_param respawn
+        procd_close_instance
+```
+
+paste in the additional arguments, your file should look like this:
 
 ```
 # Put your custom commands here that should be executed once
@@ -290,9 +296,15 @@ exit 0
 ```
 Hit `esc` and type `:wq` to save and close the file.
 
+Then re-enable the program:
+
+```
+/etc/init.d/smart-plant restart
+```
+
 Try rebooting your Omega (enter `reboot` in the command line), and you'll see that your program will start up again when the Omega boots up.
 
-#### 1. Create a Losant Dashboard
+#### 14. Create a Losant Dashboard
 
 Now that we've successfully sent data to Losant, let's create a Dashboard so we can easily check in on our plant and see how much moisture there is in the soil.
 
@@ -316,7 +328,7 @@ Awesome! Your dashboard is now displaying the soil moisture data being collected
 
 ![](./img/smart-plant-p2-6-dashboard-4-view.png)
 
-#### 1. Playing with the Dashboard
+#### 15. Playing with the Dashboard
 
 Try watering your plant a little while after you've setup the dashboard:
 
@@ -353,6 +365,5 @@ If you do want to display more data, it would be useful to have a larger chart! 
 
 ![large chart](./img/smart-plant-p2-7-dashboard-5-large-graph.png)
 
-
-
-// TODO: add a teaser for the next part of the project
+<!-- // DONE: add a teaser for the next part of the project -->
+Next we'll give our plant a voice of its own by connecting it to Twitter and having it broadcast to the world!
