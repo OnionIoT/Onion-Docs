@@ -207,9 +207,63 @@ The program will now run when the Omega is turned on. Try rebooting your Omega (
 
 ### Code Highlight
 
-// TODO: can write about:
+In this project, the Omega communicates with the Arduino Dock over the serial port. This can be seen in the `measurementHelper.py` module and the Arduino `readAnalogValue` sketch:
+
+```python
+# read analog value (0-1023) from the microcontroller
+#	returns None if value is not read successfully
+def readMoistureLevel(serialPort):
+	# need to write an 'r' character to trigger a measurement response
+	serialPort.write('r')
+
+	# read the response
+	try:
+		value = serialPort.readline()
+
+		if value == "":
+			print("Got blank value!")
+			value = None
+		else:
+			value = value.rstrip() 	#chomp the newline at the end of the response
+	except:
+		value = None
+
+	return value
+```
+
+```c++
+// respond only if correct command is received
+		if ((char)inByte == 'r') {
+			// respond with analog measurement
+			Serial.println(analogValue, DEC);
+		}
+```
+
+We are also able to easily check and parse command line arguments using Python's `getopt` module in `smartPlant.py`:
+
+```python
+# read the command line arguments
+try:
+	opts, args = getopt.getopt(sys.argv[1:], "hvqn:ol:p", ["help", "verbose", "quiet", "number=", "oled", "losant=", "pump"])
+except getopt.GetoptError:
+	printUsage()
+	sys.exit(2)
+for opt, arg, in opts:
+	if opt in ("-h", "--help"):
+		printUsage()
+		sys.exit()
+	elif opt in ("-v", "--verbose"):
+		VERBOSE = True
+    
+    
+    # and so on
+```
+
+<!-- // DONE: can write about:
 // * communicating with the microcontroller with serial
-// * the use of getopt to read command line arguments
+// * the use of getopt to read command line arguments -->
 
 
-// TODO: add a teaser for the next part of the project
+<!-- // DONE: add a teaser for the next part of the project -->
+
+Next we'll make your plant a little smart by connecting it to a cloud data service so you can remotely monitor it from anywhere in the world!
