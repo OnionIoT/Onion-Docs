@@ -11,13 +11,15 @@ The Omega can scan nearby WiFi networks and report information such as their SSI
 
 **Time Required:** 10 minutes
 
-// TODO: try to freshen up this section 'we will then' is repeated 4x
+Using the Power Dock, you will be able to use your Omega out in the world without needing a USB power supply. The scanner will:
 
-Using the Power Dock, you will be able to use your Omega out in the world without needing a USB power supply. We will then scan any WiFi networks in range using a `ubus` call. Then we will retrieve location data from the GPS Expansion also via `ubus`. We will then sort the networks by signal strength, then display the 6 networks with the strongest signal on the OLED Expansion.
+* Scan for any WiFi networks in range using a `ubus` call
+* Retrieve location data form the GPS Expansion, again using the `ubus`
+* Sort the scanned networks by signal strength and display the six networks with the strongest signal on the OLED Expansion
 
-We will then save the following data for each network into a comma separated value (CSV) file that can be imported into a spreadsheet program:
+It will then save the following data for each network into a comma separated value (CSV) file that can be imported into a spreadsheet program:
 
-* Date scanned
+* Date scanned // TODO: and time presumably?
 * Latitude and longitude
 * SSID
 * BSSID
@@ -186,4 +188,4 @@ And the `readGps()` function runs this command:
 ubus call gps info
 ```
 
-Try running these two commands on your Omega's command line by hand and take note of the output. 
+Try running these two commands on your Omega's command line by hand and take note of the output.

@@ -2,7 +2,7 @@
 
 The Omega's firmware has packages available for a file sharing server program called Samba. By plugging in a USB storage device, you can turn your Omega into a mobile network file server!
 
-<!-- DONE: update this intro, highlighting the fact that it's a mobile network file server -->
+<!-- TODO: PHOTO: Omega with USB Storage plugged in -->
 
 ### Overview
 
@@ -15,27 +15,23 @@ This project will walk through how to set up an external storage device, configu
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Any Onion Dock to power the Omega
+* Onion Omega2 or Omega2+
+* Any Onion Dock to power the Omega
     * We like the Mini Dock if you plan to keep it one place.
-    * We like the Power Dock if you plan to make this a truly portable network storage device.
-1. A USB storage device or microSD (for Omega2+)
+    * Use the Power Dock if you plan to make this a truly portable network storage device.
+* A USB storage device or microSD (for Omega2+)
 
-<!-- // DONE: mention that:
-// * we like the Mini Dock for this project if you plan to keep it in one place
-// * we like the Power Dock if you plan to make this a truly portable network storage -->
+<!-- // TODO: PHOTO of the ingredients -->
 
 ### Step-by-Step
 
-<!-- // DONE: whoa... NAS? this came out of nowhere! -->
-
 Let's turn your Omega into a portable network attached storage, or NAS for short!
 
-#### 1. Set up your Omega to connect to your router
+#### 1. Setup your Omega
 
 You'll need an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
-If you need to hook up the Omega to a new network, connect to it via SSH and use the `wifisetup` utility:
+If you need to hook up the Omega to a new network, [connect to the command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and use the `wifisetup` utility:
 
 ```
 root@Omega-0104:/# wifisetup
@@ -49,9 +45,9 @@ q) Exit
 Selection:
 ```
 
-Follow the instructions to scan for WiFi and connect to your router's network.
+Follow the instructions to scan for WiFi networks and connect to your router's network.
 
-#### 2. Set up your storage devices
+#### 2. Set up your Storage Device
 
 You can share any directory on your Omega through Samba. For this project, we'll assume you have a USB storage device or microSD. Both of these devices will be automatically mounted at `/tmp/mounts`.
 
@@ -68,13 +64,13 @@ Copy down the **full path** to your storage device (`/tmp/mounts/USB-A1` worked 
 For a detailed walk-through on how to use storage devices, take a look at the guide to [USB Storage](https://docs.onion.io/omega2-docs/usb-storage.html) and [MicroSD Cards](https://docs.onion.io/omega2-docs/using-a-microsd-card.html) on the Onion Docs.
 
 
-#### 3. Install needed software
+#### 3. Install the Required Software
 
 We'll need Samba for this, naturally. Samba's name occasionally changes with versioning changes, to check what it is, we can do:
 
 ```
 opkg update
-opkg list-installed | grep samba
+opkg list | grep samba
 opkg install samba##-server
 ```
 
@@ -88,41 +84,38 @@ opkg install samba36-server
 
 By default, Samba does not listen to Omega's WiFi for incoming access requests. We'll need to let Samba know which interface it should listen on to get requests for its data.
 
-Normally the Omega communicates with your router through `apcli0`. It should be fairly safe to note that down.
+The Omega communicates with other networks through the `apcli0` interface. Note that down for later!
 
-If you'd like to know for sure, use `ifconfig` to list all the interfaces available. Here's an example from an Omega in the office:
-
-```
-root@Omega-E755:~# ifconfig
-apcli0    Link encap:Ethernet  HWaddr AA:AA:AA:AA:AA:AA
-          inet addr:192.168.1.109  Bcast:192.168.1.255  Mask:255.255.255.0
-          inet6 addr: fe80::40a3:6bff:fe00:e755/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:13787 errors:0 dropped:3 overruns:0 frame:0
-          TX packets:5953 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000
-          RX bytes:3197266 (3.0 MiB)  TX bytes:602257 (588.1 KiB)
-
-br-wlan   Link encap:Ethernet  HWaddr AA:AA:AA:AA:AA:AA
-          inet addr:192.168.3.1  Bcast:192.168.3.255  Mask:255.255.255.0
-          inet6 addr: fe80::42a3:6bff:fec0:e757/64 Scope:Link
-          inet6 addr: fd1d:48c4:7633::1/60 Scope:Global
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:456 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:746 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000
-          RX bytes:58973 (57.5 KiB)  TX bytes:88296 (86.2 KiB)
-    ...
-    ...
-```
-
-We see `apcli0` is the interface with the most `RX bytes` and `TX bytes`, i.e. doing most of the communication over the internet. So that's probably it. Additionally, it has an `inet addr` that corresponds to a LAN - starting with `192.168.1`.
-
-Jot down the name of the interface (probably `apcli0`), we'll have to let Samba know this when we configure it.
+> If you'd like to see for yourself, use `ifconfig` to list all the interfaces available. Here's an example of that the output will look like:<br>
+>```
+>root@Omega-E755:~# ifconfig
+>apcli0    Link encap:Ethernet  HWaddr AA:AA:AA:AA:AA:AA
+>          inet addr:192.168.1.109  Bcast:192.168.1.255  Mask:255.255.255.0
+>          inet6 addr: fe80::40a3:6bff:fe00:e755/64 Scope:Link
+>          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+>          RX packets:13787 errors:0 dropped:3 overruns:0 frame:0
+>          TX packets:5953 errors:0 dropped:0 overruns:0 carrier:0
+>          collisions:0 txqueuelen:1000
+>          RX bytes:3197266 (3.0 MiB)  TX bytes:602257 (588.1 KiB)
+>
+>br-wlan   Link encap:Ethernet  HWaddr AA:AA:AA:AA:AA:AA
+>          inet addr:192.168.3.1  Bcast:192.168.3.255  Mask:255.255.255.0
+>          inet6 addr: fe80::42a3:6bff:fec0:e757/64 Scope:Link
+>          inet6 addr: fd1d:48c4:7633::1/60 Scope:Global
+>          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+>          RX packets:456 errors:0 dropped:0 overruns:0 frame:0
+>          TX packets:746 errors:0 dropped:0 overruns:0 carrier:0
+>          collisions:0 txqueuelen:1000
+>          RX bytes:58973 (57.5 KiB)  TX bytes:88296 (86.2 KiB)
+>    ...
+>    ...
+>```
+>
+>We see `apcli0` is the interface with the most `RX bytes` and `TX bytes`, meaning it's being doing the most communication. Additionally, it has an IP Address (see the `inet addr`) that corresponds to a LAN - starting with `192.168.1`.
 
 #### 4. Configure Samba
 
-For Samba to start sharing our folders, it needs to know where, how, and who. It gets all these details from config files. Specifically, `/etc/config/samba` and `/etc/samba/smb.conf.template`.
+For Samba to start sharing our folders, it needs to know where, how, and who. It gets all these details from configuration files. Specifically, `/etc/config/samba` and `/etc/samba/smb.conf.template`.
 
 First let's open up `/etc/config/samba` with our editor. It should look a little like this:
 
@@ -136,7 +129,7 @@ config samba
 
 These fields are all customizable options that change how the Samba server behaves.
 
-We recommend changing `name` option to `Omega-ABCD` for easy recognition. The other options should be left as-is, and the `description` option can be changed to something helpful.
+We recommend changing `name` option to your Omega's `Omega-ABCD` name (where `ABCD` are the bolded numbers on your Omega's cover) for easy recognition. The other options should be left as-is, and the `description` option can be changed to something helpful.
 
 Next, we'll add in a line like this:
 
@@ -144,12 +137,12 @@ Next, we'll add in a line like this:
         option 'interface' 'apcli0'
 ```
 
-This tells Samba it should listen to the `apcli0` interface. This sets up Samba to accept connections, but it still needs to know where our shared folder is.
+This tells Samba it should listen on the `apcli0` interface, this sets up Samba to accept connections. We just need to let it know the location of our shared folder.
 
 To declare a new shared folder, we'll append a block to the end like this:
 
 ```
-config 'sambashare'
+config 'usbshare'
         option 'name'                   'usb'
         option 'path'                   '/tmp/mounts/USB-A1'
         option 'users'                  'root'
@@ -157,9 +150,14 @@ config 'sambashare'
         option 'guest_ok'               'no'
 ```
 
-The main configurations that are needed are the `name`, `path`, and `users`. The `name` will be the name that appears devices accessing it. The `path` is the directory (or file) you want to share. Setting `read_only` to `no` will mean that anyone accessing the shared folder can change its contents, while `guest_ok` set to `no` means access is only granted after authentication.
+The main configurations that are needed are the `name`, `path`, and `users`:
 
->The `/etc/config/samba` file is a Universal Configuration Interface file, LEDE uses it to simplify configuration of system services.
+* The `name` will be the name that appears devices accessing it.
+* The `path` is the directory (or file) you want to share.
+* Setting `read_only` to `no` will mean that anyone accessing the shared folder can change its contents
+* While having `guest_ok` set to `no` means access is only granted after authentication.
+
+>The `/etc/config/samba` file is a Universal Configuration Interface (UCI) file, LEDE uses it to simplify configuration of system services.
 
 Next, we'll have to fiddle with `/etc/samba/smb.conf.template`. Opening it with our editor will greet us with this:
 
@@ -195,7 +193,7 @@ To allow access, we'll have to set up passwords any user we specified - since we
 smbpasswd -a root
 ```
 
-This utility will create a `root` Samba account associated with the `root` account of the operating system. You'll be prompted to enter a new password.
+This utility will create a `root` Samba account associated with the `root` account of the operating system. You'll be prompted to enter a new password for use with Samba.
 
 #### 6. Applying our changes
 
@@ -215,11 +213,22 @@ Of course once the server is running, we'll have to actually access it somehow.
 
 On Windows, a Samba share can be found by opening a file explorer and going to 'Network'. The `name` we specified in `/etc/config/samba` should appear as a network location, and the folder we shared listed inside it. You'll be prompted for login details, input `root` and the password you selected in step 5, and voila!
 
+<!-- TODO: screenshot guide on how to connect to the samba share -->
+
 ##### Linux
 
 Modern Linux distros have Samba clients well integrated in the file explorer, and the process is very similar to windows. Open up file explorer, navigate to the Network root, and find your Omega to access.
 
 >Some desktop environments have it grouped under a 'Samba Shares' folder or the like inside the Network root.
 
+<!-- TODO: screenshot guide on how to connect to the samba share -->
 
-<!-- ##### OSX -->
+
+
+##### Mac OS X
+
+On OS X, connecting to a Samba share can be done using Finder. Open a Finder window and hit Command+K, in the window that pops up, for Server Address type in `smb://omega-ABCD.local` where `ABCD` is your Omega's unique identifier. Connect as a registered user and select the volume to which you would like to connect.
+
+After that, it will will just be like any other directory on your computer.
+
+<!-- TODO: screenshot guide on how to connect to the samba share -->
