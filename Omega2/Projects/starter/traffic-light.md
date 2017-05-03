@@ -65,13 +65,18 @@ opkg install python-light pyOnionGpio git git-http ca-bundle
 
 #### 2. Download the Project Code
 
-// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're doing, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
-
-The code for this project can be found in Onion's [`starter-traffic-light` repo](https://github.com/OnionIoT/starter-traffic-light) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
+The code for this project can be found in Onion's [`starter-traffic-light` repo](https://github.com/OnionIoT/starter-traffic-light) on GitHub. Use [`git` to download the code to your Omega](https://docs.onion.io/omega2-docs/installing-and-using-git.html): navigate to the `/root` directory, and clone the GitHub repo:
 
 ```
+cd /root
 git clone https://github.com/OnionIoT/starter-traffic-light.git
 ```
+
+>Since the project code is only a single file, you can download the code directly to avoid installing and using git:
+>```
+>cd /root
+>wget https://raw.githubusercontent.com/OnionIoT/starter-traffic-light/master/main.py
+>```
 
 #### 3. Running the Project
 
@@ -86,12 +91,16 @@ You should see the lights changing color!
 
 ![completed](./img/traffic-light-complete.jpg)
 
-// TODO: add a photo of the red LED lit up
+<!-- // TODO: PHOTO: add a photo of the red LED lit up -->
 
 ### Code Highlight
 
-We use the Onion GPIO Python module to control the GPIOs. It provides convenient functions such as `setOutputDirection()` and `setValue()` that abstract a lot of the work under the hood.
+We use the Onion GPIO Python module to control the GPIOs. It provides an object with convenient functions such as `setOutputDirection()` and `setValue()` that allow us to control the Omega's GPIOs and abstract a lot of the work under the hood.
 
-// TODO: include a few lines of the code and have a sentence or two explaining what exactly the code is accomplishing
+For some insight in how the GPIO class works, take a look the `main.py` file:
+
+* First, three `OnionGpio` objects are instantiated, with the GPIO number passed in. Now there are three `OnionGpio` objects, each controlling one of the Omega's GPIOs
+* Next, all three GPIOs are set to the output direction with a default value of `0` or `OFF` by calling the `setOutputDirection()` function on each of the `OnionGpio` objects
+* Then, the values on the GPIOs can be changed at any time by calling the `setValue()` function on the objects. The `setSignal()` function sets the value of all three GPIOs depending on the color the miniature traffic light is meant to be showing, as dictated by the function argument.
 
 For more details, take a look at the [Onion GPIO Python module documentation](https://docs.onion.io/omega2-docs/gpio-python-module.html).
