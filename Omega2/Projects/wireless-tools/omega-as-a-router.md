@@ -2,12 +2,13 @@
 
 A router is a device that connects multiple devices on a wired or wireless network. They are very widely used with modems to allow multiple devices to connect to the Internet through the single connection provided by the modem.
 
-
 We're going to use the Omega as a wireless router that:
 
 * Received Internet connectivity through a wired Ethernet connection
 * Broadcasts a WiFi network Access Point (AP)
 * Shares network access from the Ethernet network to the WiFi AP network
+
+![router network](./img/router-setup.jpg)
 
 The Ethernet Expansion is required to give your Omega access to an Ethernet port. By using the Ethernet Expansion, we can turn our Omega into a low-cost yet effective router.
 
@@ -49,6 +50,7 @@ Connect your Ethernet Expansion to the Expansion dock, and plug in the Ethernet 
 
 ![router network](./img/router-setup.jpg)
 
+Connect the other end of the cable to your modem, or other device that is providing internet connectivity.
 
 #### 3. Setup the Omega
 

@@ -4,6 +4,8 @@ The Omega's firmware has packages available for a file sharing server program ca
 
 <!-- TODO: PHOTO: Omega with USB Storage plugged in -->
 
+<!-- TODO: photo: shared network storage -->
+
 ### Overview
 
 **Skill Level:** Intermediate
