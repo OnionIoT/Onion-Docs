@@ -2,8 +2,6 @@
 
 The Omega can scan nearby WiFi networks and report information such as their SSID, encryption type, and signal strength. In this project, we'll be using the Omega to scan local WiFi networks, record the GPS coordinates where they're found, display the networks with the strongest signal on the OLED Expansion, and save the rest of the data to a spreadsheet file.
 
-<!-- // DONE: before this intro sentence, add an intro that's a 10,000 ft description of the project. then it naturally leads into the existing sentence.
-// Something like what we have in the project listing document: Collect and display the location, signal strength, and more of WiFi networks in your surrounding area. Take it on the go as well! -->
 
 ![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-outside.jpg)
 
@@ -12,6 +10,8 @@ The Omega can scan nearby WiFi networks and report information such as their SSI
 **Skill Level:** Intermediate
 
 **Time Required:** 10 minutes
+
+// TODO: try to freshen up this section 'we will then' is repeated 4x
 
 Using the Power Dock, you will be able to use your Omega out in the world without needing a USB power supply. We will then scan any WiFi networks in range using a `ubus` call. Then we will retrieve location data from the GPS Expansion also via `ubus`. We will then sort the networks by signal strength, then display the 6 networks with the strongest signal on the OLED Expansion.
 
@@ -27,17 +27,23 @@ We will then save the following data for each network into a comma separated val
 
 ### Ingredients
 
-1. Onion Omega2 or Omega2+
-1. Onion Power Dock
-1. Onion OLED Expansion
-1. Onion GPS Expansion
+* Onion Omega2 or Omega2+
+* Onion Power Dock
+* Onion OLED Expansion
+* Onion GPS Expansion
+* External GPS Antenna (optional)
 
-<!-- The Steps -->
+// TODO: PHOTO: of all of the ingredients
+
 ### Step-by-Step
 
 Here's how to turn your Omega into a WiFi scanner!
 
-#### 1. Setup the Hardware
+#### 1. Prepare
+
+You'll need to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
+
+#### 2. Setup the Hardware
 
 Connect your Omega to the Power Dock, then plug in the OLED Expansion into the Expansion Header. Then plug in the GPS Expansion into the USB host port as shown below.
 
@@ -49,20 +55,20 @@ The GPS Expansion's antenna is connected via a Hirose U.FL connector. If you hav
 
 <!--# 2 -->
 
-#### 2. Install Packages
+#### 3. Install Packages
 
-Connect to the Omega's Command line and install Python as well as some of the packages we need:
+[Connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-ssh) and install Python as well as some of the packages we need:
 
 ```
 opkg update
-opkg install python-light pyOledExp ogps
+opkg install python-light pyOledExp ogpsgit git-http ca-bundle
 ```
 
-The `pyOledExp` package gives us control of the OLED Expansion, while the `ogps` package will provide a `ubus` service that lets us easily get data from the GPS Expansion.
+The `pyOledExp` package gives us control of the OLED Expansion, while the `ogps` package will provide a `ubus` service that lets us easily get data from the GPS Expansion. The `git`, `git-http`, and `ca-bundle` packages will allows us to download the project code form GitHub.
 
 After installing `ogps`, check that the `ubus` `gps` service is listed by running `ubus list`:
 
-![ubus list](../../Documentation/Doing-Stuff/img/using-gps-expansion-4-ubus-list.png)
+![ubus list](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/using-gps-expansion-4-ubus-list.png)
 
 If you don't see `gps` listed, you'll need to restart your `rpcd` service in order to refresh the list:
 
@@ -78,15 +84,16 @@ opkg update
 opkg install ogps
 ```
 
-#### 3. Download and Install the Software
+#### 4. Download and Install the Project Software
 
-The code for this project is all done and can be found in Onion's [wifi-hotspot-scanner repo](https://github.com/OnionIoT/wifi-hotspot-scanner) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
+The code for this project is all done and can be found in Onion's [`wifi-hotspot-scanner` repo](https://github.com/OnionIoT/wifi-hotspot-scanner) on GitHub. Use [`git` to download the code to your Omega](https://docs.onion.io/omega2-docs/installing-and-using-git.html): navigate to the `/root` directory, and clone the GitHub repo:
 
 ```
+cd /root
 git clone https://github.com/OnionIoT/wifi-hotspot-scanner.git
 ```
 
-#### 4. Running the Project on Boot
+#### 5. Running the Project on Boot
 
 Next we'll setup the Omega to automatically run the scanner when it turns on. Edit the `/etc/rc.local` file and add the following line above `exit 0`:
 
@@ -96,7 +103,7 @@ python /root/wifi-hotspot-scanner/main.py &
 
 This way, when you flip the power switch, the Omega will run the code in the background after it completes the initialization process.
 
-#### 5. Using the WiFi Scanner
+#### 6. Using the WiFi Scanner
 
 Here's the fun part! Press the reset button and the Omega will run the program.
 
@@ -112,7 +119,11 @@ The Omega will then save data about all of the discovered networks to a file cal
 
 If the GPS Expansion cannot lock onto a satellite, you'll see an error message on the OLED. The program will try again in a few seconds.
 
-#### 6. Code Highlight
+##### Saved Data
+
+// TODO: a small section on the csv output, show a screenshot of some examples of the scan
+
+### Code Highlight
 
 The `ubus` system utility is a key part of the firmware on which the Omega is based. It allows you to call services and functions on the Omega as if you were sending data to a web API. The basic syntax goes like this:
 
@@ -155,7 +166,7 @@ def scanWifi():
 def readGps():
     args =["gps", "info"]
     response = ubus.call(args)
-    
+
     # check if the GPS is locked
     if "signal" in response and response["signal"] == False:
         return False
@@ -163,4 +174,16 @@ def readGps():
     return response
 ```
 
-<!-- // DONE: expand on this a little more, give some context as to what ubus is and how we use it in the program -->
+In essence, the `scanWifi()` function above runs the following command:
+
+```
+ubus call onion wifi-scan '{"device":"ra0"}'
+```
+
+And the `readGps()` function runs this command:
+
+```
+ubus call gps info
+```
+
+Try running these two commands on your Omega's command line by hand and take note of the output. 

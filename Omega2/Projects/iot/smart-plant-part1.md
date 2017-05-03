@@ -52,7 +52,7 @@ Once that's done, plug in your OLED Expansion:
 
 #### 2. Install Required Software on the Omega
 
-[Connect to the Omega's Command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-ssh) and install Python as well as some of the packages we need:
+[Connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-ssh) and install Python as well as some of the packages we need:
 
 ```
 opkg update
@@ -75,7 +75,7 @@ We're going to upload one of the example sketches from the library to the microc
 
 Go to File -> Examples -> Onion -> readAnalogValue
 
-![](./img/smart-plant-p1-arduino-sketch.png) 
+![](./img/smart-plant-p1-arduino-sketch.png)
 
 <!-- DONE: screenshot of selecting the Onion example sketch -->
 
@@ -83,7 +83,7 @@ This sketch will read the signal on Analog pin A0 and will transmit the value vi
 
 Select your Omega from the listed Network Ports when you open the Tools menu and then Port:
 
-![](./img/smart-plant-p1-arduino-port.png) 
+![](./img/smart-plant-p1-arduino-port.png)
 <!-- DONE: screenshot of the above -->
 
 > If your Omega doesn't show up in the list of Network Ports, run `/etc/init.d/avahi-daemon restart` and it should show up in about 15 seconds.

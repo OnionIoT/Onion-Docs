@@ -4,7 +4,7 @@ The Omega can communicate with other devices using the Bluetooth Low Energy wire
 
 ![complete](./img/bluetooth-audio-complete.jpg)
 
-TODO: PHOTO: retake this photo so that the Omega is the focus, nicer background, make it nice and hip like (./img/airplay-receiver-dope.png)
+// TODO: PHOTO: retake this photo so that the Omega is the focus, nicer background, make it nice and hip like (./img/airplay-receiver-dope.png)
 
 ### Overview
 
