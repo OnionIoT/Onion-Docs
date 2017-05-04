@@ -1,8 +1,8 @@
 ## Smart Plant - A Single Power Supply {#smart-plant-p5}
 
-// brief intro to the project
+We've built out some really cool features on our smart plant in the previous parts. Now to top it all off, let's upgrade the power circuitry so we can run the entire project on a single 12V power supply!
 
-// include a photo of the final result
+// TODO: include a photo of the final result
 
 ### Overview
 
@@ -10,7 +10,7 @@
 
 **Time Required:** 20 minutes
 
-When you were building the smart plant, 
+When you were building the smart plant, you had to power the pump and Arduino separately. Let's change that by replacing the USB power supply with a regulator that can convert the motor's 12V into 5V. This way, when you plug in the 12V supply, the entire project comes to life!
 
 ### Ingredients
 
@@ -45,6 +45,8 @@ This project builds on the previous parts of the Smart Plant project. If you hav
 
 // TODO: schematic of the circuit we're building
 
+
+
 #### 1. Prep
 
 Before you start, take apart the wiring we did in the [previous part of the project](#smart-plant-p4) and unplug your Arduino Dock. Now you should have:
@@ -53,7 +55,7 @@ Before you start, take apart the wiring we did in the [previous part of the proj
 
 **IMPORTANT:** Make sure your Power Supply is no longer connected to the DC Barrel Jack Adapter!
 
-#### 1. Wiring the Regulator
+#### 1. Wiring the Circuit
 
 // TODO: embellish the text of the steps
 
@@ -63,18 +65,25 @@ Before you start, take apart the wiring we did in the [previous part of the proj
 
 // TODO: find a good spot for the image above
 
+We'll wire up the circuit in a few sub-steps:
 
-Regulator Input:
+1. Regulator input
+1. Regulator output
+1. Water pump
+1. Arduino Dock
 
-1. Connect jumper wires to both DC Barrel Jack Adapter terminals
-1. Connect the DC Barrel Jack to one pair of the `+` and `-` rails on the breadboard, we'll call this the **12V rail**
-1. Plug the MC33269T regulator into the Breadboard
-1. Connect the 12V `-`rail to the GND pin of the regulator (left most pin when looking from the front) with a jumper wire
-1. Connect the 12V `+` rail to the Vin pin of the regulator (right most pin when looking form the front) with a jumper wire
+##### Regulator Input
+
+1. Connect jumper wires to both DC Barrel Jack Adapter terminals.
+1. Connect the DC Barrel Jack to one pair of the `+` and `-` rails on the breadboard.
+    * We'll call this the **12V rail**.
+1. Plug the MC33269T regulator into the Breadboard.
+1. Connect the 12V `-`rail to the GND pin of the regulator (left most pin when looking from the front) with a jumper wire.
+1. Connect the 12V `+` rail to the Vin pin of the regulator (right most pin when looking form the front) with a jumper wire.
 
 ![](./img/smart-plant-p5-wiring-01.jpg)
 
-Regulator Output:
+##### Regulator Output
 
 1. We'll use the other pair of `+` and `-` rails on the breadboard for our **5V rail**
 1. Connect the GND pin of the regulator (left most pin when looking from the front) to the 5V `-` rail with a jumper wire
@@ -82,7 +91,7 @@ Regulator Output:
 
 ![](./img/smart-plant-p5-wiring-02.jpg)
 
-Pump Setup:
+##### Water Pump
 
 1. Run a jumper wire from the 12V `-`rail to the **negative terminal** of the Water Pump
 1. Connect a jumper wire from the 12V `+`rail to the **IN** screw terminal on Channel 0 of the Relay Expansion
@@ -92,7 +101,7 @@ Pump Setup:
 
 Once you've done that, plug the Relay Expansion back into the Arduino Dock.
 
-Power the Arduino Dock:
+##### Arduino Dock
 
 **WARNING: It is very important that you connect the 5V rail to your Arduino Dock. Accidentally using the 12V rail will for sure damage your Arduino Dock and Omega. Proceed at your own risk, but don't worry, if you follow the instructions, you'll be fine.**
 
@@ -109,12 +118,8 @@ Then plug in the OLED Expansion.
 
 Now we provide power by connecting the 12V power supply to the DC Barrel Jack Adapter. Your Omega should now be booting.
 
-Revel in the fact that you've created a regulator circuit that can power your Omega as well as the 12V pump!
+**Congratulations, you've made it!** Revel in the fact that you've created a regulator circuit that can power your Omega as well as the 12V pump!
 
 // TODO: photo
 
-
-### Code Highlight
-
-// one or two paragraphs (max) about something cool we did in the code
-//	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc)
+Show off your amazing smart-plant setup and Dashboards on our [Community Forum](https://community.onion.io/category/1/projects)!

@@ -1,8 +1,9 @@
 ## Smart Plant - Twitter Alerts {#smart-plant-p3}
 
-// TODO: lol, this first sentence is lame. change it to a proper intro
+<!-- // DONE: lol, this first sentence is lame. change it to a proper intro -->
+<!-- // if it's so lame, what's a better way of saying it then? -->
 
-Welcome to Smart Plant 3: The Tweetening! In part three, we'll build on what we've created in part [one](#smart-plant-p1) and [two](#smart-plant-p2) to get our plant to Tweet at us based on the moisture data collected.
+Give your plant a voice of its own with Twitter! In part three, we'll build on what we've created in part [one](#smart-plant-p1) and [two](#smart-plant-p2) to get our plant to Tweet at us based on the moisture data collected.
 
 ### Overview
 
@@ -30,24 +31,24 @@ The same as the first part of the project:
 
 Follow these instructions to set this project up on your very own Omega!
 
-// TODO: enumerate the steps correctly (when you're done all of the other TODOs)
+<!-- // DONE: enumerate the steps correctly (when you're done all of the others) -->
 
 #### 1. Prepare
 
 You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
 
-#### 1. Complete the Previous Parts of the Project
+#### 2. Complete the Previous Parts of the Project
 
 This project builds on the first and second parts of the Smart Plant project. If you haven't already completed the [first part](#smart-plant-p1) and [second parts](#smart-plant-p2), go back and do them now!
 
 ![smart plant p1](./img/smart-plant-p1.jpg)
 
-#### 1. Login to Losant
+#### 3. Login to Losant
 
 Head over to [Losant.com](https://www.losant.com/) and log in.
 
-#### 1. Losant Workflow: First Things
+#### 4. Losant Workflow: First Things
 
 We'll need to create a new **workflow** to let our plant Tweet at us.
 
@@ -63,7 +64,7 @@ Make sure the device is pointing to the Omega connected to our plant.
 
 ![](./img/smart-plant-p3-0-workflow-2-device-placed.png)
 
-#### 1. Losant Workflow: Debugging Node
+#### 5. Losant Workflow: Debugging Node
 
 Let's drop in a `Debug` block to check our moisture data is being properly received:
 
@@ -77,7 +78,7 @@ And make the connection:
 
 ![](./img/smart-plant-p3-0-workflow-5-debug-wired.png)
 
-#### 1. Losant Workflow: Time Window
+#### 6. Losant Workflow: Time Window
 
 It would defeat the purpose and be be pretty annoying if our plant sent us a notification asking to be watered in the middle of the night. We'll use the `Time Range` node to make sure our notifications go out only during the day. Check out [Losant's `Time Range` node documentation](https://docs.losant.com/workflows/logic/time-range/) for more info.
 
@@ -85,27 +86,32 @@ Pull out a Time Range node from the sidebar to get started:
 
 ![](./img/smart-plant-p3-0-workflow-6-time-range.png)
 
-As always, the options provided by the node can be found in the right panel. We've set the node
-to allow the flow to continue if the time is between 9:00 to 21:00 (9am and 9pm) every day, feel free to decide what times work for your plant. Don't forget to set your Time Zone!
+As always, the options provided by the node can be found in the right panel. We've set the node to allow the flow to continue if the time is between 9:00 to 21:00 (9am and 9pm) every day, feel free to decide what times work for your plant. Don't forget to set your Time Zone!
 
 ![](./img/smart-plant-p3-0-workflow-7-time-range-placed.png)
 
-#### 1. Losant Workflow: Check Moisture
+#### 7. Losant Workflow: Check Moisture
 
 Once we have our time window set up, we'll have to check for moisture!
 
-// TODO: need a better description for the latch node, see the losant docs for a better idea of what this node does: https://docs.losant.com/workflows/logic/latch/
+<!-- // DONE: need a better description for the latch node, see the losant docs for a better idea of what this node does: https://docs.losant.com/workflows/logic/latch/ -->
 
-The `Latch` node is quite useful when dealing with cases where a value needs to switch on and off at different signals.
-
-// TODO: link to losant docs: https://docs.losant.com/workflows/logic/latch/, see time range step for example
+The `Latch` node is used to perform a task a single time when a condition has been fulfilled. The node will not perform the task again until another condition has been achieved; kind of like a reset switch. It can be used for things such as one-time notifications. Check out [Losant's `Latch node` documentation](https://docs.losant.com/workflows/logic/latch/) for more details.
 
 ![](./img/smart-plant-p3-0-workflow-8-latch.png)
 
-Each Latch node has two required conditions - one to trigger the 'Latched' state, and the other to reset it.
-// TODO: find a way to work in the names of the two conditions, Latch Condition and Reset Condition
+For example, you can use it to send a single alert when a moisture sensor has dropped below 20%, and not send any more alerts until the level has risen back above 40%.
 
-// TODO: explain that until the reset condition is met, the node cannot be triggered again even if the Latch Condition is met
+<!-- // DONE: link to losant docs: https://docs.losant.com/workflows/logic/latch/, see time range step for example -->
+
+Each Latch node has two required conditions:
+
+* The 'Latched' condition - when evaluates to `true`, triggers a following node **once and only once** until it has been reset.
+* The 'Reset' condition - when evaluates to true, resets the 'Latched' condition so that it may trigger a node again.
+
+<!-- // DONE: find a way to work in the names of the two conditions, Latch Condition and Reset Condition
+
+// DONE: explain that until the reset condition is met, the node cannot be triggered again even if the Latch Condition is met -->
 
 ![](./img/smart-plant-p3-0-workflow-9-latch-empty.png)
 
@@ -122,13 +128,13 @@ Now that it's set up, we'll connect the `Latch` to the `Time Range` node. Make s
 
 ![](./img/smart-plant-p3-0-workflow-12-latch-connected.png)
 
-#### 1. Losant Workflow: Twitter Event
+#### 7. Losant Workflow: Twitter Event
 
 The goal of this project is to get our plant to Tweet us. So when the `Latch` triggers, we definitely want it to send off a Twitter event.
 
-Luckily for us, Losant provides a `Tweet` node!
+Luckily for us, Losant provides a `Tweet` node! Check out [Losant's `Tweet` node documentation](https://docs.losant.com/workflows/outputs/tweet/) for more info.
 
-// TODO: link to losant docs: https://docs.losant.com/workflows/outputs/tweet/, see time range step for example
+<!-- // DONE: link to losant docs: https://docs.losant.com/workflows/outputs/tweet/, see time range step for example -->
 
 ![](./img/smart-plant-p3-0-workflow-13-tweet.png)
 
@@ -136,7 +142,7 @@ Taking a look at the properties, it looks like we'll need to register an App wit
 
 ![](./img/smart-plant-p3-0-workflow-14-tweet-placed.png)
 
-#### 1. Create a Twitter Application
+#### 8. Create a Twitter Application
 
 It's time to pay Twitter a visit!
 
@@ -203,7 +209,7 @@ And connect it to the same trigger that will fire the Tweet - the moisture level
 ![](./img/smart-plant-p3-1-twitter-12-notification-connected.png)
 
 
-#### 1. Test Tweeting
+#### 8. Test Tweeting
 
 It's a good idea to test out smaller pieces first. So let's make sure that our `Tweet` node works as intended.
 
@@ -247,7 +253,7 @@ And then check Twitter for the actual tweet:
 Looks like the Twitter node is working as expected!
 
 
-#### 1. Complete the Workflow
+#### 9. Complete the Workflow
 
 Now that we're done testing the Tweet node, let's delete the `Button` block and finish the Workflow. Connect the `Twitter` Node to the `true` path of the `Latch` node:
 
@@ -264,4 +270,7 @@ Now Deploy the workflow and we're done!
 
 ### Going Further
 
-// TODO: complete this section, tease a few more things you can do with the losant workflow 'Send an email, send an SMS Text Message, even send a command to a device' ... wouldn't it be nice if we could tell the Omega to water the plant for us? <Teaser for the next part>
+<!-- // DONE: complete this section, tease a few more things you can do with the losant workflow 'Send an email, send an SMS Text Message, even send a command to a device' ... wouldn't it be nice if we could tell the Omega to water the plant for us? <Teaser for the next part> -->
+
+You can extend the Losant workflow to send more types of notifications, such as an SMS text message, email, or even a command to another device. But wouldn't it be nice if we could tell the Omega to water the plant for us?
+
