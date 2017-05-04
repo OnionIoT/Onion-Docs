@@ -6,7 +6,7 @@ This project will allow you to read temperature from a digital sensor, display i
 
 ![temperature monitor running](./img/temperature-monitor-complete.jpg)
 
-We can then visualize the data on Ubidots:
+Visualize and track the data on Ubidots:
 
 ![temperature monitor multiple readings](./img/temperature-monitor-multiple-readings.png)
 
@@ -40,7 +40,7 @@ Tools:
 * 1x Wire Cutter
 * 1x Wire Stripper
 
-TODO: photo: temperature monitor ingredients
+<!-- TODO: photo: temperature monitor ingredients -->
 <!-- ![temperature monitor ingredients](./img/temperature-monitor-ingredients.jpg) -->
 
 
