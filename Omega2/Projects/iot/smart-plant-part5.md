@@ -83,7 +83,7 @@ We'll wire up the circuit in a few sub-steps:
 
 ![](./img/smart-plant-p5-wiring-01.jpg)
 
-Now let's wire the regulator output:
+##### Regulator Output
 
 1. We'll use the other pair of `+` and `-` rails on the breadboard for our **5V rail**
 1. Connect the GND pin of the regulator (left most pin when looking from the front) to the 5V `-` rail with a jumper wire
@@ -91,7 +91,7 @@ Now let's wire the regulator output:
 
 ![](./img/smart-plant-p5-wiring-02.jpg)
 
-Pump Setup:
+##### Water Pump
 
 1. Run a jumper wire from the 12V `-`rail to the **negative terminal** of the Water Pump
 1. Connect a jumper wire from the 12V `+`rail to the **IN** screw terminal on Channel 0 of the Relay Expansion
@@ -101,7 +101,7 @@ Pump Setup:
 
 Once you've done that, plug the Relay Expansion back into the Arduino Dock.
 
-Power the Arduino Dock:
+##### Arduino Dock
 
 **WARNING: It is very important that you connect the 5V rail to your Arduino Dock. Accidentally using the 12V rail will for sure damage your Arduino Dock and Omega. Proceed at your own risk, but don't worry, if you follow the instructions, you'll be fine.**
 
@@ -118,7 +118,7 @@ Then plug in the OLED Expansion.
 
 Now we provide power by connecting the 12V power supply to the DC Barrel Jack Adapter. Your Omega should now be booting.
 
-Congratulations, you've made it! Revel in the fact that you've created a regulator circuit that can power your Omega as well as the 12V pump!
+**Congratulations, you've made it!** Revel in the fact that you've created a regulator circuit that can power your Omega as well as the 12V pump!
 
 // TODO: photo
 
