@@ -61,7 +61,7 @@ opkg install arduino-dock-2 python python-pyserial pyOledExp git git-http ca-bun
 
 The `arduino-dock-2` package installs all the software required to interact with and flash the Arduino Dock. We're also installing the `python` programming language and `python-pyserial`, a module that will allow us to communicate with the microcontroller via the `UART1` serial port.
 
-The `git`, `git-http`, and `ca-bundle` packages will allows us to download the project code form GitHub.
+The `git`, `git-http`, and `ca-bundle` packages will allow us to download the project code form GitHub.
 
 #### 3. Arduino IDE Setup
 
@@ -254,8 +254,8 @@ for opt, arg, in opts:
 		sys.exit()
 	elif opt in ("-v", "--verbose"):
 		VERBOSE = True
-    
-    
+
+
     # and so on
 ```
 
