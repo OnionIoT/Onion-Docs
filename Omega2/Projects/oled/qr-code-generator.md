@@ -16,6 +16,7 @@ The resulting code can then be scanned to read the encoded text. If it's a URL t
 
 **Time Required:** 10 minutes
 
+This project is mostly code based, all of the code can be found on this Onion GitHub Repo: https://github.com/OnionIoT/oledQrCodeGenerator
 
 ### Ingredients
 
@@ -27,10 +28,6 @@ The resulting code can then be scanned to read the encoded text. If it's a URL t
 ### Step-by-Step
 
 Ok, here we go! First we'll install some required packages to make everything run smoothly, and then we'll grab the code for this tutorial from GitHub.
-
-All of the code can be found on this Onion GitHub Repo: https://github.com/OnionIoT/oledQrCodeGenerator
-
-
 
 #### 1. Prepare your Ingredients
 
@@ -133,6 +130,7 @@ print 'All done!'
 It's no fun to just display QR codes and not be able to read them, right?
 
 Don't worry, your smartphone is perfectly capable of reading the code from the OLED:
+
 * On Android, we've used the [QR Code Reader](https://play.google.com/store/apps/details?id=tw.mobileapp.qrcode.banner) and [QR Barcode Scanner](https://play.google.com/store/apps/details?id=appinventor.ai_progetto2003.SCAN&hl=en) apps successfully
 * On iOS, we've had success with the [QR Reader App](https://itunes.apple.com/us/app/qr-code-reader-and-scanner/id388175979?mt=8)
 

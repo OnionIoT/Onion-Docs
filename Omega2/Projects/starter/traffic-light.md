@@ -74,7 +74,8 @@ git clone https://github.com/OnionIoT/starter-traffic-light.git
 
 >Since the project code is only a single file, you can download the code directly to avoid installing and using git:
 >```
->cd /root
+>mkdir /root/starter-traffic-light
+>cd /root/starter-traffic-light
 >wget https://raw.githubusercontent.com/OnionIoT/starter-traffic-light/master/main.py
 >```
 

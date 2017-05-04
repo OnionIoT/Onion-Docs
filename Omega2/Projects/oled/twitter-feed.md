@@ -57,10 +57,14 @@ cd /root
 git clone https://github.com/OnionIoT/oled-twitter-display.git
 ```
 
-> If you're in a hurry, we can download the code directly and avoid installing git.<br> Go to your `/root` directory and run:<br>
-> `wget https://raw.githubusercontent.com/OnionIoT/oled-twitter-display/master/oledTwitterDisplay.py`<br>
-> `wget https://raw.githubusercontent.com/OnionIoT/oled-twitter-display/master/config.json`<br><br>
-> We can do this direct download since this GitHub repo is public.
+>If you're in a hurry, we can download the code directly and avoid installing git.<br> Run the following:<br>
+>```
+>mkdir /root/oled-twitter-display`
+>cd /root/oled-twitter-display
+>wget https://raw.githubusercontent.com/OnionIoT/oled-twitter-display/master/oledTwitterDisplay.py
+>wget https://raw.githubusercontent.com/OnionIoT/oled-twitter-display/master/config.json
+>```<br><br>
+>We can do this direct download since this GitHub repo is public.
 
 #### 4. Create a Twitter Application
 

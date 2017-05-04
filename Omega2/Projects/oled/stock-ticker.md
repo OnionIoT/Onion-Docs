@@ -159,4 +159,4 @@ python stocks.py BB
 ]
 ```
 
-Add the data displayed on the OLED screen based on what information is relevant to you.
+Add any information that's relevant to you to the data that's displayed on the OLED screen. Keep in mind that the screen can display 21 characters per line, any additional characters will be automatically relegated to the next line.
