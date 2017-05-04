@@ -61,11 +61,23 @@ opkg install arduino-dock-2 python python-pyserial pyOledExp git git-http ca-bun
 
 The `arduino-dock-2` package installs all the software required to interact with and flash the Arduino Dock. We're also installing the `python` programming language and `python-pyserial`, a module that will allow us to communicate with the microcontroller via the `UART1` serial port.
 
-The `git`, `git-http`, and `ca-bundle` packages will allows us to download the project code form GitHub.
+The `git`, `git-http`, and `ca-bundle` packages will allow us to download the project code form GitHub.
 
 #### 3. Arduino IDE Setup
 
-If you don't already have it, install the [Arduino IDE](https://www.arduino.cc/en/Main/Software) on your computer. Then follow [our instructions](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html) to enable the Arduino IDE to install the Onion Library and wirelessly flash the Arduino Dock 2.
+<!-- TODO: future: fix this up when we have the arduino library and ide stuff down-pat -->
+
+<!-- If you don't already have it, install the [Arduino IDE](https://www.arduino.cc/en/Main/Software) on your computer. Then follow [our Arduino Dock setup instructions](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html) to install the Onion Arduino Library and setup the Arduino IDE to wirelessly flash the Arduino Dock 2. -->
+
+If you don't already have it, install the [Arduino IDE](https://www.arduino.cc/en/Main/Software) on your computer.
+
+Then you'll need to install the Onion Arduino Library by doing the following:
+
+1. In your web browser, download the [Onion Arduino Library ZIP file](https://github.com/OnionIoT/Onion-Arduino-Library/raw/master/Onion-Arduino-Library.zip).
+1. Install the ZIP library by following the instructions in the [Arduino Library Installation guide](https://www.arduino.cc/en/Guide/Libraries#toc4).
+1. Restart your Arduino IDE to reload the library.
+
+Finally, follow [our Arduino Dock setup instructions](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html) to setup the Arduino IDE to wirelessly flash the Arduino Dock 2.
 
 ![arduino ide + Arduino Dock](./img/smart-plant-p1-arduino-ide-0.png)
 
@@ -84,9 +96,12 @@ This sketch will read the signal on Analog pin A0 and will transmit the value vi
 Select your Omega from the listed Network Ports when you open the Tools menu and then Port:
 
 ![](./img/smart-plant-p1-arduino-port.png)
-<!-- DONE: screenshot of the above -->
 
 > If your Omega doesn't show up in the list of Network Ports, run `/etc/init.d/avahi-daemon restart` and it should show up in about 15 seconds.
+
+Hit the Arrow button to upload your sketch to the Arduino Dock. It will ask for a password during the flashing sequence, this is the Omega's password that it's asking for, by default it is `onioneer`.
+
+> See our guide on [using the Arduino Dock](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html) for more details on this process. 
 
 
 #### 5. Connect the Sensor
@@ -254,8 +269,8 @@ for opt, arg, in opts:
 		sys.exit()
 	elif opt in ("-v", "--verbose"):
 		VERBOSE = True
-    
-    
+
+
     # and so on
 ```
 

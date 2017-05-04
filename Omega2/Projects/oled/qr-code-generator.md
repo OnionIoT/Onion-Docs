@@ -8,7 +8,7 @@ In this tutorial, we'll go through how you can use Python to encode text into a 
 
 ![QR Code on OLED Exp](./img/oled-qr-code-photo.jpg)
 
-// TODO: add a blurb that it then be scanned and the encoded text will be read. If it's a website, most phones will automatically navigate there
+The resulting code can then be scanned to read the encoded text. If it's a URL that's encoded, most smartphone QR code readers will open the browser to this URL. Useful if you have a complicated URL!
 
 ### Overview
 
@@ -16,6 +16,7 @@ In this tutorial, we'll go through how you can use Python to encode text into a 
 
 **Time Required:** 10 minutes
 
+This project is mostly code based, all of the code can be found on this Onion GitHub Repo: https://github.com/OnionIoT/oledQrCodeGenerator
 
 ### Ingredients
 
@@ -28,10 +29,6 @@ In this tutorial, we'll go through how you can use Python to encode text into a 
 
 Ok, here we go! First we'll install some required packages to make everything run smoothly, and then we'll grab the code for this tutorial from GitHub.
 
-All of the code can be found on this Onion GitHub Repo: https://github.com/OnionIoT/oledQrCodeGenerator
-
-
-
 #### 1. Prepare your Ingredients
 
 You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
@@ -43,17 +40,14 @@ We will need to have support for git, Python, and the [Onion OLED Expansion Pyth
 
 ```
 opkg update
-opkg install git git-http python-light python-codecs pyOledExp
+opkg install python-light python-codecs pyOledExp git git-http ca-bundle
 ```
 
 
 
 #### 3. Downloading the Code
 
-// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
-// note: can still reuse most of the text from here, don't just copy paste from the smart plant
-
-Now we need to download the Python code from GitHub that actually does all the work. [Connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and run the following command:
+Now we need to download the Python code from GitHub that actually does all the work. [Connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and [clone the project repo from GitHub](https://docs.onion.io/omega2-docs/installing-and-using-git.html) with the following command:
 
 ```
 cd /root
@@ -97,7 +91,7 @@ Behind the scenes, the Python code does the following:
 * Converts the QR code matrix into data that can be displayed on the OLED
 * Displays the resulting image on the OLED display
 	* Performs display initialization
-	* Inverts the display colours
+	* Inverts the display colors
 	* Displays the generated image file
 
 An additional feature was added for easier scanning: if the QR code is small (less than half the height of the OLED display), the image will be doubled in size so that each QR code pixel shows up as four pixels on the OLED display.
@@ -118,6 +112,8 @@ The `dispQrCode()` function will perform the same actions described above.
 
 A small example showing how to use this module:
 ``` python
+import sys
+sys.path.append("/root")
 import oledQrCodeGenerator
 
 print 'Now using the oledQrCodeGenerator'
@@ -126,10 +122,7 @@ oledQrCodeGenerator.dispQrCode('Hello!')
 print 'All done!'
 ```
 
-Note that your Python script will have to be in the same directory as `oledQrCodeGenerator` in order for it to work properly.
-
-// TODO: you can do a import os and add the project directory to the python lib path. then the new script doesn't have to be in the same dir as oledQrCodeGenerator to work properly.
-
+> Note that the above code assumes the project code can be found at `/root/oledQrCodeGenerator`. It appends `/root` to the `sys.path` list that Python uses when looking for modules that need to be imported. If the `sys.path.append("/root")` line is not present, Python will return an error saying `ImportError: No module named oledQrCodeGenerator` since it cannot find the module in the usual places it looks.
 
 
 ### Reading QR Codes
@@ -137,6 +130,7 @@ Note that your Python script will have to be in the same directory as `oledQrCod
 It's no fun to just display QR codes and not be able to read them, right?
 
 Don't worry, your smartphone is perfectly capable of reading the code from the OLED:
+
 * On Android, we've used the [QR Code Reader](https://play.google.com/store/apps/details?id=tw.mobileapp.qrcode.banner) and [QR Barcode Scanner](https://play.google.com/store/apps/details?id=appinventor.ai_progetto2003.SCAN&hl=en) apps successfully
 * On iOS, we've had success with the [QR Reader App](https://itunes.apple.com/us/app/qr-code-reader-and-scanner/id388175979?mt=8)
 

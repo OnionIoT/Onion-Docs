@@ -1,10 +1,12 @@
 ## Stock Ticker {#stock-ticker}
 
-For this project, we'll be displaying the latest stock information for a configurable list of stocks:
+For this project, we'll be obtaining the latest stock data from an online API for a configuratble list of stocks and displaying the data:
 
 ![oled+stock photo](./img/stock-ticker-photo-0.jpg)
 
-// TODO: add a disclaimer that the google finance data is probably delayed by 15min and that this shouldn't be used to inform investment decisions
+
+**Disclaimer: It's important to note that most stock data APIs provide data that is delayed and does not represent the latest information. Use this project for informational purposes only, it is not meant to offer any investment advice. Onion is not responsible for any investment decisions or their outcomes, please invest responsibly.**
+
 
 ### Overview
 
@@ -45,25 +47,25 @@ Once that's done, plug in your OLED Expansion:
 
 ![oled expansion dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-top-expansion-dock.JPG)
 
-#### 2. Install Python
+#### 2. Install Python and Git
 
-[Connect to the Omega's Command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and install Python as well as some of the packages we need:
+[Connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and install Python as well as some of the packages we need:
 
 ```
 opkg update
-opkg install python-light python-urllib3 pyOledExp
+opkg install python-light python-urllib3 pyOledExp git git-http ca-bundle
 ```
 
 The `python-urllib3` package will allow us to make HTTP requests in Python, while the `pyOledExp` package gives us control of the OLED Expansion.
 
+The `git`, `git-http`, and `ca-bundle` packages will allow us to download the project code form GitHub.
+
 #### 3. Download the Project Code
 
-// TODO: don't really dig redirecting them to an article on installing Git, should install give in the previous step and then have them clone the repo to their root directory
-// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
-
-The code for this project is all done and can be found in Onion's [oled-stock-ticker repo](https://github.com/OnionIoT/oled-stock-ticker) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
+The code for this project is all done and can be found in Onion's [oled-stock-ticker repo](https://github.com/OnionIoT/oled-stock-ticker) on GitHub. We'll use [`git` to download the code to your Omega](https://docs.onion.io/omega2-docs/installing-and-using-git.html): navigate to the `/root` directory, and clone the GitHub repo:
 
 ```
+cd /root
 git clone https://github.com/OnionIoT/oled-stock-ticker.git
 ```
 
@@ -87,7 +89,7 @@ Now run the code: `python main.py`
 
 ![oled+stock photo](./img/stock-ticker-photo-0.jpg)
 
-If you're interested in how the `pyOledExp` code can be used to control the OLED Expansion, take a look at how it's used in [the project code](https://github.com/OnionIoT/oled-stock-ticker/blob/master/oledDriver.py) and also check out the [`pyOledExp` Module documentation](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html).
+If you're interested in how the `pyOledExp` code can be used to control the OLED Expansion, take a look at how it's used in [the `oledDriver.py` file in the project code](https://github.com/OnionIoT/oled-stock-ticker/blob/master/oledDriver.py) and also check out the [`pyOledExp` Module documentation](https://docs.onion.io/omega2-docs/oled-expansion-python-module.html).
 
 #### 6. Automate the Program to Run Periodically
 
@@ -110,11 +112,10 @@ Now, we'll restart `cron`:
 
 And the code will run once every minute, generating *literally* up-to-the-minute stock information on your OLED!
 
-// TODO: again, include a note saying that the stock data is likely to be delayed and shouldn't be used to inform investment decisions
+**Again, remember that the stock information is likely delated data and shouldn't be used to inform investment decisions!**
 
 > Check out the Omega documentation for more info on [using `cron`](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html)
 
-// TODO: this doesn't work, the oled just goes blank (This was here before Lazar's review of the first draft. Please investigate)
 
 ### Code Highlight
 
@@ -158,4 +159,4 @@ python stocks.py BB
 ]
 ```
 
-// TODO: seems kinda like a cliff-hanger to just leave it off here. include some parting words or something
+Add any information that's relevant to you to the data that's displayed on the OLED screen. Keep in mind that the screen can display 21 characters per line, any additional characters will be automatically relegated to the next line.
