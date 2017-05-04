@@ -49,7 +49,7 @@ Once that's done, plug in your OLED Expansion:
 
 #### 2. Install Python and Git
 
-[Connect to the Omega's Command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and install Python as well as some of the packages we need:
+[Connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and install Python as well as some of the packages we need:
 
 ```
 opkg update
