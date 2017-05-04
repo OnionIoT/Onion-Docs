@@ -285,15 +285,6 @@ start_service() {
         procd_close_instance
 ```
 
-paste in the additional arguments, your file should look like this:
-
-```
-# Put your custom commands here that should be executed once
-# the system init finished. By default this file does nothing.
-
-python /root/smart-plant/smartPlant.py --oled --quiet --losant /root/smart-plant/losant.json
-exit 0
-```
 Hit `esc` and type `:wq` to save and close the file.
 
 Then re-enable the program:
