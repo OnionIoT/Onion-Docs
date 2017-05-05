@@ -79,7 +79,21 @@ Your code can take up to 59 seconds to run because `cron` will wait for the next
 
 
 #### Syntax for `crontab`
-So let's break down how `cron` will read the `crontab` file!
+So let's break down how `cron` will read the `crontab` file! Here's a quick overview of how cron's syntax works:
+
+```
+# * * * * *  command to execute
+# ┬ ┬ ┬ ┬ ┬
+# │ │ │ │ │
+# │ │ │ │ │
+# │ │ │ │ └───── day of week (0 - 7) (0 to 6 are Sunday to Saturday, or use names; 7 is Sunday, the same as 0)
+# │ │ │ └────────── month (1 - 12)
+# │ │ └─────────────── day of month (1 - 31)
+# │ └──────────────────── hour (0 - 23)
+# └───────────────────────── min (0 - 59)
+```
+
+And here are some examples with explanations:
 
 |min| hour | date |month |day of the week | When will my command run? |
 |---| --- | --- |--- |--- | --- |
