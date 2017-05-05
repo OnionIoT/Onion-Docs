@@ -179,6 +179,8 @@ Now wait a bit, if new files are created each minute, then we're good to move on
 
 ![Output images from the webcam](./img/timelapse-camera-fs-output.png)
 
+> Check out the Omega documentation for more info on [using `cron`](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html)
+
 
 #### 7. Set up FFmpeg
 
