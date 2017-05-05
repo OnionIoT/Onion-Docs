@@ -35,17 +35,14 @@ Optionally, we'll 3D print a base to clean up the cabling and give the printer s
 
 Follow these steps to turn your Omega into a web-based printer!
 
-// TODO: fix the step numbering
-
 #### 1. Prepare
 
 You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
 
-#### 1. Wire Up the Thermal Printer
+#### 2. Wire Up the Thermal Printer
 
-// TODO: not really a circuit diagram, lets not call it as such
-This is the circuit diagram for our printer:
+We'll be doing the following to connect the Omega to the printer:
 
 <!-- TODO: new circuit diagram -->
 ![Circuit Diagram](./img/thermal-printer-1-circuit-diagram.png)
@@ -65,22 +62,33 @@ Finally, connect the red wire from the JST connector to a `5V` pin on the Expans
 
 #### 2. Download the Project Code
 
-// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
+The code for this project is all done and can be found in Onion's [iot-thermal-printer repo](https://github.com/OnionIoT/iot-thermal-printer) on GitHub.
 
-The code for the thermal printer can be found in Onion's [`iot-thermal-printer` repo](https://github.com/OnionIoT/iot-thermal-printer) on GitHub. Follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
+First, [connect to the Omega's Command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-ssh) and install `git`:
 
 ```
+opkg update
+opkg install git git-http ca-bundle
+```
+
+And then [use `git` to download the project code to your Omega](https://docs.onion.io/omega2-docs/installing-and-using-git.html):
+
+```
+cd /root
 git clone https://github.com/OnionIoT/iot-thermal-printer.git
 ```
 
-After cloning the repo, enter the repo directory and run the `install.sh` script:
+After cloning the repo, enter the repo directory and copy the contents of the `www` to the `/www` directory on the Omega:
 
 ```
 cd iot-thermal-printer
-sh install.sh
+cp -r www/ /
 ```
 
-#### 3. Running the Printer
+> By virtue of `uhttpd`, the HTTP server running on the Omega, all of the files in the `/www` directory will be served up as a website.
+
+
+### Running the Printer
 
 1. Connect your Omega to your WiFi network, or connect your computer to the Omega's WiFi network.
 1. In a web browser, navigate to omega-ABCD.local/printer.html, where ABCD is the last 4 digits on the sticker on the Omega.
