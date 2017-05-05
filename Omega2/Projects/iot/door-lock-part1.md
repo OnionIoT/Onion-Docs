@@ -1,14 +1,12 @@
 ## IoT Lock {#internet-lock-p1}
 
-Keys are so last year. With the internet, we can unlock things with our keyboard!
+Keys are so last year. With the Omega and the internet, we can unlock things with our keyboard or touchscreen!
 
-
-Here's a setup we've placed in Onion HQ:
+In this project, we'll be building an electric lock system with the Omega:
 
 ![The omega controlling it](./img/door-lock-p1-1.jpg)
 
-// TODO: PHOTO: Retake the above photo so that it matches the setup described in the article (NO SERVO EXPANSION)
-
+In fact, we use this very setup to control a secondary lock at Onion HQ:
 
 ![The lock itself](./img/door-lock-p1-2.jpg)
 
@@ -52,7 +50,7 @@ First we need an Omega2 ready to go. If you haven't already, complete the [First
 
 Plug in the Relay Expansion, and that's it for the Omega.
 
-// TODO: PHOTO: add a photo of the relay expansion plugged into the Expansion Dock
+![expansion dock and relay expansion](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-expansion-dock.jpg)
 
 #### 2. Test the lock
 
@@ -95,8 +93,6 @@ Before getting to software, you should make sure the lock chosen can be mounted 
 Now that the pieces work together, it's time to mount your lock! Keep all the components powered off, and take the testing rig apart
 
 ![Our wiring setup](./img/door-lock-p1-mounted.jpg)
-
-// TODO: photo: retake this photo so there is little to no chinese writing in the background, we want to show off the fact that we're a north american company
 
 >At Onion HQ, we've extended the wiring of the lock and routed it to an Omega and power supply right next to the door, but depending on the situation, you may have to do something completely different.
 
