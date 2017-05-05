@@ -4,7 +4,7 @@ Morse code is an old binary encoding that transmits messages letter-by-letter th
 
 In this project we're going to write a script that will blink the Omega's LED in morse code based on the user's input using the Omega's command-line interface.
 
-// TODO: need a photo of the final result, in this case, maybe a photo of the Omega on a mini Dock AND a screenshot of vi with the script present
+![omega led](./img/morse-code-setup.jpg)
 
 
 ### Overview
@@ -167,7 +167,7 @@ Enter a message that you would like to blink in morse code:
 root@Omega-2757:~# sh /root/morse.sh Hello Onion
 ```
 
-// TODO: Photo: add an image here
+![omega led](./img/morse-code-setup.jpg)
 
 Once you're done, you can set the blinking back to `default-on` with the following command:
 
