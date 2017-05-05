@@ -4,7 +4,7 @@ In this project, we'll build on the [Thermal Printer Project](#thermal-printer-p
 
 ![Thermal printer compact](./img/thermal-printer-2-1.jpg)
 
-// TODO: photo: another photo of how compact this is
+![thermal printer compact 2](./img/thermal-printer-2-assembled-02.jpg)
 
 ### Overview
 
@@ -77,10 +77,9 @@ We'll be doing the following to connect the Omega to the printer:
 	* We do this tricky business because the thermal printer requires 5V to operate and the Mini Dock
 1. Insert your printer into the base from the top so that the 5-pin cable is routed through the channel on the side of the printer.
 	* The wiring on the underside should like something like this:
-		![Thermal printer 3](./img/thermal-printer-2-3.jpg)
-		// TODO: photo with the power supply unplugged
+		![Thermal printer underside](./img/thermal-printer-2-underside.jpg)
 	* How the 5-pin cable is routed:
-		// TODO: photo: detail of the 5-pin cable
+		![Thermal printer 5pin cable routing](./img/thermal-printer-2-5pin-cable-routing.jpg)
 1. If your wires are all connected, you can then flip the printer right side up.
 
 
