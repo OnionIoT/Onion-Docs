@@ -4,7 +4,7 @@ In this project, we'll build on the [Thermal Printer Project](#thermal-printer-p
 
 ![Thermal printer compact](./img/thermal-printer-2-1.jpg)
 
-// TODO: another photo of how compact this is
+// TODO: photo: another photo of how compact this is
 
 ### Overview
 
@@ -18,8 +18,7 @@ This tutorial will require you to solder a wire to one of the components on the 
 
 If you are not comfortable soldering, try finding a friend or professional who can quickly solder it for you. Or practice soldering wires together and then work your way up to soldering on actual electronics.
 
-// TODO: is there a better way to say this?
-**Note:** Solder at your own risk, Onion is not responsible for any injury or damage!
+**Warning:** Soldering irons get really hot and can burn skin badly! Be careful and solder only if you know what you're doing and at your own risk, Onion is not responsible for any injury or damage!
 
 ### Ingredients
 
@@ -62,35 +61,35 @@ Cut only **one** of these ends off, leaving bare wire:
 
 #### 4. Assemble the Circuit
 
-This is the circuit diagram for our printer:
+We'll be doing the following to connect the Omega to the printer:
 
 ![Circuit Diagram](./img/thermal-printer-2-circuit-diagram.png)
 
-// TODO: convert this into a list of steps. If it gets too long, consider splitting it into two different sections (providing power and providing communication)
+1. Plug in the 2-pin JST power cable into the 2-pin port on the bottom of the printer.
+1. Route the red and black wires to the barrel jack; make sure the red wire is connected to the **Positive (+)** terminal and the black to the **Negative (-)** terminal.
+1. Then plug the non-cut end of the 5-pin TTL cable into the 5-pin port on the printer. Route the wires through the gap in the printer case on the right side of the USB connector.
+1. Route the black, green, and yellow TTL wires to the UART pins on the Mini Dock (highlighted in the diagram above).
+	* The middle pin on the printer is the printer's serial RX (Receiving) pin, and it needs to be connected to the Omega's UART1 TX (Transmitting) pin
+	* The pin second from the right on the printer is the printer's serial TX pin, connect it to the Omega's UART RX pin
+	* To insert the wires into the Mini Dock, you can insert the wires into the headers after you strip and twist the ends like so:
+		![Stripped wires](./img/temperature-monitor-assembly-01.jpg)
+1. Then solder the red power cable to the 5V pin on the regulator on the Mini Dock as shown above. Take care that you solder to the correct contact or you may damage your board!
+	* We do this tricky business because the thermal printer requires 5V to operate and the Mini Dock
+1. Insert your printer into the base from the top so that the 5-pin cable is routed through the channel on the side of the printer.
+	* The wiring on the underside should like something like this:
+		![Thermal printer 3](./img/thermal-printer-2-3.jpg)
+		// TODO: photo with the power supply unplugged
+	* How the 5-pin cable is routed:
+		// TODO: photo: detail of the 5-pin cable
+1. If your wires are all connected, you can then flip the printer right side up.
 
-Plug in the 2-pin JST power cable into the left side of the bottom of the printer above. Route the red and black wires to the barrel jack; make sure the red wire is connected to the "(+)" terminal and the black to the "(-)" terminal.
-
-Then plug the non-cut end of the 5-pin TTL cable into the printer as shown above. Route the wires through the gap in the printer case on the right side of the USB connector.
-
-Route the black, green, and yellow TTL wires to the highlighted pins on the Mini Dock above. Then solder the red power cable to the pin on the regulator on the Mini Dock as shown above. Take care that you solder to the correct pin or you may damage your board!
-
-To insert the wires into the Mini Dock, you can strip and twist the ends like so:
-
-![Stripped wires](./img/temperature-monitor-assembly-01.jpg)
-
-The wiring on the underside of the printer should look something like this:
-
-![Thermal printer 3](./img/thermal-printer-2-3.jpg)
-
-Insert your printer into the base from the top so that the 5-pin cable is visible as shown above. If your wires are all connected, you can then flip the printer back over so the paper can be printed.
 
 **Do not plug in the power supply just yet,** as we still need to connect and solder some wires to the Omega.
 
-// TODO: missing step numbering
-#### Assemble the Omega
-// TODO: need a more descriptive step title
 
-Plug the Omega into the Mini Dock. The pins should push the wires into the Dock and make contact as the Omega is inserted.
+#### 5. Connect the Omega
+
+Plug the Omega into the Mini Dock. The Omega's pins will push the stripped wires down into the header. Make sure they don't pop out during the process!
 
 Use double-sided tape or putty to affix the Omega to the rear of the printer like so:
 
@@ -100,40 +99,49 @@ Use double-sided tape or putty to affix the Omega to the rear of the printer lik
 
 Now plug in the 5V power supply into the barrel jack and turn the switch on the Mini Dock to ON.
 
-// TODO: missing step numbering
-#### Download the Code
 
-// TODO: again, not a huge fan of pointing them to an article on how to install git, maybe just include a step to install git?
-// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
+#### 6. Download the Code
+
+*If you've already downloaded the code in [the first part of the project](#thermal-printer-p1), your printer is ready to go so you can skip this part!*
 
 The code for this project is all done and can be found in Onion's [iot-thermal-printer repo](https://github.com/OnionIoT/iot-thermal-printer) on GitHub.
 
-[Connect to the Omega's Command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-ssh) and follow the [instructions on installing Git](https://docs.onion.io/omega2-docs/installing-and-using-git.html), navigate to the `/root` directory, and clone the GitHub repo:
+First, [connect to the Omega's Command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-ssh) and install `git`:
 
 ```
+opkg update
+opkg install git git-http ca-bundle
+```
+
+And then [use `git` to download the project code to your Omega](https://docs.onion.io/omega2-docs/installing-and-using-git.html):
+
+```
+cd /root
 git clone https://github.com/OnionIoT/iot-thermal-printer.git
 ```
 
-After cloning the repo, enter the repo directory and run the `install.sh` script:
+After cloning the repo, enter the repo directory and copy the contents of the `www` to the `/www` directory on the Omega:
 
 ```
 cd iot-thermal-printer
-sh install.sh
+cp -r www/ /
 ```
 
-// TODO: include a '>' section that explains what the install.sh script actually does
+> By virtue of `uhttpd`, the HTTP server running on the Omega, all of the files in the `/www` directory will be served up as a website.
 
 
-// TODO: missing step numbering
-#### Running the Printer
+
+### Using the Printer
 
 1. Connect your Omega to your WiFi network, or connect your computer to the Omega's WiFi network.
-1. In a web browser, navigate to omega-ABCD.local/printer.html, where ABCD is the last 4 digits on the sticker on the Omega.
-1. Type in text in the box in the middle of the webpage.
-1. Click print to print it!
+1. In a web browser, navigate to `omega-ABCD.local/printer.html`, where `ABCD` is the last 4 digits on the sticker on the Omega.
+1. Type text in the box in the middle of the webpage.
+1. Click print to physically print it!
 
 ![Web Interface](./img/thermal-printer-web-page.png)
 
-// TODO: include a photo of the real printed output
+The physical output:
+
+![Thermal printer output](./img/thermal-printer-2-1.jpg)
 
 <!-- ### Code Highlight -->
