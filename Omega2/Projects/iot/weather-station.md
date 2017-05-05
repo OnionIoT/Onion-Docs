@@ -258,7 +258,7 @@ cp init.d/weather-station /etc/init.d
 
 Reboot the Omega, and you will see the dashboard automatically being populated with data while the command line is available for you to use!
 
-> The `/etc/init.d/weather-station` script registers out Weather Station Python script  with `procd`, the process management daemon of the system, and ensures that the process gets started at boot and continues to run until the service
+> The `/etc/init.d/weather-station` script registers the Weather Station Python script as a service with `procd`, the process management daemon of the system. `procd` then ensures that the process gets started at boot and continues to run until the service is disabled
 
 ### Code Highlight
 
