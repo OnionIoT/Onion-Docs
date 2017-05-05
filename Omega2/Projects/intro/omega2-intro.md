@@ -43,7 +43,7 @@ The Specs:
 | USB | USB 2.0  | USB 2.0  |
 | MicroSD Slot | No  | **Yes**  |
 | WiFi adapter | b/g/n Wi-Fi  | b/g/n Wi-Fi  |
-| Operating Voltage | **3.3V**  | **3.3V**  | 
+| Operating Voltage | **3.3V**  | **3.3V**  |
 
 #### SoC
 
@@ -65,7 +65,7 @@ The lower clock speed and the MIPS architecture of the SoC lend to the Omega's l
 
 #### Memory
 
-The Omega2 comes with **128 MB** of memory and the Omega2+ with **256 MB**. Both models use DDR2 DRAM(Dynamic Random Access Memory).
+The Omega2 comes with **128 MB** of memory and the Omega2+ with **256 MB**. Both models use DDR2 DRAM (Dynamic Random Access Memory).
 
 
 #### Storage
