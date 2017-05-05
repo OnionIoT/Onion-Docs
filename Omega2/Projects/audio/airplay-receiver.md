@@ -103,7 +103,7 @@ The Steps:
 
 * First let's set `disabled` to `'0'` to enable the UCI configuration.
 * Optionally, pick out a new name to display in your AirPlay devices menus.
-* Next, consider using a password - not mandatory, but much be handy.
+* Optionally, add a password to ensure only trusted users can access your Airplay receiver - Not Recommended
 * Finally, make sure the `mdns_backend` is set to `'tinysvcmdns'`
 * The rest of the options can be kept as their default values.
 
@@ -131,13 +131,19 @@ If you wish to use an Android device, we found AllStream and DoubleTwist to have
 
 Now that everything's ready to go, enter `shairport-sync -d` to start up the shairport-sync server in the background.
 
+### Listening to Tunes
+
 Now take a look at your AirPlay device, and you should see the Omega pop up as a receiver!
 
-// TODO: PHOTO: add a screen shot of this working on an iOS device
+On an iPhone:
+
+![iphone select airplay](./img/airplay-receiver-iphone-0.png)
+
+![iphone music app](./img/airplay-receiver-iphone-1.png)
+
+On an Andriod phone using the AllConnect App:
 
 ![AllConnect with the Omega as a receiver](./img/airplay-receiver-android-app.png)
-
-#### 8. Enjoy
 
 Play some tunes and enjoy your AirPlay-powered WiFi audio streaming brought to you by your Omega.
 
