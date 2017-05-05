@@ -2,9 +2,11 @@
 
 Using a webcam connected to the Omega, we can take photos over time and string them together to make a video of your scene!
 
-// TODO: include a photo of the final setup
+![The setup](./img/timelapse-camera-setup.jpg)
 
-// TODO: include a link to a youtube video of one of our timelapses
+<!-- TODO: photo: take a better photo with the whole timelapse camera setup mounted somewhere dope -->
+
+<!-- // TODO: photo: include a link to a youtube video of one of our timelapses -->
 
 
 ### Overview
@@ -13,13 +15,9 @@ Using a webcam connected to the Omega, we can take photos over time and string t
 
 **Time Required:** 30 minutes
 
-<!-- // go into some detail here about how we're going to be implementing the project // eg. which programming language we'll be using, APIs // include links to any api or module references -->
-
 In this project, we'll use the `fswebcam` utility and `cron` to capture images from the webcam at timed intervals, then we'll convert it all to a video using `ffmpeg`. To keep the amount of typing to a minimum, we will create shell scripts to do the work for us!
 
 ### Ingredients
-
-<!-- // a numbered list of all physical items used to make this project // all items should be linked to a place online where they can be bought // the Onion items should be linked to their corresponding Onion store page -->
 
 * Onion Omega2+
 * Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2, Mini Dock,
@@ -32,7 +30,7 @@ In this project, we'll use the `fswebcam` utility and `cron` to capture images f
 
 Follow these instructions create sweet time-lapse videos with a webcam on your Omega2+!
 
-// TODO: throw all of the code into a github repo so that it can be used as reference. Just mention that it's available for reference, don't have to change the whole article to download the project code
+All of the code can be found in Onion's [`timelapse-camera` repo on GitHub](https://github.com/OnionIoT/timelapse-camera).
 
 
 #### 1. Get the Hardware Ready
@@ -116,7 +114,7 @@ The `fswebcam` utility lets us take a photo with a webcam with the following com
 fswebcam --no-banner -r 1280x720 `date +"%Y-%m-%d_%H%M%S"`.jpg
 ```
 
-// TODO: include an explanation of what the backticks date command actually does: it names the output file according to the time+date. instruct people to try running the date command by itself on the command line. Explain that the backticks just make it execute and then return the output in the context of the fswebcam command
+> If you're wondering how we have `\`date +"%Y-%m-%d_%H%M%S"\`.jpg` as the output name of the file but it ends up being the date and time, it's through the wonders of command substitution! The command inside the backticks, \`, will be executed and replaced with the output of the command, and then the rest of the `fswebcam` command will be executed. Try running `date +"%Y-%m-%d_%H%M%S"` on the command line, you'll see that it outputs the time and date in the same format as the images get named.
 
 
 #### 5. Script it to save our fingers
@@ -166,8 +164,9 @@ This opens an editor (by default, `vim`) to edit the file.
 
 To create a cronjob, append the following to the `crontab`:
 ```
-#take snapshot every minute
+#take snapshot once a minute
 * * * * * /root/snapshot.sh
+#
 ```
 
 For our new cronjob to take effect, restart the cron daemon with:
@@ -179,6 +178,8 @@ For our new cronjob to take effect, restart the cron daemon with:
 Now wait a bit, if new files are created each minute, then we're good to move on!
 
 ![Output images from the webcam](./img/timelapse-camera-fs-output.png)
+
+> Check out the Omega documentation for more info on [using `cron`](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html)
 
 
 #### 7. Set up FFmpeg
@@ -239,9 +240,7 @@ To make the video, we directly call the script:
 /root/makevideo.sh
 ```
 
-Voila! A time-lapsed video of the scene you pointed your webcam to!
-
-// TODO: don't end the sentence on a preposition
+Voila! A time-lapsed video of the photos your webcam was taking!
 
 
 

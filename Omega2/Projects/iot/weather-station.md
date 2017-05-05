@@ -66,8 +66,6 @@ In the above setup, two 5.1kÎ© resistors were used in series to achieve the 10kÎ
 
 #### 3. Download the Project Code on the Omega
 
-// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
-
 The code for this project can be found in Onion's [iot-weather-station repo](https://github.com/OnionIoT/iot-weather-station) on GitHub. We'll first need to [connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-ssh) and install the packages we need for `git`:
 
 ```
@@ -89,7 +87,7 @@ cd iot-weather-station
 sh install.sh
 ```
 
-This may take several minutes, go grab a drink or something!
+This may take several minutes, go grab a drink or a quick snack!
 
 > The `install.sh` script will install Python and the additional modules needed to communicate with the Watson IoT platform. Specifically, it will install Python and PIP, the Python package manager. Then, it will use PIP to install IBM's `ibmiotf` module and all of it's dependencies.
 
@@ -130,7 +128,7 @@ Flash the weather station sketch to the Arduino Dock by doing the following:
 1. Click on `File > Examples > Onion > weatherStation` to open the weather station sketch.
 1. Flash it to the Arduino Dock by following the instructions in the [Arduino Dock guide](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html).
 
-This sketch will read the temperature and humidity measurements from the DHT22 sensor and will transmit the value via serial of the correct command is received from the other end. So the Omega will have to issue a command through UART1, in this case, the command is just the `r` character, and it will then receive a JSON-formatted string of the sensor data as a response. 
+This sketch will read the temperature and humidity measurements from the DHT22 sensor and will transmit the value via serial of the correct command is received from the other end. So the Omega will have to issue a command through UART1, in this case, the command is just the `r` character, and it will then receive a JSON-formatted string of the sensor data as a response.
 
 <!-- Select your Omega from the listed Network Ports when you open the Tools menu and then Port:
 
@@ -145,7 +143,7 @@ Hit the Arrow button to upload your sketch to the Arduino Dock. It will ask for 
 
 #### 7. Setup the Omega on the IBM Watson IoT Platform
 
-We will be using [IBM's guide on registering devices in Watson](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/) as a reference for this section. Open the link in your web browser and refer to the additional information that we have provided for each step below.
+We will be using [IBM's guide on registering devices in Watson](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/) as a reference for this section. Open the link in your web browser and refer to the *additional* information that we have provided for each step below.
 
 If you're having difficulties in this section, follow these two developer recipes to become familiar with the Watson web interface:
 
@@ -182,11 +180,13 @@ If you're having difficulties in this section, follow these two developer recipe
 
 ![device summary](./img/weather-station-device-summary.png)
 
-// TODO: for the above photo, take a new screenshot that shows the same mac address shown in the step above
+<!-- TODO: future: take a new screenshot with the device ID shown above -->
 
 You should see a card containing your Organization ID, Device ID, and more. Don't close this card until you've recorded the token somewhere, because there's no way to view the authentication token for this device again! Take a look at the sample card below:
 
 ![device credentials](./img/weather-station-device-credentials.png)
+
+<!-- TODO: future: take a new screenshot with the device ID shown above -->
 
 On the Omega, open the `device.cfg` file for editing and replace the placeholders in ALLCAPS with the information in the fields above like so:
 
@@ -196,7 +196,7 @@ On the Omega, open the `device.cfg` file for editing and replace the placeholder
 | Device ID            | YOURDEVICEID |
 | Authentication Token | YOURTOKEN    |
 
-// TODO: include a screenshot of the device.cfg on your Omega
+<!-- // TODO: future: include a screenshot of the device.cfg on your Omega -->
 
 ##### Remaining steps
 
@@ -204,11 +204,8 @@ On the Omega, open the `device.cfg` file for editing and replace the placeholder
 
 #### 8. Set Up Visualization Boards and Cards on Watson
 
-Follow the steps in [IBM's guide to configuring cards in Watson](https://developer.ibm.com/recipes/tutorials/configuring-the-cards-in-the-new-watson-iot-dashboard/) with the additional information we have provided below:
+Follow the steps in [IBM's guide to configuring cards in Watson](https://developer.ibm.com/recipes/tutorials/configuring-the-cards-in-the-new-watson-iot-dashboard/) with the *additional* information we have provided below:
 
-// TODO: include a screenshot of the blank board
-
-// TODO: find a way to very explicitly communicate that this corresponds to step two in the guide above
 ##### Step 2 - Overview to Boards & Cards
 
 * You can make your own board to show the collected data from the sensor. In this example, we've called it `Weather Station`.
@@ -254,18 +251,17 @@ We can automate this project to run when the Omega is turned on, and we can also
 In the repo folder, make the `weather-station` file executable, copy it to `/etc/init.d`, then enable it to run on boot:
 
 ```
-chmod +x weather-station
-cp weather-station /etc/init.d
+chmod +x init.d/weather-station
+cp init.d/weather-station /etc/init.d
 /etc/init.d/weather-station enable
 ```
 
-// TODO: in the repo, move the weather-station script into a directory called init.d, so that it's super explicit what it's for
-
 Reboot the Omega, and you will see the dashboard automatically being populated with data while the command line is available for you to use!
 
-// TODO: add a '>' section that the script we placed in `/etc/init.d` registers our weather station python script with procd, the process management daemon of the system (note: this should be a separate section since we're likely to reuse it in other projects)
+> The `/etc/init.d/weather-station` script registers the Weather Station Python script as a service with `procd`, the process management daemon of the system. `procd` then ensures that the process gets started at boot and continues to run until the service is disabled
 
 ### Code Highlight
+
 
 This project makes use of two main interfaces: the Arduino Dock and the IBM Watson IoT platform.
 

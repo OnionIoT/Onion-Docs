@@ -89,8 +89,6 @@ Go to File -> Examples -> Onion -> readAnalogValue
 
 ![](./img/smart-plant-p1-arduino-sketch.png)
 
-<!-- DONE: screenshot of selecting the Onion example sketch -->
-
 This sketch will read the signal on Analog pin A0 and will transmit the value via serial if the correct command is received from the other end.
 
 Select your Omega from the listed Network Ports when you open the Tools menu and then Port:
@@ -101,7 +99,7 @@ Select your Omega from the listed Network Ports when you open the Tools menu and
 
 Hit the Arrow button to upload your sketch to the Arduino Dock. It will ask for a password during the flashing sequence, this is the Omega's password that it's asking for, by default it is `onioneer`.
 
-> See our guide on [using the Arduino Dock](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html) for more details on this process. 
+> See our guide on [using the Arduino Dock](https://docs.onion.io/omega2-docs/flash-arduino-dock-wirelessly.html) for more details on this process.
 
 
 #### 5. Connect the Sensor

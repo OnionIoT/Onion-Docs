@@ -105,7 +105,7 @@ In the Arduino Tools menu, select "Arduino/Guinuino Uno" for the Board, and your
 
 If your Omega does not show up in the Port menu as a network port, restart the Arduino and wait for 30 seconds:
 
-When your sketch is ready, hit the Upload button. Once the sketch is compiled, it will require your Omega password to upload:
+When your sketch is ready, hit the Upload button. Once the sketch is compiled, it will prompt you for your Omega password to upload the sketch. The password is `onioneer` by default:
 ![Arduino IDE Uploading Sketch](//i.imgur.com/UDXIDVL.png)
 
 The IDE actually creates an SSH connection with the Omega to transfer the compiled hex file, and the Omega with then flash the ATmega microcontroller using 4 GPIOs.
