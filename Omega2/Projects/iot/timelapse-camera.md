@@ -4,9 +4,9 @@ Using a webcam connected to the Omega, we can take photos over time and string t
 
 ![The setup](./img/timelapse-camera-setup.jpg)
 
-<!-- TODO: photo: take a better photo with the whole timelapse camera setup mounted somewhere dope -->
+<!-- TODO: future: photo: take a better photo with the whole timelapse camera setup mounted somewhere dope -->
 
-<!-- // TODO: photo: include a link to a youtube video of one of our timelapses -->
+<!-- // TODO: future: photo: include a link to a youtube video of one of our timelapses -->
 
 
 ### Overview
