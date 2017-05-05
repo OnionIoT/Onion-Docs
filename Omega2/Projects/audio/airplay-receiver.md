@@ -119,9 +119,6 @@ But any USB speaker setup should work out of the box thanks to Linux's audio sta
 
 ![plugging in our USB audio adapter](./img/airplay-receiver-usb-insert.jpg)
 
-// TODO: PHOTO: retake this photo so the following is clear:
-// * usb audio adapter plugged into usb port on minidock
-// * headphones plugged into audio adapter
 
 #### 6. Prepare your controller
 
