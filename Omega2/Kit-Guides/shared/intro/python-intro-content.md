@@ -1,3 +1,9 @@
+As an introduction, this article will cover some of the basics so we can hit the ground running!
+
+Python is a high-level, interpreted language designed for scripting. It supports Object Oriented Programming - which is a handy framework that we’ll be using quite a bit.
+
+The high-level part means that Python reads closer to English than machine instructions and abstracts away many of the low-level hardware intricacies. The interpreted part means that Python code is executed line-by-line by the computer as it’s being run - as opposed to languages like C where it is first compiled before it can be run.
+
 ### How we'll use Python
 
 <!-- // * this guide will provide complete python scripts which can be copied to your Omega and executed. each experiment will describe the script and will focus on interesting parts of the code -->

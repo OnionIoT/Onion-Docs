@@ -11,6 +11,7 @@ Wondering what exactly the Omega2 is all about? You've come to the right place!
 
 An IoT computer is a Linux computer designed specifically for use in building connected hardware applications.
 
+What makes the Omega an IoT computer:
 
 - small form factor
 - power efficiency
@@ -42,9 +43,7 @@ The Specs:
 | USB | USB 2.0  | USB 2.0  |
 | MicroSD Slot | No  | **Yes**  |
 | WiFi adapter | b/g/n Wi-Fi  | b/g/n Wi-Fi  |
-| Opera
-
-- operates at 3.3V
+| Operating Voltage | **3.3V**  | **3.3V**  | 
 
 #### SoC
 
