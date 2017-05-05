@@ -2,7 +2,7 @@
 
 Now that our plant is smart enough to Tweet us when it needs water, let's see if we can make it even smarter and have it water itself! For this project, we'll add a water pump to our work in [Smart Plant Part 3](#smart-plant-p3) so we can automate the watering process.
 
-// TODO: this photo shows the sensor disconnected... retake it
+<!-- // DONE: this photo shows the sensor disconnected... retake it -->
 
 ![](./img/smart-plant-p4-complete.jpg)
 
@@ -39,6 +39,8 @@ And some new ingredients:
     * Make sure to match the tubing's **inner** diameter (ID) is slightly less than the pump's ports' **outer** diameter (OD). This is so the tubing will stretch and grip the ports, preventing any leaks!
     * [This mini water pump's](http://www.canadarobotix.com/pump/2033) ports have a 0.34 inch OD, and we found vinyl tubing with 0.25 inch ID provides a great seal when coupled together.
 * A plate or bowl to hold your plant and collect excess water
+* A piece of paper the size of your hand to test the pump's polarity
+* A glass or bowl of water you can use as a reservoir
 
 Tools:
 
@@ -53,7 +55,8 @@ If your pump does not come with wires attached, then you will need:
 <!-- TODO: find water pump from a US retailer -->
 <!-- TODO: add specific tubing -->
 
-// TODO: retake this photo with the soil moisture sensor included and the breadboard circuit taken apart
+<!-- // DONE: retake this photo with the soil moisture sensor included and the breadboard circuit taken apart -->
+<!-- The breadboard circuit was not supposed to be part of this step -->
 
 ![](./img/smart-plant-p4-ingredients.jpg)
 
@@ -110,7 +113,8 @@ Take two pieces of jumper wire, one red and one black, and strip about 1" from t
 
 If there are no markings, connect them to the leads whichever which way. If the order happens to be wrong, you can switch them later.
 
-// TODO: photo
+<!-- // DONE: photo -->
+![](./img/smart-plant-p4-prepare-pump-01.jpg)
 
 ##### Connecting to the Barrel Jack Connector
 
@@ -118,13 +122,15 @@ With the 12V power supply **not** plugged in yet, connect the other end of the r
 
 >The screw terminal on the barrel jack adapter will rise and sink depending on the clamp position. When the screw is roughly flush with the top, it is open. To attach a wire, insert it into the terminal and turn the screw clockwise until it sinks to about halfway, or until it becomes difficult to continue turning.
 
-// TODO: photo
+<!-- // DONE: photo -->
+![](./img/smart-plant-p4-prepare-pump-02.jpg)
 
 ##### Locating the Inlet and Outlet
 
 Examine your pump's instruction manual (if there is one) or the ports to see if there are any markings or labels for "IN" and "OUT". Our pump had them in raised letters on the plastic housing:
 
-// TODO: photo
+<!-- // DONE: photo -->
+![](./img/smart-plant-p4-prepare-pump-03.jpg)
 
 ##### Determining Polarity
 
@@ -156,7 +162,7 @@ We'll wire up the Water Pump with the Relay Expansion before connecting the Rela
 
 >To set up the terminals on the Relay Expansion, turn the screw on the terminal counterclockwise until the metal clamp inside is sitting a bit less than halfway in the bottom of the housing, not too much or the screw might pop out.
 
-// TODO: photo: retake these 3 photos so that all of the components are in the same place for each photo
+<!-- // DONE: photo: retake these 3 photos so that all of the components are in the same place for each photo -->
 
 1. Run a jumper wire from the **negative terminal** of the DC Barrel Jack Adapter to the **negative terminal** of the Water Pump
 
@@ -197,7 +203,7 @@ relay-exp 0 on
 
 Your pump should now come to life!
 
-To turn off the pump, run the following:
+Turn off the pump for now by running the following:
 
 ```
 relay-exp 0 off
@@ -206,7 +212,7 @@ relay-exp 0 off
 > For more info on the `relay-exp` command, see our [Relay Expansion documentation](https://docs.onion.io/omega2-docs/using-relay-expansion.html).
 
 
-#### 8. Water Pump Setup
+#### 8. Water Pump and Sensor Setup
 
 Before we connect the tubing, disconnect the motor from the circuit. This is so you can more easily work with the pump and avoid spilling water on your components.
 
@@ -223,13 +229,19 @@ Repeat this process for another piece of tubing that will go from the pump outle
 
 ![](./img/smart-plant-p4-tubing-02.jpg)
 
-Now connect the motor back to the circuit, and plug in the power supplies for the Omega and pump:
+Now connect the motor back to the circuit. Then reconnect the moisture sensor:
 
-<!-- // TODO: this photo shows the sensor disconnected... retake it -->
+1. Connect the Arduino Dock's **5V pin** to the sensor's `Vcc` pin.
+1. Connect the Arduino Dock's `GND` pin to the sensor's `GND` pin.
+1. Connect the Arduino Dock's `A0` pin to the sensor's `SIG` pin.
+
+and plug in the power supplies for the Omega and pump:
+
+<!-- // DONE: this photo shows the sensor disconnected... retake it -->
 
 ![](./img/smart-plant-p4-complete.jpg)
 
-
+The Omega should now be booting.
 
 <!-- // DONE: since we changed the first part to setup an init.d script, we need to update this step
 // The new step should entail:

@@ -2,7 +2,8 @@
 
 We've built out some really cool features on our smart plant in the previous parts. Now to top it all off, let's upgrade the power circuitry so we can run the entire project on a single 12V power supply!
 
-// TODO: include a photo of the final result
+<!-- // DONE: include a photo of the final result -->
+![](./img/smart-plant-p5-completed.jpg)
 
 ### Overview
 
@@ -16,7 +17,7 @@ When you were building the smart plant, you had to power the pump and Arduino se
 
 We'll need all of the same materials as in the previous part:
 
-// TODO: add ingredients from smart plant p4 once all of those TODOs are done
+// TODO: add ingredients from smart plant p4 once all of those are done
 
 1. MC33269T 5V Linear Voltage Regulator
 1. A Breadboard
@@ -49,17 +50,19 @@ This project builds on the previous parts of the Smart Plant project. If you hav
 
 #### 1. Prep
 
-Before you start, take apart the wiring we did in the [previous part of the project](#smart-plant-p4) and unplug your Arduino Dock. Now you should have:
+Before you start, take apart the wiring and tubing we did in the [previous part of the project](#smart-plant-p4) and unplug your Arduino Dock. Now you should have:
 
-// TODO: a photo of ALL of the components on a desk: Arduino Dock w/ omega and moisture sensor plugged in, OLED Exp, Relay Exp, dc barrel jack adapter, voltage regulator, breadboard, water pump, bunch of jumper wires
+<!-- // DONE: a photo of ALL of the components on a desk: Arduino Dock w/ omega and moisture sensor plugged in, OLED Exp, Relay Exp, dc barrel jack adapter, voltage regulator, breadboard, water pump, bunch of jumper wires -->
+
+![](./img/smart-plant-p5-ingredients.jpg)
 
 **IMPORTANT:** Make sure your Power Supply is no longer connected to the DC Barrel Jack Adapter!
 
 #### 1. Wiring the Circuit
 
-// TODO: embellish the text of the steps
+<!-- // DONE: embellish the text of the steps -->
 
-// TODO: add photos for logical places in the steps (note: the steps don't have to be in a list, can just be broken up with photos)
+<!-- // DONE: add photos for logical places in the steps (note: the steps don't have to be in a list, can just be broken up with photos) -->
 
 ![](./img/smart-plant-p5-0-circuit-planning-1-regulator.png)
 
@@ -71,6 +74,7 @@ We'll wire up the circuit in a few sub-steps:
 1. Regulator output
 1. Water pump
 1. Arduino Dock
+1. Moisture sensor
 
 ##### Regulator Input
 
@@ -114,12 +118,30 @@ Then plug in the OLED Expansion.
 
 ![](./img/smart-plant-p5-wiring-05.jpg)
 
+##### Moisture Sensor
+
+Using the wires from the moisture sensor:
+
+1. Connect the **5V `+` rail** to the sensor's `Vcc` pin.
+1. Connect the Arduino Dock's other `GND` pin to the sensor's `GND` pin.
+1. Connect the Arduino Dock's `A0` pin to the sensor's `SIG` pin.
+
+<!-- // DONE: photo -->
+![](./img/smart-plant-p5-wiring-06.jpg)
+
 #### 1. Provide Power
 
-Now we provide power by connecting the 12V power supply to the DC Barrel Jack Adapter. Your Omega should now be booting.
+Now reassemble your pump tubing, reservoir, sensor, and plant:
+
+<!-- // DONE: photo -->
+![](./img/smart-plant-p5-assembled.jpg)
+
+
+Then provide power by connecting the 12V power supply to the DC Barrel Jack Adapter. Your Omega should now be booting.
 
 **Congratulations, you've made it!** Revel in the fact that you've created a regulator circuit that can power your Omega as well as the 12V pump!
 
-// TODO: photo
+<!-- // DONE: photo, finally completed -->
+![](./img/smart-plant-p5-completed.jpg)
 
 Show off your amazing smart-plant setup and Dashboards on our [Community Forum](https://community.onion.io/category/1/projects)!
