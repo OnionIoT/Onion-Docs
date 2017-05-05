@@ -162,7 +162,7 @@ The `dutyMin` and `dutyMax` parameters control the minimum and maximum duty cycl
 
 ### A Different Fan
 
-If you would rater use the H-Bridge and DC Motor setup, you'll have to make some changes to the code. Namely, you'll have to swap out the `OmegaPwm` class with the `hBridgeMotor` class from `omegaMotors.py`. Check the pin-outs that we've put in by default in `iotSmartFan.py` to make sure you're correctly connecting the H-Bridge to the Servo Expansion.
+If you would rather use the H-Bridge and DC Motor setup, you'll have to make some changes to the code. Namely, you'll have to swap out the `OmegaPwm` class with the `hBridgeMotor` class from `omegaMotors.py`. Check the pin-outs that we've put in by default in `iotSmartFan.py` to make sure you're correctly connecting the H-Bridge to the Servo Expansion.
 
 For a detailed guide on how to set this up, check out the wiring instructions in the [Maker Kit DC Motor experiment](https://docs.onion.io/omega2-maker-kit/maker-kit-servo-dimming-led.html).
 
@@ -175,6 +175,7 @@ To change up the code, open up `iotSmartFan.py` and change this line:
 
 
 To this:
+
 ``` python
     fan = hBridgeMotor(FAN_PWM_CHANNEL, H_BRIDGE_1A_CHANNEL, H_BRIDGE_2A_CHANNEL)
 ```
@@ -189,4 +190,39 @@ To this:
 
 ``` python
         fan.spinForward(duty)
+```
+
+### Code Highlight
+
+Two of the key components in this project are the temperature sensor and the motor drivers, found in `temperatureSensor.py` and `omegaMotors.py`.
+
+The output from the 1-Wire temperature sensor contains a lot of unnecessary information such as the device address, connection acknowledgements, and other fields. The `__readOneWire()` internal method of the `TemperatureSensor` class extracts the temperature value and converts it to degrees Celsius:
+
+```python
+def __readOneWire(self):
+        # device typically prints 2 lines, the 2nd line has the temperature sensor at the end
+        # eg. a6 01 4b 46 7f ff 0c 10 5c t=26375
+        rawValue = self.driver.readDevice()
+
+        # grab the 2nd line, then read the last entry in the line, then get everything after the "=" sign
+        value = rawValue[1].split()[-1].split("=")[1]
+
+        # convert value from string to number
+        value = int(value)
+
+        # DS18B20 outputs in 1/1000ths of a degree C, so convert to standard units
+        value /= 1000.0
+        return value
+```
+
+The method to set the duty cycle for a servo fan, `setDutyCycle()` uses the Onion `pwmExp` class to easily control it:
+
+```python
+def setDutyCycle(self, duty):
+		"""Set duty cycle for pwm channel"""
+		ret 	= pwmExp.setupDriver(self.channel, duty, 0)
+		if (ret != 0):
+			print 'ERROR: pwm-exp setupDriver not successful!'
+
+		return ret
 ```
