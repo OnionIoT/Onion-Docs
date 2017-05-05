@@ -22,7 +22,13 @@ First, this app will be listening for new tweets from the users you specify in t
 
 By default, the Omega is configured to change the state of the lock when it detects a tweet from an authorized user with a corresponding hashtag. The list of allowed users and hashtags for each command are configured in a separate JSON file, `config.json`.
 
-// TODO: lets have a table of the (default) hashtags and what they each do before introducing the authorization stuff below (mention that the hashtags  are configurable)
+The default hashtags that correspond to lock actions are:
+
+| Hashtag | Lock Action                                                                   |
+|---------|-------------------------------------------------------------------------------|
+| #lock   | Program the Relay to set the lock to **locked**                               |
+| #unlock | Program the Relay to set the lock to **unlocked**                             |
+| #toggle | Unlock, wait 5 seconds, lock again (Does nothing if lock is already unlocked) |
 
 Some examples of authorization are shown below (all of the command hashtags follow the same rules):
 
@@ -59,18 +65,16 @@ Here's what our list looked like - minus the mounting tools and parts.
 
 Follow these instructions to control the smart lock from Twitter on your very own Omega!
 
-// TODO: enumerate the steps correctly (when you're done all of the other TODOs)
-
 #### 1. Prepare
 
 You'll have to have your Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
 
-#### 1. Complete Part 1 of the Project
+#### 2. Complete Part 1 of the Project
 
 This project builds on the first part of the IoT Lock project. If you haven't already completed the [first part](#internet-lock-p1), go back and do it now!
 
-#### 1. Install Dependencies
+#### 3. Install Dependencies
 
 [Connect to the Omega's command line](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal) and  run the following commands:
 
@@ -121,7 +125,7 @@ in order to authenticate with Twitter before we can use the APIs.
 
 We will be using the 2 pairs of keys and secrets to authorize our app to connect to Twitter, so copy and paste or write them down somewhere for later.
 
-#### 1. Edit the Configuration File
+#### 5. Edit the Configuration File
 
 Open the `config.json` file and edit or paste in the following information:
 
@@ -136,7 +140,7 @@ Open the `config.json` file and edit or paste in the following information:
 
 If you trust them, you can add friends or family to the list of allowed users.
 
-#### 1. Running the Project
+#### 6. Running the Project
 
 Navigate to the repo directory and run:
 
@@ -152,7 +156,7 @@ Now try tweeting from some of the allowed accounts and include one of the hashta
 
 Tell your friends to try it out too!
 
-#### 1. Rate Limiting
+#### 7. Rate Limiting
 
 The Twitter Streaming API that pushes new tweets to the Omega limits the amount of **new** sessions you can initiate within a certain period of time. If you restart the program too often in a short window of time, you will receive a 420 error. You will see a warning on the command line, and the program will automatically disconnect and retry according to Twitter's recommended backoff policy; see the Rate Limiting section on [Twitter's documentation](https://dev.twitter.com/streaming/overview/connecting).
 
@@ -160,7 +164,7 @@ The rate limiting criteria are not made public, so we recommend playing it safe 
 
 **Note:** Too many connection attempts may result in your IP being banned from connecting to Twitter!
 
-#### 1. Running the Program on Boot
+#### 8. Running the Program on Boot
 
 We can automate this project to run when the Omega is turned on, and we can also make it run in the background so you can use the Omega for other things while it's running! To do this, we'll place a script in  `/etc/init.d`.
 
@@ -174,6 +178,8 @@ cp tweet-lock /etc/init.d
 ```
 
 Wait for 5-10 minutes, reboot the Omega, and you will automatically be able to tweet at your lock again!
+
+> The `/etc/init.d/tweet-lock` script registers the IoT Lock Python script as a service with `procd`, the process management daemon of the system. `procd` then ensures that the process gets started at boot and continues to run until the service is disabled.
 
 ### Code Highlight
 
