@@ -5,6 +5,9 @@
 
 Give your plant a voice of its own with Twitter! In part three, we'll build on what we've created in part [one](#smart-plant-p1) and [two](#smart-plant-p2) to get our plant to Tweet at us based on the moisture data collected.
 
+<!--  -->
+![](./img/smart-plant-p3-2-test-6-actual-tweet.png)
+
 ### Overview
 
 **Skill Level:** Intermediate

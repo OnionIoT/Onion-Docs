@@ -3,7 +3,9 @@
 
 Mornings too cold, but gets too hot by noon? By hooking up a temperature sensor to the Omega, we can use the data it provides to modulate the speed of a fan - cooling us down only when we need it!
 
-// TODO: mention a use-case of using this to cool down electronics or some homebrewing setup, anything where temperature control is required
+<!-- // DONE: mention a use-case of using this to cool down electronics or some homebrewing setup, anything where temperature control is required -->
+
+This kind of setup is used in many places: the cooling fans in your laptop or desktop computer operate in the same way. Other applications include home-brewing beer or wine kegs and anywhere temperature control is required.
 
 ![Smart fan all set up!](./img/smart-fan-example.jpg)
 
@@ -33,12 +35,14 @@ All the code we used is written for a case fan with a transistor switching it. I
 * D18B20 1-Wire Temperature Sensor
 	* The Omega accepts I2C, 1Wire, and SPI, among other protocols, so other digital sensors will work as well.
 * 12V DC supply capable of supplying at least 0.5A
-* 1x 5.1kΩ Resistor
-* 1x 10 μF Capacitor
+* Resistors
+    * 1x 5.1kΩ
+    * 1x 1kΩ
+* 1x 47 μF Capacitor
 * NPN Transistor rated for 12V at 0.5A
 * Jumpers
-    * 3x M-F
-    * 3x M-M
+    * 2x M-F
+    * 4x M-M
 
 
 
@@ -53,8 +57,8 @@ First let's get the Omega ready to go. if you haven't already, complete the [Fir
 
 Plug in the PWM Expansion to the Dock and grab all the components:
 
-// TODO: insert photo with PWM Expansion plugged into Expansion dock
-
+<!-- // DONE: insert photo with PWM Expansion plugged into Expansion dock -->
+![](smart-fan-pwm-exp.jpg)
 
 #### 2. Install the Required Software
 
@@ -73,7 +77,7 @@ Computer case fans are voltage driven, but we can cheat by using PWM with a tran
 
 If you have jumpers handy, we recommend using them as a bridge between the header of the fan and the PWM expansion.
 
-First, we'll have to set up the transistor. For our lab setup, we used a STS8050 NPN transistor with a 2-wire PC case fan. If you use a different model, make sure to note which pin is the base/collector/emitter.
+First, we'll have to set up the transistor. For our lab setup, we used an S9014 NPN transistor with a 2-wire PC case fan. If you use a different model, make sure to note which pin is the base/collector/emitter.
 
 >If you use a PNP transistor, your fan will automatically turn on unless you set the PWM output to 100%. This is because PNP transistors turn 'on' when the base draws current, when the PWM channel is at 0% duty, it draws a tiny bit of current - enough to turn on the transistor!
 
@@ -83,19 +87,27 @@ Most commonly, case fans have three pins/wires - one of which is a tachometer ou
 
 We connected the power supply to the PWM expansion for cleaner wiring.
 
-// TODO: need photos for these steps (doesn't have to be a photo for each step btw)
+1. Connect the transistor to the breadboard across 3 empty rows.
+1. Connect the `(-)` (usually black) wire of the fan to the transistor's collector pin (right pin when looking at the flat front).
+1. Connect the `(+)` (usually red) wire of the fan to an empty row a few spaces away.
+1. Connect the `Vcc` pin on the PWM Expansion's `S0` channel to the `(+)` pin of the fan using a M-F jumper wire.
 
-1. Connect the `GND` from the fan to the collector pin on the transistor (right pin when looking at the flat side of the 8050).
-1. Connect the Signal pin from the PWM Expansion channel 0 (`S0`) to the base pin of the transistor.
-1. Connect the emitter pin from the transistor to any `GND` pin on the PWM Expansion.
-1. Plug one end of the 10 μF capacitor to the emitter row of the transistor.
-1. Plug the other end to an empty row.
-1. Connect the `VDC` of the fan to the row where the capacitor ends.
-1. Finally, connect the `Vcc` pin on the PWM Expansion to the row with the capacitor and the fan `VDC`.
+    ![](./img/smart-fan-wiring-01.jpg)
+
+1. Connect one end of the 1kΩ resistor to the transistor's base pin (middle).
+1. Connect the other end of the resistor to the `SIGNAL` pin on the PWM Expansion's `S0` channel using a M-F jumper.
+1. Connect the transistor's emitter pin (left pin when looking at the flat front) to one of the Expansion Dock's `GND` pins using a M-M jumper.
+
+    ![](./img/smart-fan-wiring-02.jpg)
+
+1. Connect the capacitor across the fan's `(+)` and `(-)` wires where they are connected to the breadboard.
+    * If you have a polarized capacitor with the `(-)` or `(+)` side clearly marked, make sure to match the terminals with the fan's (`(-)` to `(-)`, `(+)` to `(+)`)!
+
+![](./img/smart-fan-wiring-03.jpg)
 
 This circuit will now switch the Fan's voltage based on the PWM signal from channel 0!
 
->The capacitor and fan creates a **second order band-pass filter**. The capacitor will absorb high-frequency signals inside a certain frequency range, leaving DC power to be routed to the fan.
+>The capacitor acts as a simple low-pass filter to supply the fan with a smooth analog voltage.
 
 #### 4. Wire up the Temperature Sensor
 
@@ -107,27 +119,32 @@ The D18B20 has a pinout that looks like this:
 
 **NOTE**: the second graphic is a **bottom** view, where the pins are pointing towards you (we may have fried a sensor by misreading this one).
 
-You'll need to grab your breadboard and plug the sensor into three different rows. This sensor requires a pull-up resistor on that data line, so connect the 5.1kΩ resistor to the `VDD` and `DQ` rows:
-
-![temperature sensor wired](./img/smart-fan-sensor-circuit.jpg)
-
 Now we can connect the sensor to the Expansion Headers.
 
-* First, connect the `GND` pin of the sensor to a `GND` pin on the Expansion Header
-* Next, connect the middle pin (`DQ`) to GPIO1 on the Expansion Header
-* Finally, connect the `VDD` pin to a `3.3V` pin on the Expansion Header
+1. First, connect the temperature sensor to the breadboard across another three empty rows.
+    * Leave some space from the transistor so you can easily interact with it!
+1. Connect the `GND` pin of the sensor to a `GND` pin on the Expansion Header using a M-M jumper wire.
+1. Next, connect the middle pin (`DQ`) to GPIO1 on the Expansion Header using a M-M jumper.
+1. Connect the `VDD` pin to a `3.3V` pin on the Expansion Header using a M-M jumper.
+1. Finally, connect the 5.1kΩ resistor across the sensor's `VDD` and `DQ` pins (right and middle respectively).
+
+![](./img/smart-fan-wiring-04.jpg)
+
+Your setup is now complete!
+
+![](./img/smart-fan-wiring-05.jpg)
 
 
 #### 5. Get the Project Code
 
-// TODO: this whole step is awful
-// TODO: see smart-plant-p1 for an example of how this step should look: we describe what we're going, provide them a link to learn more about Git, but we don't require them to look at the link to actually execute what we're asking them to do
+The code for this project is all done and can be found in Onion's [`iot-smart-fan` repo](https://github.com/OnionIoT/iot-smart-fan) on GitHub. Use [`git` to download the code to your Omega](https://docs.onion.io/omega2-docs/installing-and-using-git.html): navigate to the `/root` directory, and clone the GitHub repo:
 
-Head over to the [iot-smart-fan repository](https://github.com/OnionIoT/iot-smart-fan) on GitHub, and download the repo.
+```
+cd /root
+git clone https://github.com/OnionIoT/iot-smart-fan.git
+```
 
-Copy the all the files to the same directory in your omega. If you're using your own temperature sensor, you'll have to make some changes before it'll run.
-
-#### 5. (and a half) Using a Different Sensor
+#### 5.5. Using a Different Sensor
 
 There's a good bit of setup for the temperature sensor - initialization, communicating, and parsing.
 
@@ -144,9 +161,9 @@ One important thing to note is that the values assigned to the `temp` variable m
 
 #### 6. Calibrate and Customize
 
-By editing the `config.json`, you can change the possible speed range of the fan and restrict the temperature range to which the fan reacts:
+You can edit the `config.json` to change the possible speed range of the fan and restrict the temperature range to which the fan reacts:
 
-```
+```json
 {
     "tempMax" : "40",
     "tempMin" : "18",
@@ -159,8 +176,10 @@ By editing the `config.json`, you can change the possible speed range of the fan
 
 The `dutyMin` and `dutyMax` parameters control the minimum and maximum duty cycle of the signal being sent to the fan, thereby controlling the fan speed. The `tempMin` and `tempMax` parameters specify the temperature range in which to enable the fan. The fan speed has a linear relationship with the temperature when it is between the min and max temperature.
 
+If you find that the fan does not spin when current is applied, you may have to increase the `dutyMin` to overcome the static friction in the fan's shaft bearing. Once it gets up to speed, you can then lower the duty and the fan will still be able to spin.
 
-### A Different Fan
+
+### Using A Different Fan
 
 If you would rather use the H-Bridge and DC Motor setup, you'll have to make some changes to the code. Namely, you'll have to swap out the `OmegaPwm` class with the `hBridgeMotor` class from `omegaMotors.py`. Check the pin-outs that we've put in by default in `iotSmartFan.py` to make sure you're correctly connecting the H-Bridge to the Servo Expansion.
 
