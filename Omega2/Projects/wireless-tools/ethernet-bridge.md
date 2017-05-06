@@ -1,18 +1,24 @@
 ## Omega WiFi Ethernet Bridge {#omega-wifi-ethernet-bridge}
 
-<!-- // TODO: test this project out, see if we need to make any firewall changes -->
 
 An Ethernet Bridge is a device that shares its WiFi network access through an Ethernet connection, kind of like an ethernet-based WiFi dongle. If the WiFi network is connected to the internet, the internet connection will be shared as well.
 
 The Omega's flexible networking abilities and the Ethernet Expansion allow us to use the Omega as WiFi Ethernet Bridge!
 
-<!-- TODO: future: photo: update this photo to have it plugged in and connected to a computer -->
-![router network](./img/router-setup.jpg)
+![bridge in place](./img/wifi-ethernet-bridge-1-connected.jpg)
 
 <!-- // TODO: future: photo: illustration of this setup -->
 
-As an example, this type of setup can be used to bring internet access to a desktop computer that does not have a network adapter.
+As an example, this type of setup can be used to bring internet access to a desktop computer that does not have a network adapter or to a laptop with a broken wireless interface.
 
+
+#### Sample Configuration Files
+
+The Onion [`ethernet-bridge-config` Github repository](https://github.com/OnionIoT/ethernet-bridge-config) contains reference configuration files in case you need to troubleshoot your setup.
+
+#### Default Configuration Files
+
+If you ever want to revert your configuration to the original, we have a complete set of default configuration files from a factory-fresh Omega2 [in the `uci-default-configs` repo](https://github.com/OnionIoT/uci-default-configs) on GitHub.
 
 
 ### Overview
@@ -21,13 +27,21 @@ As an example, this type of setup can be used to bring internet access to a desk
 
 **Time Required:** 10 minutes
 
-What we are going to do is to first enable the Omega's Ethernet connection, and then to bridge the wireless internet connection with an Ethernet connection.
+What we're first going to do is set the Omega's `wlan` interface to use `eth0`, the wired ethernet connection. The only thing that's left is to connect the Omega and the target computer with an ethernet cable. We don't even have to adjust the firewall since the `wlan` interface is setup to route packets to all connected interfaces.
 
+#### Sample Configuration Files
+
+The Onion [`range-extender-config` Github repository](https://github.com/OnionIoT/range-extender-config) contains reference configuration files in case you need to troubleshoot your setup.
+
+#### Default Configuration Files
+
+If you ever want to revert your configuration to the original, we have a complete set of default configuration files from a factory-fresh Omega2 [in the `uci-default-configs` repo](https://github.com/OnionIoT/uci-default-configs) on GitHub.
 
 ### Ingredients
 
 * Onion Omega2 or Omega2+
 * Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
+	* We prefer the Expansion Dock for this project since it enables [access to the command line through serial](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-serial) even when there's no network connectivity
 * Onion Ethernet Expansion
 * An Ethernet cable
 
@@ -40,14 +54,17 @@ Here's how to turn your Omega into an Ethernet WiFi dongle!
 
 To begin, you'll need to make sure your Omega is connected to the Internet and has the latest firmware. Follow this [guide](#first-time-setup) if you'd like to learn more on how to set up your Omega.
 
+Once that's done, plug in the Ethernet Expansion:
+
+![setup complete](./img/wifi-ethernet-bridge-0-setup.jpg)
 
 #### 2. Enable the Omega's Ethernet Connection
 
-Connect your Ethernet Expansion to your Expansion Dock, and then plug in an Ethernet cord to set up the hardware:
+Now connect your Omega and the target computer with an ethernet cable:
 
-![router network](./img/router-setup.jpg)
+![bridge in place](./img/wifi-ethernet-bridge-1-connected.jpg)
 
-What we need to do next is change the following code block located in `/etc/config/network`:
+What we need to do next is change the Omega's networking configuration. Change the following code block located in `/etc/config/network`:
 
 ```
 config interface 'wlan'
@@ -63,15 +80,13 @@ config interface 'wlan'
 Change `option ifname 'eth0.1'` to `option ifname 'eth0'`
 
 
-Restart the network service by running the follow command:
+Restart the network service by running the following command:
 
 ```
 /etc/init.d/network restart
 ```
 
->If you want to revert your configuration to the original, we have a complete set of default configurations from a factory-fresh Omega2 [in the `uci-default-configs` repo](https://github.com/OnionIoT/uci-default-configs) on GitHub.
-
-<!-- // TODO: do we need to configure the firewall? -->
+> Now the `wlan` network interface is using `eth0`, the physical ethernet interface.
 
 
 #### 3. Configure your Device to use Ethernet
@@ -86,8 +101,11 @@ To do this on Windows, follow this [guide](http://www.computerhope.com/issues/ch
 
 
 ##### Mac OSX
-To do this on Mac OSX, follow this [guide](https://www.cs.cmu.edu/~help/networking/dhcp_info/dhcp_mac.html).
+To do this on Mac OS X, follow this [guide](https://www.cs.cmu.edu/~help/networking/dhcp_info/dhcp_mac.html).
 
-<!-- ### Linux -->
 
-<!-- Not sure how to do or how to test that this actually does the thing? -->
+### Enjoy
+
+Now your computer has been given an IP address by the Omega and you can surf away!
+
+![computer setup](./img/wifi-ethernet-bridge-2-computer-setup.png)
