@@ -17,7 +17,22 @@ When you were building the smart plant, you had to power the pump and Arduino se
 
 We'll need all of the same materials as in the previous part:
 
-// TODO: add ingredients from smart plant p4 once all of those are done
+<!-- // DONE: add ingredients from smart plant p4 once all of those are done -->
+* Onion Omega2 or Omega2+
+* Arduino Dock 2
+* Onion OLED Expansion
+* Soil Moisture Sensor
+* 3x Male-to-Female Jumper Wires
+* Onion Relay Expansion
+* DC Barrel Jack Adapter
+* [Water Pump (12V DC)](http://www.canadarobotix.com/index.php?route=product/search&search=pump)
+* 3x Male-to-Male Jumper Wires
+* 12V 1A DC Power Supply
+* Flexible Plastic Tubing
+* A plate or bowl to hold your plant and collect excess water
+* A glass or bowl of water you can use as a reservoir
+
+We'll need some new ingredients:
 
 1. MC33269T 5V Linear Voltage Regulator
 1. A Breadboard
@@ -64,11 +79,13 @@ Before you start, take apart the wiring and tubing we did in the [previous part 
 
 <!-- // DONE: add photos for logical places in the steps (note: the steps don't have to be in a list, can just be broken up with photos) -->
 
+This is the pinout diagram for the MC33269T. We'll be referring back to this when wiring it up.
+
 ![](./img/smart-plant-p5-0-circuit-planning-1-regulator.png)
 
-// TODO: find a good spot for the image above
+<!-- // DONE: find a good spot for the image above -->
 
-We'll wire up the circuit in a few sub-steps:
+We'll assemble the circuit in a few sub-steps:
 
 1. Regulator input
 1. Regulator output
@@ -81,9 +98,11 @@ We'll wire up the circuit in a few sub-steps:
 1. Connect jumper wires to both DC Barrel Jack Adapter terminals.
 1. Connect the DC Barrel Jack to one pair of the `+` and `-` rails on the breadboard.
     * We'll call this the **12V rail**.
-1. Plug the MC33269T regulator into the Breadboard.
-1. Connect the 12V `-`rail to the GND pin of the regulator (left most pin when looking from the front) with a jumper wire.
-1. Connect the 12V `+` rail to the Vin pin of the regulator (right most pin when looking form the front) with a jumper wire.
+1. Plug the MC33269T regulator into the Breadboard across three empty rows.
+1. Connect the 12V `-` rail to the GND pin of the regulator with a jumper wire.
+    * The left most pin when looking from the front.
+1. Connect the 12V `+` rail to the Vin pin of the regulator with a jumper wire.
+    * The right most pin when looking form the front.
 
 ![](./img/smart-plant-p5-wiring-01.jpg)
 
