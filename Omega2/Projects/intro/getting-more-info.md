@@ -1,4 +1,4 @@
-## Where to Learn More {#getting-more-info}
+## Where Can I Learn More? {#getting-more-info}
 
 To learn more about the Omega and the Docks & Expansions, what can be done, and much more, check out the Onion Omega2 Documentation:
 

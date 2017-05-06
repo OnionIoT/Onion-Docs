@@ -1,4 +1,4 @@
-## Getting Started with the Omega2 {#getting-started}
+## Getting Started {#getting-started}
 
 ![Onion Shipment Box](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-0-in-box.jpg)
 
