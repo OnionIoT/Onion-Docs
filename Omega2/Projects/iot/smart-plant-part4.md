@@ -32,19 +32,20 @@ And some new ingredients:
 
 * Onion Relay Expansion
 * DC Barrel Jack Adapter
-* [Water Pump (12V DC)](http://www.canadarobotix.com/index.php?route=product/search&search=pump)
+* [Water Pump (12V DC)](https://www.amazon.com/Lightobject-EWP-DC30A1230-Brushless-Submersible-Cooling/dp/B0051HI3OM)
+    * When we did this step, we used a pump in our office with **half** of the flowrate of this one. **Use caution when calibrating!**
 * 3x Male-to-Male Jumper Wires
 * 12V 1A DC Power Supply
-* Flexible Plastic Tubing
+* [Flexible Plastic Tubing](https://www.amazon.com/Learn-Brew-LLC-Grade-Tubing/dp/B000E62TCC/ref=pd_bxgy_328_img_2/138-8608289-7851617?_encoding=UTF8&pd_rd_i=B000E62TCC&pd_rd_r=WS345JY54A7PJH2RK0RB&pd_rd_w=Ih1XS&pd_rd_wg=iQEme&psc=1&refRID=WS345JY54A7PJH2RK0RB)
     * Make sure to match the tubing's **inner** diameter (ID) is slightly less than the pump's ports' **outer** diameter (OD). This is so the tubing will stretch and grip the ports, preventing any leaks!
-    * [This mini water pump's](http://www.canadarobotix.com/pump/2033) ports have a 0.34 inch OD, and we found vinyl tubing with 0.25 inch ID provides a great seal when coupled together.
-* A plate or bowl to hold your plant and collect excess water
 * A piece of paper the size of your hand to test the pump's polarity
+* A plate or bowl to hold your plant and collect excess water
 * A glass or bowl of water you can use as a reservoir
 
 Tools:
 
 * Flat-head screwdriver
+* Philips-head screwdriver
 
 If your pump does not come with wires attached, then you will need:
 <!-- // DONE: this really depends on if the water pump has leads attached, see the 'Prepare the Pump' section below -->
@@ -52,8 +53,8 @@ If your pump does not come with wires attached, then you will need:
 * Wire Cutters
 * Wire Strippers
 
-<!-- TODO: find water pump from a US retailer -->
-<!-- TODO: add specific tubing -->
+<!-- DONE: find water pump from a US retailer -->
+<!-- DONE: add specific tubing -->
 
 <!-- // DONE: retake this photo with the soil moisture sensor included and the breadboard circuit taken apart -->
 <!-- The breadboard circuit was not supposed to be part of this step -->
@@ -134,15 +135,21 @@ Examine your pump's instruction manual (if there is one) or the ports to see if 
 
 ##### Determining Polarity
 
+Now we will **briefly** run the pump to make sure the polarity of the motor is correct.
+
+>There is a risk of it overheating when running the pump "dry" without water for extended periods of time. This is because some pumps rely on water for cooling. Try not to leave it on for more than 10 seconds to avoid the risk of damage to your pump.
+
 Prepare a small piece of paper about the size of your hand. Then plug in the 12V power supply and hear your pump come to life!
 
->The pump may be extremely noisy without any water flowing through it, so don't be alarmed if it's loud.
+Move the piece of paper towards the outlet. 
 
-Move the piece of paper towards the outlet. If it gets blown away from it, the polarity is correct. If it gets sucked towards it, the wiring is backwards.
+* If it gets blown away from it, the polarity is correct.
+* If it gets sucked towards it, the wiring is backwards.
 
 Unplug the power supply and remove the two wires from the barrel jack adapter. If the polarity is backwards, switch where the red and black wires are connected to the pump.
 
-The terminal on the pump where the red wire should be connected is known as the **positive** terminal. Likewise, the black wire should be connected to the **negative** terminal.
+* The terminal on the pump where the red wire should be connected is known as the **positive `(+)`** terminal. 
+* Likewise, the place where the black wire should be connected is the **negative `(-)`** terminal.
 
 ##### Optional - Solder the Terminals
 
@@ -164,15 +171,15 @@ We'll wire up the Water Pump with the Relay Expansion before connecting the Rela
 
 <!-- // DONE: photo: retake these 3 photos so that all of the components are in the same place for each photo -->
 
-1. Run a jumper wire from the **negative terminal** of the DC Barrel Jack Adapter to the **negative terminal** of the Water Pump
+1. Run a jumper wire from the **negative terminal** of the DC Barrel Jack Adapter to the **negative terminal** of the water pump.
 
   ![](./img/smart-plant-p4-4-2.jpg)
 
-1. Run a jumper wire from the **positive terminal** of the DC Barrel Jack Adapter to the **IN** screw terminal on Channel 0 of the Relay Expansion
+1. Run a jumper wire from the **positive terminal** of the DC Barrel Jack Adapter to the **IN** screw terminal on Channel 0 of the Relay Expansion.
 
   ![](./img/smart-plant-p4-4-3.jpg)
 
-1. Run a jumper wire from the **OUT** screw terminal on Channel 0 of the Relay Expansion to the **positive terminal** of the Water Pump
+1. Run a jumper wire from the **OUT** screw terminal on Channel 0 of the Relay Expansion to the **positive terminal** of the water pump.
 
   ![](./img/smart-plant-p4-4-4.jpg)
 
@@ -212,14 +219,14 @@ relay-exp 0 off
 > For more info on the `relay-exp` command, see our [Relay Expansion documentation](https://docs.onion.io/omega2-docs/using-relay-expansion.html).
 
 
-#### 8. Water Pump and Sensor Setup
+#### 8. Tubing and Sensor Setup
 
 Before we connect the tubing, disconnect the motor from the circuit. This is so you can more easily work with the pump and avoid spilling water on your components.
 
 <!-- // DONE: throw in an explanation and a photo of how to identify the inlet and outlet of the pump. 'Ours had the words "In" and "Out" embossed on the plastic.' -->
 <!-- already done in section above -->
 
-Place your plant in the plate to catch any excess water. Then prepare a water reservoir; it can be as simple as a big drinking glass. Then measure a length of tubing that would go from the bottom of your reservoir to the inlet of the pump. Cut off the tubing, then first fit one end to the pump's inlet.
+Place your plant in the plate to catch any excess water. Then prepare a water reservoir; it can be as simple as a big drinking glass. Then measure a length of tubing that would go from the bottom of your reservoir to the inlet of the pump. Cut off the tubing, then first fit one end to the pump's inlet. Make sure it's snug and tight to avoid leaks!
 
 ![](./img/smart-plant-p4-tubing-01.jpg)
 

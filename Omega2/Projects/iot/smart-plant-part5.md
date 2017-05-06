@@ -41,7 +41,7 @@ We'll need some new ingredients:
 Tools:
 
 1. Flat-head screwdriver
-
+1. Philips-head screwdriver
 
 
 ### Step-by-Step
@@ -53,17 +53,11 @@ Follow these instructions to set this project up on your very own Omega!
 You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide](https://docs.onion.io/omega2-docs/first-time-setup.html) to connect your Omega to WiFi and update to the latest firmware.
 
 
-#### 1. Complete the Previous Parts of the Project
+#### 2. Complete the Previous Parts of the Project
 
 This project builds on the previous parts of the Smart Plant project. If you haven't already completed the [first](#smart-plant-p1), [second](#smart-plant-p2), [third](#smart-plant-p3), and [fourth parts](#smart-plant-p4), go back and do them now!
 
-#### 1. Regulator Circuit
-
-// TODO: schematic of the circuit we're building
-
-
-
-#### 1. Prep
+#### 3. Prep
 
 Before you start, take apart the wiring and tubing we did in the [previous part of the project](#smart-plant-p4) and unplug your Arduino Dock. Now you should have:
 
@@ -73,7 +67,7 @@ Before you start, take apart the wiring and tubing we did in the [previous part 
 
 **IMPORTANT:** Make sure your Power Supply is no longer connected to the DC Barrel Jack Adapter!
 
-#### 1. Wiring the Circuit
+#### 4. Wiring the Circuit
 
 <!-- // DONE: embellish the text of the steps -->
 
@@ -148,7 +142,7 @@ Using the wires from the moisture sensor:
 <!-- // DONE: photo -->
 ![](./img/smart-plant-p5-wiring-06.jpg)
 
-#### 1. Provide Power
+#### 5. Provide Power
 
 Now reassemble your pump tubing, reservoir, sensor, and plant:
 
@@ -158,9 +152,11 @@ Now reassemble your pump tubing, reservoir, sensor, and plant:
 
 Then provide power by connecting the 12V power supply to the DC Barrel Jack Adapter. Your Omega should now be booting.
 
-**Congratulations, you've made it!** Revel in the fact that you've created a regulator circuit that can power your Omega as well as the 12V pump!
+### Congratulations, You Made It!
+
+Revel in the fact that you've created a regulator circuit that can power your Omega as well as the 12V pump!
 
 <!-- // DONE: photo, finally completed -->
 ![](./img/smart-plant-p5-completed.jpg)
 
-Show off your amazing smart-plant setup and Dashboards on our [Community Forum](https://community.onion.io/category/1/projects)!
+Show off your amazing smart-plant setup and Dashboards on our [Community Forum](https://community.onion.io/category/1/projects), and let us know how you liked these tutorials!
