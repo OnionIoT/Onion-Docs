@@ -2,9 +2,9 @@
 
 The Omega's firmware has packages available for a file sharing server program called Samba. By plugging in a USB storage device, you can turn your Omega into a mobile network file server!
 
-<!-- TODO: PHOTO: Omega with USB Storage plugged in -->
+![usb plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/usb-plugged-in.JPG)
 
-<!-- TODO: photo: shared network storage -->
+<!-- TODO: future: photo: shared network storage -->
 
 ### Overview
 
@@ -219,9 +219,9 @@ Of course once the server is running, we'll have to actually access it somehow.
 
 On Windows, a Samba share can be found by opening a file explorer and going to 'Network'. The `name` we specified in `/etc/config/samba` should appear as a network location, and the folder we shared listed inside it. You'll be prompted for login details, input `root` and the password you selected in step 5, and voila!
 
-<!-- TODO: find online guide on how to connect to a samba share -->
+For a more detailed tutorial on connected to a Samba-shared network drive, take a look at [this tutorial](https://help.lafayette.edu/samba/win7nondomain).
 
-<!-- TODO: future: screenshot guide on how to connect to the samba share -->
+<!-- TODO: future: low priority: screenshot guide on how to connect to the samba share -->
 
 ##### Linux
 
@@ -229,9 +229,9 @@ Modern Linux distros have Samba clients well integrated in the file explorer, an
 
 >Some desktop environments have it grouped under a 'Samba Shares' folder or the like inside the Network root.
 
-<!-- TODO: find online guide on how to connect to a samba share -->
+For a more detailed tutorial on connected to a Samba-shared network drive, take a look at [this tutorial]((https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/3/html/System_Administration_Guide/s1-samba-connect-share.html)
 
-<!-- TODO: future: screenshot guide on how to connect to the samba share -->
+<!-- TODO: future: low priority: screenshot guide on how to connect to the samba share -->
 
 
 
@@ -241,6 +241,6 @@ On OS X, connecting to a Samba share can be done using Finder. Open a Finder win
 
 After that, it will will just be like any other directory on your computer.
 
-<!-- TODO: find online guide on how to connect to a samba share -->
+For a more detailed tutorial on connected to a Samba-shared network drive, take a look at [this tutorial](http://osxdaily.com/2010/09/20/map-a-network-drive-on-a-mac/)
 
-<!-- TODO: future: screenshot guide on how to connect to the samba share -->
+<!-- TODO: future: low priority: screenshot guide on how to connect to the samba share -->

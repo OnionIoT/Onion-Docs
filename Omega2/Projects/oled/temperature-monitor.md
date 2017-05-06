@@ -2,8 +2,6 @@
 
 This project will allow you to read temperature from a digital sensor, display it on the OLED Expansion, and also push the data to [Ubidots IoT Platform](https://ubidots.com/) for logging and monitoring!
 
-<!-- TODO: PHOTO: take a new photo where the main thing is the Omega and OLED, the temp sensor is secondary (can keep this existing photo at the bottom of this project) -->
-
 ![temperature monitor running](./img/temperature-monitor-complete.jpg)
 
 Visualize and track the data on Ubidots:

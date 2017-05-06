@@ -272,11 +272,7 @@ for opt, arg, in opts:
     # and so on
 ```
 
-<!-- // DONE: can write about:
-// * communicating with the microcontroller with serial
-// * the use of getopt to read command line arguments -->
 
-
-<!-- // DONE: add a teaser for the next part of the project -->
+### Going Further
 
 Next we'll make your plant a little smart by connecting it to a cloud data service so you can remotely monitor it from anywhere in the world!

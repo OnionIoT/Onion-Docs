@@ -4,6 +4,8 @@ For this project, we will be building a working, miniature traffic light using a
 
 ![completed](./img/traffic-light-complete.jpg)
 
+<!-- // TODO: future: youtube video of the traffic light's operation -->
+
 ### Overview
 
 **Skill Level:** Beginner
@@ -92,7 +94,7 @@ You should see the lights changing color!
 
 ![completed](./img/traffic-light-complete.jpg)
 
-<!-- // TODO: PHOTO: add a photo of the red LED lit up -->
+<!-- // TODO: future: PHOTO: add link to youtube video -->
 
 ### Code Highlight
 

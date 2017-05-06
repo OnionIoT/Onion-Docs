@@ -5,9 +5,9 @@ Do you have some places in your home where your WiFi network is slow? A WiFi ran
 The Omega's powerful WiFi capabilities and incredibly small footprint allow it to be effective as a WiFi range extender.
 
 
-<!-- TODO: photo of the setup -->
+![range extender setup](./img/wifi-range-extender-setup.jpg)
 
-<!-- TODO: future: illustration -->
+<!-- TODO: future: illustration of this system -->
 
 Even though the Omega has only one physical WiFi interface, you can create two virtual interfaces and have the Omega relay the packets back and forth between the two interfaces. This allows you to set up the Omega as a WiFi range extender that relays the packets between your computer/smartphone and your router. This can be very helpful if your router has a short range and the connection has problems from beyond a certain distance.
 
@@ -33,6 +33,7 @@ The Onion [`range-extender-config` Github repository](https://github.com/OnionIo
 * Any Onion Dock
 	* We really like the Mini Dock for this project because of its small footprint
 
+![ingredients](./img/wifi-range-extender-setup.jpg)
 
 ### Step-by-Step
 
@@ -102,10 +103,10 @@ Once you have saved and closed the file, run the following command to restart th
 
 >If you want to revert your configuration to the original, we have a complete set of default configuration files from a factory-fresh Omega2 [in the `uci-default-configs` repo](https://github.com/OnionIoT/uci-default-configs) on GitHub.
 
-#### 4. Use Your Omega WiFi Range Extender
+### Use Your Omega WiFi Range Extender
 
 At this point, your Omega is connected to router as well as serving its own access point, and the Omega is setup to relay information back and forth between these two WiFi interfaces. This means that you can connect your computer/smartphone to the AP of your Omega, and be able to access the data coming from the router.
 
 To use the Omega as the WiFi range extender, you would typically place the Omega somewhere between your router and your computer/smartphone. Packets will travel from your router to the Omega, and from the Omega to your computer/smartphone instead of directly from the router to your device. Effectively, extending your WiFi network's range!
 
-Happy hacking!
+Happy Surfing!

@@ -4,7 +4,7 @@ In this project, we'll build on the [Thermal Printer Project](#thermal-printer-p
 
 ![Thermal printer compact](./img/thermal-printer-2-1.jpg)
 
-// TODO: photo: another photo of how compact this is
+![thermal printer compact 2](./img/thermal-printer-2-assembled-02.jpg)
 
 ### Overview
 
@@ -51,7 +51,7 @@ Insert the power jack adapter into the printer base. Do this first, since the ot
 
 ![How the power jack fits](./img/thermal-printer-2-base.jpg)
 
-#### 3. Trim the cable
+#### 3. Trim the Cables
 
 Next we need to cut one end of the 5-pin TTL cable that came with the thermal printer. This is so we can re-route the wires to where they need to go. The other end we'll leave alone, since that goes into the printer.
 
@@ -77,10 +77,9 @@ We'll be doing the following to connect the Omega to the printer:
 	* We do this tricky business because the thermal printer requires 5V to operate and the Mini Dock
 1. Insert your printer into the base from the top so that the 5-pin cable is routed through the channel on the side of the printer.
 	* The wiring on the underside should like something like this:
-		![Thermal printer 3](./img/thermal-printer-2-3.jpg)
-		// TODO: photo with the power supply unplugged
+		![Thermal printer underside](./img/thermal-printer-2-underside.jpg)
 	* How the 5-pin cable is routed:
-		// TODO: photo: detail of the 5-pin cable
+		![Thermal printer 5pin cable routing](./img/thermal-printer-2-5pin-cable-routing.jpg)
 1. If your wires are all connected, you can then flip the printer right side up.
 
 
@@ -135,6 +134,7 @@ cp -r www/ /
 
 1. Connect your Omega to your WiFi network, or connect your computer to the Omega's WiFi network.
 1. In a web browser, navigate to `omega-ABCD.local/printer.html`, where `ABCD` is the last 4 digits on the sticker on the Omega.
+	* On some Android and PC devices, the `omega-ABCD.local` address doesn't always work. Follow our [guide on finding your Omega's IP Address](https://docs.onion.io/omega2-docs/finding-omega-ip-address.html) and use the IP address instead of `omega-ABCD.local` when connecting the web interface. It will be something along the lines of `192.168.1.109/printer.html`
 1. Type text in the box in the middle of the webpage.
 1. Click print to physically print it!
 
@@ -143,5 +143,3 @@ cp -r www/ /
 The physical output:
 
 ![Thermal printer output](./img/thermal-printer-2-1.jpg)
-
-<!-- ### Code Highlight -->

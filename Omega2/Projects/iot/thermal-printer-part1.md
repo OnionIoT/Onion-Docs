@@ -6,7 +6,7 @@ In this project, we'll be using the Omega to control a thermal printer via a web
 
 ![Web Interface](./img/thermal-printer-web-page.png)
 
-// TODO: need a photo of the printed output
+![Thermal printer output](./img/thermal-printer-2-1.jpg)
 
 ### Overview
 
@@ -44,21 +44,21 @@ You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide]
 
 We'll be doing the following to connect the Omega to the printer:
 
-<!-- TODO: new circuit diagram -->
 ![Circuit Diagram](./img/thermal-printer-1-circuit-diagram.png)
 
-For these wiring instructions, we're assuming you're working with an Onion Expansion Dock. Other docks may have different pin layouts than pictures show.
+Let's dive in:
 
-// TODO: break this up into a numbered list of steps
+1. First make sure the Omega is off and seated in the Expansion Dock.
+1. Then, plug in the 2-pin power cable into the left side of the bottom of the printer above.
+1. Route the black wire to the `GND` pin on the Expansion Dock headers.
+1. Next we'll connect the serial wires:
+	1. First plug one end of the 5-pin TTL cable into the socket at the bottom of the printer.
+	1. Using a jumper (preferably green to keep it consistent) connect the green wire pin on the TTL connector to the UART1 `TX` pin on the Omega Expansion header.
+	1. Same goes for the yellow wire pin on the TTL connector, except this one goes to the UART1 `RX` pin on the Expansion Header.
+	1. Lastly, do the same for the black wire to the `GND` pin on the Expansion Dock header - we used a breadboard intermediary in the diagram to show how the connection is supposed to go.
+1. Finally, connect the red wire from the JST connector to a `5V` pin on the Expansion Dock headers.
 
-First make sure the Omega is off and seated in the Expansion Dock.
-
-Then, plug in the 2-pin power cable into the left side of the bottom of the printer above. Route the black wire to the `GND` pin on the Expansion Dock headers.
-
-Next we'll connect the serial wires. First plug one end of the 5-pin TTL cable into the socket at the bottom of the printer. Using a jumper (preferably green to keep it clear) connect the green wire pin on the TTL connector to the `TX` pin on the Omega Expansion header. Same goes for the yellow wire pin on the TTL connector, except this one goes to the `RX` pin. Lastly, do the same for the black wire to the `GND` pin on the Expansion Dock header - we used a breadboard intermediary in the diagram to show how the connection is supposed to go.
-
-Finally, connect the red wire from the JST connector to a `5V` pin on the Expansion Dock headers.
-
+> Note that we used a breadboard to connect the two `GND` pins from the printer to a single `GND` pin on the Omega. It would have been equally ok to connect the two printer `GND` pins to two `GND` pins on the Omega.
 
 #### 2. Download the Project Code
 
@@ -91,13 +91,16 @@ cp -r www/ /
 ### Running the Printer
 
 1. Connect your Omega to your WiFi network, or connect your computer to the Omega's WiFi network.
-1. In a web browser, navigate to omega-ABCD.local/printer.html, where ABCD is the last 4 digits on the sticker on the Omega.
+1. In a web browser, navigate to `omega-ABCD.local/printer.html`, where `ABCD` is the last 4 digits on the sticker on the Omega.
+	* On some Android and PC devices, the `omega-ABCD.local` address doesn't always work. Follow our [guide on finding your Omega's IP Address](https://docs.onion.io/omega2-docs/finding-omega-ip-address.html) and use the IP address instead of `omega-ABCD.local` when connecting the web interface. It will be something along the lines of `192.168.1.109/printer.html`
 1. Type in text in the box in the middle of the webpage.
 1. Click print to print it!
 
 ![Web Interface](./img/thermal-printer-web-page.png)
 
-// TODO: include a photo of the real printed output
+The physical output:
+
+![Thermal printer output](./img/thermal-printer-2-1.jpg)
 
 ### Code Highlight
 
@@ -133,3 +136,8 @@ exit 0
 ```
 
 This is just one of many methods to create your own endpoints and services easily and quickly on the Omega!
+
+
+### Going Further
+
+With a little bit of wire splicing and soldering, we can make this project much more compact! Check out the [next part](#thermal-printer-p2) for more.

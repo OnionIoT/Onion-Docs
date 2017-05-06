@@ -19,7 +19,7 @@ The WiFi scanner will:
 
 It will then save the following data for each network into a comma separated value (CSV) file that can be imported into a spreadsheet program:
 
-* Date scanned // TODO: and time presumably?
+* Date & time scanned
 * Latitude and longitude
 * SSID
 * BSSID
@@ -40,7 +40,7 @@ Using the Power Dock, you will be able to use your scanner out in the world with
 * A 3.7V LiPo battery
 	* We found 1500 mAh to be good for several hours of use
 
-// TODO: PHOTO: of all of the ingredients
+![ingredients](./img/mobile-wifi-hotspot-scanner-ingredients.jpg)
 
 ### Step-by-Step
 
@@ -68,7 +68,7 @@ The GPS Expansion's antenna is connected via a Hirose U.FL connector. If you hav
 
 ```
 opkg update
-opkg install python-light pyOledExp ogpsgit git-http ca-bundle
+opkg install python-light pyOledExp ogps git git-http ca-bundle
 ```
 
 The `pyOledExp` package gives us control of the OLED Expansion, while the `ogps` package will provide a `ubus` service that lets us easily get data from the GPS Expansion. The `git`, `git-http`, and `ca-bundle` packages will allows us to download the project code form GitHub.
@@ -116,11 +116,11 @@ Here's the fun part! Press the reset button and the Omega will run the program.
 
 If the GPS Expansion is able to lock onto a satellite signal, you'll see the time, the GPS coordinates, and the 6 WiFi networks with the strongest signal available nearby.
 
+![oled closeup](./img/mobile-wifi-hotspot-scanner-oled-closeup.jpg)
+
+The Omega will then save data about all of the discovered networks to a file called `wifiData.csv` in the project directory. You can then import this into a spreadsheet or navigation program for mapping later!
+
 ![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-outside.jpg)
-
-The Omega will then save data about all of the discovered networks to a file called `wifiData.csv`. You can then import this into a spreadsheet or navigation program for mapping later!
-
-// TODO: photo; need a close-up that clearly shows the expected output on the OLED
 
 ##### Unable to Lock Signal
 
@@ -128,7 +128,11 @@ If the GPS Expansion cannot lock onto a satellite, you'll see an error message o
 
 ##### Saved Data
 
-// TODO: a small section on the csv output, show a screenshot of some examples of the scan
+Assuming the project code was downloaded to the `/root` directory, the collected wifi data will be saved to: `/root/wifi-hotspot-scanner/wifiData.csv`. It is a Comma Separated Value (CSV) file and can be opened with any spreadsheet program. It stores data about the surrounding networks for every single scan:
+
+![csv file output](./img/mobile-wifi-hotspot-scanner-csv.png)
+
+This data can be used in a variety of creative ways: creating a map of your neighbourhood that shows the strength of the local WiFi networks, creating a database of open networks around the city, the sky is the limit.
 
 ### Code Highlight
 
