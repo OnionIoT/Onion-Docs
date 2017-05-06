@@ -51,7 +51,7 @@ Insert the power jack adapter into the printer base. Do this first, since the ot
 
 ![How the power jack fits](./img/thermal-printer-2-base.jpg)
 
-#### 3. Trim the cable
+#### 3. Trim the Cables
 
 Next we need to cut one end of the 5-pin TTL cable that came with the thermal printer. This is so we can re-route the wires to where they need to go. The other end we'll leave alone, since that goes into the printer.
 
@@ -134,6 +134,7 @@ cp -r www/ /
 
 1. Connect your Omega to your WiFi network, or connect your computer to the Omega's WiFi network.
 1. In a web browser, navigate to `omega-ABCD.local/printer.html`, where `ABCD` is the last 4 digits on the sticker on the Omega.
+	* On some Android and PC devices, the `omega-ABCD.local` address doesn't always work. Follow our [guide on finding your Omega's IP Address](https://docs.onion.io/omega2-docs/finding-omega-ip-address.html) and use the IP address instead of `omega-ABCD.local` when connecting the web interface. It will be something along the lines of `192.168.1.109/printer.html`
 1. Type text in the box in the middle of the webpage.
 1. Click print to physically print it!
 
@@ -142,5 +143,3 @@ cp -r www/ /
 The physical output:
 
 ![Thermal printer output](./img/thermal-printer-2-1.jpg)
-
-<!-- ### Code Highlight -->
