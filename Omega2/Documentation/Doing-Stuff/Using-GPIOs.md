@@ -8,7 +8,7 @@ order: 1
 
 ## Using the Omega's GPIOs {#using-gpios}
 
-The Omega2 has twelve General-Purpose Input/Output pins (commonly referred to as GPIOs) that can be fully controlled by you, the user. GPIO pins on most chips generally go unused, but on the Omega we can use these GPIOs to connect to, communicate with, and control external circuits.
+The Omega2 has twelve General Purpose Input/Output pins (commonly referred to as GPIOs) that can be fully controlled by you, the user. GPIO pins on most chips generally go unused, but on the Omega we can use these GPIOs to connect to, communicate with, and control external circuits.
 
 On the Omega, we can control GPIO pins with a command-line tool known as `gpioctl`. This article will go through how `gpioctl` works, and the ways in which you can use it.
 
@@ -19,18 +19,8 @@ On the Omega, we can control GPIO pins with a command-line tool known as `gpioct
 
 ### GPIO Electrical Ratings
 
-**The Omega2's GPIOs are not 5V input tolerant!**
-
-See the table below for the GPIOs' operating voltages:
-
-| Parameter | Minimum (V) | Maximum (V) |
-|-|-|-|
-| Input `HIGH` | 2.0 | 3.6 |
-| Input `LOW` | -0.3 | 0.8 |
-| Output `HIGH` | 2.4 | --- |
-| Output `LOW` | --- | 0.4 |
-
-**Warning: Connecting a signal to an input pin below the minimum `LOW` or above the maximum `HIGH` voltages may damage your Omega!**
+```{r child = './GPIO-electrical-characteristics.md'}
+```
 
 ### From the Command Line
 
@@ -276,7 +266,7 @@ Generate a software-based Pulse Width Modulated (PWM) signal on a selected pin. 
 fast-gpio pwm <gpio> <freq in Hz> <duty cycle percentage>
 ```
 
-This will launch a background process that will generate the PWM signal. 
+This will launch a background process that will generate the PWM signal.
 
 > Software-based PWM is implemented by a program that usually waits for a defined amount of time before toggling the GPIO output. This has the potential to be **inaccurate** since the CPU might be interrupted with other processes and tasks. Software PWM is generally good enough for dimming an LED but not for something requiring more accuracy, such as driving a servo.
 

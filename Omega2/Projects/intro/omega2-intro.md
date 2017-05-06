@@ -97,17 +97,23 @@ The Omega supports 10M/100M wired ethernet network connectivity as well when use
 
 #### GPIOs
 
-// list how many gpios are exposed on the omega
+The Omega2 has twelve General Purpose Input/Output (GPIO) pins that can be controlled by the user.
 
 ##### GPIO Mapping
 
-// omega2 pinout
+On the Omega, the GPIOs are laid out in two banks:
+
+<!-- image of omega2 pinout -->
+![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
 
 ##### Electrical Characteristics
 
+// electrical characteristics
+
 ###### Digital Signal Voltage Level
 
-// make a shared article with the docs using-gpios GPIO electrical ratings section
+```{r child = '../../Documentation/Doing-Stuff/GPIO-electrical-characteristics.md'}
+```
 
 ###### Current Limits
 
