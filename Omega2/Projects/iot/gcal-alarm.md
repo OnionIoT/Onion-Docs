@@ -1,18 +1,14 @@
 ## Alarms based on an Online Calendar {#calendar-alarm}
 
-// TODO: this is a super poor intro sentence and doesn't fully describe the project.
-// Should be something like:
-// This project will create a real-world alarm clock that can be setup from an online calendar of your choice. Just create a calendar event with a specific word in it, and your Omega will act as an alarm based on the event's time and date.
+This project will create a real-world alarm clock that can be setup from an online calendar of your choice. Just create a calendar event with a specific word in it, and your Omega will act as an alarm based on the event's time and date.
 
-This project will set up a buzzer alarm by automatically pulling calendar data from a source of your choice.
-
-// TODO: include a photo of the final result
+![buzzer setup](./img/gcal-alarm-setup.jpg)
 
 ### Overview
 
 **Skill Level:** Intermediate
 
-**Time Required:** 45 minutes	// TODO: really?
+**Time Required:** 30 minutes
 
 This project requires an online calendar source in addition to the ingredients below. We'll be using Google calendar in our Step-By-Step, but you can pick any compatible iCalendar source.
 
@@ -77,25 +73,24 @@ Once we're done, it should look a little like this:
 
 #### 4. Download the Project Code
 
-The code for the Calendar Alarm can be found in Onion's [iot-gcal-alarm repo](https://github.com/OnionIoT/iot-gcal-alarm) on Github. You can use Git to clone it to your Omega:
+The code for the Calendar Alarm can be found in Onion's [iot-gcal-alarm repo](https://github.com/OnionIoT/iot-gcal-alarm) on Github. You can [use `Git` to clone it](https://docs.onion.io/omega2-docs/installing-and-using-git.html) to your Omega:
 
 ```
 cd /root
 git clone https://github.com/OnionIoT/iot-gcal-alarm.git
 ```
 
-Or use `wget` to download the three files directly to your Omega:
+**Or** use `wget` to download the three files directly to your Omega:
 
 ```
-cd /root
-mkdir iot-gcal-alarm
+mkdir /root/iot-gcal-alarm
+cd /root/iot-gcal-alarm
 wget https://raw.githubusercontent.com/OnionIoT/iot-gcal-alarm/master/iotGcalAlarm.py https://raw.githubusercontent.com/OnionIoT/iot-gcal-alarm/master/config.json https://raw.githubusercontent.com/OnionIoT/iot-gcal-alarm/master/config.json
 ```
 
 Now all of the code will be in the new `/root/iot-gcal-alarm/` directory on your Omega.
 
-#### 5. Find Your Calendar
-// TODO: this step should be 'Setting Up your Calendar'
+#### 5. Setting Up Your Calendar
 
 The calendar can be any calendar you wish, but for the events to be recognized, they have to include `SET_BUZZER` string in the event's title. More specifically, the 'SUMMARY' field of the iCalendar event.
 
@@ -111,14 +106,13 @@ Then navigate to the 'Calendars' tab in the settings page. Here, click which cal
 The green 'ICAL' button next to 'Private Address' will be a direct link to your up-to-date calendar in the `.ics` format - this is it! To get the link, right click, and hit the 'Copy Link Location' button.
 ![Setting Pages](./img/gcal-alarm-find-3.png)
 
-Open up `config.json` from the repo, and paste the link as the value to the "icalAddr" key - replacing `your-calendar-address`.
+Open up `config.json` from the repo, and paste the link as the value to the "icalAddr" key - replacing `your-calendar-address`:
 
-// TODO: add a (censored) example of the config.json file
+![config file](./img/gcal-alarm-config-0.png))
 
-#### 6. Create a Calendar Event with an Alarm
-// TODO: add the content and screenshots for this step
 
-#### 7. Run the Code
+
+#### 6. Run the Code
 
 Let's run the code!
 
@@ -129,9 +123,28 @@ python /root/iot-gcal-alarm/iotGcalAlarm.py
 The script will read the calendar data from your source, and add a cron job for every event in the future with the keyword `SET_BUZZER`. It will also clear any cron jobs that have already been run - only for up to a year, since cron does not keep track of year data.
 
 
-### Code Highlight
+#### 7. Schedule the Code to Run Once a Day
 
-// TODO: write this section
+Now we'll use the trusty `cron` Linux utility to schedule the script to run once a day at midnight to update our other cron jobs.
 
-<!-- // one or two paragraphs (max) about something cool we did in the code -->
-<!-- //	just give a brief description/overview and provide links to where they can learn more (Onion Docs, online resources, etc) -->
+Run `crontab -e` to add the task, it will open the crontab file in vi, add the following lines:
+
+```
+0 0 * * * python /root/iot-gcal-alarm/iotGcalAlarm.py
+#
+```
+
+restart the `cron` daemon for the changes to take effect:
+
+```
+/etc/init.d/cron restart
+```
+
+Now the `iotGcalAlarm` script will run every day at midnight, updating your alarms based on calendar events that have the `SET_BUZZER` keyword.
+
+> Check out the Omega documentation for more info on [using `cron`](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html)
+
+
+#### 8. Alarming!
+
+You're all set, your Omega will now automatically set off alarms based on your calendar events!
