@@ -28,6 +28,10 @@ The Onion [`omega-as-router` Github repository](https://github.com/OnionIoT/omeg
 
 Please note that there are some placeholders such as `RouterPassword` and `somewifissid`. Make sure to copy only the relevant parts!
 
+#### Default Configuration Files
+
+If you ever want to revert your configuration to the original, we have a complete set of default configuration files from a factory-fresh Omega2 [in the `uci-default-configs` repo](https://github.com/OnionIoT/uci-default-configs) on GitHub.
+
 
 ### Ingredients
 
@@ -103,7 +107,7 @@ Run the following command to restart the WiFi network and apply your settings:
 wifi
 ```
 
-#### 5. Enable Ethernet Connectivty
+#### 5. Enable Ethernet Connectivity
 
 Enable the Ethernet interface, `eth0`, by running:
 
@@ -121,7 +125,7 @@ Then restart the network service:
 
 This will allow the Omega to connect to the Internet via the Ethernet port.
 
-#### 6. Enabling Packet Routing
+#### 6. Enabling Packet Routing in the Firewall
 
 Now we need to enable sharing of network access between the ethernet network and the WiFi AP. Open the `/etc/config/firewall` file using `vi` and find the block that looks like the following:
 
@@ -161,6 +165,8 @@ Now restart the firewall by running:
 ```
 /etc/init.d/firewall restart
 ```
+
+> What we've told the firewall to do with the above configuration is to allow traffic passing between the `wwan` interface (the WiFi network) and the `wan` interface (the wired ethernet network).
 
 #### 7. Using the Omega Router
 

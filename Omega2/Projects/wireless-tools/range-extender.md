@@ -22,9 +22,14 @@ Let's get started!
 
 This project will turn your Omega into a WiFi Range Extender for your WiFi network.
 
-#### Sample Configuration files
+#### Sample Configuration Files
 
 The Onion [`range-extender-config` Github repository](https://github.com/OnionIoT/range-extender-config) contains reference configuration files in case you need to troubleshoot your setup.
+
+
+#### Default Configuration Files
+
+If you ever want to revert your configuration to the original, we have a complete set of default configuration files from a factory-fresh Omega2 [in the `uci-default-configs` repo](https://github.com/OnionIoT/uci-default-configs) on GitHub.
 
 
 ### Ingredients
@@ -101,7 +106,8 @@ Once you have saved and closed the file, run the following command to restart th
 /etc/init.d/firewall restart
 ```
 
->If you want to revert your configuration to the original, we have a complete set of default configuration files from a factory-fresh Omega2 [in the `uci-default-configs` repo](https://github.com/OnionIoT/uci-default-configs) on GitHub.
+> What we've told the firewall to do with the above configuration is to allow traffic passing between the `wwan` network interfaces, that is, the WiFi network AP the Omega is hosting and the WiFi network to which the Omega is connected.
+
 
 ### Use Your Omega WiFi Range Extender
 
