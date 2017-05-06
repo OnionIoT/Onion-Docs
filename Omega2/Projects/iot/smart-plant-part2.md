@@ -204,7 +204,7 @@ Now on your Omega, in the `/root/smart-plant` directory, there is a configuratio
 <!-- // DONE: since we changed the first part to setup an init.d script, we need to update this step
 // The new step should entail:
 //	* running `/etc/init.d/smart-plant stop`
-//		-> before putting this step in, confirm that it actually stops the existing python script instance on the Omega 
+//		-> before putting this step in, confirm that it actually stops the existing python script instance on the Omega
 // it works (gabe)-->
 
 #### 11. Stop the Existing Program
@@ -356,5 +356,7 @@ If you do want to display more data, it would be useful to have a larger chart! 
 
 ![large chart](./img/smart-plant-p2-7-dashboard-5-large-graph.png)
 
-<!-- // DONE: add a teaser for the next part of the project -->
+
+### Going Further
+
 Next we'll give our plant a voice of its own by connecting it to Twitter and having it broadcast to the world!

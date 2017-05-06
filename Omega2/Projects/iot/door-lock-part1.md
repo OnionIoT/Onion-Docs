@@ -198,6 +198,6 @@ Great! Your IoT lock now runs on a schedule!
 
 
 
-### Next Steps
+### Going Further
 
 While this is really useful, [next](#internet-lock-p2) we'll make the lock react to Tweets from authorized users, so you can lock and unlock your IoT lock from anywhere, and even give access to your friends!

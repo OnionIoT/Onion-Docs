@@ -91,7 +91,8 @@ cp -r www/ /
 ### Running the Printer
 
 1. Connect your Omega to your WiFi network, or connect your computer to the Omega's WiFi network.
-1. In a web browser, navigate to omega-ABCD.local/printer.html, where ABCD is the last 4 digits on the sticker on the Omega.
+1. In a web browser, navigate to `omega-ABCD.local/printer.html`, where `ABCD` is the last 4 digits on the sticker on the Omega.
+	* On some Android and PC devices, the `omega-ABCD.local` address doesn't always work. Follow our [guide on finding your Omega's IP Address](https://docs.onion.io/omega2-docs/finding-omega-ip-address.html) and use the IP address instead of `omega-ABCD.local` when connecting the web interface. It will be something along the lines of `192.168.1.109/printer.html`
 1. Type in text in the box in the middle of the webpage.
 1. Click print to print it!
 
@@ -133,3 +134,8 @@ exit 0
 ```
 
 This is just one of many methods to create your own endpoints and services easily and quickly on the Omega!
+
+
+### Going Further
+
+With a little bit of wire splicing and soldering, we can make this project much more compact! Check out the [next part](#thermal-printer-p2) for more.

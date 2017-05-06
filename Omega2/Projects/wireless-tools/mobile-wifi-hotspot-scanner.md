@@ -118,7 +118,7 @@ If the GPS Expansion is able to lock onto a satellite signal, you'll see the tim
 
 ![oled closeup](./img/mobile-wifi-hotspot-scanner-oled-closeup.jpg)
 
-The Omega will then save data about all of the discovered networks to a file called `wifiData.csv`. You can then import this into a spreadsheet or navigation program for mapping later!
+The Omega will then save data about all of the discovered networks to a file called `wifiData.csv` in the project directory. You can then import this into a spreadsheet or navigation program for mapping later!
 
 ![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-outside.jpg)
 
@@ -128,9 +128,11 @@ If the GPS Expansion cannot lock onto a satellite, you'll see an error message o
 
 ##### Saved Data
 
+Assuming the project code was downloaded to the `/root` directory, the collected wifi data will be saved to: `/root/wifi-hotspot-scanner/wifiData.csv`. It is a Comma Separated Value (CSV) file and can be opened with any spreadsheet program. It stores data about the surrounding networks for every single scan:
+
 ![csv file output](./img/mobile-wifi-hotspot-scanner-csv.png)
 
-// TODO: a small section on the csv output, show a screenshot of some examples of the scan
+This data can be used in a variety of creative ways: creating a map of your neighbourhood that shows the strength of the local WiFi networks, creating a database of open networks around the city, the sky is the limit.
 
 ### Code Highlight
 

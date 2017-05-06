@@ -128,11 +128,11 @@ Examine your pump's instruction manual (if there is one) or the ports to see if 
 
 ##### Determining Polarity
 
-Prepare a small piece of paper about the size of your hand. Then plug in the 12V power supply and hear your pump come to life! 
+Prepare a small piece of paper about the size of your hand. Then plug in the 12V power supply and hear your pump come to life!
 
 >The pump may be extremely noisy without any water flowing through it, so don't be alarmed if it's loud.
 
-Move the piece of paper towards the outlet. If it gets blown away from it, the polarity is correct. If it gets sucked towards it, the wiring is backwards. 
+Move the piece of paper towards the outlet. If it gets blown away from it, the polarity is correct. If it gets sucked towards it, the wiring is backwards.
 
 Unplug the power supply and remove the two wires from the barrel jack adapter. If the polarity is backwards, switch where the red and black wires are connected to the pump.
 
