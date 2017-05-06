@@ -20,7 +20,14 @@ In fact, we use this very setup to control a secondary lock at Onion HQ:
 
 **Time Required:** 1.5 hours
 
-To accomplish this, we'll use the HTTP server, `uhttpd` on the Omega to listen for the unlock signal through a request and `cgi-bin` scripts to control the lock. When it's set up, we'll be able to to unlock by accessing a web page through a phone, a laptop, or a kerosene powered toaster.
+To accomplish this, we'll use the HTTP server, `uhttpd` on the Omega to listen for the unlock signal through a request and `cgi-bin` scripts to control the lock. When it's set up, we'll be able to to unlock by accessing a web page through a phone, a laptop, a tablet, a tv, anything!
+
+The web page will allow us to:
+
+* unlock
+* lock
+* toggle - unlock and then lock again after some time
+	* If the lock is currently locked. If not, this action does nothing
 
 
 ### Ingredients
@@ -107,26 +114,50 @@ cd /root
 git clone https://github.com/OnionIoT/iot-door-lock.git
 ```
 
->If your lock has more modes/controls, feel free to take a look at the code (specially `door.sh`) and make changes that control your lock more effectively.
+>If your lock has more modes/controls, feel free to take a look at the code (specially `www/cgi-bin/door.sh`) and make changes that control your lock more effectively.
 
 
-Now copy the contents of the `www` directory of the repo to the `/www` directory on your Omega, and you should be good to go!
+#### 7. Adjust the Code for your Lock
+
+The code assumes two things:
+
+* That the lock in use is a normally closed lock
+	* ie when there is no current (the Relay Expansion channel is off) the lock will be in the **locked** state
+* When toggling the lock, it assumes a delay of **24 seconds** between unlocking and locking again
+
+To adjust either of the above, you'll need to edit the `www/cgi-bin/door.sh` script:
+* To change the Relay Expansion channel values for the lock, adjust the `LOCKED` and `UNLOCKED` variables
+* To change the delay between unlocking and locking during a toggle, adjust the `TOGGLE_TIME` variable
+
+
+#### 8. Serve the Lock Webpage
+
+In order to serve up the webpage that we'll use to send the lock commands, copy the contents of the `www` directory of the project directory to the `/www` directory on your Omega, and you should be good to go!
 
 ```
-cp -r iot-door-lock/www/ www/
+cp -r iot-door-lock/www/ /
 ```
 
-// TODO: confirm this copy command works
+> By virtue of `uhttpd`, the HTTP server running on the Omega, all of the files in the `/www` directory will be served up as a website.
+
+### Using the IoT Lock
+
+Now the truly IoT part, using the IoT Lock!
+
+1. Connect your Omega to your WiFi network, or connect your computer to the Omega's WiFi network.
+1. In a web browser, navigate to `omega-ABCD.local/lock.html`, where `ABCD` is the last 4 digits on the sticker on the Omega.
+	* On some Android and PC devices, the `omega-ABCD.local` address doesn't always work. Follow our [guide on finding your Omega's IP Address](https://docs.onion.io/omega2-docs/finding-omega-ip-address.html) and use the IP address instead of `omega-ABCD.local` when connecting the web interface. It will be something along the lines of `192.168.1.109/lock.html`
+1. Hit any of the buttons to carry out the action indicated
+	* As a refresher, we can Toggle the lock (unlock momentarily and then lock again), unlock it, or lock it
+
+![lock web page](./img/door-lock-p1-website.png)
 
 
-#### 7. Using the IoT Lock
+### Bonus: Automatically Lock & Unlock
 
-TODO: Need a step on how to access the lock, include a screenshot of the webpage, mention that the omega name works on iphone but not on android (have to use the ip address)
+To make this truly useful & automated, we can schedule when the IoT lock will unlock and lock using the `cron` Linux utility!
 
-
-#### Bonus: Automatically Lock/Unlock
-
-We've also included a crontab example, `crontab.txt`, in the repo that sets up the lock to turn on and off at 11AM and 6PM respectively:
+Check out the cron example that sets up the lock to turn on and off at 11AM and 6PM respectively but only on weekdays:
 
 ```
 0 11 * * 1,2,3,4,5 sh /www/cgi-bin/door.sh unlock
@@ -134,10 +165,9 @@ We've also included a crontab example, `crontab.txt`, in the repo that sets up t
 #
 ```
 
-<!-- future TODO: pull the contents of this file from github and then just render it here inside the backticks -->
+> This is included in the project code repo as `crontab.txt`
 
-
-Here's a quick overview of how it works:
+Here's a quick overview of cron job definitions work:
 
 ```
 # * * * * *  command to execute
@@ -153,7 +183,21 @@ Here's a quick overview of how it works:
 # The hash (#) denotes a comment that will be ignored
 ```
 
+So the first line specifies that the lock will be unlocked at 11am on weekdays, and the second line specifies that it will be locked at 6pm on weekdays.
+
+To apply this scheduling to your IoT lock, type `crontab -e` to add a task to the `cron` daemon, it will open a file in vi, enter in the command listed up above. Then restart the `cron` daemon for the changes to take effect:
+
+```
+/etc/init.d/cron restart
+```
+
+Great! Your IoT lock now runs on a schedule!
+
+
+> Check out the Omega documentation for more info on [using `cron`](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html)
 
 
 
-// TODO: teaser on the next step of the project
+### Next Steps
+
+While this is really useful, [next](#internet-lock-p2) we'll make the lock react to Tweets from authorized users, so you can lock and unlock your IoT lock from anywhere, and even give access to your friends!
