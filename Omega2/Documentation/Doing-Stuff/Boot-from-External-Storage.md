@@ -244,6 +244,12 @@ and change it to
 option  enabled '1'
 ```
 
+If your USB device uses one of the drivers from `kmod-usb-storage-extras`, run the following:
+
+```
+ln -s  /etc/modules.d/usb-storage-extras /etc/modules-boot.d/usb-storage-extras
+```
+
 Save the file and restart the Omega:
 
 ```
