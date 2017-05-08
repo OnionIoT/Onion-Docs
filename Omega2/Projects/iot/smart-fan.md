@@ -115,7 +115,7 @@ This part is written assuming you're working with the D18B20, if your sensor is 
 
 The D18B20 has a pinout that looks like this:
 
-![D18B20 Temperature Sensor Pin Layout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/DS18B20-pin-layout.png)
+![D18B20 Temperature Sensor Pin Layout]( ./img/DS18B20-pin-layout.png)
 
 **NOTE**: the second graphic is a **bottom** view, where the pins are pointing towards you (we may have fried a sensor by misreading this one).
 

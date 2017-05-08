@@ -33,7 +33,7 @@ You'll have to have an Omega2 ready to go, complete the [First Time Setup Guide]
 
 Once that's done, plug in your OLED Expansion:
 
-![oled expansion dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/oled-expansion-dock-45deg.jpg)
+![oled expansion dock]( ./img/oled-expansion-dock-45deg.jpg)
 
 
 #### 2. Install Python

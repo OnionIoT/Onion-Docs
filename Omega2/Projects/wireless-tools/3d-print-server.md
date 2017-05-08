@@ -36,7 +36,7 @@ Follow these instructions to turn your 3D printer wireless!
 
 Here's a handy connection diagram of the way the pieces are put together:
 
-![](https://community.onion.io/uploads/files/1486496031636-3d-printer-haredare-setup-1.png)
+![](./img/3d-print-server-hardware-setup-1.png)
 
 First, connect the printer to the Omega with a USB cable. Next, connect the 3D printer to power. Finally, power on the Omega and we'll be good to go.
 

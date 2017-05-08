@@ -57,7 +57,7 @@ First we need an Omega2 ready to go. If you haven't already, complete the [First
 
 Plug in the Relay Expansion, and that's it for the Omega.
 
-![expansion dock and relay expansion](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/relay-expansion-dock.jpg)
+![expansion dock and relay expansion]( ./img/relay-expansion-dock.jpg)
 
 #### 2. Test the lock
 

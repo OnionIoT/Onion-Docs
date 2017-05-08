@@ -119,7 +119,7 @@ Your wires should look like this:
 
 Use this diagram for reference when wiring up the sensor:
 
-![temperature monitor ds18b20 pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/img/DS18B20-pin-layout.png)
+![temperature monitor ds18b20 pinout]( ./img/DS18B20-pin-layout.png)
 
 We will treat the flat side as the front.
 

@@ -140,7 +140,7 @@ exit
 
 This block diagram shows the steps the `_MorseMain` function will perform:
 
-![code block diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/developing-pic-1-block-diagram.png)
+![code block diagram]( ./img/developing-pic-1-block-diagram.png)
 
 
 Now to save the file you'll have to enter the Command Mode by hitting the `ESC` button on your keyboard.
@@ -149,7 +149,7 @@ Now to save the file you'll have to enter the Command Mode by hitting the `ESC` 
 
 Type `:wq` and hit enter to save and exit your file.
 
-![save :wq](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/command-line-developing-pic-1.png)
+![save :wq]( ./img/command-line-developing-pic-1.png)
 
 You are now ready to convert text to morse code!
 

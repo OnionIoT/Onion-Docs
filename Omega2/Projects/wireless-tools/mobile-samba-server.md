@@ -2,7 +2,7 @@
 
 The Omega's firmware has packages available for a file sharing server program called Samba. By plugging in a USB storage device, you can turn your Omega into a mobile network file server!
 
-![usb plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/usb-plugged-in.JPG)
+![usb plugged in](./img/usb-plugged-in.JPG)
 
 <!-- TODO: future: photo: shared network storage -->
 

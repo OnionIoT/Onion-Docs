@@ -75,7 +75,7 @@ The `pyOledExp` package gives us control of the OLED Expansion, while the `ogps`
 
 After installing `ogps`, check that the `ubus` `gps` service is listed by running `ubus list`:
 
-![ubus list](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/using-gps-expansion-4-ubus-list.png)
+![ubus list](./img/using-gps-expansion-4-ubus-list.png)
 
 If you don't see `gps` listed, you'll need to restart your `rpcd` service in order to refresh the list:
 
