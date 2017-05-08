@@ -2,7 +2,7 @@
 
 QR Codes are essentially two dimensional barcodes that can easily be scanned with any camera and a little bit of processing power. The average smartphone will make short work of any QR code it comes across.
 
-![Onion QR Code](http://i.imgur.com/0Ef3def.png)
+![Onion QR Code](./img/qr-code-example.png)
 
 In this tutorial, we'll go through how you can use Python to encode text into a QR Code and display it on your OLED Expansion:
 
