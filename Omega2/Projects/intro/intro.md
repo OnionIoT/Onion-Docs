@@ -1,7 +1,7 @@
 
 Welcome to the Volume 1 of the Omega2 Project Book!
 
-![Omega plugged into Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-2-omega-on-dock.jpg "Omega Plugged into Dock")
+![Omega plugged into Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-2-omega-on-dock.jpg)
 
 Not sure what to do with your Omega? Take a look at some of our project tutorials, you'll learn how to use the Omega AND make a whole bunch of IoT gadgets!
 
