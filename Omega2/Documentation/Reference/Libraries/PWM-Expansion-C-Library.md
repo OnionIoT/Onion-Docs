@@ -2,7 +2,8 @@
 
 The Onion Servo (PWM) Expansion library, `libonionpwmexp` is a dynamic C library that provides functions to setup the Servo Expansion and generate PWM signals.
 
-![PWM Expansion Photo](http://i.imgur.com/aNoYCZc.png)
+
+![PWM Expansion Photo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-expansion-alone.png)
 
 The library can be used in C and C++ programs.
 
