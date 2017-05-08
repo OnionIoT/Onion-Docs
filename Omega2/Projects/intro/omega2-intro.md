@@ -2,7 +2,7 @@
 
 Wondering what exactly the Omega2 is all about? You've come to the right place!
 
-![Omega2 Photo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/o2-45-top.png)
+![Omega2 Photo]( ./img/o2-45-top.png)
 
 
 #### What is an IoT Computer?
@@ -68,7 +68,7 @@ After listening to feedback from the community and taking a hard look at the sta
 
 The Omega2 IoT Computer:
 
-![omega2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2-illustration.png)
+![omega2]( ./img/omega2-illustration.png)
 
 The Specs:
 
@@ -141,7 +141,7 @@ The Omega2 has twelve General Purpose Input/Output (GPIO) pins that can be contr
 On the Omega, the GPIOs are laid out in two banks:
 
 <!-- image of omega2 pinout -->
-![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
+![pinout]( ./img/Omega-2-Pinout-Diagram.png)
 
 ##### Electrical Characteristics
 
@@ -242,7 +242,7 @@ To make the Omega incredibly easy to use, it can be plugged directly into any of
 
 The [Expansion Dock](https://onion.io/store/expansion-dock/) can be considered the main Dock for the Omega. As the name implies, it supports Omega Expansions since it has the Expansion Header that exposes the Omega's GPIOs.
 
-![Expansion Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-2-omega-on-dock.jpg)
+![Expansion Dock]( ./img/unbox-2-omega-on-dock.jpg)
 
 It's meant to be the main platform for the development phase of your project or product. It features an on-board USB-to-Serial chip that allows serial connectivity to the Omega's command line terminal through the Micro-USB port. The serial terminal can be used to access the bootloader in case the Omega's OS is corrupted or cannot successfully boot. It also provides a USB Type-A plug for connecting USB devices to the Omega.
 
@@ -253,7 +253,7 @@ See the Expansion Dock [hardware overview](https://docs.onion.io/omega2-docs/exp
 
 The [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/) features the ATmega328P microcontroller (the very same one used on the Arduino Uno) that can be programmed by the Omega to work in tandem as a co-processor. The Omega and ATmega328P can communicate using I2C and a serial UART connection.
 
-![Arduino Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/arduino-dock-top-plugged-in.jpg)
+![Arduino Dock]( ./img/arduino-dock-top-plugged-in.jpg)
 
 The Arduino Dock 2 exposes the microcontroller pins in the same header design as the Arduino Uno, so it can be used with any existing Arduino Shields. It also features the Expansion Header that exposes the Omega's GPIOs, allowing the use of all Omega Expansions. Also present is a USB Type-A socket for connecting USB devices to the Omega.
 
@@ -265,7 +265,7 @@ See the Arduino Dock 2 [hardware overview](https://docs.onion.io/omega2-docs/ard
 
 The Power Dock offers the mobility that comes with powering the Omega with any 3.7V LiPo (Lithium ion Polymer) battery. When plugged into power with a Micro-USB cable, it will charge up the battery. If no battery is present, the Omega can be powered with just the Micro-USB, similar to the Expansion Dock.
 
-![Power Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-top-plugged-in.JPG)
+![Power Dock]( ./img/power-dock-top-plugged-in.JPG)
 
 
 Use the Power Dock to deploy your developed projects and/or provide a battery back-up to maintain power to mission-critical Omega systems. Also featured is the Expansion header, exposing the Omega's GPIOs and providing support for all Omega expansions. Like the other Docks, it has a USB Type-A socket for connecting USB devices to the Omega.
@@ -278,7 +278,7 @@ See the Power Dock [hardware overview](https://docs.onion.io/omega2-docs/power-d
 
 As the name implies, the [Mini Dock](https://onion.io/store/mini-dock/) is the smallest form-factor Dock for the Omega. It does not provide direct access to the GPIOs, but exposes the USB port, making it ideal for networking or USB-based use-case.
 
-![Mini Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mini-dock-side-view.JPG)
+![Mini Dock]( ./img/mini-dock-side-view.JPG)
 
 See the Mini Dock [hardware overview](https://docs.onion.io/omega2-docs/mini-dock.html) for more details.
 
@@ -287,7 +287,7 @@ See the Mini Dock [hardware overview](https://docs.onion.io/omega2-docs/mini-doc
 
 The [Breadboard Dock](https://onion.io/store/breadboard-dock/) rather unsurprisingly allows the user to plug their Omega directly into a breadboard. The Omega can be powered with a Micro-USB 5V supply since the breadboard has a voltage regulator, or it can be provided with 3.3V directly from the breadboard.
 
-![Breadboard Dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/breadboard-dock-mounted-2.jpg)
+![Breadboard Dock]( ./img/breadboard-dock-mounted-2.jpg)
 
 The Omega’s pins are mapped 1-to-1 to the breadboard headers, so it’s about as close as you can get to plugging the Omega directly into a breadboard.
 
@@ -308,7 +308,7 @@ The Expansions are the key to the Omega's modularity and flexibility since they 
 
 Generate up to 16 different, free-running Pulse Width Modulated (PWM) signals with the [Servo (PWM) Expansion](https://onion.io/store/servo-pwm-expansion/). The PWM signals are driven by the Dock's 5V power supply by default, it also supports using an external supply (up to 12V DC) to drive the PWM signals.
 
-![PWM Expansion Photo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-expansion-alone.png)
+![PWM Expansion Photo]( ./img/pwm-expansion-alone.png)
 
 Use it to control Servos, LEDs, transistors, anything that supports PWM. The on-board oscillator supports generating PWM signals at frequencies in the range of 24 Hz to 1526 Hz. The default frequency is 50 Hz for compatibility with most servos. Note that when using multiple servos under a load, use of an external power supply is recommended.
 
@@ -321,7 +321,7 @@ For more details see:
 
 Use two electromechanical relays to switch external, independent, and potentially much higher-voltage circuits with the [Relay Expansion](https://onion.io/store/relay-expansion/).
 
-![Relay Expansion](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/relay-circuit-3.jpg)
+![Relay Expansion]( ./img/relay-circuit-3.jpg)
 
 The relays can switch up to 60W, and are rated for a maximum current of 2A and a maximum voltage of 220V DC or 250V AC. It includes an I2C address switch, allowing the use of up to eight (8) Relay Expansions with a single Omega, giving the user control of up to 16 external circuits.
 
@@ -334,7 +334,7 @@ For more details see:
 
 The [OLED Expansion](https://onion.io/store/oled-expansion/) is a low-power 0.96" monocrome OLED screen with a 128x64 resolution. Use it to display text and images.
 
-![OLED Expansion](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/oled-onion-display.png)
+![OLED Expansion]( ./img/oled-onion-display.png)
 
 The pixel brightness is adjustable, as well as inversion of white and black. A single command enables built-in scrolling animations, where the contents of the entire display can be scrolled to the left, right, or diagonally left, and right.
 
@@ -347,7 +347,7 @@ For more details see:
 
 Add an ethernet port for wired network connectivity with the [Ethernet Expansion](https://onion.io/store/ethernet-expansion/).
 
-![Ethernet Expansion](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-cord-plugged-in.JPG)
+![Ethernet Expansion]( ./img/ethernet-cord-plugged-in.JPG)
 
 The Omega has a 10/100 ethernet port, meaning it supports transmissions at 10 Mbps and 100 Mbps. The Omega has extensive networking capabilities, use the Ethernet Expansion to share network access between wired and wireless networks. Or, just provide a wired network connection to the Omega.
 
@@ -361,7 +361,7 @@ For more details see:
 
 The USB-based [GPS Expansion](https://onion.io/store/gps-expansion/) provides location data from the Global Positioning System (GPS) satelittes.
 
-![GPS Expansion Photo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/gps-expansion-45-top.jpg)
+![GPS Expansion Photo]( ./img/gps-expansion-45-top.jpg)
 
 The on-board antenna is connecting using a u.FL antenna connector, meaning that it can be easily unplugged and replaced with a larger, more powerful antenna.
 
