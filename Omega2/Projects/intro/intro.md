@@ -5,7 +5,7 @@ Welcome to the Volume 1 of the Omega2 Project Book!
 
 Not sure what to do with your Omega? Take a look at some of our project tutorials, you'll learn how to use the Omega AND make a whole bunch of IoT gadgets!
 
-### The Projects
+#### The Projects
 
 This Project Book Volume consists of 22 projects that are outlined through the course of 28 tutorials. The projects are split up according to five categories:
 
@@ -25,7 +25,7 @@ This Project Book Volume consists of 22 projects that are outlined through the c
 
 
 
-### Contributors
+#### Contributors
 
 The contributors for Project Book Vol. 1:
 
