@@ -1,6 +1,6 @@
 ## Getting Started {#getting-started}
 
-![Onion Shipment Box](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/unbox-0-in-box.jpg)
+![Onion Shipment Box](./img/unbox-0-in-box.jpg)
 
 Just got your Omega and wondering how exactly to get to making IoT things? Go through our [Get Started Guide](https://onion.io/getstarted) and you'll learn and accomplish the following:
 
