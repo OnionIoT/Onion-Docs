@@ -21,7 +21,7 @@ If you're excited to get building, go on ahead. Remember to go back to the [Onio
 
 
 <!-- command line/using linux -->
-```{r child = '../../Kit-Guides/shared/intro/the-command-line.md'}
+```{r child = './the-command-line.md'}
 ```
 
 ## File Editing on the Omega

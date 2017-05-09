@@ -1,22 +1,4 @@
-### The Command Line Interface
-
-<!-- // * a brief description of what the command line interface is and how we can use it to change any part of the Omega's OS.
-// * for the purposes of the kit we'll be just doing the following:
-//		- navigating through the filesystem
-//		- creating (and potentially deleting) files and directories
-//		- creating and modifying text files
-
-// can use https://docs.onion.io/omega2-docs/the-command-line-interface.html as a reference, but  don't talk about the login, date, and echo commands like the article -->
-
-We interact and operate the Omega by using the **command line interface** (CLI). The CLI is the user’s access point into the operating system using a text-based terminal program. All user interaction is interpreted and executed by the OS through instructions, or **commands**. A user enters a command into a terminal to make something happen.
-
-The CLI can look something like the picture below. In this terminal program on Windows, the green box is where the commands you type will be displayed on the screen.
-
-![command line interface](http://i.imgur.com/hxuce5c.png)
-
-<!-- TODO: let's not link to external pics, use an Omega terminal pic, -->
-
-For the purposes of this kit, we'll get to do the following:
+We'll cover how to do the following:
 
 * Navigating through the filesystem
 * Creating (and deleting) files and directories
