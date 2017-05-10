@@ -18,7 +18,8 @@ When you were building the smart plant, you had to power the pump and Arduino se
 We'll need all of the same materials as in the previous part:
 
 <!-- // DONE: add ingredients from smart plant p4 once all of those are done -->
-* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
+
 * Arduino Dock 2
 * Onion [OLED Expansion](https://onion.io/store/oled-expansion/)
 * Soil Moisture Sensor

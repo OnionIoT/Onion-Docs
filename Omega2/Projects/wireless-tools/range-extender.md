@@ -34,7 +34,8 @@ If you ever want to revert your configuration to the original, we have a complet
 
 ### Ingredients
 
-* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
+
 * Any [Onion Dock](https://onion.io/product-category/docks/)
 	* We really like the [Mini Dock](https://onion.io/store/mini-dock/) for this project because of its small footprint
 
