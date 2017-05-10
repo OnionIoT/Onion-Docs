@@ -334,7 +334,7 @@ For more details see:
 
 The [OLED Expansion](https://onion.io/store/oled-expansion/) is a low-power 0.96" monocrome OLED screen with a 128x64 resolution. Use it to display text and images.
 
-![OLED Expansion]( ./img/oled-onion-display.gif)
+![OLED Expansion]( ./img/oled-onion-display.png)
 
 The pixel brightness is adjustable, as well as inversion of white and black. A single command enables built-in scrolling animations, where the contents of the entire display can be scrolled to the left, right, or diagonally left, and right.
 
