@@ -21,7 +21,7 @@ The device code can be found in Onion's [`iot-weather-station` repo on GitHub](h
     * or [Omega2](https://onion.io/store/omega2/) standard booting from a USB storage device with at least 16 MB of free memory; see [Booting From External Storage](https://docs.onion.io/omega2-docs/boot-from-external-storage.html)
     * For convenience, this tutorial will assume you are using an Omega2+.
 * Onion [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
-* Breadboard
+* [Breadboard](https://www.amazon.com/gp/product/B004RXKWDQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004RXKWDQ&linkCode=as2&tag=onion0e-20&linkId=3f7f512f8017eeed52768810a0deca09)
 * DHT22 temperature + humidity sensor
 * 10kΩ resistor
 * M-M jumper wires

@@ -30,12 +30,12 @@ We'll need all of the same materials as in the previous parts:
 
 And some new ingredients:
 
-* Onion Relay Expansion
-* DC Barrel Jack Adapter
+* Onion [Relay Expansion](https://onion.io/store/relay-expansion/)
+* [DC Barrel Jack Adapter](https://www.amazon.com/gp/product/B00ZGDF7AY/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00ZGDF7AY&linkCode=as2&tag=onion0e-20&linkId=5d39734cc06c3916099832cb4748a245)
 * [Water Pump (12V DC)](https://www.amazon.com/Lightobject-EWP-DC30A1230-Brushless-Submersible-Cooling/dp/B0051HI3OM)
     * When we did this step, we used a pump in our office with **half** of the flowrate of this one. **Use caution when calibrating!**
 * 3x Male-to-Male Jumper Wires
-* 12V 1A DC Power Supply
+* [12V 1A DC Power Supply](https://www.amazon.com/gp/product/B019X3XVWS/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B019X3XVWS&linkCode=as2&tag=onion0e-20&linkId=7e3fcbbeb2bf474a33f4d68a7413fc21)
 * [Flexible Plastic Tubing](https://www.amazon.com/Learn-Brew-LLC-Grade-Tubing/dp/B000E62TCC/ref=pd_bxgy_328_img_2/138-8608289-7851617?_encoding=UTF8&pd_rd_i=B000E62TCC&pd_rd_r=WS345JY54A7PJH2RK0RB&pd_rd_w=Ih1XS&pd_rd_wg=iQEme&psc=1&refRID=WS345JY54A7PJH2RK0RB)
     * Make sure to match the tubing's **inner** diameter (ID) is slightly less than the pump's ports' **outer** diameter (OD). This is so the tubing will stretch and grip the ports, preventing any leaks!
 * A piece of paper the size of your hand to test the pump's polarity
@@ -141,14 +141,14 @@ Now we will **briefly** run the pump to make sure the polarity of the motor is c
 
 Prepare a small piece of paper about the size of your hand. Then plug in the 12V power supply and hear your pump come to life!
 
-Move the piece of paper towards the outlet. 
+Move the piece of paper towards the outlet.
 
 * If it gets blown away from it, the polarity is correct.
 * If it gets sucked towards it, the wiring is backwards.
 
 Unplug the power supply and remove the two wires from the barrel jack adapter. If the polarity is backwards, switch where the red and black wires are connected to the pump.
 
-* The terminal on the pump where the red wire should be connected is known as the **positive `(+)`** terminal. 
+* The terminal on the pump where the red wire should be connected is known as the **positive `(+)`** terminal.
 * Likewise, the place where the black wire should be connected is the **negative `(-)`** terminal.
 
 ##### Optional - Solder the Terminals

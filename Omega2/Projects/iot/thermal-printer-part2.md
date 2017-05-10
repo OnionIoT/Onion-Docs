@@ -26,8 +26,8 @@ If you are not comfortable soldering, try finding a friend or professional who c
 * Onion [Mini Dock](https://onion.io/store/mini-dock/)
 * [Thermal Printer](https://www.adafruit.com/product/2751)
     * comes with a 2-pin JST power cable and a 5-pin TTL cable that we will be using in this project
-* [2.1 mm power jack adapter](https://www.adafruit.com/product/368)
-* [5V / 2A Power supply](https://www.adafruit.com/product/276)
+* [DC barrel jack adapter](https://www.amazon.com/gp/product/B00ZGDF7AY/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00ZGDF7AY&linkCode=as2&tag=onion0e-20&linkId=5d39734cc06c3916099832cb4748a245)
+* [5V 2A Power supply](https://www.adafruit.com/product/276)
 * [3D printed base](http://www.thingiverse.com/thing:1272778)
 
 Tools:

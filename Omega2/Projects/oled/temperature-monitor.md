@@ -31,7 +31,7 @@ The complete project code can be found in Onion's [`temperature-monitor` repo on
 * 1x 5.1 kΩ Resistor
 * 3x Male-to-Female or Male-to-Male Jumper Wires
     * Make sure they use threaded wire on the inside
-* 1x Breadboard
+* 1x [Breadboard](https://www.amazon.com/gp/product/B004RXKWDQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004RXKWDQ&linkCode=as2&tag=onion0e-20&linkId=3f7f512f8017eeed52768810a0deca09)
 
 Tools:
 

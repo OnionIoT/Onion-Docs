@@ -24,10 +24,10 @@ We'll need all of the same materials as in the previous part:
 * Soil Moisture Sensor
 * 3x Male-to-Female Jumper Wires
 * Onion Relay Expansion
-* DC Barrel Jack Adapter
+* [DC Barrel Jack Adapter](https://www.amazon.com/gp/product/B00ZGDF7AY/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00ZGDF7AY&linkCode=as2&tag=onion0e-20&linkId=5d39734cc06c3916099832cb4748a245)
 * [Water Pump (12V DC)](http://www.canadarobotix.com/index.php?route=product/search&search=pump)
 * 3x Male-to-Male Jumper Wires
-* 12V 1A DC Power Supply
+* [12V 1A DC Power Supply](https://www.amazon.com/gp/product/B019X3XVWS/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B019X3XVWS&linkCode=as2&tag=onion0e-20&linkId=7e3fcbbeb2bf474a33f4d68a7413fc21)
 * Flexible Plastic Tubing
 * A plate or bowl to hold your plant and collect excess water
 * A glass or bowl of water you can use as a reservoir
