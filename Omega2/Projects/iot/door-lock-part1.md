@@ -33,7 +33,6 @@ The web page will allow us to:
 ### Ingredients
 
 * Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
-
 * Any Onion Dock that supports Expansions: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 * Onion [Relay Expansion](https://onion.io/store/relay-expansion/)
 * An electric lock *

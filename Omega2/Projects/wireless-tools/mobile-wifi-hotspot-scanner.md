@@ -32,7 +32,6 @@ Using the Power Dock, you will be able to use your scanner out in the world with
 ### Ingredients
 
 * Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
-
 * Onion [Power Dock](https://onion.io/store/power-dock/)
 	* The [Expansion Dock](https://onion.io/store/expansion-dock/) and [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/) will work as well, they just won't be mobile
 * Onion [OLED Expansion](https://onion.io/store/oled-expansion/)

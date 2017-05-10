@@ -22,7 +22,6 @@ The Onion [`samba-server-config` GitHub repository](https://github.com/OnionIoT/
 ### Ingredients
 
 * Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
-
 * Any [Onion Dock](https://onion.io/product-category/docks/) to power the Omega
     * We like the [Mini Dock](https://onion.io/store/mini-dock/) if you plan to keep it one place.
     * Use the [Power Dock](https://onion.io/store/power-dock/) if you plan to make this a truly portable network storage device.

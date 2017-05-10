@@ -26,7 +26,6 @@ All the code we used is written for a case fan with a transistor switching it. I
 ### Ingredients
 
 * Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
-
 * Any Onion Dock that supports Expansions: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 * Onion [Servo (PWM) Expansion](https://onion.io/store/servo-pwm-expansion/)
 * [Breadboard](https://www.amazon.com/gp/product/B004RXKWDQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004RXKWDQ&linkCode=as2&tag=onion0e-20&linkId=3f7f512f8017eeed52768810a0deca09) (optional, but it helps a lot)

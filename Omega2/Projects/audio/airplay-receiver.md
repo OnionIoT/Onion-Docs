@@ -20,7 +20,6 @@ Reference configuration files can be found on Onion's [`audio-airplay-receiver` 
 ### Ingredients
 
 * Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
-
 * Any Onion Dock with a USB host connector: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Mini Dock](https://onion.io/store/mini-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 	* We found the [Power Dock](https://onion.io/store/power-dock/) especially useful since you can take it on the go!
 * A USB audio device *
