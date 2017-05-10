@@ -4,7 +4,7 @@ The Omega can communicate with other devices using the Bluetooth Low Energy wire
 
 ![complete](./img/bluetooth-audio-complete.jpg)
 
-// TODO: PHOTO: retake this photo so that the Omega is the focus, nicer background, make it nice and hip like (./img/airplay-receiver-dope.png)
+<!-- // TODO: PHOTO: retake this photo so that the Omega is the focus, nicer background, make it nice and hip like (./img/airplay-receiver-dope.png) -->
 
 ### Overview
 
@@ -16,9 +16,9 @@ We'll first install the necessary Bluetooth and audio drivers. Then we'll learn 
 
 ### Ingredients
 
-* Onion Omega2 or Omega2+
-* Any Onion Dock with a USB host connector: Expansion Dock, Power Dock, Mini Dock, Arduino Dock 2
-	* We found the Power Dock especially useful since you can take it on the go!
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
+* Any Onion Dock with a USB host connector: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Mini Dock](https://onion.io/store/mini-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
+	* We found the [Power Dock](https://onion.io/store/power-dock/) especially useful since you can take it on the go!
 * Onion Bluetooth Expansion
 * USB Audio Expansion, or any generic USB audio dongle
 * USB hub with at least 2 ports

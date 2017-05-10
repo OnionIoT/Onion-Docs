@@ -19,8 +19,8 @@ In this project, we'll use the `fswebcam` utility and `cron` to capture images f
 
 ### Ingredients
 
-* Onion Omega2+
-* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2, Mini Dock,
+* Onion [Omega2+](https://onion.io/store/omega2p/)
+* Any Onion Dock with a USB host connector: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Mini Dock](https://onion.io/store/mini-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 * Micro SD card
 * [USB Camera](https://www.logitech.com/en-ca/product/hd-pro-webcam-c920)
 

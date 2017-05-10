@@ -31,11 +31,11 @@ Using the Power Dock, you will be able to use your scanner out in the world with
 
 ### Ingredients
 
-* Onion Omega2 or Omega2+
-* Onion Power Dock
-	* The Expansion Dock and Arduino Dock will work as well, they just won't be mobile
-* Onion OLED Expansion
-* Onion GPS Expansion
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
+* Onion [Power Dock](https://onion.io/store/power-dock/)
+	* The [Expansion Dock](https://onion.io/store/expansion-dock/) and [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/) will work as well, they just won't be mobile
+* Onion [OLED Expansion](https://onion.io/store/oled-expansion/)
+* Onion [GPS Expansion](https://onion.io/store/gps-expansion/)
 * External GPS Antenna (optional)
 * A 3.7V LiPo battery
 	* We found 1500 mAh to be good for several hours of use

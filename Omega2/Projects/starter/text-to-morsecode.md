@@ -16,8 +16,8 @@ In this project we're going to write a script that will blink the Omega's LED in
 
 ### Ingredients
 
-* Onion Omega2 or Omega2+
-* Any Onion Dock - we like the Mini Dock for this project!
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
+* Any [Onion Dock](https://onion.io/product-category/docks/) - we like the Mini Dock for this project!
 
 ### Step-by-Step
 

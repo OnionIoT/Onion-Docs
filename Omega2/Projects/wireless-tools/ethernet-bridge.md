@@ -39,10 +39,10 @@ If you ever want to revert your configuration to the original, we have a complet
 
 ### Ingredients
 
-* Onion Omega2 or Omega2+
-* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
+* Any Onion Dock that supports Expansions: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 	* We prefer the Expansion Dock for this project since it enables [access to the command line through serial](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-serial) even when there's no network connectivity
-* Onion Ethernet Expansion
+* Onion [Ethernet Expansion](https://onion.io/store/ethernet-expansion/)
 * An Ethernet cable
 
 

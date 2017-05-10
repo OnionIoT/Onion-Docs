@@ -22,8 +22,8 @@ To get our printer server up and running, we'll have to use some packages from t
 ### Ingredients
 
 * Onion Omega2+
-* Any Onion Dock with a USB host connector: Expansion Dock, Power Dock, Mini Dock, Arduino Dock 2
-	* We liked the Mini Dock for this project since it's so compact
+* Any Onion Dock with a USB host connector: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Mini Dock](https://onion.io/store/mini-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
+	* We liked the [Mini Dock](https://onion.io/store/mini-dock/) for this project since it's so compact
 * 3D Printer that is [supported by Octoprint](https://github.com/foosel/OctoPrint/wiki/Supported-Printers)
 * Micro-SD Card
 * USB cable to connect the Omega and 3D printer

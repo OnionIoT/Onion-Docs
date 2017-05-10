@@ -24,9 +24,9 @@ The complete project code can be found in Onion's [`temperature-monitor` repo on
 
 ### Ingredients
 
-* Onion Omega2 or Omega2+
-* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
-* Onion OLED Expansion
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
+* Any Onion Dock that supports Expansions: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
+* Onion [OLED Expansion](https://onion.io/store/oled-expansion/)
 * 1x DS18B20 1-Wire Temperature Sensor
 * 1x 5.1 kΩ Resistor
 * 3x Male-to-Female or Male-to-Male Jumper Wires

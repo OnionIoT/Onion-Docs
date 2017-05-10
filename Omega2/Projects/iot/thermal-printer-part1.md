@@ -20,8 +20,8 @@ Optionally, we'll 3D print a base to clean up the cabling and give the printer s
 
 ### Ingredients
 
-* Omega2 / Omega2+
-* Any Onion Dock that exposes the Omega's GPIOs: Expansion Dock, Arduino Dock R2, Power Dock, Breadboard Dock
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
+* Any Onion Dock that exposes the Omega's GPIOs: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/), [Breadboard Dock](https://onion.io/store/breadboard-dock/)
 * [Thermal Printer](https://www.adafruit.com/product/2751)
     * comes with a 2-pin JST power cable and a 5-pin TTL cable
 * [2.1 mm power jack adapter](https://www.adafruit.com/product/368)

@@ -20,9 +20,9 @@ This project is mostly code based, all of the code can be found on this Onion Gi
 
 ### Ingredients
 
-* Onion Omega2 or Omega2+
-* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
-* Onion OLED Expansion
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
+* Any Onion Dock that supports Expansions: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
+* Onion [OLED Expansion](https://onion.io/store/oled-expansion/)
 
 
 ### Step-by-Step

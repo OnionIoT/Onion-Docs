@@ -20,9 +20,9 @@ To accomplish this, we'll create a Losant workflow to read and check the moistur
 
 The same as the first part of the project:
 
-* Onion Omega2 or Omega2+
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
 * Arduino Dock 2
-* Onion OLED Expansion
+* Onion [OLED Expansion](https://onion.io/store/oled-expansion/)
 * Soil Moisture Sensor
 * 3x Male-to-Female Jumper Wires
 

@@ -19,8 +19,8 @@ The complete project code can be found in Onion's [`starter-traffic-light` repo 
 
 ### Ingredients
 
-* Onion Omega2 or Omega2+
-* Any Onion Dock that exposes the Omega's GPIOs: Expansion Dock, Arduino Dock R2, Power Dock, Breadboard Dock
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
+* Any Onion Dock that exposes the Omega's GPIOs: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/), [Breadboard Dock](https://onion.io/store/breadboard-dock/)
 * 1x Breadboard
 * 3x LEDs
     * 1x red

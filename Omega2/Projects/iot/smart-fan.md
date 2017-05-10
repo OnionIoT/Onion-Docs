@@ -3,8 +3,6 @@
 
 Mornings too cold, but gets too hot by noon? By hooking up a temperature sensor to the Omega, we can use the data it provides to modulate the speed of a fan - cooling us down only when we need it!
 
-<!-- // DONE: mention a use-case of using this to cool down electronics or some homebrewing setup, anything where temperature control is required -->
-
 This kind of setup is used in many places: the cooling fans in your laptop or desktop computer operate in the same way. Other applications include home-brewing beer or wine kegs and anywhere temperature control is required.
 
 ![Smart fan all set up!](./img/smart-fan-example.jpg)
@@ -27,9 +25,9 @@ All the code we used is written for a case fan with a transistor switching it. I
 
 ### Ingredients
 
-* Onion Omega2 or Omega2+
-* Any Onion Dock that supports Expansions: Expansion Dock, Power Dock, Arduino Dock 2
-* Onion Servo (PWM) Expansion
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
+* Any Onion Dock that supports Expansions: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
+* Onion [Servo (PWM) Expansion](https://onion.io/store/servo-pwm-expansion/)
 * Breadboard (optional, but it helps a lot)
 * Computer case fan
 * D18B20 1-Wire Temperature Sensor

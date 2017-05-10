@@ -22,8 +22,8 @@ If you are not comfortable soldering, try finding a friend or professional who c
 
 ### Ingredients
 
-* Omega2 / Omega2+
-* Mini Dock
+* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
+* Onion [Mini Dock](https://onion.io/store/mini-dock/)
 * [Thermal Printer](https://www.adafruit.com/product/2751)
     * comes with a 2-pin JST power cable and a 5-pin TTL cable that we will be using in this project
 * [2.1 mm power jack adapter](https://www.adafruit.com/product/368)
