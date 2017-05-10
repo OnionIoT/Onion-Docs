@@ -58,7 +58,7 @@ First let's get the Omega ready to go. if you haven't already, complete the [Fir
 Plug in the PWM Expansion to the Dock and grab all the components:
 
 <!-- // DONE: insert photo with PWM Expansion plugged into Expansion dock -->
-![](smart-fan-pwm-exp.jpg)
+![](./img/smart-fan-pwm-exp.jpg)
 
 #### 2. Install the Required Software
 
