@@ -22,11 +22,8 @@ The complete project code can be found in Onion's [`smart-plant` repo on GitHub]
 
 We'll need all of the same materials as in the previous parts:
 
-* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
-* Arduino Dock 2
-* Onion [OLED Expansion](https://onion.io/store/oled-expansion/)
-* Soil Moisture Sensor
-* 3x Male-to-Female Jumper Wires
+```{r child = {"./smart-plant-ingredients-p1.md"}}
+```
 
 And some new ingredients:
 

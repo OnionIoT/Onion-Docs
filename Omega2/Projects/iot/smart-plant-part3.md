@@ -20,11 +20,8 @@ To accomplish this, we'll create a Losant workflow to read and check the moistur
 
 The same as the first part of the project:
 
-* Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/
-* Arduino Dock 2
-* Onion [OLED Expansion](https://onion.io/store/oled-expansion/)
-* Soil Moisture Sensor
-* 3x Male-to-Female Jumper Wires
+```{r child = {"./smart-plant-ingredients-p1.md"}}
+```
 
 ![smart plant ingredients](./img/smart-plant-p1-ingredients.jpg)
 
@@ -276,4 +273,3 @@ Now Deploy the workflow and we're done!
 <!-- // DONE: complete this section, tease a few more things you can do with the losant workflow 'Send an email, send an SMS Text Message, even send a command to a device' ... wouldn't it be nice if we could tell the Omega to water the plant for us? <Teaser for the next part> -->
 
 You can extend the Losant workflow to send more types of notifications, such as an SMS text message, email, or even a command to another device. But wouldn't it be nice if we could tell the Omega to water the plant for us?
-
