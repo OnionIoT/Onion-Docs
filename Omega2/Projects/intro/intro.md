@@ -1,4 +1,6 @@
 
+![Project Book](./img/project-book-logo.png)
+
 Welcome to the Volume 1 of the Omega2 Project Book!
 
 ![Omega plugged into Dock](./img/unbox-2-omega-on-dock.jpg)
