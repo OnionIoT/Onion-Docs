@@ -27,9 +27,10 @@ The complete project code can be found in Onion's [`temperature-monitor` repo on
 * Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
 * Any Onion Dock that supports Expansions: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 * Onion [OLED Expansion](https://onion.io/store/oled-expansion/)
-* 1x DS18B20 1-Wire Temperature Sensor
-* 1x 5.1 kΩ Resistor
-* 3x Male-to-Female or Male-to-Male Jumper Wires
+* 1x [DS18B20 1-Wire Temperature Sensor](https://www.amazon.com/gp/product/B004G53D54/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004G53D54&linkCode=as2&tag=onion0e-20&linkId=79fff5f353a360474ce314466504b359)
+* 1x [5.1 kΩ Resistor](https://www.amazon.com/gp/product/B016NXK6QK/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B016NXK6QK&linkId=62595ffef640175ce3a3b44fabd712e4)
+	* We used 5.1 kΩ but anything between 4 and 6 kΩ will work just as well
+* 3x [Male-to-Female or Male-to-Male Jumper Wires](https://www.amazon.com/gp/product/B01LZF1ZSZ/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01LZF1ZSZ&linkId=0fa23489eefb433f7768a252eb43dbde)
     * Make sure they use threaded wire on the inside
 * 1x [Breadboard](https://www.amazon.com/gp/product/B004RXKWDQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004RXKWDQ&linkCode=as2&tag=onion0e-20&linkId=3f7f512f8017eeed52768810a0deca09)
 
