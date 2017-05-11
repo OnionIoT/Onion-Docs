@@ -27,7 +27,7 @@ We'll need all of the same materials as in the previous part:
 
 We'll need some new ingredients:
 
-```{r child = {"./smart-plant-ingredients-p4.md"}}
+```{r child = {"./smart-plant-ingredients-p5.md"}}
 ```
 
 Tools:

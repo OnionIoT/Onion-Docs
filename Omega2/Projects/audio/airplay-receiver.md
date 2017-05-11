@@ -23,7 +23,7 @@ Reference configuration files can be found on Onion's [`audio-airplay-receiver` 
 * Any Onion Dock with a USB host connector: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Mini Dock](https://onion.io/store/mini-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 	* We found the [Power Dock](https://onion.io/store/power-dock/) especially useful since you can take it on the go!
 * [USB Audio Adapter](https://www.amazon.com/gp/product/B00KAE2L1C/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00KAE2L1C&linkId=27da945dc3b2c78c984e27b1b4054c8a)
-	* We used an a adapter but USB speakers will likely work too
+	* We used an adapter but USB speakers will likely work too
 * Headphones or a small speaker
 
 
