@@ -1,4 +1,4 @@
-## Reading an Potentiometer {#arduino-kit-reading-a-pot}
+## Reading a Potentiometer {#arduino-kit-reading-a-pot}
 
 <!-- // this experiment will use a potentiometer to control brightness of an LED -->
 
