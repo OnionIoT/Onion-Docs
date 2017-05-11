@@ -1,5 +1,5 @@
 * Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
 * Onion [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 * Onion [OLED Expansion](https://onion.io/store/oled-expansion/) (optional but recommended)
-* Soil Moisture Sensor
-* 3x Male-to-Female Jumper Wires
+* [Soil Moisture Sensor](https://www.amazon.com/gp/product/B00AFCNR3U/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00AFCNR3U&linkId=3bab7d579024c0b4b08adbf86379e3c3)
+* 3x [Male-to-Female Jumper Wires](https://www.amazon.com/gp/product/B01LZF1ZSZ/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01LZF1ZSZ&linkId=0fa23489eefb433f7768a252eb43dbde)
