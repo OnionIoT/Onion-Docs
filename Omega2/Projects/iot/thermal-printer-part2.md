@@ -24,16 +24,19 @@ If you are not comfortable soldering, try finding a friend or professional who c
 
 * Onion [Omega2](https://onion.io/store/omega2/) or [Omega2+](https://onion.io/store/omega2p/)
 * Onion [Mini Dock](https://onion.io/store/mini-dock/)
-* [Thermal Printer](https://www.adafruit.com/product/2751)
-    * comes with a 2-pin JST power cable and a 5-pin TTL cable that we will be using in this project
+* [Thermal Printer](https://www.amazon.com/gp/product/B00XW2K422/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00XW2K422&linkId=ed19204d85392906ca786c03557458dd)
+    * comes with a 2-pin JST power cable and a 5-pin TTL cable
 * [DC barrel jack adapter](https://www.amazon.com/gp/product/B00ZGDF7AY/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00ZGDF7AY&linkCode=as2&tag=onion0e-20&linkId=5d39734cc06c3916099832cb4748a245)
-* [5V 2A Power supply](https://www.adafruit.com/product/276)
+* [5V 2A DC Power Supply](https://www.amazon.com/gp/product/B00GUO5WUI/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00GUO5WUI&linkId=e8c01614795aeb9d078c1ea0e1940db3)
 * [3D printed base](http://www.thingiverse.com/thing:1272778)
+* [Male-to-Male Jumper Wires](https://www.amazon.com/gp/product/B01LZF1ZSZ/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01LZF1ZSZ&linkId=0fa23489eefb433f7768a252eb43dbde)
 
 Tools:
 
 1. Soldering iron + solder
+1. Wire Strippers
 1. Double-sided tape
+
 
 ![Ingredients](./img/thermal-printer-2-ingredients.jpg)
 

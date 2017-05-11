@@ -22,10 +22,10 @@ The device code can be found in Onion's [`iot-weather-station` repo on GitHub](h
     * For convenience, this tutorial will assume you are using an Omega2+.
 * Onion [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 * [Breadboard](https://www.amazon.com/gp/product/B004RXKWDQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004RXKWDQ&linkCode=as2&tag=onion0e-20&linkId=3f7f512f8017eeed52768810a0deca09)
-* DHT22 temperature + humidity sensor
-* 10kΩ resistor
-* M-M jumper wires
-* (Optional) M-F jumper wires
+* [DHT22 temperature + humidity sensor](https://www.amazon.com/gp/product/B01IT2E4ZW/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01IT2E4ZW&linkId=31db761a1d9125f7cb15120e7496d697)
+* [10kΩ resistor](https://www.amazon.com/gp/product/B016NXK6QK/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B016NXK6QK&linkId=62595ffef640175ce3a3b44fabd712e4)
+* [M-M jumper wires](https://www.amazon.com/gp/product/B01LZF1ZSZ/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01LZF1ZSZ&linkId=0fa23489eefb433f7768a252eb43dbde)
+* (Optional) [M-F jumper wires](https://www.amazon.com/gp/product/B01LZF1ZSZ/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01LZF1ZSZ&linkId=0fa23489eefb433f7768a252eb43dbde)
 
 ### Step-by-Step
 

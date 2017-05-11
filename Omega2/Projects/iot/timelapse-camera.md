@@ -22,7 +22,7 @@ In this project, we'll use the `fswebcam` utility and `cron` to capture images f
 * Onion [Omega2+](https://onion.io/store/omega2p/)
 * Any Onion Dock with a USB host connector: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Mini Dock](https://onion.io/store/mini-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 * [Micro SD card](https://www.amazon.com/gp/product/B004S1PNAO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004S1PNAO&linkCode=as2&tag=onion0e-20&linkId=092b6fe251a9e57f173957eef531a4dc)
-* [USB Camera](https://www.logitech.com/en-ca/product/hd-pro-webcam-c920)
+* [USB Camera](https://www.amazon.com/gp/product/B006JH8T3S/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B006JH8T3S&linkId=400c92059d437f5159e863810e3e8c7d)
 
 ![Ingredients](./img/timelapse-camera-ingredients.jpg)
 

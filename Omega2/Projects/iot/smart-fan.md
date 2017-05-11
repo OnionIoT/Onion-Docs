@@ -29,16 +29,18 @@ All the code we used is written for a case fan with a transistor switching it. I
 * Any Onion Dock that supports Expansions: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 * Onion [Servo (PWM) Expansion](https://onion.io/store/servo-pwm-expansion/)
 * [Breadboard](https://www.amazon.com/gp/product/B004RXKWDQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004RXKWDQ&linkCode=as2&tag=onion0e-20&linkId=3f7f512f8017eeed52768810a0deca09) (optional, but it helps a lot)
-* Computer case fan
-* D18B20 1-Wire Temperature Sensor
+* [Computer case fan](https://www.amazon.com/gp/product/B00XDZBGKW/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00XDZBGKW&linkId=332191a81246fc23201e27ff1a5e74a6)
+	* Note that we used a fan that was roughly double the size!
+* [D18B20 1-Wire Temperature Sensor](https://www.amazon.com/gp/product/B004G53D54/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004G53D54&linkCode=as2&tag=onion0e-20&linkId=79fff5f353a360474ce314466504b359)
 	* The Omega accepts I2C, 1Wire, and SPI, among other protocols, so other digital sensors will work as well.
-* 12V DC supply capable of supplying at least 0.5A
-* Resistors
+* [12V DC power supply](https://www.amazon.com/gp/product/B019X3XVWS/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B019X3XVWS&linkCode=as2&tag=onion0e-20&linkId=7e3fcbbeb2bf474a33f4d68a7413fc21)
+	* Must be capable of supplying at least 0.5A
+* [Resistors](https://www.amazon.com/gp/product/B016NXK6QK/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B016NXK6QK&linkId=62595ffef640175ce3a3b44fabd712e4)
     * 1x 5.1kΩ
     * 1x 1kΩ
-* 1x 47 μF Capacitor
-* NPN Transistor rated for 12V at 0.5A
-* Jumpers
+* 1x [47 μF Capacitor](https://www.amazon.com/gp/product/B00M2EJ8Y6/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00M2EJ8Y6&linkId=fe5eb0fd249c34ff8a43690ffd9f850f)
+* [NPN Transistor](https://www.amazon.com/gp/product/B008IFYEP6/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B008IFYEP6&linkId=4f618679e87ed718958f7372f0fbfb6a) rated for 12V at 0.5A
+* [Jumpers](https://www.amazon.com/gp/product/B01LZF1ZSZ/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01LZF1ZSZ&linkId=0fa23489eefb433f7768a252eb43dbde)
     * 2x M-F
     * 4x M-M
 
