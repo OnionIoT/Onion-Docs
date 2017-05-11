@@ -36,8 +36,8 @@ The complete project code can be found in Onion's [`temperature-monitor` repo on
 
 Tools:
 
-* 1x Wire Cutter
-* 1x Wire Stripper
+* [Wire Cutter](https://www.amazon.com/gp/product/B00FZPDG1K/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00FZPDG1K&linkId=da863e47a2ed2006e1b78c13d1c1c0a0)
+* [Wire Stripper](https://www.amazon.com/gp/product/B0000302WM/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B0000302WM&linkId=0163bdb27332986665ec8254b1904099)
 
 <!-- TODO: photo: temperature monitor ingredients -->
 <!-- ![temperature monitor ingredients](./img/temperature-monitor-ingredients.jpg) -->

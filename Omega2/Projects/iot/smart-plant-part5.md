@@ -32,8 +32,8 @@ We'll need some new ingredients:
 
 Tools:
 
-1. Flat-head screwdriver
-1. Philips-head screwdriver
+* [Flat-head screwdriver](https://www.amazon.com/gp/product/B00B9HIBZE/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00B9HIBZE&linkId=2a8024f4a477526f112ba27c772e1d4c)
+* [Philips-head screwdriver](https://www.amazon.com/gp/product/B00B9HIC08/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00B9HIC08&linkId=4460dbd61a530702a5283b7f1fc3e558)
 
 
 ### Step-by-Step

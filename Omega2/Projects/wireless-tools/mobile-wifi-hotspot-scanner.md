@@ -36,9 +36,9 @@ Using the Power Dock, you will be able to use your scanner out in the world with
 	* The [Expansion Dock](https://onion.io/store/expansion-dock/) and [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/) will work as well, they just won't be mobile
 * Onion [OLED Expansion](https://onion.io/store/oled-expansion/)
 * Onion [GPS Expansion](https://onion.io/store/gps-expansion/)
-* External GPS Antenna (optional)
-* A 3.7V LiPo battery
-	* We found 1500 mAh to be good for several hours of use
+* [External GPS Antenna](https://www.amazon.com/gp/product/B00LXRQY9A/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00LXRQY9A&linkId=66164544d399bf466485e8881a8f2df8) with a [u.Fl connector](https://www.amazon.com/gp/product/B005UWD0EG/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B005UWD0EG&linkId=1ad0d1bd7b949a15414af21e5f595090) **(optional, but gets better reception indoors)**
+* A [3.7V LiPo battery](https://www.amazon.com/gp/product/B01MYY9J78/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01MYY9J78&linkId=c74126e601f388e237102887a744e778)
+	* We found 1200 mAh to be good for several hours of use
 
 ![ingredients](./img/mobile-wifi-hotspot-scanner-ingredients.jpg)
 

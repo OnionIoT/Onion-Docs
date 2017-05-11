@@ -29,21 +29,21 @@ And some new ingredients:
 
 ```{r child = {"./smart-plant-ingredients-p4.md"}}
 ```
-	* Make sure to match the tubing's **inner** diameter (ID) is slightly less than the pump's ports' **outer** diameter (OD). This is so the tubing will stretch and grip the ports, preventing any leaks!
+    * Make sure to match the tubing's **inner** diameter (ID) is slightly less than the pump's ports' **outer** diameter (OD). This is so the tubing will stretch and grip the ports, preventing any leaks!
 * A piece of paper the size of your hand to test the pump's polarity
 * A plate or bowl to hold your plant and collect excess water
 * A glass or bowl of water you can use as a reservoir
 
 Tools:
 
-* Flat-head screwdriver
-* Philips-head screwdriver
+* [Flat-head screwdriver](https://www.amazon.com/gp/product/B00B9HIBZE/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00B9HIBZE&linkId=2a8024f4a477526f112ba27c772e1d4c)
+* [Philips-head screwdriver](https://www.amazon.com/gp/product/B00B9HIC08/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00B9HIC08&linkId=4460dbd61a530702a5283b7f1fc3e558)
 
 If your pump does not come with wires attached, then you will need:
 <!-- // DONE: this really depends on if the water pump has leads attached, see the 'Prepare the Pump' section below -->
-* Eletrical Tape
-* Wire Cutters
-* Wire Strippers
+* [Electrical Tape](https://www.amazon.com/gp/product/B001B19JLS/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B001B19JLS&linkId=38b920e50fa76624fa159c9de379da38)
+* [Wire Cutters](https://www.amazon.com/gp/product/B00FZPDG1K/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00FZPDG1K&linkId=da863e47a2ed2006e1b78c13d1c1c0a0)
+* [Wire Strippers](https://www.amazon.com/gp/product/B0000302WM/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B0000302WM&linkId=0163bdb27332986665ec8254b1904099)
 
 <!-- DONE: find water pump from a US retailer -->
 <!-- DONE: add specific tubing -->

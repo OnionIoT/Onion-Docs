@@ -25,7 +25,7 @@ The Onion [`samba-server-config` GitHub repository](https://github.com/OnionIoT/
 * Any [Onion Dock](https://onion.io/product-category/docks/) to power the Omega
     * We like the [Mini Dock](https://onion.io/store/mini-dock/) if you plan to keep it one place.
     * Use the [Power Dock](https://onion.io/store/power-dock/) if you plan to make this a truly portable network storage device.
-* A USB storage device or [Micro SD card](https://www.amazon.com/gp/product/B004S1PNAO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004S1PNAO&linkCode=as2&tag=onion0e-20&linkId=092b6fe251a9e57f173957eef531a4dc) (for Omega2+)
+* A [USB storage device](https://www.amazon.com/gp/product/B01HVHXB32/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01HVHXB32&linkId=e5e563d8f5fd8616b85c1eb555a7f2de) or [Micro SD card](https://www.amazon.com/gp/product/B004S1PNAO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004S1PNAO&linkCode=as2&tag=onion0e-20&linkId=092b6fe251a9e57f173957eef531a4dc) (for Omega2+)
 
 <!-- // TODO: PHOTO of the ingredients -->
 

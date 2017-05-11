@@ -33,9 +33,9 @@ If you are not comfortable soldering, try finding a friend or professional who c
 
 Tools:
 
-1. Soldering iron + solder
-1. Wire Strippers
-1. Double-sided tape
+1. [Soldering iron](https://www.amazon.com/gp/product/B01E1ISGH0/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01E1ISGH0&linkId=e645097c29c056fb4dfa5ac65716d83d) + [solder](https://www.amazon.com/gp/product/B01B61TWGY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01B61TWGY&linkId=72199c3f77442ad73fa91960051b20d2)
+1. [Wire Strippers](https://www.amazon.com/gp/product/B0000302WM/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B0000302WM&linkId=0163bdb27332986665ec8254b1904099)
+1. [Double-sided tape](https://www.amazon.com/gp/product/B0007P5G8Y/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B0007P5G8Y&linkId=b80bdba9100d68495096ae6cf4761d55)
 
 
 ![Ingredients](./img/thermal-printer-2-ingredients.jpg)
