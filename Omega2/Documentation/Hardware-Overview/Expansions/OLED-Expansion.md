@@ -16,7 +16,7 @@ The OLED Expansion is an extremely power efficient 0.96″ monochrome (black and
 
 ![photo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/oled-onion-display.png)
 
-This Expansion communicates with the Omega using the I2C protocol. If you're curious, check out the [article on I2C](#communicating-with-i2c-devices).
+This Expansion communicates with the Omega using the I2C protocol, it's I2C device address is `0x3c`. If you're curious, check out the [article on I2C](#communicating-with-i2c-devices).
 
 <!-- // mention this expansion is controlled with i2c -->
 

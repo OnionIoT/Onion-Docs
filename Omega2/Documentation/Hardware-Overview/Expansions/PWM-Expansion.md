@@ -15,14 +15,14 @@ order: 3
 
 The PWM Expansion allows you to generate up to 16 different Pulse Width Modulated (PWM) signals to control anything from Servo Motors (servos), DC Motor speed, LED brightness, etc.
 
-This Expansion communicates with the Omega using the I2C protocol. If you're curious, check out the [article on I2C](#communicating-with-i2c-devices).
+This Expansion communicates with the Omega using the I2C protocol, it's I2C device address is `0x5a`. If you're curious, check out the [article on I2C](#communicating-with-i2c-devices).
 
 ### The Hardware
 
 <!-- // Overview of the Hardware
 //  - the 16 channels
 //  - the dc barrel jack -->
-The PWM Expansion has 16 channels that can output individual PWM signals to drive motors and servos. The expansion can either be powered through the dock, or through a DC barrel jack to enable driving of motors up to 12V. 
+The PWM Expansion has 16 channels that can output individual PWM signals to drive motors and servos. The expansion can either be powered through the dock, or through a DC barrel jack to enable driving of motors up to 12V.
 
 ![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-expansion-illustration.png)
 

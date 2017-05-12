@@ -12,7 +12,7 @@ The Relay Expansion allows you to control two other independent, external circui
 
 >Never exceed the maximum electrical ratings of the relays or you risk damaging the Relay Expansion, Omega, or even starting a fire.
 
-This Expansion communicates with the Omega using the I2C protocol. If you're curious, check out the [article on I2C](#communicating-with-i2c-devices).
+This Expansion communicates with the Omega using the I2C protocol. The Expansion's I2C device address is configurable by the address switches and ranges from `0x20` to `0x27`. If you're curious, check out the [article on I2C](#communicating-with-i2c-devices).
 
 The Relay Expansion is designed so you can stack multiple Relay Expansions onto the same Omega. Each board comes with a small switch used to give it a unique address, and up to 8 Relay Expansions can be controlled by a single Omega. This means you can control up to 16 external circuits and devices!
 
