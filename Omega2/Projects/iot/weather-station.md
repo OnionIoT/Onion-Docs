@@ -163,20 +163,20 @@ If you're having difficulties in this section, follow these two developer recipe
 * Call the device type `omega`.
     * The description can be something like "Onion Omega IoT board".
 
-* In the "Define Template" substep on the Watson website, check off only the "Model" attribute.
+* In the *Define Template* substep on the Watson website, check off only the *Model* attribute.
 
-* In "Submit Information", enter `omega2` for the Model.
-    * New devices by default will have this value for their Model attribute unless you specify something else.
+* In *Submit Information*, enter `omega2` for the *Model*.
+    * New devices by default will have this value for their *Model* attribute unless you specify something else.
 * You can leave Metadata blank.
 
 ##### Step 4 - Add Device in IBM Watson IoT Platform
 
 * When adding a device, choose the `omega` device type we just created.
-* In the "Device Info" substep, enter the Device ID that we got from the `watsonHelper.py` helper script a few steps back.
-* You can leave the Model field blank and it will automatically fill it in with `omega2`.
-* You can leave the "Metadata" field blank.
-* In "Security", we recommend letting Watson automatically generate an authentication token for you. Click on "Next" without entering anything.
-* In the "Summary" substep, review that your information is correct, then click "Add".
+* In the *Device Info* substep, enter the Device ID that we got from the `watsonHelper.py` helper script a few steps back.
+* You can leave the *Model* field blank and it will automatically fill it in with `omega2`.
+* You can leave the *Metadata* field blank.
+* In *Security*, we recommend letting Watson automatically generate an authentication token for you. Click on *Next* without entering anything.
+* In the *Summary* substep, review that your information is correct, then click *Add*.
 
 ![device summary](./img/weather-station-device-summary.png)
 

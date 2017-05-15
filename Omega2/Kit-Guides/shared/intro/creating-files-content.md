@@ -86,7 +86,6 @@ Normally when trying to exit vim with unsaved changes, vim will deny the attempt
 ### More on Vi
 
 <!--
-// 'this is a brief intro to vi, it's actually a super powerful editor, learn more wiht this tutorial'
 // TODO: find a really good Vi tutorial
 -->
-There's a lot more than meets the eye with vim. It's actually a very power editor under the hood and can be installed in all major operating systems. If you want to learn how to make the most out of it, [Open Vim](http://www.openvim.com/tutorial.html) has a fantastic tutorial that can get you started.
+There's a lot more than meets the eye with vim. It's actually a very powerful editor under the hood and can be installed in all major operating systems. If you want to learn how to make the most out of it, [Open Vim](http://www.openvim.com/tutorial.html) has a fantastic tutorial that can get you started.

@@ -7,7 +7,7 @@ Just got your Omega and wondering how exactly to get to making IoT things? Go th
 * Properly connecting the Omega to a Dock and providing power
 * Learning your Omega's unique name (it's just `Omega-` and the four bolded hex digits on the Omega's cover)
 * Connecting the Omega to your WiFi network
-* Update the Omega to the latest firmware
+* Updating the Omega to the latest firmware
 
 Then you'll be ready to start on the projects!
 
@@ -36,7 +36,7 @@ On the Omega, there’s one text editor by default - Vim. It’s different from 
 
 ## Intro to Python
 
-Python is the programming language of choice for this project book since its powerful, flexible, and generally easy to use.
+Python is the programming language of choice for this project book since it's powerful, flexible, and generally easy to use.
 
 ```{r child = '../../Kit-Guides/shared/intro/python-intro-content.md'}
 ```

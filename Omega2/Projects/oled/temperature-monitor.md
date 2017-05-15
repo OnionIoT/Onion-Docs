@@ -191,7 +191,7 @@ Now, we'll restart `cron`:
 /etc/init.d/cron restart
 ```
 
-And **the code will run once every minute**, pushing data to your Ubidots account so that you can view over the changes over time!
+And **the code will run once every minute**, pushing data to your Ubidots account so that you can view the changes over time!
 
 ![temperature monitor multiple readings](./img/temperature-monitor-multiple-readings.png)
 

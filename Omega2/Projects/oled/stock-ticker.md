@@ -112,7 +112,7 @@ Now, we'll restart `cron`:
 
 And the code will run once every minute, generating *literally* up-to-the-minute stock information on your OLED!
 
-**Again, remember that the stock information is likely delated data and shouldn't be used to inform investment decisions!**
+**Again, remember that the stock information is likely delayed data and shouldn't be used to inform investment decisions!**
 
 > Check out the Omega documentation for more info on [using `cron`](https://docs.onion.io/omega2-docs/running-a-command-on-a-schedule.html)
 

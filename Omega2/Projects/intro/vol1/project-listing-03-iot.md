@@ -13,7 +13,7 @@
 	<!-- * Want to know who's at your door? This project will Tweet you a photo of your visitor -->
 1. Smart Plant
 	1. [Measure Plant Data](#smart-plant-p1)
-		* Add smarts to your plant by measuring it's soil moisture level
+		* Add smarts to your plant by measuring its soil moisture level
 	1. [Visualizing Plant Data](#smart-plant-p2)
 		* Send plant data to the Losant IoT Platform and check in on your plant from anywhere by looking at the nicely visualized data
 	1. [Twitter Alerts](#smart-plant-p3)

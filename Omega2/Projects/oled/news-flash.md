@@ -52,7 +52,7 @@ The `python-urllib3` package will allow us to make HTTP requests in Python, whil
 
 All the code from the project can be found in the [`oled-news-flash` repo on GitHub](https://github.com/OnionIoT/oled-news-flash).
 
-This project only has two files, so you can download it directly to your Omega with much hassle.
+This project only has two files, so you can download it directly to your Omega without much hassle.
 
 ```
 mkdir /root/oled-news-flash
