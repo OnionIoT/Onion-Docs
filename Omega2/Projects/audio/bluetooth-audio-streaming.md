@@ -20,7 +20,7 @@ We'll first install the necessary Bluetooth and audio drivers. Then we'll learn 
 * Any Onion Dock with a USB host connector: [Expansion Dock](https://onion.io/store/expansion-dock/), [Power Dock](https://onion.io/store/power-dock/), [Mini Dock](https://onion.io/store/mini-dock/), [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/)
 	* We found the [Power Dock](https://onion.io/store/power-dock/) especially useful since you can take it on the go!
 * Onion Bluetooth Expansion
-* [USB Audio Adapter](https://www.amazon.com/gp/product/B00KAE2L1C/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00KAE2L1C&linkId=27da945dc3b2c78c984e27b1b4054c8a)
+* [USB Audio Adapter](https://www.amazon.com/gp/product/B00M3UWE3Q/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00M3UWE3Q&linkId=5440ae6f2fa012199b70bb15fb23bf88)
 	* We used an a adapter but USB speakers will likely work too
 * [USB hub](https://www.amazon.com/gp/product/B00PHPWLPA/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00PHPWLPA&linkId=9c1b6b8a1ebfe32c6319e123150bee29) with at least 2 ports
 * Standard headphones or speakers with a 3.5mm audio jack
