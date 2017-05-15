@@ -96,7 +96,7 @@ Once we have our time window set up, we'll have to check for moisture!
 
 <!-- // DONE: need a better description for the latch node, see the losant docs for a better idea of what this node does: https://docs.losant.com/workflows/logic/latch/ -->
 
-The `Latch` node is used to perform a task a single time when a condition has been fulfilled. The node will not perform the task again until another condition has been achieved; kind of like a reset switch. It can be used for things such as one-time notifications. Check out [Losant's `Latch node` documentation](https://docs.losant.com/workflows/logic/latch/) for more details.
+The `Latch` node is used to perform a task a single time when a condition has been fulfilled. The node will not perform the task again until another condition has been achieved, kind of like a reset switch. It can be used for things such as one-time notifications. Check out [Losant's `Latch node` documentation](https://docs.losant.com/workflows/logic/latch/) for more details.
 
 ![](./img/smart-plant-p3-0-workflow-8-latch.png)
 
@@ -107,7 +107,7 @@ For example, you can use it to send a single alert when a moisture sensor has dr
 Each Latch node has two required conditions:
 
 * The 'Latched' condition - when evaluates to `true`, triggers a following node **once and only once** until it has been reset.
-* The 'Reset' condition - when evaluates to true, resets the 'Latched' condition so that it may trigger a node again.
+* The 'Reset' condition - when evaluates to `true`, resets the 'Latched' condition so that it may trigger a node again.
 
 <!-- // DONE: find a way to work in the names of the two conditions, Latch Condition and Reset Condition
 

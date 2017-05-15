@@ -114,7 +114,7 @@ The `fswebcam` utility lets us take a photo with a webcam with the following com
 fswebcam --no-banner -r 1280x720 `date +"%Y-%m-%d_%H%M%S"`.jpg
 ```
 
-> If you're wondering how we have `\`date +"%Y-%m-%d_%H%M%S"\`.jpg` as the output name of the file but it ends up being the date and time, it's through the wonders of command substitution! The command inside the backticks, \`, will be executed and replaced with the output of the command, and then the rest of the `fswebcam` command will be executed. Try running `date +"%Y-%m-%d_%H%M%S"` on the command line, you'll see that it outputs the time and date in the same format as the images get named.
+> If you're wondering how we have `date +"%Y-%m-%d_%H%M%S"/` as the output name of the file but it ends up being the date and time, it's through the wonders of command substitution! The command inside the backticks, \`, will be executed and replaced with the output of the command, and then the rest of the `fswebcam` command will be executed. Try running `date +"%Y-%m-%d_%H%M%S"` on the command line, you'll see that it outputs the time and date in the same format as the images get named.
 
 
 #### 5. Script it to save our fingers

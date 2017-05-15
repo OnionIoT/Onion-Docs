@@ -101,7 +101,7 @@ Hit the Arrow button to upload your sketch to the Arduino Dock. It will ask for 
 
 #### 5. Connect the Sensor
 
-There's three connections we'll have to make to wire up the soil moisture sensor to your Arduino:
+There are three connections we'll have to make to wire up the soil moisture sensor to your Arduino:
 
 ![plant+sensor](./img/smart-plant-p1-sensor-2.jpg)
 

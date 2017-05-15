@@ -128,6 +128,7 @@ The code assumes two things:
 * When toggling the lock, it assumes a delay of **24 seconds** between unlocking and locking again
 
 To adjust either of the above, you'll need to edit the `www/cgi-bin/door.sh` script:
+
 * To change the Relay Expansion channel values for the lock, adjust the `LOCKED` and `UNLOCKED` variables
 * To change the delay between unlocking and locking during a toggle, adjust the `TOGGLE_TIME` variable
 

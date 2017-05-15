@@ -167,7 +167,7 @@ If you're having difficulties in this section, follow these two developer recipe
 
 * In *Submit Information*, enter `omega2` for the *Model*.
     * New devices by default will have this value for their *Model* attribute unless you specify something else.
-* You can leave Metadata blank.
+* You can leave *Metadata* blank.
 
 ##### Step 4 - Add Device in IBM Watson IoT Platform
 

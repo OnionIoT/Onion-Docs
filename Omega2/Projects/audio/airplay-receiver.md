@@ -11,7 +11,7 @@ Since the Omega can be set up to receive AirPlay streams, we can turn our Omega 
 
 **Time Required:** 15 Minutes
 
-There's three main pieces of the puzzle here:
+There are three main pieces of the puzzle here:
 
 To get AirPlay working, we will set up `shairport-sync` on the Omega. The audio stack on the Omega will work out of the box with USB devices, so we simply need to plug in any USB audio device. Finally, to actually stream music, a device with AirPlay controller capabilities must be set up to stream to the Omega.
 
