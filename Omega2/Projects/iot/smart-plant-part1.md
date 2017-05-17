@@ -129,7 +129,7 @@ To be able to measure the moisture level of the plant's soil, we'll need to put 
 
 Insert the sensor into the soil so that the metallic parts are completely covered by the soil.
 
-> The sensor isn't super water-proof, when watering your plant, avoid pouring water directly on the sensor.
+> The sensor isn't super water-proof, so when watering your plant, avoid pouring water directly on the sensor.
 
 
 #### 7. Download the Project Code
