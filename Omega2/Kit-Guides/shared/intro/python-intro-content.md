@@ -71,7 +71,7 @@ Function statements
 
 Functions in Python have two parts: a name and a list of arguments that are sent to it.
 
-```
+``` shell
  NAME       ARGUMENT(S)
  ----       -----------
 

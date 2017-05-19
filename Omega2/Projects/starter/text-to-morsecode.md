@@ -42,7 +42,7 @@ The Omega comes ready with a kernel module that can translate text to Morse code
 To tell the kernel that we are going to use the Morse code module, set the LED trigger condition for the Omega system LED to `morse` by using the `echo` command to write the setting into the virtual file:
 
 
-```
+``` shell
 echo morse > /sys/class/leds/omega2\:amber\:system/trigger
 ```
 
@@ -50,13 +50,13 @@ If you're using an **Omega2+**, the LED will be named `omega2p:amber:system`
 
 So the command will look like this instead:
 
-```
+``` shell
 echo morse > /sys/class/leds/omega2p\:amber\:system/trigger
 ```
 
 You can verify that it worked by using `cat` to look at the virtual file:
 
-```
+``` shell
 root@Omega-2757:~# cat /sys/class/leds/omega2\:amber\:system/trigger                                                              
 none mmc0 timer default-on netdev transient gpio heartbeat [morse] oneshot
 ```
@@ -67,7 +67,7 @@ Anyway, now we have everything set up!
 
 Once the morse option is selected, the kernel creates a new virtual file for that called `message`. We will `echo` the text we want to it:
 
-```
+``` shell
 echo Hello, Onion > /sys/class/leds/omega2\:amber\:system/message
 ```
 
@@ -75,13 +75,13 @@ Now watch your LED!
 
 The message will keep looping forever or until you change it.  To stop it, you can either clear the message entirely:
 
-```
+``` shell
 echo > /sys/class/leds/omega2\:amber\:system/message
 ```
 
 or change the LED trigger to something else:
 
-```
+``` shell
 echo default-on > /sys/class/leds/omega2\:amber\:system/trigger
 ```
 
@@ -89,14 +89,14 @@ echo default-on > /sys/class/leds/omega2\:amber\:system/trigger
 
 If it's too fast or too slow, you can change the speed with the `delay` file:
 
-```
+``` shell
 root@Omega-12D9:~# cat /sys/class/leds/omega2\:amber\:system/delay
 50
 ```
 
 To slow it down a bit, we `echo` a bigger number:
 
-```
+``` shell
 root@Omega-12D9:~# echo 100 > /sys/class/leds/omega2\:amber\:system/delay
 ```
 
@@ -105,7 +105,7 @@ root@Omega-12D9:~# echo 100 > /sys/class/leds/omega2\:amber\:system/delay
 
 Create a file called `morse.sh` in the root directory using the following command:
 
-```
+``` shell
 vi /root/morse.sh
 ```
 
@@ -157,13 +157,13 @@ You are now ready to convert text to morse code!
 
 To run your Script enter the following command to run your script:
 
-```
+``` shell
 sh /root/morse.sh <YOUR MESSAGE HERE>
 ```
 
 Enter a message that you would like to blink in morse code:
 
-```
+``` shell
 root@Omega-2757:~# sh /root/morse.sh Hello Onion
 ```
 
@@ -171,7 +171,7 @@ root@Omega-2757:~# sh /root/morse.sh Hello Onion
 
 Once you're done, you can set the blinking back to `default-on` with the following command:
 
-```
+``` shell
 echo default-on > /sys/class/leds/omega2\:amber\:system/trigger
 ```
 
