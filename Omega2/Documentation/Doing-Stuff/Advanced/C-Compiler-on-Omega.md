@@ -13,7 +13,7 @@ The Omega's processor is optimized for low power consumption and low heat genera
 
 #### Library Header Availability
 
-When the Omega's OS is built, the header files for libraries that are not regularly part of the Linux operating system are not included as a space saving measure. If you take a look at `/usr/lib`, where the library shared object are kept and compare it to `/usr/include`, where the library header files are kept, you'll see the discrepancy: some library objects do not have corresponding header files!
+When the Omega's OS is built, the header files for libraries that are not regularly part of the C standard library are not included as a space saving measure. If you take a look at `/usr/lib`, where the library shared object are kept and compare it to `/usr/include`, where the library header files are kept, you'll see the discrepancy: some library objects do not have corresponding header files!
 
 >To use a library in your program, you need to include the header file in your code so that the compiler knows the declaration of the functions that you are using from that library. Then, when the compiler is linking the binary file of your program, it needs to be informed of the location of the library shared object, `.so` file so the program knows where to look during runtime for the compiled definitions of the library functions used in the program.
 >If the headers are not present, the compiler **will not** successfully compile the program, even if the library object is present.
@@ -96,6 +96,12 @@ We're running a C program on the Omega2!
 ```
 
 Awesome! You've just compiled your very first C program on the Omega!
+
+#### A Example Program
+
+Take a look at our [`c-example` repo on GitHub](https://github.com/OnionIoT/c-example/) to find a C program and Makefile that can be compiled on your Omega. Connect to your Omega, [install `git`](#installing-and-using-git), clone the `c-example` repo, and run `make` to compile your very own C program.
+
+The output of the compilation will be an executable binary called `gpioRead`. The program will read and print the input value on a user-specified GPIO pin once a second for 20 seconds. Run it with `./gpioRead`!
 
 
 ### Compiling a C++ Program
