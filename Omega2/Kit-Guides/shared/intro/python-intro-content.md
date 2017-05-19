@@ -69,14 +69,12 @@ print ('just a function')
 
 Function statements
 
-Functions in Python have two parts: a name and a list of arguments that are sent to it.
+Functions in Python have two parts: a function name and a list of arguments that are sent to it.
 
-``` shell
- NAME       ARGUMENT(S)
- ----       -----------
 
- print      'just a function'
-```
+| Name  | Argument          |
+|-------|-------------------|
+| print | 'just a function' |
 
 The number of arguments that a function takes can be zero. Some functions return a value that you can assign to a variable.
 
