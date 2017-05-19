@@ -4,9 +4,9 @@ Cross compilation just means compiling an executable meant for a platform that's
 
 The LEDE build system is at the core of our cross compilation efforts; it will build to toolchain which we will then use to cross compile our C or C++ code for the Omega.
 
-> In the article on [using a C compiler on the Omega](#c-compiler-on-omega), it is mentioned that a limitation of compiling on the Omega is that the compiled programs are limited to using only the C standard libraries since only those header files are included on the Omega's filesystem as a space-saving measure.
-> The main advantage to cross compiling as opposed to compiling a program directly on your Omega is two-fold:
-> your program will be able to use libraries other than the implemented by other LEDE software packages, and,
+> In the article on [using a C compiler on the Omega](#c-compiler-on-omega), it is mentioned that a limitation of compiling on the Omega is that the compiled programs are limited to using only the C standard libraries since only those header files are included on the Omega's filesystem as a space-saving measure.<br>
+> The main advantage to cross compiling as opposed to compiling a program directly on your Omega is two-fold:<br>
+> your program will be able to use libraries other than the implemented by other LEDE software packages, and,<br>
 > the compilation will likely be much quicker on your computer in the cross compilation environment than on the Omega.
 
 This article will explain how to setup the LEDE build system, explain what needs to be done in order to cross compile a program, and then go through an example of cross compilation.
