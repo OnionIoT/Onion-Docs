@@ -220,9 +220,9 @@ src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_2
 src/gz reboot_packages http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/packages
 ## src/gz reboot_routing http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/routing
 ## src/gz reboot_telephony http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/telephony
-#src/gz omega2_core http://repo.onion.io/omega2/packages/core
-#src/gz omega2_base http://repo.onion.io/omega2/packages/base
-#src/gz omega2_packages http://repo.onion.io/omega2/packages/packages
+src/gz omega2_core http://repo.onion.io/omega2/packages/core
+src/gz omega2_base http://repo.onion.io/omega2/packages/base
+src/gz omega2_packages http://repo.onion.io/omega2/packages/packages
 src/gz omega2_onion http://repo.onion.io/omega2/packages/onion
 ```
 
