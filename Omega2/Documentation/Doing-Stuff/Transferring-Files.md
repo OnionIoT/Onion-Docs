@@ -22,19 +22,19 @@ The Editor App in the Onion Console can be used to upload files directly to the 
 
 This works on all operating systems and is a great way to wirelessly upload code to your Omega.
 
-*NOTE: It is not recommended to upload files larger than 2MB using this method.*
+>NOTE: It is not recommended to upload files larger than 2MB using this method.
 
-Open the Editor App in the console, and click the `Upload File` button in the top bar. Your file will be uploaded to the current directory, so you'll need to first move to the correct directory in the side bar:
+First, open the Editor app in the Console. Any files you upload will be placed into the current working directory of the Editor, so you'll need to navigate to your intended directory in the side bar:
 
 ![upload-file-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/upload-file-with-editor-upload-button.png)
 
 >The green circle shows that my current directory is `/root`
 
-Now a prompt will open asking you to choose your file:
+Now click the `Upload File` button in the top bar and a prompt will open asking you to choose which file to upload from your computer:
 
 ![choose-file-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/upload-file-with-editor-choose-file.png)
 
-Click that and select the file you would like to upload. Then hit submit button:
+Click that and select the file you would like to upload. Then hit the `Submit` button:
 
 ![submit-button](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/upload-file-with-editor-submit.png)
 
