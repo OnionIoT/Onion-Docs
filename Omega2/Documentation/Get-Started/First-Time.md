@@ -7,11 +7,19 @@ Follow along with this guide to set up your Omega2 for the first time. We'll fir
 
 <!-- Second sentence above is awkward -->
 
+### The Video
+
+Follow along with our getting started video:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3DMkQjQtoEE" frameborder="0" allowfullscreen></iframe>
+
+It covers all of the steps that are listed below!
+
+
+
 <!-- Prepare the Hardware -->
 ```{r child = './First-Time-Components/Hardware-Prep.md'}
 ```
-
-
 
 <!-- GUI SETUP -->
 
