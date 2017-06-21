@@ -50,31 +50,6 @@ The requirements vary depending on your Operating System:
 
 Install the latest Arduino IDE from the good folks over at [Arduino](//www.arduino.cc/en/Main/Software). We did all of our testing using Version 1.8.0.
 
-<!-- #### Modification of `boards.txt`
-
-// need to modify arduino's boards.txt file to allow ssh sketch uploads
-// recycle content from https://wiki.onion.io/Tutorials/Arduino-Dock/Initial-Setup#computer-setup_arduino-ide_modification-of-boards-txt
-
-// TODO: LAZAR to update this messy solution
-
-The regular Arduino Uno has no way of communicating with your computer via WiFi, but the Omega provides the Arduino Dock with a means of wireless communication, so we'll have to let the Arduino software know!
-This requires a one line addition to the `boards.txt` file in your Arduino IDE installation.
-
-Open the boards.txt file in any text editor. The following table outlines where the `boards.txt` file can be found:
-
-| Operating System | Location of `boards.txt`                                                  |
-|------------------|---------------------------------------------------------------------------|
-| OS X             | `/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/boards.txt` |
-| Windows          | `C:\Program Files (x86)\Arduino\hardware\arduino\avr\boards.txt`          |
-
-Once it's open, add the following line:
-```
-uno.upload.via_ssh=true
-```
-Doesn't matter where you add it, you can nestle it with the other `uno.` settings if you like.
-
--->
-
 #### Installing the Arduino Dock Device Profile
 
 Open the Arduino IDE and go to File -> Preferences. Copy this URL to our Arduino Dock device profile:
