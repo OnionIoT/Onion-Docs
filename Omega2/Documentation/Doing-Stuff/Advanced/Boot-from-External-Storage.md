@@ -30,7 +30,7 @@ Updating or reflashing the firmware will **undo** the pivot-overlay process:
 * The filesystem will be reverted to a fresh state and all user-created files will be deleted.
 * The filesystem will return to residing only on the Omega's onboard flash storage.
 
-<!-- TODO: is that a normal part of the firmware update in the second bullet??? not quite sure what you mean there 
+<!-- TODO: is that a normal part of the firmware update in the second bullet??? not quite sure what you mean there
 
 Gabe: as in their files will all be erased/reset, AND the Omega will not use the external device's storage space, they'll be back to the flash only -->
 
@@ -126,7 +126,7 @@ opkg install kmod-usb-storage-extras e2fsprogs kmod-fs-ext4
 
 #### Connecting External Storage Device
 
-Insert or connect your storage device to the Omega and it will be automounted for file input/output. This blocks us from formatting it, so we'll need to unmount it first. 
+Insert or connect your storage device to the Omega and it will be automounted for file input/output. This blocks us from formatting it, so we'll need to unmount it first.
 
 By default, devices with a single partition are mounted to the following locations:
 
@@ -243,6 +243,8 @@ and change it to
 ```
 option  enabled '1'
 ```
+
+>If your USB device uses one of the drivers from `kmod-usb-storage-extras`, you will need to run the following: `ln -s  /etc/modules.d/usb-storage-extras /etc/modules-boot.d/usb-storage-extras`
 
 Save the file and restart the Omega:
 
