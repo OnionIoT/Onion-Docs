@@ -19,8 +19,6 @@ To install this package you'll need to use `opkg`. Enter the following commands 
 
 ```
 opkg update
-```
-```
 opkg install arduino-dock-2
 ```
 
@@ -52,41 +50,37 @@ The requirements vary depending on your Operating System:
 
 Install the latest Arduino IDE from the good folks over at [Arduino](//www.arduino.cc/en/Main/Software). We did all of our testing using Version 1.8.0.
 
-#### Modification of `boards.txt`
+#### Installing the Arduino Dock Device Profile
 
-<!-- // need to modify arduino's boards.txt file to allow ssh sketch uploads
-// recycle content from https://wiki.onion.io/Tutorials/Arduino-Dock/Initial-Setup#computer-setup_arduino-ide_modification-of-boards-txt
+Open the Arduino IDE and go to File -> Preferences. Copy this URL to our Arduino Dock device profile:
 
-// TODO: LAZAR to update this messy solution -->
-
-The regular Arduino Uno has no way of communicating with your computer via WiFi, but the Omega provides the Arduino Dock with a means of wireless communication, so we'll have to let the Arduino software know!
-This requires a one line addition to the `boards.txt` file in your Arduino IDE installation.
-
-Open the boards.txt file in any text editor. The following table outlines where the `boards.txt` file can be found:
-
-| Operating System | Location of `boards.txt`                                                  |
-|------------------|---------------------------------------------------------------------------|
-| OS X             | `/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/boards.txt` |
-| Windows          | `C:\Program Files (x86)\Arduino\hardware\arduino\avr\boards.txt`          |
-
-Once it's open, add the following line:
 ```
-uno.upload.via_ssh=true
+https://github.com/OnionIoT/Onion-Arduino-Boards/raw/master/IDE_Board_Manager/package_onion.io_index.json
 ```
-Doesn't matter where you add it, you can nestle it with the other `uno.` settings if you like.
 
+And paste it into the **Additional Boards Manager URLs** section near the bottom of the window.
 
+![](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/arduino-dock-preferences-boards-manager-urls.png)
 
+>If you already have links to other custom boards in your IDE, click on the button on the right of the text box. You can then add the URL in a new line.
 
+Click OK, then go to Tools -> Boards -> Board Manager (at the top of the menu). In the search bar, type "Onion" and hit Enter. When the Onion Arduino Dock entry pops up, click on Install.
+
+![](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/arduino-dock-boards-manager.png)
+
+Click on Close to return to the IDE. The editor will now download the settings for the Arduino Dock and make it available as a board in the Tools -> Boards menu!
 
 ### Doing the Actual Flashing
 
 
 Now we get to the fun part, flashing sketches to the ATmega chip!
 
-There are two methods for flashing the ATmega328P chip using the Omega. You can flash it using the Arduino IDE wirelessly **OR** you can compile the file on your computer, copy it to the Omega, and then flash the chip from the command line.
+There are two methods for flashing the ATmega328P chip using the Omega:
 
-We **strongly** recommend using the Arduino IDE, and only recommend flashing the ATmega328P from the command-line as a backup plan.
+* Using the Arduino IDE wirelessly
+    * **We strongly recommend this option as it will work in almost all cases.**
+* Compiling the file on your computer, copy it to the Omega, and then flash the chip from the command line
+    * Only use this method as a backup plan in case you cannot upload using the IDE
 
 ### Wireless Flashing with the Arduino IDE
 
@@ -100,8 +94,8 @@ The process that takes place with this method:
 
 **The Steps:**
 
-In the Arduino Tools menu, select "Arduino/Guinuino Uno" for the Board, and your Omega-ABCD hostname as the Port:
-![Arduino IDE Tools->Port menu](//i.imgur.com/1xAEBmT.png)
+In the Arduino Tools menu, select "Onion Arduino Dock" for the Board (near the bottom of the menu), and your Omega-ABCD hostname as the Port:
+![Arduino IDE Tools->Port menu](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/arduino-dock-ide-board-port.png)
 
 If your Omega does not show up in the Port menu as a network port, restart the Arduino and wait for 30 seconds:
 
