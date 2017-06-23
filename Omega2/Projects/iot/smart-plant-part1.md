@@ -203,9 +203,9 @@ Hit 'ctrl+c' to end the program. You'll notice that the OLED will change so that
 
 #### 9. Automate the Program to Run at Boot
 
-To make sure your plant is always smart, we can configure the system so that the smart plant program runs whenever the Omega boots up.
+To make sure your plant is always smart, we can configure the system so that the smart plant program runs whenever the Omega boots up. We'll use LEDE's `init.d` system to create a service that ensures the smart plant program will run in the background.
 
-In the project directory, make the `etc/init.d/smart-plant` file executable, copy it into `/etc/init.d`, then enable it by running the following commands:
+The `etc/init.d/smart-plant` script included in the project repository is  configured to run the smart plant program. To set it up, make the `etc/init.d/smart-plant` file executable, copy it into `/etc/init.d`, then enable it by running the following commands:
 
 ```
 chmod +x etc/init.d/smart-plant
@@ -213,7 +213,7 @@ cp etc/init.d/smart-plant /etc/init.d/
 /etc/init.d/smart-plant enable
 ```
 
-The program will now run when the Omega is turned on. Try rebooting your Omega (enter `reboot` in the command line), and you'll see that your program will start up again when the Omega boots up.
+The smart plant program will now run as a service whenever the Omega is turned on. Try rebooting your Omega (enter `reboot` in the command line), and you'll see that your program will start up again when the Omega boots up.
 
 ### Code Highlight
 
