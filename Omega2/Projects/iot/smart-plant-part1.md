@@ -205,11 +205,11 @@ Hit 'ctrl+c' to end the program. You'll notice that the OLED will change so that
 
 To make sure your plant is always smart, we can configure the system so that the smart plant program runs whenever the Omega boots up.
 
-In the project directory, make the `etc/init.d/smart-plant` file executable, copy it into `/etc/init.d`, then enable it by running the following commands:
+In the project directory, make the `smart-plant` file executable, copy it into `/etc/init.d/`, then enable it by running the following commands:
 
 ```
-chmod +x etc/init.d/smart-plant
-cp etc/init.d/smart-plant /etc/init.d/
+chmod +x /root/smart-plant/smart-plant
+cp /root/smart-plant/smart-plant /etc/init.d/
 /etc/init.d/smart-plant enable
 ```
 
