@@ -1,6 +1,6 @@
 ## Onion Omega2+ {#omega2p}
 
-The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in Wi-Fi, a MicroSD slot, and a powerful processor among other things.
+The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in Wi-Fi, a MicroSD slot, a Linux Operating System, and a powerful processor, among other things.
 
 ### The Omega2 at a Glance
 
@@ -9,10 +9,10 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 | Omega2+ Specs  | |
 | :-------------: | :-------------:  |
 | Processor | 580MHz MIPS CPU  |
-| Memory | 128MB Memory  |
-| Storage | 32MB Storage  |
+| Memory | **128MB** Memory  |
+| Storage | **32MB** Storage  |
 | USB | USB 2.0  |
-| MicroSD Slot | Yes  |
+| MicroSD Slot | **Yes**  |
 | WiFi adapter | b/g/n Wi-Fi  |
 | GPIOs | 15  |
 | PWM | 2  |
@@ -50,7 +50,7 @@ The datasheet for the Omega2 Plus' processor can be found here: [Mediatek MT7688
 
 ### MicroSD Card Slot
 
-The MircoSD card slot can be used to expand the Omega2+'s storage capacity to ridiculous levels. If 32MiB was a problem for you, you can now hit it with a tactical warhead. To help you get started, there's a guide on [using a MicroSD card](#using-a-microsd-card).
+The MircoSD card slot can be used to expand the Omega2+'s storage capacity to ridiculous levels. If 32MB is a problem for you, you can now hit it with a tactical warhead. To help you get started, there's a guide on [using a MicroSD card](#using-a-microsd-card).
 
 The slot can be found at the bottom of the Omega2+. To physically mount a MicroSD card, slide it into the slot, push it down until it clicks. If it pops all the way back up, just do it again, and it should stay.
 

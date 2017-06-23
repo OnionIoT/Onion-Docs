@@ -236,7 +236,7 @@ Since the processor's architecture is MIPS, all applications need to be compiled
 
 ### Docks
 
-To make the Omega incredibly easy to use, it can be plugged directly into any of a number of **Docks** provided by Onion. All Docks can be powered with a regular Micro-USB cable, they contain a regulator circuit to safely provide 3.3V to power the Omega safely. Each Dock adds unique functionality to the Omega, including exposing the Omega's GPIOs, supporting the plug and play Omega Expansions, provide USB connectivty, among other things.
+To make the Omega incredibly easy to use, it can be plugged directly into any of a number of **Docks** provided by Onion. All Docks can be powered with a regular Micro-USB cable, they contain a regulator circuit to safely provide 3.3V to power the Omega. Each Dock adds unique functionality to the Omega, including exposing the Omega's GPIOs, supporting the plug and play Omega Expansions, provide USB connectivity, among other things.
 
 #### Expansion Dock
 
