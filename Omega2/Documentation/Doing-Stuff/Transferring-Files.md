@@ -17,7 +17,7 @@ The Omega is incredibly powerful in that it is a full Linux computer. This means
 The Editor App in the Onion Console can be used to upload files directly to the Omega's filesystem.
 
 
->The console is installed by default after completing the Setup Wizard, but you can read our brief guide on [installing the Onion Console](#installing-the-console) for more information.<br>
+>The console is installed by default after completing the Setup Wizard, but you can read our brief guide on [installing the Onion Console](#console-series-installing-the-console) for more information.<br>
 > If you haven't installed the Editor app yet, check out our guide on [Installing Console Apps](#installing-apps)
 
 This works on all operating systems and is a great way to wirelessly upload code to your Omega.
