@@ -105,7 +105,24 @@ Group uart1 - uart [gpio]
 
 indicating that our change has indeed been applied.
 
-<!-- ### Important Notes -->
+
+### Important Notes
+
+A few important notes on the Omega's GPIOs, specifically:
+
+* Special Omega GPIOs
+* Limitations of using the SPI pins
+* Pins that affect system boot-up
+
+#### Special GPIOs
+
+The Omega's hardware design uses two dedicated GPIOs to control the Omega's LED and accept an incoming Reset signal:
+
+| GPIO   | Function  | Exposed on Omega's Headers? |
+|--------|-----------|-----------------------------|
+| GPIO38 | FW_RST    | Yes                         |
+| GPIO44 | Omega LED | No                          |
+
 
 #### SPI Pins and Onboard Flash Storage
 
@@ -119,6 +136,22 @@ To reiterate:
 * Connecting non-SPI circuitry to these pins may prevent your Omega from booting or cause other damage to your unit.
 * The SPI CS1 pin, GPIO 6, may be used to control an additional external SPI device
 * The SPI CS1 pin, GPIO 6, may be still used as a regular GPIO when configured as a GPIO using `omega2-ctl`.
+
+
+#### Pins Important for Booting the Omega
+
+The following pins affect the Omega's Boot Sequence and must be floating at boot time, that is, they cannot be pulled up or pulled down:
+
+| GPIO   | Description        |
+|--------|--------------------|
+| GPIO1  | GPIO / I2S SDO     |
+| GPIO6  | SPI CS1/ GPIO      |
+| GPIO7  | SPI CLK            |
+| GPIO8  | SPI MOSI           |
+| GPIO12 | UART TX0           |
+| GPIO45 | UART TX1 / GPIO    |
+| GPIO36 | FW_RST             |
+
 
 
 ### From the Command Line
