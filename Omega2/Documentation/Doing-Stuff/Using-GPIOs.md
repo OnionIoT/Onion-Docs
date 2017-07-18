@@ -106,15 +106,15 @@ Group uart1 - uart [gpio]
 indicating that our change has indeed been applied.
 
 
-### Important Notes
+### Important & Special GPIOs
 
 A few important notes on the Omega's GPIOs, specifically:
 
-* Special Omega GPIOs
+* GPIOs that control the Omega LED and Reset Pins
 * Limitations of using the SPI pins
 * Pins that affect system boot-up
 
-#### Special GPIOs
+#### LED & Reset GPIOs
 
 The Omega's hardware design uses two dedicated GPIOs to control the Omega's LED and accept an incoming Reset signal:
 
@@ -124,7 +124,7 @@ The Omega's hardware design uses two dedicated GPIOs to control the Omega's LED 
 | GPIO44 | Omega LED | No                          |
 
 
-#### SPI Pins and Onboard Flash Storage
+#### SPI Pins & Onboard Flash Storage
 
 The Omega's processor communicates with the on-board flash storage using the SPI protocol. It's configured as *Chip Select 0* on the Omega's SPI bus. Since there are *two* SPI Chip Select signals it's possible to connect an additional SPI device to the Omega using Chip Select 1. As such, the SPI communication pins - `CLK`, `MOSI`, and `MISO` - are exposed on the Omega's Expansion header as *GPIOs 7, 8, and 9*.
 
