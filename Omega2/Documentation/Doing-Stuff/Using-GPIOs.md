@@ -110,33 +110,9 @@ indicating that our change has indeed been applied.
 
 A few important notes on the Omega's GPIOs, specifically:
 
-* GPIOs that control the Omega LED and Reset Pins
-* Limitations of using the SPI pins
 * Pins that affect system boot-up
-
-#### LED & Reset GPIOs
-
-The Omega's hardware design uses two dedicated GPIOs to control the Omega's LED and accept an incoming Reset signal:
-
-| GPIO   | Function  | Exposed on Omega's Headers? |
-|--------|-----------|-----------------------------|
-| GPIO38 | FW_RST    | Yes                         |
-| GPIO44 | Omega LED | No                          |
-
-
-#### SPI Pins & Onboard Flash Storage
-
-The Omega's processor communicates with the on-board flash storage using the SPI protocol. It's configured as *Chip Select 0* on the Omega's SPI bus. Since there are *two* SPI Chip Select signals it's possible to connect an additional SPI device to the Omega using Chip Select 1. As such, the SPI communication pins - `CLK`, `MOSI`, and `MISO` - are exposed on the Omega's Expansion header as *GPIOs 7, 8, and 9*.
-
-Since the Omega's storage uses SPI, the SPI communication pins - GPIOs 7, 8, and 9 - *must* be used for the SPI protocol and cannot be used as regular GPIOs. If you wish to use these GPIOs, they are reserved for use only with SPI devices. These SPI devices will be use Chip Select 1 - GPIO6 - as their Chip Select signal on the Omega's SPI bus.
-
-To reiterate:
-
-* **GPIOs 7, 8, and 9 cannot be used as regular GPIOs**.
-* Connecting non-SPI circuitry to these pins may prevent your Omega from booting or cause other damage to your unit.
-* The SPI CS1 pin, GPIO 6, may be used to control an additional external SPI device
-* The SPI CS1 pin, GPIO 6, may be still used as a regular GPIO when configured as a GPIO using `omega2-ctl`.
-
+* Important notes and limitations of using the SPI pins
+* GPIOs that control the Omega LED and Reset Pins
 
 #### Pins Important for Booting the Omega
 
@@ -152,6 +128,27 @@ The following pins affect the Omega's Boot Sequence and must be floating at boot
 | GPIO45 | UART TX1 / GPIO    |
 | GPIO36 | FW_RST             |
 
+#### SPI Pins & Onboard Flash Storage
+
+The Omega's processor communicates with the on-board flash storage using the SPI protocol. It's configured as *Chip Select 0* on the Omega's SPI bus. Since there are *two* SPI Chip Select signals it's possible to connect an additional SPI device to the Omega using Chip Select 1. As such, the SPI communication pins - `CLK`, `MOSI`, and `MISO` - are exposed on the Omega's Expansion header as *GPIOs 7, 8, and 9*.
+
+Since the Omega's storage uses SPI, the SPI communication pins - GPIOs 7, 8, and 9 - *must* be used for the SPI protocol and cannot be used as regular GPIOs. If you wish to use these GPIOs, they are reserved for use only with SPI devices. These SPI devices will be use Chip Select 1 - GPIO6 - as their Chip Select signal on the Omega's SPI bus.
+
+To reiterate:
+
+* **GPIOs 7, 8, and 9 cannot be used as regular GPIOs**.
+* Connecting non-SPI circuitry to these pins may prevent your Omega from booting or cause other damage to your unit.
+* The SPI CS1 pin, GPIO 6, may be used to control an additional external SPI device
+* The SPI CS1 pin, GPIO 6, may be still used as a regular GPIO when configured as a GPIO using `omega2-ctl`.
+
+#### LED & Reset GPIOs
+
+The Omega's hardware design uses two dedicated GPIOs to control the Omega's LED and accept an incoming Reset signal:
+
+| GPIO   | Function  | Exposed on Omega's Headers? |
+|--------|-----------|-----------------------------|
+| GPIO38 | FW_RST    | Yes                         |
+| GPIO44 | Omega LED | No                          |
 
 
 ### From the Command Line
