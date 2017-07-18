@@ -105,11 +105,21 @@ Group uart1 - uart [gpio]
 
 indicating that our change has indeed been applied.
 
+<!-- ### Important Notes -->
+
 #### SPI Pins and Onboard Flash Storage
 
-The Omega's onboard flash storage chip is connected to the processor via the 3 SPI pins: GPIOs 7, 8, and 9. If you wish to use these GPIOs, they are reserved for use only with other SPI devices. These devices must be set as slave 1 using GPIO 6 (CS1), as the flash storage is set as SPI slave 0.
+The Omega's processor communicates with the on-board flash storage using the SPI protocol. It's configured as *Chip Select 0* on the Omega's SPI bus. Since there are *two* SPI Chip Select signals it's possible to connect an additional SPI device to the Omega using Chip Select 1. As such, the SPI communication pins - `CLK`, `MOSI`, and `MISO` - are exposed on the Omega's Expansion header as *GPIOs 7, 8, and 9*.
 
-This means that **GPIOs 7, 8, and 9 cannot be used as regular GPIOs.** Connecting non-SPI circuitry to these pins may prevent your Omega from booting or cause other damage to your unit. GPIO 6 may be still used as a regular GPIO using `omega2-ctl`.
+Since the Omega's storage uses SPI, the SPI communication pins - GPIOs 7, 8, and 9 - *must* be used for the SPI protocol and cannot be used as regular GPIOs. If you wish to use these GPIOs, they are reserved for use only with SPI devices. These SPI devices will be use Chip Select 1 - GPIO6 - as their Chip Select signal on the Omega's SPI bus.
+
+To reiterate:
+
+* **GPIOs 7, 8, and 9 cannot be used as regular GPIOs**.
+* Connecting non-SPI circuitry to these pins may prevent your Omega from booting or cause other damage to your unit.
+* The SPI CS1 pin, GPIO 6, may be used to control an additional external SPI device
+* The SPI CS1 pin, GPIO 6, may be still used as a regular GPIO when configured as a GPIO using `omega2-ctl`.
+
 
 ### From the Command Line
 
