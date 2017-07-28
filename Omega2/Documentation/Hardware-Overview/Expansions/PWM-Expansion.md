@@ -97,7 +97,13 @@ The Omega supplies enough power to move only one or two servos under light load.
 
 ![barrel-jack](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-barrel-jack.jpg)
 
-The DC voltage supplied through the barrel jack will be provided on the Vcc (and GND) pins. The PWM voltage will also be stepped up to this voltage. We've safely tested up to 12V, so try not to go beyond that or you risk damaging your Expansion. To get more power at this stage, look for power supplies with higher current ratings rather than higher voltages.
+The DC voltage supplied through the barrel jack will be provided on the Vcc (and GND) pins. The PWM voltage will also be stepped up to this voltage.
+
+We've safely tested up to 12V, so try not to go beyond that or you risk damaging your Expansion. To get more power at this stage, look for power supplies with higher current ratings rather than higher voltages.
+
+Please check the datasheets of your servomotors for guidance on the power ratings of the power supply.
+
+#### When used with the Arduino Dock
 
 Note that the Omega cannot be powered through this connector and still requires its own power supply since the DC Barrel Jack is isolated from the Dock's 5V power supply. This was done to allow the servos to be powered by power supplies that provide more than 5V while preventing damage to the Omega and Dock.
 

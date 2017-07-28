@@ -94,7 +94,7 @@ The MicroUSB Port receives 5V power and uses it directly to power the ATmega328P
 
 ### DC Barrel Jack
 
-The DC barrel jack may also be used to provide power to the Omega using a DC power adapter.
+The DC barrel jack may also be used to provide power to the Omega using a DC power adapter. We recommend any DC power supply that provides 5V and at least 0.5A. It is safe to use power supplies that provide more than 0.5A at 5V.
 
 **Note that the Arduino Dock's DC barrel jack should only be used with 5V DC power supplies. If a higher voltage is used, your Omega and Arduino Dock have a high chance of being damaged!**
 
