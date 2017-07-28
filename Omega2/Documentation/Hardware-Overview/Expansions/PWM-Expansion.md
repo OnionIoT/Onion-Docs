@@ -81,7 +81,7 @@ Check out the PWM Expansion hooked up to the servos on our Spiderbot!
 
 ![pwm-spiderbot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-spiderbot.jpg)
 
-### The Barrel Jack adapter
+### The DC Barrel Jack adapter
 
 <!-- // highlight that the omega can only provide enough power to move one or two servos under light load, in order to power projects with a bunch of servos, we've included a barrel jack adapter
 // the DC voltage that comes in will be provided on the Vcc and GND pins on the channels, the PWM signal will also be stepped up to this voltage
