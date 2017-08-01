@@ -3,7 +3,7 @@
 The Omega can scan nearby WiFi networks and report information such as their SSID, encryption type, and signal strength. In this project, we'll be using the Omega to scan local WiFi networks and then based on SSID, mac address, signal strength find the gps location of the Omega using Google Geolocation API and display the gps coordinates(lattitude & longitude) on Oled Expansion.
 
 
-![wifi geolocation](./wireless-tools/img/mobile-wifi-geolocation-1.jpeg)
+![wifi geolocation](./img/mobile-wifi-geolocation-1.jpeg)
 
 ### Overview
 
