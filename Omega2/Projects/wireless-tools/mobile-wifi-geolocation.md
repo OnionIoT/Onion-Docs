@@ -1,6 +1,6 @@
 ## Mobile WiFi GeoLocation {#wifi-geolocation}
 
-The Omega can scan nearby WiFi networks and report information such as their SSID, encryption type, and signal strength. In this project, we'll be using the Omega to scan local WiFi networks and then based on SSID, mac address, signal strength find the gps location of the Omega using Google Geolocation API and display the gps coordinates(lattitude & longitude) on Oled Expansion.
+The Omega can scan nearby WiFi networks and report information such as their SSID, encryption type, and signal strength. In this project, we'll be using the Omega to scan local WiFi networks and then based on SSID, mac address, signal strength find the gps location of the Omega using Google Geolocation API and display the gps coordinates(lattitude & longitude) on Oled Expansion. So, you need Omega to be connected to internet too to send that request continuously.
 
 
 ![wifi geolocation](./img/mobile-wifi-geolocation-1.jpeg)
@@ -11,20 +11,14 @@ The Omega can scan nearby WiFi networks and report information such as their SSI
 
 **Time Required:** 10 minutes
 
-The WiFi scanner will:
+The WiFi Geolocation will:
 
 * Scan for any WiFi networks in range using a `ubus` call
-* Retrieve location data form the GPS Expansion, again using the `ubus`
-* Sort the scanned networks by signal strength and display the six networks with the strongest signal on the OLED Expansion
-
-It will then save the following data for each network into a comma separated value (CSV) file that can be imported into a spreadsheet program:
-
-* Date & time scanned
-* Latitude and longitude
-* SSID
-* BSSID
-* Encryption type
-* Signal strength
+https://onion.io/2bt-scanning-for-wifi-networks/
+* Store the scanned WiFi networks mac address, signal strength and channel in a json file 
+* Use this saved json file with relevant scanned wifi networks information and request google geolocation api
+https://developers.google.com/maps/documentation/geolocation/intro
+* Display the GPS coordinates(latitude, longitude) returned by the API on the Oled Expansion
 
 Using the Power Dock, you will be able to use your scanner out in the world without needing a USB power supply.
 
@@ -35,16 +29,14 @@ Using the Power Dock, you will be able to use your scanner out in the world with
 * Onion [Power Dock](https://onion.io/store/power-dock/)
 	* The [Expansion Dock](https://onion.io/store/expansion-dock/) and [Arduino Dock 2](https://onion.io/store/arduino-dock-r2/) will work as well, they just won't be mobile
 * Onion [OLED Expansion](https://onion.io/store/oled-expansion/)
-* Onion [GPS Expansion](https://onion.io/store/gps-expansion/)
-* [External GPS Antenna](https://www.amazon.com/gp/product/B00LXRQY9A/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B00LXRQY9A&linkId=66164544d399bf466485e8881a8f2df8) with a [u.Fl connector](https://www.amazon.com/gp/product/B005UWD0EG/ref=as_li_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B005UWD0EG&linkId=1ad0d1bd7b949a15414af21e5f595090) **(optional, but gets better reception indoors)**
 * A [3.7V LiPo battery](https://www.amazon.com/gp/product/B01MYY9J78/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=onion0e-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=B01MYY9J78&linkId=c74126e601f388e237102887a744e778)
 	* We found 1200 mAh to be good for several hours of use
 
-![ingredients](./img/mobile-wifi-hotspot-scanner-ingredients.jpg)
+![ingredients](./img/mobile-wifi-geolocation-ingredients.jpg)
 
 ### Step-by-Step
 
-Here's how to turn your Omega into a WiFi scanner!
+Here's how to turn your Omega into a WiFi Geolocator!
 
 #### 1. Prepare
 
@@ -52,13 +44,7 @@ You'll need to have an Omega2 ready to go, complete the [First Time Setup Guide]
 
 #### 2. Setup the Hardware
 
-Connect your Omega to the Power Dock, then plug in the OLED Expansion into the Expansion Header. Then plug in the GPS Expansion into the USB host port as shown below.
-
-![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-assembled.jpg)
-
-The GPS Expansion's antenna is connected via a Hirose U.FL connector. If you have your own antenna with the appropriate connector that you would like to use, you can gently unplug the included antenna (the large square piece with a wire) and replace it with your own.
-
-![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-external-antenna.jpg)
+Connect your Omega to the Power Dock, then plug in the OLED Expansion into the Expansion Header. 
 
 <!--# 2 -->
 
@@ -68,71 +54,70 @@ The GPS Expansion's antenna is connected via a Hirose U.FL connector. If you hav
 
 ```
 opkg update
-opkg install python-light pyOledExp ogps git git-http ca-bundle
+opkg install python-light pyOledExp git git-http ca-bundle curl
 ```
 
-The `pyOledExp` package gives us control of the OLED Expansion, while the `ogps` package will provide a `ubus` service that lets us easily get data from the GPS Expansion. The `git`, `git-http`, and `ca-bundle` packages will allows us to download the project code form GitHub.
-
-After installing `ogps`, check that the `ubus` `gps` service is listed by running `ubus list`:
-
-![ubus list](./img/using-gps-expansion-4-ubus-list.png)
-
-If you don't see `gps` listed, you'll need to restart your `rpcd` service in order to refresh the list:
-
-```
-/etc/init.d/rpcd restart
-```
-
-If this doesn't work, try reinstalling the `ogps` package by running the following commands:
-
-```
-opkg remove ogps
-opkg update
-opkg install ogps
-```
+The `pyOledExp` package gives us control of the OLED Expansion. The `git`, `git-http`, and `ca-bundle` packages will allows us to download the project code form GitHub. The 'curl' package allows us to request Google api with the json file from the command line , if needed. 
 
 #### 4. Download and Install the Project Software
 
-The code for this project is all done and can be found in Onion's [`wifi-hotspot-scanner` repo](https://github.com/OnionIoT/wifi-hotspot-scanner) on GitHub. Use [`git` to download the code to your Omega](https://docs.onion.io/omega2-docs/installing-and-using-git.html): navigate to the `/root` directory, and clone the GitHub repo:
+The code for this project is all done and can be found in Onion's [`wifi-geolocation` repo](https://github.com/OnionIoT/wifi-geolocation) on GitHub. Use [`git` to download the code to your Omega](https://docs.onion.io/omega2-docs/installing-and-using-git.html): navigate to the `/root` directory, and clone the GitHub repo:
 
 ```
 cd /root
-git clone https://github.com/OnionIoT/wifi-hotspot-scanner.git
+git clone https://github.com/OnionIoT/wifi-geolocation.git
 ```
 
-#### 5. Running the Project on Boot
+#### 5. Generating Google API Key
+
+The code requires a API key to be able to make requests to the google geolocation API. You need to generate a key to able to use the code further.
+You can learn from here how to [get a key](https://developers.google.com/maps/documentation/geolocation/get-api-key) to use for the API.
+
+Once, you have a API key, you can edit helpers.py file in the code and paste your API key for API_KEY and save the file.
+
+#### 6. Running the Project on Boot
 
 Next we'll setup the Omega to automatically run the scanner when it turns on. Edit the `/etc/rc.local` file and add the following line above `exit 0`:
 
 ```sh
-python /root/wifi-hotspot-scanner/main.py &
+python /root/wifi-geolocation/main.py &
 ```
 
 This way, when you flip the power switch, the Omega will run the code in the background after it completes the initialization process.
 
-#### 6. Using the WiFi Scanner
+#### 7. Using the WiFi Geolocator
 
 Here's the fun part! Press the reset button and the Omega will run the program.
 
-If the GPS Expansion is able to lock onto a satellite signal, you'll see the time, the GPS coordinates, and the 6 WiFi networks with the strongest signal available nearby.
+If the Omega is within the range of WiFi networks, it will be able to discover the networks and save the mac address, signal strength and channel for each wifi network onto a json data file. 
+The program will then further request google API and get a response with latitude and longitude for the mac addresses.
 
-![oled closeup](./img/mobile-wifi-hotspot-scanner-oled-closeup.jpg)
+![wifi scanner outside](./img/mobile-wifi-geolocation-1.jpeg)
 
-The Omega will then save data about all of the discovered networks to a file called `wifiData.csv` in the project directory. You can then import this into a spreadsheet or navigation program for mapping later!
+The saved data.json file can be used make request from the command line using curl: 
 
-![wifi scanner outside](./img/mobile-wifi-hotspot-scanner-outside.jpg)
+```sh
+curl -d @your_filename.json -H "Content-Type: application/json" -i "https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_API_KEY"
+```
 
-##### Unable to Lock Signal
+##### Unable to GeoLocate
 
-If the GPS Expansion cannot lock onto a satellite, you'll see an error message on the OLED. The program will try again in a few seconds.
+If the Omega is not connected to any wifi network or cannot scan any wifi network, you'll see corresponding error message on the OLED. The program will try again in a few seconds.
+
+The different error messages can be : 
+* notFound : No Wifi network was scanned , so geolocation could not be done.
+* dailyLimitExceeded : Daily limit with the usage of the Google API has been exceeded.
+* keyInvalid : You need to provide a valid API Key for the Google maps geolocation API.
+* userRateLimitExceeded : You have exceeded the requests per second per user limit configured in your Google API console.
+* parseError : The request body is not a valid JSON.
 
 ##### Saved Data
 
-Assuming the project code was downloaded to the `/root` directory, the collected wifi data will be saved to: `/root/wifi-hotspot-scanner/wifiData.csv`. It is a Comma Separated Value (CSV) file and can be opened with any spreadsheet program. It stores data about the surrounding networks for every single scan:
+Assuming the project code was downloaded to the `/root` directory, the collected wifi data will be saved to: `/root/wifi-hotspot-scanner/data.json`. It is json format file and can be opened by any text editor. It stores data about the surrounding networks for every single scan:
 
-![csv file output](./img/mobile-wifi-hotspot-scanner-csv.png)
+![csv file output](./img/mobile-wifi-geolocation-data-json.JPG)
 
-This data can be used in a variety of creative ways: creating a map of your neighbourhood that shows the strength of the local WiFi networks, creating a database of open networks around the city, the sky is the limit.
+This data can be used to geolocate by using command line then.
 
 ### Code Highlight
 
