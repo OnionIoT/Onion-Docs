@@ -9,7 +9,7 @@ The Omega can scan nearby WiFi networks and report information such as their SSI
 
 **Skill Level:** Intermediate
 
-**Time Required:** 10 minutes
+**Time Required:** 20 minutes
 
 The WiFi Geolocation will:
 
@@ -97,7 +97,7 @@ The program will then further request google API and get a response with latitud
 The saved data.json file can be used make request from the command line using curl: 
 
 ```sh
-curl -d @your_filename.json -H "Content-Type: application/json" -i "https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_API_KEY"
+curl -d @data.json -H "Content-Type: application/json" -i "https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_API_KEY"
 ```
 
 ##### Unable to GeoLocate
@@ -127,7 +127,7 @@ The `ubus` system utility is a key part of the firmware on which the Omega is ba
 ubus call (service) (function) '{(JSON parameters)}'
 ```
 
-The WiFi and GPS scanning functions are available as `ubus` functions so that they can be called by any program.
+The WiFi scanning functions is available as `ubus` functions so that it can be called by any program.
 
 You can see how they work in the `ubusHelper.py` module:
 
@@ -137,6 +137,18 @@ You can see how they work in the `ubusHelper.py` module:
 def runCommand(command):
     output, err = shellHelper.runCommand(command)
     responseDict = json.loads(output)
+    
+    all_data = responseDict["results"]
+    new_json={}
+    new_json_list=[]
+    for data in all_data:
+    	new_data = {}
+    	new_data["macAddress"] = data["bssid"]
+    	new_data["signalStrength"] = int(data["signalStrength"])/2-100
+    	new_json_list.append(new_data)
+    new_json["results"] = new_json_list
+    with open('data.json', 'w') as outfile:
+    	json.dump(new_json, outfile)
     return responseDict
 
 # often used commands
@@ -157,17 +169,19 @@ def scanWifi():
     args = ["onion", "wifi-scan", device]
     return ubus.call(args)["results"]
 
-# read the GPS expansion
 # returns a dictionary with gps info
-def readGps():
-    args =["gps", "info"]
-    response = ubus.call(args)
-
-    # check if the GPS is locked
-    if "signal" in response and response["signal"] == False:
-        return False
-    # else return the data
-    return response
+def getGps():
+    http = urllib3.PoolManager()
+    url = "https://www.googleapis.com/geolocation/v1/geolocate?key="+API_KEY
+    payload = open("data.json")
+    headers = {'content-Type': 'application/json', 'Accept-Charset': 'UTF-8'}
+    r = http.request(
+    	'POST',
+    	url,
+    	headers=headers,
+    	body=payload
+    )
+    return r.data.decode('utf-8')
 ```
 
 In essence, the `scanWifi()` function above runs the following command:
@@ -176,10 +190,10 @@ In essence, the `scanWifi()` function above runs the following command:
 ubus call onion wifi-scan '{"device":"ra0"}'
 ```
 
-And the `readGps()` function runs this command:
+And the `getGps()` function runs this command:
 
 ```
-ubus call gps info
+curl -d @data.json -H "Content-Type: application/json" -i "https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_API_KEY"
 ```
 
 Try running these two commands on your Omega's command line by hand and take note of the output.
