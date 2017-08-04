@@ -38,13 +38,13 @@ The Omega2's hardware SPI bus has one Slave Select line available (`CS1`). The b
 
 Here's what the numbers mean:
 
-* `32766` is the Omega2's **bus number**.
-* `1` indicates the **device ID**. This corresponds to the slave connected to the Omega2's `CS1` pin.
+* `32766` is the Omega2's **device ID**.
+* `1` indicates the **bus number**. This corresponds to the slave connected to the Omega2's `CS1` pin.
 
 When using this bus, you will need to specify these particular numbers. Keep these handy for the sections below!
 
-<!-- // mention that device 0 is the flash memory used by the omega -->
-On a side note, device `0` (`CS0`) is connected to the flash memory used by the Omega.
+<!-- // mention that bus 0 is the flash memory used by the omega -->
+On a side note, bus `0` (`CS0`) is connected to the flash memory used by the Omega.
 
 #### On the Hardware
 
@@ -101,21 +101,21 @@ Some useful options you can use are:
 
 **Examples**
 
-Read a byte on bus `32766`, from device `1`, from address `0x11`:
+Read a byte on bus `1`, from device `32766`, from address `0x11`:
 ```
-root@Omega-ABCD:~# spi-tool -b 32766 -d 1 read 0x11
+root@Omega-ABCD:~# spi-tool -b 1 -d 32766 read 0x11
 > SPI Read from addr 0x11: 0x81
 ```
 
-Read a byte on bus `32766`, from device `1`; chip select is *active HIGH*; from address `0x00`:
+Read a byte on bus `1`, from device `32766`; chip select is *active HIGH*; from address `0x00`:
 ```
-root@Omega-ABCD:~# spi-tool -b 32766 -d 1 --cs-high read 0x00
+root@Omega-ABCD:~# spi-tool -b 1 -d 32766 --cs-high read 0x00
 > SPI Read from addr 0x00: 0xf8
 ```
 
-Read a byte on bus `32766`, from device `1`; shared `Slave In/Slave Out` signals; from address `0xaf`:
+Read a byte on bus `1`, from device `32766`; shared `Slave In/Slave Out` signals; from address `0xaf`:
 ```
-root@Omega-ABCD:~# spi-tool -b 32766 -d 1 --3wire read 0xaf
+root@Omega-ABCD:~# spi-tool -b 1 -d 32766 --3wire read 0xaf
 > SPI Read from addr 0xaf: 0xbe
 ```
 
@@ -141,19 +141,19 @@ The options are the same as in [Read a Byte](#spi-read-a-byte).
 
 On bus `32766`, device `1`, `write` to address `0x12` a value of `0x42`:
 ```
-root@Omega-ABCD:~# spi-tool -b 32766 -d 1 write 0x12 0x42
+root@Omega-ABCD:~# spi-tool -b 1 -d 32766 write 0x12 0x42
 > SPI Write to addr 0x12: 0x42
 ```
 
-On bus `32766`, device `1`;  set chip select to *active HIGH*; `write` to address `0x09` a value of `0xfa`:
+On bus `1`, device `32766`;  set chip select to *active HIGH*; `write` to address `0x09` a value of `0xfa`:
 ```
-root@Omega-ABCD:~# spi-tool -b 32766 -d 1 --cs-high write 0x09 0xfa
+root@Omega-ABCD:~# spi-tool -b 1 -d 32766 --cs-high write 0x09 0xfa
 > SPI Write to addr 0x09: 0xfa
 ```
 
-On bus `32766`, device `1`; shared `Slave In/Slave Out` signals; `write` to address `0xbf` a value of `0x01`:
+On bus `1`, device `32766`; shared `Slave In/Slave Out` signals; `write` to address `0xbf` a value of `0x01`:
 ```
-root@Omega-ABCD:~# spi-tool -b 32766 -d 1 --3wire write 0xbf 0x01
+root@Omega-ABCD:~# spi-tool -b 1 -d 32766 --3wire write 0xbf 0x01
 > SPI Write to addr 0xbf: 0x01
 ```
 
