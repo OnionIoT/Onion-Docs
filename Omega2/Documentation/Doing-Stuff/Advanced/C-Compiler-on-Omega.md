@@ -15,12 +15,27 @@ The Omega's processor is optimized for low power consumption and low heat genera
 
 When the Omega's OS is built, the header files for libraries that are not regularly part of the C standard library are not included as a space saving measure. If you take a look at `/usr/lib`, where the library shared object are kept and compare it to `/usr/include`, where the library header files are kept, you'll see the discrepancy: some library objects do not have corresponding header files!
 
+This includes libraries such as:
+
+* libugpio
+* [libonioni2c](#i2c-c-library)
+* [libonionpwmexp](#pwm-expansion-c-library)
+* [libonionoledexp](#oled-expansion-c-library)
+* [libonionrelayexp](#relay-expansion-c-library)
+* libuci
+* libubus
+* libjson-c
+* libiwinfo
+
 >To use a library in your program, you need to include the header file in your code so that the compiler knows the declaration of the functions that you are using from that library. Then, when the compiler is linking the binary file of your program, it needs to be informed of the location of the library shared object, `.so` file so the program knows where to look during runtime for the compiled definitions of the library functions used in the program.
 >If the headers are not present, the compiler **will not** successfully compile the program, even if the library object is present.
 
-In order to compile programs that use libraries that are not regularly part of the Linux operating system, you will have to use the **LEDE build system on your computer to cross-compile** your program for the Omega.
 
-See the article on [Cross Compilation](#cross-compiling) for more details.
+#### A Solution
+
+It is possible to overcome to two above-mentioned limitations by using the **LEDE build system on your computer to cross-compile** your program for the Omega.
+
+See the article on [Cross Compilation](#cross-compiling) for more details and instructions.
 
 
 
