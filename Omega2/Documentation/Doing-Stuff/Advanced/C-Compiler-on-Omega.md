@@ -18,9 +18,10 @@ When the Omega's OS is built, the header files for libraries that are not regula
 >To use a library in your program, you need to include the header file in your code so that the compiler knows the declaration of the functions that you are using from that library. Then, when the compiler is linking the binary file of your program, it needs to be informed of the location of the library shared object, `.so` file so the program knows where to look during runtime for the compiled definitions of the library functions used in the program.
 >If the headers are not present, the compiler **will not** successfully compile the program, even if the library object is present.
 
-In order to compile programs that use libraries that are not regularly part of the Linux operating system, you will have to use the LEDE build system on your computer to cross-compile your program for the Omega.
+In order to compile programs that use libraries that are not regularly part of the Linux operating system, you will have to use the **LEDE build system on your computer to cross-compile** your program for the Omega.
 
-> More info on cross compilation coming soon!
+See the article on [Cross Compilation](#cross-compiling) for more details.
+
 
 
 ### Installing the Compiler
