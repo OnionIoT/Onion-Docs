@@ -1,4 +1,4 @@
-## Playing Audio with USB-based Audio {#usb-audio}
+## Playing Audio with USB Devices {#usb-playing-audio}
 
 This article outlines the steps required to play audio on your Omega2 with any USB-based audio board or adapter.
 
