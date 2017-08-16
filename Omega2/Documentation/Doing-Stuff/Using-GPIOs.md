@@ -126,7 +126,6 @@ The following pins affect the Omega's Boot Sequence and must be floating at boot
 | GPIO8  | SPI MOSI           |
 | GPIO12 | UART TX0           |
 | GPIO45 | UART TX1 / GPIO    |
-| GPIO36 | FW_RST             |
 
 #### SPI Pins & Onboard Flash Storage
 
