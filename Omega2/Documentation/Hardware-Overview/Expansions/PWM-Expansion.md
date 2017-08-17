@@ -22,7 +22,7 @@ This Expansion communicates with the Omega using the I2C protocol, it's I2C devi
 <!-- // Overview of the Hardware
 //  - the 16 channels
 //  - the dc barrel jack -->
-The PWM Expansion has 16 channels that can output individual PWM signals to drive motors and servos. The expansion can either be powered through the dock, or through a DC barrel jack to enable driving of motors up to 12V.
+The PWM Expansion has 16 channels that can output individual PWM signals to drive motors and servos. The expansion can either be powered through the dock, or through a DC barrel jack to enable driving of motors up to 6V.
 
 ![illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-expansion-illustration.png)
 
@@ -99,7 +99,7 @@ The Omega supplies enough power to move only one or two servos under light load.
 
 The DC voltage supplied through the barrel jack will be provided on the Vcc (and GND) pins. The PWM voltage will also be stepped up to this voltage.
 
-We've safely tested up to 12V, so try not to go beyond that or you risk damaging your Expansion. To get more power at this stage, look for power supplies with higher current ratings rather than higher voltages.
+We've safely tested up to 6V, so try not to go beyond that or you risk damaging your Expansion. To get more power at this stage, look for power supplies with higher current ratings rather than higher voltages.
 
 Please check the datasheets of your servomotors for guidance on the power ratings of the power supply.
 
