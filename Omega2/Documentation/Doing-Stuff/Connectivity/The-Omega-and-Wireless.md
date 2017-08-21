@@ -52,9 +52,13 @@ All of this is can be done by connecting your Omega to an existing WiFi network 
 
 <!-- // highlight that this is the state the omega is in after completing the setup Wizard -->
 
-Your Omega can **simultaneously** connect to an existing WiFi network, and host its own Access Point, yielding some interesting results. This is a great feature because you can have your Omega connected to your main WiFi network, and all the devices on that network can communicate with the Omega - accessing the console or the terminal via SSH.
+Your Omega can **simultaneously** connect to an existing WiFi network **and** host its own Access Point, yielding some interesting results. This is a great feature because you can:
 
-You can connect your other devices to the Omega's AP and access the internet, essentially turning your Omega into a network switch.
+* Have your Omega connected to your main WiFi network
+ 	* all the devices on that network can communicate with the Omega - accessing the console or the terminal via SSH.
+* Other devices can connect to your Omega's AP
+	* The Omega can share internet access provided by the main WiFi network
+
 > For more on making your Omega into a network switch, check out our tutorial on [Turning your Omega into a Router](#omega-router), or our tutorial on [using the Omega as a WiFi range extender](#wifi-range-extender)]
 
 Or if you're really passionate, you can connect several Omegas on the same network, and communicate with them **ALL** wirelessly from a master device.
@@ -62,12 +66,13 @@ Or if you're really passionate, you can connect several Omegas on the same netwo
 <!-- We need to have a project with an absurd amount of Omegas just for fun -->
 
 
-### Sharing Your Omega's Access Point with Other Devices
+### Sharing Internet Access with Your Omega's Access Point
 
+Out of the box, your Omega's firewall is configured to share internet access coming from a WiFi network with devices that connect to the Omega's AP.
 
-You can configure the firewall settings on your Omega to manage sharing your internet access with devices that connect to the Omega's AP. This file is located at `/etc/config/firewall` and its contents be changed in order to modify your AP's firewall.
+The firewall configuration file can be found at `/etc/config/firewall`. The contents can be modified to change your Omega's firewall settings.
 
-*Note: Your Omega is already configured to handle the most practical applications. You need not edit this file unless you know what you're doing.*
+*Note that Your Omega is already configured to handle the most practical applications. You need not edit this file unless you know what you're doing.*
 
 
 To apply any firewall changes you'll need to restart your firewall with the following command:
@@ -76,6 +81,7 @@ To apply any firewall changes you'll need to restart your firewall with the foll
 /etc/init.d/firewall restart
 ```
 
+See the [OpenWRT Firewall documentation](https://wiki.openwrt.org/doc/uci/firewall) for more details on the firewall.
 
 
 
