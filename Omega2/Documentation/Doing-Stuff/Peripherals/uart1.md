@@ -67,17 +67,34 @@ Pins `12` and `13` are used for `UART0`. These are primarily used for the comman
 
 The `UART1` uses pins `45` and `46`. These are labelled as `TX1` and `RX1` to signify that they are used for `UART1`.
 
+##### Expansion Dock & Power Dock
+
 On the Expansion Dock and Power Dock, only `UART1` is broken out, shown below:
 
 ![uart-exp-power-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-pins-exp-dock.jpg)
 
-Both `UART0` and `UART1` are available on the Arduino Dock R2 and the Breadboard Dock:
+On the Expansion Dock, `UART0` is connected to the on-board USB-to-Serial chip, providing [direct access to the Omega's command prompt](#connecting-to-the-omega-terminal-serial) with a USB connection.
+
+##### Mini Dock
+
+There are no GPIO headers on the Mini Dock so neither of the UARTs are available on the Mini Dock. However, just on like the Expansion Dock, `UART0` is connected to the on-board USB-to-Serial chip, providing [direct access to the Omega's command prompt](#connecting-to-the-omega-terminal-serial) with a USB connection.
+
+##### Arduino Dock2
+
+Both `UART0` and `UART1` are available on the Arduino Dock 2:
 
 ![uart-arduino-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-pins-arduino-dock.jpg)
+
+The Arduino Dock connects the on-board microcontroller's serial port with `UART1` on the Omega, allowing direct communication between the microcontroller and the Omega. This is useful since it offers users the freedom to fully define and design the communication between the two devices.
+
+##### Breadboard Dock
+
+Both `UART0` and `UART1` are available on the Breadboard Dock:
 
 ![uart-breadboard-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/uart-pins-breadboard-dock.jpg)
 
 **IMPORTANT: The TX+/- and RX+/- pins are used for the *Ethernet Expansion*. Be careful not to connect your serial lines to these pins!**
+
 
 ### Using the Command Line
 

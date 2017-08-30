@@ -124,9 +124,11 @@ In addition to the Omega's reset button, the Arduino Dock 2 comes with a microco
 
 <!-- [//]: # (mention that there's a 3.3V to 5V Logic Level shifter for the connections) -->
 
-The Arduino Dock is outfitted with a 3.3V to 5V Logic Level converter in order for the Omega to successfully communicate with the ATmega chip.
+The Arduino Dock is designed to make the on-board microcontroller the Omega's helper and co-processor. So it was important to include a few key connections between the Omega and the microcontroller.
 
-The table below shows the connections between the Omega's pins and the ATmega's pins:
+Since the microcontroller operates at 5V and the Omega operates at 3.3V, the Arduino Dock features a **3.3V to 5V Logic Level converter** for all connections between the microcontroller and the Omega. This allows each device to operate at it's own voltage but still gives them the ability to understand each other.
+
+The table below shows the connections between the Omega and the ATmega Microcontroller:
 
 | Omega Pin  | ATmega Pin |
 | :-------------: | :-------------:  |
@@ -144,7 +146,9 @@ The purposes of these connections are covered in the subsections below.
 
 <!-- [//]: # (functionality: provide easy to use two-way communication between the Omega and MCU) -->
 
-The UART connection is used to provide two-way communication between the Omega and the ATmega MCU.
+The UART connection is used to provide two-way communication between the Omega and the ATmega MCU. The ATmega's serial port is connected to the Omega's **UART1** serial port.
+
+See the article on [Communicating with Serial Devices](#uart1) for more info.
 
 #### I2C
 
@@ -153,13 +157,15 @@ The UART connection is used to provide two-way communication between the Omega a
 
 The I2C connection provides I2C connectivity between the Omega and the ATmega. In most cases, the Omega is set up as the master, and the ATmega as the slave.
 
-This is useful when using 5V I2C devices. Plug them into the ATmega's I2C pins and the Omega will be able to read them.
+This is useful when using 5V I2C devices. Plug them into the ATmega's I2C pins and the Omega will be able to read them thanks to the on-board logic level shifter.
+
+See the article on [Communicating with I2C Devices](#communicating-with-i2c-devices) for more info.
 
 #### SPI and Reset Connection
 
 <!-- [//]: # (these four pins are used by the Omega to reset and program the ATmega with sketches) -->
 
-The four SPI connections are used to upload the ATmega with sketches using your Omega.
+The four SPI connections are used to upload the ATmega with sketches using your Omega. See the article on [Flashing the Arduino Dock's Microcontroller](#flash-arduino-dock-wirelessly) for more info.
 
 The reset connection is used to reset the ATmega chip. This can be done using the reset button, or using the Omega's GPIO 19.
 
@@ -173,10 +179,6 @@ We've made available a detailed [diagram](https://raw.githubusercontent.com/Onio
 
 The Arduino Dock 2 is loaded with features that allow you to use your Omega with the ATmega chip with ease. You can program or reset the micro-controller using the Omega's GPIOs, and even connect to the ATmega's serial port using the Omega's UART.
 
-***More articles coming soon!***
-
-
-<!-- TODO:  These articles are to be part of the Arduino Kit guides, and we will link to them when the guides are ready. -->
 ### Programming the Arduino Micro-Controller
 
 Follow the steps in our [Flashing the Microcontroller](#flash-arduino-dock-wirelessly) to learn how to upload sketches (programs) to the Arduino micro-controller onboard the Arduino Dock.
@@ -186,9 +188,18 @@ Follow the steps in our [Flashing the Microcontroller](#flash-arduino-dock-wirel
 <!-- [//]: # (- using the arduino ide) -->
 <!-- [//]: # (- flashing sketches stored on the Omega's memory) -->
 
-<!-- ### Connecting with UART1 -->
+### Communicating over UART
 
-<!-- [//]: # (create a separate article for Omega <-> ATmega communication via serial, in this article link to the UART1 peripheral article and have an example scenario with an example sketch for the arduino and sample code for the Omega) -->
+The easiest way to get the Arduino Dock MCU and Omega communicating is through serial. There are no fancy protocols, just data being sent back and forth. It's important to remember that the ATmega's serial is connected to UART1 on the Omega.
+
+Take a look at our [Communicating with Serial Devices article](#uart1) for ideas on how to get your Omega communicating with the Arduino Dock's microcontroller!
+
+### Communicating with I2C
+
+The Arduino Dock 2 connects the microcontroller's I2C lines to that of the Omega, effectively, adding the microcontroller as a slave to the Omega's I2C bus.
+
+Take a peek at our [Communicating with I2C Devices article](#communicating-with-i2c-devices) for more information on I2C and how the Omega can interact with I2C devices. On the microcontroller side, the [Wire Library](https://www.arduino.cc/en/Reference/Wire) can be used to facilitate I2C communication.
+
 
 <!-- ### Resetting the Micro-Controller -->
 
