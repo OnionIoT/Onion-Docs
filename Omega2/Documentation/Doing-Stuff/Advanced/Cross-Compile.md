@@ -97,7 +97,7 @@ Where the `8` defines the number of compilation jobs to run simultaneously.
 Depending on your system, the compilation will take quite some time and be very resource intensive, be patient! On server-grade systems, compilation will take about half an hour, on regular desktop or laptop systems **it may take hours**.
 
 
-### Cross Compiling
+### Cross Compiling {#cross-compiling-procedure}
 
 Now that the toolchain is built, we can use it to cross compile our own programs.
 
