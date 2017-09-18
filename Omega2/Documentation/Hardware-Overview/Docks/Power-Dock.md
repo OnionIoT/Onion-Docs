@@ -240,6 +240,8 @@ And the battery LEDs will turn on for 5 seconds:
 <!-- [//]: # (Add section describing the text output of the battery level) -->
 
 
+<!-- TODO: add a section on reading the battery level, ask Lazar -->
+
 
 #### Controlling the GPIOs
 
