@@ -30,7 +30,7 @@ It will work the same no matter how you have connected to the Omega's command li
 
 ### With the Reset button
 
-When connected to a Dock with a Reset button, **pressing and holding the reset button for about 10 seconds** will trigger a factory reset and then automatically reboot you Omega.
+When connected to a Dock with a Reset button, **pressing and holding the reset button for about 10 seconds** will trigger a factory reset and then automatically reboot your Omega.
 
 This can only be done on Docks that have Reset Buttons:
 
