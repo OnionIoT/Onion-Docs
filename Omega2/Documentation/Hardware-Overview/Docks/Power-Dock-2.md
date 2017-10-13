@@ -1,5 +1,5 @@
 
-## Power Dock 2 {#power-dock2}
+## Power Dock 2 {#power-dock-2}
 
 <!-- [//]: # (Brief overview on the Power Dock. Highlight the features such as battery management, battery recharge, mobility (completely wireless).) -->
 <!-- [//]: # (Briefly mention that the power dock is similar to but not the same as the expansion dock.) -->
