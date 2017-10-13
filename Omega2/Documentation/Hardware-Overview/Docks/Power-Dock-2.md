@@ -6,8 +6,9 @@
 
 Bring your next project on the go with the Power Dock! Equipped with on-board battery management, the Power Dock allows you to recharge and monitor battery levels, while providing a header to connect Onion Expansions.
 
-![Power Dock 2](https://github.com/OnionIoT/Onion-Media/blob/master/Product%20Photos/Power%20Dock%202/Power-Dock2-45deg.JPG)
+![Power Dock 2](https://raw.githubusercontent.com/OnionIoT/Onion-Media/master/Product%20Photos/Power%20Dock%202/Power-Dock2-45deg.JPG)
 
+<!--- https://raw.githubusercontent.com/OnionIoT/Onion-Media/master/Product%20Photos/Power%20Dock%202/Power-Dock2-45deg.JPG --->
 
 ### The Hardware
 
@@ -24,7 +25,18 @@ What makes our Power Dock 2 more useful and unique is a additional battery level
 
 ### The Expansion Header
 
-```{r child = './Power-Dock/02-expansion-header.md'}
+<!-- [//]: # (breakout of the Omega's GPIOs, can be connected to other circuits directly, or can use Omega expansions) -->
+
+The Expansion Header is a convenient tool that gives you easy access to the Omega's GPIOs, and allows you to connect Onion Expansions directly. The Expansion Header is labelled to show you what GPIO is connected to each section.
+
+<!-- expansion header pinout intro -->
+```{r child = '../../shared/Hardware-Overview-Component-01-expansion-header-pinout-intro.md'}
+```
+
+![expansion header pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/expansion-dock-expansion-header-pinout.png)
+
+<!-- expansion header pinout explanation - no pwm pins -->
+```{r child = '../../shared/Hardware-Overview-Component-03-expansion-header-pinout-explanation-no-pwm.md'}
 ```
 
 ### Micro-USB Port
@@ -66,7 +78,7 @@ We have added an ADC chip to the Power Dock 2 in order to measure the voltage le
 
 What differs Power Dock 2 from the original Power Dock is that it has the Battery Level ADC that allows you to accurately monitor the voltage of your battery. Another update is that GPIOs 18 & 19 are now available on the Expansion Header! 
 
-![comparison picture](https://github.com/OnionIoT/Onion-Media/blob/master/Product%20Photos/Power%20Dock%202/Power-Dock2-original-comparison.JPG)
+![comparison picture](https://raw.githubusercontent.com/OnionIoT/Onion-Media/master/Product%20Photos/Power%20Dock%202/Power-Dock2-original-comparison.JPG)
 
 
 <!--- TODO: IMAGE mechanical drawing of the power dock, recheck link and uncomment when drawing available
@@ -88,11 +100,11 @@ We've made available a detailed [diagram](https://raw.githubusercontent.com/Onio
 <!-- [//]: # (explanation that you can visually see the battery level on the indicator LEDs AND in the operating system) -->
 
 
-The `power-dock2` application allows you to turn on the Battery Level indicator LEDs as well as output the current voltage of the battery on the screen. You can monitor the voltage on the command line while it is Battery more or Stationary mode. However, for the Batttery Indicator LEDs, it will only take effect when Power Dock is in the Battery mode.
+The `power-dock2` application allows you to turn on the Battery Level indicator LEDs as well as output the current voltage of the battery on the screen. You can monitor the voltage on the command line while it is in Battery mode or Stationary mode. However, for the Batttery Indicator LEDs, it will only take effect when Power Dock is in the Battery mode.
 
 #### Install
 
-To install the power-dock2 application, run the following commands:
+To install the `power-dock2` application, run the following commands:
 
 ```
 opkg update

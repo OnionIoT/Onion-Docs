@@ -1,7 +1,5 @@
 ## Registering on the Onion Cloud
-
 // Need a nice intro on what the cloud provides (interacting with Omegas using rest apis), the concept of cloud devices, and why we need to register our device on the cloud
-
 
 
 ### Register using the Console
