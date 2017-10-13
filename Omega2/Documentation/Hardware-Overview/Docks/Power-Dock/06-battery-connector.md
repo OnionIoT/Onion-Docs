@@ -8,10 +8,10 @@ Expect a 1500mAh battery to last about 10 hours, in some cases, up to 12 hours.
 
 
 <!-- Reset Button -->
-```{r child = '../shared/Hardware-Overview-Component-0-Reset-Button.md'}
+```{r child = '../../shared/Hardware-Overview-Component-0-Reset-Button.md'}
 ```
 
 
 <!-- USB Port -->
-```{r child = '../shared/Hardware-Overview-Component-5-Omega-USB-Port.md'}
+```{r child = '../../shared/Hardware-Overview-Component-5-Omega-USB-Port.md'}
 ```
