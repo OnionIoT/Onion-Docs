@@ -30,7 +30,7 @@ It will work the same no matter how you have connected to the Omega's command li
 
 ### With the Reset button
 
-When connected to a Dock with a Reset button, **pressing and holding the reset button for about 10 seconds** will trigger a factory reset and then automatically reboot you Omega.
+When connected to a Dock with a Reset button, **pressing and holding the reset button for about 10 seconds** will trigger a factory reset and then automatically reboot your Omega.
 
 This can only be done on Docks that have Reset Buttons:
 
@@ -45,6 +45,7 @@ This can only be done on Docks that have Reset Buttons:
 ```
 
 <!-- TODO: add this section -->
+
 ### With the Console
 
 A more user friendly way to reset your Omega to factory settings is by using the Console. If you're not familiar with the Console, take a look at our articles on [installing the console](#console-series-installing-the-console) and then [accessing the Console)[#accessing-the-console].
@@ -58,6 +59,7 @@ To perform the factory reset, simply navigate to Settings and click 'Factory Res
 After a factory reset, your Omega's SSH signature will be different. When you try to connect to it via SSH, your computer will recognize the key associated with the remote address is different than before and warn you. In general, it is a good idea to heed this warning, but if you've just factory reset your Omega, then this is to be expected.
 
 SAMPLE WARNING:
+
 ```
 ssh root@192.168.3.1
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -73,5 +75,6 @@ Add correct host key in /Users/Onion/.ssh/known_hosts to get rid of this message
 Offending RSA key in /Users/Onion/.ssh/known_hosts:231
 RSA host key for 192.168.3.1 has changed and you have requested strict checking.
 Host key verification failed.
+<<<<<<< HEAD
 ```
 But this is not a big issue. The fix is, simply open the `known_hosts` file and delete the previous entry. The warning message will specify the line number.
