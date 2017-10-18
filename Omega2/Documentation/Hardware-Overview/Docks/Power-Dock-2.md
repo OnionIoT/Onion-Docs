@@ -44,6 +44,11 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 ```{r child = './Power-Dock/03-micro-usb-port.md'}
 ```
 
+<!-- No-USB-to-Serial -->
+```{r child = '../shared/Hardware-Overview-Component-3-No-USB-to-Serial.md'}
+```
+
+
 ### The Power Switch
 
 ```{r child = './Power-Dock/04-power-switch.md'}
@@ -76,7 +81,7 @@ We have added an ADC chip to the Power Dock 2 in order to measure the voltage le
 ### Differences from the original Power Dock
 
 
-What differs Power Dock 2 from the original Power Dock is that it has the Battery Level ADC that allows you to accurately monitor the voltage of your battery. Another update is that GPIOs 18 & 19 are now available on the Expansion Header! 
+What differs Power Dock 2 from the original Power Dock is that it has the Battery Level ADC that allows you to accurately monitor the voltage of your battery. Another update is that GPIOs 18 & 19 are now available on the Expansion Header!
 
 ![comparison picture](https://raw.githubusercontent.com/OnionIoT/Onion-Media/master/Product%20Photos/Power%20Dock%202/Power-Dock2-original-comparison.JPG)
 
