@@ -116,7 +116,7 @@ Finally, the val argument is passed by reference, and after the function runs wi
 To read a byte from the 0x01 register from an I2C device with address of 0x5a (the Servo Expansion):
 ``` c
 int 	status, rdByte;
-status 	= i2c_write(0, 0x5a, 0x01, &rdByte);
+status 	= i2c_readByte(0, 0x5a, 0x01, &rdByte);
 ```
 
 ### Read Multiple Bytes - int i2c_read(int, int, int, uint8_t\*, int) {#i2c-c-read-multiple-bytes}
