@@ -66,12 +66,6 @@ The Expansion Header is a convenient tool that gives you easy access to the Omeg
 ```{r child = './Power-Dock/03-micro-usb-port.md'}
 ```
 
-<!-- The Micro-USB Port is used to supply the Power Dock with ... power! Connect it to a computer or a USB wall adapter. -->
-The Micro-USB Port is used to supply power to the Power Dock. Connect the Dock to a power source such as a computer or a USB wall adapter to recharge your battery, or to use your board without a battery.
-
-<!-- [//]: # (fix up this text...) -->
-
-
 <!-- No-USB-to-Serial -->
 ```{r child = '../shared/Hardware-Overview-Component-3-No-USB-to-Serial.md'}
 ```

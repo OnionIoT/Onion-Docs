@@ -1,4 +1,4 @@
-#### No-USB-to-Serial
+#### No USB-to-Serial
 
 There is no USB-to-Serial Chip on the Dock. This means that you will **not** be able to connect to the Omega serially over the Micro-USB port.
 
