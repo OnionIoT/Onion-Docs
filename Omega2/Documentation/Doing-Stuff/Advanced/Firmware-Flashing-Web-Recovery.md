@@ -2,7 +2,7 @@
 
 If your Omega got "bricked" or your firmware became corrupted and you cannot boot into your OS, do not panic as it can be fixed. This guide will teach you how to flash your Omega with new firmware through the Omega's Bootloader.
 
-![ethernet-main-setting](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-main-setting)
+![ethernet-main-setting](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-main-setting.JPG)
 
 ### Step 1: Ingredients
 
@@ -23,7 +23,7 @@ Now, plug your Omega and Ethernet Expansion to the Expansion Dock and connect th
 
 [First, connect to the Omega’s command line through serial](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-ssh-windows). Then, power on the device **and** press the **_Reset_** button on the Expansion Dock at the same time.  This will get you to the bootloader and you’ll see the following menu: 
 
-![bootloader-menu](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bootloader-menu)
+![bootloader-menu](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bootloader-menu.PNG)
 
 We need to activate `Web Recovery Mode` by pressing `0`. Be quick, you only have 40 seconds until the Omega reboots and tries to boot normally. After pressing `0`, you shoid see the following output:
 ```
@@ -42,15 +42,15 @@ In this step we will configure your computer's ethernet network to set it to an 
 
 * You should notice a new device in the Network and Sharing center:
 
-![ethernet-flash-network-sharing](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-network-sharing)
+![ethernet-flash-network-sharing](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-network-sharing.png)
 
 * We need to set up an IP address corresponded to our Omega's ethernet settings. Click on `Local Area Connection`, under the Undefined Network and select `Properties`.
 
-![ethernet-flash-lan](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-lan)
+![ethernet-flash-lan](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-lan.png)
 
 * Select `Internet Protocol Version 4 (TCP/IPv4)` and click `Properties`.
 
-![ethernet-flash-ip-setting](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-ip-setting)
+![ethernet-flash-ip-setting](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-ip-setting.png)
 
 * Check `Use the following IP address:` radio button and manually type `192.168.8.100`. Once finished, the subnet mask will be created automatically. Click `Ok`. Now you are all set.
 
@@ -58,15 +58,15 @@ In this step we will configure your computer's ethernet network to set it to an 
 
 Open your Browser and type `192.168.8.8` in the search window. You will be presented with the web recovery page. Use it to **choose** the firmware to be flashed on your Omega. We will want to choose the .bin file we downloaded previously and start the flashing process. 
 
-![ethernet-flash-web-page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-web-page)
+![ethernet-flash-web-page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-web-page.png)
 
 When you see that you file is successfully added, hit the `Update!` button and you will see the following output in your serial scree:
 
-![ethernet-flash-start-process](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-start-process)
+![ethernet-flash-start-process](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-start-process.png)
 
 This will take several minutes to reflash and reboot your device. Once it is done, you will `Onion Omega Logo` and the version number.
 
-![ethernet-flash-end-process](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-end-process)
+![ethernet-flash-end-process](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/ethernet-flash-end-process.png)
 
 Please, note that it matches the firmware we downloaded: `Ω - ware: 0.1.10 b160`. 
 
