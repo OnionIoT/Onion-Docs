@@ -36,7 +36,7 @@ HTTP server starting at 192.168.8.8 ...
 HTTP server is up and running.
 ```
 
-### Step 4: Configuring computer's ethenret network
+### Step 4: Configuring computer's ethernet network
 
 In this step we will configure your computer's ethernet network to set it to an IP address that can reach the Omega's Web Recovery IP, `192.168.8.8`. The following procedure outlines the instructions for Windows:
 
@@ -60,11 +60,11 @@ Open your Browser and type `192.168.8.8` in the search window. You will be prese
 
 ![ethernet-flash-web-page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/ethernet-flash-web-page.png)
 
-When you see that you file is successfully added, hit the `Update!` button and you will see the following output in your serial scree:
+When you see that you file is successfully added, hit the `Update!` button and you will see the following output in your serial screen:
 
 ![ethernet-flash-start-process](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/ethernet-flash-start-process.png)
 
-This will take several minutes to reflash and reboot your device. Once it is done, you will `Onion Omega Logo` and the version number.
+This will take several minutes to reflash and reboot your device. Once it is done, you will see `Onion Omega Logo` and the version number.
 
 ![ethernet-flash-end-process](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/ethernet-flash-end-process.png)
 
