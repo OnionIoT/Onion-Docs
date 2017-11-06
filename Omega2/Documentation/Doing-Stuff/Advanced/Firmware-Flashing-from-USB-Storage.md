@@ -2,7 +2,7 @@
 
 If your Omega got "bricked" or your firmware became corrupted and you cannot boot into your OS, do not panic as it can be fixed. This guide will teach you how to flash your Omega with new firmware through the Omega's Bootloader.
 
-![Usb Flashing Components](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/usb-firmware-flashing-components.jpg)
+![Usb Flashing Components](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/usb-firmware-flashing-components.jpg)
 
 ### Step 1: Ingredients
 
@@ -27,19 +27,19 @@ Now, plug your Omega and the USB stick into the Dock and connect to your compute
 
 [First, connect to the Omega’s command line through serial](https://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html#connecting-to-the-omega-terminal-serial). Then, power on the device **and** press the **_Reset_** button on the Dock at the same time.  This will get you to the bootloader and you’ll see the following menu: 
 
-![bootloader-menu](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bootloader-menu.PNG)
+![bootloader-menu](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/bootloader-menu.PNG)
 <!-- Bootloader menu -->
 
 We need to choose `Flashing firmware from USB storage` by pressing `2`. Be quick, you only have 40 seconds until the Omega reboots and tries to boot normally. After pressing `2`, you should see the following output:
 
-![bootloader-usb-firmware](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bootloader-usb-firmware.PNG)
+![bootloader-usb-firmware](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/bootloader-usb-firmware.PNG)
 <!-- Screenshot of the USB being recognized -->
 
 ### Step 4: Actual Flashing
 
 The bootloader is accessing the USB device and reading the `omega2.bin` file that holds our firmware.
 
-![bootloader-usb-rbooting](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bootloader-usb-read-filehttps://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bootloader-usb-rebooting.PNG)
+![bootloader-usb-rbooting](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/bootloader-usb-read-filehttps://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bootloader-usb-rebooting.PNG)
 <!-- Screenshot of the reading the omega2.bin file -->
 
 This process will take several minutes to read the file and then reflash and reboot your device! _Do not disconnect you Omega from power while the update is in the progress!_Do
@@ -48,7 +48,7 @@ Once it's done, the Omega will reboot automatically. You will see the Onion Omeg
 
 This will take several minutes to reflash and reboot your device. Once it is done, you will `Onion Omega Logo` and the version number.
 
-![bootloader-usb-flashed-rebooted](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bootloader-usb-flashed-rebootedhttps://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bootloader-menu.PNG)
+![bootloader-usb-flashed-rebooted](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/bootloader-usb-flashed-rebootedhttps://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/bootloader-menu.PNG)
 <!-- Screenshot of the finished flashing -->
 
 Please, note that it matches the firmware we downloaded: `Ω - ware: 0.1.10 b160`. 
