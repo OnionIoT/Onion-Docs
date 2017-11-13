@@ -50,7 +50,7 @@ This can only be done on Docks that have Reset Buttons:
 
 A more user friendly way to reset your Omega to factory settings is by using the Console. If you're not familiar with the Console, take a look at our articles on [installing the console](#console-series-installing-the-console) and then [accessing the Console][#accessing-the-console].
 
-To perform the factory reset, simply navigate to Settings and click 'Factory Reset' from the left pan. Now, you will see a Factory Reset page. Make sure to back up all of your custom files on a device before proceeding. When you are ready, just click on the button "Factory Reset" and wait several minutes while system is being factory restored. The amber LED will blink over the process of rebooting. Once the reset is done, your Omega will stop flashing. Now you may configure your Omega over, happy hacking!
+To perform the factory reset, simply navigate to `Settings` and click `Factory Reset` from the left pan. Now, you will see a Factory Reset page. Make sure to back up all of your custom files on a device before proceeding. When you are ready, just click on the button `Factory Reset` and wait several minutes while system is being factory restored. The amber LED will blink over the process of rebooting. Once the reset is done, your Omega will stop flashing. Now you may configure your Omega over, happy hacking!
 
 ![console-factory-reset](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/Doing-Stuff/img/console-factory-reset.PNG)
 
