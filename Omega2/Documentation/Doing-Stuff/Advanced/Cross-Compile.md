@@ -34,10 +34,10 @@ This may take some time!
 
 #### Downloading the LEDE Build System
 
-Use `git` to download the build system:
+Use `git` to download the build system customized by Onion for the Omega2:
 
 ```
-git clone https://git.lede-project.org/source.git
+git clone https://github.com/OnionIoT/source.git
 ```
 
 This will take some time but not nearly as much as the previous step!
@@ -58,7 +58,11 @@ src-git onion https://github.com/OnionIoT/OpenWRT-Packages.git;omega2 -->
 
 #### Build System Setup
 
-Ok, now we need to setup the build system so that it's configured for the Omega2 and Omega2+. Go into the `source` directory and start the build system menu:
+Ok, now we need to setup the build system so that it's configured for the Omega2 and Omega2+. 
+
+> Since you're using the Onion-customized build system, this part will already be done and you can skip down to the Compilation step. We've left the instructions here in case you're using the original LEDE build system.
+
+Go into the `source` directory and start the build system menu:
 
 ```
 cd source
