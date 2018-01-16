@@ -104,9 +104,9 @@ To install `curl` using OPKG, first run `opkg update` to retrieve all the latest
 
 ```
 root@Omega-2757:/# opkg update
-Downloading http://downloads.lede-project.org/snapshots/targets/ramips/mt7688/packages/Packages.gz.
+Downloading http://downloads.lede-project.org/snapshots/targets/ramips/mt76x8/packages/Packages.gz.
 Updated list of available packages in /var/opkg-lists/reboot_core.
-Downloading http://downloads.lede-project.org/snapshots/targets/ramips/mt7688/packages/Packages.sig.
+Downloading http://downloads.lede-project.org/snapshots/targets/ramips/mt76x8/packages/Packages.sig.
 Signature check passed.
 Downloading http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base/Packages.gz.
 Updated list of available packages in /var/opkg-lists/reboot_base.
@@ -198,7 +198,7 @@ If you really dislike using our repos, it's easy to switch back to using the off
 
 By default, it will be configured to use the Onion repos and will look something like this:
 ```
-#src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt7688/packages
+#src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt76x8/packages
 #src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base
 #src/gz reboot_onion http://repo.onion.io/omega2/packages
 ## src/gz reboot_luci http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/luci
@@ -213,7 +213,7 @@ src/gz omega2_onion http://repo.onion.io/omega2/packages/onion
 
 The commented out lines in the file are not active. To go back to the official LEDE repos, just uncomment those lines, and comment out the Onion lines:
 ```
-src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt7688/packages
+src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt76x8/packages
 src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base
 #src/gz reboot_onion http://repo.onion.io/omega2/packages
 ## src/gz reboot_luci http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/luci
