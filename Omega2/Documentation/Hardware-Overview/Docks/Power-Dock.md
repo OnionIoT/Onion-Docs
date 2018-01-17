@@ -50,8 +50,8 @@ You may need to line up the pins with the holes before pressing the Omega into t
 
 The Expansion Header is a convenient tool that gives you easy access to the Omega's GPIOs, and allows you to connect Onion Expansions directly. The Expansion Header is labelled to show you what GPIO is connected to each section.
 
-<!-- expansion header pinout intro -->
 ```{r child = '../shared/Hardware-Overview-Component-01-expansion-header-pinout-intro.md'}
+<!-- expansion header pinout intro -->
 ```
 
 ![expansion header pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-expansion-header-pinout.png)
@@ -104,24 +104,6 @@ Highest Battery Level:
 ```{r child = './Power-Dock/06-battery-connector.md'}
 ```
 
-The Power Dock is designed for use with a **3.7V LiPo Battery** with a standard 2-pin JST-PH connector (2mm spacing between pins).
-
-Expect a 1500mAh battery to last about 10 hours, in some cases, up to 12 hours.
-
-<!-- It should take Y hours to fully charge it up again.  -->
-
-**Warning:** Do not attempt to charge your battery with anything other than the Power Dock or a charger designed specifically for LiPo Batteries!
-
-
-<!-- Reset Button -->
-```{r child = '../shared/Hardware-Overview-Component-0-Reset-Button.md'}
-```
-
-
-<!-- USB Port -->
-```{r child = '../shared/Hardware-Overview-Component-5-Omega-USB-Port.md'}
-```
-
 
 
 ### Differences from the Expansion Dock
@@ -156,7 +138,7 @@ We've made available a detailed [diagram](https://raw.githubusercontent.com/Onio
 
 <!-- [//]: # (explanation that you can visually see the battery level on the indicator LEDs AND in the operating system) -->
 
-The `power-dock` application allows you to turn on the indicator LEDs on the Power Dock. It will only take effect when the Omega and Power Dock are being powered just by the battery.
+The `power-dock` application allows you to turn on the indicator LEDs on the Power Dock. It will only take effect when the Omega and Power Dock are being powered just by the battery. You would notice that the output on the `5V` is 3.4V initially. Since the Power Dock is designed for power-saving, it provides only the voltage that the battery has. In order to get desired 5V on the output you need to activate it by issuing `power-dock` command. This event triggers the voltage regulator to 5V. 
 
 #### Install
 
