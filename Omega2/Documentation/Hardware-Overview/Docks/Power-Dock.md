@@ -27,7 +27,6 @@ Bring your next project on the go with the Power Dock! Equipped with on-board ba
 ```{r child = './Power-Dock/01-connecting-an-omega.md'}
 ```
 
-To connect an Omega to the Power Dock, line up the Omega's edges with that of the Power Dock's as demonstrated below:
 
 ![power dock plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-top-plugged-in.JPG)
 
@@ -36,7 +35,6 @@ Make sure your Omega is pushed all the way down as demonstrated in the picture b
 
 ![power dock side view](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-side-view.JPG)
 
-You may need to line up the pins with the holes before pressing the Omega into the Dock.
 
 <!-- ### The Power Dock at a Glance -->
 
@@ -48,7 +46,6 @@ You may need to line up the pins with the holes before pressing the Omega into t
 
 <!-- [//]: # (breakout of the Omega's GPIOs, can be connected to other circuits directly, or can use Omega expansions) -->
 
-The Expansion Header is a convenient tool that gives you easy access to the Omega's GPIOs, and allows you to connect Onion Expansions directly. The Expansion Header is labelled to show you what GPIO is connected to each section.
 
 ```{r child = '../shared/Hardware-Overview-Component-01-expansion-header-pinout-intro.md'}
 <!-- expansion header pinout intro -->
