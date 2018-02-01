@@ -28,14 +28,6 @@ Bring your next project on the go with the Power Dock! Equipped with on-board ba
 ```
 
 
-![power dock plugged in](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-top-plugged-in.JPG)
-
-Make sure your Omega is pushed all the way down as demonstrated in the picture below:
-
-
-![power dock side view](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-side-view.JPG)
-
-
 <!-- ### The Power Dock at a Glance -->
 
 
@@ -73,10 +65,6 @@ Make sure your Omega is pushed all the way down as demonstrated in the picture b
 ```{r child = './Power-Dock/04-power-switch.md'}
 ```
 
-The power switch controls power to the Omega, regardless of whether it is powered from the battery or Micro-USB cable. The power switch has no effect on the battery charging, so **the battery will charge regardless of the switch position**.
-
-The blue Power LED indicates if there is power flowing to the Omega.
-
 <!-- [//]: # (add illustrations indicating the ON and OFF positions of the switch) -->
 
 
@@ -84,16 +72,6 @@ The blue Power LED indicates if there is power flowing to the Omega.
 
 ```{r child = './Power-Dock/05-battery-level-leds.md'}
 ```
-
-The power dock contains 4 LEDs that indicate the current battery level and charging status. The LED closest to the Micro-USB port indicates the lowest battery level and the LED furthest away from the Micro-USB port indicates the highest battery level.
-
-Lowest Battery Level:
-
-![Lowest Indicator Level](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-lowest-indicator.jpg)
-
-Highest Battery Level:
-
-![Highest Indicator Level](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-highest-indicator.jpg)
 
 
 ### The Battery Connector
