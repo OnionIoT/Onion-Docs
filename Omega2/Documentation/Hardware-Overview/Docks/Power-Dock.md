@@ -39,17 +39,6 @@ Bring your next project on the go with the Power Dock! Equipped with on-board ba
 <!-- [//]: # (breakout of the Omega's GPIOs, can be connected to other circuits directly, or can use Omega expansions) -->
 
 
-```{r child = '../shared/Hardware-Overview-Component-01-expansion-header-pinout-intro.md'}
-<!-- expansion header pinout intro -->
-```
-
-![expansion header pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/power-dock-expansion-header-pinout.png)
-
-<!-- expansion header pinout explanation - no pwm pins -->
-```{r child = '../shared/Hardware-Overview-Component-03-expansion-header-pinout-explanation-no-pwm.md'}
-```
-
-
 ### Micro-USB Port
 
 ```{r child = './Power-Dock/03-micro-usb-port.md'}
