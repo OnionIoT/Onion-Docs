@@ -211,7 +211,7 @@ src/gz omega2_packages http://repo.onion.io/omega2/packages/packages
 src/gz omega2_onion http://repo.onion.io/omega2/packages/onion
 ```
 
-The commented out lines in the file are not active. To go back to the official LEDE repos, just uncomment those lines, change the very first line, `.../ramips/mt7688` to `.../ramips/mt76x8 and comment out the Onion lines:
+The commented out lines in the file are not active. To go back to the official LEDE repos, just uncomment those lines, change the very first line, `.../ramips/mt7688` to `.../ramips/mt76x8` and comment out the Onion lines:
 ```
 src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt76x8/packages
 src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base
