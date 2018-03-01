@@ -102,7 +102,7 @@ We've made available a detailed [diagram](https://raw.githubusercontent.com/Onio
 
 <!-- [//]: # (explanation that you can visually see the battery level on the indicator LEDs AND in the operating system) -->
 
-The `power-dock` application allows you to turn on the indicator LEDs on the Power Dock. It will only take effect when the Omega and Power Dock are being powered just by the battery. You would notice that the output on the `5V` is 3.4V initially. Since the Power Dock is designed for power-saving, it provides only the voltage that the battery has. In order to get desired 5V on the output you need to activate it by issuing `power-dock` command. This event triggers the voltage regulator to 5V. 
+The `power-dock` application allows you to turn on the indicator LEDs on the Power Dock. It will only take effect when the Omega and Power Dock are being powered just by the battery. 
 
 #### Install
 
@@ -134,6 +134,9 @@ And the battery LEDs will turn on for 5 seconds:
 
 <!-- [//]: # (Add section describing the text output of the battery level) -->
 
+#### The 5V Pins
+
+When operating in battery mode, you will find that the output on the `5V` pins is actually 3.3V initially. Since the Power Dock is designed for power-saving, it only provides the 3.3 volts the Omega needs to run. **In order to get activate the circuit that performs the battery to 5V conversion, you need to issue the `power-dock` command.**
 
 <!-- TODO: add a section on reading the battery level, ask Lazar -->
 
