@@ -1,4 +1,4 @@
-## Using the RFID & NFC Expansion
+## Using the RFID & NFC Expansion {#using-rfid-nfc-expansion}
 
 The NFC & RFID Expansion brings contact-less RFID and NFC communication to the Omega ecosystem. It supports reading and writing with several NDC and RFID protocols at 13.56 MHz. The Expansion is based on the popular `PN532` NFC Chip and communicates with the Omega via `UART1`
 
@@ -82,14 +82,14 @@ The `ATQA` and `SAK` indicate the manufacturer and tag type, and `UID` is the Un
 
 The `ATQA` and `SAK` values, and the length of the `UID` can be used to determine the type of card that was scanned:
 
+```
 |-------------------|-------|-----|------------|
 | Card Type         | ATQA  | SAK | UID Length |
 | Mifare Classic 1K | 00 04 | 08  | 4 Bytes    |
 | Mifare Classic 4K | 00 02 | 18  | 4 Bytes    |
 | Mifare Ultralight | 00 44 | 00  | 7 Bytes    |
-
+```
 <!-- [official `ISO14443A` table](http://nfc-tools.org/index.php?title=ISO14443A) -->
-
 
 ### Using Mifare Ultralight Cards
 
@@ -116,7 +116,7 @@ xxd mycardUltra.mfd
 
 And you will be presented with the following:
 
-![ultralight-labeled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mifare-ultralight-labeled.jpg)
+![ultralight-labeled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mifare-ultralight-labeled.png)
 
 #### Modifying the Data
 
@@ -189,17 +189,18 @@ Each card has its own UID, Block Check Character (BCC), Access Condition with tw
 
 Please see the chart below for characteristics of the cards:
 
+```
 |     Card Type     | # of Sectors | # of Blocks per Sector | Data (Bytes) |
 |:-----------------:|:------------:|:----------------------:|:------------:|
 | Mifare Classic 1K |      16      |            4           |     1,024    |
 | Mifare Classic 4K |    32 + 8    |         4 + 16         |     4,096    |
-
+```
 
 Each Block is 16 bytes. A Sector holds 4 Blocks, so 64 bytes in total. One block in each sector holds the two keys (A and B), as well as the Access Control Settings that define the privileges (read, write, neither, both) each key for that sector.
 
 The very first sector of a tag starts with a block of card identification data that cannot be overwritten, then 2 programmable blocks, and the key block. All the rest of the sectors are made up of 3 programmable blocks and a key block.
 
-![mifare-classic-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mifare-classic-sectors-labeled.jpg)
+![mifare-classic-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/mifare-classic-sectors-labeled.png)
 
 We'll be using the `nfc-mfclassic` program is used to interact with `Mifare Classic` cards. You can read from/write to the tag, wipe the card and modify the keys.
 
@@ -342,19 +343,6 @@ In order to format the card data (remove all user data), the `mifare-classic-for
 ### RFID/NFC Expansion Availability
 
 The `nfc-scan-device` is the utility to check whether the RFID/NFC device is available. When your RFID/NFC Expansion is plugged to the Dock, you can scan it and make sure that it is recognized by the system:
-```
-# nfc-scan-device
-nfc-scan-device uses libnfc reboot-3483-gd1bcad0
-1 NFC device(s) found:
-- pn532_uart:/dev/ttyS1:
-    pn532_uart:/dev/ttyS1
-```
-
-From this, you can see that the Expansion is up and running under `/dev/ttyS1`.
-
-#### nfc-scan-device
-
-The `nfc-scan-device` is the utility to check whether the RFID/NFC device is presented. While your RFID/NFC Expansion is plugged to the dock, you can scan it and make sure that it is recongizable:
 ```
 # nfc-scan-device
 nfc-scan-device uses libnfc reboot-3483-gd1bcad0

@@ -38,4 +38,4 @@ The RFID & NFC Expansion has an onboard PCB antenna with 0cm~6cm communication d
 
 The RFID & NFC Expansion can be used to read from and write to supported 13.56MHz cards and tags. It can also be used for bi-directional communication with NFC devices.
 
-Read our [guide to using the RFID & NFC Expansion](#using-nfc-expansion) to learn how to control your RFID & NFC Expansion.
+Read our [guide to using the RFID & NFC Expansion](#using-rfid-nfc-expansion) to learn how to control your RFID & NFC Expansion.
