@@ -1,6 +1,6 @@
 ## Using the RFID & NFC Expansion {#using-rfid-nfc-expansion}
 
-The NFC & RFID Expansion brings contact-less RFID and NFC communication to the Omega ecosystem. It supports reading and writing with several NDC and RFID protocols at 13.56 MHz. The Expansion is based on the popular `PN532` NFC Chip and communicates with the Omega via `UART1`
+The NFC & RFID Expansion brings contact-less RFID and NFC communication to the Omega ecosystem. It supports reading and writing with several NDC and RFID protocols at 13.56 MHz. The Expansion is based on the popular `PN532` NFC Chip and communicates with the Omega via `UART1`.
 
 ### Supported Card Types
 
@@ -82,13 +82,11 @@ The `ATQA` and `SAK` indicate the manufacturer and tag type, and `UID` is the Un
 
 The `ATQA` and `SAK` values, and the length of the `UID` can be used to determine the type of card that was scanned:
 
-```
 |-------------------|-------|-----|------------|
 | Card Type         | ATQA  | SAK | UID Length |
 | Mifare Classic 1K | 00 04 | 08  | 4 Bytes    |
 | Mifare Classic 4K | 00 02 | 18  | 4 Bytes    |
 | Mifare Ultralight | 00 44 | 00  | 7 Bytes    |
-```
 <!-- [official `ISO14443A` table](http://nfc-tools.org/index.php?title=ISO14443A) -->
 
 ### Using Mifare Ultralight Cards
@@ -189,12 +187,11 @@ Each card has its own UID, Block Check Character (BCC), Access Condition with tw
 
 Please see the chart below for characteristics of the cards:
 
-```
 |     Card Type     | # of Sectors | # of Blocks per Sector | Data (Bytes) |
 |:-----------------:|:------------:|:----------------------:|:------------:|
 | Mifare Classic 1K |      16      |            4           |     1,024    |
 | Mifare Classic 4K |    32 + 8    |         4 + 16         |     4,096    |
-```
+
 
 Each Block is 16 bytes. A Sector holds 4 Blocks, so 64 bytes in total. One block in each sector holds the two keys (A and B), as well as the Access Control Settings that define the privileges (read, write, neither, both) each key for that sector.
 
