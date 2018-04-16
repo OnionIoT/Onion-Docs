@@ -82,10 +82,10 @@ The `ATQA` and `SAK` indicate the manufacturer and tag type, and `UID` is the Un
 
 The `ATQA` and `SAK` values, and the length of the `UID` can be used to determine the type of card that was scanned:
 
-|-------------------|-------|-----|------------|
-| Card Type         | ATQA  | SAK | UID Length |
-| Mifare Classic 1K | 00 04 | 08  | 4 Bytes    |
-| Mifare Classic 4K | 00 02 | 18  | 4 Bytes    |
+|     Card Type     |  ATQA | SAK | UID Length |
+|:-----------------:|:-----:|:---:|------------|
+| Mifare Classic 1K | 00 04 |  08 | 4 Bytes    |
+| Mifare Classic 4K | 00 02 |  18 | 4 Bytes    |
 | Mifare Ultralight | 00 44 | 00  | 7 Bytes    |
 <!-- [official `ISO14443A` table](http://nfc-tools.org/index.php?title=ISO14443A) -->
 
