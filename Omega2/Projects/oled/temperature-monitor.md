@@ -75,7 +75,7 @@ The code for this project is all done and can be found in Onion's [`temperature-
 
 ```
 cd /root
-git clone https://github.com/OnionIoT/oled-temperature-monitor.git
+git clone https://github.com/OnionIoT/temperature-monitor.git
 ```
 
 #### 4. Setup Ubidots
@@ -183,7 +183,7 @@ Enter `crontab -e` to add a task to the `cron` daemon, it will open a file in vi
 #
 ```
 
-> This assumes that your project code is located in `/root/oled-temperature-monitor`
+> This assumes that your project code is located in `/root/temperature-monitor`
 
 Now, we'll restart `cron`:
 
