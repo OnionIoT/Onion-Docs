@@ -75,6 +75,5 @@ Add correct host key in /Users/Onion/.ssh/known_hosts to get rid of this message
 Offending RSA key in /Users/Onion/.ssh/known_hosts:231
 RSA host key for 192.168.3.1 has changed and you have requested strict checking.
 Host key verification failed.
-<<<<<<< HEAD
 ```
 But this is not a big issue. The fix is, simply open the `known_hosts` file and delete the previous entry. The warning message will specify the line number.
