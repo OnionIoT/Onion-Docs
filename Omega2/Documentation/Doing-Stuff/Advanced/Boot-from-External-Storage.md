@@ -220,28 +220,25 @@ Then edit the `/etc/config/fstab` file to enable auto-mounting the `/overlay` di
 vi /etc/config/fstab
 ```
 
-Look for the line
+Look for the block
 
 ```
-option  target  '/mnt/<device name>'
+config 'mount'
+	option	target	'/mnt/<device name>'
+	option	uuid	'<long ID>'
+	option	enabled	'0'
 ```
 
 and change it to:
 
 ```
-option target '/overlay'
-```
-
-Then, look for the line:
-
-```
-option  enabled '0'
-```
-
-and change it to
-
-```
-option  enabled '1'
+config 'mount'
+    option target        '/'
+    option device        '/dev/<device name>'
+    option fstype        'ext4'
+    option options       'rw,sync'
+    option enabled       '1'
+    option enabled_fsck  '0'
 ```
 
 >If your USB device uses one of the drivers from `kmod-usb-storage-extras`, you will need to run the following: `ln -s  /etc/modules.d/usb-storage-extras /etc/modules-boot.d/usb-storage-extras`
