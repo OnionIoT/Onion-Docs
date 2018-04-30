@@ -150,7 +150,7 @@ The process for cross compiling is straight-forward, we just need to ensure the 
 	* The toolchain library shared object directory, `staging_dir/toolchain-mipsel_24kc_gcc-5.4.0_musl/lib`
 	* The target library shared object directory, `staging_dir/target-mipsel_24kc_musl/usr/lib/`
 
-The additions to the *include search path* let the compiler know to also check in those directories when looking for header files that are `#include`-ed in your program. Similarly, the additions the the *library search path* let the compiler/linker know to also check in those directories when looking for shared object files.
+The additions to the *include search path* let the compiler know to also check in those directories when looking for header files that are `#include`-ed in your program. Similarly, the additions to the *library search path* let the compiler/linker know to also check in those directories when looking for shared object files.
 
 The above requirements can be achieved in several different ways:
 
