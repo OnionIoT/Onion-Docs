@@ -15,7 +15,7 @@ The Omega2 is the latest in development boards from Onion. It comes packed with 
 | USB | USB 2.0  |
 | MicroSD Slot | No  |
 | WiFi adapter | b/g/n Wi-Fi  |
-| GPIOs | 15  |
+| GPIOs | 18  |
 | PWM | 2  |
 | UART | 2  |
 | I2C | 1  |
