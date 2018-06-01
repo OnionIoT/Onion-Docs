@@ -14,7 +14,7 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 | USB | USB 2.0  |
 | MicroSD Slot | **Yes**  |
 | WiFi adapter | b/g/n Wi-Fi  |
-| GPIOs | 15  |
+| GPIOs | 18  |
 | PWM | 2  |
 | UART | 2  |
 | I2C | 1  |
