@@ -116,7 +116,7 @@ Finally, the val argument is passed by reference, and after the function runs wi
 To read a byte from the 0x01 register from an I2C device with address of 0x5a (the Servo Expansion):
 ``` c
 int 	status, rdByte;
-status 	= i2c_write(0, 0x5a, 0x01, &rdByte);
+status 	= i2c_readByte(0, 0x5a, 0x01, &rdByte);
 ```
 
 ### Read Multiple Bytes - int i2c_read(int, int, int, uint8_t\*, int) {#i2c-c-read-multiple-bytes}
@@ -213,7 +213,7 @@ uint8_t	buffer[32];
 buffer[0] 	= 0xde;
 buffer[1] 	= 0xad;
 
-status 		= i2c_writeBuffer(0, 0x08, 0x01, buffer, 2);
+status 		= i2c_writeBuffer(0, 0x08, 0x02, buffer, 2);
 ```
 
 Write 3 bytes to the 0x05 register address on the same device as above using an array for the `*buffer` argument:
@@ -275,7 +275,7 @@ Write a byte to the 0x02 register address on an I2C device with an address of 0x
 int 	status;
 int		val  	= 0x04;
 
-status 		= i2c_writeBytes(0, 0x08, 0x01, val, 1);
+status 		= i2c_writeBytes(0, 0x08, 0x02, val, 1);
 ```
 
 Write 2 bytes to the 0x05 register address on the same device as above:
@@ -284,7 +284,7 @@ int 	status;
 int		val  	= 0x1304;
 
 // write 0x04 and then 0x13 to the 0x01 address
-status 		= i2c_writeBytes(0, 0x08, 0x01, val, 2);
+status 		= i2c_writeBytes(0, 0x08, 0x05, val, 2);
 
 ```
 

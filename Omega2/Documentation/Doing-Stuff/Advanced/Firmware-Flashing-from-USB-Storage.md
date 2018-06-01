@@ -19,7 +19,7 @@ We will need the following ingredients:
 
 ### Step 2: Downloading Firmware
 
-Before we proceed to the actual flashing process, we need to download the firmware we wish to flash on the Omega to your computer. Open your web browser and go to the [Onion firmware repo](http://repo.onion.io/omega2/images/). We will flash firmware `v0.1.10 b160`, which is the latest at the time of writing. Copy it to your USB stick and put it in the root directory - the top level of your USB drive, not in a folder or directory. Rename it to `omega2.bin` and your recovery USB stick is ready
+Before we proceed to the actual flashing process, we need to download the firmware we wish to flash on the Omega to your computer. Open your web browser and go to the [Onion firmware repo](http://repo.onion.io/omega2/images/). We will flash firmware `v0.1.10 b160`, which is the latest at the time of writing. Copy it to your USB stick (formatted in **FAT-32**) and put it in the root directory - the top level of your USB drive, not in a folder or directory. Rename it to `omega2.bin` and your recovery USB stick is ready
 
 ### Step 3: Activating Recovery mode from USB storage
 

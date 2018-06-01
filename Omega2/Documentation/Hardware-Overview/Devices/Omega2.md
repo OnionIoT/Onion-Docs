@@ -15,7 +15,7 @@ The Omega2 is the latest in development boards from Onion. It comes packed with 
 | USB | USB 2.0  |
 | MicroSD Slot | No  |
 | WiFi adapter | b/g/n Wi-Fi  |
-| GPIOs | 15  |
+| GPIOs | 18  |
 | PWM | 2  |
 | UART | 2  |
 | I2C | 1  |
@@ -29,9 +29,7 @@ The datasheet for the Omega2's processor can be found here: [Mediatek MT7688 Dat
 ### The Pins
 
 <!-- image of omega2 pinout -->
-![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
-
-<!-- TODO: include section on the 50pin connector -->
+![pinout](https://github.com/OnionIoT/Onion-Media/raw/master/Pinouts/Omega2.png)
 
 <!-- operating system -->
 ```{r child = '../shared/Hardware-Overview-Component-90-Omega-operating-system.md'}

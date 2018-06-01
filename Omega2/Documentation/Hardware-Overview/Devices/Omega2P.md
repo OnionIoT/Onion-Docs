@@ -14,7 +14,7 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 | USB | USB 2.0  |
 | MicroSD Slot | **Yes**  |
 | WiFi adapter | b/g/n Wi-Fi  |
-| GPIOs | 15  |
+| GPIOs | 18  |
 | PWM | 2  |
 | UART | 2  |
 | I2C | 1  |
@@ -27,7 +27,7 @@ The datasheet for the Omega2 Plus' processor can be found here: [Mediatek MT7688
 
 ### The Pins
 
-![pinout](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
+![pinout](https://github.com/OnionIoT/Onion-Media/raw/master/Pinouts/Omega2.png)
 
 <!-- TODO: include section on the 50pin connector -->
 
