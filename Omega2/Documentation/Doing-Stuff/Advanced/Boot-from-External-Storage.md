@@ -117,11 +117,11 @@ If you don't have one that's formatted, you can format it using the Omega.
 
 #### Installing the Tools
 
-On your Omega, install  a few filesystem tools by running the following commands:
+Since USB Kernel modules are pre-installed, on your Omega, install  a filesystem tool by running the following commands:
 
 ```
 opkg update
-opkg install kmod-usb-storage-extras e2fsprogs kmod-fs-ext4
+opkg install e2fsprogs
 ```
 
 #### Connecting External Storage Device
