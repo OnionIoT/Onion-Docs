@@ -135,10 +135,10 @@ Since the Omega's storage uses SPI, the SPI communication pins - GPIOs 7, 8, and
 
 To reiterate:
 
-* **GPIOs 7, 8, and 9 cannot be used as regular GPIOs**.
+* **GPIOs 7, 8, and 9 cannot be used as regular GPIOs** - they must be used for the SPI bus
 * Connecting non-SPI circuitry to these pins may prevent your Omega from booting or cause other damage to your unit.
 * The SPI CS1 pin, GPIO 6, may be used to control an additional external SPI device
-* The SPI CS1 pin, GPIO 6, may be still used as a regular GPIO when configured as a GPIO using `omega2-ctl`.
+* The SPI CS1 pin, GPIO 6, may be still used as a regular GPIO when configured as a GPIO using `omega2-ctrl`.
 
 #### LED & Reset GPIOs
 
