@@ -42,3 +42,7 @@ Check out our [Weather Station](https://docs.onion.io/omega2-project-book-vol1/w
 ### Blynk
 
 With Blynk, you can control your IoT device, in this case the Omega2, with your smartphone! In partnership with Blynk, we provide a [NodeJS Blynk library](https://docs.onion.io/omega2-docs/blynk-library.html) for the Omega2 that can be installed using OPKG. See our [walkthrough on using Blynk](https://onion.io/2bt-blynk-omega/) for an example of how to control your Omega with the Blynk App. For more information you can visit the [Blynk website](https://www.blynk.cc/).
+
+### Google Cloud Platform IoT Core
+
+Omega2 is also compatible with Google Cloud service and is very easy to get going with it! The setting is straightforward, Omega uses several MQTT commands to connect to Google Cloud Platform IoT Core. For further details, please see [this tutorial](https://onion.io/2bt-may-29-2018/) that was made by our fellow Onioneer

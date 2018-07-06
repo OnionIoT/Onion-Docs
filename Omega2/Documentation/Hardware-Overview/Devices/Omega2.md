@@ -28,6 +28,8 @@ The datasheet for the Omega2's processor can be found here: [Mediatek MT7688 Dat
 
 ### The Pins
 
+Take a look at the [Using the GPIOs](https://docs.onion.io/omega2-docs/using-gpios.html#important-special-gpios) article to learn more about the Omega's GPIOs, multiplexing GPIO functionality, and the behaviour and requirements of the Omega's special GPIOs.
+
 <!-- image of omega2 pinout -->
 ![pinout](https://github.com/OnionIoT/Onion-Media/raw/master/Pinouts/Omega2.png)
 
