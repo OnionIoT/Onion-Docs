@@ -14,7 +14,9 @@
 //	- an address switch
 //	- 3x Grove connectors
 
-// VISUAL: ADC Expansion illustration
+// VISUAL: ADC Expansion illustration - should be available in Hardware-Illustrations repo
+
+// can mention it's based on the TI ADS1115 analog-to-digital converter chip
 
 ### Connecting to a Dock
 
@@ -52,14 +54,9 @@
 
 ### The Address Switch
 
-// the address switch allows users to use two ADC Expasions with a single Omega, providing EIGHT analog input channels!
+```{r child='./ADC-Expansion-Component-address-switch.md'}
+```
 
-// VISUAL: ADC Exp with circle around address switch (see https://docs.onion.io/omega2-docs/relay-expansion.html#the-address-switch)
+### Using the ADC Expansion
 
-// the switch changes the I2C address of the ADC chip on the ADC Expansion. That way, two ADC Expansions can be included on the Omega's I2C bus
-// need to display the switch setting and the i2c in a table similar to https://docs.onion.io/omega2-docs/relay-expansion.html#the-address-switch
-
-// values:
-// Switch 																I2C Device Address
-//	0x48 (farther from expansion header)	0x48
-//	0x49 (closer to expansion header)			0x49
+// should link to our Using the ADC Expansion article
