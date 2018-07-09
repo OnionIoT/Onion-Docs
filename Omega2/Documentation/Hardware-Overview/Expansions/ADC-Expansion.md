@@ -18,7 +18,9 @@ The ADC Expansion features the following:
 
 ![ADC-Expansion-illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion.png)
 
-// VISUAL: ADC Expansion illustration
+// VISUAL: ADC Expansion illustration - should be available in Hardware-Illustrations repo
+
+// can mention it's based on the TI ADS1115 analog-to-digital converter chip
 
 ### Connecting to a Dock
 
@@ -58,6 +60,7 @@ The digital Grove connector is connected to the Omega's I2C bus. Since I2C is a 
 
 ### The Address Switch
 
+<<<<<<< HEAD
 The address switch allows users to use two ADC Expasions with a single Omega, providing EIGHT analog input channels!
 
 // VISUAL: ADC Exp with circle around address switch (see https://docs.onion.io/omega2-docs/relay-expansion.html#the-address-switch)
@@ -73,8 +76,11 @@ The switch changes the I2C address of the ADC chip on the ADC Expansion. That wa
 |    ON    |    ON    |     *11*     |
 
 The I2C addresses corresponding to the different switch positions are shown below:
+=======
+```{r child='./ADC-Expansion-Component-address-switch.md'}
+```
 
-// values:
-// Switch 																I2C Device Address
-//	0x48 (farther from expansion header)	0x48
-//	0x49 (closer to expansion header)			0x49
+### Using the ADC Expansion
+>>>>>>> 6e047176d4b13dca62a5e4258f1afbfd7dd96a93
+
+// should link to our Using the ADC Expansion article

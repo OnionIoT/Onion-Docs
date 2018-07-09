@@ -1,7 +1,7 @@
 ## Connecting to Cloud Platforms
 
 
-In this section we would like to present our supported Cloud Platforms. The Omega can easily connect with with AWS IoT, Losant, Ubidots, IBM Watson IoT, and Blynk. Please continue reading to find out further details and instructions on how to get started and how to make your own Cloud connected project!
+In this section we would like to present our supported Cloud Platforms. The Omega can easily connect with with AWS IoT, Losant, Ubidots, IBM Watson IoT, Google Cloud IoT, and Blynk. Please continue reading to find out further details and instructions on how to get started and how to make your own Cloud connected project!
 
 ### AWS IoT
 
@@ -38,11 +38,12 @@ The [IBM Watson IoT platform](https://internetofthings.ibmcloud.com/) makes it e
 
 Check out our [Weather Station](https://docs.onion.io/omega2-project-book-vol1/weather-station.html) project for a detailed walkthrough on building an IoT project that will transmit sensor data to Watson IoT and how to visualize that data.
 
+### Google Cloud IoT Core
+
+The [Google Cloud IoT Core](https://cloud.google.com/iot-core/) is a fully managed service to easily and securely connect, manage, and ingest data from globally dispersed devices. In combination with other services on Google Cloud IoT platform, Google Cloud IoT provides a solution for collecting, processing, analyzing, and visualizing IoT data in real time to support improved operational efficiency.
+
+Follow along with [this community-made tutorial](https://onion.io/2bt-may-29-2018/) to learn how to setup two-way MQTT communication with Google Cloud IoT Core using the mosquitto utility. For background on creating a Device on Google Cloud, see their [Creating Registries and Devices  Tutorial](https://cloud.google.com/iot/docs/how-tos/devices). Also see [this Medium post](https://medium.com/google-cloud/google-cloud-iot-core-golang-b130f65951ba) detailing how to write a GoLang program that establishes a connection with Google Cloud IoT and receives as well as sends data.
 
 ### Blynk
 
 With Blynk, you can control your IoT device, in this case the Omega2, with your smartphone! In partnership with Blynk, we provide a [NodeJS Blynk library](https://docs.onion.io/omega2-docs/blynk-library.html) for the Omega2 that can be installed using OPKG. See our [walkthrough on using Blynk](https://onion.io/2bt-blynk-omega/) for an example of how to control your Omega with the Blynk App. For more information you can visit the [Blynk website](https://www.blynk.cc/).
-
-### Google Cloud Platform IoT Core
-
-Omega2 is also compatible with Google Cloud service and is very easy to get going with it! The setting is straightforward, Omega uses several MQTT commands to connect to Google Cloud Platform IoT Core. For further details, please see [this tutorial](https://onion.io/2bt-may-29-2018/) that was made by our fellow Onioneer
