@@ -3,14 +3,10 @@
 
 The ADC Expansion allows you to read analog signals up to 5V with your Omega2. Now you have an opportunity to convert analog signal such as sound, temperature, humidity and others into a digital signal. It has 4 analog input channels, 16 BIts of precision and up to 860 samples per second. The expansion also communicates with the Omega over I2C.
 
-// intro to ADC Expansion
-//	- allows you to read analog signals up to 5V with your Omega2
-//	- 4 analog input channels, 16bits of precision, up to 860 samples per second
-// 	- communicates with the omega over I2C
-
 ### The Hardware
 
 The ADC Expansion features the following:
+
 * 4 analog input channels and provides 5V and GND female headers for each of the 4 inputs
 * provides 5V and GND female headers for each of the 4 inputs
 * An address switch
@@ -20,7 +16,7 @@ The ADC Expansion features the following:
 
 // VISUAL: ADC Expansion illustration - should be available in Hardware-Illustrations repo
 
-// can mention it's based on the TI ADS1115 analog-to-digital converter chip
+The ADC Expansion is based on the TI ADS1115 analog-to-digital converter chip.
 
 ### Connecting to a Dock
 
@@ -60,27 +56,12 @@ The digital Grove connector is connected to the Omega's I2C bus. Since I2C is a 
 
 ### The Address Switch
 
-<<<<<<< HEAD
-The address switch allows users to use two ADC Expasions with a single Omega, providing EIGHT analog input channels!
 
-// VISUAL: ADC Exp with circle around address switch (see https://docs.onion.io/omega2-docs/relay-expansion.html#the-address-switch)
-//Label Switch 1 and 2 corresponded to its I2C address
-
-The switch changes the I2C address of the ADC chip on the ADC Expansion. That way, two ADC Expansions can be included on the Omega's I2C bus. Switches can be turned either ON or OFF. See the following table for the address values:
-
-|   0x48   |   0x49   | Binary Value |
-|:--------:|:--------:|:------------:|
-|    OFF   |    OFF   |     *00*     |
-|    OFF   |    ON    |     *01*     |
-|    ON    |    OFF   |     *10*     |
-|    ON    |    ON    |     *11*     |
-
-The I2C addresses corresponding to the different switch positions are shown below:
-=======
 ```{r child='./ADC-Expansion-Component-address-switch.md'}
 ```
 
-### Using the ADC Expansion
->>>>>>> 6e047176d4b13dca62a5e4258f1afbfd7dd96a93
+// VISUAL: ADC Exp with circle around address switch (see https://docs.onion.io/omega2-docs/relay-expansion.html#the-address-switch)
 
-// should link to our Using the ADC Expansion article
+### Using the ADC Expansion
+
+Read our [guide to using the ADC Expansion](#using-adc-expansion) to learn how to control it using software.
