@@ -69,11 +69,13 @@ adc-exp [options] <channel>
 
 #### Reading an Input Voltage
 
-Reading a single channel, when the switch is at the default value (0x48) which is channel 0:
+To sample and read the voltage on an input channel, run the following:
 
 ```
 adc-exp <channel>
 ```
+
+> Note that this assumes the switch is set to `0x48`
 
 For example, if we want to read channel 0:
 
@@ -89,7 +91,7 @@ A0 Voltage: 2.12 V
 
 #### The Switch Option
 
-You can read a single channel and specify the value of the switch:
+By default, the `adc-exp` command assumes the switch is set to `0x48`. It's possible to explicitly specify the switch value:
 
 ```
 adc-exp -s <switch value> <channel>
@@ -115,7 +117,20 @@ In order to read all channels at once use the following:
 adc-exp [-s <switch value>] all
 ```
 
-// give an example, and show the output
+Let's say the switch is set to 0x49, the command will look like this:
+
+```
+adc-exp -s 0x49 all
+```
+
+And will return something like:
+
+```
+A0 Voltage: 3.30 V
+A1 Voltage: 4.99 V
+A2 Voltage: 2.53 V
+A3 Voltage: 0 V
+```
 
 #### JSON Output
 
@@ -125,4 +140,26 @@ Sometimes it's useful to have the output in JSON, so we've built in an option:
 adc-exp -j [-s <switch value>] <channel>
 ```
 
-// again, give an example, and show the output
+Let's say we want to read channel 1 and the switch is set to 0x48, we can run:
+
+```
+adc-exp -j -s 0x48 1
+```
+
+It will return something like:
+
+```
+{"channel":1,"voltage":2.51, "switch":0}
+```
+
+Or, if the switch is set to 0x49 and we want to read channel 3:
+
+```
+adc-exp -j -s 0x49 3
+```
+
+It will return:
+
+```
+{"channel":3,"voltage":4.99, "switch":0x49}
+```
