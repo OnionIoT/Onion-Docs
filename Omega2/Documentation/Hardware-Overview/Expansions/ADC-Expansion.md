@@ -56,4 +56,4 @@ The digital Grove connector is connected to the Omega's I2C bus. Since I2C is a 
 
 ### Using the ADC Expansion
 
-Read our [guide to using the ADC Expansion](#using-adc-expansion) to learn how to control it using software.
+Read our [guide to using the ADC Expansion](#using-adc-expansion) to learn how to read analog voltages from the command line.
