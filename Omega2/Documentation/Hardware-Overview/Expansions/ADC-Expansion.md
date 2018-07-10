@@ -1,4 +1,3 @@
-
 ## ADC Expansion {#adc-expansion}
 
 The ADC Expansion allows you to read analog signals up to 5V with your Omega2. Now you have an opportunity to convert analog signal such as sound, temperature, humidity and others into a digital signal. It has 4 analog input channels, 16 BIts of precision and up to 860 samples per second. The expansion also communicates with the Omega over I2C.
@@ -13,8 +12,6 @@ The ADC Expansion features the following:
 * 3x Grove connectors
 
 ![ADC-Expansion-illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion.png)
-
-// VISUAL: ADC Expansion illustration - should be available in Hardware-Illustrations repo
 
 The ADC Expansion is based on the TI ADS1115 analog-to-digital converter chip.
 
@@ -40,7 +37,7 @@ A female header provides access to all 4 analog input channels, making analog in
 
 5V and GND female headers are also provided for each of the 4 inputs, to make powering the analog sensor easier.
 
-![ADC-Expansion-analog](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-soil-connection-2.jpg
+![ADC-Expansion-analog2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-soil-connection-2.jpg
 
 ### Grove Connectors
 
@@ -54,11 +51,8 @@ The digital Grove connector is connected to the Omega's I2C bus. Since I2C is a 
 
 ### The Address Switch
 
-
 ```{r child='./ADC-Expansion-Component-address-switch.md'}
 ```
-
-![ADC-Expansion-switch](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-on-expansion-circle.jpg)
 
 ### Using the ADC Expansion
 

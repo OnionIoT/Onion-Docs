@@ -18,7 +18,7 @@ Input channels are available on the female header on the board, along with 5V po
 
 ![ADC-Expansion-illustration-labeled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion-labeled.png)
 
-Make sure to connect the sensors correctly to the female connector - connect 5V from the sensor to the VCC on the female input, same with GND and Signal
+Make sure to connect the sensors correctly - connect 5V from the sensor to the VCC on the female input and same with GND and Signal connectors.
 
 ![ADC-Expansion-analog2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-soil-connection-2.jpg
 
@@ -26,16 +26,15 @@ Make sure to connect the sensors correctly to the female connector - connect 5V 
 
 The ADC Expansion has two analog grove connectors:
 
-![ADC-Expansion-analog2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion-analog-grove.png)
+![ADC-Expansion-analog-grove](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion-analog-grove.png)
 
 Remember, it's important that a channel should be connected to an input source either through the header or the grove connector. Using both for a single input channel can cause damage to the ADC Expansion.
-
 
 ### Digital Grove Connector
 
 The ADC Expansion also includes a digital I2C grove connector, allowing for additional Grove sensors to be connected.
 
-![ADC-Expansion-analog2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion-digital-grove.jpg)
+![ADC-Expansion-analog-digital-grove](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion-digital-grove.png)
 
 ### The Address Switch
 

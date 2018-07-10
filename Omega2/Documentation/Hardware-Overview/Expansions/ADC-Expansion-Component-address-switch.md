@@ -1,6 +1,6 @@
 The address switch changes the I2C device address of the ADC Expansion, allowing users to use two ADC Expansions with a single Omega, providing EIGHT analog input channels
 
-// VISUAL: ADC Exp with circle around address switch (see https://docs.onion.io/omega2-docs/relay-expansion.html#the-address-switch)
+![ADC-Expansion-switch](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-on-expansion-circle.jpg)
 
 The switch changes the I2C address of the ADC chip on the ADC Expansion. That way, two ADC Expansions can be included on the Omega's I2C bus
 
