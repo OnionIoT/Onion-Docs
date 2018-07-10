@@ -1,6 +1,5 @@
 ## Using the ADC Expansion {#using-adc-expansion}
 
-// intro to the ADC Expansion, something like:
 The ADC (Analog-to-Digital Converter) Expansion allows the user to read and interpret analog voltage, effectively giving the Omega analog inputs. The Expansion has 4 input channels, each with a resolution of 16 bits and a maximum of 860 samples per second.
 
 With the ADC Expansion, a whole world of analog sensors is now open to you and your Omega projects.
@@ -9,47 +8,46 @@ With the ADC Expansion, a whole world of analog sensors is now open to you and y
 
 ### The Channels
 
-// the ADC has 4 input channels, they're available on the header as well as the grove connectors.
-// it's important to note that a channel should be connected to an input source either through the header or the grove connector, using both for a single input channel can cause damage to the ADC Expansion
+The ADC Expansion has 4 input channels, they're available on the header as well as the grove connectors.
+
+>IMPORTANT NOTE: a channel should be connected to an input source either through the header or the grove connector. Using both for a single input channel can cause damage to the ADC Expansion
 
 #### Input Header
 
-// input channels are available on the female header on the board, along with 5V power and ground headers, to power the sensors
+Input channels are available on the female header on the board, along with 5V power and ground headers, to power the sensors.
 
-// VISUAL: labelled diagram of the headers
+![ADC-Expansion-illustration-labeled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion-labeled.png)
 
-// brief explanation of how a sensor can be connected
+Make sure to connect the sensors correctly to the female connector - connect 5V from the sensor to the VCC on the female input, same with GND and Signal
 
-// VISUAL: soil moisture sensor connected to input header
+![ADC-Expansion-analog2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-soil-connection-2.jpg
 
 #### Grove Connectors
 
-// two analog grove connectors
+The ADC Expansion has two analog grove connectors:
 
-// VISUAL: labelled diagram of the 2 analog grove connectors and their input channels
+![ADC-Expansion-analog2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion-analog-grove.png)
 
-// reiterate that it's important to note that a channel should be connected to an input source either through the header or the grove connector, using both for a single input channel can cause damage to the ADC Expansion
+Remember, it's important that a channel should be connected to an input source either through the header or the grove connector. Using both for a single input channel can cause damage to the ADC Expansion.
 
 
 ### Digital Grove Connector
 
-// also included is a digital I2C grove connector, allowing for additional Grove sensors to be connected
+The ADC Expansion also includes a digital I2C grove connector, allowing for additional Grove sensors to be connected.
 
-// VISUAL: labelled diagram of the digital grove connector
-
+![ADC-Expansion-analog2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion-digital-grove.jpg)
 
 ### The Address Switch
 
-// CAN INCLUDE THE EXISTING ADDRESS SWITCH COMPONENT: Omega2/Documentation/Hardware-Overview/Expansions/ADC-Expansion-Component-address-switch.md
-
+```{r child='./ADC-Expansion-Component-address-switch.md'}
+```
 ### Using the Command Line
 
-// command line utility is available to read analog inputs from the Omega's Linux command line
-
+There is a command line utility that is available to read analog inputs from the Omega's Linux command line.
 
 #### Installing the Utility
 
-// First need to install the `adc-exp` utility:
+Before you use your ADC Expansion, you need to install the `adc-exp` utility:
 
 ```
 opkg update
@@ -57,6 +55,7 @@ opkg install adc-exp
 ```
 
 #### Command Usage
+
 For a print out of the command’s usage, run it with just a -h argument:
 
 ```
@@ -71,13 +70,13 @@ adc-exp [options] <channel>
 
 #### Reading an Input Voltage
 
-// reading a single channel, when the switch is at the default value (0x48)
+Reading a single channel, when the switch is at the default value (0x48) which is channel 0:
 
 ```
 adc-exp <channel>
 ```
 
-// so for example if we want to read channel 0:
+For example, if we want to read channel 0:
 
 ```
 adc-exp 0
@@ -91,13 +90,13 @@ A0 Voltage: 2.12 V
 
 #### The Switch Option
 
-// reading a single channel and specifying the value of the switch:
+You can read a single channel and specify the value of the switch:
 
 ```
 adc-exp -s <switch value> <channel>
 ```
 
-// so for example, reading channel 3 when the switch is set to 0x49:
+So for example, reading channel 3 when the switch is set to 0x49:
 
 ```
 adc-exp -s 0x49 3
@@ -111,7 +110,7 @@ A3 Voltage: 3.33 V
 
 #### Reading All channels
 
-// reading all channels at once:
+In order to read all channels at once use the following:
 
 ```
 adc-exp [-s <switch value>] all
@@ -121,7 +120,7 @@ adc-exp [-s <switch value>] all
 
 #### JSON Output
 
-// sometimes it's useful to have the output in JSON, so we've built in an option:
+Sometimes it's useful to have the output in JSON, so we've built in an option:
 
 ```
 adc-exp -j [-s <switch value>] <channel>
