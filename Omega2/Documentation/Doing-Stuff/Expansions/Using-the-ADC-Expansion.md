@@ -38,7 +38,7 @@ The ADC Expansion also includes a digital I2C grove connector, allowing for addi
 
 ### The Address Switch
 
-```{r child='./ADC-Expansion-Component-address-switch.md'}
+```{r child='../../Hardware-Overview/Expansions/ADC-Expansion-Component-address-switch.md'}
 ```
 ### Using the Command Line
 
