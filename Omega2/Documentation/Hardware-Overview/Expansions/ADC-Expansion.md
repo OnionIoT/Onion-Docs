@@ -13,15 +13,16 @@ The ADC Expansion features the following:
 
 ![ADC-Expansion-illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion.png)
 
+<!-- TODO: redo labelled diagram in the style of https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/pwm-expansion-illustration.png -->
+
 The ADC Expansion is based on the TI ADS1115 analog-to-digital converter chip.
 
 ### Connecting to a Dock
 
 To use the ADC Expansion, plug it into a Dock that has Expansion header pins (Expansion Dock, Power Dock 2, Arduino Dock R2).
 
-You can safely stack other Expansion on top of it, **However, be mindful of wires that are connected to the header pins underneath.**
+The ADC Expansion is stackable! Each Omega2 can support up to 2 stacked ADC Expansions, giving you 8 analog input channels in total. **Just be mindful of wires that are connected to the bottom Expansion.**
 
->Note: You may have **no more** than two ADC Expansion stacked onto an Omega at a time. [TO BE CONFIRMED]
 
 ![ADC-Expansion-exp-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-on-expansion-dock.jpg)
 

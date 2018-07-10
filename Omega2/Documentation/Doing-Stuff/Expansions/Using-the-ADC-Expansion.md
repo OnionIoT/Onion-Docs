@@ -8,9 +8,9 @@ With the ADC Expansion, a whole world of analog sensors is now open to you and y
 
 ### The Channels
 
-The ADC Expansion has 4 input channels, they're available on the header as well as the grove connectors.
+The ADC Expansion has 4 input channels, they're available on the header as well as the grove connectors. It's important to note that each channel should be connected to an input source through **either** the header or the Grove connector.
 
->IMPORTANT NOTE: a channel should be connected to an input source either through the header or the grove connector. Using both for a single input channel can cause damage to the ADC Expansion
+<!-- TODO: insert labelled diagram here -->
 
 #### Input Header
 
