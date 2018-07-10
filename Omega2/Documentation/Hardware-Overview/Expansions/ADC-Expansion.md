@@ -21,7 +21,7 @@ To use the ADC Expansion, plug it into a Dock that has Expansion header pins (Ex
 
 You can safely stack other Expansion on top of it, **However, be mindful of wires that are connected to the header pins underneath.**
 
->Note: You may have **no more** than one ADC Expansion stacked onto an Omega at a time. [TO BE CONFIRMED]
+>Note: You may have **no more** than two ADC Expansion stacked onto an Omega at a time. [TO BE CONFIRMED]
 
 ![ADC-Expansion-expansion-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-on-expansion-dock.jpg)
 
@@ -33,11 +33,11 @@ You can safely stack other Expansion on top of it, **However, be mindful of wire
 
 A female header provides access to all 4 analog input channels, making analog input plug and play.
 
-![ADC-Expansion-analog](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-soil-connection-1.jpg
+![ADC-Expansion-analog](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-soil-connection-1.jpg)
 
 5V and GND female headers are also provided for each of the 4 inputs, to make powering the analog sensor easier.
 
-![ADC-Expansion-analog2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-soil-connection-2.jpg
+![ADC-Expansion-analog2](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-soil-connection-2.jpg)
 
 ### Grove Connectors
 
