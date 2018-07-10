@@ -23,7 +23,7 @@ You can safely stack other Expansion on top of it, **However, be mindful of wire
 
 >Note: You may have **no more** than two ADC Expansion stacked onto an Omega at a time. [TO BE CONFIRMED]
 
-![ADC-Expansion-expansion-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-on-expansion-dock.jpg)
+![ADC-Expansion-exp-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-on-expansion-dock.jpg)
 
 ![ADC-Expansion-power-dock](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-on-power-dock.jpg)
 
