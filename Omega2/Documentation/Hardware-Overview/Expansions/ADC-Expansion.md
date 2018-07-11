@@ -11,7 +11,7 @@ The ADC Expansion features the following:
 * An address switch
 * 3x Grove connectors
 
-![ADC-Expansion-illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion.png)
+![ADC-Expansion-illustration](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/adc-expansion.jpg)
 
 The ADC Expansion is based on the TI ADS1115 analog-to-digital converter chip.
 
