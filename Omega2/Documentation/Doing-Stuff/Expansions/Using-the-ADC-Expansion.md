@@ -8,9 +8,9 @@ With the ADC Expansion, a whole world of analog sensors is now open to you and y
 
 ### The Channels
 
-The ADC Expansion has 4 input channels, they're available on the header as well as the grove connectors.
+The ADC Expansion has 4 input channels, they're available on the header as well as the grove connectors. It's important to note that each channel should be connected to an input source through **either** the header or the Grove connector.
 
->IMPORTANT NOTE: a channel should be connected to an input source either through the header or the grove connector. Using both for a single input channel can cause damage to the ADC Expansion
+<!-- TODO: insert labelled diagram here -->
 
 #### Input Header
 
@@ -38,7 +38,7 @@ The ADC Expansion also includes a digital I2C grove connector, allowing for addi
 
 ### The Address Switch
 
-```{r child='./ADC-Expansion-Component-address-switch.md'}
+```{r child='../../Hardware-Overview/Expansions/ADC-Expansion-Component-address-switch.md'}
 ```
 ### Using the Command Line
 
@@ -69,11 +69,13 @@ adc-exp [options] <channel>
 
 #### Reading an Input Voltage
 
-Reading a single channel, when the switch is at the default value (0x48) which is channel 0:
+To sample and read the voltage on an input channel, run the following:
 
 ```
 adc-exp <channel>
 ```
+
+> Note that this assumes the switch is set to `0x48`
 
 For example, if we want to read channel 0:
 
@@ -89,7 +91,7 @@ A0 Voltage: 2.12 V
 
 #### The Switch Option
 
-You can read a single channel and specify the value of the switch:
+By default, the `adc-exp` command assumes the switch is set to `0x48`. It's possible to explicitly specify the switch value:
 
 ```
 adc-exp -s <switch value> <channel>
@@ -115,7 +117,20 @@ In order to read all channels at once use the following:
 adc-exp [-s <switch value>] all
 ```
 
-// give an example, and show the output
+Let's say the switch is set to 0x49, the command will look like this:
+
+```
+adc-exp -s 0x49 all
+```
+
+And will return something like:
+
+```
+A0 Voltage: 3.30 V
+A1 Voltage: 4.99 V
+A2 Voltage: 2.53 V
+A3 Voltage: 0 V
+```
 
 #### JSON Output
 
@@ -125,4 +140,26 @@ Sometimes it's useful to have the output in JSON, so we've built in an option:
 adc-exp -j [-s <switch value>] <channel>
 ```
 
-// again, give an example, and show the output
+Let's say we want to read channel 1 and the switch is set to 0x48, we can run:
+
+```
+adc-exp -j -s 0x48 1
+```
+
+It will return something like:
+
+```
+{"channel":1,"voltage":2.51, "switch":0}
+```
+
+Or, if the switch is set to 0x49 and we want to read channel 3:
+
+```
+adc-exp -j -s 0x49 3
+```
+
+It will return:
+
+```
+{"channel":3,"voltage":4.99, "switch":0x49}
+```
