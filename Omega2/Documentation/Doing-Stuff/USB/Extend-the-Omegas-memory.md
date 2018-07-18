@@ -55,6 +55,7 @@ dd if=/dev/zero of=/tmp/mounts/USB-A1/swap.page bs=1M count=256
 This command will create a file on the USB drive that is 256MB with all of its bytes initialized to `0x00`. This is the file that will be used as the Swap File, so we will effectively be extending our RAM by 256MB.
 
 Let's go through each part of the command:
+
 * The `if` argument specifies the source of the data, in this case `/dev/zero` is a special system file that outputs as many `0x00` bytes as requested.
 * The `of` argument tells `dd` where to create the new file. In our scenario, the USB drive was mounted at `/tmp/mounts/USB-A1` and we want to make a `swap.page` file on the top level of the drive.
 * The `bs` and `count` arguments will specify the size of the file that will be created:
