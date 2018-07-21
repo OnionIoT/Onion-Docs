@@ -26,7 +26,7 @@ On the Omega, we can control GPIO pins with a command-line tool known as `gpioct
 
 Multiplexed GPIOs are pins that can be used for **multiple purposes** other than input/output when needed. For example, the UART pins are designated as UART, but are **multiplexed** so that you can designate and use them as GPIO pins when you want. This is used to incorporate the largest number of peripherals in the smallest possible package.
 
-![omega2-pinout-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/Omega-2-Pinout-Diagram.png)
+![omega2-pinout-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Media/master/Pinouts/Omega2.png)
 
 You can use the `omega2-ctrl` tool to change the function of your GPIOs
 
