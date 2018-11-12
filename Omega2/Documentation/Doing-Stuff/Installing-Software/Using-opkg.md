@@ -189,7 +189,7 @@ For best results, make sure you're on the `latest` Omega firmware. Take a look a
 
 As mentioned above, we host a smaller selection of packages than the official LEDE package repos. However, if you need specific packages, we would be happy to add them to our repo.
 
-Let us know which packages you would like to see added by posting on the [Onion Community](https://community.onion.io/) or creating a [ticket on our Helpdesk](https://onion.freshdesk.com/). We'll do our best to update the repo in a timely manner!
+Let us know which packages you would like to see added by posting on the [Onion Community](https://community.onion.io/). We'll do our best to update the repo in a timely manner!
 
 
 ### How to Switch Back to the Official LEDE Package Repos {#using-opkg-switch-to-lede-repos}
