@@ -188,7 +188,7 @@ Run the following commands and fill in `<device name>` with your device's name (
 
 ```
 mkdir /mnt/<device name>
-mount /dev/<device name> /mnt/<device name>
+mount /dev/<device name> /mnt/
 ```
 
 ### Duplicating the `/overlay` Directory
