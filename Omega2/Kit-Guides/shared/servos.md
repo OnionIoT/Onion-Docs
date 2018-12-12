@@ -3,7 +3,7 @@
 Servo motors are controlled by via a pulse width modulated (PWM) signal. Servo motors usually have three wires: power, ground and the control signal.
 
 <!-- // DONE: the following sentence is super unclear, please fix it up, actually describing how a servo works: maximum travel is usually 180 deg, there are minimum, neutral, and maximum pulse widths, pulses in between those correspond to different angles, -->
-Most servoes fixedly rotate between 0° and 180° - starting and ending at fixed points relative to the motor. They accept pulses within a fixed range commonly between 500 and 2500us. To put it all together, say we send a 500us width pulse to a servo accepting pulses between 500us and 2500us. The servo will rotate its arm to the 0° position in response - no matter which position the arm was in before. It will respond with approrpiate increments when the pulsewidth is increased up until 2500us, then it will stop moving.
+Most servos fixedly rotate between 0° and 180° - starting and ending at fixed points relative to the motor. They accept pulses within a fixed range commonly between 500 and 2500us. To put it all together, say we send a 500us width pulse to a servo accepting pulses between 500us and 2500us. The servo will rotate its arm to the 0° position in response - no matter which position the arm was in before. It will respond with appropriate increments when the pulse width is increased up until 2500us, then it will stop moving.
 
 <!-- // DONE: instead of deg use the ° character! Fix this in all of the articles! -->
 
