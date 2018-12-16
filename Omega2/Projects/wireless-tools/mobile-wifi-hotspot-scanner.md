@@ -14,7 +14,7 @@ The Omega can scan nearby WiFi networks and report information such as their SSI
 The WiFi scanner will:
 
 * Scan for any WiFi networks in range using a `ubus` call
-* Retrieve location data form the GPS Expansion, again using the `ubus`
+* Retrieve location data from the GPS Expansion, again using the `ubus`
 * Sort the scanned networks by signal strength and display the six networks with the strongest signal on the OLED Expansion
 
 It will then save the following data for each network into a comma separated value (CSV) file that can be imported into a spreadsheet program:
