@@ -34,7 +34,7 @@ Steps to access USB storage:
 	* The default is `/tmp/mounts/`
 		* `cd /tmp/mounts/`
 3. Check the directory for your USB storage device
-	```
+  ```
   ls
   ```
 4.  Your device will usually be named `USB-A1`
