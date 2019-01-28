@@ -22,6 +22,12 @@ Use the App Manager to install Node-Red:
 
 ![install](images/node-red-0-install.png)
 
+> If the installation through the App Manager is not successful, you can always resort to using `opkg` on the command line:
+> ```
+> opkg update
+> opkg install oos-app-nodered
+> ```
+
 After installation, it will take **about a minute** for Node-Red to load and start running. 
 
 > After every Omega2 Pro reboot, it will take about **an additional minute after boot** before Node-Red starts running and can be accessed in the browser.
