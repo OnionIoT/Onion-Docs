@@ -44,6 +44,10 @@ Use the visual drag-and-drop programming style to create and deploy your own flo
 
 ![flow](images/node-red-3-flow.png)
 
+### Some Examples
+
+John Walicki, member of the IBM Watson IoT Developer Advocate team, has created some awesome example flows that make use of Watson IoT and Node-Red on the Omega2 Pro. Check them all out in [John's `Node-RED-Onion-Omega2-Examples` GitHub Repo](https://github.com/johnwalicki/Node-RED-Onion-Omega2-Examples).
+
 ### Installing Additional Node Packages
 If you’re interested in using additional Node packages with Node-Red, you’ll need to install NPM:
 ```
