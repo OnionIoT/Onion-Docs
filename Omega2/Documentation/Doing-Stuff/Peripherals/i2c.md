@@ -59,10 +59,26 @@ The I2C pins (SCL and SDA) on the Omega2 and Expansion Dock are highlighted belo
 
 ### Controlling I2C Devices from the Command line
 
-We'll be using two command line utilities, `i2cget` and `i2cset`, to work with I2C devices. These tools work by accessing data stored in **registers** on the device. A register is a location in a device's memory. When reading from/writing to an I2C device, you need to specify the register on the device that you want to access.
+We'll be using three command line utilities, `i2cdetect`, `i2cget` and `i2cset`, to work with I2C devices. These tools work by using the Omega's I2C bus to communicate with any connected I2C devices.
 
-<!-- #### Detecting I2C devices -->
-<!-- // leave this out for now, there's a bug that makes this useless -->
+#### Detecting Slave Devices
+
+The `i2cdetect` command is used to find the addresses of every device connected to your Omega’s I2C bus. The command is used as follows:
+
+```bash
+i2cdetect -y 0
+```
+
+It will then output a table outlining the device addresses of each slave device connected to the bus:
+
+![i2cdetect output](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/i2c-i2cdetect-command.png)
+
+
+> Your Omega will need to be on firmware `v0.2.2 b194` or later to support the `i2cdetect` command.
+
+#### Interacting with I2C devices
+
+We’ll be using the `i2cget` and `i2cset` utilities to read data from and write data to I2C devices. These tools work by using the Omega's I2C bus to access data stored in **registers** on the device. A register is a location in a device’s memory. When reading from/writing to an I2C device, you need to specify the register on the device that you want to access.
 
 #### Reading a Byte
 
