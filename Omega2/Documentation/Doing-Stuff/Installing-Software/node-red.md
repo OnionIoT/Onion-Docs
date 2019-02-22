@@ -1,12 +1,16 @@
 ## Node-Red on the Omega2 Pro {#node-red}
 
-A quick guide on installing and using Node-RED with the Omega2 Pro.
+Welcome to this guide on installing and using Node-RED with the Omega2 Pro.
 
 ![omega2 pro](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/omega2-pro-iso-1.jpg)
 
+Node-RED is a flow-based, visual programming tool based on NodeJS that runs in the browser. It comes packaged as an OnionOS App for the Omega2 Pro and can be easily accessed through OnionOS in any browser.
+
+![node red flow](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/node-red-3-flow.png)
+
 ### Installing Node-RED
 
-Before playing with Node-Red, make sure your Omega2 Pro is connected to the internet and updated to the latest firmware.
+First off, make sure your Omega2 Pro is connected to the internet and updated to the latest firmware.
 
 > See the [Omega2 Pro getting started guide](https://onion.io/omega2-pro-get-started/) for more details.
 we’ll need to update OnionOS and then install the Node-Red App.
