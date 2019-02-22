@@ -1,6 +1,9 @@
 version: 2
 jobs:
   build:
+    only:
+        only:
+            - master
     docker:
       - image: circleci/python:3.6.1
     steps:
