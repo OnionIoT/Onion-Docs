@@ -17,7 +17,7 @@ We'll be covering how to use Mifare Classic and Ultralight since they're the mos
 
 ### Installation
 
-To use your RFID & NFC Expansion, you'll first need to initialize the the device:
+To use your RFID & NFC Expansion, you'll first need to initialize the device:
 
 ```
 opkg update
@@ -150,7 +150,7 @@ Now, you can write the updated data to the card. Issue the following command
 yes N | nfc-mfultralight w mycardUltra.mfd
 ```
 
-The first part of this command will automatically anwer No to all questions posted by the utility:
+The first part of this command will automatically answer No to all questions posted by the utility:
 
 ```
 Write OTP bytes ? [yN] Write Lock bytes ? [yN] Write UID bytes (only for special writeable UID cards) ? [yN]
@@ -214,7 +214,7 @@ In order to scan the tag and store it to a file using key A, run the following c
 nfc-mfclassic r a mycard.mfd
 ```
 
-The card has been read and the stored in a file called `mycard.mfd` using key `A`. Now, the `.mfd` binary file has been saved in your filesystem. This file is populated with a binary content that is difficult to understand. So we'll be using the `xxd` utility to convert it to a more readable hex format.
+The card has been read and then stored in a file called `mycard.mfd` using key `A`. Now, the `.mfd` binary file has been saved in your filesystem. This file is populated with a binary content that is difficult to understand. So we'll be using the `xxd` utility to convert it to a more readable hex format.
 
 Using this utility you can view the content of your tag data using the following command:
 
@@ -287,7 +287,7 @@ Now the card contains updated data!
 
 #### Reading NDEF Data
 
-The `mifare-classic-read-ndef` is the utility to read the card and store it in a `NDEF` format. In general, `NDEF` is the abbreviation for NFS Data Exchange Format. That format is used to store and echange data (e.g. text messages, site's URLs, passwords, etc) in a plain text format.
+The `mifare-classic-read-ndef` is the utility to read the card and store it in a `NDEF` format. In general, `NDEF` is the abbreviation for NFS Data Exchange Format. That format is used to store and exchange data (e.g. text messages, site's URLs, passwords, etc) in a plain text format.
 
 Issue the following command:
 
@@ -302,11 +302,11 @@ Found Mifare Classic 1k with UID 10ebf773.
 No MAD detected.
 ```
 
-`MAD` stands for `Mifare Application Directory` and it indicates the sector that contains NDEF record. If there is no NDEF data wirtten yet, there is nothing to read from. So let's write something to the card.
+`MAD` stands for `Mifare Application Directory` and it indicates the sector that contains NDEF record. If there is no NDEF data written yet, there is nothing to read from. So let's write something to the card.
 
 #### Writing NDEF Data to the Tag
 
-In order to write a message to the card, the `mifare-classic-write-ndef` utility will be used. Here is the procedure of witing:
+In order to write a message to the card, the `mifare-classic-write-ndef` utility will be used. Here is the procedure of writting:
 
 * Create a file (e.g. file.txt) and populate it with a message (e.g. Hello World!)
 * Write this file to the tag
@@ -352,7 +352,7 @@ From this, you can see that the Expansion is up and running under `/dev/ttyS1`.
 
 #### Troubleshooting Tips
 
-Sometimes the issued `nfc` command could not finish its process and if you terminate it using `Ctrl + C` it will run on the background. If you try to perfomrm other nfc related operations you may face the following error:
+Sometimes the issued `nfc` command could not finish its process and if you terminate it using `Ctrl + C` it will run on the background. If you try to perform other nfc related operations you may face the following error:
 
 ```
 error   libnfc.driver.pn532_uart        Serial port already claimed: /dev/ttyS1
@@ -367,6 +367,6 @@ opkg install screen
 screen /dev/ttyS1
 ```
 
-You will be presented with the balck blank screen. To stop the process, hit `Ctrl + a + k` and at the following propmt `Really kill this wundow [y/n]` hit `y`. This will stop the process and will allow you to continue the expansion.
+You will be presented with the black blank screen. To stop the process, hit `Ctrl + a + k` and at the following prompt `Really kill this window [y/n]` hit `y`. This will stop the process and will allow you to continue the expansion.
 
 
