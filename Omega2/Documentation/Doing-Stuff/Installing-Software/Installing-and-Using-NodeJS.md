@@ -12,12 +12,12 @@ order: 3
 
 NodeJS is a scripting language that uses a JavaScript runtime, essentially, it is Javascript you can run without using a browser. It's incredibly easy to make powerful and complex applications. NodeJS takes advantage of a large amount of open-source modules developed by the community in order to further simplify your work.
 
-**Note**: The Omega supports NodeJS **4.3.1**.
+**Note**: Any Omega2 running firmware v0.3.0 or greater supports NodeJS **v8.10.0**.
 
 
 ### Installing NodeJS
 
-Installing NodeJS will take about **8.5MB** of space on the Omega, so make sure you've got enough space before continuing.
+Installing NodeJS will take about **5.7 MB** of space on the Omega, so make sure you've got enough space before continuing.
 
 Connect to the [Omega's terminal](#connecting-to-the-omega-terminal) using either SSH or Serial.
 
@@ -25,7 +25,7 @@ Run the following commands on the terminal:
 
 ```
 opkg update
-opkg install nodejs
+opkg install node
 ```
 
 ### Using NodeJS
@@ -91,18 +91,23 @@ The commands and procedure is much the same as installing NodeJS:
 
 ``` bash
 opkg update
-opkg install npm
+opkg install node-npm
 ```
-
->If you've updated already, you can skip it.
-
 
 ### Using npm
 
-Installing packages with npm is easy, all you need is the package name and npm installed. Then you can run the following command:
+**SPECIAL NOTE! This is different than on a computer!**
 
-``` bash
-npm install <package>
+To install packages with NPM, there’s a **specific syntax** that needs to be used. Instead of:
+
+```
+npm install <PACKAGE>
+```
+
+use
+
+```
+node --max_old_space_size=64 $(which npm) install <PACKAGE>
 ```
 
 Not only can npm install packages, it can also create a package out of your project! To do so, run the command below, it will guide you through the creation of your own node package.
@@ -121,33 +126,12 @@ We've included links to guides on how you can use NodeJS on the Omega to create 
 
 <!-- // link to nodejs documentation and guides for more info on getting started and learning NodeJS -->
 
-[NodeJS Documentation](https://nodejs.org/docs/latest-v4.x/api/) is available from the official Node website.
+[NodeJS Documentation](https://nodejs.org/docs/v8.10.0/api/) is available from the official Node website.
 
-### Omega Expansion NodeJS packages
+#### Node-Red
 
-We have developed NodeJS modules for controlling several Omega Expansions, they're all available through `opkg`.
+Node-RED is a flow-based, visual programming tool based on NodeJS that runs in the browser. It comes packaged as an OnionOS App for the Omega2 Pro and can be easily accessed through OnionOS in any browser.
 
-``` bash
-opkg update
-opkg install node-oled-exp
-opkg install node-pwm-exp
-opkg install node-relay-exp
-```
+![](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/node-red-3-flow.png)
 
-We've also provided in depth documentation for each expansion.
-
-* [OLED Expansion](#oled-expansion-node-module)
-* [PWM Expansion](#pwm-expansion-node-module)
-* [Relay Expansion](#relay-expansion-node-module)
-
-
-
-### Blynk & the Omega
-
-The Omega supports Blynk!
-
-Blynk is a platform that allows you to build an app in minutes to connect your Omega and your smartphone with a beautiful interface. Check out our [Blynk article](#blynk-library) to learn more!
-
-
-<!-- // brief description of Blynk and how they're awesome -->
-<!-- // link to the main blynk article -->
+Learn more about [installing and using Node-Red on the Omega2 Pro](#node-red).
