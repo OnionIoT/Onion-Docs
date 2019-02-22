@@ -319,5 +319,5 @@ This will launch a background process that will generate the PWM signal.
 To stop the PWM signal, set the GPIO's value:
 
 ```
-fast-gpio <gpio> 0
+fast-gpio set <gpio> 0
 ```
