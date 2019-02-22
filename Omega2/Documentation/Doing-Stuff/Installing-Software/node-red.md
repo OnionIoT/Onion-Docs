@@ -1,26 +1,21 @@
-## Node-Red on the Omega2 Pro
+## Node-Red on the Omega2 Pro {#node-red}
 
-A quick guide on using Node-RED with the Omega2 Pro.
+A quick guide on installing and using Node-RED with the Omega2 Pro.
+
+![omega2 pro](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/omega2-pro-iso-1.jpg)
 
 ### Installing Node-RED
 
-Before playing with Node-Red, we’ll need to update OnionOS and then install the Node-Red App.
+Before playing with Node-Red, make sure your Omega2 Pro is connected to the internet and updated to the latest firmware.
 
-First, make sure you’re Omega’s set up and connected to the internet. 
+> See the [Omega2 Pro getting started guide](https://onion.io/omega2-pro-get-started/) for more details.
+we’ll need to update OnionOS and then install the Node-Red App.
 
-*You can follow the steps we have outlined here: http://docs.onion.io/omega2-docs/first-time-setup.html
-and here: http://docs.onion.io/omega2-docs/first-time-setup-command-line.html*
-
-Then, connect to the Omega’s command line (http://docs.onion.io/omega2-docs/connecting-to-the-omega-terminal.html) and let’s update OnionOS:
-```
-onion os update
-```
-
-Once that’s done, you’ll want to navigate to OnionOS in your browser. Here’s a helpful guide on the subject: https://onion.io/getting-started-with-onionos/#getting-to-onionos
+We'll then use the App Manager in OnionOS to install the Node-Red OnionOS App. First, you’ll want to navigate to OnionOS in your browser, here’s a [helpful guide](https://onion.io/getting-started-with-onionos/#getting-to-onionos) on the subject.
 
 Use the App Manager to install Node-Red:
 
-![install](images/node-red-0-install.png)
+![install](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/node-red-0-install.png)
 
 > If the installation through the App Manager is not successful, you can always resort to using `opkg` on the command line:
 > ```
@@ -34,17 +29,17 @@ After installation, it will take **about a minute** for Node-Red to load and sta
 
 You can then launch the app from the OnionOS home screen:
 
-![home screen](images/node-red-1-home-screen.png)
+![home screen](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/node-red-1-home-screen.png)
 
 And there it is, NodeRed running in OnionOS on the Omega2 Pro:
 
-![running](images/node-red-2-empty-flow.png)
+![running](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/node-red-2-empty-flow.png)
 
 Use the visual drag-and-drop programming style to create and deploy your own flows:
 
-![flow](images/node-red-3-flow.png)
+![flow](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/node-red-3-flow.png)
 
-### Some Examples
+### Example Flows
 
 John Walicki, member of the IBM Watson IoT Developer Advocate team, has created some awesome example flows that make use of Watson IoT and Node-Red on the Omega2 Pro. Check them all out in [John's `Node-RED-Onion-Omega2-Examples` GitHub Repo](https://github.com/johnwalicki/Node-RED-Onion-Omega2-Examples).
 
