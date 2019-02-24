@@ -98,3 +98,5 @@ You can find the PWM chip directories at:
 root@Omega-C0FB:/# ls /sys/class/pwm
 pwmchip0
 ```
+
+> The PWM polarity setting is not currently supported by the Linux kernel mediatek pwm driver. It is possible to support signal inversion by setting the PWM duty cycle to its inverse. For example if the desired duty cycle was 20% but the signal was desired to be inverted, setting the duty cycle to 80%, 100% - 20% = 80%, will achieve the same result.
