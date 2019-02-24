@@ -65,7 +65,7 @@ onion pwm <CHANNEL> <DUTY CYCLE> <FREQUENCY>
 ```
 
 Where:
-* CHANNEL is either 0 (GPIO18) or 1 (GPIO19)
+* CHANNEL is 0 (GPIO18), 1 (GPIO19), 2 (GPIO20), or 3 (GPIO21)
 * DUTY_CYCLE is the percentage of time the signal is 'on', expressed 0-100
 * FREQUENCY is the signal frequency, expressed in Hz
 
