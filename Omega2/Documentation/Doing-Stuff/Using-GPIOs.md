@@ -304,7 +304,7 @@ fast-gpio set <gpio pin number> <value to set; 0 or 1>
 If the pin is not in `output` mode, `fast-gpio` will silently change it to `output` before setting the value.
 
 
-#### Generating a PWM signal on a GPIO:
+#### Generating a PWM signal on a GPIO: {#using-fast-gpio-pwm}
 
 Generate a software-based Pulse Width Modulated (PWM) signal on a selected pin. Specify the desired duty cycle and frequency of the PWM signal.
 
