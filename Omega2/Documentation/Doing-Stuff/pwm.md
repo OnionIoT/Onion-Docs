@@ -100,3 +100,7 @@ pwmchip0
 ```
 
 > The PWM polarity setting is not currently supported by the Linux kernel mediatek pwm driver. It is possible to support signal inversion by setting the PWM duty cycle to its inverse. For example if the desired duty cycle was 20% but the signal was desired to be inverted, setting the duty cycle to 80%, 100% - 20% = 80%, will achieve the same result.
+
+#### Golang example
+
+Visit [chmorgan/go-pwm-example](https://github.com/chmorgan/go-pwm-example) for an example of controlling the hardware pwm modules from your own application. Through the use of golang, and its support of various architectures, it is possible to build and load this example onto your Omega2 module in a matter of minutes.
