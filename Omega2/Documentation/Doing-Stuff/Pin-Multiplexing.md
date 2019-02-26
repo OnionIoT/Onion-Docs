@@ -1,6 +1,6 @@
 
 
-## Multiplexing Pins {#multiplexing-pins}
+## Pin Multiplexing  {#pin-multiplexing}
 
 ```{r child = './using-gpios-multiplexed-pins.md'}
 ```
