@@ -128,10 +128,10 @@ We've included links to guides on how you can use NodeJS on the Omega to create 
 
 [NodeJS Documentation](https://nodejs.org/docs/v8.10.0/api/) is available from the official Node website.
 
-#### Node-Red
+#### Visual Programming with Node-Red
 
 Node-RED is a flow-based, visual programming tool based on NodeJS that runs in the browser. It comes packaged as an OnionOS App for the Omega2 Pro and can be easily accessed through OnionOS in any browser.
 
 ![](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/node-red-3-flow.png)
 
-Learn more about [installing and using Node-Red on the Omega2 Pro](#node-red).
+Learn more about [installing and using Node-Red on the Omega2 Pro](#node-red-article).

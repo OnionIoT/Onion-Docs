@@ -1,4 +1,4 @@
-## Node-Red on the Omega2 Pro {#node-red}
+## Node-Red on the Omega2 Pro {#node-red-article}
 
 Welcome to this guide on installing and using Node-RED with the Omega2 Pro.
 
