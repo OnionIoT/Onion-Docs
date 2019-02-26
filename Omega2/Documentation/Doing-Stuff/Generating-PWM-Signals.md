@@ -84,7 +84,7 @@ For examples on using the `onion` command to generate PWM signals, see [this blo
 
 ### Software Generated PWM Signals
 
-The `fast-gpio` utility can be used to generate a software-based PWM signal using a GPIO pin. See [fast-gpio]{#using-fast-gpio-pwm}
+The `fast-gpio` utility can be used to generate a software-based PWM signal using a GPIO pin. See the [Using the GPIOs](#fast-gpio) article for full details on the `fast-gpio` utility.
 
 #### Generating a Software-Based PWM Signal
 

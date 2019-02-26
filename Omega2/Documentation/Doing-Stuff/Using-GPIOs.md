@@ -150,7 +150,7 @@ Pin 1 is LOW
 
 > You can use the `gpioctl get <PIN>` command to read a pin regardless of its direction.
 
-### Fast-GPIO
+### Fast-GPIO {#fast-gpio}
 
 The `fast-gpio` command is similar to `gpioctl` in that it is used to control the Omega's GPIOs. The difference is that while `gpioctl` worked by setting file values inside the `/sys/class/gpio` directory, `fast-gpio` works by setting GPIO registers directly on the processor and is inherently a faster process.
 
