@@ -78,6 +78,10 @@ It is possible to disable the PWM signal:
 onion pwm <CHANNEL> disable
 ```
 
+#### Examples
+
+For examples on using the `onion` command to generate PWM signals, see [this blog post](https://onion.io/2bt-hardware-pwm-omega2/).
+
 ### Software Generated PWM Signals
 
 The `fast-gpio` utility can be used to generate a software-based PWM signal using a GPIO pin. See [fast-gpio]{#using-fast-gpio-pwm}
