@@ -22,89 +22,10 @@ On the Omega, we can control GPIO pins with a command-line tool known as `gpioct
 ```{r child = './GPIO-electrical-characteristics.md'}
 ```
 
-### Multiplexed GPIOs {#using-gpios-multiplexing}
+### Multiplexed Pins {#using-gpios-multiplexing}
 
-Multiplexed GPIOs are pins that can be used for **multiple purposes** other than input/output when needed. For example, the UART pins are designated as UART, but are **multiplexed** so that you can designate and use them as GPIO pins when you want. This is used to incorporate the largest number of peripherals in the smallest possible package.
-
-![omega2-pinout-diagram](https://raw.githubusercontent.com/OnionIoT/Onion-Media/master/Pinouts/Omega2.png)
-
-You can use the `omega2-ctrl` tool to change the function of your GPIOs
-
-
-To get the current mode of the Omega's multiplexed pins, use the command:
-
+```{r child = './using-gpios-multiplexed-pins.md'}
 ```
-omega2-ctrl gpiomux get
-```
-
-and you'll be given a list as a result:
-
-```
-root@Omega-2757:/# omega2-ctrl gpiomux get
-Group i2c - [i2c] gpio
-Group uart0 - [uart] gpio
-Group uart1 - [uart] gpio
-Group uart2 - [uart] gpio pwm
-Group pwm0 - [pwm] gpio
-Group pwm1 - [pwm] gpio
-Group refclk - refclk [gpio]
-Group spi_s - spi_s [gpio]
-Group spi_cs1 - [spi_cs1] gpio refclk
-Group i2s - i2s [gpio] pcm
-Group ephy - [ephy] gpio
-Group wled - wled [gpio]
-```
-
-The current mode for each group is indicated with the `[]`.
-
-Let's examine the UART1 line:
-
-```
-Group uart1 - [uart] gpio
-```
-
-Here we see the group is `uart1`, and the available modes are `[uart] gpio`, with the current mode being `[uart]`.
-
-#### Changing the GPIO Function
-
-To set a particular group of hardware pins to a specified mode, use the following command:
-
-```bash
-omega2-ctrl gpiomux set <HARDWARE PIN GROUP> <MODE>
-```
-
-To illustrate the above, the following command will set UART1 pins to operate in GPIO mode:
-
-```
-omega2-ctrl gpiomux set uart1 gpio
-```
-
-and running the `get` command from above to confirm our changes:
-
-```
-root@Omega-2757:/# omega2-ctrl gpiomux get
-Group i2c - [i2c] gpio
-Group uart0 - [uart] gpio
-Group uart1 - uart [gpio]
-Group uart2 - [uart] gpio pwm
-Group pwm0 - [pwm] gpio
-Group pwm1 - [pwm] gpio
-Group refclk - refclk [gpio]
-Group spi_s - spi_s [gpio]
-Group spi_cs1 - [spi_cs1] gpio refclk
-Group i2s - i2s [gpio] pcm
-Group ephy - [ephy] gpio
-Group wled - wled [gpio]
-```
-
-We see:
-
-```
-Group uart1 - uart [gpio]
-```
-
-indicating that our change has indeed been applied.
-
 
 ### Important & Special GPIOs
 
@@ -306,18 +227,5 @@ If the pin is not in `output` mode, `fast-gpio` will silently change it to `outp
 
 #### Generating a PWM signal on a GPIO: {#using-fast-gpio-pwm}
 
-Generate a software-based Pulse Width Modulated (PWM) signal on a selected pin. Specify the desired duty cycle and frequency of the PWM signal.
-
-```
-fast-gpio pwm <gpio> <freq in Hz> <duty cycle percentage>
-```
-
-This will launch a background process that will generate the PWM signal.
-
-> Software-based PWM is implemented by a program that usually waits for a defined amount of time before toggling the GPIO output. This has the potential to be **inaccurate** since the CPU might be interrupted with other processes and tasks. Software PWM is generally good enough for dimming an LED but not for something requiring more accuracy, such as driving a servo.
-
-To stop the PWM signal, set the GPIO's value:
-
-```
-fast-gpio set <gpio> 0
+```{r child = './using-gpios-fast-gpio-pwm.md'}
 ```
