@@ -15,7 +15,7 @@ however these hardware PWM channels are only available on specific pins. It is a
 a software application. Software PWM can use any GPIO pin but its accuracy is likely to be lower than the hardware PWM and
 signal timings can vary based upon system load.
 
-[External hardware]{#expansion-external-pwm} such as the PWM Expansion Dock or other hardware based PWM ICs can be used to generate PWM signals.
+[External hardware](#expansion-external-pwm) such as the PWM Expansion Dock or other hardware based PWM ICs can be used to generate PWM signals.
 
 ### Hardware Generated PWM Signals
 
