@@ -46,4 +46,4 @@ Follow along with [this community-made tutorial](https://onion.io/2bt-may-29-201
 
 ### Blynk
 
-With Blynk, you can control your IoT device, in this case the Omega2, with your smartphone! In partnership with Blynk, we provide a [NodeJS Blynk library](https://docs.onion.io/omega2-docs/blynk-library.html) for the Omega2 that can be installed using OPKG. See our [walkthrough on using Blynk](https://onion.io/2bt-blynk-omega/) for an example of how to control your Omega with the Blynk App. For more information you can visit the [Blynk website](https://www.blynk.cc/).
+With Blynk, you can control your IoT device, in this case the Omega2, with your smartphone! Install Blynk's NodeJS library on your Omega and you'll be good to go. See our [walkthrough on using Blynk](https://onion.io/2bt-blynk-omega/) for an example of how to control your Omega with the Blynk App. For more information you can visit the [Blynk website](https://www.blynk.cc/).
