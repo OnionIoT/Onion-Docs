@@ -10,9 +10,9 @@ This guide will show you how to manually install a firmware of your choice. This
 
 ### Step 1: Downloading the Firmware Image
 
-The Omega firmware images are located on [the Onion repo](http://repo.onion.io/omega2/images/).
+Firmware images for the Omega2 family can be found on the Onion repo: http://repo.onioniot.com/omega2/images/
 
-Let's begin by downloading the latest firmware image from [the Onion repo](http://repo.onion.io/omega2/images/). This repo is where we keep all the builds of the various Onion Firmware.
+Let's begin by downloading the latest firmware image from [the Onion repo](http://repo.onioniot.com/omega2/images/). This repo is where we keep all the builds of the various Onion Firmware.
 
 On your Omega, start by changing directories to `/tmp`:
 
@@ -28,6 +28,7 @@ Now we're going to need the link address of the firmware we want to download. Ri
 
 * Omega2 firmwares start with "omega2-..."
 * Omega2+ firmwares start with "omega2**p**-..."
+* Omega2 Pro firmwares start with "omega2**pro**-..."
 
 
 Next, enter the following into your terminal:
@@ -39,26 +40,26 @@ wget <LINK ADDRESS>
 where `<LINK ADDRESS>` is the link you copied from the repo. Your command-line should look something like this:
 
 ```
-root@Omega-2757:/tmp# wget http://repo.onion.io/omega2/images/omega2p-v0.1.5-b135.bin
+root@Omega-2757:/tmp# wget http://repo.onioniot.com/omega2/images/omega2p-v0.3.2-b218.bin
 ```
 
 Once you've verified that link is to the correct binary, hit Enter and your firmware will begin downloading.
 
 ```
-root@Omega-2757:/tmp# wget http://repo.onion.io/omega2/images/omega2p-v0.1.5-b135.bin
---2016-12-07 21:10:02--  http://repo.onion.io/omega2/images/omega2p-v0.1.5-b135.bin
+root@Omega-2757:/tmp# wget http://repo.onioniot.com/omega2/images/omega2p-v0.3.2-b218.bin
+--2016-12-07 21:10:02--  http://repo.onioniot.com/omega2/images/omega2p-v0.3.2-b218.bin
 Resolving repo.onion.io... 52.89.44.24, 54.149.140.66
 Connecting to repo.onion.io|52.89.44.24|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 6815910 (6.5M) [application/octet-stream]
-Saving to: 'omega2p-v0.1.5-b135.bin'
+Saving to: 'omega2p-v0.3.2-b218.bin'
 
-omega2p-v0.1.5-b135 100%[===================>]   6.50M  1.57MB/s    in 4.8s
+omega2p-v0.3.2-b218 100%[===================>]   6.50M  1.57MB/s    in 4.8s
 
-2016-12-07 21:10:07 (1.34 MB/s) - 'omega2p-v0.1.5-b135.bin' saved [6815910/6815910]
+2016-12-07 21:10:07 (1.34 MB/s) - 'omega2p-v0.3.2-b218.bin' saved [6815910/6815910]
 ```
 
-Take note of the name of the firmware you just downloaded for the next step. In this example, the name is `omega2p-v0.1.5-b135.bin`.
+Take note of the name of the firmware you just downloaded for the next step. In this example, the name is `omega2p-v0.3.2-b218.bin`.
 
 #### Alternative Step 1: Downloading Firmware onto a USB Storage Device
 
@@ -78,13 +79,13 @@ sysupgrade <FIRMWARE FILE NAME>
 From the above example, the command would look like:
 
 ```
-sysupgrade omega2p-v0.1.5-b135.bin
+sysupgrade omega2p-v0.3.2-b218.bin
 ```
 
 and you'll see output similar to the following upon entering the command:
 
 ```
-root@Omega-2757:/tmp# sysupgrade omega2p-v0.1.5-b135.bin
+root@Omega-2757:/tmp# sysupgrade omega2p-v0.3.2-b218.bin
 Saving config files...
 killall: watchdog: no process killed
 Sending TERM to remaining processes ... uhttpd device-client avahi-daemon onion-helper udhcpc mountd ntpd shellinaboxd udhcpc dnsmasq ubusd logd rpcd netifd odhcpd crond
