@@ -27,7 +27,7 @@ On the Omega, we can control GPIO pins with a command-line tool known as `gpioct
 ```{r child = './using-gpios-multiplexed-pins.md'}
 ```
 
-### Important & Special GPIOs
+### Important & Special Pins {#important-special-gpios}
 
 A few important notes on the Omega's GPIOs, specifically:
 
@@ -63,12 +63,27 @@ To reiterate:
 
 #### LED & Reset GPIOs
 
-The Omega's hardware design uses two dedicated GPIOs to control the Omega's LED and accept an incoming Reset signal:
+The Omega's hardware design uses dedicated GPIOs to control the Omega's LED and accept an incoming Reset signals:
 
-| GPIO   | Function  | Exposed on Omega's Headers? |
-|--------|-----------|-----------------------------|
-| GPIO38 | FW_RST    | Yes                         |
-| GPIO44 | Omega LED | No                          |
+| GPIO   | Function  | Exposed on Omega's Headers? | Omega2S Pin Number |
+|--------|-----------|-----------------------------|--------------------|
+| GPIO38 | FW_RST    | Yes                         | 4                  |
+| -      | HW_RST    | Yes                         | 5                  |
+| GPIO44 | Omega LED | No                          | 19                 |
+
+
+### Pin Behaviour during Boot {#pins-at-boot}
+
+Most of the Omega's pins will remain at the default digital low state during the boot process. However, there are a few pins that will behave differently:
+
+| GPIO             | Omega2S Pin Number | Behavior                                                                                  |
+|------------------|--------------------|-------------------------------------------------------------------------------------------|
+| GPIO11           | 38                 | Will settle at Digital High - Used to provide power for reset button on Docks             |
+| GPIO14 to GPIO21 | 45 - 51            | Will fluctuate around 2.5V during boot. Will settle at digital low when boot is complete. |
+
+The behavior of these pins during boot is goverened by the Omega's bootloader.
+
+> The Omega2 Bootloader is open source and can be found on GitHub: https://github.com/OnionIoT/omega2-bootloader
 
 
 ### From the Command Line
