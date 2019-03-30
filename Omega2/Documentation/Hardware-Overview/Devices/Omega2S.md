@@ -32,7 +32,7 @@ Take a look at the [Using the GPIOs](https://docs.onion.io/omega2-docs/using-gpi
 
 ![omega2s pinout](https://github.com/OnionIoT/Onion-Media/raw/master/Pinouts/Omega2S.png)
 
-### Datasheet & More
+### Datasheet & Other Resources
 
 Find the Omega2S datasheet and all of the available documents for download here: https://onion.io/omega2s/#documents
 
