@@ -26,10 +26,6 @@ The Omega2S comes in two variants: the Omega2S and Omega2S+
 | SPI | 1  | 1  |
 | I2S | 1  | 1  |
 
-### SoC Datasheet
-
-The datasheet for the Omega2S SoC can be found here: [Mediatek MT7688 Datasheet](https://labs.mediatek.com/fileMedia/download/9ef51e98-49b1-489a-b27e-391bac9f7bf3)
-
 ### The Pins
 
 Take a look at the [Using the GPIOs](https://docs.onion.io/omega2-docs/using-gpios.html#important-special-gpios) article to learn more about the Omega's GPIOs, multiplexing GPIO functionality, and the behaviour and requirements of the Omega's special GPIOs.
@@ -39,3 +35,7 @@ Take a look at the [Using the GPIOs](https://docs.onion.io/omega2-docs/using-gpi
 ### Datasheet & More
 
 Find the Omega2S datasheet and all of the available documents for download here: https://onion.io/omega2s/#documents
+
+### SoC Datasheet
+
+The datasheet for the Omega2S SoC can be found here: [Mediatek MT7688 Datasheet](https://labs.mediatek.com/fileMedia/download/9ef51e98-49b1-489a-b27e-391bac9f7bf3)
