@@ -45,7 +45,7 @@ This Expansion features an Expansion Header, so other expansions can be safely s
 
 <!-- // instructions and photos of connecting and disconnecting an ethernet Cable -->
 
-Your Omega will automatically discover when an Ethernet cord is connected to your Ethernet Expansion. If you've got a terminal open with a serial connection to the Omega you'll see the following output when you plug in an Ethernet cord:
+Your Omega will automatically discover when an Ethernet cord is connected to your Ethernet Expansion. If you're connected to the Omega's command line **through serial,** you'll see the following output when you plug in an Ethernet cord:
 
 ```
 root@Omega-2757:/# [  473.834234] rt3050-esw 10110000.esw: link changed 0x01
@@ -56,6 +56,8 @@ and when you unlpug the ethernet cord you'll see this:
 ```
 [  491.625850] rt3050-esw 10110000.esw: link changed 0x00
 ```
+
+> If you're connected to the Omega's command line through SSH, you can run the `dmesg` command to print out all of the messages from the kernel.
 
 To connect an Ethernet cord to your Ethernet Expansion, properly align the Ethernet plug with the jack, and insert. It will click in place.
 
@@ -82,4 +84,3 @@ To learn more about using the Ethernet Expansion check out our guide to [using t
 <!-- //  - connecting to a wired networking -->
 <!-- //  - using the omega as a router -->
 <!-- //  - using the omega as an ethernet bridge -->
-
