@@ -220,4 +220,4 @@ You should now be able to observe the 1kHz signal with 75% duty cycle on the pwm
 
 #### Golang example
 
-Visit [chmorgan/go-pwm-example](https://github.com/chmorgan/go-pwm-example) for an example of controlling the hardware PWM modules from your own application. Through the use of golang, and its support of various architectures, it is possible to build and load this example onto your Omega2 module in a matter of minutes.
+Visit [https://github.com/chmorgan/go-pwm-example](https://github.com/chmorgan/go-pwm-example) for an example of controlling the hardware PWM modules from your own application. Through the use of golang, and its support of various architectures, it is possible to build and load this example onto your Omega2 module in a matter of minutes.
