@@ -37,16 +37,23 @@ A few important notes on the Omega's GPIOs, specifically:
 
 #### Pins Important for Booting the Omega
 
-The following pins affect the Omega's Boot Sequence and must be floating at boot time, that is, they cannot be pulled up or pulled down:
+There is a number of pins that affect the Omega's Boot Sequence and require special attention. The pins fall into two categories: 
 
-| GPIO   | Description        |
-|--------|--------------------|
-| GPIO1  | GPIO / I2S SDO     |
-| GPIO6  | SPI CS1/ GPIO      |
-| GPIO7  | SPI CLK            |
-| GPIO8  | SPI MOSI           |
-| GPIO12 | UART TX0           |
-| GPIO45 | UART TX1 / GPIO    |
+1. Pins that must be **floating** at boot time, that is, they cannot be pulled up or pulled down
+1. Pins that cannot be **pulled-up** at boot time, that is, they can be floating or pulled-down
+
+The following pins affect the Omega's Boot Sequence so they require special attention:
+
+| GPIO   | Description                    | Boot Time               |
+|--------|--------------------------------|-------------------------|
+| GPIO1  | GPIO / I2S SDO                 | Cannot be **pulled-up** |
+| GPIO6  | SPI CS1/ GPIO                  | Must be **floating**    |
+| GPIO7  | SPI CLK                        | Must be **floating**    |
+| GPIO8  | SPI MOSI                       | Must be **floating**    |
+| GPIO12 | UART TX0                       | Cannot be **pulled-up** |
+| GPIO45 | UART TX1 / GPIO                | Must be **floating**    |
+| GPIO36 | GPIO / PERST_N *Omega2S Only*  | Must be **floating**    |
+
 
 #### SPI Pins & Onboard Flash Storage
 
