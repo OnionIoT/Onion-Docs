@@ -51,6 +51,31 @@ The specific differences from the Omega2 are as follows:
 * No on-board antenna - features Antenna signal pin and U.FL connector
 * No on-board system status LED - features system status pin for connection to external LED
 
+### Development Kit
+
+The Omega2S Development Kit includes everything you need to fully evaluate the functionality of the Omega2S Module and begin the development of your IoT product.
+
+* Easy insertion socket for the Omega2S Module
+* USB, Micro-USB, Ethernet Connectors
+* Connectors Pins for all Input/Output Signals
+* Dual Reset Functions
+
+![o2s dev kit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2s-dev-kit-emmc-0.jpg)
+
+Two versions are available:
+
+| OM2S-DK-SD<br>SD Card Slot Version       | OM2S-DK-EM<br>eMMC Storage Version |
+|------------------------------------------|------------------------------------|
+| Micro SD Card Slot<br>8 GB Micro SD Card | Built-in 8GB eMMC                  |
+| Two (2) Omega2S modules                  | Two (2) Omega2S modules            |
+| Two (2) Omega2S+ modules                 | Two (2) Omega2S+ modules           |
+| 2 dBi uFL Tape Antenna                   | 2 dBi uFL Tape Antenna             |
+| Micro USB Cable                          | Micro USB Cable                    |
+| Ethernet Cable                           | Ethernet Cable                     |
+
+### Ordering Information
+
+To get information on ordering or evaluating the Omega2S, visit: https://onion.io/omega2s/
 
 ### SoC Datasheet
 
