@@ -36,6 +36,22 @@ Take a look at the [Using the GPIOs](https://docs.onion.io/omega2-docs/using-gpi
 
 Find the Omega2S datasheet and all of the available documents for download here: https://onion.io/omega2s/#documents
 
+### Differences from Omega2
+The Onion Omega2S is the surface-mount packaged version of the Omega2, designed specifically for high volume production due to its low profile, extended feature-set, and production friendly design.
+
+The specific differences from the Omega2 are as follows:
+
+* Surface-mount module form-factor
+* Low profile, measuring 34x20x2.8 mm
+* 63 total pins compared to 32 pins on Omega2
+* Pins for SD/eMMC are available on the pinout - no MicroSD slot
+* Features 3 UARTs, compared to 2 on the Omega2
+* Features 4 PWM channels, compared to 2 on the Omega2
+* Exposes SPI Chip-Select 0 (CS0) pin
+* No on-board antenna - features Antenna signal pin and U.FL connector
+* No on-board system status LED - features system status pin for connection to external LED
+
+
 ### SoC Datasheet
 
 The datasheet for the Omega2S SoC can be found here: [Mediatek MT7688 Datasheet](https://labs.mediatek.com/fileMedia/download/9ef51e98-49b1-489a-b27e-391bac9f7bf3)
