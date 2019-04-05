@@ -50,7 +50,7 @@ There is a number of pins that affect the Omega's Boot Sequence and require spec
 | GPIO8  | SPI MOSI                       | Must be **floating**                    |
 | GPIO12 | UART TX0                       | Must be **floating** or **pulled down** |
 | GPIO45 | UART TX1 / GPIO                | Must be **floating**                    |
-| GPIO36 | GPIO / PERST_N *Omega2S Only*  | Must be **floating**                    |
+| GPIO36 | GPIO / PERST_N *(Omega2S Only)*  | Must be **floating**                    |
 
 Once the Omega has booted, these pins can be used normally.
 
