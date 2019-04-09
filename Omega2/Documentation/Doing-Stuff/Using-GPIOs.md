@@ -72,11 +72,11 @@ To reiterate:
 
 The Omega's hardware design uses dedicated GPIOs to control the Omega's LED and accept an incoming Reset signals:
 
-| GPIO   | Function  | Exposed on Omega's Headers? | Omega2S Pin Number |
-|--------|-----------|-----------------------------|--------------------|
-| GPIO38 | FW_RST    | Yes                         | 4                  |
-| -      | HW_RST    | Yes                         | 5                  |
-| GPIO44 | Omega LED | No                          | 19                 |
+| GPIO   | Function                | Exposed on Omega's Headers? | Omega2S Pin Number |
+|--------|-------------------------|-----------------------------|--------------------|
+| GPIO38 | FW_RST **Active-High**  | Yes                         | 4                  |
+| -      | HW_RST **Active-Low**   | Yes                         | 5                  |
+| GPIO44 | Omega LED               | No                          | 19                 |
 
 
 ### Pin Behaviour during Boot {#pins-at-boot}
