@@ -1,3 +1,3 @@
 ### The Operating system
 
-The Omega2 runs the Linux Embedded Development Environment (LEDE) operating system, a distribution based on OpenWRT. This distribution gives the Omega2 access to the OPKG functionality, allowing you to download packages to enhance your experience.
+The Omega2 runs the OpenWRT Linux operating system, based on the OpenWRT 18.06 release. OpenWRT is excellent for embedded Linux and networking applications. Included with OpenWRT is the OPKG package manager, that allows easy download and installation of various packages to extend the functionality of your device.
