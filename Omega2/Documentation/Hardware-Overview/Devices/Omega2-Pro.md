@@ -12,6 +12,19 @@ It also includes an [FAQ](https://onion.io/omega2-pro-get-started/#faq) that wil
 
 ### The Omega2 Pro at a Glance
 
+![Omega2 Pro ](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2-pro-features.png)
+
+|                                   |                       |
+|-----------------------------------|-----------------------|
+| **A.** 30-pin expansion header    | **G.** USB host       |
+| **B.** Battery connector          | **H.** USB-to-serial  | 
+| **C.** 8 GB eMMC                  | **I.** Full-color LED |
+| **D.** Programmable button        | **J.** Omega2 core    |
+| **E.** Power management           | **K.** Chip antenna   |
+| **F.** Micro USB (power & serial) |                       |
+
+The Omega2 Pro is based around the [Omega2S+ module](#omega2s), it is the centerpiece of the Omega2 Pro, providing the CPU, 128MB RAM memory & WiFi radio.
+
 | Omega2 Pro Specs  | |
 | :-------------: | :-------------:  |
 | Processor | 580MHz MIPS CPU  |
@@ -31,20 +44,6 @@ It also includes an [FAQ](https://onion.io/omega2-pro-get-started/#faq) that wil
 | I2C | 1  |
 | SPI |  1   |
 | I2S | 1  |
-
-
-![Omega2 Pro ](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2-pro-features.png)
-
-|                                   |                       |
-|-----------------------------------|-----------------------|
-| **A.** 30-pin expansion header    | **G.** USB host       |
-| **B.** Battery connector          | **H.** USB-to-serial  | 
-| **C.** 8 GB eMMC                  | **I.** Full-color LED |
-| **D.** Programmable button        | **J.** Omega2 core    |
-| **E.** Power management           | **K.** Chip antenna   |
-| **F.** Micro USB (power & serial) |                       |
-
-The Omega2 Pro is based around the [Omega2S+ module](#omega2s), it is the centerpiece of the Omega2 Pro, providing the CPU, 128MB RAM memory & WiFi radio.
 
 ### The Expansion Header
 
@@ -85,12 +84,21 @@ Learn more about installing and using Node-Red on the Omega2 Pro by following [t
 ```{r child = '../shared/Hardware-Overview-Component-90-Omega-operating-system.md'}
 ```
 
-### The Omega LED {#omega2pro-hw-omega-led}
+### The Amber Status LED {#omega2pro-hw-omega-led}
 
 <!-- omega led content -->
 ```{r child = '../shared/Hardware-Overview-Component-91-Omega-omega-led-content.md'}
 ```
 
+### The Blue WiFi Status LED {#omega2pro-hw-wifi-led}
+
+The blue WiFi status LED provides a visual indication of the device's WiFi connection status to other networks:
+
+| State            | LED Activity |
+|------------------|--------------|
+| Not connected    | Off          |
+| Connecting       | Blinking     |
+| Connected        | On           |
 
 <!-- Micro USB Port -->
 ```{r child = '../shared/Hardware-Overview-Component-1-Micro-USB-Port.md'}
