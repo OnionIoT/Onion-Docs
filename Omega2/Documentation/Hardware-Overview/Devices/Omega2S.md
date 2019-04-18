@@ -50,6 +50,7 @@ The specific differences from the Omega2 are as follows:
 * Exposes SPI Chip-Select 0 (CS0) pin
 * No on-board antenna - features Antenna signal pin and U.FL connector
 * No on-board system status LED - features system status pin for connection to external LED
+* Does not have built-in pull-up resistors on I2C bus - requires external pull-up resistors
 
 ### Development Kit
 
