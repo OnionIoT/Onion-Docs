@@ -223,14 +223,13 @@ This big command essentially does the following:
 
 <!-- // There's a python module for interacting with serial ports python-pyserial, read up on the Documentation -->
 
-You can use Python in order to communicate serially via the UART. The module to accomplish this is `PySerial` which can be installed using `opkg`.
+You can use Python and the `PySerial` module to communicate through serial ports, this includes UART1 and any USB-based serial devices. The method for installing `PySerial` depends on which Python version you're using.
 
+>See our guide on [installing and using Python on the Omega](#installing-and-using-python) for more information on installing Python2.7 and Python3.6
 
-#### Installing the Module
+#### Python2.7: Installing the PySerial Module
 
-<!-- // should be `opkg install pyton-pyserial` -->
-
-You'll need to have Python or Python-light installed in order to continue. If you've installed the full version of Python you will already have PySerial.
+You'll need to have `python` or `python-light` installed in order to continue. If you've installed the full version of Python you will already have PySerial.
 
 >You can read our guide to [installing and using Python on the Omega](#installing-and-using-python) for more information.
 
@@ -247,6 +246,25 @@ opkg install python-pyserial
 ```
 
 You'll now be able to use PySerial!
+
+#### Python3: Installing the PySerial Module 
+
+We'll be using Pip to install the PySerial Module. For more details on Python3 and Pip, see our guide on installing and using Python on the Omega](#installing-and-using-python).
+
+First, we'll need to install the Python3 version of Pip:
+
+```
+opkg update
+opkg install python3-pip
+```
+
+Then use Pip to install the `PySerial` module:
+
+```
+pip3 install pyserial
+```
+
+And you're all set to use PySerial in your Python3 programs.
 
 #### Using PySerial
 
