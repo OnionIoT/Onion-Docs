@@ -25,6 +25,8 @@ Now, plug your Omega and Ethernet Expansion to the Expansion Dock and connect th
 
 ![bootloader-menu](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/bootloader-menu.PNG)
 
+> Note that the **_Reset_** button is connected to the _active-high_ FW_RST/GPIO38 pin. To get to the bootloader prompt when using an Omega2S module, hold the SW_RST/GPIO38 pin at logical high while the device is booting.
+
 We need to activate `Web Recovery Mode` by pressing `0`. Be quick, you only have 40 seconds until the Omega reboots and tries to boot normally. After pressing `0`, you shoid see the following output:
 ```
 Bringing Eth0 (10/100-M) up...
