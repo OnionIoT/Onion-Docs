@@ -30,6 +30,8 @@ Now, plug your Omega and the USB stick into the Dock and connect to your compute
 ![bootloader-menu](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/bootloader-menu.PNG)
 <!-- Bootloader menu -->
 
+> Note that the **_Reset_** button is connected to the _active-high_ FW_RST/GPIO38 pin. To get to the bootloader prompt when using an Omega2S module, hold the SW_RST/GPIO38 pin at logical high while the device is booting.
+
 We need to choose `Flashing firmware from USB storage` by pressing `2`. Be quick, you only have 40 seconds until the Omega reboots and tries to boot normally. After pressing `2`, you should see the following output:
 
 ![bootloader-usb-firmware](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/bootloader-usb-firmware.PNG)
