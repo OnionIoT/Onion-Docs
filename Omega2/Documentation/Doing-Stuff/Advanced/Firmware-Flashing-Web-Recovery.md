@@ -6,8 +6,8 @@ If your Omega got "bricked" or your firmware became corrupted and you cannot boo
 
 ### Step 1: Ingredients
 
-* The Omega2 or Omega2+ that needs to be flashed with new firmware
-* Expansion Dock
+* The Omega2 device that needs to be flashed with new firmware
+* Expansion Dock (if reflashing an Omega2 or Omega+)
 	* Must be the Expansion Dock since we will need to connect the Ethernet Expansion and connect to the Omega’s command line via serial
 * Ethernet Expansion
 * Ethernet Cable
@@ -15,7 +15,7 @@ If your Omega got "bricked" or your firmware became corrupted and you cannot boo
 
 ### Step 2: Downloading Firmware
 
-Before we proceed to the actual flashing process, we need to download the firmware we wish to flash on the Omega to your computer. Open your web browser and go to the [Onion firmware repo](http://repo.onion.io/omega2/images/). We will flash firmware `v0.1.10 b160`, which is the latest at the time of writing.
+Before we proceed to the actual flashing process, we need to download the firmware we wish to flash on the Omega to your computer. Open your web browser and go to the [Onion firmware repo](http://repo.onioniot.com/omega2/images/). We will flash firmware `v0.3.2 b221`, which is the latest at the time of writing.
 
 ### Step 3: Activating Web Recovery Mode
 
