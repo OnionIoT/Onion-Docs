@@ -16,7 +16,7 @@ This page lists all of the currently identified issues in the Omega OS. The issu
             * run `opkg update`
             * install again but from the Onion repo: `opkg install avrdude`
 * ~~The Omega cannot successfully connect to the Onion Cloud~~
-    * Status: **Fixed** in b149
+    * Status: ~~**Fixed** in b149~~ Onion Cloud was [decommissioned in October 2018](https://onion.io/onion-cloud-end-of-life-notice/)
 * ~~The reset button does not work~~
     * Status: **Fixed** in b146
 * ~~Omega2+ cannot reboot~~
@@ -29,13 +29,14 @@ This page lists all of the currently identified issues in the Omega OS. The issu
     * Root Cause: the firmware does not expose the `/dev/mem` device which allows access to the memory map
     * Status: **Fixed** in b160
 * WiFi Issues
-    * No automatic support for TKIP-encrypted WiFi networks
-        * See [this post](https://community.onion.io/topic/1149/omega2-fails-to-connect-to-wifi/25) on the Onion Community for an interim, manual fix
-        * Status: expect a fix in March
     * No support for enterprise WiFi that requires a username and password
-        * Status: expect a fix in March
-    * No automatic support for WiFi channels 13 and 14
-        * Status: expect a fix in March
+        * Status: not currently supported with Onion WiFi Warp Core driver
+    * ~~No automatic support for TKIP-encrypted WiFi networks~~
+        * ~~See [this post](https://community.onion.io/topic/1149/omega2-fails-to-connect-to-wifi/25) on the Onion Community for an interim, manual fix~~
+        * Status: **Fixed** in firmware v0.2.0 and up with release of Onion WiFi Warp Core driver. See [related blog post](https://onion.io/2bt-brand-new-os-release/) for more details. 
+    * ~~No automatic support for WiFi channels 13 and 14~~
+        * Status:  **Fixed** in firmware v0.2.0 and up with release of Onion WiFi Warp Core driver (see [related blog post](https://onion.io/2bt-brand-new-os-release/) for more details). 
+          * To enable channels 13 and 14, open `/etc/config/wireless`, change the `country` option to your country (assuming it supports channels 13 and 14), and restart the WiFi interface by running `wifi`
 
 
 ### Console Issue Listing
