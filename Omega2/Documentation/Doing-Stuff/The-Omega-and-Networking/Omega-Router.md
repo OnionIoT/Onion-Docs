@@ -10,9 +10,12 @@ order: 1
 
 <!-- high level introduction of what we're doing in this tutorial: turning the omega into a router, brief description of a router -->
 
-This tutorial will show you how you can use the Omega as a WiFi router. A router is a device uses an Ethernet connection to provide a wireless area network. We are going to plug our Omega into a modem to provide internet to an area.
+This tutorial will show you how you can use the Omega as a WiFi router. A router is a device has a connection to the internet (or other networks) through Ethernet, and then provides access to this network wirelessly through a WiFi Access Point (AP).
 
-The Ethernet Expansion is required to give your Omega access to an Ethernet port. By using the Ethernet Expansion, we can turn our Omega into a low-cost yet effective router.
+The Omega is configured to host a WiFi Access point by default, by following this tutorial, you will learn how to change the configuration so that network access from the ethernet port is shared on the WiFi AP. 
+
+
+In this example, we will be using an Omega2, a Dock, and an Ethernet Expansion to turn our Omega into a low-cost yet effective router. These same configuration changes can be made for any custom hardware that uses the Omega2/Omega2S and has an ethernet port.
 
 <!-- illustration showing the whole system -->
 
@@ -38,20 +41,21 @@ After you have connected everything, power on the Omega.
 
 ### Step 2: Setup the Omega
 
-<!-- batch2: explanation of which wifi you're disabling -->
-
-The next step is to disable the WiFi connection on the Omega. We want our Omega to connect to the internet via the ethernet connection and so we're going to turn off the WiFi on our Omega
+The next step is to disable the WiFi client connection on the Omega. We want our Omega to connect to the internet via the ethernet connection and so we're going to turn off the WiFi on our Omega
 
 >We're going to be disabling the WiFi on the Omega so you'll need to make sure that you've established a serial connection with your Omega. For more information, please refer to this [guide on connecting to your Omega.](#connecting-to-the-omega-terminal)
 <!-- batch2: expand on this comment - explain why serial is beneficial in this scenario -->
 
-To do this, you will use the `uci` command to change the access point settings of your Omega.
+To do this, you will use the `uci` command to change the wireless of your Omega.
 
-Enter the following command to set the value of `ApCliEnable` to `0`:
+
+Enter the following command to disable the WiFi client interface, also known as STA:
 
 ```
-uci set wireless.@wifi-iface[0].ApCliEnable=0
+uci set wireless.sta.disabled=1
 ```
+
+> If your Omega is running a firmware older than v0.2.0, the command will instead be `uci set wireless.@wifi-iface[0].ApCliEnable=0`. We strongly recommend [upgrading to the latest firmware](#using-the-omega-updating)!
 
 Then run the following command to save your changes:
 
@@ -59,55 +63,75 @@ Then run the following command to save your changes:
 uci commit wireless
 ```
 
-This will disable the ApCli device which is used to wirelessly connect to an existing router.
+This will disable the WiFi client interface that is used to wirelessly connect to a router.
 
+<!-- create a new step regarding the ssid name -->
+### Step 3: Changing the Settings of the Omega's WiFi Access Point
+
+Since you probably don't want uninvited guests on your new router, it is recommended that you change your Omega's settings from the default setup, especially the password.
+
+To do so, enter the following commands, substituting `OmegaRouter` and `RouterPassword`:
+
+```
+uci set wireless.ap.ssid=OmegaRouter
+uci set wireless.ap.key=RouterPassword
+uci commit wireless
+```
 
 Restart the WiFi network to apply your saved changes:
 ```
 wifi
 ```
 
-<!-- create a new step regarding the ssid name -->
-### Step 3: Changing your Omega Router's Settings
-
-Since you probably don't want uninvited guests on your new router, it is recommended that you change your Omega Router's settings from the default setup, especially the password.
-
-To do so, enter the following commands, substituting `OmegaRouter` and `RouterPassword`:
-
-```
-uci set wireless.@wifi-iface[0].ssid=OmegaRouter
-uci set wireless.@wifi-iface[0].key=RouterPassword
-uci commit
-```
-
 #### Changing the Encryption Type
 
-If you wish to keep the default encryption type (`psk2`), you can continue to the next step below.
+The default encryption of the Omega's WiFi AP is set to WPA2. We recommend sticking with WPA2 as it is the most secure. 
+
+To confirm the encryption type, you can run:
+
+```
+uci get wireless.ap.encryption
+```
+
+And you will see `psk2` as the output. 
+
+
+
+If you wish to keep the default encryption type, you can continue to the next step below.
 
 However, if you wish to change the encryption type, find the type you want in the [UCI wireless encryption list](https://wiki.openwrt.org/doc/uci/wireless/encryption), then substitute it into `YourEncryptionType` and run:
 
 ```
-uci set wireless.@wifi-iface[0].encryption=YourEncryptionType
-uci commit
+uci set wireless.ap.encryption=YourEncryptionType
+uci commit wireless
 ```
+
+The options are:
+
+* `psk2` for WPA2
+* `psk` for WPA1
+* `wep` for WEP
+* `none` for no encryption
 
 ***Note: If you don't know what encryption type to use, just keep the default.***
 
 Please keep in mind that 1st generation WPA is [not secure](http://www.pcworld.com/article/153396/wifi_hacked.html).
 
-#### Restarting the Wifi
+#### Restarting the Wifi Radio
 
-Once you have finished customizing the WiFi network, run the following command to restart the WiFi network and apply your settings:
+Once you have finished customizing the WiFi network settings, run the following command to restart the WiFi radio and apply your settings:
 
 ```
 wifi
 ```
 
-### Step 4: Enable `eth0`
+#### Enabling the Ethernet Port
 
-The Omega is primarily designed as a development board to prototype WiFi-enabled devices, so by default, we have turned off the ethernet interface `eth0` in the firmware. In order to use the Omega as a router, you will need to re-enable this. 
+**Only needed on firmware v0.1.10 or lower**, safely skip to the next step if running a later firmware.
 
-Enable the Ethernet connection by running:
+
+
+In firmware v0.1.10 and earlier, the ethernet interface was not enabled by default. Enable the ethernet port by running: 
 
 ```
 uci set network.wan.ifname='eth0'
@@ -115,17 +139,17 @@ uci set network.wan.hostname='OnionOmega'
 uci commit
 ```
 
-This will tell the Omega to turn on the `eth0` interface and we will also be referring to this network as `wan`.
-
-Once you have saved and closed the file, run the following command to restart the network service to reload the new configuration:
+Then restart the Omega's network interfaces:
 
 ```
 /etc/init.d/network restart
 ```
 
-### Step 5: Enabling Packet Routing
+We strongly recommend [upgrading to the latest firmware](#using-the-omega-updating)
 
-Next, you will need to configure the Omega to route packets from the ethernet interface (`eth0`) to your WiFi interface (`wlan0`). To do this, you will be editing the `/etc/config/firewall` file:
+### Step 4: Enabling Packet Routing
+
+The Omega's ethernet port is configured to act as a network client by default. So we will just need to configure the Omega to route packets from the ethernet networ interface (`wan`) to your WiFi AP interface (`wlan`). To do this, you will be editing the `/etc/config/firewall` file:
 
 Find the block that looks something like the following:
 
@@ -160,7 +184,7 @@ config zone
         option input 'ACCEPT'
 ```
 
-What this tells the Omega to do is to add the `wan` network (which we defined in `/etc/config/network` file) to a firewall zone called `wan`. This zone has already been setup to route packets to another firewall zone called `lan`, which contains the `wlan0` interface.
+> This configuration adds the `wan` network (which is defined in `/etc/config/network`) to a firewall zone called `wan`. This zone has already been setup to route packets to another firewall zone called `lan`, which contains the `wlan0` interface.
 
 Once you have saved and closed the file, run the following command to restart the firewall with the updated configuration:
 
@@ -168,8 +192,8 @@ Once you have saved and closed the file, run the following command to restart th
 /etc/init.d/firewall restart
 ```
 
-### Step 6: Using the Omega Router
+### Step 5: Using the Omega Router
 
-And we are ready! To use the Omega Router, you simply need to connect your computer or your smartphone/tablet to the WiFi network that you configured in Step 4, and your devices should be able to access the Internet via the Omega :)
+And we are ready! To use the Omega Router, you simply need to connect your computer or your smartphone/tablet to the Omega's WiFi network, and your devices will be able to access the Internet!
 
 Happy hacking!
