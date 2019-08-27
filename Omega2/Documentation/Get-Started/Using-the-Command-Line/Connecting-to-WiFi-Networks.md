@@ -2,7 +2,7 @@
 
 ## Connecting To WiFi Networks {#connecting-to-wifi-networks-command-line}
 
-The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to the Internet. This article will cover what `wifisetup` is, as well as how you can use it to connect your Omega to the Internet.
+The Omega comes ready with a command-line tool called `wifisetup` that makes it easy to connect your Omega to WiFi networks. This article will cover what `wifisetup` is, as well as how you can use it to connect your Omega to a WiFi network near you.
 
 ### Using `wifisetup`
 
@@ -133,3 +133,32 @@ and to move it down you would enter:
 ```
 wifisetup priority -ssid myNetwork -move down
 ```
+
+### Disabling the WiFi Client Interface
+
+To disable the Omega's WiFi client interface, run the following commands:
+
+```
+uci set wireless.sta.disabled='1'
+uci commit wireless
+wifi
+```
+
+Note that the Omega's WiFi Access Point will still be active. In this case, the Omega will be hosting a WiFi network, but will not attempt to connect to other networks.
+
+> To re-enable the WiFi client interface, run the same commands but instead set the `wireless.sta.disabled` option back to `0`.
+
+
+### Disabling the WiFi Radio Completely
+
+The Omega's entire WiFi radio can be disabled by running these commands:
+
+```
+uci set wireless.radio0.disabled='1'
+uci commit wireless
+wifi
+```
+
+This will entirely disable the WiFi radio, including both the WiFi AP and client interface. Users may want to do this to take advantage of the power savings that come from disabling the relatively power-hungry WiFi radio.
+
+> To re-enable the WiFi radio, run the same commands but instead set the `wireless.radio0.disabled` option back to `0`.
