@@ -19,7 +19,10 @@ The Omega2 can read and write to USB storage devices, such as USB keys, and USB 
 <!-- Explanation of how a device needs to be mounted - make sure to highlight the Omega2 auto-mounts USB storage, point out the location -->
 On a Linux device, a USB storage device needs to be mounted in order to be used. Mounting a device maps it's storage space to a directory on your device so that you may access it.
 
-The Omega2 comes ready with an auto-mounting tool that will take care of that process for you! The default mount location is `/tmp/mounts/`.
+The Omega2 comes ready with an auto-mounting tool that will take care of that process for you! The default mount location is `/mnt/`.
+
+> On firmware older than `v0.3.0`, the default mount location was `/tmp/mounts/` and the `mountd` package controlled automatic mounting.
+> Firmwares `v0.3.0` and up use the `block-mount` package. 
 
 
 ### Using USB storage
@@ -31,16 +34,16 @@ Steps to access USB storage:
 
 1. Plug in the USB Storage
 2. Navigate to the directory where your USB device is located.
-	* The default is `/tmp/mounts/`
-		* `cd /tmp/mounts/`
+	* The default is `/mnt/`
+		* `cd /mnt/`
 3. Check the directory for your USB storage device
   ```
   ls
   ```
-4.  Your device will usually be named `USB-A1`
+4.  Your device will usually be named `sda1`
 	* `cd <device name>` to enter the storage space on your USB
-	* In this example, this would be `cd USB-A1`
-5.  Congratulations, you may now use your USB storage device for additional space on your Omega!
+	* In this example, this would be `cd sda1`
+5.  Congratulations, you can now use your USB storage device for additional space on your Omega!
 
 
 Now that your device is mounted, you can treat this directory just like you would any other one on your Omega. This means you can copy files to the Omega from the USB device, and vice versa. Not only that, you can even run code from your USB device on your Omega!
@@ -54,7 +57,7 @@ cp <FILE YOU WANT TO COPY> <DESTINATION>
 Based on the example above, the command would look like the following if I was moving a file from my root directory to the USB device:
 
 ```
-cp /root/example.txt /tmp/mounts/USB-A1/example.txt
+cp /root/example.txt /mnt/sda1/example.txt
 ```
 
 
@@ -73,13 +76,33 @@ umount <mount point>
 From the above example:
 
 ```
-umount /tmp/mounts/USB-A1
+umount /mnt/sda1
 ```
 
 The USB device can now be safely unplugged.
 
 
+### Changing Mounting Options {#usb-storage-changing-mounting-options}
+
+The configuration for `block-mount` can be found in `/etc/config/fstab`. By default, the configuration is as follows:
+
+```
+config global
+	option anon_swap '0'
+	option auto_swap '1'
+	option auto_mount '1'
+	option delay_root '5'
+	option check_fs '0'
+	option anon_mount '1'
+```
+
+The `auto_mount` option controls automatic mounting of external storage. And the `anon_mount` option controls whether anonymous storage devices - meaning haven't been previously used with the Omega - should be mounted. 
+
+The configuration can be changed by directly editing the `/etc/config/fstab` config file, or [using UCI](#intro-to-uci).
+
 ### Changing the default mount point {#usb-storage-changing-default-mount-point}
+
+> This is only valid for firmwares older than `v0.3.0` that used `mountd` instead of `block-mount`.
 
 In order to change the default mount point of your USB storage devices you'll need to change a configuration file.
 

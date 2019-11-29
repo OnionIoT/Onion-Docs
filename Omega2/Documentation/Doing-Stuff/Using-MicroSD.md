@@ -42,9 +42,9 @@ This is what it should look like once seated properly -
 
 ![MicroSD properly locked in slot](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/microsd-lockedin.jpg)
 
-After you insert the card, you should make sure it's mounted in the fileystem and accessible.
+After you insert the card, you should make sure it's mounted in the filesystem and accessible.
 
->Occasionally, the spring mechaism may be already preloaded and your card will pop right back out if you let go. Simply pushed it back in until the click, and you should be all set.
+>Occasionally, the spring mechanism may be already preloaded and your card will pop right back out if you let go. Simply pushed it back in until the click, and you should be all set.
 
 If you're running the latest firmware, the Omega should have automatically mounted the MicroSD card already.
 
@@ -58,7 +58,10 @@ On a Linux device, a storage device needs to be mounted in order to access the d
 
 The Omega2 comes ready with an auto-mounting tool that will take care of that process for you!
 
-The default mount location is `/tmp/mounts/`.
+The default mount location is `/mnt/`.
+
+> On firmware older than `v0.3.0`, the default mount location was `/tmp/mounts/` and the `mountd` package controlled automatic mounting.
+> Firmwares `v0.3.0` and up use the `block-mount` package. 
 
 
 ### Accessing the MicroSD Card
@@ -68,17 +71,17 @@ The default mount location is `/tmp/mounts/`.
 //  - where the storage device gets mounted
 //  - accessing the files
 -->
-Under normal circumstances, the SD card and any USB device you plugged in should be the only things that exist in the `/tmp/mounts` directory. Thus you can check there with `ls /tmp/mounts/` to determine the name the Omega assigned the card. Running `ls /tmp/mounts` gave us `SD-P1` as the name of our MicroSD card.
+Under normal circumstances, the SD card and any USB device you plugged in should be the only things that exist in the `/mnt` directory. Thus you can check there with `ls /mnt/` to determine the name the Omega assigned the card. Running `ls /mnt` gave us `mmcblk0p1` as the name of our MicroSD card.
 
 Once mounted, it acts as a regular directory or folder in all ways, and any file that you stored in the card originally should be there! For us, it looked something like this:
 
 ```
-root@Omega-1234:~# cd /tmp/mounts
-root@Omega-1234:/tmp/mounts# ls
-SD-P1
+root@Omega-1234:~# cd /mnt
+root@Omega-1234:/mnt# ls
+mmcblk0p1
 ```
 
->The P1 in the name means partition #1 of the MicroSD card, if you have partitioned your MicroSD, they should show up as `SD-P1`, `SD-P2`, and so on.
+>The `p1` in the name means partition number 1 of the MicroSD card, if you have partitioned your MicroSD, they should show up as `mmcblk0p1`, `mmcblk0p2`, and so on.
 
 If you'd like to change where the MicroSD card is mounted on the filesystem, we've written a [guide](#usb-storage-changing-default-mount-point) covering how to do so for both MicroSD cards and USB drives.
 
@@ -95,10 +98,10 @@ umount <mount point>
 From the above example:
 
 ```
-umount /tmp/mounts/SD-P1
+umount /mnt/mmcblk0p1
 ```
 
->Note: **not** `unmount`! We've made this error more than once when we started out.
+>Note: **not** `unmount`! We've made this mistake more than once!
 
 Now that the card is no longer being used by the Omega, we can physically remove it without risking corruption.
 
