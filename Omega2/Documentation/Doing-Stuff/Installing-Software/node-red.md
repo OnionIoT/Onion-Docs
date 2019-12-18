@@ -88,11 +88,11 @@ src/gz reboot_base http://downloads.lede-project.org/releases/17.01-SNAPSHOT/pac
 src/gz reboot_packages http://downloads.lede-project.org/releases/17.01-SNAPSHOT/packages/mipsel_24kc/packages
 ## src/gz reboot_routing http://downloads.lede-project.org/releases/17.01-SNAPSHOT/packages/mipsel_24kc/routing
 ## src/gz reboot_telephony http://downloads.lede-project.org/releases/17.01-SNAPSHOT/packages/mipsel_24kc/telephony
-src/gz omega2_core http://repo.onion.io/omega2/packages/core
-src/gz omega2_base http://repo.onion.io/omega2/packages/base
-src/gz omega2_packages http://repo.onion.io/omega2/packages/packages
-src/gz omega2_routing http://repo.onion.io/omega2/packages/routing
-src/gz omega2_onion http://repo.onion.io/omega2/packages/onion
+src/gz omega2_core http://repo.onioniot.com/omega2/packages/core
+src/gz omega2_base http://repo.onioniot.com/omega2/packages/base
+src/gz omega2_packages http://repo.onioniot.com/omega2/packages/packages
+src/gz omega2_routing http://repo.onioniot.com/omega2/packages/routing
+src/gz omega2_onion http://repo.onioniot.com/omega2/packages/onion
 ```
 
 Then run these commands:

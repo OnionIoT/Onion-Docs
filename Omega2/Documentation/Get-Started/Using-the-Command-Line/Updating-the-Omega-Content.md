@@ -1,6 +1,8 @@
-In order to keep improving the user experience for the Omega, we will be releasing updated firmwares on a rolling basis. To get the benefits of these improvements, users should frequently update their Omegas to the latest firmware release. We have created a command-line utility `oupgrade` (Onion Upgrade) to handle firmware transitions.
+In order to keep improving the user experience for the Omega, we will be releasing updated firmwares on a rolling basis. To get the benefits of these improvements, users should frequently update their Omegas to the latest firmware release. We have created a command-line utility `oupgrade` (Onion Upgrade) to handle firmware transitions. 
 
 > The `oupgrade` command will **not** work properly if you run it from the Terminal App on the Console. Use `oupgrade` when connected to the Omega via SSH or Serial. If upgrading using the Console, use the [Settings App](#updating-the-omega-using-console).
+
+The `oupgrade` tool will only install official Omega2 firmware images. The official Omega2 firmware images can be found at: http://repo.onioniot.com/omega2/images/
 
 ### How do I know if I need to update my Omega?
 

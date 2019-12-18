@@ -86,15 +86,15 @@ And comment/uncomment the lines so they look like this:
 ```
 src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt7688/packages
 src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base
-# src/gz reboot_onion http://repo.onion.io/omega2/packages
+# src/gz reboot_onion http://repo.onioniot.com/omega2/packages
 ## src/gz reboot_luci http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/luci
 src/gz reboot_packages http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/packages
 ## src/gz reboot_routing http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/routing
 ## src/gz reboot_telephony http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/telephony
-# src/gz omega2_core http://repo.onion.io/omega2/packages/core
-# src/gz omega2_base http://repo.onion.io/omega2/packages/base
-# src/gz omega2_packages http://repo.onion.io/omega2/packages/packages
-src/gz omega2_onion http://repo.onion.io/omega2/packages/onion
+# src/gz omega2_core http://repo.onioniot.com/omega2/packages/core
+# src/gz omega2_base http://repo.onioniot.com/omega2/packages/base
+# src/gz omega2_packages http://repo.onioniot.com/omega2/packages/packages
+src/gz omega2_onion http://repo.onioniot.com/omega2/packages/onion
 ```
 
 >A complete guide on how to do so can be found in our guide on [Using Opkg](https://docs.onion.io/omega2-docs/using-opkg.html#using-opkg-switch-to-lede-repos).

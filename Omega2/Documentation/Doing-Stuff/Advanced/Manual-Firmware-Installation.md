@@ -48,8 +48,8 @@ Once you've verified that link is to the correct binary, hit Enter and your firm
 ```
 root@Omega-2757:/tmp# wget http://repo.onioniot.com/omega2/images/omega2p-v0.3.2-b218.bin
 --2016-12-07 21:10:02--  http://repo.onioniot.com/omega2/images/omega2p-v0.3.2-b218.bin
-Resolving repo.onion.io... 52.89.44.24, 54.149.140.66
-Connecting to repo.onion.io|52.89.44.24|:80... connected.
+Resolving repo.onioniot.com... 52.89.44.24, 54.149.140.66
+Connecting to repo.onioniot.com|52.89.44.24|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 6815910 (6.5M) [application/octet-stream]
 Saving to: 'omega2p-v0.3.2-b218.bin'

@@ -47,16 +47,19 @@ The `grep` command allows you to filter your searches by keyword. For more infor
 To find all the packages that are Onion related, we'll use `grep` with the `-i` option to iGnOrE cAsE. Enter the following into your command line:
 
 ```
-opkg list | grep -i onion-console
+opkg list | grep -i kmod-usb
 ```
-and you'll see all the available packages with onion-console in their name or description
+and you'll see all the available packages with `kmod-usb` in their name or description
 
 ```
-root@Omega-2757:/# opkg list | grep -i onion-console
-onion-console-base - 0.2-1 - Web-based virtual desktop for the Omega. Base package, only includes a few Apps.
-onion-console-editor - 0.2-1 - Editor App for the Console
-onion-console-terminal - 0.2-1 - Terminal App for the console
-onion-console-webcam - 0.2-1 - Webcam App for the console
+root@Omega-2757:/# opkg list | grep -i kmod-usb
+kmod-usb-acm - 4.14.81-1 - Kernel support for USB ACM devices (modems/isdn controllers)
+kmod-usb-audio - 4.14.81-1 - Kernel support for USB audio devices
+kmod-usb-core - 4.14.81-1 - Kernel support for USB
+kmod-usb-ehci - 4.14.81-1 - EHCI controller support
+kmod-usb-hid - 4.14.81-1 - Kernel support for USB HID devices such as keyboards and mice
+kmod-usb-net - 4.14.81-1 - Kernel modules for USB-to-Ethernet convertors
+...
 ```
 
 ##### Listing Installed Packages
@@ -112,9 +115,9 @@ Downloading http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/bas
 Updated list of available packages in /var/opkg-lists/reboot_base.
 Downloading http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base/Packages.sig.
 Signature check passed.
-Downloading http://repo.onion.io/omega2/packages/Packages.gz.
+Downloading http://repo.onioniot.com/omega2/packages/Packages.gz.
 Updated list of available packages in /var/opkg-lists/reboot_onion.
-Downloading http://repo.onion.io/omega2/packages/Packages.sig.
+Downloading http://repo.onioniot.com/omega2/packages/Packages.sig.
 Signature check passed.
 Downloading http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/packages/Packages.gz.
 Updated list of available packages in /var/opkg-lists/reboot_packages.
@@ -165,7 +168,9 @@ opkg -h
 
 ### The Onion Package Repo {#onion-package-repo}
 
-As of firmware version 0.1.7, `opkg` is configured to grab packages from Onion's package repositories. As a result, you can now successfully install kernel modules, however, we host a smaller selection of packages than the official LEDE repositories.
+As of firmware version 0.1.7, `opkg` is configured to grab packages from Onion's package repositories. As a result, you can now successfully install kernel modules, however, we host a smaller selection of packages than the official OpenWRT repositories.
+
+The Onion package repo can be found here: http://repo.onioniot.com/omega2/packages/
 
 #### How `opkg` is Configured
 
@@ -192,42 +197,44 @@ As mentioned above, we host a smaller selection of packages than the official LE
 Let us know which packages you would like to see added by posting on the [Onion Community](https://community.onion.io/). We'll do our best to update the repo in a timely manner!
 
 
-### How to Switch Back to the Official LEDE Package Repos {#using-opkg-switch-to-lede-repos}
+### Enable the Official OpenWRT Package Repos {#using-opkg-switch-to-lede-repos}
 
-If you really dislike using our repos, it's easy to switch back to using the official LEDE repos. You can also experiment with combining the use of Onion and LEDE repos. This can all be accomplished by editing the `/etc/opkg/distfeeds.conf` file that configures which repos are to be used.
+If you really dislike using our repos, it's easy to switch back to using the official OpenWRT repos. You can also experiment with combining the use of Onion and LEDE repos. This can all be accomplished by editing the `/etc/opkg/distfeeds.conf` file that configures which repos are to be used.
 
 By default, it will be configured to use the Onion repos and will look something like this:
 ```
-#src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt76x8/packages
-#src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base
-#src/gz reboot_onion http://repo.onion.io/omega2/packages
-## src/gz reboot_luci http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/luci
-#src/gz reboot_packages http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/packages
-## src/gz reboot_routing http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/routing
-## src/gz reboot_telephony http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/telephony
-src/gz omega2_core http://repo.onion.io/omega2/packages/core
-src/gz omega2_base http://repo.onion.io/omega2/packages/base
-src/gz omega2_packages http://repo.onion.io/omega2/packages/packages
-src/gz omega2_onion http://repo.onion.io/omega2/packages/onion
+#src/gz openwrt_core http://downloads.openwrt.org/releases/18.06-SNAPSHOT/targets/ramips/mt76x8/packages
+#src/gz openwrt_base http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/base
+#src/gz openwrt_luci http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/luci
+#src/gz openwrt_onion http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/onion
+#src/gz openwrt_packages http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/packages
+#src/gz openwrt_routing http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/routing
+#src/gz openwrt_telephony http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/telephony
+src/gz omega2_core http://repo.onioniot.com/omega2/packages/core
+src/gz omega2_base http://repo.onioniot.com/omega2/packages/base
+src/gz omega2_packages http://repo.onioniot.com/omega2/packages/packages
+src/gz omega2_routing http://repo.onioniot.com/omega2/packages/routing
+src/gz omega2_onion http://repo.onioniot.com/omega2/packages/onion
 ```
 
-The commented out lines in the file are not active. To go back to the official LEDE repos, just uncomment those lines, change the very first line, `.../ramips/mt7688` to `.../ramips/mt76x8` and comment out the Onion lines:
+The commented out lines in the file are not active. To enable the official OpenWRT repos, just uncomment those lines. 
 ```
-src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt76x8/packages
-src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base
-#src/gz reboot_onion http://repo.onion.io/omega2/packages
-## src/gz reboot_luci http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/luci
-src/gz reboot_packages http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/packages
-## src/gz reboot_routing http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/routing
-## src/gz reboot_telephony http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/telephony
-src/gz omega2_core http://repo.onion.io/omega2/packages/core
-src/gz omega2_base http://repo.onion.io/omega2/packages/base
-src/gz omega2_packages http://repo.onion.io/omega2/packages/packages
-src/gz omega2_onion http://repo.onion.io/omega2/packages/onion
+src/gz openwrt_core http://downloads.openwrt.org/releases/18.06-SNAPSHOT/targets/ramips/mt76x8/packages
+src/gz openwrt_base http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/base
+#src/gz openwrt_luci http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/luci
+#src/gz openwrt_onion http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/onion
+src/gz openwrt_packages http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/packages
+#src/gz openwrt_routing http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/routing
+#src/gz openwrt_telephony http://downloads.openwrt.org/releases/18.06-SNAPSHOT/packages/mipsel_24kc/telephony
+src/gz omega2_core http://repo.onioniot.com/omega2/packages/core
+src/gz omega2_base http://repo.onioniot.com/omega2/packages/base
+src/gz omega2_packages http://repo.onioniot.com/omega2/packages/packages
+src/gz omega2_routing http://repo.onioniot.com/omega2/packages/routing
+src/gz omega2_onion http://repo.onioniot.com/omega2/packages/onion
 ```
 
-We recommend leaving the `omega2_onion` repo active since it contains the packages you'll need to interact with your Expansions, Docks, as well as other Onion-developed software goodies.
+It's up to you to if you want to comment out the Onion packages. We recommend leaving the `omega2_onion` repo active since it contains the packages you'll need to interact with your Expansions, Docks, as well as other Onion-developed software goodies.
 
 For the changes to take effect, reboot your Omega and run `opkg update`. You will then have access to packages hosted by the repos that are not commented out in your `distfeeds.conf` file.
 
-> Try visiting the repo links in a browser to see what the repos actually look like online. They're actually just online directories that hold the ipk files that make up software packages for LEDE. You'll also notice files named `Packages*`, these are the files that `opkg` uses to determine which software packages are available in this repo as well as to ensure package integrity.
+> Try visiting the repo links in a browser to see what the repos actually look like online. They're actually just online directories that hold the ipk files that make up software packages for OpenWRT. You'll also notice files named `Packages*`, these are the files that `opkg` uses to determine which software packages are available in this repo as well as to ensure package integrity.
