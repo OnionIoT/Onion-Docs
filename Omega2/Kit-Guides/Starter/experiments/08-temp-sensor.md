@@ -66,6 +66,8 @@ Your circuit should look like this:
 <!-- DONE: IMAGE photo of completed circuit -->
 ![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/08-assembled-circuit.jpg)
 
+> GPIO19 was chosen rather arbitrarily. This will work with other GPIO pins as well. Just make sure to use a pin that is a GPIO by default (more details on that [here](http://docs.onion.io/omega2-docs/using-gpios.html#important-special-gpios)). Be aware that you'll need to modify the code below to specify your chosen.
+
 ### Writing the Code
 
 First, let's create a base class for any generic 1-Wire device. This class will handle all the file reading and writing needed to interface with 1-Wire devices. Creating an object of this class will associate a GPIO pin with a 1-Wire bus, and the object will act as a clean interface between code and the low level 1-Wire functions. This is exactly how libraries are written!
@@ -151,7 +153,7 @@ def scanOneAddress():
 
 # class definition for one wire devices
 class OneWire:
-    def __init__(self, address, gpio=19):      # use gpio 19 by default if not specified
+    def __init__(self, address, gpio=19):      # use gpio 19 by default if not specified (change this if using a different GPIO)
         self.gpio = str(gpio)
         self.address = str(address)
         self.slaveFilePath = oneWireDir + "/" + self.address + "/" + "w1_slave"
