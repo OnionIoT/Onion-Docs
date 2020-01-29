@@ -63,7 +63,7 @@ As you can see, the command displayed the contents in our "home" folder.  You ma
 
 6) red = archive file
 
-If your still interested in the color coding, it might be worth giving [this](http://askubuntu.com/questions/17299/what-do-the-different-colors-mean-in-the-terminal) a read. Additionally, you can use the `ls` command with the -l option for a more detailed list of the directory, we will use this in the Owners/Permissions [Section](https://github.com/OnionIoT/wiki/blob/master/Tutorials/LinuxBasics/Permissions_Part6.md).
+If you're still interested in the color coding, it might be worth giving [this](http://askubuntu.com/questions/17299/what-do-the-different-colors-mean-in-the-terminal) a read. Additionally, you can use the `ls` command with the -l option for a more detailed list of the directory, we will use this in the Owners/Permissions [Section](https://github.com/OnionIoT/wiki/blob/master/Tutorials/LinuxBasics/Permissions_Part6.md).
 
 #### `cd` command
 
@@ -91,17 +91,12 @@ The table below shows some of the different options you can use with the `cd` co
 
 
 
-| `command` [option]   |      Descripton      |  
-
-|----------|-------------|
-
-| `cd`  |    Using `cd` by itself will take you to the root directory.       |
-
-| `cd ..` |    This will take you up one one level to the parent directory.   |  
-
-| `cd .`  | This will keep you in your curent directory.|    
-
-| `cd -`  | This will change you to your previous directory, convenient when working in two directories simultaneously.|
+| `command` [option] | Descripton                                                      |  
+|--------------------|-----------------------------------------------------------------|
+| `cd`               | Using `cd` by itself will take you to the root directory.       |
+| `cd ..`            | This will take you up one one level to the parent directory.    |  
+| `cd .`             | This will keep you in your current directory.                   |    
+| `cd -`             | This will change you to your previous directory, convenient when working in two directories simultaneously. |
 
 
 
@@ -113,7 +108,7 @@ The table below shows some of the different options you can use with the `cd` co
 
 
 
-The `mkdir` allows us to create directories. This simplest way to use it is to type `cd` followed by the name of the new directory into the terminal and hit enter. This will create the new directory in your present working directory.
+The `mkdir` allows us to create directories. This simplest way to use it is to type `mkdir` followed by the name of the new directory into the terminal and hit enter. This will create the new directory in your present working directory.
 
 
 
@@ -146,7 +141,7 @@ mkdir newdirectoryname1 newdirectoryname2 newdirectoryname3
 ```
 
 
-Go ahead and try this on your own.Enter the ls command and you should be able to see all three newly created directories in your current directory.
+Go ahead and try this on your own. Enter the `ls` command and you should be able to see all three newly created directories in your current directory.
 
 
 
@@ -166,7 +161,7 @@ mkdir path/newdirectoryname
 
 
 
-In the screenshot above, we use the cd, pwd and ls functions to show the contents of the /tmp/usr/ subdirectory before and after executing the `mkdir` command from the / directory. We successfully created the "NewDirectory" in the /tmp/usr sub directory.
+In the screenshot above, we use the `cd`, `pwd` and `ls` functions to show the contents of the /tmp/usr/ subdirectory before and after executing the `mkdir` command from the / directory. We successfully created the "NewDirectory" in the /tmp/usr sub directory.
 
 
 
@@ -179,7 +174,7 @@ mkdir path/newdirectoryname1 path/newdirectoryname2  path/newdirectoryname3
 ```
 
 
-Go ahead and try this on your own.Enter the ls command and you should be able to see all three newly created directories in your current directory.
+Go ahead and try this on your own. Enter the `ls` command and you should be able to see all three newly created directories in your current directory.
 
 
 
@@ -253,7 +248,7 @@ Refer to the screenshot below for an example of its usage.
 
 
 
-Using touch allows us to create a new file, but what if we want to create a new file and place content into it right away. For that, we will introduce the cat command.
+Using `touch` allows us to create a new file, but what if we want to create a new file and place content into it right away. For that, we will introduce the `cat` command.
 
 
 
@@ -267,7 +262,7 @@ Using touch allows us to create a new file, but what if we want to create a new 
 
 
 
-Firstly to create a file type this into your command line and hit enter(make sure newfile does not already exist in that folder otherwise you will overwrite the file):
+Firstly to create a file type this into your command line and hit enter (make sure newfile does not already exist in that folder otherwise you will overwrite the file):
 
 
 
