@@ -66,7 +66,7 @@ Your circuit should look like this:
 <!-- DONE: IMAGE photo of completed circuit -->
 ![Assembled circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/08-assembled-circuit.jpg)
 
-> GPIO19 was chosen rather arbitrarily. This will work with other GPIO pins as well. Just make sure to use a pin that is a GPIO by default (more details on that [here](http://docs.onion.io/omega2-docs/using-gpios.html#important-special-gpios)). Be aware that you'll need to modify the code below to specify your chosen.
+> GPIO19 was chosen rather arbitrarily. This will work with other GPIO pins as well. Just make sure to use a pin that is a GPIO by default (more details on that [here](http://docs.onion.io/omega2-docs/using-gpios.html#using-gpios-multiplexing)). Be aware that you'll need to modify the code below to specify your chosen.
 
 ### Writing the Code
 
