@@ -78,6 +78,10 @@ Two versions are available:
 
 To get information on ordering or evaluating the Omega2S, visit: https://onion.io/omega2s/
 
-### SoC Datasheet
+### Datasheet
 
-The datasheet for the Omega2S SoC can be found here: [Mediatek MT7688 Datasheet](https://labs.mediatek.com/fileMedia/download/9ef51e98-49b1-489a-b27e-391bac9f7bf3)
+The datasheet for the MT7688 SoC used on the Omega2S can be found here: [Mediatek MT7688 Datasheet](https://labs.mediatek.com/fileMedia/download/9ef51e98-49b1-489a-b27e-391bac9f7bf3)
+
+The Omega2S datasheet can be found here: [Omega2S Datasheet](https://github.com/OnionIoT/Omega2/raw/master/Documents/Omega2S%20Datasheet.pdf)
+
+The full Omega2S technical document package can be downloaded as well: [Omega2S Technical Document Package](https://github.com/OnionIoT/Omega2/archive/master.zip)
