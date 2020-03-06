@@ -168,7 +168,7 @@ opkg -h
 
 ### The Onion Package Repo {#onion-package-repo}
 
-As of firmware version 0.1.7, `opkg` is configured to grab packages from Onion's package repositories. As a result, you can now successfully install kernel modules, however, we host a smaller selection of packages than the official OpenWRT repositories.
+As of firmware version 0.1.7 and later, `opkg` is configured to grab packages from Onion's package repositories. As a result, you can now successfully install kernel modules, however, we host a smaller selection of packages than the official OpenWRT repositories.
 
 The Onion package repo can be found here: http://repo.onioniot.com/omega2/packages/
 
@@ -190,16 +190,15 @@ opkg install kmod-fs-hfs
 For best results, make sure you're on the `latest` Omega firmware. Take a look at our guide on [updating the Omega](#updating-the-omega) for steps on how to install the `latest` firmware.
 
 
-#### You don't Have a Package I Want/Need!
+### You don't Have a Package I Want/Need!
 
-As mentioned above, we host a smaller selection of packages than the official LEDE package repos. However, if you need specific packages, we would be happy to add them to our repo.
+By default, `opkg` on the Omega2 platform is configured use Onion's online package repositories. We host a selection of packages that are frequently used by the Omega2 userbase. However, the official OpenWRT repositories host a larger selection of packages.
 
-Let us know which packages you would like to see added by posting on the [Onion Community](https://community.onion.io/). We'll do our best to update the repo in a timely manner!
-
+If you're looking for a specific package and it isn't available by default, you can try enabling the official OpenWRT package repositories on your Omega. Read on for more details.
 
 ### Enable the Official OpenWRT Package Repos {#using-opkg-switch-to-lede-repos}
 
-If you really dislike using our repos, it's easy to switch back to using the official OpenWRT repos. You can also experiment with combining the use of Onion and LEDE repos. This can all be accomplished by editing the `/etc/opkg/distfeeds.conf` file that configures which repos are to be used.
+It's very straightforward to configure `opkg` to use the OpenWRT package repos in addition to the Onion package repos. This can be accomplished by editing the `/etc/opkg/distfeeds.conf` file that configures which repos are to be used.
 
 By default, it will be configured to use the Onion repos and will look something like this:
 ```
@@ -233,8 +232,8 @@ src/gz omega2_routing http://repo.onioniot.com/omega2/packages/routing
 src/gz omega2_onion http://repo.onioniot.com/omega2/packages/onion
 ```
 
-It's up to you to if you want to comment out the Onion packages. We recommend leaving the `omega2_onion` repo active since it contains the packages you'll need to interact with your Expansions, Docks, as well as other Onion-developed software goodies.
+> It's up to you to if you want to comment out the Onion packages. We recommend leaving the `omega2_onion` repo active since it contains the packages you'll need to interact with your Expansions, Docks, as well as other Onion-developed software goodies.
 
-For the changes to take effect, reboot your Omega and run `opkg update`. You will then have access to packages hosted by the repos that are not commented out in your `distfeeds.conf` file.
+For the changes to take effect, run `opkg update`. You will then have access to packages hosted by the repos that are not commented out in your `distfeeds.conf` file. If this doesn't work, try rebooting your device and running `opkg update` again.
 
 > Try visiting the repo links in a browser to see what the repos actually look like online. They're actually just online directories that hold the ipk files that make up software packages for OpenWRT. You'll also notice files named `Packages*`, these are the files that `opkg` uses to determine which software packages are available in this repo as well as to ensure package integrity.
