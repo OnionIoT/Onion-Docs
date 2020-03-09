@@ -18,7 +18,7 @@ Gather the hardware ingredients:
 * Ethernet Cable
 * MicroUSB Cable
 
-*Optional:* If you want to check which release of the bootloader your device is currently running, see the [Checking your Bootloader Version](#Checking-your-Bootloader-Version) section below.
+*Optional:* If you want to check which release of the bootloader your device is currently running, see the [Checking your Bootloader Version](#checking-your-bootloader-version) section below.
 
 
 ### Step 2: Downloading Bootloader Binary
