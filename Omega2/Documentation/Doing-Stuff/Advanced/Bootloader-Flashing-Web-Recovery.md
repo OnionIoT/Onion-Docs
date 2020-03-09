@@ -1,13 +1,13 @@
-## Flashing a New Bootloader using Web Recovery Mode {#Web-Recovery-flash-bootloader}
+## Updating the Bootloader {#Web-Recovery-flash-bootloader}
 
-This guide illustrates how to flash a new bootloader to your Omega2 device using the web recovery feature built into the Omega's bootloader. To use the web recovery mode, you will need access to the serial console on UART0 and the Ethernet port.
+This guide illustrates how to update the bootloader running on your Omega2 device. The bootloader will be updated by using the web recovery feature to flash a new bootloader to the Omega's internal memory. You will need access to the serial console on UART0 and the Ethernet port to make use of the web recovery feature.
 
 Upgrading the bootloader will let you take advantage of our latest development efforts on the bootloader. The most notable improvement is that all pins will now stay stable and their power-on-reset values during boot.
 
 > See the full summary of bootloader changes here: https://github.com/OnionIoT/omega2-bootloader/blob/master/OMEGA2-CHANGELOG.md
 
 
-### Step 1: Ingredients
+### Step 1: Get Everything Together
 
 Gather the hardware ingredients:
 
@@ -18,7 +18,7 @@ Gather the hardware ingredients:
 * Ethernet Cable
 * MicroUSB Cable
 
-TODO: add note about checking current bootlaoder version
+*Optional:* If you want to check which release of the bootloader your device is currently running, see the [Checking your Bootloader Version](#Checking-your-Bootloader-Version) section below.
 
 
 ### Step 2: Downloading Bootloader Binary
@@ -27,10 +27,12 @@ Before we proceed to the actual flashing process, we need to download the bootlo
 
 Open your web browser and go to the Onion Bootloader Repo: http://repo.onioniot.com/omega2/bootloader/ 
 
+![bootloader binary repo](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/bootloader-update-0-repo.png)
+
 **Make sure to select the correct bootloader for your device!**
 
-* If your device has 16 MB of internal flash (Omega2 or Omega2S), use the binary named `uboot-omega2-[DATE-CODE].bin`
-* If your device has 32 MB of internal flash (Omega2+ or Omega2S+), use the binary named `uboot-omega2p-[DATE-CODE].bin`
+* If your device has **16 MB** of internal flash and 64 MB of RAM, like the **Omega2 or Omega2S**, use the binary named `uboot-omega2-[DATE-CODE].bin`
+* If your device has **32 MB** of internal flash and 128 MB of RAM, like the **Omega2+ or Omega2S+**, use the binary named `uboot-omega2p-[DATE-CODE].bin`
 
 We recommend using the latest release of the bootloader. See the [bootloader changelog](https://github.com/OnionIoT/omega2-bootloader/blob/master/OMEGA2-CHANGELOG.md) for details of changes and improvements in each release.
 
@@ -79,7 +81,7 @@ HTTP server is up and running.
 ```
 
 
-### Step 5: Actual Flashing
+### Step 5: Flash the New Bootloader
 
 Open your Browser and type `192.168.8.8` in the search window. You will be presented with the firmware update  page. Ignore that and click **uBoot Update** at the bottom
 
