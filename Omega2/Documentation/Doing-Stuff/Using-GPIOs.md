@@ -85,8 +85,8 @@ Most of the Omega's pins will remain at the default digital low state during the
 
 | GPIO             | Omega2S Pin Number | Behavior                                                                                  |
 |------------------|--------------------|-------------------------------------------------------------------------------------------|
-| GPIO11           | 38                 | Will settle at Digital High - Used to provide power for reset button on Docks             |
-| GPIO14 to GPIO21 | 45 - 51            | Will fluctuate around 2.5V during boot. Will settle at digital low when boot is complete. |
+| GPIO11           | 38                 | Will settle at Digital High - Used to provide power for reset button on Omega2 Docks             |
+| GPIO14 to GPIO21 | 45 - 51            | ~~Will fluctuate around 2.5V during boot. Will settle at digital low when boot is complete.~~ Stable at Power-on-Reset value during boot. (Previous issue resolved in 2019-10-17 release of omega2-bootloader) |
 
 The behavior of these pins during boot is goverened by the Omega's bootloader.
 
