@@ -144,3 +144,17 @@ config dhcp 'lan'
 ```
 
 > To learn more about OpenWRT's DHCP configuration, see the [related OpenWRT DHCP documentation](https://openwrt.org/docs/guide-user/base-system/dhcp).
+
+### Ethernet Activity LED
+
+The Omega2 features pins that can be used to drive LEDs to indicate activity on the Ethernet Port. For the default ethernet port on the Omega2 (EPHY_P0), GPIO43 can be configured to act as an LED indicator pin.
+
+> Note that GPIO43 is only pinned-out on the surface-mount Omega2S models.
+
+By default, GPIO43 is configured to behave as a GPIO. To change it to behave as an Ethernet LED pin, run the following command:
+
+```
+omega2-ctrl gpiomux set ephy ephy 
+```
+
+This command will need to be run every time the device boots. 
