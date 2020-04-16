@@ -2,14 +2,14 @@
 
 Cross compilation just means compiling an executable meant for a platform that's different from the one on which the compilation is being performed. In this case, you will be using your computer, which likely runs on the x86 instruction set, to compile an executable for the Omega, which runs the MIPS instruction set.
 
-The LEDE build system is at the core of our cross compilation efforts; it will build to toolchain which we will then use to cross compile our C or C++ code for the Omega.
+The OpenWRT build system is at the core of our cross compilation efforts; it will build to toolchain which we will then use to cross compile our C or C++ code for the Omega.
 
 > In the article on [using a C compiler on the Omega](#c-compiler-on-omega), it is mentioned that a limitation of compiling on the Omega is that the compiled programs are limited to using only the C standard libraries since only those header files are included on the Omega's filesystem as a space-saving measure.<br>
 > The main advantage to cross compiling as opposed to compiling a program directly on your Omega is two-fold:<br>
-> your program will be able to use libraries other than the implemented by other LEDE software packages, and,<br>
+> your program will be able to use libraries other than the implemented by other OpenWRT software packages, and,<br>
 > the compilation will likely be much quicker on your computer in the cross compilation environment than on the Omega.
 
-This article will explain how to setup the LEDE build system, explain what needs to be done in order to cross compile a program, and then go through an example of cross compilation.
+This article will explain how to setup the OpenWRT build system, explain what needs to be done in order to cross compile a program, and then go through an example of cross compilation.
 
 ### Setting Up the Build System
 
@@ -18,13 +18,13 @@ The build system can be used to build the cross compilation toolchain, create fu
 > Note: Onion is not responsible for any damage or issues caused by using firmware or packages that do not originate from Onion.
 
 
-To start, we will need to setup the LEDE build system on your computer, configure it for the Omega, and then build the toolchain. We've had success with this procedure on Ubuntu Linux, we strongly recommend following suit. Use a virtual machine if you don't have a native installation.
+To start, we will need to setup the OpenWRT build system on your computer, configure it for the Omega, and then build the toolchain. We've had success with this procedure on Ubuntu Linux, we strongly recommend following suit. Use a virtual machine if you don't have a native installation.
 
-Our guide is loosely based on LEDE's own [build system installation instructions](https://lede-project.org/docs/guide-developer/install-buildsystem), check their instructions out if something is unclear.
+Our guide is loosely based on OpenWRT's own [build system installation instructions](https://openwrt.org/docs/guide-developer/build-system/start), check their instructions out if something is unclear.
 
 #### System Setup
 
-The LEDE build system requires quite a few packages, in your Linux environment, run the following command:
+The OpenWRT build system requires quite a few packages, in your Linux environment, run the following command:
 
 ```
 sudo apt-get install -y git wget subversion build-essential libncurses5-dev zlib1g-dev gawk flex quilt git-core unzip libssl-dev python-dev python-pip libxml-parser-perl
@@ -32,7 +32,7 @@ sudo apt-get install -y git wget subversion build-essential libncurses5-dev zlib
 
 This may take some time!
 
-#### Downloading the LEDE Build System
+#### Downloading the OpenWRT Build System
 
 Use `git` to download the build system customized by Onion for the Omega2:
 
@@ -60,7 +60,7 @@ src-git onion https://github.com/OnionIoT/OpenWRT-Packages.git;omega2 -->
 
 Ok, now we need to setup the build system so that it's configured for the Omega2 and Omega2+. 
 
-> Since you're using the Onion-customized build system, this part will already be done and you can skip down to the Compilation step. We've left the instructions here in case you're using the original LEDE build system.
+> Since you're using the Onion-customized build system, this part will already be done and you can skip down to the Compilation step. We've left the instructions here in case you're using the original OpenWRT build system.
 
 Go into the `source` directory and start the build system menu:
 
@@ -80,7 +80,7 @@ In the menu that appears, you will need to do the following:
 * For `Target Devices`, select `Onion Omega2` and `Onion Omega2+`
 * Exit and save your configuration
 
-Now your LEDE build system is configured to create a toolchain, firmware, and packages that are compatible with the Omega2 and Omega2+!
+Now your OpenWRT build system is configured to create a toolchain, firmware, and packages that are compatible with the Omega2 and Omega2+!
 
 #### Compilation
 
@@ -177,13 +177,13 @@ If you take a look at the [Makefile](https://github.com/OnionIoT/c-cross-compile
 1. Generates the flags for extending the include and library search paths
 1. Invoke the Makefile with the compiler, flags, and libraries to link overridden with the above
 
-To accomplish this the user needs to run the script with arguments that define where the LEDE build system can be found and which libraries need to be linked:
+To accomplish this the user needs to run the script with arguments that define where the OpenWRT build system can be found and which libraries need to be linked:
 
 ```
 sh -buildroot <path to buildroot> -lib <list of additional libraries to link in compile>
 ```
 
-For this example program, assuming the LEDE build system can be found at `/root/source`, the command would be as follows:
+For this example program, assuming the OpenWRT build system can be found at `/root/source`, the command would be as follows:
 
 ```
 sh xCompile.sh -buildroot ~/source/ -lib ugpio
