@@ -22,9 +22,6 @@ In this document, we'll cover the SD pins on the OMega2S, how to insert an SD ca
 > The Omega2 family has an SDIO interface that supports one of eMMC, SD/Micro-SD, or other SDIO devices.
 
 
-![MicroSD Card Slot Location](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-microsd-slot.jpg)
-
-
 
 ### Which SD Cards are Supported
 
@@ -38,6 +35,8 @@ The Omega2S module exposes the SDIO pins:
 
 When designing custom hardware with the Omega2S, designers can connect these pins to an SD card slot. See the [Omega2S reference design](https://github.com/OnionIoT/Omega2/blob/master/Schematics/Omega2S-Reference-Schematic.pdf) for more details.
 
+Recommended Micro SD card connector: [Molex 5033981892](https://www.molex.com/molex/products/part-detail/memory_card_socket/5033981892) -- we've had good results with it on our devices.
+
 <!-- TODO: add a recommended part number for the SD card slot -->
 
 ### Inserting a MicroSD Card into the Omega2+
@@ -50,6 +49,8 @@ When designing custom hardware with the Omega2S, designers can connect these pin
 The Omega2+ module comes with a MicroSD card slot, enabling you to greatly expand the storage capacity of the Omega without much added cost. The MicroSD card slot on the Omega2+ can be found at the bottom of the board in between the two rows of pins.
 
 > The Omega2+ supports MicroSD card on firmware builds **b143** and higher. Don't forget to upgrade your firmware.
+
+![MicroSD Card Slot Location](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2p-microsd-slot.jpg)
 
 The MicroSD slot is spring loaded, and it will remain in place once it's locked in. to properly seat it,
 
