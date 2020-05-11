@@ -31,11 +31,11 @@ On the Omega, we can control GPIO pins with a command-line tool known as `gpioct
 
 A few important notes on the Omega's GPIOs, specifically:
 
-* Pins that affect system boot-up
-* Important notes and limitations of using the SPI pins
-* GPIOs that control the Omega LED and Reset Pins
+* [Pins that affect system boot-up](#boot-pins)
+* [Important notes and limitations of using the SPI pins](#spi-pins)
+* [GPIOs that control the Omega LED and Reset Pins](#reset-led-pins)
 
-#### Pins Important for Booting the Omega
+### Pins Important for Booting the Omega {#boot-pins}
 
 There is a number of pins that affect the Omega's Boot Sequence and require special attention. The pins fall into two categories: 
 
@@ -55,7 +55,7 @@ There is a number of pins that affect the Omega's Boot Sequence and require spec
 Once the Omega has booted, these pins can be used normally.
 
 
-#### SPI Pins & Onboard Flash Storage
+### SPI Pins & Onboard Flash Storage {#spi-pins}
 
 The Omega's processor communicates with the on-board flash storage using the SPI protocol. It's configured as *Chip Select 0* on the Omega's SPI bus. Since there are *two* SPI Chip Select signals it's possible to connect an additional SPI device to the Omega using Chip Select 1. As such, the SPI communication pins - `CLK`, `MOSI`, and `MISO` - are exposed on the Omega's Expansion header as *GPIOs 7, 8, and 9*.
 
@@ -68,7 +68,7 @@ To reiterate:
 * The SPI CS1 pin, GPIO 6, may be used to control an additional external SPI device
 * The SPI CS1 pin, GPIO 6, may be still used as a regular GPIO when configured as a GPIO using `omega2-ctrl`.
 
-#### LED & Reset GPIOs
+### LED & Reset GPIOs {#reset-led-pins}
 
 The Omega's hardware design uses dedicated GPIOs to control the Omega's LED and accept an incoming Reset signals:
 
