@@ -4,7 +4,7 @@ In the above section, we first used `uci` to set the `onion.console` configurati
 
 ```
 opkg update
-opkg install console-base
+opkg install onion-console-base
 ```
 
 > You can learn more about `opkg` in our [guide to opkg](#using-opkg).

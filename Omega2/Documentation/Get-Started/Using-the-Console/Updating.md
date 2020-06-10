@@ -8,6 +8,10 @@ order: 6
 
 ## Updating the Omega using the Console {#updating-the-omega-using-console}
 
+<!-- deprecated -->
+```{r child = './Deprecated-component.md'}
+```
+
 In order to keep improving the user experience for the Omega, we will be releasing firmware updates on a rolling basis. To capitalize on these improvements, users should update their Omegas to the latest firmware release.
 
 You can update your Omega's firmware through the Settings app. Open the Settings app, and click on the `Firmware Upgrade` tab.

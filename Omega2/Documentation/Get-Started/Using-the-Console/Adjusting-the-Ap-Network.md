@@ -8,6 +8,10 @@ order: 4
 
 ## Adjusting the Omega's WiFi AP Network {#adjusting-omega-ap-network-using-console}
 
+<!-- deprecated -->
+```{r child = './Deprecated-component.md'}
+```
+
 The `Wi-Fi AP Settings` tab in the Settings app is used to configure your Omega's Access Point WiFi network.
 
 ![Ap-Network-Page](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/ap-network-page-1.png)

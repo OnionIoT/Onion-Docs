@@ -9,6 +9,10 @@ order: 3
 
 ## Connecting to WiFi {#connecting-to-wifi-using-console}
 
+<!-- deprecated -->
+```{r child = './Deprecated-component.md'}
+```
+
 <!-- // TODO: update this after batch 3 or 4 -->
 Upon logging into the Console, the first app you'll see is the Settings App. Through this app you can monitor your Omega's status, change the Omega's hostname and password, and even WiFi settings. This guide will show you how you can manage your WiFi networks through the console.
 

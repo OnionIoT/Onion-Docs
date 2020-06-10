@@ -9,6 +9,10 @@ order: 7
 
 ## Developing using the Console {#developing-using-the-console}
 
+<!-- deprecated -->
+```{r child = './Deprecated-component.md'}
+```
+
 The Console is a powerful tool that is easily accessible through your browser. The Console gives you access to a terminal connected to your Omega, and an editor that allows you to directly access the Omega's filesystem!
 
 In this tutorial we're going to write a script that will blink the Omega's LED in morse code based on the user's input using the Editor App, and the Terminal App.

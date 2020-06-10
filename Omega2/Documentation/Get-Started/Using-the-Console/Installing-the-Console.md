@@ -14,6 +14,8 @@ Follow this [guide](#first-time-setup) on setting up your Omega, if you have not
 
 ### Installing Using the Setup Wizard
 
+> **NOTE** This section is only valid for firmwares v0.2.0 and below. In v0.2.1 the Console and Setup Wizard were replaced with OnionOS and a new setup wizard. Learn more about [OnionOS on the Onion blog](https://onion.io/2bt-onion-os/).
+
 If you have set up the Omega and didn't install the console, skip to the Software page and make sure the checkbox is checked.
 ![checkbox](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/installing-console-checkmark.png)
 

@@ -6,6 +6,10 @@ devices: [ Omega2 ]
 order: 1
 ---
 
+<!-- deprecated -->
+```{r child = './Deprecated-component.md'}
+```
+
 The Onion Console is a web-based, virtual desktop that gives you access to a number of apps that allow you to interact with your Omega in a more visual way than the command-line.
 
 <!-- TODO: explain what the console can actually let you accomplish -->
