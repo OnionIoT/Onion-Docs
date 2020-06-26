@@ -63,11 +63,11 @@ The connection method will be different depending on what Operating System you'r
 
 ### Connecting via Serial {#connecting-to-the-omega-terminal-serial}
 
-The Omega's command prompt can also be accessed with a USB cable, as long as your **Omega is docked in either an Expansion Dock or a Mini Dock**. What's happening is that the Omega is using its UART pins to run a terminal, the USB-to-Serial chip found on the Dock is translating the Serial Terminal signals into USB signals that your computer can understand and vice versa.
+The Omega's command prompt can also be accessed with a USB cable, as long as the **Omega's UART0 is connected to a USB-to-Serial device.** This will be the case if you're using an **Omega2 or Omega2+ on an Expansion Dock or Mini Dock**, or an **Omega2S or Omega2S+ in the Omega2S Development Kit board**. What's happening is that the Omega is using its UART pins to run a terminal, the USB-to-Serial chip found on the Dock is translating the Serial Terminal signals into USB signals that your computer can understand and vice versa.
 
 <!-- // TODO: stylized picture of an Omega2 on an Expansion Dock connected to a laptop with a cable -->
 
-Generally, we recommend using SSH to access the Omega's command line, but the serial terminal does have its advantages. For instance, the serial terminal will always be available as long as the Omega is powered on and does not depend on network connectivity. Additionally, when using the serial terminal, you will see messages such as this one:
+Generally, we recommend using SSH to access the Omega's command line, but the serial terminal does have its advantages. For instance, the serial terminal will always be available as long as the Omega is powered on and does not depend on network connectivity. Additionally, when using the serial terminal, you will see messages from the kernel:
 
 ![kernel message](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-kernel-messages.png)
 
@@ -75,7 +75,9 @@ This is an example of a message coming from the kernel. These messages can be li
 
 Note that the Expansion Dock and Mini Dock are the only docks that have USB-to-Serial chips, so the serial terminal will only work when using those docks. The serial terminal is meant for debugging during early development, for stable projects, SSH is the best method for accessing the command line.
 
-We'll first identify the specific USB connection that we need to use to talk to the Omega, and then setting up the communication.
+We'll first install drivers, identify the specific USB connection that we need to use to talk to the Omega, and then set up the communication.
+
+> Note that your computer might need some additional drivers to recognize the USB-to-Serial device! That's what we'll check first
 
 #### The Connection method
 
@@ -87,17 +89,17 @@ The connection method will be different depending on what Operating System you'r
 
 ### Serial on a Mac Device {#connecting-via-serial-mac}
 
-**Download Drivers**
+**Step 1: Download Drivers**
 
 Download and install the [Silicon Labs CP2102 driver for OS X](https://www.silabs.com/Support%20Documents/Software/Mac_OSX_VCP_Driver.zip).
 
-**Check if Serial Device Exists**
+**Step 2: Check if Serial Device Exists**
 
 Plug in your Omega & Dock and run `ls /dev/tty.*` to see if the USB-to-Serial device can be detected. If the driver is successfully installed, you should be able to see a device with a name similar to `/dev/tty.SLAB_USBtoUART`.
 
 ![Check if serial device exists](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-osx-check.jpg "Check if serial device exists")
 
-**Log in**
+**Step 3: Connect**
 
 Run `screen /dev/tty.SLAB_USBtoUART 115200` to connect to the Omega’s serial terminal using the `screen` utility.
 
@@ -105,7 +107,7 @@ Run `screen /dev/tty.SLAB_USBtoUART 115200` to connect to the Omega’s serial t
 
 > We recommend taking a peek at [this tutorial](https://www.linode.com/docs/networking/ssh/using-gnu-screen-to-manage-persistent-terminal-sessions) to get an idea of how the `screen` utility works.
 
-**All Done**
+**Step 4: All Done**
 
  Enjoy! You're now connected to your Omega!
 
@@ -113,33 +115,33 @@ Run `screen /dev/tty.SLAB_USBtoUART 115200` to connect to the Omega’s serial t
 
 ### Serial on a Windows Device {#connecting-via-serial-windows}
 
-**Download Drivers**
+**Step 1: Download Drivers**
 
 Download and install the [Silicon Labs CP2102 driver for Windows](https://www.silabs.com/Support%20Documents/Software/CP210x_VCP_Windows.zip).
 
-**Find Serial Device**
+**Step 2: Find Serial Device**
 
 Plug in your Omega & Dock and run Device Manager (Start > Enter "Device Manager" and press `ENTER`), look for Silicon Labs CP210x USB to UART Bridge under Ports (COM & LPT), and take note of the COM number in bracket.
 
 ![Computer Management](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-windows-device-manager.jpg "Computer Management")
 
-**Download a Terminal Program**
+**Step 3: Download a Terminal Program**
 
 We'll be using PuTTy, but you can use another terminal program that you like. You can download [Putty from this link](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
 
-**Configure PuTTy**
+**Step 4: Configure the Terminal Program**
 
 Open up PuTTy, select Serial for Connection type, enter the COM number noted down in Step 2 as Serial line, and enter `115200` for the speed.
 
 ![Configure PuTTY](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-windows-putty-settings.jpg "Configure PuTTY")
 
-**Connect**
+**Step 5: Connect**
 
 Click on the Open button to connect to the Omega via the serial terminal.
 
 ![Log in through serial terminal](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Get-Started/img/connecting-serial-windows-login.jpg "Log in through serial terminal")
 
-**All Done**:
+**Step 6: All Done**:
 
 Enjoy! You're now connected to your Omega!
 

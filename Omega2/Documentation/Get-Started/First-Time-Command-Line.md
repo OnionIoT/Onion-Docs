@@ -38,7 +38,9 @@ Follow along with this guide to set up your Omega2 for the first time using the 
 
 We'll use SSH to connect to the Omega's command line.
 
->To learn how to connect to the Omega's terminal you can read our [guide to connecting to the Omega with SSH](#connecting-to-the-omega-terminal-ssh).
+To learn how to connect to the Omega's terminal you can read our [guide to connecting to the Omega with SSH](#connecting-to-the-omega-terminal-ssh).
+
+> It's also possible to access the Omega's command line via serial. Learn more by reading [this guide](#connecting-to-the-omega-terminal-serial). Note that you may need to install some drivers for your computer to detect USB-to-Serial devices.
 
 #### Provision the Omega's WiFi
 
