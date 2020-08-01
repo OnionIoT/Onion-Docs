@@ -21,7 +21,7 @@ reboot
 These commands will:
 
 * Revert the firmware to a clean slate
-* Ensure all storage opeartions are complete
+* Ensure all storage operations are complete
 * [Reboot the Omega](#rebooting) for the changes to take effect
 
 It will work the same no matter how you have connected to the Omega's command line, whether it was by [SSH](#connecting-to-the-omega-terminal-ssh), via [Serial](#connecting-to-the-omega-terminal-serial), or using the [Terminal App](#developing-using-the-console-terminal-app) on the Console.
