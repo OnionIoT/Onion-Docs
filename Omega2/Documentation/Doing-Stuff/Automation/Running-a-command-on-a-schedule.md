@@ -68,7 +68,7 @@ If you've never before worked with `cron`, an empty file will show up. The first
 # Make sure you have this comment at the end of your crontab
 ```
 
-Save your and exit your file. Then restart the `cron` daemon with the following command to apply the changes:
+Save and exit your file. Then restart the `cron` daemon with the following command to apply the changes:
 
 ```
 /etc/init.d/cron restart
