@@ -2,30 +2,30 @@
 
 ### SoMs
 
-|SKU        |Name                                     |Product Status|ECCN   |HS Code      |
-|-----------|-----------------------------------------|--------------|-------|-------------|
-|OM-O2S     |Omega2S                                  |Active        |5A992.C|8471.50.01.50|
-|OM-O2SP    |Omega2S+                                 |Active        |5A992.C|8471.50.01.50|
-|           |                                         |              |       |             |
-|OM-O2      |Omega2                                   |Active        |5A992.C|8471.50.01.50|
-|OM-O2P     |Omega2+                                  |Active        |5A992.C|8471.50.01.50|
+|SKU        |Name                                     |Product Status|ECCN   |HS Code      |CCATS                |
+|-----------|-----------------------------------------|--------------|-------|-------------|---------------------|
+|OM-O2S     |Omega2S                                  |Active        |5A992.C|8471.50.01.50|740.17 (b)(1) as MMKT|
+|OM-O2SP    |Omega2S+                                 |Active        |5A992.C|8471.50.01.50|740.17 (b)(1) as MMKT|
+|           |                                         |              |       |             |                     |
+|OM-O2      |Omega2                                   |Active        |5A992.C|8471.50.01.50|740.17 (b)(1) as MMKT|
+|OM-O2P     |Omega2+                                  |Active        |5A992.C|8471.50.01.50|740.17 (b)(1) as MMKT|
 
 ### Single Board Computers
 
-|SKU        |Name                                     |Product Status|ECCN   |HS Code      |
-|-----------|-----------------------------------------|--------------|-------|-------------|
-|OM-O2PRO   |Omega2 Pro                               |Active        |5A992.C|8471.50.01.50|
-|OM-O2LTE-NA|Omega2 LTE North America Model           |Active        |5A992.C|8471.50.0150 |
-|OM-O2LTE-G |Omega2 LTE Global Model                  |Active        |5A992.C|8471.50.0150 |
-|OM-O2DASH  |Omega2 Dash                              |Active        |5A992.C|8471.50.0150 |
+|SKU        |Name                                     |Product Status|ECCN   |HS Code      |CCATS                |
+|-----------|-----------------------------------------|--------------|-------|-------------|---------------------|
+|OM-O2PRO   |Omega2 Pro                               |Active        |5A992.C|8471.50.01.50|740.17 (b)(1) as MMKT|
+|OM-O2LTE-NA|Omega2 LTE North America Model           |Active        |5A992.C|8471.50.0150 |740.17 (b)(1) as MMKT|
+|OM-O2LTE-G |Omega2 LTE Global Model                  |Active        |5A992.C|8471.50.0150 |740.17 (b)(1) as MMKT|
+|OM-O2DASH  |Omega2 Dash                              |Active        |5A992.C|8471.50.0150 |740.17 (b)(1) as MMKT|
 
 
 ### Development Kits
 
-|SKU        |Name                                     |Product Status|ECCN   |HS Code      |
-|-----------|-----------------------------------------|--------------|-------|-------------|
-|OM2S-DK-EM |Omega2S Development Kit - eMMC Version   |Active        |5A992.C|8471.50.01.50|
-|OM2S-DK-SD |Omega2S Development Kit - SD Card Version|Active        |5A992.C|8471.50.01.50|
+|SKU        |Name                                     |Product Status|ECCN   |HS Code      |CCATS                |
+|-----------|-----------------------------------------|--------------|-------|-------------|---------------------|
+|OM2S-DK-EM |Omega2S Development Kit - eMMC Version   |Active        |5A992.C|8471.50.01.50|740.17 (b)(1) as MMKT|
+|OM2S-DK-SD |Omega2S Development Kit - SD Card Version|Active        |5A992.C|8471.50.01.50|740.17 (b)(1) as MMKT|
 
 ### Omega2 Docks
 
