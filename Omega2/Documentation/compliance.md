@@ -32,10 +32,8 @@
 |SKU        |Name                                     |Product Status|ECCN   |HS Code      |
 |-----------|-----------------------------------------|--------------|-------|-------------|
 |OM-D-EXP   |Expansion Dock                           |Active        |EAR99  |8473.30.11.80|
-|OM-D-PWR2  |Power Dock 2                             |Active        |EAR99  |8473.30.11.80|
 |OM-D-MIN   |Mini Dock                                |Active        |EAR99  |8473.30.11.80|
 |OM-D-BB    |Breadboard Dock                          |Active        |EAR99  |8473.30.11.80|
-|OM-D-ARD2  |Arduino Dock 2                           |Active        |EAR99  |8473.30.11.80|
 
 ### Omega2 Expansions
 
@@ -48,16 +46,6 @@
 |OM-E-SRV   |Servo Expansion                          |Active        |EAR99  |8473.30.11.80|
 |OM-E-PRT   |Proto Expansion                          |Active        |EAR99  |8473.30.11.80|
 
-
-### Project Kits
-
-|SKU        |Name                                     |Product Status|ECCN   |HS Code      |
-|-----------|-----------------------------------------|--------------|-------|-------------|
-|OM-K-MKR   |Omega2 Maker Kit                         |Active        |EAR99  |8471.50.01.50|
-|OM-K-STR   |Omega2 Starter Kit                       |Active        |EAR99  |8471.50.01.50|
-|OM-K-ARD   |Omega2 Arduino Starter Kit               |Active        |EAR99  |8471.50.01.50|
-
-
 ### Discontinued Products
 
 |SKU        |Name                                     |Product Status|ECCN   |HS Code      |
@@ -65,3 +53,8 @@
 |OM-K-COL   |Omega2 Collector's Kit                   |Discontinued  |EAR99  |8471.50.01.50|
 |OM-UE-GPS  |GPS Expansion (USB)                      |Discontinued  |7A994  |8529.90.16.40|
 |OM-E-RLY   |Relay Expansion                          |Discontinued  |EAR99  |8473.30.11.80|
+|OM-D-PWR2  |Power Dock 2                             |Discontinued  |EAR99  |8473.30.11.80|
+|OM-D-ARD2  |Arduino Dock 2                           |Discontinued  |EAR99  |8473.30.11.80|
+|OM-K-STR   |Omega2 Starter Kit                       |Discontinued  |EAR99  |8471.50.01.50|
+|OM-K-MKR   |Omega2 Maker Kit                         |Discontinued  |EAR99  |8471.50.01.50|
+|OM-K-ARD   |Omega2 Arduino Starter Kit               |Discontinued  |EAR99  |8471.50.01.50|
