@@ -161,5 +161,5 @@ The `gcc` and `g++` compilers are really powerful and configurable. When used in
 
 There are many resources available online on these topics, we recommend starting with the following to get an overview:
 
-* [Compiling C and C++ Programs](http://pages.cs.wisc.edu/~beechung/ref/gcc-intro.html)
+* [Compiling C and C++ Programs](https://www.linuxtopia.org/online_books/an_introduction_to_gcc/gccintro_9.html)
 * [GCC and Make: Compiling, Linking and Building C/C++ Applications](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html)
