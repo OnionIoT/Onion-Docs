@@ -148,6 +148,11 @@ Some of our Expansions use I2C to communicate with the Omega. To learn more abou
 * [PWM Expansion](#using-pwm-expansion)
 * [OLED Expansion](#using-oled-expansion)
 
+### More Resources
+
+* [Default I2C bus clock speed and how it can be changed](https://community.onion.io/topic/4332/faq-what-is-the-default-i2c-bus-clock-speed-can-i-change-it-to-400khz)
+* [Setting up a software-based (bit-bang) I2C bus](https://community.onion.io/topic/4333/faq-how-can-i-make-a-software-based-big-bang-i2c-bus-can-i-use-any-2-gpios-as-an-i2c-bus)
+
 ### Moving Beyond the Command line
 
 #### I2C using Python
