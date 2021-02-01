@@ -53,7 +53,9 @@
 |OM-K-COL   |Omega2 Collector's Kit                   |Discontinued  |EAR99  |8471.50.01.50|
 |OM-UE-GPS  |GPS Expansion (USB)                      |Discontinued  |7A994  |8529.90.16.40|
 |OM-E-RLY   |Relay Expansion                          |Discontinued  |EAR99  |8473.30.11.80|
+|OM-D-PWR   |Power Dock                               |Discontinued  |EAR99  |8473.30.11.80|
 |OM-D-PWR2  |Power Dock 2                             |Discontinued  |EAR99  |8473.30.11.80|
+|OM-D-ARD   |Arduino Dock                             |Discontinued  |EAR99  |8473.30.11.80|
 |OM-D-ARD2  |Arduino Dock 2                           |Discontinued  |EAR99  |8473.30.11.80|
 |OM-K-STR   |Omega2 Starter Kit                       |Discontinued  |EAR99  |8471.50.01.50|
 |OM-K-MKR   |Omega2 Maker Kit                         |Discontinued  |EAR99  |8471.50.01.50|
