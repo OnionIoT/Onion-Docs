@@ -27,6 +27,12 @@
 |OM2S-DK-EM |Omega2S Development Kit - eMMC Version   |Active        |5A992.C|8471.50.01.50|740.17 (b)(1) as MMKT|
 |OM2S-DK-SD |Omega2S Development Kit - SD Card Version|Active        |5A992.C|8471.50.01.50|740.17 (b)(1) as MMKT|
 
+### 3D Camera
+
+|SKU        |Name                                     |Product Status|ECCN   |HS Code       |
+|-----------|-----------------------------------------|--------------|-------|--------------|
+|TA-L10     |Tau LiDAR Camera                         |Active        |EAR99  |8525.80.50.50 |
+
 ### Omega2 Docks
 
 |SKU        |Name                                     |Product Status|ECCN   |HS Code      |
