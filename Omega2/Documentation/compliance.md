@@ -20,6 +20,12 @@
 |OM-O2LTE-G |Omega2 LTE Global Model                  |[EU](https://github.com/OnionIoT/Omega2-LTE/blob/master/Documents/Omega2%20LTE%20-%20Declaration%20of%20Conformity.pdf)        |
 |OM-O2DASH  |Omega2 Dash                              |[EU](https://github.com/OnionIoT/Omega2-Dash/blob/master/Documents/Omega2%20Dash%20-%20Declaration%20of%20Conformity.pdf)        |
 
+### 3D Camera
+
+|SKU        |Name                                     |Declaration of Conformity|
+|-----------|-----------------------------------------|--------------|
+|TA-L10     |Tau LiDAR Camera                         |[EU](https://github.com/OnionIoT/tau-lidar-camera/blob/master/Hardware/TA-L10%20-%20Declaration%20of%20Conformity.pdf)        |
+
 
 
 ## Export Compliance
