@@ -4,27 +4,27 @@
 
 |SKU        |Name                                     |Declaration of Conformity|
 |-----------|-----------------------------------------|-------------------------|
-|OM-O2S     |Omega2S                                  |[EU](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20-%20Declaration%20of%20Conformity.pdf)        |
-|OM-O2SP    |Omega2S+                                 |[EU](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20-%20Declaration%20of%20Conformity.pdf)        |
+|OM-O2S     |Omega2S                                  |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20-%20Declaration%20of%20Conformity.pdf)        |
+|OM-O2SP    |Omega2S+                                 |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20-%20Declaration%20of%20Conformity.pdf)        |
 |           |                                         |              |
-|OM-O2      |Omega2                                   |[EU](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20-%20Declaration%20of%20Conformity.pdf)        |
-|OM-O2P     |Omega2+                                  |[EU](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20-%20Declaration%20of%20Conformity.pdf)        |
+|OM-O2      |Omega2                                   |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20-%20Declaration%20of%20Conformity.pdf)        |
+|OM-O2P     |Omega2+                                  |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20-%20Declaration%20of%20Conformity.pdf)        |
 
 
 ### Single Board Computers (SBCs)
 
 |SKU        |Name                                     |Declaration of Conformity|
 |-----------|-----------------------------------------|--------------|
-|OM-O2PRO   |Omega2 Pro                               |[EU](https://github.com/OnionIoT/Omega2-Pro/blob/master/Documents/Omega2%20Pro%20-%20Declaration%20of%20Conformity.pdf)        |
-|OM-O2LTE-NA|Omega2 LTE North America Model           |[EU](https://github.com/OnionIoT/Omega2-LTE/blob/master/Documents/Omega2%20LTE%20-%20Declaration%20of%20Conformity.pdf)        |
-|OM-O2LTE-G |Omega2 LTE Global Model                  |[EU](https://github.com/OnionIoT/Omega2-LTE/blob/master/Documents/Omega2%20LTE%20-%20Declaration%20of%20Conformity.pdf)        |
-|OM-O2DASH  |Omega2 Dash                              |[EU](https://github.com/OnionIoT/Omega2-Dash/blob/master/Documents/Omega2%20Dash%20-%20Declaration%20of%20Conformity.pdf)        |
+|OM-O2PRO   |Omega2 Pro                               |[EU (PDF)](https://github.com/OnionIoT/Omega2-Pro/blob/master/Documents/Omega2%20Pro%20-%20Declaration%20of%20Conformity.pdf)        |
+|OM-O2LTE-NA|Omega2 LTE North America Model           |[EU (PDF)](https://github.com/OnionIoT/Omega2-LTE/blob/master/Documents/Omega2%20LTE%20-%20Declaration%20of%20Conformity.pdf)        |
+|OM-O2LTE-G |Omega2 LTE Global Model                  |[EU (PDF)](https://github.com/OnionIoT/Omega2-LTE/blob/master/Documents/Omega2%20LTE%20-%20Declaration%20of%20Conformity.pdf)        |
+|OM-O2DASH  |Omega2 Dash                              |[EU (PDF)](https://github.com/OnionIoT/Omega2-Dash/blob/master/Documents/Omega2%20Dash%20-%20Declaration%20of%20Conformity.pdf)        |
 
 ### 3D Camera
 
 |SKU        |Name                                     |Declaration of Conformity|
 |-----------|-----------------------------------------|--------------|
-|TA-L10     |Tau LiDAR Camera                         |[EU](https://github.com/OnionIoT/tau-lidar-camera/blob/master/Hardware/TA-L10%20-%20Declaration%20of%20Conformity.pdf)        |
+|TA-L10     |Tau LiDAR Camera                         |[EU (PDF)](https://github.com/OnionIoT/tau-lidar-camera/blob/master/Hardware/TA-L10%20-%20Declaration%20of%20Conformity.pdf)        |
 
 
 
