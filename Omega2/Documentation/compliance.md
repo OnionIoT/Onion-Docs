@@ -30,7 +30,7 @@
 
 |SKU        |Name                                     |Declaration of Conformity|
 |-----------|-----------------------------------------|--------------|
-|TA-L10     |Tau LiDAR Camera                         |[EU (PDF)](https://github.com/OnionIoT/tau-lidar-camera/blob/master/Hardware/TA-L10%20-%20Declaration%20of%20Conformity.pdf)        |
+|TA-L10     |Tau LiDAR Camera                         |[EU (PDF)](https://github.com/OnionIoT/tau-lidar-camera/blob/master/Hardware/TA-L10%20-%20Declaration%20of%20Conformity.pdf), [FCC (PDF)](https://github.com/OnionIoT/tau-lidar-camera/blob/master/Hardware/TA-L10%20-%20FCC%20Declaration%20of%20Conformity.pdf)        |
 
 
 
