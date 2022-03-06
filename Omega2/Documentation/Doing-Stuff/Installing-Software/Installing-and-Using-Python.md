@@ -137,6 +137,29 @@ pip install paho-mqtt
 
 
 
+#### Fixing "No space left on device"
+
+If you're trying to install a Python module with `pip` and get an error like the following:
+
+```
+root@Omega-C71D:/# pip3 install boto3
+Collecting boto3
+...
+Collecting botocore<1.25.0,>=1.24.13 (from boto3)
+  Downloading https://files.pythonhosted.org/packages/a5/34/567e87ece4328f51a6db92db8c58584aa9525603c86aff5eb77bfc713b41/botocore-1.24.13-py3-none-any.whl (8.6MB)
+    100% |████████████████████████████████| 8.6MB 262kB/s 
+Could not install packages due to an EnvironmentError: [Errno 28] No space left on device
+```
+
+This is due to pip using the /tmp directory for work by default.  The tmpfs /tmp directory is too small for very large packages.  This can be overridden with the TMPDIR environment variable.  It is recommended to [boot from external storage](#boot-from-external-storage).
+
+```
+mkdir /root/temp
+export TMPDIR=/root/temp
+pip3 install <large_package>
+```
+
+
 #### Fixing the Setup Tools Issue
 
 If you're trying to install a Python module with `pip` and get an error like the following:
