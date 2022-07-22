@@ -1,6 +1,6 @@
 ## Onion Omega2S & Omega2S+ {#omega2s}
 
-The Omega2S is a smaller, surface-mount packaged version of the through-hole Omega2, designed for IoT applications that require drop-in connectivity and computing. 
+The Omega2S is a smaller, surface-mount packaged version of the through-hole Omega2, designed for IoT applications that require drop-in connectivity and computing.
 
 The 34mm x 20mm x 2.8mm package is based on the MT7688 SoC and features a CPU, memory, flash storage, and a WiFi radio. It supports a wide variety of I/O protocols, with 42-pins available to the developer. The module is self-contained and only requires a power supply and an external WiFi antenna to operate. The pre-loaded Linux Operating System reduces development time by allowing the use of existing software package and high-level programming languages. This module is precertified for FCC and CE, further reducing time to market in the fast-moving world of IoT.
 
@@ -10,14 +10,14 @@ The 34mm x 20mm x 2.8mm package is based on the MT7688 SoC and features a CPU, m
 
 The Omega2S comes in two variants: the Omega2S and Omega2S+
 
-|  | Omega2S | Omega2S+ | 
+|  | Omega2S | Omega2S+ |
 | ------------- | -------------  | -------------  |
 | Processor | 580MHz MIPS CPU  | 580MHz MIPS CPU  |
 | Memory | 64MB Memory  | **128MB** Memory  |
 | Storage | 16MB Storage  | **32MB** Storage  |
 | WiFi adapter | b/g/n Wi-Fi  | b/g/n Wi-Fi  |
-| USB 2.0 | 1  | 1  | 
-| SD/eMMC | 1  | 1  | 
+| USB 2.0 | 1  | 1  |
+| SD/eMMC | 1  | 1  |
 | Ethernet | 1  | 1  |
 | GPIOs | **37**  | **37**  |
 | PWM | **4**  | **4**  |
@@ -80,7 +80,7 @@ To get information on ordering or evaluating the Omega2S, visit: https://onion.i
 
 ### Datasheet
 
-The datasheet for the MT7688 SoC used on the Omega2S can be found here: [Mediatek MT7688 Datasheet](https://labs.mediatek.com/fileMedia/download/9ef51e98-49b1-489a-b27e-391bac9f7bf3)
+The datasheet for the MT7688 SoC used on the Omega2S can be found here: [Mediatek MT7688 Datasheet](https://github.com/OnionIoT/Onion-Docs/raw/master/Omega2/MT7688_Datasheet_v1_4.pdf)
 
 The Omega2S datasheet can be found here: [Omega2S Datasheet](https://github.com/OnionIoT/Omega2/raw/master/Documents/Omega2S%20Datasheet.pdf)
 

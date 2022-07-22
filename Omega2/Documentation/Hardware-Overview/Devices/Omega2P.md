@@ -23,7 +23,7 @@ The Omega2+ is the upgraded version of the Omega2. It comes packed with built-in
 
 ### Processor Datasheet
 
-The datasheet for the Omega2 Plus' processor can be found here: [Mediatek MT7688 Datasheet](https://labs.mediatek.com/fileMedia/download/9ef51e98-49b1-489a-b27e-391bac9f7bf3)
+The datasheet for the Omega2+ processor can be found here: [Mediatek MT7688 Datasheet](https://github.com/OnionIoT/Onion-Docs/raw/master/Omega2/MT7688_Datasheet_v1_4.pdf)
 
 ### The Pins
 
