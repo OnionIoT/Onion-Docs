@@ -7,6 +7,28 @@ So a factory restore will not revert to the firmware that was actually installed
 Make sure that you understand that a factory restore **is a destructive action** and that all **user files should be backed up** before performing a factory restore!
 
 
+### What does a Factory Reset Actually Do?
+
+The Omega's OpenWRT Linux uses OverlayFS as the filesystem. This approach includes a *overlaying* a writable filesystem (for configuration and custom files) on top of a read-only filesystem that holds the system files.
+
+> See the [OpenWRT docs](https://openwrt.org/docs/techref/filesystems) to learn more about OverlayFS.
+
+On the Omega, the internal storage is split into the `rootfs` (read-only) and `rootfs_data` (r/w) partitions, which are merged into a single writable overlay partition at boot:
+
+| Partition     | Mount point | Compression      | Writable |
+|---------------|-------------|------------------|----------|
+| `rootfs`      | `/rom`      | Yes              | No       |
+| `rootfs_data` | `/overlay`  | No               | Yes      |
+| `overlay`     | `/`         | Unmodified files | Yes      |
+
+#### How does Factory Reset Play into this?
+
+The `rootfs` partition is only modified when the firmware is updated. For example, by running `oupgrade` or using `sysupgrade` to install a new firmware image. 
+
+The `rootfs_data` partition stores all of your changes *on top* of the installed firmware. This includes configuration changes, any files that were created, and packages that were installed using `opkg` (that were not included in the firmware).
+
+**A factory reset will delete everything in the `rootfs_data` partition.** When your device reboots, the filesystem will be based solely on what's in the `rootfs` partition.  
+
 
 ### Using a Command
 
