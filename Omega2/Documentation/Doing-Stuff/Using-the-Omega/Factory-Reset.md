@@ -52,7 +52,7 @@ It will work the same no matter how you have connected to the Omega's command li
 
 ### With the Reset button
 
-When connected to a Dock with a Reset button, **pressing and holding the reset button for about 10 seconds** will trigger a factory reset and then automatically reboot your Omega.
+With an Omega2/Omega2+ connected to a Dock with a Reset button, **pressing and holding the reset button for about 10 seconds** will trigger a factory reset and then automatically reboot your Omega. 
 
 This can only be done on Docks that have Reset Buttons:
 
@@ -66,15 +66,13 @@ This can only be done on Docks that have Reset Buttons:
 ```{r child = './Component-Reset-Button-Photos.md'}
 ```
 
-<!-- TODO: add this section -->
+On an Omega2S/Omega2S+, the same can be accomplished with GPIO38, the FW RST pin. GPIO38 acts as an **Active-High** reset button. If it is held high for 10 seconds and released, a factory reset will be triggered and the device will automatically reboot.
 
-### With the Console
+#### How does this work?
 
-A more user friendly way to reset your Omega to factory settings is by using the Console. If you're not familiar with the Console, take a look at our articles on [installing the console](#console-series-installing-the-console) and then [accessing the Console](#accessing-the-console).
+The behaviour of the FW RST (GPIO38) is controlled by the `/etc/rc.button/reset` file. This file determines what actions the device will take based on how long the button is pressed/the pin is held high. 
 
-To perform the factory reset, simply navigate to `Settings` and click `Factory Reset` from the left pan. Now, you will see a Factory Reset page. Make sure to back up all of your custom files on a device before proceeding. When you are ready, just click on the button `Factory Reset` and wait several minutes while system is being factory restored. The amber LED will blink over the process of rebooting. Once the reset is done, your Omega will stop flashing. Now you may configure your Omega over, happy hacking!
-
-![console-factory-reset](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Doing-Stuff/img/console-factory-reset.PNG)
+Make changes to the `/etc/rc.button/reset` file if you are looking to change the behaviour of this pin.
 
 ### A note about Factory Resets and RSA Key Warnings
 
