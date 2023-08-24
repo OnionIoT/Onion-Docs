@@ -12,6 +12,11 @@ See our guide on getting started with the Omega2 Pro for all of the details on g
 
 It includes instructions on how to create an interactive UI using the LVGL graphics library and C, as well as LVGL in Micropython.
 
+### Hardware Designs, Measurements, Images, and More
+
+Visit the OnionIoT/Omega2-Dash GitHub repo: https://github.com/OnionIoT/Omega2-Dash 
+
+
 ### The Omega2 Dash at a Glance
 
 ![Omega2 Pro back labelled](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2dash-labelled-back.png)
@@ -130,3 +135,7 @@ The behaviour of the LEDs indicates:
 <!-- u.fl connector -->
 ```{r child = '../shared/Hardware-Overview-Component-93-Omega-ufl-connector.md'}
 ```
+
+### Software 
+
+See the [`omega2-dash package in the OnionIoT/openwrt-packages GitHub repo](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-18.06/omega2-dash#omega2-dash-base-package) for more details on the software package that's specific to the Omega2 Dash.

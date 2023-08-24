@@ -10,6 +10,10 @@ See our guide on getting started with the Omega2 Pro for all of the details on g
 
 It also includes an [FAQ](https://onion.io/omega2-pro-get-started/#faq) that will answer any questions that may come up.
 
+### Hardware Designs, Measurements, Images, and More
+
+Visit the OnionIoT/Omega2-Pro GitHub repo: https://github.com/OnionIoT/Omega2-Pro 
+
 ### The Omega2 Pro at a Glance
 
 ![Omega2 Pro ](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/omega2-pro-features.png)
@@ -127,3 +131,7 @@ The blue WiFi status LED provides a visual indication of the device's WiFi conne
 <!-- u.fl connector -->
 ```{r child = '../shared/Hardware-Overview-Component-93-Omega-ufl-connector.md'}
 ```
+
+### Software 
+
+See the [`omega2pro` package in the OnionIoT/openwrt-packages GitHub repo](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-18.06/omega2pro#omega2-pro-package) for more details on the software package that's specific to the Omega2 Pro.
