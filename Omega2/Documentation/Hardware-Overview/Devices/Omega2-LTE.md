@@ -6,6 +6,13 @@ It features an LTE Cat 4 modem that delivers 150 Mbps downlink and 50 Mbps uplin
 
 ![Omega2 LTE](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Documentation/Hardware-Overview/img/O2LTE-cover.png)
 
+There are two variants of the Omega2 LTE:
+
+|              Model              | Part Number |
+|:-------------------------------:|-------------|:---------------:|
+| Omega2 LTE North American Model | OM-O2LTE-NA | 
+| Omega2 LTE Global Model         | OM-O2LTE-G  |
+
 ### Getting Started with the Omega2 LTE
 
 See our guide on getting started with the Omega2 LTE for all of the details on getting your device up and running: https://onion.io/omega2-lte-guide/
