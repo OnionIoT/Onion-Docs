@@ -138,4 +138,4 @@ The behaviour of the LEDs indicates:
 
 ### Software 
 
-See the [`omega2-dash package in the OnionIoT/openwrt-packages GitHub repo](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-18.06/omega2-dash#omega2-dash-base-package) for more details on the software package that's specific to the Omega2 Dash.
+See the [`omega2-dash` package in the OnionIoT/openwrt-packages GitHub repo](https://github.com/OnionIoT/OpenWRT-Packages/tree/openwrt-18.06/omega2-dash#omega2-dash-base-package) for more details on the software package that's specific to the Omega2 Dash.
