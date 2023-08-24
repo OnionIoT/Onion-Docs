@@ -108,7 +108,7 @@ The blue WiFi status LED provides a visual indication of the device's WiFi conne
 ```{r child = '../shared/Hardware-Overview-Component-2-USB-to-Serial.md'}
 ```
 
-<!-- USB-to-Serial -->
+<!-- Power Switch -->
 ```{r child = '../shared/Hardware-Overview-Component-4-Power-Switch.md'}
 ```
 
