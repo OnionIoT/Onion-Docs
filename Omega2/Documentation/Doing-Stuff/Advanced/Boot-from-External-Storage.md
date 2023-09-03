@@ -196,7 +196,7 @@ mount /dev/<device name> /mnt/
 Move the `/overlay` directory into the storage device that we just mounted by running the following command:
 
 ```
-mount /dev/<device name> /mnt/ ; tar -C /overlay -cvf - . | tar -C /mnt/ -xf - ; umount /mnt/
+mount /dev/<device name> /mnt/<device name> ; tar -C /overlay -cvf - . | tar -C /mnt/<device name> -xf - ; umount /mnt/<device name>
 ```
 
 ### Automatically Mount `/overlay` on Startup
