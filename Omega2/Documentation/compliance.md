@@ -8,14 +8,13 @@
 
 ### System-on-Modules (SoMs)
 
-|SKU        |Name                                     |Declaration of Conformity|
-|-----------|-----------------------------------------|-------------------------|
-|OM-O2S     |Omega2S                                  |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20-%20Declaration%20of%20Conformity.pdf)        |
-|OM-O2SP    |Omega2S+                                 |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20-%20Declaration%20of%20Conformity.pdf)        |
+|SKU        |Name                                     |Declaration of Conformity|Certification |
+|-----------|-----------------------------------------|-------------------------|-------------|
+|OM-O2S     |Omega2S                                  |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20-%20Declaration%20of%20Conformity.pdf)        | FCC ID: 2AJVP-OMEGA2S, [RoHS (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20RoHS%20Certificate.pdf), [ISED (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20ISED%20Certificate.pdf), [TELEC (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20TELEC%20Certificate.pdf)  |
+|OM-O2SP    |Omega2S+                                 |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20-%20Declaration%20of%20Conformity.pdf)        | FCC ID: 2AJVP-OMEGA2S, [RoHS (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20RoHS%20Certificate.pdf), [ISED (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20ISED%20Certificate.pdf), [TELEC (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2S/Omega2S%20TELEC%20Certificate.pdf)  |
 |           |                                         |              |
-|OM-O2      |Omega2                                   |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20-%20Declaration%20of%20Conformity.pdf)        |
-|OM-O2P     |Omega2+                                  |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20-%20Declaration%20of%20Conformity.pdf)        |
-
+|OM-O2      |Omega2                                   |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20-%20Declaration%20of%20Conformity.pdf)        |  FCC ID: 2AJVP-OMEGA2, [RoHS (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20RoHS%20Certificate.pdf), [TELEC (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20TELEC%20Certificate.pdf)  |
+|OM-O2P     |Omega2+                                  |[EU (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20-%20Declaration%20of%20Conformity.pdf)        | FCC ID: 2AJVP-OMEGA2, [RoHS (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20RoHS%20Certificate.pdf), [TELEC (PDF)](https://github.com/OnionIoT/Omega2/blob/master/Documents/Certification/Omega2/Omega2%20TELEC%20Certificate.pdf)  |
 
 ### Single Board Computers (SBCs)
 
