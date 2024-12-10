@@ -1,5 +1,7 @@
 ## Product Compliance
 
+⚠️ As of December 10, 2024, this information has been moved to https://github.com/OnionIoT/documentation/blob/main/docs/compliance.md ⚠️
+
 ### All Products
 
 |SKU        |Name                                     |Declaration of Conformity|
