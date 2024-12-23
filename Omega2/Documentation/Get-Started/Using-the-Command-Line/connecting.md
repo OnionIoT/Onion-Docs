@@ -126,7 +126,7 @@ Password: `onioneer`
 
 #### Using SSH Key Pairs
 
-Over the course of a few months, the number of times you type in the password to connect will add up to a whole bunch of time that could have been spent having fun. Don&#39;t worry, there&#39;s another way to authenticate your SSH connection: by using SSH Key Pairs, **the Omega and your computer will do a secure handshake so you won&#39;t need to type in that pesky password all the time**. Not only that, but using a key pair will make your Omega even more since passwords can be discovered but secure key pair authentication cannot be broken.
+Over the course of a few months, the number of times you type in the password to connect will add up to a whole bunch of time that could have been spent having fun. Don&#39;t worry, there&#39;s another way to authenticate your SSH connection: by using SSH Key Pairs, **the Omega and your computer will do a secure handshake so you won&#39;t need to type in that pesky password all the time**. Not only that, but using a key pair will make your Omega even more secure since passwords can be discovered but secure key pair authentication cannot be broken.
 
 ##### What exactly are Key Pairs
 
