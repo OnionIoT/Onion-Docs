@@ -1,6 +1,6 @@
 Over the course of a few months, the number of times you type in the password to connect will add up to a whole bunch of time that could have been spent having fun. Don't worry, there's another way to authenticate your SSH connection: **SSH Key Pairs**.
 
-By using SSH Key Pairs, **the Omega and your computer will do a secure handshake so you won't need to type in that pesky password all the time**. Not only that, using a key pair will make your Omega even more since passwords can be discovered but secure key pair authentication cannot be broken.
+By using SSH Key Pairs, **the Omega and your computer will do a secure handshake so you won't need to type in that pesky password all the time**. Not only that, using a key pair will make your Omega even more secure since passwords can be discovered but secure key pair authentication cannot be broken.
 
 > You can skip this step if you want to dive right into using your Omega! You can always come back to it later :)
 
