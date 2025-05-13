@@ -101,11 +101,11 @@ Your circuit should now look like this:
 
 ##### Connecting your Omega to the Shift Register
 
-1. Connect the GND pin on the Expansion Dock to the Vcc rail.
+1. Connect the GND pin on the Expansion Dock to the ground rail.
 1. Connect GPIO1 to `SER` (pin 14).
 1. Connect GPIO2 to `SRCLK` (pin 11).
 1. Connect GPIO3 to `RCLK` (pin 12).
-1. Connect the 3.3V pin on the Expansion Dock to the ground rail.
+1. Connect the 3.3V pin on the Expansion Dock to the Vcc rail.
 
 <!-- DONE: IMAGE picture of this stage -->
 ![Experiment circuit](https://raw.githubusercontent.com/OnionIoT/Onion-Docs/master/Omega2/Kit-Guides/Starter/img/06-assembled-circuit.jpg)
